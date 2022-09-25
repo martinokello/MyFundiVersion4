@@ -4888,7 +4888,7 @@ let VehicleMonitorComponent = class VehicleMonitorComponent {
     constructor(myFundiService) {
         this.fundiLocations = [];
         this.markers = [];
-        this.myFundiService = this.myFundiService;
+        this.myFundiService = myFundiService;
         let defaultVehMonitor = {
             lattitude: 0,
             longitude: 0,

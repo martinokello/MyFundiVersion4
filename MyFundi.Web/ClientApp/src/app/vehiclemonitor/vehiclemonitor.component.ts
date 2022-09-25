@@ -17,13 +17,13 @@ declare const google: any;
 export class VehicleMonitorComponent implements OnInit, AfterViewInit {
     public fundiLocations: IFundiLocationMonitor[] = [];
     public currentFundi: IFundiLocationMonitor;
-    private myFundiService: MyFundiService | any;
+    private myFundiService: MyFundiService;
     public markers: any = [];
     public myMap: google.maps.Map;
 
     public constructor(myFundiService: MyFundiService) {
 
-        this.myFundiService = this.myFundiService;
+        this.myFundiService = myFundiService;
 
         let defaultVehMonitor: IFundiLocationMonitor = {
             lattitude: 0,

@@ -7542,7 +7542,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.fundiLocations = [];
         this.markers = [];
-        this.myFundiService = this.myFundiService;
+        this.myFundiService = myFundiService;
         var defaultVehMonitor = {
           lattitude: 0,
           longitude: 0,
