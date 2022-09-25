@@ -15,6 +15,7 @@ using System.Net.Http;
 using System.Text.Json;
 using MyFundi.Web.Models;
 using AutoMapper;
+using System.IO;
 
 namespace MyFundi.Web.Controllers
 {
@@ -33,6 +34,106 @@ namespace MyFundi.Web.Controllers
             _currentFundilocations = new List<FundiLocationViewModel>();
             _mapper = mapper;
         }
+        [HttpGet]
+        [Route("~/{Controller}/{Action}/{appType}")]
+        public async Task<IActionResult> GetLocationEmitterApp(string appType)
+        {
+            try
+            {
+                switch (appType)
+                {
+                    case "android":
+                        return await GetFileAndroid();
+                    case "ios":
+                        return await GetFileIos();
+                    default:
+                        return await GetFileAndroid();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+
+        private async Task<FileContentResult> GetFileAndroid()
+        {
+            DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            var filePathInfo = new FileInfo(currentDir.FullName + "\\AndroidPhoneLocationApp\\martinlayooinc.com.XamarinForms.locationservice.apk");
+            Response.ContentType = "multipart/form-data";
+            Response.Headers.Add("Content-Disposition", "attachment; filename=\"martinlayooinc.com.XamarinForms.locationservice.apk\"");
+
+            if (filePathInfo.Exists)
+            {
+                using (var strReader = filePathInfo.OpenRead())
+                {
+
+                    var bytes = new byte[strReader.Length];
+
+                    strReader.Read(bytes, 0, bytes.Length);
+
+                    strReader.Flush();
+                    strReader.Close();
+                    var result = await Task.FromResult(File(bytes, "multipart/form-data", "martinlayooinc.com.XamarinForms.locationservice.apk"));
+
+                    return result;
+                    /*
+                    var maxBytesRead = 4096;
+                    var bytesRead = 0;
+                    var bytes = new byte[maxBytesRead];
+
+                    while(( bytesRead = strReader.Read(bytes,0,maxBytesRead)) > 0){
+                       await contentBodyStream.WriteAsync(bytes, 0, bytesRead);
+                    }
+                    contentBodyStream.Flush();
+                    contentBodyStream.Close();
+                    
+                    return Ok(new {Message="Downloaded Android App Successfully"});
+                    */
+                }
+            }
+            return await Task.FromResult(File(System.Text.Encoding.UTF8.GetBytes("Failed to Download Android App"), "text/plain"));
+        }
+
+        private async Task<FileContentResult> GetFileIos()
+        {
+            DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            var filePathInfo = new FileInfo(currentDir.FullName + "\\AndroidPhoneLocationApp\\martinlayooinc.com.XamarinForms.locationservice.ipa");
+            Response.ContentType = "multipart/form-data";
+            Response.Headers.Add("Content-Disposition", "attachment; filename=\"martinlayooinc.com.XamarinForms.locationservice.ipa\"");
+
+            if (filePathInfo.Exists)
+            {
+                using (var strReader = filePathInfo.OpenRead())
+                {
+                    var bytes = new byte[strReader.Length];
+
+                    strReader.Read(bytes, 0, bytes.Length);
+
+                    strReader.Flush();
+                    strReader.Close();
+                    var result = await Task.FromResult(File(bytes, "multipart/form-data", "martinlayooinc.com.XamarinForms.locationservice.ipa"));
+
+                    return result;
+                    /*
+                    var maxBytesRead = 4096;
+                    var bytesRead = 0;
+                    var bytes = new byte[maxBytesRead];
+
+                    while ((bytesRead = strReader.Read(bytes, 0, maxBytesRead)) > 0)
+                    {
+                        await contentBody.WriteAsync(bytes, 0, bytesRead);
+                    }
+                    contentBody.Flush();
+
+                    return Ok(new { Message = "Downloaded IOS App Successfully" });
+                    */
+                }
+            }
+            return await Task.FromResult(File(System.Text.Encoding.UTF8.GetBytes("Failed to Download IOS App"), "text/plain"));
+        }
+
         [HttpPost]
         public async Task<IActionResult> RemoveFundiFromMonitor([FromBody] FundiLocationViewModel fundiLocationViewModel)
         {
