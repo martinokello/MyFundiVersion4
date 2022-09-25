@@ -1,0 +1,33 @@
+<div #vehicleView class="col-lg-12" style="text-align:left !important; color:black !important;">
+    <h4>Login</h4>
+    <form #f3="ngForm" (ngSubmit)="f3.form.valid && loginUser()">
+      <!--<div class="form-group">
+        <label>Mobile Phone Number</label>
+        <input type="text" name="phoneNumber" [(ngModel)]="userDetail.moblieNumber" required #phoneNumber="ngModel" />
+        <div *ngIf="f3.submitted && phoneNumber.invalid" class="text-danger">
+          Mobile Number required
+        </div>
+      </div>-->
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" [(ngModel)]="userDetail.emailAddress" required #emailAddress="ngModel" />
+        <div *ngIf="f3.submitted && emailAddress.invalid" class="text-danger">
+          Email required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="userDetail.password" required #password="ngModel" />
+        <div *ngIf="f3.submitted && password.invalid" class="text-danger">
+          Password required
+        </div>
+      </div>
+      <div class="form-group">
+        <label style="display:inline-block !important;" class="col-lg-2">Check to Remember you</label>
+        <input type="checkbox" class="col-lg-1" [(ngModel)]="userDetail.keepLoggedIn" name="keepLoggedIn" style="display:inline-block !important;" /><br />
+      </div>
+      <input type="submit" (click)="loginUser()" class="but-primary" value="login user" style="margin-top:10px;" />
+    </form>
+
+    <div asp-validation-summary="All"></div>
+</div>

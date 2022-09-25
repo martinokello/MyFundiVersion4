@@ -1,0 +1,36 @@
+html {
+  font-size: 14px;
+}
+li:hover, a:hover {
+  color: white !important;
+  font-weight: bold !important;
+  background-color: orange !important;
+}
+@media (min-width:768px) {
+  nav > ul > li {
+    display: inline;
+    text-align: left;
+    font-weight: bold !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  section#banner nav {
+    width: 100% !important;
+    margin: 0 auto;
+    text-align: left;
+    font-weight: bold !important;
+  }
+
+    section#banner nav ul, section#banner nav li {
+      display: block;
+      list-style: none;
+      margin-right: 1.9em;
+      padding: 0;
+      text-align: left;
+      width: 100% !important;
+      font-weight: bold !important;
+    }
+}
+
+
+

@@ -1,0 +1,86 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+  <h1 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf("Fundi") > -1 ?"Fundi":"Client"}} Profile</h1>
+  <section id="Profile">
+    <div class="row" style="text-align: center !important; align-content: center !important;">
+      <div class="col-lg-12">
+        <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
+      </div>
+    </div>
+    <div class="row" style="margin: 2px 0px !important;">
+      <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+        <h5>Profile Summary</h5>
+        <div class="col-lg-12" id="profileSummary">
+          {{fundi.profileSummary}}
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin: 2px 0px !important;">
+      <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+        <h5>Fundi Subscription</h5>
+        <div class="subscription">
+          <form #fs="ngForm" method="post" (ngSubmit)="fs.form.valid && paySubscriptionMonthlyFee($event)">
+            <div class="row" id="subscriptiondiv" style="margin: 2px 0px !important;">
+              <div class="col-lg-12" id="subscription" style="margin: 2px 0px !important;">
+                <img src="/assets/images/paypal_logo.gif" alt="paypal logo" width="450" /><br />
+              </div>
+              <div class="col-lg-12" id="subscription" style="margin: 2px 0px !important;">
+                <div class="form-group">
+                  <label>
+                    Fundi Profile ID
+                  </label><br />
+                  <input type="text" class="form-control" name="fundiProfileId" readonly [(ngModel)]="fundi.fundiProfileId" /><br />
+                  <div *ngIf="fs.submitted && fundiProfileId.invalid" class="text-danger">
+                    Fundi ID Required
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>
+                    Fundi User ID
+                  </label><br />
+                  <input type="text" class="form-control" name="fundUserId" readonly [(ngModel)]="fundi.userId" /><br />
+                  <div *ngIf="fs.submitted && fundUserId.invalid" class="text-danger">
+                    Fundi User Id Required
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>
+                    Subscripton Name
+                  </label><br />
+                  <input type="text" name="subscriptionName" readonly [(ngModel)]="fundi.subscriptionName" /><br />
+                  <div *ngIf="fs.submitted && subscriptionName.invalid" class="text-danger">
+                    Subscription Name Required
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>
+                    Monthly Subscription Description
+                  </label><br />
+                  <textarea name="subscriptionDescription" readonly [(ngModel)]="fundi.subscriptionDescription" row="5" cols="10"></textarea><br />
+                  <div *ngIf="fs.submitted && subscriptionDescription.invalid" class="text-danger">
+                    Subscription Name Required
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>
+                    Subscripton Monthly Fee
+                  </label><br />
+                  <input type="number" name="subscriptionFee" value="2500" [(ngModel)]="fundi.subscriptionFee" /><br />
+                  <div *ngIf="fs.submitted && subscriptionFee.invalid" class="text-danger">
+                    Subscription Fee Required
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>
+                    Make Payment
+                  </label><br />
+                  <input type="button" value="Make Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFee($event)" /><br />
+                </div>
+                <hr />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>
+</div>

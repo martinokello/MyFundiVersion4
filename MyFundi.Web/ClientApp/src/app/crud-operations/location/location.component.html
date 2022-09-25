@@ -1,0 +1,23 @@
+<div class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <form #locationView="ngForm">
+    <h4>Location</h4>
+    <div class="form-group">
+      <label>LocationId - optional</label>
+      <select id="locationId" name="locationId" [(ngModel)]="location.locationId"></select>
+    </div>
+    <div class="form-group">
+      <label>Location Name</label>
+      <input type="text" name="locationName" [(ngModel)]="location.locationName" />
+    </div>
+    <div class="form-group">
+      <label>AddressId</label>
+      <select id="locaddressId" name="addressId" [(ngModel)]="location.addressId"></select>
+    </div>
+    <input type="button" value="Select Location" class="but-primary" (click)="selectLocation()" style="margin-top:10px;" />
+    <input type="button" value="Add Location" class="but-primary" (click)="addLocation()" style="margin-top:10px;" />
+    <input type="button" value="Update Location" class="but-primary" (click)="updateLocation()" style="margin-top:10px;" />
+    <input type="button" value="Delete Location" class="but-primary" (click)="deleteLocation()" style="margin-top:10px;" />
+  </form>
+  <div id="locmap" style="min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;display:none !important;">
+  </div>
+</div>

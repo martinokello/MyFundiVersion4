@@ -1,0 +1,31 @@
+<div class="container">
+  <form #locationWeatherForm>
+    <div>
+      <h1>African Farmers Commodities Weather Locations</h1>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Enter Location and Country Code Separated by comma, To Get Weather Elements</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <span class="col-lg-offset-1">&nbsp;</span>
+        <input id="locationAndCountryCode" type="text" name="locationAndCountryCode" [(ngModel)]="locationAndCountryCode" placeholder="Enter City and Country Code separated by commas" class="col-lg-6" />
+        <span class="col-lg-offset-1">&nbsp;</span>
+        <input class="btn-primary col-lg-2" type="submit" value="Search" id="submitBtn" style="background-color:deepskyblue;padding:5px;font-weight:bolder;" (click)="SearchLocationWeather()" />
+      </div>
+    </div>
+    <div class="row"><span class="col-lg-offset-1"><hr class="col-lg-9" /></span></div>
+    <div class="row">
+      <div class="col-lg-12">
+        <span class="col-lg-offset-1">&nbsp;</span>
+        <div id="results" class="col-lg-12">
+          <div id="content">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

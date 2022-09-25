@@ -1,0 +1,55 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+  <section id="searchFundi">
+    <form id="fundiSearchForm" ngForm>
+      <div class="form-group">
+        <label>Search By Categories</label>
+        <div id="fundiCategories">
+        </div>
+      </div><br />
+      <input type="button" value="Search Jobs By Categories" class="but-primary" (click)="searchJobsByCategories($event)" />
+    </form>
+  </section>
+  <div *ngIf="fundiJobList">
+    <section id="Profile" *ngFor="let clientJob of fundiJobList">
+      <div class="row" style="text-align: center !important; align-content: center !important;">
+        <div class="col-lg-12">
+          <span>Client Name: {{clientJob.job.clientUser.firstName}} {{clientJob.job.clientUser.lastName}}</span>
+        </div>
+      </div>
+      <div class="row" style="margin: 2px 0px !important;">
+        <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+          <h5>Job Name</h5>
+          <ul>
+            <li>
+              Job ID #{{clientJob.job.jobId}}
+            </li>
+            <li>
+              Job Name: {{clientJob.job.jobName}}
+            </li>
+            <li>
+              Distance from current Fundi's registered Location: {{clientJob.distanceApart.distanceApart}} Km.
+            </li>
+            <li>Location: {{clientJob.job.location.locationName}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row" style="margin: 2px 0px !important;">
+        <div class="col-lg-12" id="workCategory" style="margin: 2px 0px !important;">
+          <h5>Job Description:</h5>
+          {{clientJob.job.jobDescription}}
+        </div>
+      </div>
+      <div class="row" style="margin: 2px 0px !important;">
+        <div class="col-lg-12" id="workCategory" style="margin: 2px 0px !important;">
+          <h5>Work Category Type</h5>
+          <ul id="{{clientJob.job.jobId}}-workCategory">
+            <li *ngFor="let wkCat of clientJob.job.jobWorkCategoryIds">
+              {{getWorkCategoryNameById(wkCat)}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr /><br />
+    </section>
+  </div>
+</div>

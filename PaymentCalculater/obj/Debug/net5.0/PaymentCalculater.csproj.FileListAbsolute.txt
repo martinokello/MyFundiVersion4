@@ -1,0 +1,12 @@
+E:\Development\MyFundi\PaymentCalculater\bin\Debug\net5.0\PaymentCalculater.deps.json
+E:\Development\MyFundi\PaymentCalculater\bin\Debug\net5.0\PaymentCalculater.dll
+E:\Development\MyFundi\PaymentCalculater\bin\Debug\net5.0\ref\PaymentCalculater.dll
+E:\Development\MyFundi\PaymentCalculater\bin\Debug\net5.0\PaymentCalculater.pdb
+E:\Development\MyFundi\PaymentCalculater\obj\Debug\net5.0\PaymentCalculater.csproj.AssemblyReference.cache
+E:\Development\MyFundi\PaymentCalculater\obj\Debug\net5.0\PaymentCalculater.GeneratedMSBuildEditorConfig.editorconfig
+E:\Development\MyFundi\PaymentCalculater\obj\Debug\net5.0\PaymentCalculater.AssemblyInfoInputs.cache
+E:\Development\MyFundi\PaymentCalculater\obj\Debug\net5.0\PaymentCalculater.AssemblyInfo.cs
+E:\Development\MyFundi\PaymentCalculater\obj\Debug\net5.0\PaymentCalculater.csproj.CoreCompileInputs.cache
+E:\Development\MyFundi\PaymentCalculater\obj\Debug\net5.0\PaymentCalculater.dll
+E:\Development\MyFundi\PaymentCalculater\obj\Debug\net5.0\ref\PaymentCalculater.dll
+E:\Development\MyFundi\PaymentCalculater\obj\Debug\net5.0\PaymentCalculater.pdb

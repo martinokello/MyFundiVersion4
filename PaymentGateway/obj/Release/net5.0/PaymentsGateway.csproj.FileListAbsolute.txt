@@ -1,0 +1,15 @@
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\bin\Release\net5.0\PaymentsGateway.deps.json
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\bin\Release\net5.0\PaymentsGateway.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\bin\Release\net5.0\ref\PaymentsGateway.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\bin\Release\net5.0\PaymentsGateway.pdb
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\bin\Release\net5.0\PaypalFacility.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\bin\Release\net5.0\PaypalFacility.pdb
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\PaymentsGateway.csproj.AssemblyReference.cache
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\PaymentsGateway.GeneratedMSBuildEditorConfig.editorconfig
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\PaymentsGateway.AssemblyInfoInputs.cache
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\PaymentsGateway.AssemblyInfo.cs
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\PaymentsGateway.csproj.CoreCompileInputs.cache
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\PaymentsGateway.csproj.CopyComplete
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\PaymentsGateway.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\ref\PaymentsGateway.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaymentGateway\obj\Release\net5.0\PaymentsGateway.pdb

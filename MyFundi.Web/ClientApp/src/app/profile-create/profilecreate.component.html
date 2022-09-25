@@ -1,0 +1,66 @@
+<div class="container-fluid" style="background-color: #F0F0F0; text-align: left;">
+  <section>
+    <a [routerLink]="['/manage-profile']">
+      View Profile
+    </a>
+  </section>
+  <h1 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf("Fundi") > -1 ?"Fundi":"Client"}} Profile</h1>
+  <section id="Profile">
+    <div class="row">
+      <div class="col-lg-12">
+        <h4>Fundi Profile Picture</h4><br />
+        <div id="loadingProfileImage" style="display:none !important;"><img src="/assets/images/loading.gif" alt="busy" /></div>
+        <form id=profileImageForm enctype="multipart/form-data" method="post">
+          <input type="hidden" name="username" value="{{userDetails.username}}" />
+          <input type="file" id="profileImageId" name="profileImage" (change)="handleProfileImage($event.target.files)" /><br />
+          <input type="button" value="Upload Profile Image" class="but-primary" (click)="uploadProfileImage()" /><br />
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <h4>Fundi Profile CV</h4><br />
+        <div id="loadingProfileCV" style="display:none !important;"><img src="/assets/images/loading.gif" alt="busy" /></div>
+        <form id=fundiProfileCvForm enctype="multipart/form-data" method="post">
+          <input type="hidden" name="username" value="{{userDetails.username}}" />
+          <input type="file" id="fundiProfileCvId" name="fundiProfileCv" (change)="handleProfileCV($event.target.files)" /><br />
+          <input type="button" class="but-primary" value="Upload CV" (click)="uploadFundiCV()" /><br />
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12" id="addressName">
+        <br />
+        <address (addressEventEmitter)="getSelectedAddress($event)" [address]="address"></address><br />
+      </div>
+      <div class="container-fluid" style="background-color: #F0F0F0; text-align: left;">
+        <form id="formProfileSection">
+          <div class="row">
+            <div class="col-lg-12">
+              <h4>Profile Summary</h4><br />
+              <textarea id="profileSummary" name="profileSummary" [(ngModel)]="profile.profileSummary"></textarea><br />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <h4>Skills</h4>
+              <textarea id="skills" name="skills" [(ngModel)]="profile.skills"></textarea><br />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <h4>Power Tools Used</h4><br />
+              <textarea id="usedPowerTools" name="usedPowerTools" [(ngModel)]="profile.usedPowerTools"></textarea><br />
+            </div>
+          </div>
+          <div>
+            <input type="button" value="Save Profile" class="but-primary" (click)="saveProfile()" /><br />
+          </div>
+        </form>
+      </div>
+    </div>
+    <workcategory></workcategory><br />
+    <certification></certification><br />
+    <courses></courses><br />
+  </section>
+</div>

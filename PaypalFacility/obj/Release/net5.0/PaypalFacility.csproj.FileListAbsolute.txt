@@ -1,0 +1,11 @@
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\bin\Release\net5.0\PaypalFacility.deps.json
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\bin\Release\net5.0\PaypalFacility.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\bin\Release\net5.0\ref\PaypalFacility.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\bin\Release\net5.0\PaypalFacility.pdb
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\net5.0\PaypalFacility.GeneratedMSBuildEditorConfig.editorconfig
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\net5.0\PaypalFacility.AssemblyInfoInputs.cache
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\net5.0\PaypalFacility.AssemblyInfo.cs
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\net5.0\PaypalFacility.csproj.CoreCompileInputs.cache
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\net5.0\PaypalFacility.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\net5.0\ref\PaypalFacility.dll
+D:\Development\AfricanFarmersCommoditiesV2\PaypalFacility\obj\Release\net5.0\PaypalFacility.pdb

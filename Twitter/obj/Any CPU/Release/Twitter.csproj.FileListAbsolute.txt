@@ -1,0 +1,6 @@
+C:\Development\SimbaToursEastAfricaV2\Twitter\Bin\Twitter.dll
+C:\Development\SimbaToursEastAfricaV2\Twitter\Bin\Newtonsoft.Json.dll
+C:\Development\SimbaToursEastAfricaV2\Twitter\obj\Any CPU\Release\Twitter.csprojAssemblyReference.cache
+C:\Development\SimbaToursEastAfricaV2\Twitter\obj\Any CPU\Release\Twitter.csproj.CoreCompileInputs.cache
+C:\Development\SimbaToursEastAfricaV2\Twitter\obj\Any CPU\Release\Twitter.csproj.CopyComplete
+C:\Development\SimbaToursEastAfricaV2\Twitter\obj\Any CPU\Release\Twitter.dll

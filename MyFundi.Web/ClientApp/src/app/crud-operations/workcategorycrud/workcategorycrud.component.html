@@ -1,0 +1,23 @@
+<div class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <form #workCategoryView="ngForm">
+    <h4> Work Category</h4>
+    <div #Address>
+      <div class="form-group">
+        <label>Work Category Id - optional</label>
+        <select id="workCategoryCrudId" name="workCategoryId" [(ngModel)]="workCategory.workCategoryId"></select>
+      </div>
+      <div class="form-group">
+        <label>Work Category Type</label>
+        <input type="text" name="workCategoryType" [(ngModel)]="workCategory.workCategoryType" />
+      </div>
+      <div class="form-group">
+        <label>Work Category Description</label>
+        <textarea cols="10" rows="5" name="workCategoryDescription" [(ngModel)]="workCategory.workCategoryDescription" ></textarea>
+      </div>
+    </div>
+    <input type="button" value="Select Work Category" class="but-primary" (click)="selectworkCategory()" style="margin-top:10px;" />
+    <input type="button" value="Add Work Category" class="but-primary" (click)="addWorkCategory()" style="margin-top:10px;" />
+    <input type="button" value="Update Work Category" class="but-primary" (click)="updateworkCategory()" style="margin-top:10px;" />
+    <input type="button" value="Delete Work Category" class="but-primary" (click)="deleteworkCategory()" style="margin-top:10px;" />
+  </form>
+</div>

@@ -1,0 +1,25 @@
+<div  class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <form #companyView="ngForm">
+    <h4>Company</h4>
+    <div class="form-group">
+      <label>CompanyId - optional</label>
+      <select id="companyId" name="companyId" value="-1" [(ngModel)]="company.companyId"></select>
+    </div>
+    <div class="form-group">
+      <label>Company Name</label>
+      <input type="text" name="companyName" [(ngModel)]="company.companyName" />
+    </div>
+    <div class="form-group">
+      <label>Company Phone Number</label>
+      <input type="text" name="companyPhoneNUmber" [(ngModel)]="company.companyPhoneNUmber" />
+    </div>
+    <div class="form-group">
+      <label>LocationId</label>
+      <select id="complocationId" name="locationId" [(ngModel)]="company.locationId"></select>
+    </div>
+    <input type="button" value="Select Company" class="but-primary" (click)="selectCompany()" style="margin-top:10px;" />
+    <input type="button" value="Add Company" class="but-primary" (click)="addCompany()" style="margin-top:10px;" />
+    <input type="button" value="Update Company" class="but-primary" (click)="updateCompany()" style="margin-top:10px;" />
+    <input type="button" value="Delete Company" class="but-primary" (click)="deleteCompany()" style="margin-top:10px;" />
+  </form>
+</div>
