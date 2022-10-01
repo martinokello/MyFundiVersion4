@@ -13,9 +13,6 @@
             <li style="margin: 10px 0px !important; padding: 10px !important;">
                 <a routerLink='/manage-entities'>Manage Entities</a>
             </li>
-            <li style="margin: 10px 0px !important; padding: 10px !important;">
-                <a routerLink='/fundi-locations'>Fundi Locations</a>
-            </li>
         </ng-container>
         <ng-container *ngIf="userRoles && userRoles.indexOf('Fundi') > -1" ngDefaultControl ngModel="userRoles">
           <li style="margin: 10px 0px !important; padding: 10px !important;">
@@ -97,11 +94,14 @@
     <ng-container *ngIf="actUserStatus.isUserLoggedIn" ngDefaultControl>
       <!-- Nav -->
       <nav style="text-align:left !important;">
-        <ul style="margin: 6px 0px !important;">
-          <li style="margin:10px 0px !important;padding:10px !important;" *ngFor="let role of userRoles">
-            <a routerLink="/{{role}}" routerLinkActive='link-active' style="text-align: left !important; color: white !important;">{{role}}</a>
-          </li>
-        </ul>
+          <ul style="margin: 6px 0px !important;">
+              <li style="margin:10px 0px !important;padding:10px !important;" *ngFor="let role of userRoles">
+                  <a routerLink="/{{role}}" routerLinkActive='link-active' style="text-align: left !important; color: white !important;">{{role}}</a>
+              </li>
+              <li style="margin: 10px 0px !important; padding: 10px !important;">
+                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style="text-align: left !important; color: white !important;">Fundi Locations</a>
+              </li>
+          </ul>
       </nav>
     </ng-container>
     <hr/>

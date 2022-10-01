@@ -60,9 +60,9 @@ namespace MyFundi.Web.Controllers
         private async Task<FileContentResult> GetFileAndroid()
         {
             DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
-            var filePathInfo = new FileInfo(currentDir.FullName + "\\AndroidPhoneLocationApp\\martinlayooinc.com.XamarinForms.locationservice.apk");
+            var filePathInfo = new FileInfo(currentDir.FullName + "\\AndroidPhoneLocationApp\\XamarinForms.locationservice.apk");
             Response.ContentType = "multipart/form-data";
-            Response.Headers.Add("Content-Disposition", "attachment; filename=\"martinlayooinc.com.XamarinForms.locationservice.apk\"");
+            Response.Headers.Add("Content-Disposition", "attachment; filename=\"XamarinForms.locationservice.apk\"");
 
             if (filePathInfo.Exists)
             {
@@ -75,7 +75,7 @@ namespace MyFundi.Web.Controllers
 
                     strReader.Flush();
                     strReader.Close();
-                    var result = await Task.FromResult(File(bytes, "multipart/form-data", "martinlayooinc.com.XamarinForms.locationservice.apk"));
+                    var result = await Task.FromResult(File(bytes, "multipart/form-data", "XamarinForms.locationservice.apk"));
 
                     return result;
                     /*
@@ -99,9 +99,9 @@ namespace MyFundi.Web.Controllers
         private async Task<FileContentResult> GetFileIos()
         {
             DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
-            var filePathInfo = new FileInfo(currentDir.FullName + "\\AndroidPhoneLocationApp\\martinlayooinc.com.XamarinForms.locationservice.ipa");
+            var filePathInfo = new FileInfo(currentDir.FullName + "\\IosPhoneLocationApp\\XamarinForms.locationservice.ipa");
             Response.ContentType = "multipart/form-data";
-            Response.Headers.Add("Content-Disposition", "attachment; filename=\"martinlayooinc.com.XamarinForms.locationservice.ipa\"");
+            Response.Headers.Add("Content-Disposition", "attachment; filename=\"XamarinForms.locationservice.ipa\"");
 
             if (filePathInfo.Exists)
             {
@@ -113,7 +113,7 @@ namespace MyFundi.Web.Controllers
 
                     strReader.Flush();
                     strReader.Close();
-                    var result = await Task.FromResult(File(bytes, "multipart/form-data", "martinlayooinc.com.XamarinForms.locationservice.ipa"));
+                    var result = await Task.FromResult(File(bytes, "multipart/form-data", "XamarinForms.locationservice.ipa"));
 
                     return result;
                     /*
