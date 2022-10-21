@@ -54,6 +54,7 @@ import { FundiJobSearchComponent } from './fundiJobSearch/fundiJobSearch.compone
 import { FundiSubscriptionComponent } from './fundisubscription/fundisubscription.component';
 import { AuthFundiSubscriptionGuard } from '../guards/AuthFundiSubscriptionGuard';
 import { VehicleMonitorComponent } from './vehiclemonitor/vehiclemonitor.component';
+import { myRecaptchaComponent } from './recaptcha/myrecaptcha.component';
 //import { AuthFundiSubscriptionGuard } from '../guards/AuthFundiSubscriptionGuard'
 
 @NgModule({
@@ -100,7 +101,8 @@ import { VehicleMonitorComponent } from './vehiclemonitor/vehiclemonitor.compone
         ClientProfileComponent,
         FundiJobSearchComponent,
         FundiSubscriptionComponent,
-        VehicleMonitorComponent
+        VehicleMonitorComponent,
+        myRecaptchaComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

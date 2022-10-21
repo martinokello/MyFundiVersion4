@@ -1069,7 +1069,18 @@ export class MyFundiService {
             return res;
         });
     }
+    PostToRecaptchaVerify(googleUrl: string, dataStr: string): Promise<any> {
+        let body = dataStr;
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
+        let requestOptions: any = {
+            url: googleUrl,
+            headers: headers,
+            body: body
+        };
+
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).toPromise();
+    }
     public PostOrCreateAddress(address: IAddress): Observable<any> {
         let body = JSON.stringify(address);
 

@@ -450,5 +450,5 @@ C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\QRCo
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\EpsilonCryptoSystemEngine.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\PasswordEncryptorEngine.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\EpsilonCryptoSystemEngine.dll.config
-C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\mscordaccore_amd64_amd64_4.700.22.41602.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.Design.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\mscordaccore_amd64_amd64_4.700.22.47601.dll

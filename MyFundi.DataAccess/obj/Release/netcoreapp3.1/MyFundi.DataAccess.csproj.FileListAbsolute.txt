@@ -90,6 +90,8 @@ C:\Development\MyFundiV2\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.Da
 C:\Development\MyFundiV2\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.pdb
 C:\Development\MyFundiv2\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.csproj.AssemblyReference.cache
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.DataAccess.deps.json
+C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.DataAccess.runtimeconfig.json
+C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.DataAccess.runtimeconfig.dev.json
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.DataAccess.dll
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.DataAccess.pdb
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.Domain.dll
@@ -102,6 +104,4 @@ C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFun
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.csproj.CopyComplete
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.dll
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.pdb
-C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.DataAccess.runtimeconfig.json
-C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.DataAccess.runtimeconfig.dev.json
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.genruntimeconfig.cache

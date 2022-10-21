@@ -21,6 +21,7 @@ C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.Bc
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.Design.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
@@ -144,4 +145,3 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.pdb
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.genruntimeconfig.cache
-C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

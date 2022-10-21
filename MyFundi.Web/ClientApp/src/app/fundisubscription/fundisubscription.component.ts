@@ -12,7 +12,7 @@ export class FundiSubscriptionComponent implements OnInit {
   userRoles: string[];
   location: ILocation;
   subscriptionFee: number = 2500;
-  subscriptionDescritption: string;
+  subscriptionDescription: string;
   subscriptionName: string;
   fundi: any = {};
 

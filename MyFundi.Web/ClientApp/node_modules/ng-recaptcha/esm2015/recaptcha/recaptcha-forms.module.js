@@ -1,0 +1,18 @@
+import * as tslib_1 from "tslib";
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RecaptchaCommonModule } from './recaptcha-common.module';
+import { RecaptchaValueAccessorDirective } from './recaptcha-value-accessor.directive';
+let RecaptchaFormsModule = class RecaptchaFormsModule {
+};
+RecaptchaFormsModule = tslib_1.__decorate([
+    NgModule({
+        declarations: [
+            RecaptchaValueAccessorDirective,
+        ],
+        exports: [RecaptchaValueAccessorDirective],
+        imports: [FormsModule, RecaptchaCommonModule],
+    })
+], RecaptchaFormsModule);
+export { RecaptchaFormsModule };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVjYXB0Y2hhLWZvcm1zLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL25nLXJlY2FwdGNoYS8iLCJzb3VyY2VzIjpbInJlY2FwdGNoYS9yZWNhcHRjaGEtZm9ybXMubW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSxnQkFBZ0IsQ0FBQztBQUU3QyxPQUFPLEVBQUUscUJBQXFCLEVBQUUsTUFBTSwyQkFBMkIsQ0FBQztBQUNsRSxPQUFPLEVBQUUsK0JBQStCLEVBQUUsTUFBTSxzQ0FBc0MsQ0FBQztBQVN2RixJQUFhLG9CQUFvQixHQUFqQztDQUNDLENBQUE7QUFEWSxvQkFBb0I7SUFQaEMsUUFBUSxDQUFDO1FBQ1IsWUFBWSxFQUFFO1lBQ1osK0JBQStCO1NBQ2hDO1FBQ0QsT0FBTyxFQUFFLENBQUMsK0JBQStCLENBQUM7UUFDMUMsT0FBTyxFQUFFLENBQUMsV0FBVyxFQUFFLHFCQUFxQixDQUFDO0tBQzlDLENBQUM7R0FDVyxvQkFBb0IsQ0FDaEM7U0FEWSxvQkFBb0IiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOZ01vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgRm9ybXNNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9mb3Jtcyc7XG5cbmltcG9ydCB7IFJlY2FwdGNoYUNvbW1vbk1vZHVsZSB9IGZyb20gJy4vcmVjYXB0Y2hhLWNvbW1vbi5tb2R1bGUnO1xuaW1wb3J0IHsgUmVjYXB0Y2hhVmFsdWVBY2Nlc3NvckRpcmVjdGl2ZSB9IGZyb20gJy4vcmVjYXB0Y2hhLXZhbHVlLWFjY2Vzc29yLmRpcmVjdGl2ZSc7XG5cbkBOZ01vZHVsZSh7XG4gIGRlY2xhcmF0aW9uczogW1xuICAgIFJlY2FwdGNoYVZhbHVlQWNjZXNzb3JEaXJlY3RpdmUsXG4gIF0sXG4gIGV4cG9ydHM6IFtSZWNhcHRjaGFWYWx1ZUFjY2Vzc29yRGlyZWN0aXZlXSxcbiAgaW1wb3J0czogW0Zvcm1zTW9kdWxlLCBSZWNhcHRjaGFDb21tb25Nb2R1bGVdLFxufSlcbmV4cG9ydCBjbGFzcyBSZWNhcHRjaGFGb3Jtc01vZHVsZSB7XG59XG4iXX0=
