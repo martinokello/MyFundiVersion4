@@ -15,7 +15,7 @@ export class AppInterceptor implements HttpInterceptor {
     return next
       .handle(req.clone({
         withCredentials: false,
-          setHeaders: { 'authToken': localStorage.getItem('authToken') != null && !(req.url.indexOf('https://www.google.com/recaptcha/api') > -1)? localStorage.getItem('authToken'):""  }
+        setHeaders: { 'authToken': localStorage.getItem('authToken') != null && !(req.url.indexOf('https://maps.googleapis.com/maps/api/js') > -1 || req.url.indexOf('https://www.google.com/recaptcha/api') > -1)? localStorage.getItem('authToken'):""  }
       })).do((event: any) => {
         if (event instanceof HttpResponse) {
           //you can transform your response here
