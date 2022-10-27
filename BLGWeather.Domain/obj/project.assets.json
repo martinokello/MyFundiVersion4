@@ -1,8 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETStandard,Version=v2.1": {},
-    ".NETStandard,Version=v2.1/win-x64": {}
+    ".NETStandard,Version=v2.1": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
@@ -73,11 +72,6 @@
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.110\\RuntimeIdentifierGraph.json"
-      }
-    },
-    "runtimes": {
-      "win-x64": {
-        "#import": []
       }
     }
   }
