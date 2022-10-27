@@ -11,7 +11,7 @@ declare const google: any;
 @Injectable()
 export class MyFundiService {
 
-    private baseServerUrl: string = /*"https://localhost:44343";*/ "https://myfundiv2.martinlayooinc.com";
+    private baseServerUrl: string = /*"https://localhost:44343";*/  "https://myfundiv2.martinlayooinc.com";
     public constructor(private httpClient: HttpClient) {
     }
     public static isLoginPage: boolean = false;
@@ -33,7 +33,8 @@ export class MyFundiService {
     public rateFundiByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/RateFundiByProfileId";
     public addFundiWorkCategorUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiWorkCategory";
     public addFundiCertificateUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCertificate";
-    public addFundiCourseUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCourse";
+    public addFundiCourseUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCourse"; 
+    public getFundiProfileRatingByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileRatingById";
     public getFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
     public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
     public payMonthlySubscriptionFeeUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFee";
@@ -46,6 +47,7 @@ export class MyFundiService {
     public saveOrupdateClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientProfile";
     public updateJobUrl: string = this.baseServerUrl + "/ClientProfile/UpdateJob";
     public createOrUpdateFundiJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateFundiJob";
+    public getJobWorkCategoriesByJobIdUrl: string = this.baseServerUrl + "/ClientProfile/GetJobWorkCategoriesByJobId";
     public getAllclientProfilesUrl: string = this.baseServerUrl + "/ClientProfile/GetAllClientProfiles";
 
 
@@ -147,6 +149,21 @@ export class MyFundiService {
     public static SetUserEmail(userEmailAddress: string) {
         MyFundiService.clientEmailAddress = userEmailAddress;
     }
+    public GetJobWorkCategoriesByJobId(jobId: number): Observable<string[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getJobWorkCategoriesByJobIdUrl+"/"+jobId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string[] => {
+            let jobwkCats: string[] = res;
+            return jobwkCats;
+        });
+    }
     public GetAllRoles(): Observable<any> {
 
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -176,6 +193,22 @@ export class MyFundiService {
         return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): IProfile[] => {
             let clientProfiles: IProfile[] = res;
             return clientProfiles;
+        });
+    }
+    
+    GetFundiProfileRatingById(fundiProfileId: number):Observable<any> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiProfileRatingByIdUrl + "/" + fundiProfileId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): any => {
+            let fundiProfileRating: any = res;
+            return fundiProfileRating;
         });
     }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
+using System.Reflection;
 
 namespace SimbaToursEastAfrica.Caching.Concretes
 {
@@ -21,7 +22,19 @@ namespace SimbaToursEastAfrica.Caching.Concretes
                 CacheObject.Set(key, fromCache, DateTime.Now.AddMinutes(timeInMinutes));
                 return fromCache;
             }
-            return result; 
+            return result;
+        }
+
+        public  T GetOrSaveToCacheWithId<K,T>(string key, int timeInMinutes, Func<K,T> ResolveCache, int id)
+        { 
+            T result = (T)CacheObject.Get(key);
+            if (object.Equals(result, default(T)))
+            {
+                T fromCache = (T)ResolveCache.Method.Invoke(ResolveCache.Target,new object[]{ id});
+                CacheObject.Set(key, fromCache, DateTime.Now.AddMinutes(timeInMinutes));
+                return fromCache;
+            }
+            return result;
         }
     }
 }

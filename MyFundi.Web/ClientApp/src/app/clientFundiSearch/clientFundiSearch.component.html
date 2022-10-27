@@ -19,9 +19,10 @@
         <div class="col-lg-12">
           <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
           <span>Fundi Name: {{profile.fundiProfileData[0].user.firstName}} {{profile.fundiProfileData[0].user.lastName}}</span><br />
-          <span>Fundi location  Distance from Job: {{profile.fundiProfileData[0].distanceApart.distanceApart}} Km</span>
+          <span>Fundi location  Distance from Job: {{profile.fundiProfileData[0].distanceApart.distanceApart}} Km</span><br />
+          <span id="averageFundiRating-{{profile.fundiProfileId}}" class="profileRatingSpan rateit"  data-rateit-mode="font" style="text-align:left;font-size: 40px; max-width: 10%;"></span>
         </div>
-      </div>
+      </div> 
       <div class="row" style="text-align: center !important; align-content: center !important;">
         <div class="col-lg-12">
           <a href="#" (click)="populateFundiUserDetails($event,profile.fundiProfileId)" style="width:250px; height:auto; align-content:center !important;">View Fundi Profile</a><br />
@@ -48,18 +49,18 @@
           <ul>
             <li *ngFor="let rating of profile.fundiProfileData">
               <div>
-                Rated By: <em style="color:brown !important;">{{rating.ratedByUser.firstName}} {{rating.ratedByUser.lastName}}</em><br />
-                Rating: <span style="color:brown !important;">{{rating.rating}} out of 5</span><br />
+                Rated By: <em style="color:brown !important;">{{rating.ratedByUser?rating.ratedByUser.firstName:""}} {{rating.ratedByUser?rating.ratedByUser.lastName:""}}</em><br />
+                Rating: <span style="color:brown !important;">{{rating.ratedByUser?rating.rating:"No Rating Yet"}} out of 5</span><br />
               </div>
               <div>
-                Review By: <em style="color:brown !important;">{{rating.ratedByUser.firstName}} {{rating.ratedByUser.lastName}}</em><br />
+                Review By: <em style="color:brown !important;">{{rating.ratedByUser?rating.ratedByUser.firstName:""}} {{rating.ratedByUser?rating.ratedByUser.lastName:""}}</em><br />
                 Review: {{rating.review}}<br />
               </div>
             </li>
           </ul>
           <h5>Rate This Fundi</h5>
           <form id="ratingForm-{{profile.fundiProfileId}}">
-            <div id="fundiRating-{{profile.fundiProfileId}}" class="rating"></div><br />
+            <div id="fundiRating-{{profile.fundiProfileId}}" class="rateit" data-rateit-mode="font"  style="text-align: left; font-size: 40px; max-width: 10% !important;"></div><br />
             <span>Choose Work Category:</span><br />
             <select id="workCategory-{{profile.fundiProfileId}}" name="workCategory" class="form-control">
               <option *ngFor="let rating of profile.fundiProfileData" value="{{rating.workCategoryType}}">{{rating.workCategoryType}}</option>

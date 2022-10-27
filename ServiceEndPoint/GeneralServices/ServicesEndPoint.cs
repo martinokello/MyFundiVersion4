@@ -73,6 +73,12 @@ namespace MyFundiProfile.ServiceEndPoint.GeneralSevices
             }
         }
 
+        public Tuple<int, int> GetFundiProfileRatingById(int fundiProfileId)
+        {
+            return _myFundiProfileUnitOfWork.MyFundiDBContext.GetFundiProfileRatingById(fundiProfileId);
+
+        }
+
         public async Task<bool> UpdateAddress(Address address)
         {
             try
@@ -162,7 +168,7 @@ namespace MyFundiProfile.ServiceEndPoint.GeneralSevices
                 return await Task.FromResult(false);
             }
         }
-      
+
         public async Task<bool> UpdateLocation(Location location)
         {
             try
@@ -176,7 +182,7 @@ namespace MyFundiProfile.ServiceEndPoint.GeneralSevices
                 return await Task.FromResult(false);
             }
         }
-   
+
         public async Task<bool> PostCreateCompany(Company company)
         {
             try

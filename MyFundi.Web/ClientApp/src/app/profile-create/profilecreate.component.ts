@@ -113,8 +113,13 @@ export class ProfileCreateComponent implements OnInit {
       alert(res.message);
     }).subscribe();
   }
-  getSelectedAddress(addressId: number) {
-    this.profile.addressId = addressId;
+    getSelectedAddress(addressId: number) {
+        this.profile.addressId = addressId;
+        let curAddObs = this.myFundiService.GetAddressById(addressId);
+        curAddObs.map((q: IAddress) => {
+            this.address = q;
+            alert('address selected!')
+        }).subscribe();
   }
 }
 

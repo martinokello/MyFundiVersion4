@@ -95,34 +95,41 @@ namespace MyFundi.Web
                     roleGuest.RoleName = "Guest";
                     result = await _roleService.CreateAsync(roleGuest);
                 }
-                var defaultAddress = new Address { AddressLine1 = "MartinLayooInc Software Ltd.", AddressLine2 = "Unit 3, 2 St. Johns Terrace", Country = "United Kingdom", PostCode = "W10", PhoneNumber = "07809773365", Town = "London", DateCreated = DateTime.Now, DateUpdated = DateTime.Now };
-                await serviceEndPoint.CreateAddress(defaultAddress);
-                var locationDefault = new Location { LocationName = "3, 2 St John's Terrace, London W10 4SB, UK", AddressId = defaultAddress.AddressId, DateCreated = DateTime.Now, DateUpdated = DateTime.Now, IsGeocoded = false, Latitude = null, Longitude = null, Country = "UK" };
-                await serviceEndPoint.CreateLocation(locationDefault);
-                var companyDefault = new Company { CompanyName = "MartinLayooInc Software", CompanyPhoneNUmber = "07809773365", DateCreated = DateTime.Now, DateUpdated = DateTime.Now, LocationId = locationDefault.LocationId };
-                await serviceEndPoint.CreateCompany(companyDefault);
-
-                var user = new User();
-                user.Username = "administrator@martinlayooinc.com";
-                user.Email = "administrator@martinlayooinc.com";
-                user.MobileNumber = "07809773365";
-                user.FirstName = "Administrator";
-                user.LastName = "Administrator";
-                user.IsActive = true;
-                user.IsLockedOut = false;
-                user.CompanyId = companyDefault.CompanyId;
-
-                string userPWD = "d3lt4X!505";
-
-                var userChecked = await _userService.FindByEmailAsync(user.Email);
-                if (userChecked == null)
+                try
                 {
-                    UserInteractionResults chkUser = await _userService.CreateAsync(user, userPWD);
+                    var defaultAddress = new Address { AddressLine1 = "MartinLayooInc Software Ltd.", AddressLine2 = "Unit 3, 2 St. Johns Terrace", Country = "United Kingdom", PostCode = "W10", PhoneNumber = "07809773365", Town = "London", DateCreated = DateTime.Now, DateUpdated = DateTime.Now };
+                    await serviceEndPoint.CreateAddress(defaultAddress);
+                    var locationDefault = new Location { LocationName = "3, 2 St John's Terrace, London W10 4SB, UK", AddressId = defaultAddress.AddressId, DateCreated = DateTime.Now, DateUpdated = DateTime.Now, IsGeocoded = false, Latitude = null, Longitude = null, Country = "UK" };
+                    await serviceEndPoint.CreateLocation(locationDefault);
+                    var companyDefault = new Company { CompanyName = "MartinLayooInc Software", CompanyPhoneNUmber = "07809773365", DateCreated = DateTime.Now, DateUpdated = DateTime.Now, LocationId = locationDefault.LocationId };
+                    await serviceEndPoint.CreateCompany(companyDefault);
+
+                    var user = new User();
+                    user.Username = "administrator@martinlayooinc.com";
+                    user.Email = "administrator@martinlayooinc.com";
+                    user.MobileNumber = "07809773365";
+                    user.FirstName = "Administrator";
+                    user.LastName = "Administrator";
+                    user.IsActive = true;
+                    user.IsLockedOut = false;
+                    user.CompanyId = companyDefault.CompanyId;
+
+                    string userPWD = "d3lt4X!505";
+
+                    var userChecked = await _userService.FindByEmailAsync(user.Email);
+                    if (userChecked == null)
+                    {
+                        UserInteractionResults chkUser = await _userService.CreateAsync(user, userPWD);
+                    }
+                    var userRoles = _roleService.GetAllUserRolesAsString(user.Username);
+                    if (!userRoles.Any() || !userRoles.Where(r => r.ToLower().Equals(adminRole.RoleName.ToLower())).Any())
+                    {
+                        await _userService.AddToRoleAsync(user, adminRole.RoleName);
+                    }
                 }
-                var userRoles = _roleService.GetAllUserRolesAsString(user.Username);
-                if (!userRoles.Any() || !userRoles.Where(r => r.ToLower().Equals(adminRole.RoleName.ToLower())).Any())
+                catch (Exception e)
                 {
-                    await _userService.AddToRoleAsync(user, adminRole.RoleName);
+
                 }
             }
         }
@@ -323,6 +330,7 @@ namespace MyFundi.Web
             services.AddScoped<AbstractRepository<Job>, JobRepository>();
             services.AddScoped<AbstractRepository<JobWorkCategory>, JobWorkCategoryRepository>();
             services.AddScoped<AbstractRepository<MonthlySubscription>, MonthlySubscriptionRepository>();
+            services.AddScoped<SimbaToursEastAfrica.Caching.Interfaces.ICaching, SimbaToursEastAfrica.Caching.Concretes.SimbaToursEastAfricaCahing>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddSingleton<IConfiguration>(Configuration);
@@ -389,7 +397,7 @@ namespace MyFundi.Web
                 app.UseSpaStaticFiles();
             }
 
-            app.UseHttpsRedirection(); 
+            app.UseHttpsRedirection();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -438,7 +446,7 @@ namespace MyFundi.Web
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
-                
+
             });
 
         }

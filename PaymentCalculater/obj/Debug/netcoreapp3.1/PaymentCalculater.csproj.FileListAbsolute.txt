@@ -93,4 +93,3 @@ C:\Development\MyFundiCurrent\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentC
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.csproj.CopyComplete
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.dll
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.pdb
-C:\Development\MyFundiCurrent\PaymentCalculater\obj\Debug\netcoreapp3.1\PaymentCalculater.csproj.AssemblyReference.cache

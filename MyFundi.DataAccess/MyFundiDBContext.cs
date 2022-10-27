@@ -50,8 +50,29 @@ namespace MyFundi.DataAccess
         public DbSet<Job> Jobs { get; set; }
         public DbSet<JobWorkCategory> JobWorkCategories { get; set; }
         public DbSet<MonthlySubscription> MonthlySubscriptions { get; set; }
-        
 
+        public Tuple<int, int> GetFundiProfileRatingById(int fundiProfileId)
+        {
+            var con = Database.GetDbConnection();
+            var cmd = con.CreateCommand();
+            var para = cmd.CreateParameter();
+            para.DbType = System.Data.DbType.Int32;
+            para.ParameterName = "@fundiProfileId";
+            para.Value = fundiProfileId;
+            cmd.Parameters.Add(para);
+
+            cmd.CommandText = "[dbo].[GetFundiAverageRatingByProfileId]";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            con.Open();
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return new Tuple<int, int>(reader["FundiProfileId"] == DBNull.Value ? 0 : (int)reader["FundiProfileId"],
+                 reader["FundiAverageRating"] == DBNull.Value ? 0: (int)reader["FundiAverageRating"]);
+            }
+            return new Tuple<int,int>(0,0);
+        }
 
         public List<dynamic> GetFoodHubCommoditiesStockStorageUsage()
         {

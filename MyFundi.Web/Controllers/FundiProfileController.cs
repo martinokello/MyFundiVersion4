@@ -21,6 +21,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using SimbaToursEastAfrica.Caching;
+using SimbaToursEastAfrica.Caching.Interfaces;
+using SimbaToursEastAfrica.Caching.Concretes;
 
 namespace MyFundi.Web.Controllers
 {
@@ -36,7 +39,8 @@ namespace MyFundi.Web.Controllers
         private PaymentsManager PaymentsManager;
         private Mapper _mapper;
         private IHostingEnvironment Environment;
-        public FundiProfileController(IMailService emailService, MyFundiUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, PaymentsManager paymentsManager, Mapper mapper, IHostingEnvironment _environment)
+        private SimbaToursEastAfricaCahing _caching;
+        public FundiProfileController(IMailService emailService, MyFundiUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, PaymentsManager paymentsManager, Mapper mapper, IHostingEnvironment _environment, ICaching caching)
         {
             _emailService = emailService;
             _unitOfWork = unitOfWork;
@@ -46,7 +50,21 @@ namespace MyFundi.Web.Controllers
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
             PaymentsManager = paymentsManager;
             _mapper = mapper;
+            _caching = caching as SimbaToursEastAfricaCahing;
             Environment = _environment;
+        }
+        [Route("~/FundiProfile/GetFundiProfileRatingById/{fundiProfileId}")]
+        public async Task<IActionResult> GetFundiProfileRatingById(int fundiProfileId)
+        {
+            Func<int, Tuple<int, int>> GetFundiProfileRating = new Func<int, Tuple<int, int>>(_serviceEndPoint.GetFundiProfileRatingById);
+
+            var fundiRating = _caching.GetOrSaveToCacheWithId<int, Tuple<int, int>>($"ProfileRating-{fundiProfileId}", 12 * 60 * 60, GetFundiProfileRating, fundiProfileId);
+
+            if (fundiRating.Item2 != 0)
+            {
+                return await Task.FromResult(Ok(new { FundiProfileId = fundiProfileId, FundiAverageRating = fundiRating.Item2 }));
+            }
+            return await Task.FromResult(NotFound(new { Message = "File Not Found!" }));
         }
         public async Task<IActionResult> GetFundiProfileImageByUsername(string username)
         {
@@ -364,15 +382,15 @@ namespace MyFundi.Web.Controllers
                     _applicationConstants.GetSection("BusinessEmail").Value,
                      _applicationConstants.GetSection("SuccessUrl").Value,
                     _applicationConstants.GetSection("CancelUrl").Value,
-                     _applicationConstants.GetSection("NotifyUrl").Value, 
+                     _applicationConstants.GetSection("NotifyUrl").Value,
                      subscriptionViewModel.Username));
 
                 var paypalRequestUrl = await paymentsManager.MakePayments(subscriptionViewModel.Username, new List<Product> {
-                    new Product{ 
+                    new Product{
                         Amount = subscription.SubscriptionFee,
-                        HasPaidInfull = true, 
+                        HasPaidInfull = true,
                         ProductDescription =subscription.SubscriptionDescription,
-                        ProductName = subscription.SubscriptionName, 
+                        ProductName = subscription.SubscriptionName,
                         Quantity= 1,
                         VATAmmount=(decimal) 0
                     }
@@ -392,7 +410,8 @@ namespace MyFundi.Web.Controllers
         [AuthorizeIdentity]
         [HttpPost]
         [Route("~/FundiProfile/FundiSubscriptionValidByProfileId/{fundiProfileId}")]
-        public async Task<IActionResult> FundiSubscriptionValidByProfileId(int fundiProfileId) {
+        public async Task<IActionResult> FundiSubscriptionValidByProfileId(int fundiProfileId)
+        {
 
             var result = _unitOfWork._monthlySubscriptionRepository.GetAll().First(q => q.FundiProfileId == fundiProfileId).EndDate < DateTime.Now;
             return await Task.FromResult(Ok(new { IsValid = result }));
@@ -482,8 +501,8 @@ namespace MyFundi.Web.Controllers
                               join frR in _unitOfWork._fundiRatingsAndReviewRepository.GetAll()
                               on fp.FundiProfileId equals frR.FundiProfileId into catFp
                               from j in catFp.DefaultIfEmpty()
-                              where categoriesViewModel.Categories.Contains(j.WorkCategoryType)
-                              && j.WorkCategoryType == fwcat.WorkCategory.WorkCategoryType && fp != null
+                              where categoriesViewModel.Categories.Contains(fwcat.WorkCategory.WorkCategoryType)
+                              && fp.FundiProfileId > 0
                               select new FundiRatingAndReviewViewModel
                               {
                                   FundiRatingAndReviewId = j.FundiRatingAndReviewId,
@@ -494,7 +513,7 @@ namespace MyFundi.Web.Controllers
                                   UserId = us.UserId,
                                   User = _mapper.Map<UserViewModel>(us),
                                   DateUpdated = j.DateUpdated,
-                                  WorkCategoryType = j.WorkCategoryType,
+                                  WorkCategoryType = fwcat.WorkCategory.WorkCategoryType,
                                   RatedByUser = _mapper.Map<UserViewModel>(j.User),
                                   RatingByUserId = j.UserId,
                                   DistanceApart = CoordinateHelper.ArePointsNear(
@@ -507,12 +526,15 @@ namespace MyFundi.Web.Controllers
             if (reviewCateg.Any())
             {
                 var fundiGroupedRatings = new Dictionary<string, List<FundiRatingAndReviewViewModel>>();
+
+                reviewCateg.OrderBy(q => q.DistanceApart);
                 foreach (var rat in reviewCateg)
                 {
                     if (!fundiGroupedRatings.Keys.Contains(rat.FundiProfileId.ToString().ToLower()))
                     {
                         var list = new List<FundiRatingAndReviewViewModel>();
                         list.Add(rat);
+
                         fundiGroupedRatings.Add(rat.FundiProfileId.ToString().ToLower(), list);
                     }
                     else

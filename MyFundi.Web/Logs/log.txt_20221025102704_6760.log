@@ -1,0 +1,132 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Development\MyFundiCurrent\MyFundi.Web
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'AgreedCost' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NumberOfDaysToComplete' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'GrossCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NetCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'PercentTaxAppliable' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ItemCost' on entity type 'Item'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+npmnpm ERR! JSON.parsenpm ERR! JSON.parsenpm ERR! JSON.parsenpmnpm ERR!npm ERR!fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR! code EJSONPARSE
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR! path C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp/package.json
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR! JSON.parse Unexpected string in JSON at position 1510 while parsing '{
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR! JSON.parse   "name": "myfundi.web",
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR! JSON.parse   "version"'
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR! JSON.parse Failed to parse JSON data.
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR! JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR! A complete log of this run can be found in:
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      npm ERR!     C:\Users\mart4\AppData\Local\npm-cache\_logs\2022-10-25T10_27_12_750Z-debug-0.log
+
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+System.AggregateException: One or more errors occurred. (One or more errors occurred. (The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: npm ERR! code EJSONPARSE
+
+npm ERR! path C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp/package.json
+
+npm ERR! JSON.parse Unexpected string in JSON at position 1510 while parsing '{
+
+npm ERR! JSON.parse   "name": "myfundi.web",
+
+npm ERR! JSON.parse   "version"'
+
+npm ERR! JSON.parse Failed to parse JSON data.
+
+npm ERR! JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+
+
+
+npm ERR! A complete log of this run can be found in:
+
+npm ERR!     C:\Users\mart4\AppData\Local\npm-cache\_logs\2022-10-25T10_27_12_750Z-debug-0.log
+
+))
+ ---> System.AggregateException: One or more errors occurred. (The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: npm ERR! code EJSONPARSE
+
+npm ERR! path C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp/package.json
+
+npm ERR! JSON.parse Unexpected string in JSON at position 1510 while parsing '{
+
+npm ERR! JSON.parse   "name": "myfundi.web",
+
+npm ERR! JSON.parse   "version"'
+
+npm ERR! JSON.parse Failed to parse JSON data.
+
+npm ERR! JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+
+
+
+npm ERR! A complete log of this run can be found in:
+
+npm ERR!     C:\Users\mart4\AppData\Local\npm-cache\_logs\2022-10-25T10_27_12_750Z-debug-0.log
+
+)
+ ---> System.InvalidOperationException: The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: npm ERR! code EJSONPARSE
+
+npm ERR! path C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp/package.json
+
+npm ERR! JSON.parse Unexpected string in JSON at position 1510 while parsing '{
+
+npm ERR! JSON.parse   "name": "myfundi.web",
+
+npm ERR! JSON.parse   "version"'
+
+npm ERR! JSON.parse Failed to parse JSON data.
+
+npm ERR! JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+
+
+
+npm ERR! A complete log of this run can be found in:
+
+npm ERR!     C:\Users\mart4\AppData\Local\npm-cache\_logs\2022-10-25T10_27_12_750Z-debug-0.log
+
+
+ ---> System.IO.EndOfStreamException: Attempted to read past the end of the stream.
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.StartAngularCliServerAsync(String sourcePath, String npmScriptName, ILogger logger)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.StartAngularCliServerAsync(String sourcePath, String npmScriptName, ILogger logger)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.AspNetCore.SpaServices.AngularCli.AngularCliMiddleware.<>c.<Attach>b__2_0(Task`1 task)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.AspNetCore.SpaServices.Extensions.Util.TaskTimeoutExtensions.WithTimeout[T](

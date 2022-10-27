@@ -86,17 +86,17 @@ export class LocationComponent implements OnInit, AfterContentInit {
 
   checkLocationGeoCodedAndUpdate(operation: string) {
 
-    if (!this.location.isGeocoded) {
+      if (operation === 'update' || operation === 'create') {
       let addObs: Observable<IAddress> = this.myFundiService.GetAddressById(this.location.addressId);
       addObs.map((add: IAddress) => {
         this.geoCoder.location = this.location;
         this.geoCoder.geocodeAddress(add, operation);
         document.getElementById("locmap").style.display = "block";
 
+        this.geoCoder.setCreateUpdateLocation(operation, this.location);
       }).subscribe();
     }
     else {
-      this.geoCoder.setCreateUpdateLocation(operation, this.location);
       document.getElementById("locmap").style.display = "none";
     }
   }
