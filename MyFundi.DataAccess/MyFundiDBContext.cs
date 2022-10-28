@@ -71,6 +71,7 @@ namespace MyFundi.DataAccess
                 return new Tuple<int, int>(reader["FundiProfileId"] == DBNull.Value ? 0 : (int)reader["FundiProfileId"],
                  reader["FundiAverageRating"] == DBNull.Value ? 0: (int)reader["FundiAverageRating"]);
             }
+            con.Close();
             return new Tuple<int,int>(0,0);
         }
 

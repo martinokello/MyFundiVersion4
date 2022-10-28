@@ -273,11 +273,11 @@ export class ClientProfileComponent implements OnInit {
         let job: IJob = this.jobs.find((j: IJob) => {
             return j.jobId == this.job.jobId;
         });
-        let chosenWorkCats = [];
+
         this.job = job;
-        let jWCatsObs: Observable<string[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
+        let jWCatsObs: Observable<any[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
         
-        jWCatsObs.map((jobWorkCats: string[]) => {
+        jWCatsObs.map((jobWorkCats: any[]) => {
             let jwCats = jobWorkCats;
 
             //populate ui with string ls of jobWorkCats:
@@ -285,7 +285,7 @@ export class ClientProfileComponent implements OnInit {
             jQuery('ul#ulistWorkCategories > li').remove();
 
             jwCats.forEach((cat) => {
-                ulWCats.append('<li>' + cat + '</li>');
+                ulWCats.append('<li id="'+ cat.workCategoryId.toString()+'">' + cat.workCategory + '</li>');
             });
         }).subscribe();
         $event.preventDefault();
@@ -294,6 +294,8 @@ export class ClientProfileComponent implements OnInit {
         this.job.jobWorkCategoryIds = this.chosenWorkCategories.map((workCat: IWorkCategory) => {
             return workCat.workCategoryId;
         })
+
+        debugger;
         let jobObs: Observable<any> = this.myFundiService.UpdateJob(this.job);
         jobObs.map((q: any) => {
             alert(q.message);
@@ -317,18 +319,34 @@ export class ClientProfileComponent implements OnInit {
         $event.preventDefault();
     }
     removeWorkCategory($event) {
+
         let selectedWorkCategory: IWorkCategory = this.workCategories.find((workCat: IWorkCategory) => {
 
             return workCat.workCategoryId == this.workCategoryId;
         });
-        this.chosenWorkCategories = this.chosenWorkCategories.filter((workCat: IWorkCategory) => {
-            return workCat.workCategoryId != selectedWorkCategory.workCategoryId
-        });
+        let curThis = this;
 
         let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
         let li = document.querySelector('ul#ulistWorkCategories > li[id="' + selectedWorkCategory.workCategoryId.toString() + '"]');
         ulSelectedCategories.removeChild(li);
+
+        let chosenli = jQuery('ul#ulistWorkCategories li');
+
+        let resObs: Observable<boolean> = this.myFundiService.RemoveWorkCategorFromJobId(this.job.jobId, selectedWorkCategory.workCategoryId);
+        resObs.map((hasRemoved: boolean) => {
+            if (hasRemoved) {
+                alert("Work Category removed!");
+                this.selectJob(null);
+            }
+            else {
+                alert("Work Category Does Not Exist Or Failed Removal!");
+            }
+        }).subscribe();
         $event.preventDefault();
+    }
+
+    removeFromParent(parent: HTMLElement, childrenSelector: string) {
+
     }
 }
 

@@ -12,4 +12,3 @@ C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\Exc
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.csproj.CoreCompileInputs.cache
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.dll
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.pdb
-C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.csproj.AssemblyReference.cache
