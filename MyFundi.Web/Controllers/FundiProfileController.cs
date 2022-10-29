@@ -471,11 +471,11 @@ namespace MyFundi.Web.Controllers
                                    Client = _mapper.Map<ClientProfileViewModel>(jobRes.ClientProfile),
                                    DistanceApart =
                                    CoordinateHelper.ArePointsNear(
-                                       new CoordinateViewModel { Latitude = jobRes.Location.Latitude, Longitude = jobRes.Location.Longitude },
+                                       new CoordinateViewModel { Latitude = (float)jobRes.Location.Latitude, Longitude = (float)jobRes.Location.Longitude },
                                    new CoordinateViewModel
                                    {
-                                       Latitude = _unitOfWork._locationRepository.GetAll().First(q => jobRes.FundiAddress.AddressId == q.AddressId).Latitude,
-                                       Longitude = _unitOfWork._locationRepository.GetAll().First(q => jobRes.FundiAddress.AddressId == q.AddressId).Longitude
+                                       Latitude = (float)_unitOfWork._locationRepository.GetAll().First(q => jobRes.FundiAddress.AddressId == q.AddressId).Latitude,
+                                       Longitude = (float)_unitOfWork._locationRepository.GetAll().First(q => jobRes.FundiAddress.AddressId == q.AddressId).Longitude
                                    }, km)
                                }).ToList();
 
@@ -519,16 +519,16 @@ namespace MyFundi.Web.Controllers
                                   DistanceApart = CoordinateHelper.ArePointsNear(
                                   new CoordinateViewModel
                                   {
-                                      Latitude = _unitOfWork._locationRepository.GetAll().First(q => q.AddressId == fp.AddressId).Latitude,
-                                      Longitude = _unitOfWork._locationRepository.GetAll().First(q => q.AddressId == fp.AddressId).Longitude
+                                      Latitude = _unitOfWork._locationRepository.GetAll().First(q => q.AddressId == fp.AddressId).Latitude??5000000,
+                                      Longitude = _unitOfWork._locationRepository.GetAll().First(q => q.AddressId == fp.AddressId).Longitude?? 50000000
                                   }, categoriesViewModel.Coordinate, km)
                               };
             if (reviewCateg.Any())
             {
                 var fundiGroupedRatings = new Dictionary<string, List<FundiRatingAndReviewViewModel>>();
 
-                reviewCateg.OrderBy(q => q.DistanceApart);
-                foreach (var rat in reviewCateg)
+                var results = reviewCateg.ToArray().OrderBy(q => (int)(Math.Round(q.DistanceApart.DistanceApart,2,MidpointRounding.AwayFromZero) * 1000)).Skip(0).Take(5).ToList();
+                foreach (var rat in results)
                 {
                     if (!fundiGroupedRatings.Keys.Contains(rat.FundiProfileId.ToString().ToLower()))
                     {

@@ -1,0 +1,91 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Development\MyFundiCurrent\MyFundi.Web
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'AgreedCost' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NumberOfDaysToComplete' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'GrossCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NetCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'PercentTaxAppliable' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ItemCost' on entity type 'Item'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The LINQ expression 'DbSet<FundiWorkCategory>
+    .Join(
+        outer: DbSet<FundiProfile>, 
+        inner: f => f.FundiProfileId, 
+        outerKeySelector: f0 => f0.FundiProfileId, 
+        innerKeySelector: (f, f0) => new TransparentIdentifier<FundiWorkCategory, FundiProfile>(
+            Outer = f, 
+            Inner = f0
+        ))
+    .Join(
+        outer: DbSet<User>, 
+        inner: ti => ti.Inner.UserId, 
+        outerKeySelector: u => u.UserId, 
+        innerKeySelector: (ti, u) => new TransparentIdentifier<TransparentIdentifier<FundiWorkCategory, FundiProfile>, User>(
+            Outer = ti, 
+            Inner = u
+        ))
+    .LeftJoin(
+        outer: DbSet<FundiRatingAndReview>, 
+        inner: ti0 => ti0.Outer.Inner.FundiProfileId, 
+        outerKeySelector: f1 => f1.FundiProfileId, 
+        innerKeySelector: (ti0, f1) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<FundiWorkCategory, FundiProfile>, User>, FundiRatingAndReview>(
+            Outer = ti0, 
+            Inner = f1
+        ))
+    .Join(
+        outer: DbSet<WorkCategory>, 
+        inner: ti1 => EF.Property<Nullable<int>>(ti1.Outer.Outer.Outer, "WorkCategoryId"), 
+        outerKeySelector: w => EF.Property<Nullable<int>>(w, "WorkCategoryId"), 
+        innerKeySelector: (o, i) => new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<FundiWorkCategory, FundiProfile>, User>, FundiRatingAndReview>, WorkCategory>(
+            Outer = o, 
+            Inner = i
+        ))
+    .Where(ti1 => __categoriesViewModel_Categories_0
+        .Contains(ti1.Inner.WorkCategoryType) && ti1.Outer.Outer.Outer.Inner.FundiProfileId > 0)
+    .OrderBy(ti1 => (int)(Math.Round(
+        d: CoordinateHelper.ArePointsNear(
+            checkPoint: new CoordinateViewModel{ 
+                Latitude = (Nullable<float>)(DbSet<Location>
+                    .Where(l => l.AddressId == ti1.Outer.Outer.Outer.Inner.AddressId)
+                    .Select(l => l.Latitude)
+                    .First() ?? 5000000), 
+                Longitude = (Nullable<float>)(DbSet<Location>
+                    .Where(l0 => l0.AddressId == ti1.Outer.Outer.Outer.Inner.AddressId)
+                    .Select(l0 => l0.Longitude)
+                    .First() ?? 50000000) 
+            }
+            , 
+            centerPoint: __categoriesViewModel_Coordinate_2, 
+            km: __km_3).DistanceApart, 
+        decimals: 3, 
+        mode: AwayFromZero) * 1000))' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to either AsEnumerable(), AsAsyncEnumerable(), ToList(), or ToListAsync(). See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.<VisitMethodCall>g__CheckTranslated|8_0(ShapedQueryExpression translated, <>c__DisplayClass8_0& )
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass9_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQueryCore[TFunc](Object cacheKey, Func`1 compiler)
+   at Micros

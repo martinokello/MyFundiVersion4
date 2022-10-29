@@ -46,7 +46,7 @@ export class CertificationCrudComponent implements OnInit, AfterContentInit {
     let actualResult: Observable<any> = this.myFundiService.PostOrCreateCertification(this.certification);
         actualResult.map((q: any) => {
             let p: boolean = q;
-          alert('workCategory Added: ' + p);
+          alert('Certification Added: ' + p);
         if (p) {
           this.router.navigateByUrl('success');
         }
