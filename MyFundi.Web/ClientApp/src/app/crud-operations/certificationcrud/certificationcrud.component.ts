@@ -40,11 +40,14 @@ export class CertificationCrudComponent implements OnInit, AfterContentInit {
   }
   public certification: ICertification | any;
 
-  public addCertification(): void {
+    public addCertification(): void {
+        let form: HTMLFormElement = document.querySelector('form#certificationcrudView');
+        if (!form.checkValidity()) return;
     let actualResult: Observable<any> = this.myFundiService.PostOrCreateCertification(this.certification);
-      actualResult.map((p: any) => {
-        alert('workCategory Added: ' + p.result);
-        if (p.result) {
+        actualResult.map((q: any) => {
+            let p: boolean = q;
+          alert('workCategory Added: ' + p);
+        if (p) {
           this.router.navigateByUrl('success');
         }
         else {
@@ -53,11 +56,14 @@ export class CertificationCrudComponent implements OnInit, AfterContentInit {
         }).subscribe();
         $('form#locationView').css('display', 'block').slideDown();
     }
-  public updateCertification() {
+    public updateCertification() {
+        let form: HTMLFormElement = document.querySelector('form') as HTMLFormElement;
+        if (!form.checkValidity()) return;
     let actualResult: Observable<any> = this.myFundiService.UpdateCertification(this.certification);
-      actualResult.map((p: any) => {
-        alert('Certification Updated: ' + p.result);
-        if (p.result) {
+        actualResult.map((q: any) => {
+            let p: boolean = q;
+        alert('Certification Updated: ' + p);
+        if (p) {
           this.router.navigateByUrl('success');
         }
         else {
@@ -73,11 +79,14 @@ export class CertificationCrudComponent implements OnInit, AfterContentInit {
     }).subscribe();
     $('form#locationView').css('display', 'block').slideDown();
   }
-  public deleteCertification() {
+    public deleteCertification() {
+        let form: HTMLFormElement = document.querySelector('form#certificationcrudView');
+        if (!form.checkValidity()) return;
     let actualResult: Observable<any> = this.myFundiService.DeleteCertification(this.certification);
-    actualResult.map((p: any) => {
-      alert('certification Deleted: ' + p.result);
-      if (p.result) {
+        actualResult.map((q: any) => {
+            let p: boolean = q;
+      alert('certification Deleted: ' + p);
+      if (p) {
         this.router.navigateByUrl('success');
       }
       else {

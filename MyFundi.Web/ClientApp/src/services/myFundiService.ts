@@ -11,7 +11,7 @@ declare const google: any;
 @Injectable()
 export class MyFundiService {
 
-    private baseServerUrl: string = "https://localhost:44343";  /*"https://myfundiv2.martinlayooinc.com";*/
+    private baseServerUrl: string = /*"https://localhost:44343";*/  "https://myfundiv2.martinlayooinc.com";
     public constructor(private httpClient: HttpClient) {
     }
     public static isLoginPage: boolean = false;
@@ -141,7 +141,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): string[] => {
             let roles: string[] = res;
             return roles;
         });
@@ -159,7 +159,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): string[] => {
             let jobwkCats: any[] = res;
             return jobwkCats;
         });
@@ -175,7 +175,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): object[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): object[] => {
             let roles: object[] = res;
             return roles;
         });
@@ -190,7 +190,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): boolean => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): boolean => {
             let hasRemovedWorkCategoryFromJob: boolean = res;
             return hasRemovedWorkCategoryFromJob;
         });
@@ -205,7 +205,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): IProfile[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IProfile[] => {
             let clientProfiles: IProfile[] = res;
             return clientProfiles;
         });
@@ -221,7 +221,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): any => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any => {
             let fundiProfileRating: any = res;
             return fundiProfileRating;
         });
@@ -238,7 +238,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): IProfile[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IProfile[] => {
             let fundiProfiles: IProfile[] = res;
             return fundiProfiles;
         });
@@ -253,7 +253,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             let isSubscribed: boolean = res;
             return isSubscribed;
         });
@@ -268,7 +268,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): object[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): object[] => {
             let courses: object[] = res;
             return courses;
         });
@@ -285,7 +285,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): object[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): object[] => {
             let courses: object[] = res;
             return courses;
         });
@@ -301,7 +301,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             let clientProfile: IProfile = res;
             return clientProfile;
         });
@@ -318,7 +318,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             let location: any = res;
             return location;
         });
@@ -334,7 +334,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             let fundiProfile: IProfile = res;
             return fundiProfile;
         });
@@ -350,7 +350,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             let fundiProfile: IProfile = res;
             return fundiProfile;
         });
@@ -366,7 +366,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): object[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): object[] => {
             let certificates: object[] = res;
             return certificates;
         });
@@ -382,7 +382,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): string[] => {
             let workCategories: string[] = res;
             return workCategories;
         });
@@ -398,7 +398,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): string[] => {
             let workCategories: string[] = res;
             return workCategories;
         });
@@ -414,7 +414,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): IWorkCategory[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IWorkCategory[] => {
             let workCategories: IWorkCategory[] = res;
             return workCategories;
         });
@@ -431,7 +431,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): IFundiRating[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IFundiRating[] => {
             let certs: IFundiRating[] = res;
             return certs;
         });
@@ -447,7 +447,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): ICertification[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): ICertification[] => {
             let certs: ICertification[] = res;
             return certs;
         });
@@ -463,7 +463,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): ICourse[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): ICourse[] => {
             let courses: ICourse[] = res;
             return courses;
         });
@@ -479,7 +479,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): object[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): object[] => {
             let workCategories: object[] = res;
             return workCategories;
         });
@@ -495,7 +495,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): object[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): object[] => {
             let workCategories: object[] = res;
             return workCategories;
         });
@@ -595,7 +595,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): any[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any[] => {
             let twitterFeeds: any[] = res;
             return twitterFeeds;
         });
@@ -610,7 +610,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((weatherFocus: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((weatherFocus: any) => {
             return weatherFocus;
         });
     }
@@ -624,7 +624,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): string => {
             let userId: string = res;
             return userId;
         });
@@ -639,7 +639,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): IInvoice[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IInvoice[] => {
             let invoices: IInvoice[] = res;
             return invoices;
         });
@@ -655,7 +655,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any): string[] => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): string[] => {
             let roles: string[] = res;
             return roles;
         });
@@ -832,7 +832,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -846,7 +846,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -861,7 +861,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -877,7 +877,7 @@ export class MyFundiService {
             body: body
         };
 
-        return this.httpClient.post(requestOptions.url, requestOptions.body, requestOptions.headers).map((res: any) => {
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -891,7 +891,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -944,7 +944,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -960,7 +960,7 @@ export class MyFundiService {
             body: body
         };
 
-        return this.httpClient.post(requestOptions.url, requestOptions.body.requestOptions.headers).map((res: any) => {
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -979,7 +979,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -994,7 +994,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -1008,7 +1008,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -1024,7 +1024,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -1040,7 +1040,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -1054,7 +1054,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -1070,7 +1070,7 @@ export class MyFundiService {
             body: body
         };
 
-        return this.httpClient.post(requestOptions.url, requestOptions.body, requestOptions.headers).map((res: any) => {
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -1288,7 +1288,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -1402,7 +1402,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, requestOptions.headers).map((res: any) => {
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
             let results: IFundiLocationMonitor[] = res;
             return results;
         });

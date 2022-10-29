@@ -20,11 +20,15 @@ export class LocationComponent implements OnInit, AfterContentInit {
   }
   public location: ILocation | any;
 
-  public addLocation(): void {
-    this.checkLocationGeoCodedAndUpdate("create");
+    public addLocation(): void {
+        let form: HTMLFormElement = document.querySelector('form#locationView') as HTMLFormElement;
+        if (!form.checkValidity()) return;
+        this.checkLocationGeoCodedAndUpdate("create");
   }
-  public updateLocation() {
-    this.checkLocationGeoCodedAndUpdate("update");
+    public updateLocation() {
+        let form: HTMLFormElement = document.querySelector('form#locationView') as HTMLFormElement;
+        if (!form.checkValidity()) return;
+        this.checkLocationGeoCodedAndUpdate("update");
   }
 
   public selectLocation(): void {
@@ -34,7 +38,9 @@ export class LocationComponent implements OnInit, AfterContentInit {
     }).subscribe();
     $('form#locationView').css('display', 'block').slideDown();
   }
-  public deleteLocation() {
+    public deleteLocation() {
+        let form: HTMLFormElement = document.querySelector('form#locationView') as HTMLFormElement;
+        if (!form.checkValidity()) return;
     let actualResult: Observable<any> = this.myFundiService.DeleteLocation(this.location);
     actualResult.map((p: any) => {
       alert('Location Deleted: ' + p.result); if (p.result) {

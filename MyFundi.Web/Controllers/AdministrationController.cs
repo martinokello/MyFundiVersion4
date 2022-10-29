@@ -38,7 +38,7 @@ namespace MyFundi.Web.ControllersControllers
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
             bool result = await _serviceEndPoint.PostLocation(location);
             if (result) return Ok(result);
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
         [HttpPost]
         [CustomAuthorize("Administrator")]
@@ -51,7 +51,7 @@ namespace MyFundi.Web.ControllersControllers
                 _unitOfWork.SaveChanges();
                 if (result) return await Task.FromResult(Ok(result));
             }
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false)); 
         }
 
         
@@ -66,7 +66,7 @@ namespace MyFundi.Web.ControllersControllers
                 _unitOfWork.SaveChanges();
                 if (result) return await Task.FromResult(Ok(result));
             }
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
 
         [HttpPost]
@@ -81,7 +81,7 @@ namespace MyFundi.Web.ControllersControllers
                 _unitOfWork.SaveChanges();
                 if (result) return await Task.FromResult(Ok(result));
             }
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
         
         [HttpPost]
@@ -97,7 +97,7 @@ namespace MyFundi.Web.ControllersControllers
                 _unitOfWork.SaveChanges();
                 if (result) return await Task.FromResult(Ok(result));
             }
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
         
         [HttpPost]
@@ -112,7 +112,7 @@ namespace MyFundi.Web.ControllersControllers
                 _unitOfWork.SaveChanges();
                 if (result) return await Task.FromResult(Ok(result));
             }
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
         [HttpPost]
         [Route("DeleteCertification")]
@@ -127,10 +127,10 @@ namespace MyFundi.Web.ControllersControllers
                 _unitOfWork.SaveChanges();
                 if (result) return await Task.FromResult(Ok(result));
             }
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
         [HttpPost]
-        /*[CustomAuthorize("Administrator")]*/
+        [CustomAuthorize("Administrator")]
         public async Task<IActionResult> PostOrCreateCertification([FromBody] CertificationViewModel certification)
         {
             if (ModelState.IsValid)
@@ -141,7 +141,7 @@ namespace MyFundi.Web.ControllersControllers
                 _unitOfWork.SaveChanges();
                 if (result) return await Task.FromResult(Ok(result));
             }
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
         
        [HttpGet]
@@ -190,7 +190,7 @@ namespace MyFundi.Web.ControllersControllers
                 var resView = _mapper.Map<CertificationViewModel[]>(results.ToArray());
                 if (results.Any()) return await Task.FromResult(Ok(resView));
             }
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
         [HttpPost]
         [Authorize(Roles = ("Administrator"))]
@@ -199,7 +199,7 @@ namespace MyFundi.Web.ControllersControllers
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
             bool result = await _serviceEndPoint.UpdateLocation(location);
             if (result) return Ok(result);
-            return BadRequest();
+            return await Task.FromResult(BadRequest(false));
         }
         // POST: api/Administration
         [HttpPost]

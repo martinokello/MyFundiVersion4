@@ -123,7 +123,7 @@ namespace MyFundi.Web.Controllers
                 bool result = await _serviceEndPoint.DeleteAddress(address);
                 if (!result)
                 {
-                    return NotFound(addressViewModel);
+                    return NotFound(new { message = "Failed To Delete Address:" + address.AddressLine1 });
                 }
                 return Ok(new { message = "Succesfully Deleted!", result = result });
             }

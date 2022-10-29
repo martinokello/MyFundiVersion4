@@ -276,10 +276,11 @@ export class ClientProfileComponent implements OnInit {
 
         this.job = job;
         let jWCatsObs: Observable<any[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
-        
-        jWCatsObs.map((jobWorkCats: any[]) => {
-            let jwCats = jobWorkCats;
 
+        this.chosenWorkCategories = [];
+        jWCatsObs.map((jobWorkCats: any[]) => {
+            let jwCats: any = jobWorkCats;
+            this.chosenWorkCategories = jwCats;
             //populate ui with string ls of jobWorkCats:
             let ulWCats = jQuery('ul#ulistWorkCategories');
             jQuery('ul#ulistWorkCategories > li').remove();
@@ -293,8 +294,7 @@ export class ClientProfileComponent implements OnInit {
     updateJob($event) {
         this.job.jobWorkCategoryIds = this.chosenWorkCategories.map((workCat: IWorkCategory) => {
             return workCat.workCategoryId;
-        })
-
+        });
         debugger;
         let jobObs: Observable<any> = this.myFundiService.UpdateJob(this.job);
         jobObs.map((q: any) => {
@@ -345,8 +345,5 @@ export class ClientProfileComponent implements OnInit {
         $event.preventDefault();
     }
 
-    removeFromParent(parent: HTMLElement, childrenSelector: string) {
-
-    }
 }
 
