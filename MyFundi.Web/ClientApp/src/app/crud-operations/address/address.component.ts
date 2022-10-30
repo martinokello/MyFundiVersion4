@@ -15,13 +15,11 @@ import { Output } from '@angular/core';
 @Injectable()
 export class AddressComponent implements OnInit, AfterContentInit {
     private myFundiService: MyFundiService;
-    @Output() addressEventEmitter = new EventEmitter<number>();
-    @Input() address: IAddress | any;;
     public constructor(myFundiService: MyFundiService, private router: Router) {
         this.myFundiService = myFundiService;
     }
 
-    //public address: IAddress | any;
+    public address: IAddress | any;
 
     refreshAddresses() {
         let addSelect = document.querySelector('select#addressId');
@@ -85,7 +83,6 @@ export class AddressComponent implements OnInit, AfterContentInit {
         let actualResult: Observable<any> = this.myFundiService.GetAddressById(this.address.addressId);
         actualResult.map((p: any) => {
             this.address = p;
-            this.addressEventEmitter.emit(this.address.addressId);
         }).subscribe();
         $('form#locationView').css('display', 'block').slideDown();
     }

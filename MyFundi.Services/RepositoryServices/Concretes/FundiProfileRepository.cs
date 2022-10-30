@@ -45,7 +45,7 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 cert.Skills = toUpdate.Skills;
                 cert.UsedPowerTools = toUpdate.UsedPowerTools;
                 cert.UserId = toUpdate.UserId;
-                cert.AddressId = toUpdate.AddressId;
+                cert.LocationId = toUpdate.LocationId;
                 return true;
             }
             catch (Exception e)

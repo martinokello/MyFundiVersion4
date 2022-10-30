@@ -21,5 +21,6 @@ namespace MyFundi.Web.ViewModels
         public Guid RatingByUserId { get; set; }
         public UserViewModel RatedByUser { get; set; }
         public DistanceApartModel DistanceApart { get; set; }
+        public LocationViewModel FundiLocation { get; set; }
     }
 }

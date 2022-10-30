@@ -236,6 +236,7 @@ export class ClientProfileComponent implements OnInit {
 
         profileObs.map((res: any) => {
             alert(res.message);
+            this.router.navigateByUrl('success');
         }).subscribe();
         $event.preventDefault();
     }

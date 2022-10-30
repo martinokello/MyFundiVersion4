@@ -439,20 +439,15 @@ SET IDENTITY_INSERT [dbo].[Certifications] OFF
 GO
 SET IDENTITY_INSERT [dbo].[ClientProfiles] ON 
 GO
-INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [ProfileSummary], [ProfileImageUrl], [DateCreated], [DateUpdated]) VALUES (1, N'2614b3e3-944e-4015-9aae-08da547eb15a', 2, N'I am a well rounded and friendly individual. Full of trust, I offer my Jobs to good handy men, who should be able to tell me anything in trust. My thoughts are that the Fundi would know better since it is their skills and profession.
-
-Give me a well done, job, and I am happy and will refer you to other jobs especially within my community. I always rate efficiency, and honesty as the 2 most important things, let alone friendly Fundis.', N'', CAST(N'2022-07-01T14:37:15.8127390' AS DateTime2), CAST(N'2022-07-01T14:37:15.8127570' AS DateTime2))
+INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [ProfileSummary], [ProfileImageUrl], [DateCreated], [DateUpdated]) VALUES (1, N'2614b3e3-944e-4015-9aae-08da547eb15a', 2, N'
+I am a well rounded and friendly individual. Full of trust, I offer my Jobs to good handy men, who should be able to tell me anything in trust. My thoughts are that the Fundi would know better since it is their skills and profession. Give me a well done, job, and I am happy and will refer you to other jobs especially within my community. I always rate efficiency, and honesty as the 2 most important things, let alone friendly Fundis.', N'', CAST(N'2022-07-01T14:37:15.8127390' AS DateTime2), CAST(N'2022-07-01T14:37:15.8127570' AS DateTime2))
 GO
-INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [ProfileSummary], [ProfileImageUrl], [DateCreated], [DateUpdated]) VALUES (7, N'e9585393-5fd1-45e8-5487-08da6e1c1725', 3, N'I am Jonathan, and been working as an Investment Fund Manager within EMEA. Recently visited Africa, to gain business ideas, and I am of the heart and feel that African Cultural Materials Can be exploited for the their explicit quality.
-
-My intentions are to open up shop in Uganda, Tanzania, Kenya, Ghana and South Africa to start with.
-
-It is viatal I get the people to build this dream, across the engineering descipline - namely:
+INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [ProfileSummary], [ProfileImageUrl], [DateCreated], [DateUpdated]) VALUES (7, N'e9585393-5fd1-45e8-5487-08da6e1c1725', 3, N'
+I am Jonathan, and been working as an Investment Fund Manager within EMEA. Recently visited Africa, to gain business ideas, and I am of the heart and feel that African Cultural Materials Can be exploited for the their explicit quality. My intentions are to open up shop in Uganda, Tanzania, Kenya, Ghana and South Africa to start with. It is viatal I get the people to build this dream, across the engineering descipline - namely:
 ', N'', CAST(N'2022-07-28T12:05:10.0475114' AS DateTime2), CAST(N'2022-07-28T12:05:10.0475172' AS DateTime2))
 GO
-INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [ProfileSummary], [ProfileImageUrl], [DateCreated], [DateUpdated]) VALUES (8, N'8390972e-e9f5-4272-9b80-08da6b55d0f6', 3, N'I am a well rounded and friendly individual. Full of trust, I offer my Jobs to good handy men, who should be able to tell me anything in trust. My thoughts are that the Fundi would know better since it is their skills and profession.
-
-Give me a well done, job, and I am happy and will refer you to other jobs especially within my community. I always rate efficiency, and honesty as the 2 most important things, let alone friendly Fundis.', N'', CAST(N'2022-09-05T07:23:15.9413099' AS DateTime2), CAST(N'2022-09-05T07:23:15.9413114' AS DateTime2))
+INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [ProfileSummary], [ProfileImageUrl], [DateCreated], [DateUpdated]) VALUES (8, N'8390972e-e9f5-4272-9b80-08da6b55d0f6', 3, N'
+I am a well rounded and friendly individual. Full of trust, I offer my Jobs to good handy men, who should be able to tell me anything in trust. My thoughts are that the Fundi would know better since it is their skills and profession.Give me a well done, job, and I am happy and will refer you to other jobs especially within my community. I always rate efficiency, and honesty as the 2 most important things, let alone friendly Fundis.', N'', CAST(N'2022-09-05T07:23:15.9413099' AS DateTime2), CAST(N'2022-09-05T07:23:15.9413114' AS DateTime2))
 GO
 SET IDENTITY_INSERT [dbo].[ClientProfiles] OFF
 GO

@@ -27,5 +27,6 @@ namespace MyFundi.Web.ViewModels
         public int[] JobWorkCategoryIds { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
+        public LocationViewModel FundiLocation { get; set; }
     }
 }

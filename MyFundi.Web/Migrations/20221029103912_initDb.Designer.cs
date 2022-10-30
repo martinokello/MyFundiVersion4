@@ -10,8 +10,8 @@ using MyFundi.DataAccess;
 namespace MyFundi.Web.Migrations
 {
     [DbContext(typeof(MyFundiDBContext))]
-    [Migration("20220924214307_AddisFundiToUsersTable")]
-    partial class AddisFundiToUsersTable
+    [Migration("20221029103912_initDb")]
+    partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,9 +221,6 @@ namespace MyFundi.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -232,6 +229,9 @@ namespace MyFundi.Web.Migrations
 
                     b.Property<string>("FundiProfileCvUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ProfileImageUrl")
                         .HasColumnType("nvarchar(max)");
@@ -250,7 +250,7 @@ namespace MyFundi.Web.Migrations
 
                     b.HasKey("FundiProfileId");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("UserId");
 
@@ -787,9 +787,9 @@ namespace MyFundi.Web.Migrations
 
             modelBuilder.Entity("MyFundi.Domain.FundiProfile", b =>
                 {
-                    b.HasOne("MyFundi.Domain.Address", "Address")
+                    b.HasOne("MyFundi.Domain.Address", "Location")
                         .WithMany()
-                        .HasForeignKey("AddressId")
+                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

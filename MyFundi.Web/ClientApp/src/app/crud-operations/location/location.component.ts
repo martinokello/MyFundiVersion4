@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, Inject, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Injectable, Inject, AfterContentInit, EventEmitter, Input, Output } from '@angular/core';
 import { IAddress, ILocation, MyFundiService } from '../../../services/myFundiService';
 import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
@@ -17,8 +17,10 @@ export class LocationComponent implements OnInit, AfterContentInit {
 
   public constructor(private myFundiService: MyFundiService, private router: Router, private geoCoder: AddressLocationGeoCodeService) {
 
-  }
-  public location: ILocation | any;
+    }
+
+    @Output() locationEventEmitter = new EventEmitter<number>();
+    @Input() location: ILocation | any;
 
     public addLocation(): void {
         let form: HTMLFormElement = document.querySelector('form#locationView') as HTMLFormElement;
@@ -34,7 +36,8 @@ export class LocationComponent implements OnInit, AfterContentInit {
   public selectLocation(): void {
     let actualResult: Observable<any> = this.myFundiService.GetLocationById(this.location.locationId);
     actualResult.map((p: any) => {
-      this.location = p;
+        this.location = p;
+        this.locationEventEmitter.emit(this.location.locationId);
     }).subscribe();
     $('form#locationView').css('display', 'block').slideDown();
   }

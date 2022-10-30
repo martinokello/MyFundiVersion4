@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyFundi.Web.Migrations
 {
-    public partial class AddisFundiToUsersTable : Migration
+    public partial class initDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,7 +70,7 @@ namespace MyFundi.Web.Migrations
                 {
                     table.PrimaryKey("PK_Roles", x => x.RoleId);
                 });
-            
+
             migrationBuilder.CreateTable(
                 name: "WorkCategories",
                 columns: table => new
@@ -110,7 +110,7 @@ namespace MyFundi.Web.Migrations
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,7 +133,7 @@ namespace MyFundi.Web.Migrations
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "LocationId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,13 +191,13 @@ namespace MyFundi.Web.Migrations
                         column: x => x.ClientUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_ClientFundiContracts_Users_FundiUserId",
                         column: x => x.FundiUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -221,13 +221,13 @@ namespace MyFundi.Web.Migrations
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_ClientProfiles_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -241,7 +241,7 @@ namespace MyFundi.Web.Migrations
                     ProfileImageUrl = table.Column<string>(nullable: true),
                     Skills = table.Column<string>(nullable: true),
                     UsedPowerTools = table.Column<string>(nullable: true),
-                    AddressId = table.Column<int>(nullable: false),
+                    LocationId = table.Column<int>(nullable: false),
                     FundiProfileCvUrl = table.Column<string>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateUpdated = table.Column<DateTime>(nullable: false)
@@ -250,17 +250,17 @@ namespace MyFundi.Web.Migrations
                 {
                     table.PrimaryKey("PK_FundiProfiles", x => x.FundiProfileId);
                     table.ForeignKey(
-                        name: "FK_FundiProfiles_Addresses_AddressId",
-                        column: x => x.AddressId,
+                        name: "FK_FundiProfiles_Addresses_LocationId",
+                        column: x => x.LocationId,
                         principalTable: "Addresses",
                         principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_FundiProfiles_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -286,7 +286,7 @@ namespace MyFundi.Web.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -306,13 +306,13 @@ namespace MyFundi.Web.Migrations
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_UserRoles_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -337,13 +337,13 @@ namespace MyFundi.Web.Migrations
                         column: x => x.FundiProfileId,
                         principalTable: "FundiProfiles",
                         principalColumn: "FundiProfileId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_FundiProfileAndReviewRatings_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -365,13 +365,13 @@ namespace MyFundi.Web.Migrations
                         column: x => x.CertificationId,
                         principalTable: "Certifications",
                         principalColumn: "CertificationId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_FundiProfileCertifications_FundiProfiles_FundiProfileId",
                         column: x => x.FundiProfileId,
                         principalTable: "FundiProfiles",
                         principalColumn: "FundiProfileId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -393,13 +393,13 @@ namespace MyFundi.Web.Migrations
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_FundiProfileCourses_FundiProfiles_FundiProfileId",
                         column: x => x.FundiProfileId,
                         principalTable: "FundiProfiles",
                         principalColumn: "FundiProfileId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -422,13 +422,13 @@ namespace MyFundi.Web.Migrations
                         column: x => x.FundiProfileId,
                         principalTable: "FundiProfiles",
                         principalColumn: "FundiProfileId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_FundiWorkCategories_WorkCategories_WorkCategoryId",
                         column: x => x.WorkCategoryId,
                         principalTable: "WorkCategories",
                         principalColumn: "WorkCategoryId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -471,19 +471,19 @@ namespace MyFundi.Web.Migrations
                         column: x => x.ClientProfileId,
                         principalTable: "ClientProfiles",
                         principalColumn: "ClientProfileId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Jobs_Users_ClientUserId",
                         column: x => x.ClientUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Jobs_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "LocationId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -541,7 +541,7 @@ namespace MyFundi.Web.Migrations
                         column: x => x.InvoiceId,
                         principalTable: "Invoices",
                         principalColumn: "InvoiceId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -628,9 +628,9 @@ namespace MyFundi.Web.Migrations
                 column: "FundiProfileId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FundiProfiles_AddressId",
+                name: "IX_FundiProfiles_LocationId",
                 table: "FundiProfiles",
-                column: "AddressId");
+                column: "LocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FundiProfiles_UserId",

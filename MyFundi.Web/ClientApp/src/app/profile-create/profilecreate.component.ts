@@ -18,7 +18,6 @@ export class ProfileCreateComponent implements OnInit {
   certifications: ICertification[];
   courses: ICourse[];
   userGuidId: string;
-  address: IAddress;
 
   ngOnInit(): void {
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -36,9 +35,9 @@ export class ProfileCreateComponent implements OnInit {
       if (fundiProf) {
         this.profile = fundiProf;
 
-        let curAddObs = this.myFundiService.GetAddressById(fundiProf.addressId);
-        curAddObs.map((q: IAddress) => {
-          this.address = q;
+          let curAddObs = this.myFundiService.GetLocationById(fundiProf.locationId);
+        curAddObs.map((q: ILocation) => {
+          this.location = q;
         }).subscribe();
       }
       else {
@@ -51,7 +50,7 @@ export class ProfileCreateComponent implements OnInit {
           skills: "",
           usedPowerTools: "",
           fundiProfileCvUrl: "",
-          addressId: 0
+          locationId: 0
         }
       }
     }).subscribe();
@@ -67,7 +66,7 @@ export class ProfileCreateComponent implements OnInit {
       skills: "",
       usedPowerTools: "",
       fundiProfileCvUrl: "",
-      addressId: 0
+      locationId: 0
     };
   }
   handleProfileCV(files: FileList) {
@@ -113,12 +112,12 @@ export class ProfileCreateComponent implements OnInit {
       alert(res.message);
     }).subscribe();
   }
-    getSelectedAddress(addressId: number) {
-        this.profile.addressId = addressId;
-        let curAddObs = this.myFundiService.GetAddressById(addressId);
-        curAddObs.map((q: IAddress) => {
-            this.address = q;
-            alert('address selected!')
+    getSelectedLocation(locationId: number) {
+        this.profile.locationId = locationId;
+        let curAddObs = this.myFundiService.GetLocationById(locationId);
+        curAddObs.map((q: ILocation) => {
+            this.location = q;
+            alert('Location selected!')
         }).subscribe();
   }
 }

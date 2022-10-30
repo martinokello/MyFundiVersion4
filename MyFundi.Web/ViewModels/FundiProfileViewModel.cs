@@ -15,7 +15,7 @@ namespace MyFundi.Web.ViewModels
         public string Skills { get; set; }
         public string UsedPowerTools { get; set; }
         public string FundiProfileCvUrl { get; set; }
-        public int AddressId { get; set; }
+        public int LocationId { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
     }

@@ -16,9 +16,9 @@ namespace MyFundi.Domain
         public string ProfileImageUrl { get; set; }
         public string Skills { get; set; }
         public string UsedPowerTools { get; set; }
-        [ForeignKey("Address")]
-        public int AddressId { get; set; }
-        public Address Address { get; set; }
+        [ForeignKey("Location")]
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
         public string FundiProfileCvUrl { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;

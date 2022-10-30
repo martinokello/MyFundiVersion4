@@ -8,7 +8,7 @@ namespace MyFundi.Web.Infrastructure
 {
     public class CoordinateHelper
     {
-        public static DistanceApartModel ArePointsNear(CoordinateViewModel checkPoint, CoordinateViewModel centerPoint, float km)
+        public static DistanceApartModel ArePointsNearEnough(CoordinateViewModel checkPoint, CoordinateViewModel centerPoint, float km)
         {
             var ky = 40000 / 360;
             var kx = Math.Cos(Math.PI * ((double)centerPoint.Latitude) / 180.0) * ky;
@@ -17,7 +17,7 @@ namespace MyFundi.Web.Infrastructure
             double dist = Math.Sqrt(dx * dx + dy * dy);
             var distApart = dist <= km;
 
-            return new DistanceApartModel { DistanceApart = (decimal)Math.Round(dist,2), IsWithinDistance = distApart };
+            return new DistanceApartModel { DistanceApart = (decimal)Math.Round(dist,3), IsWithinDistance = distApart };
         }
     }
 }

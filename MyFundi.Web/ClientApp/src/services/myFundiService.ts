@@ -11,7 +11,7 @@ declare const google: any;
 @Injectable()
 export class MyFundiService {
 
-    private baseServerUrl: string = /*"https://localhost:44343";*/  "https://myfundiv2.martinlayooinc.com";
+    private baseServerUrl: string = /*"https://localhost:44343";*/ "https://myfundiv2.martinlayooinc.com";
     public constructor(private httpClient: HttpClient) {
     }
     public static isLoginPage: boolean = false;
@@ -1539,7 +1539,7 @@ export interface IProfile {
     skills: string;
     usedPowerTools: string;
     fundiProfileCvUrl: string;
-    addressId: number;
+    locationId: number;
     user: IUserDetail;
 }
 

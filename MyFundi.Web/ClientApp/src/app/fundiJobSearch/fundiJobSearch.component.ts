@@ -100,9 +100,9 @@ export class FundiJobSearchComponent implements OnInit {
       }
       let fundiJobsObs: Observable<any> = this.myFundiService.GetJobsByCategoriesAndFundiUser(this.userDetails.username, chosenCategories);
 
-      fundiJobsObs.map((q: any[]) => {
-
-        if (q.length > 0) {
+      fundiJobsObs.map((n: any) => {
+          let q: any[] = n;
+        if (q && q.length > 0) {
 
           this.fundiJobList = q;
 
