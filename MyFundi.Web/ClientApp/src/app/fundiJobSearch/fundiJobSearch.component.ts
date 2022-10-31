@@ -102,11 +102,13 @@ export class FundiJobSearchComponent implements OnInit {
 
       fundiJobsObs.map((n: any) => {
           let q: any[] = n;
+          debugger
         if (q && q.length > 0) {
 
           this.fundiJobList = q;
 
         } else {
+            debugger;
           alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
         }
 

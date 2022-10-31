@@ -77,4 +77,3 @@ C:\Development\MyFundiCurrent\MyFundi.Domain\obj\Release\netcoreapp3.1\MyFundi.D
 C:\Development\MyFundiCurrent\MyFundi.Domain\obj\Release\netcoreapp3.1\MyFundi.Domain.csproj.CoreCompileInputs.cache
 C:\Development\MyFundiCurrent\MyFundi.Domain\obj\Release\netcoreapp3.1\MyFundi.Domain.dll
 C:\Development\MyFundiCurrent\MyFundi.Domain\obj\Release\netcoreapp3.1\MyFundi.Domain.pdb
-C:\Development\MyFundiCurrent\MyFundi.Domain\obj\Release\netcoreapp3.1\MyFundi.Domain.csproj.AssemblyReference.cache

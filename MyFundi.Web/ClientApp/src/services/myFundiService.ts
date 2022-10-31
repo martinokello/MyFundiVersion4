@@ -898,9 +898,9 @@ export class MyFundiService {
     GetJobsByCategoriesAndFundiUser(fundiUsername: string, categories: string[]): Observable<any> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
-        let body: string = JSON.stringify({ fundiUsername: fundiUsername, categories: categories });
+        let body: string = JSON.stringify({ username: fundiUsername, categories: categories });
 
-        let requestUrl = this.getJobsByCategoriesAndFundiUserUrl + "/" + fundiUsername;
+        let requestUrl = this.getJobsByCategoriesAndFundiUserUrl;
         let requestOptions: any = {
             url: requestUrl,
             method: 'POST',
