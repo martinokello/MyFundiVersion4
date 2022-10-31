@@ -19,18 +19,22 @@
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
           <h5>Job Name</h5>
-          <ul>
-            <li>
-              Job ID #{{clientJob.job.jobId}}
-            </li>
-            <li>
-              Job Name: {{clientJob.job.jobName}}
-            </li>
-            <li>
-              Distance from current Fundi's registered Location: {{clientJob.distanceApart.distanceApart}} Km.
-            </li>
-            <li>Location: {{clientJob.job.location.locationName}}</li>
-          </ul>
+          <div>
+              <div>{{clientJob.job.jobName}}<br/></div>
+              <div>
+                  <input type="button" class="btn-primary" routerLink='#' id="{{clientJob.job.jobId}}" (click)="getJobPage($event)" value="Job Details" />
+                  <br />
+              </div>
+            <div>
+                Job Name: {{clientJob.job.jobName}}
+                <br/>
+            </div>
+            <div>
+                Distance from current Fundi's registered Location: {{clientJob.distanceApart.distanceApart}} Km.
+                <br />
+            </div>
+            <div>Location: {{clientJob.job.location.locationName}}</div>
+          </div>
         </div>
       </div>
       <div class="row" style="margin: 2px 0px !important;">

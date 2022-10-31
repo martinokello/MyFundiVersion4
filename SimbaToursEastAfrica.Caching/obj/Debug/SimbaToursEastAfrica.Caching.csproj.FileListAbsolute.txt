@@ -505,5 +505,4 @@ C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursE
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursEastAfrica.Caching.csproj.CopyComplete
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursEastAfrica.Caching.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursEastAfrica.Caching.pdb
-C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\bin\Debug\Newtonsoft.Json.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Debug\SimbaToursEastAfrica.Caching.csproj.AssemblyReference.cache

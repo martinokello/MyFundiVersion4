@@ -55,6 +55,7 @@ import { FundiSubscriptionComponent } from './fundisubscription/fundisubscriptio
 import { AuthFundiSubscriptionGuard } from '../guards/AuthFundiSubscriptionGuard';
 import { VehicleMonitorComponent } from './vehiclemonitor/vehiclemonitor.component';
 import { myRecaptchaComponent } from './recaptcha/myrecaptcha.component';
+import { ClientJobViewComponent } from './client-job-view/clientjobview.component';
 //import { AuthFundiSubscriptionGuard } from '../guards/AuthFundiSubscriptionGuard'
 
 @NgModule({
@@ -102,7 +103,8 @@ import { myRecaptchaComponent } from './recaptcha/myrecaptcha.component';
         FundiJobSearchComponent,
         FundiSubscriptionComponent,
         VehicleMonitorComponent,
-        myRecaptchaComponent
+        myRecaptchaComponent,
+        ClientJobViewComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -134,7 +136,8 @@ import { myRecaptchaComponent } from './recaptcha/myrecaptcha.component';
             { path: 'clientsearch', component: ClientFundiSearchComponent, canActivate: [AuthGuard] },
             { path: 'fundiprofile-by-id', component: FundiProfileByIdComponent, canActivate: [AuthGuard] },
             { path: 'client-create-job', component: ClientProfileComponent, canActivate: [AuthClientGuard] },
-            { path: 'manage-profile', component: ProfileComponent, canActivate: [AuthGuard] },
+            { path: 'manage-profile', component: ProfileComponent, canActivate: [AuthGuard] }, 
+            { path: 'job-details', component: ClientJobViewComponent, canActivate: [AuthGuard] },
             { path: 'fundi-subscription', component: FundiSubscriptionComponent, canActivate: [AuthGuard] },
             { path: 'fundi-search-job', component: FundiJobSearchComponent, canActivate: [AuthFundiGuard] }
         ])

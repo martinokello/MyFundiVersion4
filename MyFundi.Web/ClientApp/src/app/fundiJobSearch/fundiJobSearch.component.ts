@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IClientProfile } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 //import * as $ from 'jquery';
 import { Router } from '@angular/router';
@@ -116,7 +116,44 @@ export class FundiJobSearchComponent implements OnInit {
 
       $event.stopPropagation();
     }
+    getJobPage($event) {
+        localStorage.removeItem('CurrentJob');
+        localStorage.removeItem('CurrentClientUserDetails');
+        localStorage.removeItem('CurrentJobClientProfile');
+        localStorage.removeItem('CurrentJobWorkCategories');
+        let jobId = parseInt(jQuery($event.target).attr('id'));
+        let jobObs: Observable<IJob> = this.myFundiService.GetJobByJobId(jobId);
 
+        jobObs.map((job: IJob) => {
+            localStorage.setItem('CurrentJob', JSON.stringify(job));
+            let clientObs: Observable<IClientProfile> = this.myFundiService.GetClientProfileById(job.clientProfileId);
+
+            clientObs.map((clientProfile: IClientProfile) => {
+
+                localStorage.setItem('CurrentJobClientProfile', JSON.stringify(clientProfile));
+
+                let clientUserObs: Observable<IUserDetail> = this.myFundiService.GetClientUserById(clientProfile.userId);
+                clientUserObs.map((clientUser: IUserDetail) => {
+                    localStorage.setItem('CurrentClientUserDetails', JSON.stringify(clientUser));
+                    let currJobWorkCatsObs: Observable<IWorkCategory[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
+                    currJobWorkCatsObs.map((wCats: IWorkCategory[]) => {
+
+                        localStorage.setItem('CurrentJobWorkCategories', JSON.stringify(wCats));
+                        if (clientProfile && job) {
+                            this.router.navigateByUrl('job-details');
+                        }
+                        else {
+                            alert('Job doesn\'t exist!');
+                        }
+                    }).subscribe();
+
+
+                }).subscribe();
+
+            }).subscribe();
+        }).subscribe();
+        $event.preventDefault();
+    }
   getFundiWorkCategoriesByProfileId(profileId: number) {
     let fundiWorkCatObs: Observable<string[]> = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
 

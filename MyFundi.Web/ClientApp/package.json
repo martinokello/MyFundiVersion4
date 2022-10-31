@@ -2,13 +2,13 @@
   "name": "myfundi.web",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
     "build": "ng build --base-href \"/myfundi/\" --deploy-url \"/myfundi/\"  --prod",
     "build:ssr": "ng run MyFundi.Web:server:dev",
-    "test": "ng test",
+    "e2e": "ng e2e",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "ng": "ng",
+    "start": "ng serve",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

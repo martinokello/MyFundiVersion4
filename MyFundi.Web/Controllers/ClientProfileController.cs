@@ -213,7 +213,7 @@ namespace MyFundi.Web.Controllers
         public async Task<IActionResult> GetResultsRemoveWorkCategorFromJobId(int jobId, int workCategoryId)
         {
 
-            var result = _unitOfWork._jobRepository.GetById(jobId);
+            var result = _unitOfWork._jobRepository.GetAll().Where(j=> j.JobId == jobId).Include(j=> j.Location);
             var hasDeleted = false;
             try
             {
@@ -232,7 +232,55 @@ namespace MyFundi.Web.Controllers
                 return await Task.FromResult(BadRequest(hasDeleted));
             }
         }
+        
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/ClientProfile/GetClientProfileById/{clientProfileId}")]
+        public async Task<IActionResult> GetClientProfileById(int clientProfileId)
+        {
 
+            var result = _unitOfWork._clientProfileRepository.GetById(clientProfileId);
+            if(result != null)
+            {
+                return await Task.FromResult(Ok(result));
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/ClientProfile/GetClientUserById/{clientUserId}")]
+        public async Task<IActionResult> GetClientUserById(Guid clientUserId)
+        {
+
+            var result = _unitOfWork._userRepository.GetByGuid(clientUserId);
+            if (result != null)
+            {
+                return await Task.FromResult(Ok(result));
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/ClientProfile/GetJobByJobId/{jobId}")]
+        public async Task<IActionResult> GetJobByJobId(int jobId)
+        {
+            var result = _unitOfWork._jobRepository.GetAll().Where(q => q.JobId == jobId).Include(q => q.Location);
+            if(result.Count() > 0)
+            {
+                return await Task.FromResult(Ok(result.ToArray()[0]));
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
         [HttpGet]
         [AuthorizeIdentity]
         [Route("~/ClientProfile/GetJobWorkCategoriesByJobId/{jobId}")]

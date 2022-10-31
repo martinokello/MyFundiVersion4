@@ -76,10 +76,13 @@ export class MyFundiService {
     public static clientEmailAddress = "";
     public postSendEmail: string = this.baseServerUrl + "/Home/SendEmail";
     public postVerifyQrcodeScan: string = this.baseServerUrl + "/Home/GetClientEmailAndMobilePhoneNumber";
-
-
+    
+    public getJobByJobIdUrl: string = this.baseServerUrl + "/ClientProfile/getJobByJobId";
+    
+    public getClientUserByIdUrl: string = this.baseServerUrl + "/ClientProfile/GetClientUserById";
     public getAllClientJobByClientProfileIdUrl: string = this.baseServerUrl + "/ClientProfile/GetAllClientJobByClientProfileId";
     public getClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/GetClientProfile";
+    public getClientProfileByIdUrl: string = this.baseServerUrl + "/ClientProfile/GetClientProfileById";
     public postOrCreateCompanyUrl: string = this.baseServerUrl + "/Company/PostOrCreateCompany";
     public updateCompanyUrl: string = this.baseServerUrl + "/Company/UpdateCompany";
     public getAllCompaniesUrl: string = this.baseServerUrl + "/Company/GetAllCompanies";
@@ -144,6 +147,53 @@ export class MyFundiService {
         return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): string[] => {
             let roles: string[] = res;
             return roles;
+        });
+    }
+    GetClientProfileById(clientProfileId: number): Observable<IClientProfile> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getClientProfileByIdUrl + "/" + clientProfileId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IClientProfile => {
+            let clientProf: IClientProfile = res;
+            return clientProf;
+        });
+    } 
+
+    GetClientUserById(clientUserId: string): Observable<IUserDetail> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getClientUserByIdUrl + "/" + clientUserId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IUserDetail => {
+            let clientUser: IUserDetail = res;
+            return clientUser;
+        });
+    }
+  
+    GetJobByJobId(jobId: number): Observable<IJob> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getJobByJobIdUrl + "/" + jobId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IJob => {
+            let job: IJob = res;
+            return job;
         });
     }
     public static SetUserEmail(userEmailAddress: string) {

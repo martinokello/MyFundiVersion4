@@ -431,6 +431,7 @@ namespace MyFundi.Web.Controllers
                                join fu in _unitOfWork._userRepository.GetAll()
                                on fp.UserId equals fu.UserId
                                where fu.Username == categories.Username && categories.Categories.Contains(fwcat.WorkCategory.WorkCategoryType)
+                               && jb.HasCompleted == false
                                select new
                                {
                                    JobId = jb.JobId,
@@ -447,7 +448,7 @@ namespace MyFundi.Web.Controllers
                                    ClientProfileId = jb.ClientProfileId,
                                    AssignedFundiProfileId = jb.AssignedFundiProfileId,
                                    AssignedFundiUserId = jb.AssignedFundiProfile.UserId,
-                                   FundiLocation = jb.Location
+                                   FundiLocation = fp.Location
                                }).ToList().GroupBy(q => new { q.JobId, q.FundiLocation.AddressId, q.Location.LocationId, q.ClientProfileId})
                                        .Select(q => q.FirstOrDefault());
 

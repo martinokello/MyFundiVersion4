@@ -1,0 +1,77 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+    <h1 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>
+    <section id="Profile">
+        <div class="row" style="text-align: center !important; align-content: center !important;">
+            <div class="col-lg-12">
+                <img id="profileImage" src="/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" />
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="viewProfileSummary" style="margin: 2px 0px !important;">
+                <h5>Client Profile Summary</h5>
+                <div>{{clientProfile.profileSummary}} <br/></div>
+                <h5>Client Phone Number: {{userDetails.mobileNumber}}</h5>
+                <hr />
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Job ID</h5>
+                <label id="jobId" name="jobId">#{{job.jobId}}</label>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Job Name</h5>
+                <label type="text" id="jobName" name="jobName">{{job.jobName}}</label>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Job Location Name</h5>
+                <Label id="locationName" name="locationName">{{job.location.locationName}}</Label>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Job Description</h5>
+                <div id="jobDescription" name="jobDescription">
+                    {{job.jobDescription}}
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Work Categories</h5>
+              <ul id="ulistWorkCategories">
+                <li *ngFor="let jwc of workCategories">
+                  {{jwc.workCategory}}
+                </li>
+              </ul>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+                <h5>Estimate Of Days To Complete</h5>
+                <label type="number" id="numberOfDaysToComplete">{{job.numberOfDaysToComplete}}</label>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox" name="hasBeenAssignedFundi" [(ngModel)]="job.hasBeenAssignedFundi" id="hasBeenAssignedFundi" readonly/>
+                    <label class="custom-control-label" for="hasBeenAssignedFundi">Has Been Assigned Fundi</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox" name="hasCompleted" [(ngModel)]="job.hasCompleted" id="hasCompleted" readonly/>
+                    <label class="custom-control-label" for="hasCompleted">Has Completed</label>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <input type="button" class="btn-primary" value="Apply For Job" style="margin-top:10px;" (click)="applyForJob($event)" />
+           </div>
+        </div>
+    </section>
+</div>
