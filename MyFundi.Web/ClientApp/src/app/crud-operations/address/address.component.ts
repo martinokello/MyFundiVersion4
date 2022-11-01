@@ -1,10 +1,10 @@
-import { Component, OnInit, EventEmitter, Injectable, AfterContentInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Injectable, AfterContentInit, Input, AfterViewInit } from '@angular/core';
 import { IAddress, MyFundiService } from '../../../services/myFundiService';
-import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Output } from '@angular/core';
+declare var jQuery: any;
 
 @Component({
     selector: 'address',
@@ -13,7 +13,7 @@ import { Output } from '@angular/core';
     providers: [MyFundiService]
 })
 @Injectable()
-export class AddressComponent implements OnInit, AfterContentInit {
+export class AddressComponent implements OnInit, AfterViewInit {
     private myFundiService: MyFundiService;
     public constructor(myFundiService: MyFundiService, private router: Router) {
         this.myFundiService = myFundiService;
@@ -45,9 +45,6 @@ export class AddressComponent implements OnInit, AfterContentInit {
 
         }).subscribe();
     }
-    ngAfterContentInit(): void {
-        this.refreshAddresses();
-    }
     public addAddress(): void {
 
         let form: HTMLFormElement = document.querySelector('form#f1') as HTMLFormElement;
@@ -62,7 +59,7 @@ export class AddressComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public updateAddress() {
         let form: HTMLFormElement = document.querySelector('form#f1') as HTMLFormElement;
@@ -77,14 +74,14 @@ export class AddressComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public selectAddress(): void {
         let actualResult: Observable<any> = this.myFundiService.GetAddressById(this.address.addressId);
         actualResult.map((p: any) => {
             this.address = p;
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public deleteAddress() {
         let form: HTMLFormElement = document.querySelector('form#f1') as HTMLFormElement;
@@ -99,9 +96,28 @@ export class AddressComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public ngOnInit(): void {
         this.address = {}
+    }
+    ngAfterViewInit() {
+        jQuery('select').each((ind, sel) => {
+            let options = jQuery(sel).children('option');
+            debugger;
+            let vals = [];
+            jQuery(options).each((id, el) => {
+                let optionText = jQuery(el).html();
+                vals.push(optionText);
+            });
+            //options is source of auto complete:
+            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+            jQueryinpId.autocomplete({ source: vals });
+            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                    return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+            });
+        });
     }
 }

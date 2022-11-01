@@ -1,11 +1,11 @@
-import { Component, OnInit, Injectable,AfterContentInit } from '@angular/core';
+import { Component, OnInit, Injectable,AfterContentInit, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { IAddress,ICertification,IWorkCategory,MyFundiService } from '../../../services/myFundiService';
-import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Output } from '@angular/core';
 import * as EventEmitter from 'events';
+declare var jQuery: any;
 
 @Component({
   selector: 'certificationcrud',
@@ -14,7 +14,7 @@ import * as EventEmitter from 'events';
     providers: [MyFundiService]
 })
 @Injectable()
-export class CertificationCrudComponent implements OnInit, AfterContentInit {
+export class CertificationCrudComponent implements OnInit, AfterContentInit, AfterViewInit {
   private myFundiService: MyFundiService;
   public constructor(myFundiService: MyFundiService , private router:Router) {
     this.myFundiService = myFundiService;
@@ -33,10 +33,28 @@ export class CertificationCrudComponent implements OnInit, AfterContentInit {
         let optionElem: HTMLOptionElement = document.createElement('option');
         optionElem.value = c.certificationId.toString();
         optionElem.text = c.certificationName;
-        document.querySelector('select#certificationcrudId').append(optionElem);
+          document.querySelector('select#certificationcrudId').append(optionElem);
+
+          jQuery('select').each((ind, sel) => {
+              let options = jQuery(sel).children('option');
+              debugger;
+              let vals = [];
+              jQuery(options).each((id, el) => {
+                  let optionText = jQuery(el).html();
+                  vals.push(optionText);
+              });
+              //options is source of auto complete:
+              let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+              jQuery(jQueryinpId).autocomplete({ source: vals });
+              jQuery(jQueryinpId).on('focusout', (e) => {
+                  jQuery('select#' + jQuery(sel).attr('id') + ':selected').text(jQuery(jQueryinpId).val());
+              });
+          });
+
       });
     }).subscribe();
 
+ 
   }
   public certification: ICertification | any;
 
@@ -54,7 +72,7 @@ export class CertificationCrudComponent implements OnInit, AfterContentInit {
           this.router.navigateByUrl('failure');
         }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public updateCertification() {
         let form: HTMLFormElement = document.querySelector('form') as HTMLFormElement;
@@ -70,14 +88,14 @@ export class CertificationCrudComponent implements OnInit, AfterContentInit {
           this.router.navigateByUrl('failure');
         }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
   }
   public selectCertification(): void {
     let actualResult: Observable<any> = this.myFundiService.GetCertificationById(this.certification.certificationId);
     actualResult.map((p: any) => {
       this.certification = p;
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
     public deleteCertification() {
         let form: HTMLFormElement = document.querySelector('form#certificationcrudView');
@@ -93,9 +111,28 @@ export class CertificationCrudComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
     public ngOnInit(): void {
       this.certification = {}
+    }
+    ngAfterViewInit() {
+        jQuery('select').each((ind, sel) => {
+            let options = jQuery(sel).children('option');
+            debugger;
+            let vals = [];
+            jQuery(options).each((id, el) => {
+                let optionText = jQuery(el).html();
+                vals.push(optionText);
+            });
+            //options is source of auto complete:
+            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+            jQueryinpId.autocomplete({ source: vals });
+            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                    return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+            });
+        });
     }
 }

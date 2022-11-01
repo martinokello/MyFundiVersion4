@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ICompany, IAddress, ILocation, MyFundiService } from '../../../services/myFundiService';
 import { Element } from '@angular/compiler';
-import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+declare var jQuery: any;
 
 @Component({
     selector: 'company',
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
     providers: [MyFundiService]
 })
 @Injectable()
-export class CompanyComponent implements OnInit, AfterContentInit {
+export class CompanyComponent implements OnInit, AfterViewInit {
     private myFundiService: MyFundiService;
     public company: ICompany | any;
     public constructor(myFundiService: MyFundiService, private router: Router) {
@@ -36,7 +36,7 @@ export class CompanyComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public updateCompany() {
         let form: HTMLFormElement = document.querySelector('form#f2') as HTMLFormElement;
@@ -52,14 +52,14 @@ export class CompanyComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public selectCompany(): void {
         let actualResult: Observable<any> = this.myFundiService.GetCompanyById(this.company.companyId);
         actualResult.map((p: any) => {
             this.company = p;
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public deleteCompany() {
         let form: HTMLFormElement = document.querySelector('form#f2') as HTMLFormElement;
@@ -76,7 +76,7 @@ export class CompanyComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public ngOnInit(): void {
         this.company = {}
@@ -106,6 +106,21 @@ export class CompanyComponent implements OnInit, AfterContentInit {
                 optionElem.text = cmd.companyName;
                 document.querySelector('select#companyId').append(optionElem);
             });
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                debugger;
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQuery(jQueryinpId).autocomplete({ source: vals });
+                jQuery(jQueryinpId).on('focusout', (e) => {
+                    jQuery('select#' + jQuery(sel).attr('id') + ':selected').text(jQuery(jQueryinpId).val());
+                });
+            });
         }).subscribe();
 
         locatObs.map((cmdCats: ILocation[]) => {
@@ -115,6 +130,26 @@ export class CompanyComponent implements OnInit, AfterContentInit {
                 optionElem.text = comCat.locationName;
                 document.querySelector('select#complocationId').append(optionElem);
             });
+
         }).subscribe();
+    }
+    ngAfterViewInit() {
+        jQuery('select').each((ind, sel) => {
+            let options = jQuery(sel).children('option');
+            debugger;
+            let vals = [];
+            jQuery(options).each((id, el) => {
+                let optionText = jQuery(el).html();
+                vals.push(optionText);
+            });
+            //options is source of auto complete:
+            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+            jQueryinpId.autocomplete({ source: vals });
+            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                    return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+            });
+        });
     }
 }

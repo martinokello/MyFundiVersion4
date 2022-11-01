@@ -1,10 +1,11 @@
-import { Component, OnInit, Injectable, Inject, AfterContentInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, Injectable, Inject, AfterContentInit, EventEmitter, Input, Output, AfterViewInit } from '@angular/core';
 import { IAddress, ILocation, MyFundiService } from '../../../services/myFundiService';
-import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { AddressLocationGeoCodeService } from '../../../services/AddressLocationGeoCodeService';
+import { AfterViewChecked } from '@angular/core';
+declare var jQuery: any;
 
 @Component({
   selector: 'location',
@@ -13,7 +14,7 @@ import { AddressLocationGeoCodeService } from '../../../services/AddressLocation
     providers: [MyFundiService, AddressLocationGeoCodeService]
 })
 @Injectable()
-export class LocationComponent implements OnInit, AfterContentInit {
+export class LocationComponent implements OnInit, AfterContentInit, AfterViewInit {
 
   public constructor(private myFundiService: MyFundiService, private router: Router, private geoCoder: AddressLocationGeoCodeService) {
 
@@ -39,7 +40,7 @@ export class LocationComponent implements OnInit, AfterContentInit {
         this.location = p;
         this.locationEventEmitter.emit(this.location.locationId);
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
     public deleteLocation() {
         let form: HTMLFormElement = document.querySelector('form#locationView') as HTMLFormElement;
@@ -53,7 +54,7 @@ export class LocationComponent implements OnInit, AfterContentInit {
         this.router.navigateByUrl('failure');
       }
     }).subscribe();
-    $('form#locationView').css('display', 'block').slideDown();
+    jQuery('form#locationView').css('display', 'block').slideDown();
   }
   public ngOnInit(): void {
     this.location = {}
@@ -81,6 +82,7 @@ export class LocationComponent implements OnInit, AfterContentInit {
         optionElem.text = cmd.addressLine1 + ", " + cmd.town + ", " + cmd.postCode;
         document.querySelector('select#locaddressId').append(optionElem);
       });
+        
     }).subscribe();
 
     locatObs.map((cmdCats: ILocation[]) => {
@@ -90,23 +92,57 @@ export class LocationComponent implements OnInit, AfterContentInit {
         optionElem.text = comCat.locationName;
         document.querySelector('select#locationId').append(optionElem);
       });
+        jQuery('select').each((ind, sel) => {
+          let options = jQuery(sel).children('option');
+          debugger;
+          let vals = [];
+          jQuery(options).each((id, el) => {
+              let optionText = jQuery(el).html();
+              vals.push(optionText);
+          });
+          //options is source of auto complete:
+          let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+          jQuery(jQueryinpId).autocomplete({ source: vals });
+          jQuery(jQueryinpId).on('focusout', (e) => {
+              jQuery('select#' + jQuery(sel).attr('id') + ':selected').text(jQuery(jQueryinpId).val());
+          });
+      });
     }).subscribe();
   }
 
-  checkLocationGeoCodedAndUpdate(operation: string) {
+    checkLocationGeoCodedAndUpdate(operation: string) {
 
-      if (operation === 'update' || operation === 'create') {
-      let addObs: Observable<IAddress> = this.myFundiService.GetAddressById(this.location.addressId);
-      addObs.map((add: IAddress) => {
-        this.geoCoder.location = this.location;
-        this.geoCoder.geocodeAddress(add, operation);
-        document.getElementById("locmap").style.display = "block";
+        if (operation === 'update' || operation === 'create') {
+            let addObs: Observable<IAddress> = this.myFundiService.GetAddressById(this.location.addressId);
+            addObs.map((add: IAddress) => {
+                this.geoCoder.location = this.location;
+                this.geoCoder.geocodeAddress(add, operation);
+                document.getElementById("locmap").style.display = "block";
 
-        this.geoCoder.setCreateUpdateLocation(operation, this.location);
-      }).subscribe();
+                this.geoCoder.setCreateUpdateLocation(operation, this.location);
+            }).subscribe();
+        }
+        else {
+            document.getElementById("locmap").style.display = "none";
+        }
     }
-    else {
-      document.getElementById("locmap").style.display = "none";
+    ngAfterViewInit() {
+        jQuery('select').each((ind, sel) => {
+            let options = jQuery(sel).children('option');
+            debugger;
+            let vals = [];
+            jQuery(options).each((id, el) => {
+                let optionText = jQuery(el).html();
+                vals.push(optionText);
+            });
+            //options is source of auto complete:
+            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+            jQueryinpId.autocomplete({ source: vals });
+            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                    return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+            });
+        });
     }
-  }
 }

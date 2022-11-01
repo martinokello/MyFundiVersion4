@@ -1,11 +1,11 @@
-import { Component, OnInit, Injectable, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Injectable, AfterContentInit, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { IAddress, IWorkCategory, MyFundiService } from '../../../services/myFundiService';
-import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Output } from '@angular/core';
 import * as EventEmitter from 'events';
+declare var jQuery: any;
 
 @Component({
     selector: 'workcategorycrud',
@@ -14,7 +14,7 @@ import * as EventEmitter from 'events';
     providers: [MyFundiService]
 })
 @Injectable()
-export class WorkCategoryCrudComponent implements OnInit, AfterContentInit {
+export class WorkCategoryCrudComponent implements OnInit, AfterContentInit, AfterViewInit {
     private myFundiService: MyFundiService;
     public constructor(myFundiService: MyFundiService, private router: Router) {
         this.myFundiService = myFundiService;
@@ -54,7 +54,7 @@ export class WorkCategoryCrudComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public updateworkCategory() {
         let form: HTMLFormElement = document.querySelector('form#f4') as HTMLFormElement;
@@ -70,14 +70,14 @@ export class WorkCategoryCrudComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public selectworkCategory(): void {
         let actualResult: Observable<any> = this.myFundiService.GetworkCategoryById(this.workCategory.workCategoryId);
         actualResult.map((p: any) => {
             this.workCategory = p;
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public deleteworkCategory() {
         let form: HTMLFormElement = document.querySelector('form#f4') as HTMLFormElement;
@@ -93,9 +93,28 @@ export class WorkCategoryCrudComponent implements OnInit, AfterContentInit {
                 this.router.navigateByUrl('failure');
             }
         }).subscribe();
-        $('form#locationView').css('display', 'block').slideDown();
+        jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public ngOnInit(): void {
         this.workCategory = {}
+    }
+    ngAfterViewInit() {
+        jQuery('select').each((ind, sel) => {
+            let options = jQuery(sel).children('option');
+            debugger;
+            let vals = [];
+            jQuery(options).each((id, el) => {
+                let optionText = jQuery(el).html();
+                vals.push(optionText);
+            });
+            //options is source of auto complete:
+            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+            jQueryinpId.autocomplete({ source: vals });
+            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                    return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+            });
+        });
     }
 }

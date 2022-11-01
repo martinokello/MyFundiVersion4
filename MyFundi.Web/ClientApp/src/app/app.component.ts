@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit} from '@angular/core';
+import { AfterViewChecked, Component, Input, OnInit} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import { IUserStatus, MyFundiService } from '../services/myFundiService';
@@ -59,5 +59,6 @@ export class AppComponent implements OnInit{
       return false;
     }
     else { return true;}
-  }
+    }
+
 }

@@ -68,6 +68,7 @@ namespace MyFundi.Web
                 //var tableName = dbContext.Model.GetEntityTypes().First().GetTableName();
                 // dbContext.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT {tableName} ON");
                 var serviceEndPoint = scope.ServiceProvider.GetService<ServicesEndPoint>();
+                var unitOfWork = scope.ServiceProvider.GetService<MyFundiUnitOfWork>();
 
                 var adminRole = new Role();
                 adminRole.RoleName = "Administrator";
@@ -98,11 +99,22 @@ namespace MyFundi.Web
                 try
                 {
                     var defaultAddress = new Address { AddressLine1 = "MartinLayooInc Software Ltd.", AddressLine2 = "Unit 3, 2 St. Johns Terrace", Country = "United Kingdom", PostCode = "W10", PhoneNumber = "07809773365", Town = "London", DateCreated = DateTime.Now, DateUpdated = DateTime.Now };
-                    await serviceEndPoint.CreateAddress(defaultAddress);
+                    var existingAdd = unitOfWork._addressRepository.GetAll().Where(q => q.AddressLine1 == defaultAddress.AddressLine1 &&
+                    q.AddressLine2 == defaultAddress.AddressLine2 && q.Country == defaultAddress.Country &&
+                    q.PostCode == defaultAddress.PostCode).FirstOrDefault();
+                    if(existingAdd == null)
+                        await serviceEndPoint.CreateAddress(defaultAddress);
+
                     var locationDefault = new Location { LocationName = "3, 2 St John's Terrace, London W10 4SB, UK", AddressId = defaultAddress.AddressId, DateCreated = DateTime.Now, DateUpdated = DateTime.Now, IsGeocoded = false, Latitude = null, Longitude = null, Country = "UK" };
-                    await serviceEndPoint.CreateLocation(locationDefault);
-                    var companyDefault = new Company { CompanyName = "MartinLayooInc Software", CompanyPhoneNUmber = "07809773365", DateCreated = DateTime.Now, DateUpdated = DateTime.Now, LocationId = locationDefault.LocationId };
-                    await serviceEndPoint.CreateCompany(companyDefault);
+                    var existingLoc = unitOfWork._locationRepository.GetAll().Where(q => q.LocationName == locationDefault.LocationName).FirstOrDefault();
+                    if (existingAdd == null) 
+                        await serviceEndPoint.CreateLocation(locationDefault);
+                    
+                    var compDefault = new Company { CompanyName = "MartinLayooInc Software", CompanyPhoneNUmber = "07809773365", DateCreated = DateTime.Now, DateUpdated = DateTime.Now, LocationId = locationDefault.LocationId };
+                    var existingCom = unitOfWork._companyRepository.GetAll().Include(q=>q.Location).Where(q => q.CompanyName == compDefault.CompanyName &&
+                    q.Location.LocationName == locationDefault.LocationName).FirstOrDefault();
+                    if (existingCom == null)
+                        await serviceEndPoint.CreateCompany(compDefault);
 
                     var user = new User();
                     user.Username = "administrator@martinlayooinc.com";
@@ -112,7 +124,7 @@ namespace MyFundi.Web
                     user.LastName = "Administrator";
                     user.IsActive = true;
                     user.IsLockedOut = false;
-                    user.CompanyId = companyDefault.CompanyId;
+                    user.CompanyId = compDefault.CompanyId;
 
                     string userPWD = "d3lt4X!505";
 

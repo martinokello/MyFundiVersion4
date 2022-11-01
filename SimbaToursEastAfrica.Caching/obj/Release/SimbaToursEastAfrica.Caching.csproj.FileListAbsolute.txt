@@ -523,3 +523,4 @@ C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Release\SimbaTour
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.csproj.CopyComplete
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.pdb
+C:\Development\MyFundiCurrent\SimbaToursEastAfrica.Caching\obj\Release\SimbaToursEastAfrica.Caching.csproj.AssemblyReference.cache

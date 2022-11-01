@@ -1,12 +1,14 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService } from '../../../services/myFundiService';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'workcategory',
   templateUrl: './workcategory.component.html'
 })
-export class WorkCategoryComponent implements OnInit {
+export class WorkCategoryComponent implements OnInit, AfterViewInit {
   userDetails: any;
   userRoles: string[];
   workCategories: IWorkCategory[];
@@ -50,5 +52,24 @@ export class WorkCategoryComponent implements OnInit {
     workCatAddedObs.map((q: any) => {
       alert(q.message);
     }).subscribe();
-  }
+    }
+    ngAfterViewInit() {
+        jQuery('select').each((ind, sel) => {
+            let options = jQuery(sel).children('option');
+            debugger;
+            let vals = [];
+            jQuery(options).each((id, el) => {
+                let optionText = jQuery(el).html();
+                vals.push(optionText);
+            });
+            //options is source of auto complete:
+            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+            jQueryinpId.autocomplete({ source: vals });
+            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                    return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+            });
+        });
+    }
 }

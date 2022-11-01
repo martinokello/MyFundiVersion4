@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef, Input, Output, Injectable, Inject, EventEmitter } from '@angular/core';
 import { IAddress, ILocation, MyFundiService } from '../../services/myFundiService';
 import { Element } from '@angular/compiler';
-import * as $ from 'jquery';
+declare var jQuery: any;
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
+import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'addLocation',
@@ -13,7 +14,7 @@ import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeo
   providers: [MyFundiService]
 })
 @Injectable()
-export class AddLocationComponent implements OnInit {
+export class AddLocationComponent implements OnInit, AfterViewInit {
   private myFundiService: MyFundiService;
   private geoCoder: AddressLocationGeoCodeService;
   public constructor(myFundiService: MyFundiService, geoCoder: AddressLocationGeoCodeService) {
@@ -48,5 +49,24 @@ export class AddLocationComponent implements OnInit {
   public ngOnInit(): void {
     this.location = {}
     this.location.address = {};
-  }
+    }
+    ngAfterViewInit() {
+        jQuery('select').each((ind, sel) => {
+            let options = jQuery(sel).children('option');
+            debugger;
+            let vals = [];
+            jQuery(options).each((id, el) => {
+                let optionText = jQuery(el).html();
+                vals.push(optionText);
+            });
+            //options is source of auto complete:
+            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+            jQueryinpId.autocomplete({ source: vals });
+            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                    return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+            });
+        });
+    }
 }
