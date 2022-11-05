@@ -8,7 +8,6 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ActiveCrudOperationsComponent } from './activecrudoperations/activecrudoperations.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { AddLocationComponent } from './addLocation/addLocation.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgotPassword/forgotPassword.component';
@@ -39,7 +38,6 @@ import { TwitterProfileFeedsComponent } from '../socialmedia/twitterfeeds/twitte
 import { ClientRoleComponent } from './roles/client/client.component';
 import { AuthClientGuard } from '../guards/AuthClientGuard';
 import { ProfileComponent } from './profile/profile.component';
-import { CoursesComponent } from './crud-operations/courses/courses.component';
 import { CertificationComponent } from './crud-operations/certification/certification.component';
 import { WorkCategoryComponent } from './crud-operations/work-category/workcategory.component';
 import { ProfileCreateComponent } from './profile-create/profilecreate.component';
@@ -56,7 +54,7 @@ import { AuthFundiSubscriptionGuard } from '../guards/AuthFundiSubscriptionGuard
 import { VehicleMonitorComponent } from './vehiclemonitor/vehiclemonitor.component';
 import { myRecaptchaComponent } from './recaptcha/myrecaptcha.component';
 import { ClientJobViewComponent } from './client-job-view/clientjobview.component';
-//import { AuthFundiSubscriptionGuard } from '../guards/AuthFundiSubscriptionGuard'
+import { CoursesComponent } from './crud-operations/courses/courses.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +64,6 @@ import { ClientJobViewComponent } from './client-job-view/clientjobview.componen
         ActiveCrudOperationsComponent,
         FetchDataComponent,
         LocationComponent,
-        AddLocationComponent,
         LoginComponent,
         ForgotPasswordComponent,
         RegisterComponent,

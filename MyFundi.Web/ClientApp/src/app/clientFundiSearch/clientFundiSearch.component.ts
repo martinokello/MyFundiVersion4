@@ -1,20 +1,18 @@
-﻿import { Component, OnInit, Inject, AfterContentInit } from '@angular/core';
+﻿import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { AfterViewInit } from '@angular/core';
-import { AfterViewChecked } from '@angular/core';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
 declare var jQuery: any;
-
+import { modifyHasPopulatedPage } from '../../imports.js';
 
 @Component({
     selector: 'client-fundi-search',
     templateUrl: './clientFundiSearch.component.html',
     providers: [AddressLocationGeoCodeService, MyFundiService]
 })
-export class ClientFundiSearchComponent implements OnInit, AfterViewChecked, AfterViewInit {
+export class ClientFundiSearchComponent implements OnInit, AfterViewInit {
     userDetails: any;
     userRoles: string[];
     profile: IProfile;
@@ -35,6 +33,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked, Aft
     actualProfileIdKeys: string[];
     fundiListSatisfyingJobRadiusDictionary: any[];
     hasGotRating: boolean = false;
+    hasAddedAutoComplete: boolean = false;
+    setTo: NodeJS.Timeout;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
@@ -94,7 +94,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked, Aft
         let locatObs: Observable<IJob[]> = this.myFundiService.GetAllJobs();
 
         locatObs.map((jobs: IJob[]) => {
-
+            this.jobs = jobs;
             let addSelect = document.querySelector('select#jobId');
             let opts = addSelect.querySelector('option');
             if (opts) {
@@ -121,22 +121,9 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked, Aft
             }
 
         }).subscribe();
-    }
-    constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
-        this.userDetails = {};
-    }
-    ngAfterViewInit(): void {
-
-    }
-    roundPositiveNumberTo2DecPlaces(num: number): number {
-        return this.addressLocationService.roundPositiveNumberTo2DecPlaces(num);
-    }
-    ngAfterViewChecked(): void {
-
-        let curthis = this;
 
         let profileRatingSpans: any[] = jQuery('span.profileRatingSpan');
-        if (!curthis.hasGotRating && profileRatingSpans && profileRatingSpans.length > 0) {
+        if (!this.hasGotRating && profileRatingSpans && profileRatingSpans.length > 0) {
             jQuery('div.rating,span.rating').rateit({
                 min: 0,
                 max: 5,
@@ -150,13 +137,70 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked, Aft
                 let profileIdStr = jQuery(value).attr('id');
 
                 let fundiProfileId = parseInt(profileIdStr.split('-')[1])
-                let fundiAvgRateObs: Observable<any> = curthis.myFundiService.GetFundiProfileRatingById(fundiProfileId);
+                let fundiAvgRateObs: Observable<any> = this.myFundiService.GetFundiProfileRatingById(fundiProfileId);
 
-                curthis.hasGotRating = true;
+                this.hasGotRating = true;
                 fundiAvgRateObs.map(q => {
                     jQuery('span#averageFundiRating-' + fundiProfileId).rateit('value', q.fundiAverageRating);
                 }).subscribe();
             });
+        }
+    }
+    constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
+        this.userDetails = {};
+    }
+
+
+    ngAfterViewInit() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 2000, curthis);
+    }
+
+    runAutoCompleteOnSelects(curthis: any) {
+
+        if (curthis.jobs && curthis.jobs.length > 0) {
+                //Check For Dom Change and Add auto complete to select elements
+            let hasFoundSelectsOnPage = false;
+
+                let selects = jQuery('div#clientfundisearch-wrapper select');
+
+                if (selects && selects.length > 0) {
+                    hasFoundSelectsOnPage = true;
+                }
+
+                if (hasFoundSelectsOnPage) {
+
+                    jQuery(selects.each((ind, elem) => {
+                        jQuery(elem).parent('ul').css('background', 'white');
+                        jQuery(elem).parent('ul').css('z-index', '100');
+                        let id = 'autoComplete' + jQuery(elem).attr('id');
+                        jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+                    }));
+                    hasFoundSelectsOnPage = false;
+                }
+                //Check For Dom Change and Add auto complete to select elements
+                debugger;
+                jQuery('select').each((ind, sel) => {
+                    let options = jQuery(sel).children('option');
+
+                    let vals = [];
+                    jQuery(options).each((id, el) => {
+                        let optionText = jQuery(el).html();
+                        vals.push(optionText);
+                    });
+                    //options is source of auto complete:
+                    let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                    jQueryinpId.autocomplete({ source: vals });
+                    jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                        jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                            return jQuery(event.target).text() == jQuery(this).html();
+                        }).attr("selected", true);
+                    });
+                });
+
+                curthis.hasPopulatedPage = true;
+                clearTimeout(curthis.setTo);
         }
     }
 
@@ -170,9 +214,9 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked, Aft
         let chosenCategories: string[] = [];
         let curthis = this;
         if (this.jobs && this.jobs.length > 0) {
-
+            let selectedJobId: number = jQuery('div#clientfundisearch-wrapper select#jobId').val();
             let selectedJob: IJob = this.jobs.find((j: IJob) => {
-                return j.jobId == this.jobId;
+                return j.jobId == selectedJobId;
             });
 
             this.jobLocationCoordinate = {
@@ -292,6 +336,5 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewChecked, Aft
         var dy = Math.abs(centerPoint.latitude - checkPoint.latitude) * ky;
         return Math.sqrt(dx * dx + dy * dy) <= km;
     }
-
 }
 

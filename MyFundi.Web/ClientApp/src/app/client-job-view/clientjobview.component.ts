@@ -4,6 +4,7 @@ import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocati
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
+import { modifyHasPopulatedPage } from '../../imports.js';
 
 @Component({
     selector: 'client-job-view',
@@ -59,7 +60,7 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         jQuery('select').each((ind, sel) => {
             let options = jQuery(sel).children('option');
-            debugger;
+           
             let vals = [];
             jQuery(options).each((id, el) => {
                 let optionText = jQuery(el).html();
@@ -73,6 +74,8 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
                     return jQuery(event.target).text() == jQuery(this).html();
                 }).attr("selected", true);
             });
+
+            modifyHasPopulatedPage(true);
         });
     }
 }

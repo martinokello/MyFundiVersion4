@@ -5,6 +5,7 @@ import { Element } from '@angular/compiler';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+import { AfterContentInit } from '@angular/core';
 declare var jQuery: any;
 
 @Component({
@@ -14,9 +15,14 @@ declare var jQuery: any;
     providers: [MyFundiService]
 })
 @Injectable()
-export class CompanyComponent implements OnInit, AfterViewInit {
+export class CompanyComponent implements OnInit, AfterContentInit, AfterViewInit {
     private myFundiService: MyFundiService;
     public company: ICompany | any;
+    private companies: ICompany[];
+    private hasPopulatedPage: boolean = false;
+    setTo: NodeJS.Timeout;
+    count: number = 0;
+
     public constructor(myFundiService: MyFundiService, private router: Router) {
         this.myFundiService = myFundiService;
     }
@@ -55,7 +61,7 @@ export class CompanyComponent implements OnInit, AfterViewInit {
         jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public selectCompany(): void {
-        let actualResult: Observable<any> = this.myFundiService.GetCompanyById(this.company.companyId);
+        let actualResult: Observable<any> = this.myFundiService.GetCompanyById(jQuery('div#companies-wrapper select#companyId').val());
         actualResult.map((p: any) => {
             this.company = p;
         }).subscribe();
@@ -79,7 +85,7 @@ export class CompanyComponent implements OnInit, AfterViewInit {
         jQuery('form#locationView').css('display', 'block').slideDown();
     }
     public ngOnInit(): void {
-        this.company = {}
+        this.company = { companyId: 0 }
     }
     ngAfterContentInit(): void {
 
@@ -100,26 +106,12 @@ export class CompanyComponent implements OnInit, AfterViewInit {
         const locatObs: Observable<ILocation[]> = this.myFundiService.GetAllLocations();
 
         companiesObs.map((cmds: ICompany[]) => {
+            this.companies = cmds;
             cmds.forEach((cmd: ICompany, index: number, cmds) => {
                 let optionElem: HTMLOptionElement = document.createElement('option');
                 optionElem.value = cmd.companyId.toString();
                 optionElem.text = cmd.companyName;
                 document.querySelector('select#companyId').append(optionElem);
-            });
-            jQuery('select').each((ind, sel) => {
-                let options = jQuery(sel).children('option');
-                debugger;
-                let vals = [];
-                jQuery(options).each((id, el) => {
-                    let optionText = jQuery(el).html();
-                    vals.push(optionText);
-                });
-                //options is source of auto complete:
-                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-                jQuery(jQueryinpId).autocomplete({ source: vals });
-                jQuery(jQueryinpId).on('focusout', (e) => {
-                    jQuery('select#' + jQuery(sel).attr('id') + ':selected').text(jQuery(jQueryinpId).val());
-                });
             });
         }).subscribe();
 
@@ -132,24 +124,61 @@ export class CompanyComponent implements OnInit, AfterViewInit {
             });
 
         }).subscribe();
+
     }
     ngAfterViewInit() {
-        jQuery('select').each((ind, sel) => {
-            let options = jQuery(sel).children('option');
-            debugger;
-            let vals = [];
-            jQuery(options).each((id, el) => {
-                let optionText = jQuery(el).html();
-                vals.push(optionText);
-            });
-            //options is source of auto complete:
-            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-            jQueryinpId.autocomplete({ source: vals });
-            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                    return jQuery(event.target).text() == jQuery(this).html();
-                }).attr("selected", true);
-            });
-        });
+        let curthis = this;
+
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 2000, curthis);
+
     }
+    runAutoCompleteOnSelects(curthis: any) {
+        debugger;
+        let hasFoundSelectsOnPage = false;
+
+
+        if (curthis.companies && curthis.companies.length > 1 && !curthis.hasPopulatedPage) {
+
+            let selects = jQuery('div#companies-wrapper select');
+
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
+    }
+
 }

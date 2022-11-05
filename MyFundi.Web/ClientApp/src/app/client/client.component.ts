@@ -4,12 +4,15 @@ import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocati
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
+import { AfterViewChecked } from '@angular/core';
 
 @Component({
     selector: 'client',
     templateUrl: './client.component.html'
 })
-export class ClientProfileComponent implements OnInit, AfterViewInit {
+export class ClientProfileComponent implements OnInit, AfterViewChecked{
+
+    hasPopulatedPage: boolean = false;
     userDetails: any;
     userRoles: string[];
     locationId: number;
@@ -33,15 +36,24 @@ export class ClientProfileComponent implements OnInit, AfterViewInit {
     workCategories: IWorkCategory[];
     chosenWorkCategories: IWorkCategory[];
     workCategoryId: number;
-    job: any;
+    job:IJob| any;
     jobs: IJob[];
+    addresses: IAddress[];
+    locations: ILocation[]
+    setTo: NodeJS.Timeout;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
-        this.clientProfile = {};
-        this.job = {};
+        this.clientProfile = {clientProfileId : 0};
+        this.job = { jobId: 0, locationId: 0, clientFundiContractId: 0};
+        this.fundiProfile = { fundiProfileId: 0 }
+        this.locations = [];
+        this.addresses = [];
+        this.workCategories = [];
+        this.clientProfiles = [];
+        this.jobs = [];
 
         this.chosenWorkCategories = [];
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -54,34 +66,31 @@ export class ClientProfileComponent implements OnInit, AfterViewInit {
                 this.clientProfile = clientProf;
                 this.profileSummary = clientProf.profileSummary;
                 this.clientProfileId = this.clientProfile.clientProfileId;
-                let curAddObs = this.myFundiService.GetAddressById(this.clientProfile.addressId);
-                curAddObs.map((q: IAddress) => {
-                    this.address = q;
-                    this.addressId = q.addressId;
-                    let jobCatObs: Observable<IJob[]> = this.myFundiService.GetAllClientJobByClientProfileId(this.clientProfile.clientProfileId);
 
-                    jobCatObs.map((jobCats: IJob[]) => {
-                        this.jobs = jobCats;
+                let jobCatObs: Observable<IJob[]> = this.myFundiService.GetAllClientJobByClientProfileId(this.clientProfile.clientProfileId);
 
-                        //Dynamic check boxes for Categories To Search for:
-                        let selectjobCategories: HTMLSelectElement = document.querySelector('select#jobId');
-                        let selectJobIdOptions: HTMLSelectElement = document.querySelector('select#jobId option');
-                        if (selectJobIdOptions) {
-                            selectJobIdOptions.remove();
-                        }
+                jobCatObs.map((jobCats: IJob[]) => {
 
+                    this.jobs = jobCats;
+
+                    //Dynamic check boxes for Categories To Search for:
+                    let selectjobCategories: HTMLSelectElement = document.querySelector('select#jobId');
+                    let selectJobIdOptions: HTMLSelectElement = document.querySelector('select#jobId option');
+                    if (selectJobIdOptions) {
+                        selectJobIdOptions.remove();
+                    }
+
+                    let option = document.createElement('option');
+                    option.textContent = "Select Job";
+                    option.value = "0";
+                    selectjobCategories.appendChild(option);
+
+                    this.jobs.forEach((cat: IJob) => {
                         let option = document.createElement('option');
-                        option.textContent = "Select Job";
-                        option.value = "0";
+                        option.textContent = cat.jobName;
+                        option.value = cat.jobId.toString();
                         selectjobCategories.appendChild(option);
-
-                        this.jobs.forEach((cat: IJob) => {
-                            let option = document.createElement('option');
-                            option.textContent = cat.jobName;
-                            option.value = cat.jobId.toString();
-                            selectjobCategories.appendChild(option);
-                        });
-                    }).subscribe();
+                    });
                 }).subscribe();
             }
             else {
@@ -93,119 +102,93 @@ export class ClientProfileComponent implements OnInit, AfterViewInit {
                     addressId: 0
                 }
             }
+            let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
+            userGuidObs.map((q: string) => {
+                this.clientUserGuidId = q;
+
+                let workCatObs = this.myFundiService.GetAllFundiWorkCategories();
+
+                workCatObs.map((workCats: IWorkCategory[]) => {
+                    this.workCategories = workCats;
+
+                    //Dynamic check boxes for Categories To Search for:
+                    let selectWorkCategories: HTMLSelectElement = document.querySelector('select#workCategoryId');
+                    let selectWorkCategoriesOptions: HTMLSelectElement = document.querySelector('select#workCategoryId option');
+                    if (selectWorkCategoriesOptions) {
+                        selectWorkCategoriesOptions.remove();
+                    }
+
+                    let option = document.createElement('option');
+                    option.textContent = "Select Work Category";
+                    option.value = "0";
+                    selectWorkCategories.appendChild(option);
+
+                    this.workCategories.forEach((cat) => {
+                        let option = document.createElement('option');
+                        option.textContent = cat.workCategoryType;
+                        option.value = cat.workCategoryId.toString();
+                        selectWorkCategories.appendChild(option);
+                    });
+                    let funidProfilesObs: Observable<IProfile[]> = this.myFundiService.GetAllFundiProfiles();
+                    funidProfilesObs.map((q: IProfile[]) => {
+                        this.fundiProfiles = q;
+
+                        let addSelect = document.querySelector('select#assignedFundiProfileId');
+                        let opts = addSelect.querySelector('option');
+                        if (opts) {
+                            opts.remove();
+                        }
+                        let optionElem = document.createElement('option');
+                        optionElem.selected = true;
+                        optionElem.value = (0).toString();
+                        optionElem.text = "Select Fundi Profile";
+                        addSelect.append(optionElem);
+
+                        this.fundiProfiles.map((fundiProf: IProfile) => {
+                            let optionElem: HTMLOptionElement = document.createElement('option');
+                            optionElem.value = fundiProf.fundiProfileId.toString();
+                            optionElem.text = fundiProf.user.firstName + " " + fundiProf.user.lastName;
+                            addSelect.append(optionElem);
+                        });
+
+                        this.fundiProfile = {};
+                        this.fundiProfile.fundiProfileId = 0;
+                        let locatObs: Observable<ILocation[]> = this.myFundiService.GetAllLocations();
+                        locatObs.map((loc: ILocation[]) => {
+                            this.locations = loc;
+
+                            let addSelect = document.querySelector('select#locationId');
+                            let opts = addSelect.querySelector('option');
+                            if (opts) {
+                                opts.remove();
+                            }
+
+                            let optionElem: HTMLOptionElement = document.createElement('option');
+                            optionElem.selected = true;
+                            optionElem.value = (0).toString();
+                            optionElem.text = "Select Location";
+                            document.querySelector('select#locationId').append(optionElem);
+
+
+                            this.locations.forEach((comCat: ILocation, index: number, cmdCats) => {
+                                let optionElem: HTMLOptionElement = document.createElement('option');
+                                optionElem.value = comCat.locationId.toString();
+                                optionElem.text = comCat.locationName;
+                                document.querySelector('select#locationId').append(optionElem);
+                            });
+                         
+                        }).subscribe();
+                    }).subscribe();
+                }).subscribe();
+            }).subscribe();
         }).subscribe();
 
-        let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
-        userGuidObs.map((q: string) => {
-            this.clientUserGuidId = q;
-            this.refreshAddresses();
-        }).subscribe();
 
-        let workCatObs = this.myFundiService.GetAllFundiWorkCategories();
-
-        workCatObs.map((workCats: IWorkCategory[]) => {
-            this.workCategories = workCats;
-
-            //Dynamic check boxes for Categories To Search for:
-            let selectWorkCategories: HTMLSelectElement = document.querySelector('select#workCategoryId');
-            let selectWorkCategoriesOptions: HTMLSelectElement = document.querySelector('select#workCategoryId option');
-            if (selectWorkCategoriesOptions) {
-                selectWorkCategoriesOptions.remove();
-            }
-
-            let option = document.createElement('option');
-            option.textContent = "Select Work Category";
-            option.value = "0";
-            selectWorkCategories.appendChild(option);
-
-            this.workCategories.forEach((cat) => {
-                let option = document.createElement('option');
-                option.textContent = cat.workCategoryType;
-                option.value = cat.workCategoryId.toString();
-                selectWorkCategories.appendChild(option);
-            });
-        }).subscribe();
-
-
-        let funidProfilesObs: Observable<IProfile[]> = this.myFundiService.GetAllFundiProfiles();
-        funidProfilesObs.map((q: IProfile[]) => {
-            this.fundiProfiles = q;
-
-            let addSelect = document.querySelector('select#assignedFundiProfileId');
-            let opts = addSelect.querySelector('option');
-            if (opts) {
-                opts.remove();
-            }
-            let optionElem = document.createElement('option');
-            optionElem.selected = true;
-            optionElem.value = (0).toString();
-            optionElem.text = "Select Fundi Profile";
-            addSelect.append(optionElem);
-
-            this.fundiProfiles.map((fundiProf: IProfile) => {
-                let optionElem: HTMLOptionElement = document.createElement('option');
-                optionElem.value = fundiProf.fundiProfileId.toString();
-                optionElem.text = fundiProf.user.firstName + " " + fundiProf.user.lastName;
-                addSelect.append(optionElem);
-            });
-
-            this.fundiProfile = {};
-            this.fundiProfile.fundiProfileId = 0;
-        }).subscribe();
-
-        let locatObs: Observable<ILocation[]> = this.myFundiService.GetAllLocations();
-        locatObs.map((loc: ILocation[]) => {
-            let locations = loc;
-
-            let addSelect = document.querySelector('select#locationId');
-            let opts = addSelect.querySelector('option');
-            if (opts) {
-                opts.remove();
-            }
-
-            let optionElem: HTMLOptionElement = document.createElement('option');
-            optionElem.selected = true;
-            optionElem.value = (0).toString();
-            optionElem.text = "Select Location";
-            document.querySelector('select#locationId').append(optionElem);
-
-
-            locations.forEach((comCat: ILocation, index: number, cmdCats) => {
-                let optionElem: HTMLOptionElement = document.createElement('option');
-                optionElem.value = comCat.locationId.toString();
-                optionElem.text = comCat.locationName;
-                document.querySelector('select#locationId').append(optionElem);
-            });
-        }).subscribe();
     }
     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
         this.userDetails = {};
     }
 
-    refreshAddresses() {
-        let addSelect = document.querySelector('select#addressId');
-        let opts = addSelect.querySelector('option');
-        if (opts) {
-            opts.remove();
-        }
-        let optionElem = document.createElement('option');
-        optionElem.selected = true;
-        optionElem.value = (0).toString();
-        optionElem.text = "Select Address";
-        document.querySelector('select#addressId').append(optionElem);
-
-
-        let addressesObs: Observable<IAddress[]> = this.myFundiService.GetAllAddresses();
-        addressesObs.map((adds: IAddress[]) => {
-            adds.forEach((add: IAddress, index: number, adds) => {
-                let optionElem: HTMLOptionElement = document.createElement('option');
-                optionElem.value = add.addressId.toString();
-                optionElem.text = add.addressLine1 + ", " + add.town + ", " + add.postCode;
-                document.querySelector('select#addressId').append(optionElem);
-            });
-
-        }).subscribe();
-    }
     handleProfileImage(files: FileList) {
         this.profileImage = files.item(0);
     }
@@ -271,8 +254,10 @@ export class ClientProfileComponent implements OnInit, AfterViewInit {
         $event.preventDefault();
     }
     selectJob($event) {
+        let selectedJobId:number = jQuery('div#client-wrapper select#jobId').val();
+
         let job: IJob = this.jobs.find((j: IJob) => {
-            return j.jobId == this.job.jobId;
+            return j.jobId == selectedJobId;
         });
 
         this.job = job;
@@ -287,7 +272,7 @@ export class ClientProfileComponent implements OnInit, AfterViewInit {
             jQuery('ul#ulistWorkCategories > li').remove();
 
             jwCats.forEach((cat) => {
-                ulWCats.append('<li id="'+ cat.workCategoryId.toString()+'">' + cat.workCategory + '</li>');
+                ulWCats.append('<li id="' + cat.workCategoryId.toString() + '">' + cat.workCategory + '</li>');
             });
         }).subscribe();
         $event.preventDefault();
@@ -345,24 +330,59 @@ export class ClientProfileComponent implements OnInit, AfterViewInit {
         }).subscribe();
         $event.preventDefault();
     }
-    ngAfterViewInit() {
-        jQuery('select').each((ind, sel) => {
-            let options = jQuery(sel).children('option');
+    
+    ngAfterViewChecked() {
+        let curthis = this;
+
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 2000, curthis);
+
+    }
+    runAutoCompleteOnSelects(curthis: any) {
+        let hasFoundSelectsOnPage = false;
+
+        if (!curthis.hasPopulatedPage && curthis.jobs && curthis.jobs.length > 0 && curthis.workCategories && curthis.workCategories.length > 0 &&
+            curthis.locations && curthis.locations.length > 0 && curthis.fundiProfiles && curthis.fundiProfiles.length > 0) {
+
+            let selects = jQuery('div#client-wrapper select');
+
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
             debugger;
-            let vals = [];
-            jQuery(options).each((id, el) => {
-                let optionText = jQuery(el).html();
-                vals.push(optionText);
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
             });
-            //options is source of auto complete:
-            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-            jQueryinpId.autocomplete({ source: vals });
-            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                    return jQuery(event.target).text() == jQuery(this).html();
-                }).attr("selected", true);
-            });
-        });
+
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
     }
 }
 

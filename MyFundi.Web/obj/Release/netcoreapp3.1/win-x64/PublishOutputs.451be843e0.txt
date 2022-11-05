@@ -1478,9 +1478,9 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubT
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\assets\webfonts\fa-solid-900.woff
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\assets\webfonts\fa-solid-900.woff2
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\index.html
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\main-es2015.64602fc4a9807a84e970.js
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\main-es2015.64602fc4a9807a84e970.js.LICENSE.txt
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\main-es5.64602fc4a9807a84e970.js
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\main-es2015.ac1f4f394b4501a41a09.js
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\main-es2015.ac1f4f394b4501a41a09.js.LICENSE.txt
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\main-es5.ac1f4f394b4501a41a09.js
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\polyfills-es2015.ffa9bb4e015925544f91.js
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\polyfills-es2015.ffa9bb4e015925544f91.js.LICENSE.txt
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ClientApp\dist\polyfills-es5-es2015.026233df937cbf728097.js.LICENSE.txt

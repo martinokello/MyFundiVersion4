@@ -3,73 +3,120 @@ import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService } from '../../../services/myFundiService';
 
 declare var jQuery: any;
+import { modifyHasPopulatedPage, hasPopulatedPage } from '../../../imports.js';
+import { AfterViewChecked } from '@angular/core';
+import { AfterContentInit } from '@angular/core';
 
 @Component({
-  selector: 'workcategory',
-  templateUrl: './workcategory.component.html'
+    selector: 'workcategory',
+    templateUrl: './workcategory.component.html'
 })
-export class WorkCategoryComponent implements OnInit, AfterViewInit {
-  userDetails: any;
-  userRoles: string[];
-  workCategories: IWorkCategory[];
-  selectCategory: HTMLSelectElement;
+export class WorkCategoryComponent implements OnInit, AfterViewInit, AfterContentInit {
+    userDetails: any;
+    userRoles: string[];
+    workCategories: IWorkCategory[];
+    selectCategory: HTMLSelectElement;
+    hasPopulatedPage: boolean;
+    setTo: NodeJS.Timeout;
+    coount: number = 0;
+    ngOnInit(): void {
+        this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+        let workCategoriesObs = this.myFundiService.GetAllFundiWorkCategories();
 
-  ngOnInit(): void {
-    this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
-    this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
-    let workCategoriesObs = this.myFundiService.GetAllFundiWorkCategories();
+        this.selectCategory = document.querySelector('select#slworkCategoryId');
 
-    this.selectCategory = document.querySelector('select#slworkCategoryId');
+        workCategoriesObs.map((res: IWorkCategory[]) => {
+            this.workCategories = res;
+            let opts = document.querySelector('select#slworkCategoryId').querySelector("option");
+            if (opts) {
+                document.querySelector('select#slworkCategoryId').querySelector("option").remove();
+            }
 
-    workCategoriesObs.map((res: IWorkCategory[]) =>
-    {
-      this.workCategories = res;
-      let opts = document.querySelector('select#slworkCategoryId').querySelector("option");
-      if (opts) {
-        document.querySelector('select#slworkCategoryId').querySelector("option").remove();
-      }
-      
-      let opt = document.createElement("option");
-      opt.text = "Select Work Category";
-      opt.value = "0";
-      document.querySelector('select#slworkCategoryId').append('opt');
+            let opt = document.createElement("option");
+            opt.text = "Select Work Category";
+            opt.value = "0";
+            document.querySelector('select#slworkCategoryId').append('opt');
 
-      for (let n = 0; n < res.length; n++) {
-        let option = document.createElement("option");
-        option.value = res[n].workCategoryId.toString();
-        option.text = res[n].workCategoryType;
-        document.querySelector('select#slworkCategoryId').append(option);
-      }
-    }).subscribe();
-  }
-  constructor(private myFundiService: MyFundiService) {
-    this.userDetails = {};
-  }
-  addCategory() {
-      debugger;
-    let workCatValue = this.selectCategory.value;
-    let workCatAddedObs = this.myFundiService.AddFundiWorkCategory(parseInt(workCatValue), this.userDetails.username);
-    workCatAddedObs.map((q: any) => {
-      alert(q.message);
-    }).subscribe();
+            for (let n = 0; n < res.length; n++) {
+                let option = document.createElement("option");
+                option.value = res[n].workCategoryId.toString();
+                option.text = res[n].workCategoryType;
+                document.querySelector('select#slworkCategoryId').append(option);
+            }
+
+        }).subscribe();
+
     }
+    constructor(private myFundiService: MyFundiService) {
+        this.userDetails = {};
+    }
+    addCategory() {
+
+        let workCatValue: number = jQuery('div#workCategories-wrapper select#slworkCategoryId').val();
+        let workCatAddedObs = this.myFundiService.AddFundiWorkCategory(workCatValue, this.userDetails.username);
+        workCatAddedObs.map((q: any) => {
+            alert(q.message);
+        }).subscribe();
+    }
+
+
+    ngAfterContentInit() {
+
+    }
+
     ngAfterViewInit() {
-        jQuery('select').each((ind, sel) => {
-            let options = jQuery(sel).children('option');
-            debugger;
-            let vals = [];
-            jQuery(options).each((id, el) => {
-                let optionText = jQuery(el).html();
-                vals.push(optionText);
-            });
-            //options is source of auto complete:
-            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-            jQueryinpId.autocomplete({ source: vals });
-            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                    return jQuery(event.target).text() == jQuery(this).html();
-                }).attr("selected", true);
-            });
-        });
+        let curthis = this;
+
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 2000, curthis);
+
     }
+    runAutoCompleteOnSelects(curthis: any) {
+        debugger;
+        let hasFoundSelectsOnPage = false;
+
+        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
+            let selects = jQuery('div#workCategories-wrapper  select');
+
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
+    }
+
 }
