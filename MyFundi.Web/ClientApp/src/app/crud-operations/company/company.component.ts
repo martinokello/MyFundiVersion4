@@ -129,7 +129,7 @@ export class CompanyComponent implements OnInit, AfterContentInit, AfterViewInit
     ngAfterViewInit() {
         let curthis = this;
 
-        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 2000, curthis);
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
 
     }
     runAutoCompleteOnSelects(curthis: any) {

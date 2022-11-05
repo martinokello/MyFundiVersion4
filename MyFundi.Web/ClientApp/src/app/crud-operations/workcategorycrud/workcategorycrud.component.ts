@@ -112,7 +112,7 @@ export class WorkCategoryCrudComponent implements OnInit, AfterContentInit, Afte
     ngAfterViewInit() {
         let curthis = this;
 
-        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 2000, curthis);
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
 
     }
     runAutoCompleteOnSelects(curthis: any) {

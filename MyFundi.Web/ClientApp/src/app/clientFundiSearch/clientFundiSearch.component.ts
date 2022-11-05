@@ -12,7 +12,7 @@ import { modifyHasPopulatedPage } from '../../imports.js';
     templateUrl: './clientFundiSearch.component.html',
     providers: [AddressLocationGeoCodeService, MyFundiService]
 })
-export class ClientFundiSearchComponent implements OnInit, AfterViewInit {
+export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterViewChecked {
     userDetails: any;
     userRoles: string[];
     profile: IProfile;
@@ -122,29 +122,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit {
 
         }).subscribe();
 
-        let profileRatingSpans: any[] = jQuery('span.profileRatingSpan');
-        if (!this.hasGotRating && profileRatingSpans && profileRatingSpans.length > 0) {
-            jQuery('div.rating,span.rating').rateit({
-                min: 0,
-                max: 5,
-                step: 1,
-                starwidth: 16,
-                starheight: 16,
-                resetable: true
-            });
-            jQuery('div.rateit, span.rateit').rateit();
-            jQuery(profileRatingSpans).each(function (index, value) {
-                let profileIdStr = jQuery(value).attr('id');
 
-                let fundiProfileId = parseInt(profileIdStr.split('-')[1])
-                let fundiAvgRateObs: Observable<any> = this.myFundiService.GetFundiProfileRatingById(fundiProfileId);
-
-                this.hasGotRating = true;
-                fundiAvgRateObs.map(q => {
-                    jQuery('span#averageFundiRating-' + fundiProfileId).rateit('value', q.fundiAverageRating);
-                }).subscribe();
-            });
-        }
     }
     constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
         this.userDetails = {};
@@ -153,7 +131,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         let curthis = this;
-        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 2000, curthis);
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
     }
 
     runAutoCompleteOnSelects(curthis: any) {
@@ -203,13 +182,41 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit {
                 clearTimeout(curthis.setTo);
         }
     }
+    ngAfterViewChecked(): void {
 
+        let curthis = this;
+
+        let profileRatingSpans: any[] = jQuery('span.profileRatingSpan');
+        if (!curthis.hasGotRating && profileRatingSpans && profileRatingSpans.length > 0) {
+            jQuery('div.rate,span.rate').rateit({
+                min: 0,
+                max: 5,
+                step: 1,
+                starwidth: 16,
+                starheight: 16,
+                resetable: true
+            });
+            jQuery('div.rateit, span.rateit').rateit();
+            jQuery(profileRatingSpans).each(function (index, value) {
+                let profileIdStr = jQuery(value).attr('id');
+
+                let fundiProfileId = parseInt(profileIdStr.split('-')[1])
+                let fundiAvgRateObs: Observable<any> = curthis.myFundiService.GetFundiProfileRatingById(fundiProfileId);
+
+                curthis.hasGotRating = true;
+                fundiAvgRateObs.map(q => {
+                    jQuery('span#averageFundiRating-' + fundiProfileId).rateit('value', q.fundiAverageRating);
+                }).subscribe();
+            });
+        }
+    }
     searchFundiByCategories($event) {
         this.hasGotRating = false;
         this.fundiListSatisfyingJobRadiusDictionary = [];
         this.fundiProfileRatingDictionary = {};
         this.actualProfileIdKeys = [];
         this.profileIdKeys = null;
+
         let divFundiCategories: HTMLElement = document.querySelector('form#fundiSearchForm div#fundiCategories');
         let chosenCategories: string[] = [];
         let curthis = this;
