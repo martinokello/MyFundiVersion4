@@ -10,7 +10,7 @@ import { AfterViewChecked } from '@angular/core';
     selector: 'client',
     templateUrl: './client.component.html'
 })
-export class ClientProfileComponent implements OnInit, AfterViewChecked {
+export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterViewInit {
 
     hasPopulatedPage: boolean = false;
     userDetails: any;
@@ -45,6 +45,9 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked {
 
     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
         this.userDetails = {};
+    }
+    ngAfterViewInit(): void {
+        jQuery('div#editableClientDetails').hide('slow');
     }
 
     decoderUrl(url: string): string {
@@ -164,7 +167,6 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked {
                             this.locations = loc;
 
                             let addSelect = document.querySelector('select#locationId');
-                            let clientLocation = document.querySelector('select#clientLocationId');
 
                             let opts = addSelect.querySelector('option');
                             if (opts) {
@@ -201,7 +203,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked {
 
                                 cloptionElem.text = "Select Address";
 
-                                document.querySelector('select#clientAddressId').append(optionElem);
+                                document.querySelector('select#clientAddressId').append(cloptionElem);
 
                                 addresses.forEach((comCat: IAddress, index: number, cmdCats) => {
 
@@ -253,7 +255,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked {
         $event.preventDefault();
     }
     showClientProfileEditable($event) {
-        jQuery('div#editableClientDetails').css('display', 'block');
+        jQuery('div#editableClientDetails').toggle(2000);
         $event.preventDefault();
     }
     createJob($event) {
@@ -370,7 +372,9 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked {
         let hasFoundSelectsOnPage = false;
 
         if (!curthis.hasPopulatedPage && curthis.jobs && curthis.jobs.length > 0 && curthis.workCategories && curthis.workCategories.length > 0 &&
-            curthis.locations && curthis.locations.length > 0 && curthis.fundiProfiles && curthis.fundiProfiles.length > 0) {
+            curthis.locations && curthis.locations.length > 0 && curthis.fundiProfiles && curthis.fundiProfiles.length > 0 &&
+            curthis.clientAddresses && curthis.clientAddresses.length > 0)
+        {
 
             let selects = jQuery('div#client-wrapper select');
 
@@ -388,6 +392,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked {
 
                 }));
                 hasFoundSelectsOnPage = false;
+
             }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
@@ -410,6 +415,8 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked {
             });
 
             curthis.hasPopulatedPage = true;
+
+            jQuery('div#editableClientDetails').hide(2000);
             clearTimeout(curthis.setTo);
         }
     }

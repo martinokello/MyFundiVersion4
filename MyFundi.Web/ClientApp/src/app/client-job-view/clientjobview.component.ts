@@ -57,20 +57,6 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
             emailFrom: ""
         }
 
-        /*
-        jQuery('textarea#MessageText').css('color', 'gray');
-
-        jQuery('#mailFrom').attr('title', 'your email address');
-        jQuery('#mailFrom').css('color', 'gray');
-
-        jQuery('#mailTo').attr('title', this.userDetails.username);
-        jQuery('#mailTo').css('color', 'gray');
-
-
-        jQuery('#mailSubject').attr('title', 'subject');
-        jQuery('#mailSubject').css('color', 'gray');
-        jQuery('textarea#coverNoteId').css('min-height:400px;');
-        */
     }
     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
         this.userDetails = {};
@@ -96,18 +82,10 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
         result.subscribe((value: any) => {
             alert(value.message)
         });
-        event.preventDefault();
-    }
-
-    applyForJob($event){
-        //Send Email Application to Client Email:
-
-        alert('Applied For Job');
         $event.preventDefault();
     }
-    ngAfterViewInit() {
 
-        jQuery('div#editableClientDetails').hide('slow');
+    ngAfterViewInit() {
 
         jQuery('select').each((ind, sel) => {
             let options = jQuery(sel).children('option');
