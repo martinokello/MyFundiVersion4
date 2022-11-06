@@ -19,18 +19,21 @@
                             <hr />
                         </div>
                     </div>
-                    <div class="row"  id="editableClientDetails">
-                        <div class="col-lg-12"style="margin: 2px 0px;">
-                            <h5>Client Address</h5>
-                            <select id="clientAddressId" name="clientAddressId" [(ngModel)]="clientAddressId"></select>
-                        </div>
-                        <div class="col-lg-12" style="margin: 2px 0px !important;display:none;">
-                            <textarea rows="5" cols="10" name="profileSummary" [(ngModel)]="profileSummary" placeholder="Edit Client Profile"></textarea><br />
-                            <input type="button" class="btn-primary" id="updateProfile" value="Create Client Profile" (click)="saveOrUpdateClientProfile($event)" /><br />
-                        </div>
-                        <div class="col-lg-12" id="viewProfileSummary" style="margin: 2px 0px !important;">
-                            <h5>Client Profile Summary</h5>
-                            {{profileSummary}}
+                    <div class="row" id="editableClientDetails">
+                        <div class="col-lg-12">
+                            <div style="margin: 2px 0px !important;">
+                                <h5>Client Address</h5>
+                                <select id="clientAddressId" name="clientAddressId" [(ngModel)]="clientAddressId"></select>
+                            </div>
+                            <div style="margin: 2px 0px !important;">
+                                <textarea rows="5" cols="10" name="profileSummary" [(ngModel)]="profileSummary" placeholder="Edit Client Profile"></textarea><br />
+                                <input type="button" class="btn-primary" id="updateProfile" value="Create Client Profile" (click)="saveOrUpdateClientProfile($event)" /><br />
+                            </div>
+                            <div class="col-lg-12" id="viewProfileSummary" style="margin: 2px 0px !important;">
+                                <h5>Client Profile Summary</h5>
+                                {{profileSummary}}
+                            </div>
+                            <hr/>
                         </div>
                     </div>
                 </div>
