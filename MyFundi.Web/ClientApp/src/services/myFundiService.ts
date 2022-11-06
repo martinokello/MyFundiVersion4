@@ -74,8 +74,8 @@ export class MyFundiService {
     public postRegisterUrl: string = this.baseServerUrl + "/Account/Register";
     public postForgotPasswordUrl: string = this.baseServerUrl + "/Account/ForgotPassword";
     public static clientEmailAddress = "";
-    public postSendEmail: string = this.baseServerUrl + "/Home/SendEmail";
-    public postVerifyQrcodeScan: string = this.baseServerUrl + "/Home/GetClientEmailAndMobilePhoneNumber";
+    public postSendEmail: string = this.baseServerUrl + "/Adhoc/SendEmail";
+    public postVerifyQrcodeScan: string = this.baseServerUrl + "/Adhoc/GetClientEmailAndMobilePhoneNumber";
     
     public getJobByJobIdUrl: string = this.baseServerUrl + "/ClientProfile/getJobByJobId";
     
@@ -1194,7 +1194,6 @@ export class MyFundiService {
             return res;
         });
     }
-
     public UpdateAddress(address: IAddress): Observable<any> {
         let body = JSON.stringify(address);
 
@@ -1457,6 +1456,7 @@ export class MyFundiService {
             return results;
         });
     }
+
 }
 export interface IFundiLocationMonitor {
     fundiUserDetails: IUserDetail | any;
@@ -1520,7 +1520,7 @@ export interface IUserDetail {
 export interface IEmailMessage {
     emailFrom: string;
     emailTo: string;
-    attachment: Binary;
+    attachment: Blob;
     emailSubject: string;
     emailBody: string;
 }

@@ -10,7 +10,7 @@ import { AfterViewChecked } from '@angular/core';
     selector: 'client',
     templateUrl: './client.component.html'
 })
-export class ClientProfileComponent implements OnInit, AfterViewChecked{
+export class ClientProfileComponent implements OnInit, AfterViewChecked {
 
     hasPopulatedPage: boolean = false;
     userDetails: any;
@@ -27,8 +27,8 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked{
     jobDescription: string;
     jobName: string;
     jobId: number;
-    address: IAddress;
-    addressId: number;
+    clientAddress: IAddress;
+    clientAddressId: number;
     profileSummary: string;
     clientFundiContractId: number;
     clientProfiles: IClientProfile[];
@@ -36,21 +36,26 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked{
     workCategories: IWorkCategory[];
     chosenWorkCategories: IWorkCategory[];
     workCategoryId: number;
-    job:IJob| any;
+    job: IJob | any;
     jobs: IJob[];
-    addresses: IAddress[];
+    clientAddresses: IAddress[];
     locations: ILocation[]
     setTo: NodeJS.Timeout;
+
+
+    constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
+        this.userDetails = {};
+    }
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
-        this.clientProfile = {clientProfileId : 0};
-        this.job = { jobId: 0, locationId: 0, clientFundiContractId: 0};
+        this.clientProfile = { clientProfileId: 0 };
+        this.job = { jobId: 0, locationId: 0, clientFundiContractId: 0 };
         this.fundiProfile = { fundiProfileId: 0 }
         this.locations = [];
-        this.addresses = [];
+        this.clientAddresses = [];
         this.workCategories = [];
         this.clientProfiles = [];
         this.jobs = [];
@@ -99,9 +104,10 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked{
                     userId: "",
                     profileSummary: "",
                     profileImageUrl: "",
-                    addressId: 0
+                    locationId: 0
                 }
             }
+
             let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
             userGuidObs.map((q: string) => {
                 this.clientUserGuidId = q;
@@ -158,10 +164,13 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked{
                             this.locations = loc;
 
                             let addSelect = document.querySelector('select#locationId');
+                            let clientLocation = document.querySelector('select#clientLocationId');
+
                             let opts = addSelect.querySelector('option');
                             if (opts) {
                                 opts.remove();
                             }
+
 
                             let optionElem: HTMLOptionElement = document.createElement('option');
                             optionElem.selected = true;
@@ -169,24 +178,44 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked{
                             optionElem.text = "Select Location";
                             document.querySelector('select#locationId').append(optionElem);
 
-
                             this.locations.forEach((comCat: ILocation, index: number, cmdCats) => {
                                 let optionElem: HTMLOptionElement = document.createElement('option');
                                 optionElem.value = comCat.locationId.toString();
                                 optionElem.text = comCat.locationName;
                                 document.querySelector('select#locationId').append(optionElem);
                             });
-                         
+                            let clientaddObs: Observable<IAddress[]> = this.myFundiService.GetAllAddresses();
+
+                            clientaddObs.map((q: IAddress[]) => {
+                                this.clientAddresses = q;
+                                let addresses = q;
+
+                                let addrSelector = document.querySelector('select#clientAddressId');
+                                let clopts = addrSelector.querySelector('option');
+                                if (clopts) {
+                                    clopts.remove();
+                                }
+                                let cloptionElem: HTMLOptionElement = document.createElement('option');
+                                cloptionElem.selected = true;
+                                cloptionElem.value = (0).toString();
+
+                                cloptionElem.text = "Select Address";
+
+                                document.querySelector('select#clientAddressId').append(optionElem);
+
+                                addresses.forEach((comCat: IAddress, index: number, cmdCats) => {
+
+                                    let optionElem: HTMLOptionElement = document.createElement('option');
+                                    optionElem.value = comCat.addressId.toString();
+                                    optionElem.text = comCat.addressLine1 + ", " + comCat.addressLine2 + ", " + comCat.town + ", " + comCat.country;
+                                    document.querySelector('select#clientAddressId').append(optionElem);
+                                });
+                            }).subscribe();
                         }).subscribe();
                     }).subscribe();
                 }).subscribe();
             }).subscribe();
         }).subscribe();
-
-
-    }
-    constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
-        this.userDetails = {};
     }
 
     handleProfileImage(files: FileList) {
@@ -212,7 +241,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked{
 
         this.clientProfile.clientProfileId = this.clientProfileId;
         this.clientProfile.userId = this.clientUserGuidId;
-        this.clientProfile.addressId = this.addressId;
+        this.clientProfile.addressId = this.clientAddressId;
         this.clientProfile.profileSummary = this.profileSummary;
         this.clientProfile.profileImageUrl = "";
         let profileObs = this.myFundiService.SaveClientProfile(this.clientProfile);
@@ -254,7 +283,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked{
         $event.preventDefault();
     }
     selectJob($event) {
-        let selectedJobId:number = jQuery('div#client-wrapper select#jobId').val();
+        let selectedJobId: number = jQuery('div#client-wrapper select#jobId').val();
 
         let job: IJob = this.jobs.find((j: IJob) => {
             return j.jobId == selectedJobId;
@@ -330,7 +359,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked{
         }).subscribe();
         $event.preventDefault();
     }
-    
+
     ngAfterViewChecked() {
         let curthis = this;
 

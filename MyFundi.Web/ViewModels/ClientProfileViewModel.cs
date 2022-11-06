@@ -10,7 +10,7 @@ namespace MyFundi.Web.ViewModels
         public int ClientProfileId { get; set; }
         public Guid UserId { get; set; }
         public UserViewModel User { get; set; }
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
         public AddressViewModel Address { get; set; }
         public string ProfileSummary { get; set; }
         public string ProfileImageUrl { get; set; }

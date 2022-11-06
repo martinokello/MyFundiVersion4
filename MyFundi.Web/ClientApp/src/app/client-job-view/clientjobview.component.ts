@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob, IEmailMessage } from '../../services/myFundiService';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
@@ -33,11 +33,14 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
     chosenWorkCategories: IWorkCategory[];
     job: IJob;
     jobs: IJob[];
+    coverNote: string = "";
+    email: IEmailMessage;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
+
         this.chosenWorkCategories = [];
         this.userDetails = JSON.parse(localStorage.getItem("CurrentClientUserDetails"));
         this.clientProfile = JSON.parse(localStorage.getItem("CurrentJobClientProfile"));
@@ -46,18 +49,66 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
 
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
 
-        debugger;
+        this.email = {
+            emailBody: "",
+            attachment: null,
+            emailSubject: "",
+            emailTo: "",
+            emailFrom: ""
+        }
+
+        /*
+        jQuery('textarea#MessageText').css('color', 'gray');
+
+        jQuery('#mailFrom').attr('title', 'your email address');
+        jQuery('#mailFrom').css('color', 'gray');
+
+        jQuery('#mailTo').attr('title', this.userDetails.username);
+        jQuery('#mailTo').css('color', 'gray');
+
+
+        jQuery('#mailSubject').attr('title', 'subject');
+        jQuery('#mailSubject').css('color', 'gray');
+        jQuery('textarea#coverNoteId').css('min-height:400px;');
+        */
     }
     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
         this.userDetails = {};
     }
 
+    getFiles($event) {
+        this.email.attachment = $event.target.files;
+    }
+
+    sendEmail($event): void {
+
+        let form: HTMLFormElement = document.querySelector("form#fundiJobApplicationForm");
+        if (form.checkValidity())
+            form.submit();
+        
+        let formData = new FormData();
+        formData.append('emailBody', this.email.emailBody);
+        formData.append('emailTo', this.userDetails.username);
+        formData.append('emailFrom', this.email.emailFrom);
+        formData.append('emailSubject', this.email.emailSubject);
+        formData.append('attachment', this.email.attachment);
+        let result: Observable<boolean> = this.myFundiService.SendEmail(formData);
+        result.subscribe((value: any) => {
+            alert(value.message)
+        });
+        event.preventDefault();
+    }
+
     applyForJob($event){
         //Send Email Application to Client Email:
+
         alert('Applied For Job');
         $event.preventDefault();
     }
     ngAfterViewInit() {
+
+        jQuery('div#editableClientDetails').hide('slow');
+
         jQuery('select').each((ind, sel) => {
             let options = jQuery(sel).children('option');
            

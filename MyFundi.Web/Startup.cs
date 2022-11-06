@@ -307,6 +307,8 @@ namespace MyFundi.Web
 
             });
 
+            services.AddScoped<AppSettingsConfigurations>();
+            services.AddScoped<IMailService, EmailService>(smtp => new EmailService(new AppSettingsConfigurations(Configuration)));
             services.AddScoped<DbContext, MyFundiDBContext>();
             var httpClient = new BGLHttpClient();
             httpClient.HttpRequestClient = new HttpClient();

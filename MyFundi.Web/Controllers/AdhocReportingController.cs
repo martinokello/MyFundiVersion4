@@ -16,6 +16,9 @@ using System.Text.Json;
 using MyFundi.Web.Models;
 using AutoMapper;
 using System.IO;
+using Microsoft.Extensions.Configuration;
+using MyFundi.AppConfigurations;
+using MyFundiProfile.ServiceEndPoint.GeneralSevices;
 
 namespace MyFundi.Web.Controllers
 {
@@ -25,14 +28,19 @@ namespace MyFundi.Web.Controllers
         private IMailService _emailService;
         private MyFundiUnitOfWork _unitOfWork;
         private List<FundiLocationViewModel> _currentFundilocations;
+        private ServicesEndPoint _serviceEndPoint;
+        private IConfigurationSection _businessSmtpDetails;
 
         private Mapper _mapper;
-        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork,Mapper mapper)
+        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork,Mapper mapper, AppSettingsConfigurations appSettings)
         {
             _emailService = emailService;
             _unitOfWork = unitOfWork;
             _currentFundilocations = new List<FundiLocationViewModel>();
             _mapper = mapper;
+            _businessSmtpDetails = appSettings.AppSettings.GetSection("BusinessSmtpDetails");
+
+            _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
         }
         [HttpGet]
         [Route("~/{Controller}/{Action}/{appType}")]
@@ -150,6 +158,39 @@ namespace MyFundi.Web.Controllers
             catch(Exception e)
             {
                 return await Task.FromResult(BadRequest(new { Message = "An Error Occured While Removing Fundi!!" }));
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> GetClientEmailAndMobilePhoneNumber([FromBody] UserDetails userDetail)
+        {
+            User user = _serviceEndPoint.GetUserByEmailAddress(userDetail.emailAddress);
+
+            if (user != null)
+            {
+                //Validate: mobile number
+                if (user.MobileNumber.Equals(userDetail.mobileNumber))
+                {
+                    return await Task.FromResult(Ok(new { message = "Verified", statusCode = 200 }));
+                }
+            }
+            return await Task.FromResult(Ok(new { message = "Failed Validation. User not Found!", statusCode = 400 }));
+        }
+
+        [AuthorizeIdentity]
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> SendEmail()
+        {
+            try
+            {
+                _emailService.BusinessEmailDetails = _businessSmtpDetails;
+                //Send Email:
+                _emailService.SendEmail(new EmailDao { Attachment = Request.Form.Files.Any() ? Request.Form.Files[0] : null, EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
+                return await Task.FromResult(Ok(new {Succeded = true, Message = "Succesfully Sent Your Email!"}));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(Ok(new { Succeded = false, Message = "Failed to Send Your Email!" }));
             }
         }
         [HttpPost]
