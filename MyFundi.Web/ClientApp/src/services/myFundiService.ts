@@ -46,7 +46,7 @@ export class MyFundiService {
     public getAllFundiCertificatesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiCertificates";
     public saveOrupdateClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientProfile";
     public updateJobUrl: string = this.baseServerUrl + "/ClientProfile/UpdateJob";
-    public createOrUpdateFundiJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateFundiJob";
+    public createOrUpdateClientJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientJob";
     public getJobWorkCategoriesByJobIdUrl: string = this.baseServerUrl + "/ClientProfile/GetJobWorkCategoriesByJobId";
     public getAllclientProfilesUrl: string = this.baseServerUrl + "/ClientProfile/GetAllClientProfiles";
     public getResultsRemoveWorkCategorFromJobIdUrl: string = this.baseServerUrl + "/ClientProfile/GetResultsRemoveWorkCategorFromJobId";
@@ -74,8 +74,8 @@ export class MyFundiService {
     public postRegisterUrl: string = this.baseServerUrl + "/Account/Register";
     public postForgotPasswordUrl: string = this.baseServerUrl + "/Account/ForgotPassword";
     public static clientEmailAddress = "";
-    public postSendEmail: string = this.baseServerUrl + "/Adhoc/SendEmail";
-    public postVerifyQrcodeScan: string = this.baseServerUrl + "/Adhoc/GetClientEmailAndMobilePhoneNumber";
+    public postSendEmail: string = this.baseServerUrl + "/AdhocReporting/SendEmail";
+    public postVerifyQrcodeScan: string = this.baseServerUrl + "/AdhocReporting/GetClientEmailAndMobilePhoneNumber";
     
     public getJobByJobIdUrl: string = this.baseServerUrl + "/ClientProfile/getJobByJobId";
     
@@ -1225,13 +1225,13 @@ export class MyFundiService {
             return res;
         });
     }
-    CreateFundiJob(job: any): Observable<any> {
+    createOrUpdateClientJob(job: any): Observable<any> {
         let body = JSON.stringify(job);
 
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
         let requestOptions: any = {
-            url: this.createOrUpdateFundiJobUrl,
+            url: this.createOrUpdateClientJobUrl,
             headers: headers,
             body: body
         };
@@ -1468,7 +1468,7 @@ export interface IExtraCharges {
     tourClientId: number;
     tourClientExtraChargesId: number;
     extraCharges: number;
-    description: string
+    description: string;
 }
 export interface IInvoice {
     invoiceId: number;

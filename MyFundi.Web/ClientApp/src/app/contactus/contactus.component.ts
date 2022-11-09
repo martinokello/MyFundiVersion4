@@ -22,24 +22,24 @@ export class ContactUsComponent implements OnInit {
 
     this.myFundiService = myFundiService;
     }
-    sendEmail(): void {
+    sendEmail($event): void {
 
         let formView = this.emailFormView;
         let form:HTMLFormElement = formView.nativeElement.querySelector("form");
-        if (form.checkValidity())
-        form.submit();
-        
-        let formData = new FormData();
-        formData.append('emailBody', this.email.emailBody);
-        formData.append('emailTo', this.email.emailTo);
-        formData.append('emailFrom', this.email.emailFrom);
-        formData.append('emailSubject', this.email.emailSubject);
-        formData.append('attachment', this.email.attachment);
-        let result: Observable<boolean> = this.myFundiService.SendEmail(form);
-        result.subscribe((value: any) => {
-            alert(value.message);
-        });
-        
+        if (form.checkValidity()) {
+
+            let formData = new FormData();
+            formData.append('emailBody', this.email.emailBody);
+            formData.append('emailTo', this.email.emailTo);
+            formData.append('emailFrom', this.email.emailFrom);
+            formData.append('emailSubject', this.email.emailSubject);
+            formData.append('attachment', this.email.attachment);
+            let result: Observable<boolean> = this.myFundiService.SendEmail(formData);
+            result.subscribe((value: any) => {
+                alert(value.message);
+            });
+        }
+        $event.preventDefault();
     }
     getFiles(event) {
         this.email.attachment = event.target.files;

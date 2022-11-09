@@ -307,8 +307,8 @@ namespace MyFundi.Web.Controllers
 
         [AuthorizeIdentity]
         [HttpPost]
-        [Route("~/ClientProfile/CreateOrUpdateFundiJob")]
-        public async Task<IActionResult> CreateOrUpdateFundiJob([FromBody] JobViewModel jobViewModel)
+        [Route("~/ClientProfile/CreateOrUpdateClientJob")]
+        public async Task<IActionResult> CreateOrUpdateClientJob([FromBody] JobViewModel jobViewModel)
         {
 
             var workCats = GetWorkCategoriesForIds(jobViewModel.JobWorkCategoryIds).ToList();
@@ -363,6 +363,7 @@ namespace MyFundi.Web.Controllers
 
         [AuthorizeIdentity]
         [HttpPost]
+        [Route("~/ClientProfile/CreateOrUpdateClientProfile")]
         public async Task<IActionResult> CreateOrUpdateClientProfile([FromBody] ClientProfileViewModel clientProfileViewModel)
         {
             if (ModelState.IsValid)

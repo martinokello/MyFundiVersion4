@@ -8,32 +8,34 @@
                 </div>
             </div>
             <form id=profileImageForm enctype="multipart/form-data" method="post">
-                <div class="row" style="margin: 2px 0px !important;">
-                    <div class="col-lg-12">
-                        <a href="#" (click)="showClientProfileEditable($event)">Create Or Update Client Profile Summary</a>
-                        <div id="editProfileSummary">
-                            <input type="hidden" [(ngModel)]="clientProfileId" id="clientProfileId" name="clientProfileId" /><br />
-                            <input type="hidden" [(ngModel)]="clientUserGuidId" id="clientUserGuidId" name="clientUserGuidId" /><br />
-                            <input type="file" id="profileImageId" name="profileImage" (change)="handleProfileImage($event.target.files)" /><br />
-                            <input type="button" value="Upload Profile Image" class="but-primary" (click)="uploadProfileImage()" /><br />
-                            <hr />
+                <div>
+                    <div class="row" style="margin: 2px 0px !important;">
+                        <div class="col-lg-12">
+                            <a href="#" (click)="showClientProfileEditable($event)">Create Or Update Client Profile Summary</a>
+                            <div id="editProfileSummary">
+                                <input type="hidden" [(ngModel)]="clientProfileId" id="clientProfileId" name="clientProfileId" /><br />
+                                <input type="hidden" [(ngModel)]="clientUserGuidId" id="clientUserGuidId" name="clientUserGuidId" /><br />
+                                <input type="file" id="profileImageId" name="profileImage" (change)="handleProfileImage($event.target.files)" /><br />
+                                <input type="button" value="Upload Profile Image" class="but-primary" (click)="uploadProfileImage()" /><br />
+                                <hr />
+                            </div>
                         </div>
                     </div>
                     <div class="row" id="editableClientDetails">
                         <div class="col-lg-12">
                             <div style="margin: 2px 0px !important;">
                                 <h5>Client Address</h5>
-                                <select id="clientAddressId" name="clientAddressId" [(ngModel)]="clientAddressId"></select>
+                                <select id="clientAddressId" name="clientAddressId" [(ngModel)]="clientAddressId"></select><br /><br/>
                             </div>
                             <div style="margin: 2px 0px !important;">
                                 <textarea rows="5" cols="10" name="profileSummary" [(ngModel)]="profileSummary" placeholder="Edit Client Profile"></textarea><br />
                                 <input type="button" class="btn-primary" id="updateProfile" value="Create Client Profile" (click)="saveOrUpdateClientProfile($event)" /><br />
                             </div>
-                            <div class="col-lg-12" id="viewProfileSummary" style="margin: 2px 0px !important;">
+                            <div id="viewProfileSummary" style="margin: 2px 0px !important;">
                                 <h5>Client Profile Summary</h5>
                                 {{profileSummary}}
                             </div>
-                            <hr/>
+                            <hr />
                         </div>
                     </div>
                 </div>

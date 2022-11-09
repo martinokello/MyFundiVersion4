@@ -278,7 +278,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
             })
         };
 
-        let obsj: Observable<any> = this.myFundiService.CreateFundiJob(job);
+        let obsj: Observable<any> = this.myFundiService.createOrUpdateClientJob(job);
         obsj.map((q: any) => {
             alert(q.message)
         }).subscribe();
