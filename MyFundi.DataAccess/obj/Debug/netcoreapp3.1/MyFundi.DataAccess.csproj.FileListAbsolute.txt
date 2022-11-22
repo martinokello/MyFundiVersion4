@@ -89,10 +89,13 @@ C:\Development\MyFundiV2\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.Data
 C:\Development\MyFundiV2\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.dll
 C:\Development\MyFundiV2\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.pdb
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.DataAccess.deps.json
+C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.DataAccess.runtimeconfig.json
+C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.DataAccess.runtimeconfig.dev.json
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.DataAccess.dll
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.DataAccess.pdb
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.Domain.dll
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.Domain.pdb
+C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.csproj.AssemblyReference.cache
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.AssemblyInfoInputs.cache
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.AssemblyInfo.cs
@@ -100,7 +103,4 @@ C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.csproj.CopyComplete
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.dll
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.pdb
-C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.DataAccess.runtimeconfig.json
-C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Debug\netcoreapp3.1\MyFundi.DataAccess.runtimeconfig.dev.json
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.genruntimeconfig.cache
-C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Debug\netcoreapp3.1\MyFundi.DataAccess.csproj.AssemblyReference.cache

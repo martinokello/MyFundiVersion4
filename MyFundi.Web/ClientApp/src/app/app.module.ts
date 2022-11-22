@@ -55,6 +55,7 @@ import { VehicleMonitorComponent } from './vehiclemonitor/vehiclemonitor.compone
 import { myRecaptchaComponent } from './recaptcha/myrecaptcha.component';
 import { ClientJobViewComponent } from './client-job-view/clientjobview.component';
 import { CoursesComponent } from './crud-operations/courses/courses.component';
+import { WorkSubCategoryCrudComponent } from './crud-operations/worksubcategorycrud/worksubcategorycrud.component';
 
 @NgModule({
     declarations: [
@@ -101,7 +102,8 @@ import { CoursesComponent } from './crud-operations/courses/courses.component';
         FundiSubscriptionComponent,
         VehicleMonitorComponent,
         myRecaptchaComponent,
-        ClientJobViewComponent
+        ClientJobViewComponent,
+        WorkSubCategoryCrudComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

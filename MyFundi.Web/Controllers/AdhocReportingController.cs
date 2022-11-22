@@ -20,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using MyFundi.AppConfigurations;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
 
+
 namespace MyFundi.Web.Controllers
 {
     [EnableCors(PolicyName = "CorsPolicy")]
@@ -68,9 +69,9 @@ namespace MyFundi.Web.Controllers
         private async Task<FileContentResult> GetFileAndroid()
         {
             DirectoryInfo currentDir = new DirectoryInfo(Directory.GetCurrentDirectory());
-            var filePathInfo = new FileInfo(currentDir.FullName + "\\AndroidPhoneLocationApp\\XamarinForms.locationservice.apk");
+            var filePathInfo = new FileInfo(currentDir.FullName + "\\AndroidPhoneLocationApp\\xamarinforms.locationservice.apk");
             Response.ContentType = "multipart/form-data";
-            Response.Headers.Add("Content-Disposition", "attachment; filename=\"XamarinForms.locationservice.apk\"");
+            Response.Headers.Add("Content-Disposition", "attachment; filename=\"MartinLayooIncLocationEmitter.apk\"");
 
             if (filePathInfo.Exists)
             {
@@ -234,7 +235,7 @@ namespace MyFundi.Web.Controllers
                 }
                 else
                 {
-                    var actLocations = _currentFundilocations.FirstOrDefault(q => q.PhoneNumber.Equals(fundiLocationViewModel.PhoneNumber));
+                    var actLocations = _currentFundilocations.FirstOrDefault(q => q.EmailAddress.ToLower().Equals(fundiLocationViewModel.EmailAddress.ToLower()));
                     actLocations.Lattitude = fundiLocationViewModel.Lattitude;
                     actLocations.Longitude = fundiLocationViewModel.Longitude;
                     actLocations.fundiUserDetails = fundiLocationViewModel.fundiUserDetails;
@@ -247,199 +248,6 @@ namespace MyFundi.Web.Controllers
                 return await Task.FromResult(BadRequest(new { result = false, message = "Failed To Add Tracking" }));
             }
         }
-
-        [HttpGet]
-        public async Task<IActionResult> GetFundiLiveLocations()
-        {
-            try
-            {
-                return await Task.FromResult(Ok(_currentFundilocations.ToArray()));
-            }
-            catch (Exception ex)
-            {
-                return await Task.FromResult(BadRequest(new { result = false, message = "Failed To Get Vehicles" }));
-            }
-        }
-        [HttpGet]
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetAllUnScheduledVehiclesByStorageCapacityLowestPrice()
-        {
-            try
-            {
-                var allUnscheduledVehiclesAvailable = _unitOfWork.MyFundiDBContext.GetAllUnScheduledVehiclesByStorageCapacityLowestPrice();
-                return Ok(await Task.FromResult(allUnscheduledVehiclesAvailable));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-
-        [HttpGet]
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetAllScheduledVehiclesByStorageCapacityLowestPrice()
-        {
-            try
-            {
-                var vehiclesAvailableLowestPriceByStorageCapacity = _unitOfWork.MyFundiDBContext.GetAllScheduledVehiclesByStorageCapacityLowestPrice();
-                return await Task.FromResult(Ok(vehiclesAvailableLowestPriceByStorageCapacity));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-        [HttpGet]
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetFoodHubCommoditiesStockStorageUsage()
-        {
-            try
-            {
-                var foodHubCommoditiesStorageUsageByFoodHubId = _unitOfWork.MyFundiDBContext.GetFoodHubCommoditiesStockStorageUsage();
-                return await Task.FromResult(Ok(foodHubCommoditiesStorageUsageByFoodHubId));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-
-        [HttpGet]
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetAllFoodHubCommoditiesStockStorageUsage()
-        {
-            try
-            {
-                var allFoodHubCommoditiesStorage = _unitOfWork.MyFundiDBContext.GetFoodHubCommoditiesStockStorageUsage();
-                return await Task.FromResult(Ok(allFoodHubCommoditiesStorage));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-        [HttpGet]
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetTop5DryCommoditiesInDemandRatingAccordingToStorageFacilities()
-        {
-            try
-            {
-                var result = _unitOfWork.MyFundiDBContext.GetTop5DryCommoditiesInDemandRatingAccordingToStorageFacilities();
-                return await Task.FromResult(Ok(result));
-            }
-            catch (Exception e)
-            {
-                return BadRequest("You have used some bad arguments. Check and Try Again");
-            }
-        }
-
-        [HttpGet]
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetTop5RefreigeratedCommoditiesInDemandRatingAccordingToStorageFacilities()
-        {
-            try
-            {
-                var top5RefreigeratedCommoditiesInDemandAccordingToStorageRating = _unitOfWork.MyFundiDBContext.GetTop5RefreigeratedCommoditiesInDemandRatingAccordingToStorageFacilities();
-                return await Task.FromResult(Ok(top5RefreigeratedCommoditiesInDemandAccordingToStorageRating));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-
-
-        [HttpGet]
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetFoodHubDateAnalysisCommoditiesStockStorageUsage()
-        {
-            try
-            {
-                var foodHubCommoditiesStorageUsage = _unitOfWork.MyFundiDBContext.GetFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1), DateTime.Now);
-                return await Task.FromResult(Ok(foodHubCommoditiesStorageUsage));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetAllFoodHubDateAnalysisCommoditiesStockStorageUsage()
-        {
-            try
-            {
-                var allFoodHubCommoditiesStorageUsage = _unitOfWork.MyFundiDBContext.GetAllFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime.Now.AddYears(-1), DateTime.Now);
-                return await Task.FromResult(Ok(allFoodHubCommoditiesStorageUsage));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-
-        [AuthorizeIdentity]
-        public async Task<IActionResult> GetTop5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities()
-        {
-            try
-            {
-                var top5DryStorageCommoditisInDemand = _unitOfWork.MyFundiDBContext.GetTop5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities(DateTime.Now.AddYears(-1), DateTime.Now);
-                return await Task.FromResult(Ok(top5DryStorageCommoditisInDemand));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-
-        public async Task<IActionResult> GetTop5RefreigeratedCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilitiess()
-        {
-            try
-            {
-                var top5RefreigeratedCommoditisInDemand = _unitOfWork.MyFundiDBContext.GetTop5RefreigeratedCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilitiess(DateTime.Now.AddYears(-1), DateTime.Now);
-                return await Task.FromResult(Ok(top5RefreigeratedCommoditisInDemand));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-
-        public async Task<IActionResult> GetTop5FarmerCommoditiesDateAnalysisInUnitPricingOverDate()
-        {
-            try
-            {
-                var top5FarmersCommoditiesByUnitPrice = _unitOfWork.MyFundiDBContext.GetTop5FarmerCommoditiesDateAnalysisInUnitPricingOverDate(DateTime.Now.AddYears(-1), DateTime.Now);
-                return await Task.FromResult(Ok(top5FarmersCommoditiesByUnitPrice));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-        public async Task<IActionResult> GetTop5FarmerCommoditiesDateAnalysisInUnitPricing()
-        {
-            try
-            {
-                var top5FarmersCommoditiesByUnitPrice = _unitOfWork.MyFundiDBContext.GetTop5FarmerCommoditiesInUnitPricings();
-                return await Task.FromResult(Ok(top5FarmersCommoditiesByUnitPrice));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
-        public async Task<IActionResult> GetTop5PricingAllUnScheduledVehiclesByStorageCapacityLowestPrice()
-        {
-            try
-            {
-                var top5PricingsUncheduledVehicles = _unitOfWork.MyFundiDBContext.GetTop5PricingAllUnScheduledVehiclesByStorageCapacityLowestPrice();
-                return await Task.FromResult(Ok(top5PricingsUncheduledVehicles));
-            }
-            catch (Exception e)
-            {
-                return await Task.FromResult(BadRequest("You have used some bad arguments. Check and Try Again"));
-            }
-        }
+ 
     }
 }

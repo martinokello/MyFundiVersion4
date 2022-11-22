@@ -304,6 +304,8 @@ namespace MyFundi.Web
                 conf.CreateMap<JobWorkCategoryViewModel, JobWorkCategory>().ReverseMap();
                 conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>();
                 conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>().ReverseMap();
+                conf.CreateMap<WorkSubCategoryViewModel, WorkSubCategory>();
+                conf.CreateMap<WorkSubCategoryViewModel, WorkSubCategory>().ReverseMap(); 
 
             });
 
@@ -344,6 +346,7 @@ namespace MyFundi.Web
             services.AddScoped<AbstractRepository<Job>, JobRepository>();
             services.AddScoped<AbstractRepository<JobWorkCategory>, JobWorkCategoryRepository>();
             services.AddScoped<AbstractRepository<MonthlySubscription>, MonthlySubscriptionRepository>();
+            services.AddScoped<AbstractRepository<WorkSubCategory>, WorkSubCategoryRepository>();
             services.AddScoped<SimbaToursEastAfrica.Caching.Interfaces.ICaching, SimbaToursEastAfrica.Caching.Concretes.SimbaToursEastAfricaCahing>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();

@@ -75,7 +75,7 @@ namespace MyFundiProfile.ServiceEndPoint.GeneralSevices
 
         public Tuple<int, int> GetFundiProfileRatingById(int fundiProfileId)
         {
-            return _myFundiProfileUnitOfWork.MyFundiDBContext.GetFundiProfileRatingById(fundiProfileId);
+            return _myFundiProfileUnitOfWork.MyFundiDBContext.GetFundiProfileAvgRatingById(fundiProfileId);
 
         }
 

@@ -1,0 +1,41 @@
+<div id="workSubCategoriescrud-wrapper" style="width:100% !important">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:left !important; color:black !important;">
+            <form #f="ngForm" (ngSubmit)="f.form.valid" id="f" style="width:100% !important">
+                <h4> Work Sub Category</h4>                    
+                <div class="form-group">
+                    <label>Work Category Id</label>
+                    <select id="workCategoryCrudForSubCatId" name="workCategoryId" [(ngModel)]="workSubCategory.workCategoryId" (change)="getWorkSubCategoriesByWorkCategoryId()" #workCategoryId="ngModel" required></select>
+                    <div *ngIf="workCategoryId.invalid" class="text-danger">
+                        Work Category Type  required
+                    </div>
+                </div>
+                <div id="workSubCategory">
+                    <div class="form-group">
+                        <label>Work Sub Category Id - optional</label>
+                        <select id="workSubCategoryCrudId" name="workSubCategoryCrudId" [(ngModel)]="workSubCategory.workSubCategoryId"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Work SubCategory Type</label>
+                        <input type="text" name="workSubCategoryType" required [(ngModel)]="workSubCategory.workSubCategoryType" #workSubCategoryType="ngModel" />
+                        <div *ngIf="workSubCategoryType.invalid" class="text-danger">
+                            Work Sub Category Type  required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Work Sub Category Description</label>
+                        <textarea cols="10" rows="5" name="workSubCategoryDescription" required [(ngModel)]="workSubCategory.workSubCategoryDescription" #workSubCategoryDescription="ngModel"></textarea>
+                        <div *ngIf="workSubCategoryDescription.invalid" class="text-danger">
+                            Work Category Description  required
+                        </div>
+                    </div>
+                </div>
+                <input type="button" value="Select Work Sub Category" class="but-primary" (click)="selectworkSubCategory($event)" style="margin-top:10px;" />
+                <input type="button" value="Add Work Sub Category" class="but-primary" (click)="addWorkSubCategory($event)" style="margin-top:10px;" />
+                <input type="button" value="Update Sub Work Category" class="but-primary" (click)="updateworkSubCategory($event)" style="margin-top:10px;" />
+                <input type="button" value="Delete Sub Work Category" class="but-primary" (click)="deleteworkSubCategory($event)" style="margin-top:10px;" />
+            </form>
+        </div>
+    </div>
+</div>

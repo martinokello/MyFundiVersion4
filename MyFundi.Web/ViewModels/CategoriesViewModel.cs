@@ -7,7 +7,8 @@ namespace MyFundi.Web.ViewModels
 {
     public class CategoriesViewModel
     {
-        public string[] Categories { get; set; }
+        public string[] WorkCategories { get; set; }
+        public string[] WorkSubCategories { get; set; }
         public string Username { get; set; }
         public CoordinateViewModel Coordinate { get; set; }
     }

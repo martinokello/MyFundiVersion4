@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using SimbaToursEastAfrica.Caching;
 using SimbaToursEastAfrica.Caching.Interfaces;
 using SimbaToursEastAfrica.Caching.Concretes;
+using System.Linq.Expressions;
 
 namespace MyFundi.Web.Controllers
 {
@@ -325,6 +326,7 @@ namespace MyFundi.Web.Controllers
 
 
         [AuthorizeIdentity]
+
         public async Task<IActionResult> GetFundiWorkCategoriesByFundiProfileId(int fundiProfileId)
         {
             var fundiProfile = _unitOfWork._fundiProfileRepository.GetById(fundiProfileId);
@@ -418,144 +420,137 @@ namespace MyFundi.Web.Controllers
         }
         [AuthorizeIdentity]
         [HttpPost]
-        public async Task<IActionResult> JobsByCategoriesAndFundiUser([FromBody] CategoriesViewModel categories)
+        [Route("~/FundiProfile/JobsByCategoriesAndFundiUser/{fundiProfileId}/{distanceKmLimitApart}/{skip}/{take}")]
+        public async Task<IActionResult> JobsByCategoriesAndFundiUser([FromBody] CategoriesViewModel[] categoriesViewModel,int fundiProfileId, float distanceKmLimitApart = 500000000, int skip = 0, int take = 5)
         {
-            float km = 5;
 
-            var jobResults = (from jb in _unitOfWork._jobRepository.GetAll().Include(l => l.ClientProfile).Include(l => l.ClientUser).Include(l => l.Location)
-                               from fp in _unitOfWork._fundiProfileRepository.GetAll().Include(q => q.Location)
-                               join clp in _unitOfWork._clientProfileRepository.GetAll()
-                               on jb.ClientUserId equals clp.UserId
-                               join fwcat in _unitOfWork._fundiWorkCategoryRepository.GetAll()
-                               on fp.FundiProfileId equals fwcat.FundiProfileId
-                               join fu in _unitOfWork._userRepository.GetAll()
-                               on fp.UserId equals fu.UserId
-                               where fu.Username == categories.Username && categories.Categories.Contains(fwcat.WorkCategory.WorkCategoryType)
-                               && jb.HasCompleted == false
-                               select new
-                               {
-                                   JobId = jb.JobId,
-                                   JobName = jb.JobName,
-                                   JobDescription = jb.JobDescription,
-                                   HasBeenAssignedFundi = jb.HasBeenAssignedFundi,
-                                   ClientFundiContractId = jb.ClientFundiContractId,
-                                   LocationId = jb.Location.LocationId,
-                                   Location = _mapper.Map<LocationViewModel>(jb.Location),
-                                   ClientProfile = _mapper.Map<ClientProfileViewModel>(jb.ClientProfile),
-                                   ClientUser = _mapper.Map<UserViewModel>(jb.ClientUser),
-                                   ClientUserId = jb.ClientUser.UserId,
-                                   NumberOfDaysToComplete = jb.NumberOfDaysToComplete,
-                                   ClientProfileId = jb.ClientProfileId,
-                                   AssignedFundiProfileId = jb.AssignedFundiProfileId,
-                                   AssignedFundiUserId = jb.AssignedFundiProfile.UserId,
-                                   FundiLocation = fp.Location
-                               }).ToList().GroupBy(q => new { q.JobId, q.FundiLocation.AddressId, q.Location.LocationId, q.ClientProfileId})
-                                       .Select(q => q.FirstOrDefault());
+            List<dynamic> resMerged = new List<dynamic>();
 
-
-            var reviewCateg = (from jobRes in jobResults
-                              select new ClientJobDistanceViewModel
-                               {
-                                   Job = new JobViewModel
-                                   {
-                                       JobId = jobRes.JobId,
-                                       JobName = jobRes.JobName,
-                                       JobDescription = jobRes.JobDescription,
-                                       HasBeenAssignedFundi = jobRes.HasBeenAssignedFundi,
-                                       ClientFundiContractId = jobRes.ClientFundiContractId,
-                                       LocationId = jobRes.LocationId,
-                                       Location = _mapper.Map<LocationViewModel>(jobRes.Location),
-                                       ClientProfile = _mapper.Map<ClientProfileViewModel>(jobRes.ClientProfile),
-                                       ClientUser = _mapper.Map<UserViewModel>(jobRes.ClientUser),
-                                       ClientUserId = jobRes.ClientUserId,
-                                       NumberOfDaysToComplete = jobRes.NumberOfDaysToComplete,
-                                       ClientProfileId = jobRes.ClientProfileId,
-                                       AssignedFundiProfileId = jobRes.AssignedFundiProfileId,
-                                       AssignedFundiUserId = jobRes.AssignedFundiUserId,
-                                       FundiLocation = _mapper.Map<LocationViewModel>(jobRes.FundiLocation),
-                                       JobWorkCategoryIds = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobRes.JobId).Select(s => (int)s.WorkCategoryId).ToArray()
-                                   },
-                                   Client = _mapper.Map<ClientProfileViewModel>(jobRes.ClientProfile),
-                                   DistanceApart =
-                                   CoordinateHelper.ArePointsNearEnough(
-                                       new CoordinateViewModel { Latitude = (float)jobRes.Location.Latitude, Longitude = (float)jobRes.Location.Longitude },
-                                   new CoordinateViewModel
-                                   {
-                                       Latitude = (float)_unitOfWork._locationRepository.GetAll().First(q => jobRes.FundiLocation.LocationId == q.LocationId).Latitude,
-                                       Longitude = (float)_unitOfWork._locationRepository.GetAll().First(q => jobRes.FundiLocation.LocationId == q.LocationId).Longitude
-                                   }, km)
-                               }).ToArray();
-
-            if (reviewCateg.Any())
+            try
             {
-                return await Task.FromResult(Ok(reviewCateg.Where(n => n.DistanceApart.IsWithinDistance).OrderBy(q => (int)(Math.Round(q.DistanceApart.DistanceApart, 3, MidpointRounding.AwayFromZero) * 1000)).Skip(0).Take(5).ToList()));
 
+                foreach (var item in categoriesViewModel)
+                {
+                    var reviewCateg = _unitOfWork.MyFundiDBContext.GetJobsByFundiWorkCategoriesWithinDistance(fundiProfileId, item.WorkCategories, distanceKmLimitApart, skip, take);
+
+
+                    if (reviewCateg.Any())
+                    {
+                        var results = (from res in reviewCateg
+                                       group res by (res.FundiProfileId, res.FundiUserId, res.FundiUsername, res.FundiFirstName, res.FundiLastName, res.ClientFirstName, res.ClientLastName, res.FundiLocationId, res.FundiProfileSummary, res.FundiSkills, res.FundiUsedPowerTools,
+                                       res.FundiLocationName,res.ClientUsername, res.JobId, res.JobLocationId, res.JobName, res.JobDescription, res.ClientFirstName, res.ClientLastName, res.JobLocationName, res.DistanceApart,res.WorkCategoryId, res.JobWorkCategoryId, res.WorkCategoryType) into gRes
+                                       from k in gRes
+                                       select new
+                                       {
+                                           FundiProfileId = k.FundiProfileId,
+                                           FundiUserId = k.FundiUserId,
+                                           FundiUsername = k.FundiUsername,
+                                           FundiFirstName = k.FundiFirstName,
+                                           FundiLastName = k.FundiLastName,
+                                           FundiLocationId = k.FundiLocationId,
+                                           FundiProfileSummary = k.FundiProfileSummary,
+                                           FundiSkills = k.FundiSkills,
+                                           WorkCategoryId = k.WorkCategoryId,
+                                           FundiUsedPowerTools = k.FundiUsedPowerTools,
+                                           FundiLocationName = k.FundiLocationName,
+                                           ClientUserName = k.ClientUsername,
+                                           ClientFirstName = k.ClientFirstName,
+                                           ClientLastName = k.ClientLastName,
+                                           JobId = k.JobId,
+                                           JobLocationId = k.JobLocationId,
+                                           JobName = k.JobName,
+                                           JobDescription = k.JobDescription,
+                                           JobLocationName = k.JobLocationName,
+                                           DistanceApart = Math.Round(Convert.ToDouble(k.DistanceApart),3,MidpointRounding.AwayFromZero),
+                                           JobWorkCategoryId = k.JobWorkCategoryId,
+                                           WorkCategoryType = k.WorkCategoryType,
+                                           JobWorkSubCategories = _unitOfWork.MyFundiDBContext.GetWorkSubCategoriesByWorkCategoryId(k.WorkCategoryId).Where(q => item.WorkSubCategories.Contains((string)(q.WorkSubCategoryType))).ToArray()
+                                       });
+                        resMerged.AddRange(results.ToList());
+
+                    }
+                }
+                if (resMerged.Count > 0)
+                {
+                    return await Task.FromResult(Ok(resMerged.ToArray()));
+                }
+                else
+                {
+                    return await Task.FromResult(NotFound(new string[] { }));
+                }
             }
-            return await Task.FromResult(NotFound(new string[]{ }));
+            catch(Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new string[] { }));
+            }
+
         }
 
         [AuthorizeIdentity]
         [HttpPost]
-        public async Task<IActionResult> PostAllFundiRatingsAndReviewsByCategories([FromBody] CategoriesViewModel categoriesViewModel)
+        [Route("~/FundiProfile/PostAllFundiRatingsAndReviewsByCategories/{skip}/{take}")]
+        public async Task<IActionResult> PostAllFundiRatingsAndReviewsByCategories([FromBody] CategoriesViewModel[] categoriesViewModel, float distanceKmLimitApart = 500000000, int skip = 0, int take = 5)
         {
-            float km = 5;
+            List<dynamic> resMerged = new List<dynamic>();
 
-            var reviewCateg = from fwcat in _unitOfWork._fundiWorkCategoryRepository.GetAll()
-                              join fp in _unitOfWork._fundiProfileRepository.GetAll().Include(q => q.Location)
-                              on fwcat.FundiProfileId equals fp.FundiProfileId
-                              join us in _unitOfWork._userRepository.GetAll()
-                              on fp.UserId equals us.UserId
-                              join frR in _unitOfWork._fundiRatingsAndReviewRepository.GetAll()
-                              on fp.FundiProfileId equals frR.FundiProfileId into catFp
-                              from j in catFp.DefaultIfEmpty()
-                              where categoriesViewModel.Categories.Contains(fwcat.WorkCategory.WorkCategoryType)
-                              && fp.FundiProfileId > 0
-                              select new FundiRatingAndReviewViewModel
-                              {
-                                  FundiRatingAndReviewId = j.FundiRatingAndReviewId,
-                                  FundiProfileId = fp.FundiProfileId,
-                                  Rating = j.Rating,
-                                  Review = j.Review,
-                                  FundiProfile = _mapper.Map<FundiProfileViewModel>(fp),
-                                  UserId = us.UserId,
-                                  User = _mapper.Map<UserViewModel>(us),
-                                  DateUpdated = j.DateUpdated,
-                                  WorkCategoryType = fwcat.WorkCategory.WorkCategoryType,
-                                  RatedByUser = _mapper.Map<UserViewModel>(j.User),
-                                  RatingByUserId = j.UserId,
-                                  FundiLocation = _mapper.Map<LocationViewModel>(fp.Location),
-                                  DistanceApart = CoordinateHelper.ArePointsNearEnough(
-                                  new CoordinateViewModel
-                                  {
-                                      Latitude = _unitOfWork._locationRepository.GetAll().First(q => q.LocationId == fp.LocationId).Latitude ?? 5000000,
-                                      Longitude = _unitOfWork._locationRepository.GetAll().First(q => q.LocationId == fp.LocationId).Longitude ?? 50000000
-                                  }, categoriesViewModel.Coordinate, km)
-                              };
-            if (reviewCateg.Any())
+            try
             {
-                var fundiGroupedRatings = new Dictionary<string, List<FundiRatingAndReviewViewModel>>();
-
-                var results = reviewCateg.ToArray().Where(n => n.DistanceApart.IsWithinDistance).OrderBy(q => (int)(Math.Round(q.DistanceApart.DistanceApart, 3, MidpointRounding.AwayFromZero) * 1000)).Skip(0).Take(5).ToList();
-                foreach (var rat in results)
+                foreach (var item in categoriesViewModel)
                 {
-                    if (!fundiGroupedRatings.Keys.Contains(rat.FundiProfileId.ToString().ToLower()))
-                    {
-                        var list = new List<FundiRatingAndReviewViewModel>();
-                        list.Add(rat);
+                    var reviewCateg = _unitOfWork.MyFundiDBContext.GetFundiAvgRatingsAndJobWithinDistance(item.WorkCategories, distanceKmLimitApart, skip, take);
 
-                        fundiGroupedRatings.Add(rat.FundiProfileId.ToString().ToLower(), list);
-                    }
-                    else
-                    {
-                        var list = fundiGroupedRatings[rat.FundiProfileId.ToString().ToLower()];
-                        list.Add(rat);
-                    }
 
+                    if (reviewCateg.Any())
+                    {
+                        var results = (from res in reviewCateg
+                                       group res by (res.FundiProfileId, res.FundiUserId, res.FundiRating, res.FundiUsername, res.FundiLocationId, res.FundiProfileSummary, res.FundiSkills, res.FundiUsedPowerTools, res.FundiLocationName,
+                                       res.DistanceApart, res.ClientReview,res.WorkCategoryId, res.JobWorkCategoryId, res.WorkCategoryType) into gRes
+                                       from k in gRes
+                                       select new
+                                       {
+                                           FundiProfileId = k.FundiProfileId,
+                                           FundiUserId = k.FundiUserId,
+                                           FundiUsername = k.FundiUsername,
+                                           FundiFirstName = k.FundiFirstName,
+                                           FundiLastName = k.FundiLastName,
+                                           FundiLocationId = k.FundiLocationId,
+                                           FundiProfileSummary = k.FundiProfileSummary,
+                                           FundiSkills = k.FundiSkills,
+                                           FundiUsedPowerTools = k.FundiUsedPowerTools,
+                                           WorkCategoryId = k.WorkCategoryId,
+                                           FundiLocationName = k.FundiLocationName,
+                                           ClientUserName = k.ClientUsername,
+                                           ClientFirstName = k.ClientFirstName,
+                                           ClientLastName = k.ClientLastName,
+                                           JobId = k.JobId,
+                                           JobLocationId = k.JobLocationId,
+                                           JobName = k.JobName,
+                                           JobDescription = k.JobDescription,
+                                           JobLocationName = k.JobLocationName,
+                                           DistanceApart = k.DistanceApart,
+                                           JobWorkCategoryId = k.JobWorkCategoryId,
+                                           WorkCategoryType = k.WorkCategoryType,
+                                           FundiRating = k.FundiRating,
+                                           ClientReview = k.ClientReview,
+                                           JobWorkSubCategories = _unitOfWork.MyFundiDBContext.GetWorkSubCategoriesByWorkCategoryId(k.WorkCategoryId).Where(q => item.WorkSubCategories.Contains((string)q.WorkSubCategoryType)).ToArray(),
+                                           AverageFundiRating = _unitOfWork.MyFundiDBContext.GetFundiProfileAvgRatingById(k.FundiProfileId).ToValueTuple().Item2
+                                       });
+                        resMerged.AddRange(results.ToList());
+                    }
                 }
-                return await Task.FromResult(Ok(fundiGroupedRatings));
-
+                if (resMerged.Count > 0)
+                {
+                    return await Task.FromResult(Ok(resMerged));
+                }
+                else
+                {
+                    return await Task.FromResult(NotFound(new string[] { }));
+                }
             }
-            return await Task.FromResult(NotFound(new { Message = "No Reviews & Ratings for Fundi" }));
+            catch(Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new string[] { }));
+            }
         }
 
         [AuthorizeIdentity]
@@ -645,6 +640,20 @@ namespace MyFundi.Web.Controllers
             }
             return await Task.FromResult(NotFound(new { Message = "No Work Categories Found!" }));
         }
+
+        [AuthorizeIdentity]
+        [Route("~/FundiProfile/GetAllFundiWorkSubCategoriesByWorkCategoryId/{workCategoryId}")]
+        public async Task<IActionResult> GetAllFundiWorkSubCategoriesByWorkCategoryId(int workCategoryId)
+        {
+            var wcs = _unitOfWork._workSubCategoryRepository.GetAll().Where(q => q.WorkCategoryId == workCategoryId);
+
+            if (wcs.Any())
+            {
+                return await Task.FromResult(Ok(_mapper.Map<WorkSubCategoryViewModel[]>(wcs.ToArray())));
+            }
+            return await Task.FromResult(NotFound(new { Message = "No Work Categories Found!" }));
+        }
+
         [AuthorizeIdentity]
         public async Task<IActionResult> GetAllFundiCourses()
         {
@@ -773,6 +782,64 @@ namespace MyFundi.Web.Controllers
 
             return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Inserted, therefore operation failed!" }));
         }
+
+        [HttpPost]
+        [AuthorizeIdentity]
+        public async Task<IActionResult> DeleteWorkSubCategory([FromBody] WorkSubCategoryViewModel workSubCategoryViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var workSubCategory = _mapper.Map<WorkSubCategory>(workSubCategoryViewModel);
+
+                var result = _unitOfWork._workSubCategoryRepository.Delete(workSubCategory);
+                _unitOfWork.SaveChanges();
+
+                return await Task.FromResult(Ok(true));
+
+            }
+
+            return await Task.FromResult(BadRequest(false));
+        }
+
+
+        [HttpPost]
+        [AuthorizeIdentity]
+        public async Task<IActionResult> PostOrCreateWorkSubCategory([FromBody] WorkSubCategoryViewModel workSubCategoryViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var workSubCategory = _mapper.Map<WorkSubCategory>(workSubCategoryViewModel);
+
+                var result = _unitOfWork._workSubCategoryRepository.Insert(workSubCategory);
+                _unitOfWork.SaveChanges();
+                return await Task.FromResult(Ok(true));
+
+            }
+
+            return await Task.FromResult(BadRequest(false));
+        }
+
+        [HttpPost]
+        [AuthorizeIdentity]
+        public async Task<IActionResult> UpdateWorkSubCategory([FromBody] WorkSubCategoryViewModel workSubCategoryViewModel)
+        {
+            try
+            {
+
+                var workSubCategory = _mapper.Map<WorkSubCategory>(workSubCategoryViewModel);
+
+                var result = _unitOfWork._workSubCategoryRepository.Update(workSubCategory);
+                _unitOfWork.SaveChanges();
+                return await Task.FromResult(Ok(true));
+
+            }
+            catch
+            {
+
+                return await Task.FromResult(BadRequest(false));
+            }
+        }
+
         [AuthorizeIdentity]
         [HttpPost]
         public async Task<IActionResult> CreateFundiProfile([FromBody] FundiProfileViewModel fundiProfileViewModel)

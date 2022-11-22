@@ -744,6 +744,35 @@ namespace MyFundi.Web.Migrations
                     b.ToTable("WorkCategories");
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.WorkSubCategory", b =>
+                {
+                    b.Property<int>("WorkSubCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("WorkCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WorkSubCategoryDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkSubCategoryType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("WorkSubCategoryId");
+
+                    b.HasIndex("WorkCategoryId");
+
+                    b.ToTable("WorkSubCategories");
+                });
+
             modelBuilder.Entity("MyFundi.Domain.ClientFundiContract", b =>
                 {
                     b.HasOne("MyFundi.Domain.User", "ClientUser")
@@ -954,6 +983,15 @@ namespace MyFundi.Web.Migrations
                     b.HasOne("MyFundi.Domain.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.WorkSubCategory", b =>
+                {
+                    b.HasOne("MyFundi.Domain.WorkCategory", "WorkCategory")
+                        .WithMany()
+                        .HasForeignKey("WorkCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

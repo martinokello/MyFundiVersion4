@@ -8649,7 +8649,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.30, 3.1.30]"
+            "version": "[3.1.31, 3.1.31]"
           }
         ],
         "frameworkReferences": {
@@ -8660,7 +8660,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.110\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.111\\RuntimeIdentifierGraph.json"
       }
     }
   }

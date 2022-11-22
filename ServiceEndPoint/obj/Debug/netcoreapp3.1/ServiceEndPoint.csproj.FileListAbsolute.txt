@@ -145,6 +145,8 @@ C:\Development\MyFundiV2\ServiceEndPoint\obj\Debug\netcoreapp3.1\ServiceEndPoint
 C:\Development\MyFundiV2\ServiceEndPoint\obj\Debug\netcoreapp3.1\ServiceEndPoint.dll
 C:\Development\MyFundiV2\ServiceEndPoint\obj\Debug\netcoreapp3.1\ServiceEndPoint.pdb
 C:\Development\MyFundiCurrent\ServiceEndPoint\bin\Debug\netcoreapp3.1\ServiceEndPoint.deps.json
+C:\Development\MyFundiCurrent\ServiceEndPoint\bin\Debug\netcoreapp3.1\ServiceEndPoint.runtimeconfig.json
+C:\Development\MyFundiCurrent\ServiceEndPoint\bin\Debug\netcoreapp3.1\ServiceEndPoint.runtimeconfig.dev.json
 C:\Development\MyFundiCurrent\ServiceEndPoint\bin\Debug\netcoreapp3.1\ServiceEndPoint.dll
 C:\Development\MyFundiCurrent\ServiceEndPoint\bin\Debug\netcoreapp3.1\ServiceEndPoint.pdb
 C:\Development\MyFundiCurrent\ServiceEndPoint\bin\Debug\netcoreapp3.1\MyFundi.AppConfigurations.dll
@@ -165,6 +167,4 @@ C:\Development\MyFundiCurrent\ServiceEndPoint\obj\Debug\netcoreapp3.1\ServiceEnd
 C:\Development\MyFundiCurrent\ServiceEndPoint\obj\Debug\netcoreapp3.1\ServiceEndPoint.csproj.CopyComplete
 C:\Development\MyFundiCurrent\ServiceEndPoint\obj\Debug\netcoreapp3.1\ServiceEndPoint.dll
 C:\Development\MyFundiCurrent\ServiceEndPoint\obj\Debug\netcoreapp3.1\ServiceEndPoint.pdb
-C:\Development\MyFundiCurrent\ServiceEndPoint\bin\Debug\netcoreapp3.1\ServiceEndPoint.runtimeconfig.json
-C:\Development\MyFundiCurrent\ServiceEndPoint\bin\Debug\netcoreapp3.1\ServiceEndPoint.runtimeconfig.dev.json
 C:\Development\MyFundiCurrent\ServiceEndPoint\obj\Debug\netcoreapp3.1\ServiceEndPoint.genruntimeconfig.cache

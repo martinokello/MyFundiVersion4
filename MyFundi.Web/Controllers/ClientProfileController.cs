@@ -209,8 +209,8 @@ namespace MyFundi.Web.Controllers
         
         [HttpGet]
         [AuthorizeIdentity]
-        [Route("~/ClientProfile/GetResultsRemoveWorkCategorFromJobId/{jobId}/{workCategoryId}")]
-        public async Task<IActionResult> GetResultsRemoveWorkCategorFromJobId(int jobId, int workCategoryId)
+        [Route("~/ClientProfile/GetResultsRemoveWorkCategoryFromJobId/{jobId}/{workCategoryId}")]
+        public async Task<IActionResult> GetResultsRemoveWorkCategoryFromJobId(int jobId, int workCategoryId)
         {
 
             var result = _unitOfWork._jobRepository.GetAll().Where(j=> j.JobId == jobId).Include(j=> j.Location);
@@ -232,7 +232,28 @@ namespace MyFundi.Web.Controllers
                 return await Task.FromResult(BadRequest(hasDeleted));
             }
         }
-        
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/ClientProfile/GetWorkSubCategoriesBySubCategoryId/{workSubCategoryId}")]
+        public async Task<IActionResult> GetWorkSubCategoriesBySubCategoryId(int workSubCategoryId)
+        {
+
+            var result = _unitOfWork._workSubCategoryRepository.GetById(workSubCategoryId);
+            try
+            {
+                if(result != null)
+                {
+                    var workSubCatViewModel = _mapper.Map<WorkSubCategoryViewModel>(result);
+                    return await Task.FromResult(Ok(workSubCatViewModel));
+                }
+                return await Task.FromResult(NotFound(null));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(null));
+            }
+        }
+
         [HttpGet]
         [AuthorizeIdentity]
         [Route("~/ClientProfile/GetClientProfileById/{clientProfileId}")]

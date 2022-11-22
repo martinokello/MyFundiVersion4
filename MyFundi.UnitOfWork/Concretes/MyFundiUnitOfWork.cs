@@ -34,6 +34,7 @@ namespace MyFundi.UnitOfWork.Concretes
         public JobRepository _jobRepository;
         public JobWorkCategoryRepository _jobWorkCategoryRepository;
         public MonthlySubscriptionRepository _monthlySubscriptionRepository;
+        public WorkSubCategoryRepository _workSubCategoryRepository;
         public MyFundiDBContext MyFundiDBContext { get; set; }
         public MyFundiUnitOfWork(
             AbstractRepository<Address> addressRepository,
@@ -57,6 +58,7 @@ namespace MyFundi.UnitOfWork.Concretes
             AbstractRepository<Job> jobRepository,
             AbstractRepository<JobWorkCategory> jobWorkCategoryRepository,
             AbstractRepository<MonthlySubscription> monthlySubscriptionRepository,
+            AbstractRepository<WorkSubCategory> workSubCategoryRepository,
             MyFundiDBContext myFundiDbContext)
         {
             this.MyFundiDBContext = myFundiDbContext;
@@ -101,7 +103,9 @@ namespace MyFundi.UnitOfWork.Concretes
             _jobWorkCategoryRepository = jobWorkCategoryRepository as JobWorkCategoryRepository;
             _jobWorkCategoryRepository.MyFundiDBContext = myFundiDbContext;
             _monthlySubscriptionRepository = monthlySubscriptionRepository as MonthlySubscriptionRepository;
-            _monthlySubscriptionRepository.MyFundiDBContext = myFundiDbContext; 
+            _monthlySubscriptionRepository.MyFundiDBContext = myFundiDbContext;
+            _workSubCategoryRepository = workSubCategoryRepository as WorkSubCategoryRepository;
+            _workSubCategoryRepository.MyFundiDBContext = myFundiDbContext;
         }
         public void SaveChanges()
         {

@@ -5,14 +5,17 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using Microsoft.Data.SqlClient;
 
 namespace MyFundi.DataAccess
 {
     public class MyFundiDBContext : DbContext
     {
+        private string connectionString;
         public MyFundiDBContext(DbContextOptions<MyFundiDBContext> dbOptions) : base(dbOptions)
         {
-
+            connectionString = Database.GetDbConnection().ConnectionString;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,433 +53,215 @@ namespace MyFundi.DataAccess
         public DbSet<Job> Jobs { get; set; }
         public DbSet<JobWorkCategory> JobWorkCategories { get; set; }
         public DbSet<MonthlySubscription> MonthlySubscriptions { get; set; }
-
-        public Tuple<int, int> GetFundiProfileRatingById(int fundiProfileId)
+        public DbSet<WorkSubCategory> WorkSubCategories { get; set; }
+        public Tuple<int, int> GetFundiProfileAvgRatingById(int fundiProfileId)
         {
-            var con = Database.GetDbConnection();
-            var cmd = con.CreateCommand();
-            var para = cmd.CreateParameter();
-            para.DbType = System.Data.DbType.Int32;
-            para.ParameterName = "@fundiProfileId";
-            para.Value = fundiProfileId;
-            cmd.Parameters.Add(para);
-
-            cmd.CommandText = "[dbo].[GetFundiAverageRatingByProfileId]";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                return new Tuple<int, int>(reader["FundiProfileId"] == DBNull.Value ? 0 : (int)reader["FundiProfileId"],
-                 reader["FundiAverageRating"] == DBNull.Value ? 0: (int)reader["FundiAverageRating"]);
+                SqlCommand cmd = (SqlCommand)con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
+
+                cmd.CommandText = "[dbo].[GetFundiAverageRatingByProfileId]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    return new Tuple<int, int>(reader["FundiProfileId"] == DBNull.Value ? 0 : (int)reader["FundiProfileId"],
+                     reader["FundiAverageRating"] == DBNull.Value ? 0 : (int)reader["FundiAverageRating"]);
+                }
+                con.Close();
+                return new Tuple<int, int>(0, 0);
+
             }
-            con.Close();
-            return new Tuple<int,int>(0,0);
+
         }
 
-        public List<dynamic> GetFoodHubCommoditiesStockStorageUsage()
+        public List<WorkSubCategory> GetWorkSubCategoriesByWorkCategoryId(int workCategoryId)
         {
-            var con = base.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-            cmd.CommandText = "dbo.[AllFoodHubDateAnalysisCommoditiesStockStorageUsage]";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            var list = new List<WorkSubCategory>();
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                listItems.Add(new
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.Parameters.Add(new SqlParameter("@workCategoryId", workCategoryId));
+
+                cmd.CommandText = "[dbo].[GetWorkSubCategoriesByWorkCategoryId]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
                 {
-                    FoodHubId = reader["FoodHubId"] == DBNull.Value ? 0 : (int)reader["FoodHubId"],
-                    FoodHubName = reader["FoodHubName"] == DBNull.Value ? "Not Found" : (string)reader["FoodHubName"],
-                    FoodHubStorageId = reader["FoodHubStorageId"] == DBNull.Value ? 0 : (int)reader["FoodHubStorageId"],
-                    RefreigeratedStorageCapacity = reader["RefreigeratedStorageCapacity"] == DBNull.Value ? (decimal)0.00 : (decimal)reader["RefreigeratedStorageCapacity"],
-                    DryStorageCapacity = reader["DryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["DryStorageCapacity"],
-                    UsedDryStorageCapacity = reader["UsedDryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["UsedDryStorageCapacity"],
-                    UsedRefreigeratedStorageCapacity = reader["UsedRefreigeratedStorageCapacity"] == DBNull.Value ? (decimal)0 : (decimal)reader["UsedRefreigeratedStorageCapacity"]
-                });
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(
+                        new WorkSubCategory
+                        {
+                            WorkSubCategoryType = reader["WorkSubCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkSubCategoryType"],
+                            WorkSubCategoryId = reader["WorkSubCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkSubCategoryId"],
+                            WorkCategoryId = reader["WorkCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkCategoryId"],
+                            WorkSubCategoryDescription = reader["WorkSubCategoryDescription"] == DBNull.Value ? "Not Found" : (string)reader["WorkSubCategoryDescription"]
+                        });
+                }
+                con.Close();
             }
-            return listItems;
+            return list;
         }
 
 
-        public List<dynamic> FoodHubCommoditiesStockStorageUsageById(int foodHubId)
+        public List<FundiRatingsReviewLocationApart> GetFundiAvgRatingsAndJobWithinDistance(string[] fundiCategories, float distanceApart, int skip, int take)
         {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-            var foodHub = cmd.CreateParameter();
-            foodHub.ParameterName = "@foodHubId";
-            foodHub.Value = foodHubId;
-            cmd.Parameters.Add(foodHub);
-
-            cmd.CommandText = "dbo.FoodHubCommoditiesStockStorageUsageById";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                listItems.Add(new
+                SqlCommand cmd = (SqlCommand)con.CreateCommand();
+
+                cmd.Parameters.Add(new SqlParameter("@distanceApart", distanceApart));
+
+                cmd.Parameters.Add(new SqlParameter("@skip", skip));
+
+                cmd.Parameters.Add(new SqlParameter("@take", take));
+
+                var strBuilder = new StringBuilder();
+                foreach (var st in fundiCategories)
                 {
-                    FoodHubId = reader["FoodHubId"] == DBNull.Value ? 0 : (int)reader["FoodHubId"],
-                    FoodHubName = reader["FoodHubName"] == DBNull.Value ? "Not Found" : (string)reader["FoodHubName"],
-                    FoodHubStorageId = reader["FoodHubStorageId"] == DBNull.Value ? 0 : (int)reader["FoodHubStorageId"],
-                    RefreigeratedStorageCapacity = reader["RefreigeratedStorageCapacity"] == DBNull.Value ? (decimal)0.00 : (decimal)reader["RefreigeratedStorageCapacity"],
-                    DryStorageCapacity = reader["DryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["DryStorageCapacity"],
-                    UsedDryStorageCapacity = reader["UsedDryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["UsedDryStorageCapacity"],
-                    UsedRefreigeratedStorageCapacity = reader["UsedRefreigeratedStorageCapacity"] == DBNull.Value ? (decimal)0 : (decimal)reader["UsedRefreigeratedStorageCapacity"]
-                });
+                    strBuilder.Append(st + ",");
+                }
+                cmd.Parameters.Add(new SqlParameter("@workCategories", strBuilder.ToString().Trim(',')));
+
+                var listItems = new List<FundiRatingsReviewLocationApart>();
+
+                cmd.CommandText = "dbo.[GetFundiRatings]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    listItems.Add(new FundiRatingsReviewLocationApart
+                    {
+                        FundiProfileId = reader["FundiProfileId"] == DBNull.Value ? 0 : (int)reader["FundiProfileId"],
+                        FundiUsername = reader["FundiUsername"] == DBNull.Value ? "Not Found" : (string)reader["FundiUsername"],
+                        FundiFirstName = reader["FundiFirstName"] == DBNull.Value ? "Not Found" : (string)reader["FundiFirstName"],
+                        FundiLastName = reader["FundiLastName"] == DBNull.Value ? "Not Found" : (string)reader["FundiLastName"],
+                        FundiRating = reader["FundiRating"] == DBNull.Value ? 0 : (int)reader["FundiRating"],
+                        FundiLocationId = reader["FundiLocationId"] == DBNull.Value ? 0 : (int)reader["FundiLocationId"],
+                        FundiLocationLat = reader["FundiLocationLat"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["FundiLocationLat"]),
+                        FundiLocationLong = reader["FundiLocationLong"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["FundiLocationLong"]),
+                        FundiProfileSummary = reader["FundiProfileSummary"] == DBNull.Value ? "Not Found" : (string)reader["FundiProfileSummary"],
+                        FundiSkills = reader["FundiSkills"] == DBNull.Value ? "" : (string)reader["FundiSkills"],
+                        FundiUsedPowerTools = reader["FundiUsedPowerTools"] == DBNull.Value ? "Not Found" : (string)reader["FundiUsedPowerTools"],
+                        WorkCategoryId = reader["WorkCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkCategoryId"],
+                        JobId = reader["JobId"] == DBNull.Value ? 0 : (int)reader["JobId"],
+                        FundiLocationName = reader["FundiLocationName"] == DBNull.Value ? "Not Found" : (string)reader["FundiLocationName"],
+                        JobLocationId = reader["JobLocationId"] == DBNull.Value ? 0 : (int)reader["JobLocationId"],
+                        JobLocationName = reader["JobLocationName"] == DBNull.Value ? "Not Found" : (string)reader["JobLocationName"],
+                        JobDescription = reader["JobDescription"] == DBNull.Value ? "Not Found" : (string)reader["JobDescription"],
+                        JobLocationLatitude = reader["JobLocationLatitude"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["JobLocationLatitude"]),
+                        JobLocationLongitude = reader["JobLocationLongitude"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["JobLocationLongitude"]),
+                        ClientUsername = reader["ClientUsername"] == DBNull.Value ? "Not Found" : (string)reader["ClientUsername"],
+                        ClientFirstName = reader["ClientFirstName"] == DBNull.Value ? "Not Found" : (string)reader["ClientFirstName"],
+                        ClientLastName = reader["ClientLastName"] == DBNull.Value ? "Not Found" : (string)reader["ClientLastName"],
+                        ClientProfileId = reader["ClientProfileId"] == DBNull.Value ? 0 : (int)reader["ClientProfileId"],
+                        ClientAddressId = reader["ClientAddressId"] == DBNull.Value ? 0 : (int)reader["ClientAddressId"],
+                        ClientProfileSummary = reader["ClientProfileSummary"] == DBNull.Value ? "Not Found" : (string)reader["ClientProfileSummary"],
+                        ClientReview = reader["ClientReview"] == DBNull.Value ? "Not Found" : (string)reader["ClientReview"],
+                        DistanceApart = reader["DistanceApart"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["DistanceApart"]),
+                        JobWorkCategoryId = reader["JobWorkCategoryId"] == DBNull.Value ? 0 : (int)reader["JobWorkCategoryId"],
+                        WorkCategoryType = reader["WorkCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryType"],
+                        WorkCategoryDescription = reader["WorkCategoryDescription"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryDescription"],
+                        FundiUserId = (Guid)reader["FundiUserId"],
+                        ClientUserId = (Guid)reader["ClientUserId"]
+                    });
+                }
+                con.Close();
+                return listItems;
             }
-            return listItems;
+
         }
-
-        public List<dynamic> GetTop5DryCommoditiesInDemandRatingAccordingToStorageFacilities()
+        public List<JobsFundiCategoriesLocationApart> GetJobsByFundiWorkCategoriesWithinDistance(int fundiProfileId, string[] fundiCategories, float distanceApart, int skip, int take)
         {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-            cmd.CommandText = "dbo.Top5DryCommoditiesInDemandRatingAccordingToStorageFacilities";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                listItems.Add(new
+                SqlCommand cmd = (SqlCommand)con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
+
+                cmd.Parameters.Add(new SqlParameter("@distanceApart", distanceApart));
+
+                cmd.Parameters.Add(new SqlParameter("@skip", skip));
+
+                cmd.Parameters.Add(new SqlParameter("@take", take));
+
+                var strBuilder = new StringBuilder();
+                foreach (var st in fundiCategories)
                 {
-                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityName"],
-                    CommodityCategoryName = reader["CommodityCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityCategoryName"],
-                    TotalUsedDryStorageCapacity = reader["TotalUsedDryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["TotalUsedDryStorageCapacity"],
-                    TotalDryStorageCapacity = reader["TotalDryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["TotalDryStorageCapacity"]
-                });
-            }
-            return listItems;
-        }
-        public List<dynamic> GetTop5RefreigeratedCommoditiesInDemandRatingAccordingToStorageFacilities()
-        {
-            var con = this.Database.GetDbConnection();
+                    strBuilder.Append(st + ",");
+                }
+                cmd.Parameters.Add(new SqlParameter("@workCategories", strBuilder.ToString().Trim(',')));
 
-            var listItems = new List<dynamic>();
+                var listItems = new List<JobsFundiCategoriesLocationApart>();
 
-            var cmd = con.CreateCommand();
-            cmd.CommandText = "dbo.Top5RefreigeratedCommoditiesInDemandRatingAccordingToStorageFacilities";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                listItems.Add(new
+                cmd.CommandText = "dbo.[GetFundiByLocationVsJobLocation]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
                 {
-                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityName"],
-                    CommodityCategoryName = reader["CommodityCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityCategoryName"],
-                    TotalUsedRefreigeratedStorageCapacity = reader["TotalUsedRefreigeratedStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["TotalUsedRefreigeratedStorageCapacity"],
-                    TotalRefreigeratedStorageCapacity = reader["TotalRefreigeratedStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["TotalRefreigeratedStorageCapacity"]
-                });
-            }
-            return listItems;
-        }
+                    con.Open();
+                }
 
-        public List<dynamic> GetTop5FarmerCommoditiesInUnitPricings()
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-            cmd.CommandText = "dbo.Top5FarmerCommoditiesInUnitPricing";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                listItems.Add(new
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
-                    FarmerName = reader["FarmerName"] == DBNull.Value ? "Not Found" : (string)reader["FarmerName"],
-                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityName"],
-                    CommodityCategoryName = reader["CommodityCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityCategoryName"],
-                    CommodityUnitName = reader["CommodityUnitName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityUnitName"],
-                    FarmerCommodityUnitPrice = reader["FarmerCommodityUnitPrice"] == DBNull.Value ? 0 : (decimal)reader["FarmerCommodityUnitPrice"]
-                });
+                    listItems.Add(new JobsFundiCategoriesLocationApart
+                    {
+                        FundiProfileId = reader["FundiProfileId"] == DBNull.Value ? 0 : (int)reader["FundiProfileId"],
+                        FundiUsername = reader["FundiUsername"] == DBNull.Value ? "Not Found" : (string)reader["FundiUsername"],
+                        FundiFirstName = reader["FundiFirstName"] == DBNull.Value ? "Not Found" : (string)reader["FundiFirstName"],
+                        FundiLastName = reader["FundiLastName"] == DBNull.Value ? "Not Found" : (string)reader["FundiLastName"],
+                        FundiLocationId = reader["FundiLocationId"] == DBNull.Value ? 0 : (int)reader["FundiLocationId"],
+                        FundiLocationLat = reader["FundiLocationLat"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["FundiLocationLat"]),
+                        FundiLocationLong = reader["FundiLocationLong"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["FundiLocationLong"]),
+                        FundiProfileSummary = reader["FundiProfileSummary"] == DBNull.Value ? "Not Found" : (string)reader["FundiProfileSummary"],
+                        FundiSkills = reader["FundiSkills"] == DBNull.Value ? "" : (string)reader["FundiSkills"],
+                        FundiUsedPowerTools = reader["FundiUsedPowerTools"] == DBNull.Value ? "Not Found" : (string)reader["FundiUsedPowerTools"],
+                        WorkCategoryId = reader["WorkCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkCategoryId"],
+                        JobId = reader["JobId"] == DBNull.Value ? 0 : (int)reader["JobId"],
+                        JobName = reader["JobName"] == DBNull.Value ? "Not Found" : (string)reader["JobName"],
+                        FundiLocationName = reader["FundiLocationName"] == DBNull.Value ? "Not Found" : (string)reader["FundiLocationName"],
+                        JobLocationId = reader["JobLocationId"] == DBNull.Value ? 0 : (int)reader["JobLocationId"],
+                        JobLocationName = reader["JobLocationName"] == DBNull.Value ? "Not Found" : (string)reader["JobLocationName"],
+                        JobDescription = reader["JobDescription"] == DBNull.Value ? "Not Found" : (string)reader["JobDescription"],
+                        JobLocationLatitude = reader["JobLocationLatitude"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["JobLocationLatitude"]),
+                        JobLocationLongitude = reader["JobLocationLongitude"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["JobLocationLongitude"]),
+                        ClientUsername = reader["ClientUsername"] == DBNull.Value ? "Not Found" : (string)reader["ClientUsername"],
+                        ClientFirstName = reader["ClientFirstName"] == DBNull.Value ? "Not Found" : (string)reader["ClientFirstName"],
+                        ClientLastName = reader["ClientLastName"] == DBNull.Value ? "Not Found" : (string)reader["ClientLastName"],
+                        ClientProfileId = reader["ClientProfileId"] == DBNull.Value ? 0 : (int)reader["ClientProfileId"],
+                        ClientAddressId = reader["ClientAddressId"] == DBNull.Value ? 0 : (int)reader["ClientAddressId"],
+                        ClientProfileSummary = reader["ClientProfileSummary"] == DBNull.Value ? "Not Found" : (string)reader["ClientProfileSummary"],
+                        DistanceApart = reader["DistanceApart"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["DistanceApart"]),
+                        JobWorkCategoryId = reader["JobWorkCategoryId"] == DBNull.Value ? 0 : (int)reader["JobWorkCategoryId"],
+                        WorkCategoryType = reader["WorkCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryType"],
+                        WorkCategoryDescription = reader["WorkCategoryDescription"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryDescription"],
+                        FundiUserId = (Guid)reader["FundiUserId"],
+                        ClientUserId = (Guid)reader["ClientUserId"],
+                    });
+                }
+                con.Close();
+                return listItems;
             }
-            return listItems;
-        }
-
-        public List<dynamic> GetFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime dateFrom, DateTime dateTo)
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-
-            var from = cmd.CreateParameter();
-            from.ParameterName = "@dateFrom";
-            from.Value = dateFrom;
-            cmd.Parameters.Add(from);
-
-            var to = cmd.CreateParameter();
-            to.ParameterName = "@dateTo";
-            to.Value = dateTo;
-            cmd.Parameters.Add(to);
-            cmd.CommandText = "dbo.FoodHubDateAnalysisCommoditiesStockStorageUsage";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                listItems.Add(new
-                {
-                    FoodHubId = reader["FoodHubId"] == DBNull.Value ? 0 : (int)reader["FoodHubId"],
-                    FoodHubName = reader["FoodHubName"] == DBNull.Value ? "Not Found" : (string)reader["FoodHubName"],
-                    FoodHubStorageId = reader["FoodHubStorageId"] == DBNull.Value ? 0 : (int)reader["FoodHubStorageId"],
-                    RefreigeratedStorageCapacity = reader["RefreigeratedStorageCapacity"] == DBNull.Value ? (decimal)0.00 : (decimal)reader["RefreigeratedStorageCapacity"],
-                    DryStorageCapacity = reader["DryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["DryStorageCapacity"],
-                    UsedDryStorageCapacity = reader["UsedDryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["UsedDryStorageCapacity"],
-                    UsedRefreigeratedStorageCapacity = reader["UsedRefreigeratedStorageCapacity"] == DBNull.Value ? (decimal)0 : (decimal)reader["UsedRefreigeratedStorageCapacity"]
-                });
-            }
-            return listItems;
-        }
-
-        public List<dynamic> GetAllFoodHubDateAnalysisCommoditiesStockStorageUsage(DateTime dateFrom, DateTime dateTo)
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-
-            var from = cmd.CreateParameter();
-            from.ParameterName = "@dateFrom";
-            from.Value = dateFrom;
-            cmd.Parameters.Add(from);
-
-            var to = cmd.CreateParameter();
-            to.ParameterName = "@dateTo";
-            to.Value = dateTo;
-            cmd.Parameters.Add(to);
-
-            cmd.CommandText = "dbo.AllFoodHubDateAnalysisCommoditiesStockStorageUsage";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                listItems.Add(new
-                {
-                    FoodHubId = reader["FoodHubId"] == DBNull.Value ? 0 : (int)reader["FoodHubId"],
-                    FoodHubName = reader["FoodHubName"] == DBNull.Value ? "Not Found" : (string)reader["FoodHubName"],
-                    FoodHubStorageId = reader["FoodHubStorageId"] == DBNull.Value ? 0 : (int)reader["FoodHubStorageId"],
-                    RefreigeratedStorageCapacity = reader["RefreigeratedStorageCapacity"] == DBNull.Value ? (decimal)0.00 : (decimal)reader["RefreigeratedStorageCapacity"],
-                    DryStorageCapacity = reader["DryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["DryStorageCapacity"],
-                    UsedDryStorageCapacity = reader["UsedDryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["UsedDryStorageCapacity"],
-                    UsedRefreigeratedStorageCapacity = reader["UsedRefreigeratedStorageCapacity"] == DBNull.Value ? (decimal)0 : (decimal)reader["UsedRefreigeratedStorageCapacity"]
-                });
-            }
-            return listItems;
-        }
-
-        public List<dynamic> GetTop5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities(DateTime dateFrom, DateTime dateTo)
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-
-            var from = cmd.CreateParameter();
-            from.ParameterName = "@dateFrom";
-            from.Value = dateFrom;
-            cmd.Parameters.Add(from);
-
-            var to = cmd.CreateParameter();
-            to.ParameterName = "@dateTo";
-            to.Value = dateTo;
-            cmd.Parameters.Add(to);
-
-            cmd.CommandText = "dbo.Top5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                listItems.Add(new
-                {
-                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityName"],
-                    CommodityCategoryName = reader["CommodityCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["CommCommodityCategoryNameodityName"],
-                    TotalUsedDryStorageCapacity = reader["TotalUsedDryStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["TotalUsedDryStorageCapacity"],
-                    TotalDryStorageCapacity = reader["TotalDryStorageCapacity"] == DBNull.Value ? "Not Found" : (string)reader["FoodHubName"],
-                });
-            }
-            return listItems;
-        }
-
-        public List<dynamic> GetTop5RefreigeratedCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilitiess(DateTime dateFrom, DateTime dateTo)
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-
-            var from = cmd.CreateParameter();
-            from.ParameterName = "@dateFrom";
-            from.Value = dateFrom;
-            cmd.Parameters.Add(from);
-
-            var to = cmd.CreateParameter();
-            to.ParameterName = "@dateTo";
-            to.Value = dateTo;
-            cmd.Parameters.Add(to);
-            cmd.CommandText = "dbo.Top5DryCommoditiesDateAnalysisInDemandRatingAccordingToStorageFacilities";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            con.Open();
-            var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                listItems.Add(new
-                {
-                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityName"],
-                    CommodityCategoryName = reader["CommodityCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["CommCommodityCategoryNameodityName"],
-                    TotalUsedRefreigeratedStorageCapacity = reader["TotalUsedRefreigeratedStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["TotalUsedRefreigeratedStorageCapacity"],
-                    TotalRefreigeratedStorageCapacity = reader["TotalRefreigeratedStorageCapacity"] == DBNull.Value ? 0 : (decimal)reader["TotalRefreigeratedStorageCapacity"]
-                });
-            }
-            return listItems;
-        }
-
-        public List<dynamic> GetTop5FarmerCommoditiesDateAnalysisInUnitPricingOverDate(DateTime dateFrom, DateTime dateTo)
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-
-            var from = cmd.CreateParameter();
-            from.ParameterName = "@dateFrom";
-            from.Value = dateFrom;
-            cmd.Parameters.Add(from);
-
-            var to = cmd.CreateParameter();
-            to.ParameterName = "@dateTo";
-            to.Value = dateTo;
-            cmd.Parameters.Add(to);
-
-            cmd.CommandText = "dbo.Top5FarmerCommoditiesDateAnalysisInUnitPricingOverDate";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                listItems.Add(new
-                {
-                    FarmerId = reader["FarmerId"] == DBNull.Value ? 0 : (int)reader["FarmerId"],
-                    FarmerName = reader["FarmerName"] == DBNull.Value ? "Not Found" : (string)reader["FarmerName"],
-                    CommodityId = reader["CommodityId"] == DBNull.Value ? 0 : (int)reader["CommodityId"],
-                    CommodityName = reader["CommodityName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityName"],
-                    CommodityCategoryName = reader["CommodityCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityCategoryName"],
-                    CommodityUnitName = reader["CommodityUnitName"] == DBNull.Value ? "Not Found" : (string)reader["CommodityUnitName"],
-                    FarmerCommodityUnitPrice = reader["FarmerCommodityUnitPrice"] == DBNull.Value ? 0 : (decimal)reader["FarmerCommodityUnitPrice"]
-                });
-            }
-            return listItems;
-        }
-
-        public List<dynamic> GetAllUnScheduledVehiclesByStorageCapacityLowestPrice()
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-            cmd.CommandText = "dbo.AllUnScheduledVehiclesByStorageCapacityLowestPrice";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                listItems.Add(new
-                {
-                    VehicleId = reader["VehicleId"] == DBNull.Value ? 0 : (int)reader["VehicleId"],
-                    VehicleRegistration = reader["VehicleRegistration"] == DBNull.Value ? "Not Found" : (string)reader["VehicleRegistration"],
-                    CompanyName = reader["CompanyName"] == DBNull.Value ? "" : (string)reader["CompanyName"],
-                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
-                    Description = reader["Description"] == DBNull.Value ? "Not Found" : (string)reader["Description"],
-                    Cost = reader["Cost"] == DBNull.Value ? 0 : (decimal)reader["Cost"]
-                });
-            }
-            return listItems;
-        }
-        public List<dynamic> GetAllScheduledVehiclesByStorageCapacityLowestPrice()
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-            cmd.CommandText = "select * from dbo.AllScheduledVehiclesByStorageCapacityLowestPrice()";
-            cmd.CommandType = System.Data.CommandType.Text;
-
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                listItems.Add(new
-                {
-                    VehicleId = reader["VehicleId"] == DBNull.Value ? 0 : (int)reader["VehicleId"],
-                    VehicleRegistration = reader["VehicleRegistration"] == DBNull.Value ? "Not Found" : (string)reader["VehicleRegistration"],
-                    CompanyName = reader["CompanyName"] == DBNull.Value ? "" : (string)reader["CompanyName"],
-                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
-                    Description = reader["Description"] == DBNull.Value ? "Not Found" : (string)reader["Description"],
-                    Cost = reader["Cost"] == DBNull.Value ? 0 : (decimal)reader["Cost"]
-                });
-            }
-            return listItems;
-        }
-        public List<dynamic> GetTop5PricingAllUnScheduledVehiclesByStorageCapacityLowestPrice()
-        {
-            var con = this.Database.GetDbConnection();
-
-            var listItems = new List<dynamic>();
-
-            var cmd = con.CreateCommand();
-            cmd.CommandText = "dbo.Top5PricingAllUnScheduledVehiclesByStorageCapacityLowestPrice";
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-            con.Open();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                listItems.Add(new
-                {
-                    VehicleId = reader["VehicleId"] == DBNull.Value ? 0 : (int)reader["VehicleId"],
-                    VehicleRegistration = reader["VehicleRegistration"] == DBNull.Value ? "Not Found" : (string)reader["VehicleRegistration"],
-                    CompanyName = reader["CompanyName"] == DBNull.Value ? "" : (string)reader["CompanyName"],
-                    VehicleCategoryName = reader["VehicleCategoryName"] == DBNull.Value ? "Not Found" : (string)reader["VehicleCategoryName"],
-                    Description = reader["Description"] == DBNull.Value ? "Not Found" : (string)reader["Description"],
-                    Cost = reader["Cost"] == DBNull.Value ? 0 : (decimal)reader["Cost"]
-                });
-            }
-            return listItems;
         }
     }
 }

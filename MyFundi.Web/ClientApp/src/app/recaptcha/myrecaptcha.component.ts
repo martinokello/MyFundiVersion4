@@ -19,7 +19,7 @@ export class myRecaptchaComponent implements OnInit, AfterViewInit {
     private siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
     private isRecaptchaVerified: boolean;
     private showContent: boolean;
-    private recaptchaSecretKey =  "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost"6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
+    private recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
 
     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
         
