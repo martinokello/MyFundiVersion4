@@ -35,9 +35,12 @@
       <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
         <h5>Work Categories</h5>
         <ul>
-          <li *ngFor="let workCategory of workCategories">
-            {{workCategory.workCategoryType}}
-          </li>
+            <li *ngFor="let workCatSubCat of workCategories">
+                {{workCatSubCat.workCategory.workCategoryType}}
+                <ul>
+                    <li>{{workCatSubCat.workSubCategory.workSubCategoryType}}</li>
+                </ul>
+            </li>
         </ul>
       </div>
     </div>

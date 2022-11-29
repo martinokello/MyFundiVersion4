@@ -10,7 +10,7 @@ declare const google: any;
 
 @Injectable()
 export class MyFundiService {
- 
+
     private baseServerUrl: string = /*"https://localhost:44343";*/ "https://myfundiv2.martinlayooinc.com";
 
     public constructor(private httpClient: HttpClient) {
@@ -34,8 +34,10 @@ export class MyFundiService {
     public postOrCreateWorkSubCategoryUrl: string = this.baseServerUrl + "/FundiProfile/PostOrCreateWorkSubCategory"; 
     public updateWorkSubCategoryUrl: string = this.baseServerUrl + "/FundiProfile/UpdateWorkSubCategory";
     public deleteWorkSubCategoryUrl: string = this.baseServerUrl + "/FundiProfile/DeleteWorkSubCategory";
-    public rateFundiByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/RateFundiByProfileId";
+    public rateFundiByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/RateFundiByProfileId"; 
     public addFundiWorkCategorUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiWorkCategory";
+    public removeFundiWorkCategorUrl: string = this.baseServerUrl + "/FundiProfile/RemoveFundiWorkCategory";
+    public addFundiWorkCategoryWithoutSubCategoryrUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiWorkCategoryWithoutSubCategory";
     public addFundiCertificateUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCertificate";
     public addFundiCourseUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCourse"; 
     public getFundiProfileRatingByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileRatingById";
@@ -43,15 +45,18 @@ export class MyFundiService {
     public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
     public payMonthlySubscriptionFeeUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFee";
     public getFundiSkillsByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
-    public getFundiWorkCategoriesByFundiProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId";
-    public getFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategories";
+    public getFundiWorkCategoriesByFundiProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId"; 
+    public getFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategories"; 
+    public getWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetWorkCategories";
+    public getWorkSubCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetWorkSubCategories";
     public getFundiCertificationsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCertifications"; 
     public getAllFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiWorkCategories";
     public getAllFundiWorkSubCategoriesByWorkCategoryIdUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiWorkSubCategoriesByWorkCategoryId";
     public getAllFundiCertificatesUrl: string = this.baseServerUrl + "/FundiProfile/GetAllFundiCertificates";
     public saveOrupdateClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientProfile";
     public updateJobUrl: string = this.baseServerUrl + "/ClientProfile/UpdateJob";
-    public createOrUpdateClientJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientJob";
+    public createOrUpdateClientJobUrl: string = this.baseServerUrl + "/ClientProfile/CreateOrUpdateClientJob"; 
+    public getWorkCategoriesAndSubCategoriesUrl: string = this.baseServerUrl + "/ClientProfile/GetWorkCategoriesAndSubCategories";
     public getJobWorkCategoriesByJobIdUrl: string = this.baseServerUrl + "/ClientProfile/GetJobWorkCategoriesByJobId";
     public getWorkSubCategoriesBySubCategoryIdUrl: string = this.baseServerUrl + "/ClientProfile/GetWorkSubCategoriesBySubCategoryId";
     public getAllclientProfilesUrl: string = this.baseServerUrl + "/ClientProfile/GetAllClientProfiles"; 
@@ -172,6 +177,21 @@ export class MyFundiService {
         });
     } 
 
+    GetWorkCategoriesAndSubCategories(): Observable<IWorkAndSubWorkCategory[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getWorkCategoriesAndSubCategoriesUrl;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IWorkAndSubWorkCategory[] => {
+            let actRes: IWorkAndSubWorkCategory[] = res;
+            return actRes;
+        });
+    }
     GetClientUserById(clientUserId: string): Observable<IUserDetail> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getClientUserByIdUrl + "/" + clientUserId;
@@ -237,9 +257,9 @@ export class MyFundiService {
             return roles;
         });
     }
-    RemoveWorkCategorFromJobId(jobId: any, workCategoryId: number): Observable<boolean> {
+    RemoveWorkCategorFromJobId(jobId: any, workCategoryId: number, workSubCategoryId: number): Observable<boolean> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
-        let requestUrl = this.getResultsRemoveWorkCategorFromJobIdUrl + "/" + jobId + "/" + workCategoryId;
+        let requestUrl = this.getResultsRemoveWorkCategorFromJobIdUrl + "/" + jobId + "/" + workCategoryId + "/" + workSubCategoryId;
         let requestOptions: any = {
             url: requestUrl,
             method: 'GET',
@@ -521,7 +541,41 @@ export class MyFundiService {
             return workCategories;
         });
     }
-    public GetFundiWorkCategories(username: string): Observable<IWorkCategory[]> {
+    GetWorkSubCategories(): Observable<IWorkSubCategory[]> {
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getWorkSubCategoriesUrl;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IWorkSubCategory[] => {
+            let workCategories: IWorkSubCategory[] = res;
+            return workCategories;
+        });
+    }
+    public GetWorkCategories(): Observable<IWorkCategory[]> {
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getWorkCategoriesUrl;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IWorkCategory[] => {
+            let workCategories: IWorkCategory[] = res;
+            return workCategories;
+        });
+    }
+
+
+    public GetFundiWorkCategories(username: string): Observable<IWorkAndSubWorkCategory[]> {
 
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getFundiWorkCategoriesUrl + "?username=" + username;
@@ -532,8 +586,8 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IWorkCategory[] => {
-            let workCategories: IWorkCategory[] = res;
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IWorkAndSubWorkCategory[] => {
+            let workCategories: IWorkAndSubWorkCategory[] = res;
             return workCategories;
         });
     }
@@ -604,7 +658,7 @@ export class MyFundiService {
     }
 
 
-    GetAllFundiWorkSubCategoriesByWorkCategoryId(workCategoryId: number) {
+    GetAllFundiWorkSubCategoriesByWorkCategoryId(workCategoryId: number): Observable<IWorkSubCategory[]>  {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getAllFundiWorkSubCategoriesByWorkCategoryIdUrl+`/${workCategoryId}`;
         let requestOptions: any = {
@@ -614,8 +668,8 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): object[] => {
-            let workCategories: object[] = res;
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IWorkSubCategory[] => {
+            let workCategories: IWorkSubCategory[] = res;
             return workCategories;
         });
     }
@@ -662,8 +716,36 @@ export class MyFundiService {
         return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
+    } 
+    public AddFundiWorkCategory(workCategoryId: number, workSubCategoryId:number, username: string): Observable<boolean> {
+
+        let body = JSON.stringify({ workCategoryId: workCategoryId, workSubCategoryId: workSubCategoryId, username: username });
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.addFundiWorkCategorUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
     }
-    public AddFundiWorkCategory(workCategoryId: number, username: string): Observable<boolean> {
+    public RemoveFundiWorkCategory(workCategoryId: number, workSubCategoryId: number, username: string): Observable<boolean> {
+
+        let body = JSON.stringify({ workCategoryId: workCategoryId, workSubCategoryId: workSubCategoryId, username: username });
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.removeFundiWorkCategorUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
+    public AddFundiWorkCategoryWithoutSubCategory(workCategoryId: number, username: string): Observable<boolean> {
 
         let body = JSON.stringify({ workCategoryId: workCategoryId, username: username });
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -1051,12 +1133,12 @@ export class MyFundiService {
             return res;
         });
     }
-    GetFundiRatingsAndReviews(categories: string[], jobLocationCoordinate: ICoordinate): Observable<any> {
+    GetFundiRatingsAndReviews(categories: any[], clientProfileId,jobId: number, distanceKmLimitApart: number, skip: number = 0, take: number = 5): Observable<any> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
-        let body: string = JSON.stringify({ categories: categories, coordinate: jobLocationCoordinate });
+        let body: string = JSON.stringify(categories);
 
-        let requestUrl = this.postAllFundiRatingsAndReviewsByCategoriesUrl;
+        let requestUrl = this.postAllFundiRatingsAndReviewsByCategoriesUrl + `/${clientProfileId}/${jobId}/${distanceKmLimitApart}/${skip}/${take}`;
         let requestOptions: any = {
             url: requestUrl,
             method: 'POST',
@@ -1065,7 +1147,7 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any) => {
+        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any[]) => {
 
             return res;
         });
@@ -1705,16 +1787,22 @@ export interface IFundiRatingDictionary {
     fundiProfileId: number,
     fundiRating: IFundiRating[]
 }
+export interface IWorkAndSubWorkCategory {
+    workCategoryId: number;
+    workSubCategoryId: number;
+    workCategory: IWorkCategory;
+    workSubCategory: IWorkSubCategory;
+}
 export interface IWorkCategory {
     workCategoryId: number;
     workCategoryType: string;
     workCategoryDescription: string
 }
 export interface IWorkSubCategory {
-
+    jobId: number;
     workSubCategoryId: number;
-    workCategoryId: number;
     workSubCategoryType: string;
+    workCategoryDescription: string
     workSubCategoryDescription: string
 }
 export interface ICertification {

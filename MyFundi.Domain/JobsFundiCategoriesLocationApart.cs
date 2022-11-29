@@ -59,6 +59,7 @@ namespace MyFundi.Domain
         public int WorkSubCategoryId { get; set; }
         public string FundiUsername { get; set; }
         public int FundiRating { get; set; }
+        public int AverageFundiRating { get; set; }
         public float FundiLocationLat { get; set; }
         public float FundiLocationLong { get; set; }
         public float JobLocationLatitude { get; set; }

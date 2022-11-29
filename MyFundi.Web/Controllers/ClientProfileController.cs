@@ -209,8 +209,8 @@ namespace MyFundi.Web.Controllers
         
         [HttpGet]
         [AuthorizeIdentity]
-        [Route("~/ClientProfile/GetResultsRemoveWorkCategoryFromJobId/{jobId}/{workCategoryId}")]
-        public async Task<IActionResult> GetResultsRemoveWorkCategoryFromJobId(int jobId, int workCategoryId)
+        [Route("~/ClientProfile/GetResultsRemoveWorkCategoryFromJobId/{jobId}/{workCategoryId}/{workSubCategoryId}")]
+        public async Task<IActionResult> GetResultsRemoveWorkCategoryFromJobId(int jobId, int workCategoryId, int workSubCategoryId)
         {
 
             var result = _unitOfWork._jobRepository.GetAll().Where(j=> j.JobId == jobId).Include(j=> j.Location);
@@ -218,7 +218,7 @@ namespace MyFundi.Web.Controllers
             try
             {
                 var jbWorkCatsList = new List<object>();
-                var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobId && q.WorkCategoryId == workCategoryId).ToList();
+                var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobId && q.WorkCategoryId == workCategoryId && q.WorkSubCategoryId == workSubCategoryId).ToList();
                 
                 foreach (var cat in jbWokCats)
                 {
@@ -301,7 +301,32 @@ namespace MyFundi.Web.Controllers
                 return null;
             }
         }
-        
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/ClientProfile/GetWorkCategoriesAndSubCategories")]
+        public async Task<IActionResult> GetWorkCategoriesAndSubCategories()
+        {
+
+            var jbWokCats = (from wc in _unitOfWork._workCategoryRepository.GetAll()
+                         join wsc in _unitOfWork._workSubCategoryRepository.GetAll()
+                         on wc.WorkCategoryId equals wsc.WorkCategoryId
+                         select new JobWorkCategoryViewModel
+                         {
+                             WorkCategoryId = wc.WorkCategoryId,
+                             WorkSubCategoryId = wsc.WorkSubCategoryId,
+                             WorkCategory = wc,
+                             WorkSubCategory = wsc
+                         }).ToArray();
+
+            try
+            {
+                return await Task.FromResult(Ok(jbWokCats));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new string[] { }));
+            }
+        }
         [HttpGet]
         [AuthorizeIdentity]
         [Route("~/ClientProfile/GetJobWorkCategoriesByJobId/{jobId}")]
@@ -312,12 +337,9 @@ namespace MyFundi.Web.Controllers
 
             try
             {
-                var jbWorkCatsList = new List<object>();
-                var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobId).Include(ch => ch.WorkCategory).ToList();
-                foreach (var cat in jbWokCats)
-                {
-                    jbWorkCatsList.Add(new { WorkCategoryId = cat.WorkCategoryId, WorkCategory = cat.WorkCategory.WorkCategoryType });
-                }
+                var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobId).Include(ch => ch.WorkCategory).Include(q=> q.WorkSubCategory).ToArray();
+               
+                var jbWorkCatsList = _mapper.Map<JobWorkCategoryViewModel[]>(jbWokCats);
                 return await Task.FromResult(Ok(jbWorkCatsList.ToArray()));
             }
             catch (Exception e)
@@ -332,8 +354,7 @@ namespace MyFundi.Web.Controllers
         public async Task<IActionResult> CreateOrUpdateClientJob([FromBody] JobViewModel jobViewModel)
         {
 
-            var workCats = GetWorkCategoriesForIds(jobViewModel.JobWorkCategoryIds).ToList();
-            jobViewModel.JobWorkCategoryIds = null;
+            var workCats = jobViewModel.JobWorkCategoryIds.ToList();
             var job = _mapper.Map<Job>(jobViewModel);
 
             var result = _unitOfWork._jobRepository.GetById(job.JobId);
@@ -349,7 +370,7 @@ namespace MyFundi.Web.Controllers
                     {
                         foreach (var wc in workCats)
                         {
-                            _unitOfWork._jobWorkCategoryRepository.Insert(new JobWorkCategory { JobId = job.JobId, WorkCategoryId = wc.WorkCategoryId });
+                            _unitOfWork._jobWorkCategoryRepository.Insert(new JobWorkCategory { JobId = job.JobId, WorkCategoryId = wc.WorkCategoryId, WorkSubCategoryId = wc.WorkSubCategoryId });
                         }
                     }
                     _unitOfWork.SaveChanges();
@@ -368,7 +389,7 @@ namespace MyFundi.Web.Controllers
 
                         foreach (var wc in workCats)
                         {
-                            _unitOfWork._jobWorkCategoryRepository.Insert(new JobWorkCategory { JobId = job.JobId, WorkCategoryId = wc.WorkCategoryId });
+                            _unitOfWork._jobWorkCategoryRepository.Insert(new JobWorkCategory { JobId = job.JobId, WorkCategoryId = wc.WorkCategoryId, WorkSubCategoryId = wc.WorkSubCategoryId });
                         }
                     }
                     _unitOfWork._jobRepository.Update(job);
@@ -413,12 +434,13 @@ namespace MyFundi.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateJob([FromBody] JobViewModel jobViewModel)
         {
-            if (ModelState.IsValid)
-            {
+          
                 try
                 {
                     var job = _mapper.Map<Job>(jobViewModel);
                     var workCategories = jobViewModel.JobWorkCategoryIds;
+                    _unitOfWork._jobRepository.Update(job);
+                    _unitOfWork.SaveChanges();
 
                     var result = _unitOfWork._jobRepository.GetById(job.JobId);
 
@@ -428,7 +450,7 @@ namespace MyFundi.Web.Controllers
                     }
                     else
                     {
-                        var workCats = GetWorkCategoriesForIds(workCategories);
+                        var workCats = jobViewModel.JobWorkCategoryIds;
 
                         if (workCats.Any())
                         {
@@ -439,12 +461,11 @@ namespace MyFundi.Web.Controllers
                             }
                             _unitOfWork.SaveChanges();
 
-                            foreach (var wc in workCats)
+                            var jobWks = _mapper.Map<JobWorkCategory[]>(workCats);
+                            foreach(var jwc in jobWks)
                             {
-                                var jbWokCat2 = new JobWorkCategory();
-                                jbWokCat2.JobId = job.JobId;
-                                jbWokCat2.WorkCategoryId = wc.WorkCategoryId;
-                                _unitOfWork._jobWorkCategoryRepository.Insert(jbWokCat2);
+                                jwc.JobId = job.JobId;
+                                _unitOfWork._jobWorkCategoryRepository.Insert(jwc);
                             }
                             _unitOfWork.SaveChanges();
                         }
@@ -456,8 +477,6 @@ namespace MyFundi.Web.Controllers
                 {
                     return await Task.FromResult(BadRequest(new { Message = "Exception: Job Details are bad, therefore operation failed!" }));
                 }
-            }
-            return await Task.FromResult(BadRequest(new { Message = "Job Details are bad, therefore operation failed!" }));
         }
         [AuthorizeIdentity]
             [HttpPost]

@@ -14,13 +14,13 @@
                 <input type="button" value="Search Fundi By Categories" class="but-primary" (click)="searchFundiByCategories($event)" />
             </form>
         </section>
-        <div *ngIf="fundiListSatisfyingJobRadiusDictionary">
-            <section id="Profile" *ngFor="let profile of fundiListSatisfyingJobRadiusDictionary">
+        <div *ngIf="fundiSatisfyingJobList.length > 0">
+            <section id="Profile" *ngFor="let profile of fundiSatisfyingJobList">
                 <div class="row" style="text-align: center !important; align-content: center !important;">
                     <div class="col-lg-12">
                         <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
-                        <span>Fundi Name: {{profile.fundiProfileData[0].user.firstName}} {{profile.fundiProfileData[0].user.lastName}}</span><br />
-                        <span>Fundi location  Distance from Job: {{profile.fundiProfileData[0].distanceApart.distanceApart}} Km</span><br />
+                        <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />
+                        <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />
                         <span id="averageFundiRating-{{profile.fundiProfileId}}" class="profileRatingSpan rateit" data-rateit-mode="font" style="text-align:left;font-size: 40px; max-width: 10%;"></span><br />
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <h5>Fundi Profile Summary</h5>
                         <ul>
                             <li>
-                                {{profile.fundiProfileData[0].fundiProfile.profileSummary}}
+                                {{profile.fundiProfileSummary}}
                             </li>
                         </ul>
                     </div>
@@ -48,14 +48,14 @@
                     <div class="col-lg-12" id="profileRating" style="margin: 2px 0px !important;">
                         <h5>Profile Rating &amp; Reviews</h5>
                         <ul>
-                            <li *ngFor="let rating of profile.fundiProfileData">
+                            <li *ngFor="let rating of profile.fundiRatingsAndReviews">
                                 <div>
-                                    Rated By: <em style="color:brown !important;">{{rating.ratedByUser?rating.ratedByUser.firstName:""}} {{rating.ratedByUser?rating.ratedByUser.lastName:""}}</em><br />
-                                    Rating: <span style="color:brown !important;">{{rating.ratedByUser?rating.rating:"No Rating Yet"}} out of 5</span><br />
+                                    Rated By: <em style="color:brown !important;">{{rating.clientFirstName?rating.clientFirstName:""}} {{rating.clientLastName?profile.clientLastName:""}}</em><br />
+                                    Rating: <span style="color:brown !important;">{{rating.fundiRating?rating.fundiRating:"No Rating Yet"}} out of 5</span><br />
                                 </div>
                                 <div>
-                                    Review By: <em style="color:brown !important;">{{rating.ratedByUser?rating.ratedByUser.firstName:""}} {{rating.ratedByUser?rating.ratedByUser.lastName:""}}</em><br />
-                                    Review: {{rating.review}}<br />
+                                    Review By: <em style="color:brown !important;">{{rating.clientFirstName?rating.clientFirstName:""}} {{profile.clientLastName?profile.clientLastName:""}}</em><br />
+                                    Review: {{rating.clientReview}}<br />
                                 </div>
                             </li>
                         </ul>
@@ -63,9 +63,14 @@
                         <form id="ratingForm-{{profile.fundiProfileId}}">
                             <div id="fundiRating-{{profile.fundiProfileId}}" class="rateit" data-rateit-mode="font" style="text-align: left; font-size: 40px; max-width: 10% !important;"></div><br />
                             <span>Choose Work Category:</span><br />
-                            <select id="workCategory-{{profile.fundiProfileId}}" name="workCategory" class="form-control">
-                                <option *ngFor="let rating of profile.fundiProfileData" value="{{rating.workCategoryType}}">{{rating.workCategoryType}}</option>
-                            </select>
+                            <h5>Fundi Work Category Types</h5>
+                            <div *ngFor="let wcdata of profile.jobWorkCategoryDetails">
+                                <h6>{{wcdata.workCategoryType}}</h6>
+                                <h5>Work Sub Category Type</h5>
+                                <select id="workCategory-{{profile.fundiProfileId}}" name="workCategory" class="form-control">
+                                    <option value="{{wcdata.workSubCategoryId}}">{{wcdata.workSubCategoryType}}</option>
+                                </select>
+                            </div>
                             <br />
                             <textarea id="review-{{profileId}}" placeholder="Write review" rows="5" cols="20"></textarea><br />
                             <input type="button" id="{{profileId}}" class="but-primary" value="Rate Fundi" (click)="rateFundi($event)" />
@@ -73,16 +78,10 @@
                     </div>
                 </div>
                 <div class="row" style="margin: 2px 0px !important;">
-                    <div class="col-lg-12" id="workCategory" style="margin: 2px 0px !important;">
-                        <h5>Work Category Type</h5>
-                        <ul id="{{profile.fundiProfileId}}-workCategory">
-                        </ul>
-                    </div>
-                </div>
-                <div class="row" style="margin: 2px 0px !important;">
                     <div class="col-lg-12" id="skills" style="margin: 2px 0px !important;">
                         <h5>Fundi Skills</h5>
                         <ul id="{{profile.fundiProfileId}}-skills">
+                            <li>{{profile.fundiSkills}}</li>
                         </ul>
                     </div>
                 </div>

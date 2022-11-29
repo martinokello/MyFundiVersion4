@@ -305,7 +305,7 @@ namespace MyFundi.Web
                 conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>();
                 conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>().ReverseMap();
                 conf.CreateMap<WorkSubCategoryViewModel, WorkSubCategory>();
-                conf.CreateMap<WorkSubCategoryViewModel, WorkSubCategory>().ReverseMap(); 
+                conf.CreateMap<WorkSubCategoryViewModel, WorkSubCategory>().ReverseMap();
 
             });
 

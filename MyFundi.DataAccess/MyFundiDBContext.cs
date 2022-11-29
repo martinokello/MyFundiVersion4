@@ -54,6 +54,7 @@ namespace MyFundi.DataAccess
         public DbSet<JobWorkCategory> JobWorkCategories { get; set; }
         public DbSet<MonthlySubscription> MonthlySubscriptions { get; set; }
         public DbSet<WorkSubCategory> WorkSubCategories { get; set; }
+
         public Tuple<int, int> GetFundiProfileAvgRatingById(int fundiProfileId)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -61,7 +62,7 @@ namespace MyFundi.DataAccess
                 SqlCommand cmd = (SqlCommand)con.CreateCommand();
                 cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
 
-                cmd.CommandText = "[dbo].[GetFundiAverageRatingByProfileId]";
+                cmd.CommandText = "[dbo].[GetAllFundiRatingByProfileId]";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 if (cmd.Connection.State != System.Data.ConnectionState.Open)
                 {
@@ -80,7 +81,110 @@ namespace MyFundi.DataAccess
             }
 
         }
+        
+        public List<WorkCategoryTypesTO> GetWorkSubCategoriesForFundiByJobId(int jobId, int fundiProfileId)
+        {
+            var list = new List<WorkCategoryTypesTO>();
 
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@jobid", jobId));
+                cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
+
+                cmd.CommandText = "[dbo].[GetWorkSubCategoriesForFundiByJobId]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new WorkCategoryTypesTO
+                    {
+                        WorkCategoryId = (reader["WorkCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkCategoryId"]),
+                        WorkCategoryType = (reader["WorkCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryType"]),
+                        WorkSubCategoryId = (reader["WorkSubCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkSubCategoryId"]),
+                        WorkSubCategoryType = (reader["WorkSubCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkSubCategoryType"])
+                    });
+
+                }
+                con.Close();
+                return list;
+
+            }
+        }
+        public List<WorkCategoryTypesTO> GetAllFundiWorkCategoriesForJobId(int jobid)
+        {
+            var list = new List<WorkCategoryTypesTO>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@jobid", jobid));
+
+                cmd.CommandText = "[dbo].[GetAllFundiWorkCategoriesForJobId]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new WorkCategoryTypesTO
+                    {
+                        WorkCategoryId = (reader["WorkCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkCategoryId"]),
+                        WorkCategoryType = (reader["WorkCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryType"]),
+                        WorkSubCategoryId = (reader["WorkSubCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkSubCategoryId"]),
+                        WorkSubCategoryType = (reader["WorkSubCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkSubCategoryType"])
+                    });
+
+                }
+                con.Close();
+                return list;
+
+            }
+        }
+        public List<dynamic> GetAllFundiRatingByProfileId(int fundiProfileId)
+        {
+            var list = new List<dynamic>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
+
+                cmd.CommandText = "[dbo].[GetAllFundiRatingByProfileId]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new
+                    {
+                        FundiProfileId = (reader["FundiProfileId"] == DBNull.Value ? 0 : (int)reader["FundiProfileId"]),
+                        ClientReview = (reader["ClientReview"] == DBNull.Value ? "Not Found" : (string)reader["ClientReview"]),
+                        ClientFirstName = (reader["FirstName"] == DBNull.Value ? "Not Found" : (string)reader["FirstName"]),
+                        ClientLastName = (reader["LastName"] == DBNull.Value ? "Not Found" : (string)reader["LastName"]),
+                        FundiRating = (reader["FundiRating"] == DBNull.Value ? 0 : (int)reader["FundiRating"]),
+                        ClientUserId = (Guid)reader["ClientUserId"]
+                    });
+                
+                }
+                con.Close();
+                return list;
+
+            }
+
+        }
         public List<WorkSubCategory> GetWorkSubCategoriesByWorkCategoryId(int workCategoryId)
         {
             var list = new List<WorkSubCategory>();
@@ -117,11 +221,15 @@ namespace MyFundi.DataAccess
         }
 
 
-        public List<FundiRatingsReviewLocationApart> GetFundiAvgRatingsAndJobWithinDistance(string[] fundiCategories, float distanceApart, int skip, int take)
+        public List<FundiRatingsReviewLocationApart> GetFundiAvgRatingsAndJobWithinDistance(int clientProfileId,int jobId, string[] fundiCategories, string[] fundiSubCategories, float distanceApart, int skip, int take)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = (SqlCommand)con.CreateCommand();
+
+                cmd.Parameters.Add(new SqlParameter("@clientProfileId", clientProfileId));
+
+                cmd.Parameters.Add(new SqlParameter("@jobId", jobId));
 
                 cmd.Parameters.Add(new SqlParameter("@distanceApart", distanceApart));
 
@@ -135,6 +243,13 @@ namespace MyFundi.DataAccess
                     strBuilder.Append(st + ",");
                 }
                 cmd.Parameters.Add(new SqlParameter("@workCategories", strBuilder.ToString().Trim(',')));
+
+                var strBuilder2 = new StringBuilder();
+                foreach (var st in fundiSubCategories)
+                {
+                    strBuilder2.Append(st + ",");
+                }
+                cmd.Parameters.Add(new SqlParameter("@workSubCategories", strBuilder2.ToString().Trim(',')));
 
                 var listItems = new List<FundiRatingsReviewLocationApart>();
 
@@ -155,15 +270,14 @@ namespace MyFundi.DataAccess
                         FundiUsername = reader["FundiUsername"] == DBNull.Value ? "Not Found" : (string)reader["FundiUsername"],
                         FundiFirstName = reader["FundiFirstName"] == DBNull.Value ? "Not Found" : (string)reader["FundiFirstName"],
                         FundiLastName = reader["FundiLastName"] == DBNull.Value ? "Not Found" : (string)reader["FundiLastName"],
-                        FundiRating = reader["FundiRating"] == DBNull.Value ? 0 : (int)reader["FundiRating"],
                         FundiLocationId = reader["FundiLocationId"] == DBNull.Value ? 0 : (int)reader["FundiLocationId"],
                         FundiLocationLat = reader["FundiLocationLat"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["FundiLocationLat"]),
                         FundiLocationLong = reader["FundiLocationLong"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["FundiLocationLong"]),
                         FundiProfileSummary = reader["FundiProfileSummary"] == DBNull.Value ? "Not Found" : (string)reader["FundiProfileSummary"],
                         FundiSkills = reader["FundiSkills"] == DBNull.Value ? "" : (string)reader["FundiSkills"],
                         FundiUsedPowerTools = reader["FundiUsedPowerTools"] == DBNull.Value ? "Not Found" : (string)reader["FundiUsedPowerTools"],
-                        WorkCategoryId = reader["WorkCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkCategoryId"],
                         JobId = reader["JobId"] == DBNull.Value ? 0 : (int)reader["JobId"],
+                        JobName = reader["JobName"] == DBNull.Value ? "Not Found" : (string)reader["JobName"],
                         FundiLocationName = reader["FundiLocationName"] == DBNull.Value ? "Not Found" : (string)reader["FundiLocationName"],
                         JobLocationId = reader["JobLocationId"] == DBNull.Value ? 0 : (int)reader["JobLocationId"],
                         JobLocationName = reader["JobLocationName"] == DBNull.Value ? "Not Found" : (string)reader["JobLocationName"],
@@ -176,11 +290,7 @@ namespace MyFundi.DataAccess
                         ClientProfileId = reader["ClientProfileId"] == DBNull.Value ? 0 : (int)reader["ClientProfileId"],
                         ClientAddressId = reader["ClientAddressId"] == DBNull.Value ? 0 : (int)reader["ClientAddressId"],
                         ClientProfileSummary = reader["ClientProfileSummary"] == DBNull.Value ? "Not Found" : (string)reader["ClientProfileSummary"],
-                        ClientReview = reader["ClientReview"] == DBNull.Value ? "Not Found" : (string)reader["ClientReview"],
                         DistanceApart = reader["DistanceApart"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["DistanceApart"]),
-                        JobWorkCategoryId = reader["JobWorkCategoryId"] == DBNull.Value ? 0 : (int)reader["JobWorkCategoryId"],
-                        WorkCategoryType = reader["WorkCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryType"],
-                        WorkCategoryDescription = reader["WorkCategoryDescription"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryDescription"],
                         FundiUserId = (Guid)reader["FundiUserId"],
                         ClientUserId = (Guid)reader["ClientUserId"]
                     });
@@ -190,7 +300,7 @@ namespace MyFundi.DataAccess
             }
 
         }
-        public List<JobsFundiCategoriesLocationApart> GetJobsByFundiWorkCategoriesWithinDistance(int fundiProfileId, string[] fundiCategories, float distanceApart, int skip, int take)
+        public List<JobsFundiCategoriesLocationApart> GetJobsByFundiWorkCategoriesWithinDistance(int fundiProfileId, string[] fundiCategories,string[] fundiSubCategories, float distanceApart, int skip, int take)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -209,6 +319,13 @@ namespace MyFundi.DataAccess
                     strBuilder.Append(st + ",");
                 }
                 cmd.Parameters.Add(new SqlParameter("@workCategories", strBuilder.ToString().Trim(',')));
+
+                var strBuilder2 = new StringBuilder();
+                foreach (var st in fundiSubCategories)
+                {
+                    strBuilder2.Append(st + ",");
+                }
+                cmd.Parameters.Add(new SqlParameter("@workSubCategories", strBuilder2.ToString().Trim(',')));
 
                 var listItems = new List<JobsFundiCategoriesLocationApart>();
 
@@ -236,7 +353,6 @@ namespace MyFundi.DataAccess
                         FundiProfileSummary = reader["FundiProfileSummary"] == DBNull.Value ? "Not Found" : (string)reader["FundiProfileSummary"],
                         FundiSkills = reader["FundiSkills"] == DBNull.Value ? "" : (string)reader["FundiSkills"],
                         FundiUsedPowerTools = reader["FundiUsedPowerTools"] == DBNull.Value ? "Not Found" : (string)reader["FundiUsedPowerTools"],
-                        WorkCategoryId = reader["WorkCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkCategoryId"],
                         JobId = reader["JobId"] == DBNull.Value ? 0 : (int)reader["JobId"],
                         JobName = reader["JobName"] == DBNull.Value ? "Not Found" : (string)reader["JobName"],
                         FundiLocationName = reader["FundiLocationName"] == DBNull.Value ? "Not Found" : (string)reader["FundiLocationName"],
@@ -252,9 +368,6 @@ namespace MyFundi.DataAccess
                         ClientAddressId = reader["ClientAddressId"] == DBNull.Value ? 0 : (int)reader["ClientAddressId"],
                         ClientProfileSummary = reader["ClientProfileSummary"] == DBNull.Value ? "Not Found" : (string)reader["ClientProfileSummary"],
                         DistanceApart = reader["DistanceApart"] == DBNull.Value ? (float)0.0 : Convert.ToSingle(reader["DistanceApart"]),
-                        JobWorkCategoryId = reader["JobWorkCategoryId"] == DBNull.Value ? 0 : (int)reader["JobWorkCategoryId"],
-                        WorkCategoryType = reader["WorkCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryType"],
-                        WorkCategoryDescription = reader["WorkCategoryDescription"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryDescription"],
                         FundiUserId = (Guid)reader["FundiUserId"],
                         ClientUserId = (Guid)reader["ClientUserId"],
                     });

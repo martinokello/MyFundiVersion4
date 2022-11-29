@@ -9,7 +9,7 @@
       <input type="button" value="Search Jobs By Categories" class="but-primary" (click)="searchJobsByCategories($event)" />
     </form>
   </section>
-  <div *ngIf="fundiJobList">
+  <div *ngIf="fundiJobList.length > 0">
     <section id="Profile" *ngFor="let clientJob of fundiJobList">
       <div class="row" style="text-align: center !important; align-content: center !important;">
         <div class="col-lg-12">
@@ -20,7 +20,7 @@
         <div class="col-lg-12" id=`jobName-${clientJob.JobId}` style="margin: 2px 0px !important;">
           <h5>Job Name</h5>
           <div>
-              <div>{{clientJob.jobName}}<br/></div>
+              <div>{{clientJob.jobName}} - #{{clientJob.jobId}}<br /></div>
               <div>
                   <input type="button" class="btn-primary" routerLink='#' id="{{clientJob.jobId}}" (click)="getJobPage($event)" value="Job Details" />
                   <br />
@@ -41,13 +41,14 @@
       </div>
       <div class="row" style="margin: 2px 0px !important;">
         <div class="col-lg-12" id="workCategory" style="margin: 2px 0px !important;">
-          <h5>Work Category Type</h5>
-          <h6>{{clientJob.WorkCategoryType}}</h6>
-          <ul id="{{clientJob.jobId}}-workCategory">
-            <li *ngFor="let wkCat of clientJob.jobWorkSubCategories">
-              {{wkCat.workSubCategoryType}}
-            </li>
-          </ul>
+          <h5>Work Category Types</h5>
+          <div>
+              <ul id="{{clientJob.jobId}}-workCategory">
+                  <li *ngFor="let wsc of clientJob.jobWorkCategoryDetails">
+                      {{wsc.workSubCategoryType}}
+                  </li>
+              </ul>
+          </div>
         </div>
       </div>
       <hr /><br />

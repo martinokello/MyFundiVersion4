@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, AfterContentInit, AfterViewChecked, AfterViewInit } from '@angular/core';
-import { IAddress, IWorkCategory, IWorkSubCategory, MyFundiService } from '../../../services/myFundiService';
+import { IAddress, IWorkAndSubWorkCategory, IWorkCategory, IWorkSubCategory, MyFundiService } from '../../../services/myFundiService';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
@@ -58,9 +58,9 @@ export class WorkSubCategoryCrudComponent implements OnInit, AfterContentInit, A
         optionElem.text = "Select WorkSubCategory";
         document.querySelector('select#workSubCategoryCrudId').append(optionElem);
 
-        let workCategoriesObs = this.myFundiService.GetAllFundiWorkCategories();
+        let workCategoriesObs: Observable<IWorkCategory[]> = this.myFundiService.GetWorkCategories();
         workCategoriesObs.map((wcs: IWorkCategory[]) => {
-            this.workCategories = wcs;;
+            this.workCategories = wcs;
             wcs.forEach((c: IWorkCategory, index: number, wcs) => {
                 let optionElem: HTMLOptionElement = document.createElement('option');
                 optionElem.value = c.workCategoryId.toString();
@@ -69,7 +69,7 @@ export class WorkSubCategoryCrudComponent implements OnInit, AfterContentInit, A
             });
 
 
-            let workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(0);
+            let workSubCategoriesObs = this.myFundiService.GetWorkSubCategories();
 
             workSubCategoriesObs.map((wcs: IWorkSubCategory[]) => {
                 this.workSubCategories = wcs;;

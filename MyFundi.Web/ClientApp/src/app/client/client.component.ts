@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob, IWorkSubCategory, IWorkAndSubWorkCategory } from '../../services/myFundiService';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
@@ -33,9 +33,9 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
     clientFundiContractId: number;
     clientProfiles: IClientProfile[];
     fundiProfiles: IProfile[];
-    workCategories: IWorkCategory[];
-    chosenWorkCategories: IWorkCategory[];
-    workCategoryId: number;
+    workCategories: IWorkAndSubWorkCategory[];
+    chosenWorkCategories: IWorkAndSubWorkCategory[];
+    workCategoryAndSubCatId: string;
     job: IJob | any;
     jobs: IJob[];
     clientAddresses: IAddress[];
@@ -67,7 +67,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let resObs = this.myFundiService.GetClientProfile(this.userDetails.username);
-
+        debugger;
         resObs.map((clientProf: IClientProfile) => {
 
             if (clientProf) {
@@ -111,109 +111,112 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
                 }
             }
 
-            let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
-            userGuidObs.map((q: string) => {
-                this.clientUserGuidId = q;
+        }).subscribe();
 
-                let workCatObs = this.myFundiService.GetAllFundiWorkCategories();
+        let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
+        userGuidObs.map((q: string) => {
+            this.clientUserGuidId = q;
 
-                workCatObs.map((workCats: IWorkCategory[]) => {
-                    this.workCategories = workCats;
+        }).subscribe();
 
-                    //Dynamic check boxes for Categories To Search for:
-                    let selectWorkCategories: HTMLSelectElement = document.querySelector('select#workCategoryId');
-                    let selectWorkCategoriesOptions: HTMLSelectElement = document.querySelector('select#workCategoryId option');
-                    if (selectWorkCategoriesOptions) {
-                        selectWorkCategoriesOptions.remove();
+        let workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
+
+        workCatObs.map((workCats: IWorkAndSubWorkCategory[]) => {
+
+            this.workCategories = workCats;
+
+            //Dynamic check boxes for Categories To Search for:
+            let selectWorkCategories: HTMLSelectElement = document.querySelector('select#workCategoryAndSubCatId');
+            let selectWorkCategoriesOptions: HTMLSelectElement = document.querySelector('select#workCategoryAndSubCatId option');
+            if (selectWorkCategoriesOptions) {
+                selectWorkCategoriesOptions.remove();
+            }
+
+            let option = document.createElement('option');
+            option.textContent = "Select Work Category: [SubWork Category]";
+            option.value = "0,0";
+            selectWorkCategories.appendChild(option);
+
+            this.workCategories.forEach((cat) => {
+                let option = document.createElement('option');
+                option.textContent = `${cat.workCategory.workCategoryType}: [${cat.workSubCategory.workSubCategoryType}]`;
+                option.value = `${cat.workCategoryId.toString()},${cat.workSubCategoryId.toString()}`;
+                selectWorkCategories.appendChild(option);
+            });
+            let funidProfilesObs: Observable<IProfile[]> = this.myFundiService.GetAllFundiProfiles();
+            funidProfilesObs.map((q: IProfile[]) => {
+                this.fundiProfiles = q;
+
+                let addSelect = document.querySelector('select#assignedFundiProfileId');
+                let opts = addSelect.querySelector('option');
+                if (opts) {
+                    opts.remove();
+                }
+                let optionElem = document.createElement('option');
+                optionElem.selected = true;
+                optionElem.value = (0).toString();
+                optionElem.text = "Select Fundi Profile";
+                addSelect.append(optionElem);
+
+                this.fundiProfiles.map((fundiProf: IProfile) => {
+                    let optionElem: HTMLOptionElement = document.createElement('option');
+                    optionElem.value = fundiProf.fundiProfileId.toString();
+                    optionElem.text = fundiProf.user.firstName + " " + fundiProf.user.lastName;
+                    addSelect.append(optionElem);
+                });
+
+                this.fundiProfile = {};
+                this.fundiProfile.fundiProfileId = 0;
+                let locatObs: Observable<ILocation[]> = this.myFundiService.GetAllLocations();
+                locatObs.map((loc: ILocation[]) => {
+                    this.locations = loc;
+
+                    let addSelect = document.querySelector('select#locationId');
+
+                    let opts = addSelect.querySelector('option');
+                    if (opts) {
+                        opts.remove();
                     }
 
-                    let option = document.createElement('option');
-                    option.textContent = "Select Work Category";
-                    option.value = "0";
-                    selectWorkCategories.appendChild(option);
 
-                    this.workCategories.forEach((cat) => {
-                        let option = document.createElement('option');
-                        option.textContent = cat.workCategoryType;
-                        option.value = cat.workCategoryId.toString();
-                        selectWorkCategories.appendChild(option);
+                    let optionElem: HTMLOptionElement = document.createElement('option');
+                    optionElem.selected = true;
+                    optionElem.value = (0).toString();
+                    optionElem.text = "Select Location";
+                    document.querySelector('select#locationId').append(optionElem);
+
+                    this.locations.forEach((comCat: ILocation, index: number, cmdCats) => {
+                        let optionElem: HTMLOptionElement = document.createElement('option');
+                        optionElem.value = comCat.locationId.toString();
+                        optionElem.text = comCat.locationName;
+                        document.querySelector('select#locationId').append(optionElem);
                     });
-                    let funidProfilesObs: Observable<IProfile[]> = this.myFundiService.GetAllFundiProfiles();
-                    funidProfilesObs.map((q: IProfile[]) => {
-                        this.fundiProfiles = q;
+                    let clientaddObs: Observable<IAddress[]> = this.myFundiService.GetAllAddresses();
 
-                        let addSelect = document.querySelector('select#assignedFundiProfileId');
-                        let opts = addSelect.querySelector('option');
-                        if (opts) {
-                            opts.remove();
+                    clientaddObs.map((q: IAddress[]) => {
+                        this.clientAddresses = q;
+                        let addresses = q;
+
+                        let addrSelector = document.querySelector('select#clientAddressId');
+                        let clopts = addrSelector.querySelector('option');
+                        if (clopts) {
+                            clopts.remove();
                         }
-                        let optionElem = document.createElement('option');
-                        optionElem.selected = true;
-                        optionElem.value = (0).toString();
-                        optionElem.text = "Select Fundi Profile";
-                        addSelect.append(optionElem);
+                        let cloptionElem: HTMLOptionElement = document.createElement('option');
+                        cloptionElem.selected = true;
+                        cloptionElem.value = (0).toString();
 
-                        this.fundiProfiles.map((fundiProf: IProfile) => {
+                        cloptionElem.text = "Select Address";
+
+                        document.querySelector('select#clientAddressId').append(cloptionElem);
+
+                        addresses.forEach((comCat: IAddress, index: number, cmdCats) => {
+
                             let optionElem: HTMLOptionElement = document.createElement('option');
-                            optionElem.value = fundiProf.fundiProfileId.toString();
-                            optionElem.text = fundiProf.user.firstName + " " + fundiProf.user.lastName;
-                            addSelect.append(optionElem);
+                            optionElem.value = comCat.addressId.toString();
+                            optionElem.text = comCat.addressLine1 + ", " + comCat.addressLine2 + ", " + comCat.town + ", " + comCat.country;
+                            document.querySelector('select#clientAddressId').append(optionElem);
                         });
-
-                        this.fundiProfile = {};
-                        this.fundiProfile.fundiProfileId = 0;
-                        let locatObs: Observable<ILocation[]> = this.myFundiService.GetAllLocations();
-                        locatObs.map((loc: ILocation[]) => {
-                            this.locations = loc;
-
-                            let addSelect = document.querySelector('select#locationId');
-
-                            let opts = addSelect.querySelector('option');
-                            if (opts) {
-                                opts.remove();
-                            }
-
-
-                            let optionElem: HTMLOptionElement = document.createElement('option');
-                            optionElem.selected = true;
-                            optionElem.value = (0).toString();
-                            optionElem.text = "Select Location";
-                            document.querySelector('select#locationId').append(optionElem);
-
-                            this.locations.forEach((comCat: ILocation, index: number, cmdCats) => {
-                                let optionElem: HTMLOptionElement = document.createElement('option');
-                                optionElem.value = comCat.locationId.toString();
-                                optionElem.text = comCat.locationName;
-                                document.querySelector('select#locationId').append(optionElem);
-                            });
-                            let clientaddObs: Observable<IAddress[]> = this.myFundiService.GetAllAddresses();
-
-                            clientaddObs.map((q: IAddress[]) => {
-                                this.clientAddresses = q;
-                                let addresses = q;
-
-                                let addrSelector = document.querySelector('select#clientAddressId');
-                                let clopts = addrSelector.querySelector('option');
-                                if (clopts) {
-                                    clopts.remove();
-                                }
-                                let cloptionElem: HTMLOptionElement = document.createElement('option');
-                                cloptionElem.selected = true;
-                                cloptionElem.value = (0).toString();
-
-                                cloptionElem.text = "Select Address";
-
-                                document.querySelector('select#clientAddressId').append(cloptionElem);
-
-                                addresses.forEach((comCat: IAddress, index: number, cmdCats) => {
-
-                                    let optionElem: HTMLOptionElement = document.createElement('option');
-                                    optionElem.value = comCat.addressId.toString();
-                                    optionElem.text = comCat.addressLine1 + ", " + comCat.addressLine2 + ", " + comCat.town + ", " + comCat.country;
-                                    document.querySelector('select#clientAddressId').append(optionElem);
-                                });
-                            }).subscribe();
-                        }).subscribe();
                     }).subscribe();
                 }).subscribe();
             }).subscribe();
@@ -271,11 +274,9 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
             locationId: this.job.locationId,
             numberOfDaysToComplete: this.job.numberOfDaysToComplete,
             clientFundiContractId: null,
-            assignedFundiUserId: null,//this.fundiProfile.user.userId,
-            assignedFundiProfileId: null,//this.fundiProfile.fundiProfileId
-            jobWorkCategoryIds: this.chosenWorkCategories.map((workCat: IWorkCategory) => {
-                return workCat.workCategoryId;
-            })
+            //assignedFundiUserId: this.fundiProfile.user.userId,
+            assignedFundiProfileId: this.fundiProfile.fundiProfileId,
+            jobWorkCategoryIds: this.chosenWorkCategories
         };
 
         let obsj: Observable<any> = this.myFundiService.createOrUpdateClientJob(job);
@@ -292,27 +293,25 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
         });
 
         this.job = job;
-        let jWCatsObs: Observable<any[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
+        let jWCatsObs: Observable<IWorkAndSubWorkCategory[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
 
         this.chosenWorkCategories = [];
-        jWCatsObs.map((jobWorkCats: any[]) => {
-            let jwCats: any = jobWorkCats;
+        jWCatsObs.map((jwCats: IWorkAndSubWorkCategory[]) => {
+
             this.chosenWorkCategories = jwCats;
             //populate ui with string ls of jobWorkCats:
             let ulWCats = jQuery('ul#ulistWorkCategories');
             jQuery('ul#ulistWorkCategories > li').remove();
 
             jwCats.forEach((cat) => {
-                ulWCats.append('<li id="' + cat.workCategoryId.toString() + '">' + cat.workCategory + '</li>');
+                ulWCats.append('<li id="' + `${cat.workCategoryId.toString()},${cat.workSubCategoryId.toString()}` + '">' + `${cat.workCategory.workCategoryType}: [${cat.workSubCategory.workSubCategoryType}]` + '</li>');
             });
         }).subscribe();
         $event.preventDefault();
     }
     updateJob($event) {
-        this.job.jobWorkCategoryIds = this.chosenWorkCategories.map((workCat: IWorkCategory) => {
-            return workCat.workCategoryId;
-        });
-        debugger;
+        this.job.jobWorkCategoryIds = this.chosenWorkCategories;
+
         let jobObs: Observable<any> = this.myFundiService.UpdateJob(this.job);
         jobObs.map((q: any) => {
             alert(q.message);
@@ -322,41 +321,43 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
     }
     addWorkCategory($event) {
 
-        let selectedWorkCategory: IWorkCategory = this.workCategories.find((workCat: IWorkCategory) => {
+        let selectedWorkCategory: IWorkAndSubWorkCategory = this.workCategories.find((workCat: IWorkAndSubWorkCategory) => {
+            return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
 
-            return workCat.workCategoryId == this.workCategoryId;
         });
+
         this.chosenWorkCategories.push(selectedWorkCategory);
         let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
         let li = document.createElement("li");
-        li.id = selectedWorkCategory.workCategoryId.toString();
-        li.textContent = selectedWorkCategory.workCategoryType;
+        li.id = `${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}` ;
+
+        li.textContent = selectedWorkCategory.workCategory.workCategoryType + ` :[${selectedWorkCategory.workSubCategory.workSubCategoryType}]`;
         ulSelectedCategories.appendChild(li);
 
         $event.preventDefault();
     }
     removeWorkCategory($event) {
 
-        let selectedWorkCategory: IWorkCategory = this.workCategories.find((workCat: IWorkCategory) => {
+        let selectedWorkCategory: IWorkAndSubWorkCategory = this.workCategories.find((workCat: IWorkAndSubWorkCategory) => {
+            return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
 
-            return workCat.workCategoryId == this.workCategoryId;
         });
         let curThis = this;
 
         let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
-        let li = document.querySelector('ul#ulistWorkCategories > li[id="' + selectedWorkCategory.workCategoryId.toString() + '"]');
+        let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}` + '"]');
         ulSelectedCategories.removeChild(li);
 
         let chosenli = jQuery('ul#ulistWorkCategories li');
 
-        let resObs: Observable<boolean> = this.myFundiService.RemoveWorkCategorFromJobId(this.job.jobId, selectedWorkCategory.workCategoryId);
+        let resObs: Observable<boolean> = this.myFundiService.RemoveWorkCategorFromJobId(this.job.jobId, selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId);
         resObs.map((hasRemoved: boolean) => {
             if (hasRemoved) {
                 alert("Work Category removed!");
                 this.selectJob(null);
             }
             else {
-                alert("Work Category Does Not Exist Or Failed Removal!");
+                alert("Work Category And Sub Category Do Not Exist Or Failed Removal!");
             }
         }).subscribe();
         $event.preventDefault();

@@ -18,6 +18,7 @@ namespace MyFundi.Web.ViewModels
     public class WorkCategoryUserTO
     {
        public int WorkCategoryId { get; set; }
-       public string Username { get; set; }
+        public int WorkSubCategoryId { get; set; }
+        public string Username { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, AfterContentInit, AfterViewChecked, AfterViewInit } from '@angular/core';
-import { IAddress, IWorkCategory, MyFundiService } from '../../../services/myFundiService';
+import { IAddress, IWorkAndSubWorkCategory, IWorkCategory, MyFundiService } from '../../../services/myFundiService';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
@@ -34,7 +34,7 @@ export class WorkCategoryCrudComponent implements OnInit, AfterContentInit, Afte
         document.querySelector('select#workCategoryCrudId').append(optionElem);
 
 
-        let workCategoriesObs = this.myFundiService.GetAllFundiWorkCategories();
+        let workCategoriesObs: Observable<IWorkCategory[]> = this.myFundiService.GetWorkCategories();
         workCategoriesObs.map((wcs: IWorkCategory[]) => {
             this.workCategories = wcs;;
             wcs.forEach((c: IWorkCategory, index: number, wcs) => {
@@ -53,8 +53,8 @@ export class WorkCategoryCrudComponent implements OnInit, AfterContentInit, Afte
         if (!form.checkValidity()) return;
         let actualResult: Observable<any> = this.myFundiService.CreateWorkCategory(this.workCategory);
         actualResult.map((q: any) => {
-            let p: boolean = q;
-            alert('workCategory Added: ' + p);
+            let p: any = q;
+            alert('workCategory Added: ' + p.message);
             if (p) {
                 this.router.navigateByUrl('success');
             }

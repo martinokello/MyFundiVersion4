@@ -1,11 +1,9 @@
-import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit, AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService } from '../../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IWorkSubCategory, IWorkAndSubWorkCategory } from '../../../services/myFundiService';
+import { Observable } from 'rxjs';
 
 declare var jQuery: any;
-import { modifyHasPopulatedPage, hasPopulatedPage } from '../../../imports.js';
-import { AfterViewChecked } from '@angular/core';
-import { AfterContentInit } from '@angular/core';
 
 @Component({
     selector: 'workcategory',
@@ -14,15 +12,20 @@ import { AfterContentInit } from '@angular/core';
 export class WorkCategoryComponent implements OnInit, AfterViewInit, AfterContentInit {
     userDetails: any;
     userRoles: string[];
+    workCategory: IWorkAndSubWorkCategory;
+    workCategoryId: number;
+    workSubCategoryId: number;
     workCategories: IWorkCategory[];
     selectCategory: HTMLSelectElement;
     hasPopulatedPage: boolean;
     setTo: NodeJS.Timeout;
     coount: number = 0;
+    workSubCategories: IWorkSubCategory[];
+
     ngOnInit(): void {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
-        let workCategoriesObs = this.myFundiService.GetAllFundiWorkCategories();
+        let workCategoriesObs = this.myFundiService.GetWorkCategories();
 
         this.selectCategory = document.querySelector('select#slworkCategoryId');
 
@@ -47,20 +50,73 @@ export class WorkCategoryComponent implements OnInit, AfterViewInit, AfterConten
 
         }).subscribe();
 
+        let workSubCategoriesObs = this.myFundiService.GetWorkSubCategories();
+
+        workSubCategoriesObs.map((wcs: IWorkSubCategory[]) => {
+            let opts = document.querySelector('select#slworkSubCategoryId').querySelector("option");
+            if (opts) {
+                document.querySelector('select#slworkSubCategoryId').querySelector("option").remove();
+            }
+
+            let opt = document.createElement("option");
+            opt.text = "Select Sub Work Category";
+            opt.value = "0";
+            document.querySelector('select#slworkSubCategoryId').append('opt');
+            this.workSubCategories = wcs;;
+            wcs.forEach((c: IWorkSubCategory, index: number, wcs) => {
+                let optionElem: HTMLOptionElement = document.createElement('option');
+                optionElem.value = c.workSubCategoryId.toString();
+                optionElem.text = c.workSubCategoryType;
+                document.querySelector('select#slworkSubCategoryId').append(optionElem);
+            });
+        }).subscribe();
     }
     constructor(private myFundiService: MyFundiService) {
         this.userDetails = {};
     }
-    addCategory() {
+    workCategoryChanged($event) {
+        let workSubCategoriesObs: Observable<IWorkSubCategory[]> = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workCategoryId);
 
-        let workCatValue: number = jQuery('div#workCategories-wrapper select#slworkCategoryId').val();
-        let workCatAddedObs = this.myFundiService.AddFundiWorkCategory(workCatValue, this.userDetails.username);
+        workSubCategoriesObs.map((wcs: IWorkSubCategory[]) => {
+            let opts = document.querySelector('select#slworkSubCategoryId').querySelector("option");
+            if (opts) {
+                document.querySelector('select#slworkSubCategoryId').querySelector("option").remove();
+            }
+
+            let opt = document.createElement("option");
+            opt.text = "Select Sub Work Category";
+            opt.value = "0";
+            document.querySelector('select#slworkSubCategoryId').append('opt');
+            this.workSubCategories = wcs;;
+            wcs.forEach((c: IWorkSubCategory, index: number, wcs) => {
+                let optionElem: HTMLOptionElement = document.createElement('option');
+                optionElem.value = c.workSubCategoryId.toString();
+                optionElem.text = c.workSubCategoryType;
+                document.querySelector('select#slworkSubCategoryId').append(optionElem);
+            });
+        }).subscribe();
+    }
+    addCategory($event) {
+
+        let workCatAddedObs = this.myFundiService.AddFundiWorkCategory(this.workCategoryId, this.workSubCategoryId, this.userDetails.username);
+
         workCatAddedObs.map((q: any) => {
             alert(q.message);
         }).subscribe();
+        $event.preventDefault();
     }
 
+    removeCategory($event) {
 
+        let workCatValue: number = jQuery('div#workCategories-wrapper select#slworkCategoryId').val();
+        let workSubCatValue: number = jQuery('div#workCategories-wrapper select#slworkSubCategoryId').val();
+        let workCatAddedObs = this.myFundiService.RemoveFundiWorkCategory(this.workCategoryId, this.workSubCategoryId, this.userDetails.username);
+
+        workCatAddedObs.map((q: any) => {
+            alert(q.message);
+        }).subscribe();
+        $event.preventDefault();
+    }
     ngAfterContentInit() {
 
     }

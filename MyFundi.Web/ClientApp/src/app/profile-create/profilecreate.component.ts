@@ -23,6 +23,21 @@ export class ProfileCreateComponent implements OnInit {
     hasPopulatedPage: boolean = false;
     setTo: any;
 
+    constructor(private myFundiService: MyFundiService, private httpClient: HttpClient) {
+        this.userDetails = {};
+        this.profile = {
+            fundiProfileId: 0,
+            userId: "",
+            user: null,
+            profileSummary: "",
+            profileImageUrl: "",
+            skills: "",
+            usedPowerTools: "",
+            fundiProfileCvUrl: "",
+            locationId: 0
+        };
+    }
+
     ngOnInit(): void {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
@@ -61,20 +76,7 @@ export class ProfileCreateComponent implements OnInit {
 
 
     }
-    constructor(private myFundiService: MyFundiService, private httpClient: HttpClient) {
-        this.userDetails = {};
-        this.profile = {
-            fundiProfileId: 0,
-            userId: "",
-            user: null,
-            profileSummary: "",
-            profileImageUrl: "",
-            skills: "",
-            usedPowerTools: "",
-            fundiProfileCvUrl: "",
-            locationId: 0
-        };
-    }
+
     handleProfileCV(files: FileList) {
         this.profileCV = files.item(0);
     }

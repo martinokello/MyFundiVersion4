@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject, AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IClientProfile, IWorkSubCategory } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IClientProfile, IWorkSubCategory, IWorkAndSubWorkCategory } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
-//import * as $ from 'jquery';
 import { Router } from '@angular/router';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
 declare var jQuery: any;
@@ -19,7 +18,7 @@ export class FundiJobSearchComponent implements OnInit {
     jobs: IJob[];
     workCategories: IWorkCategory[];
     categories: string;
-    fundiJobList: any;
+    fundiJobList: any[] =[];
     fundiWorkCategories: string[];
     distanceKmLimitApart: number;
     skip: number;
@@ -35,13 +34,12 @@ export class FundiJobSearchComponent implements OnInit {
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         jQuery('#fundiSearchForm div#fundiCategories').children().remove();
 
-        let workCatObs = this.myFundiService.GetAllFundiWorkCategories();
+        let workCatObs: Observable<IWorkCategory[]> = this.myFundiService.GetWorkCategories();
         workCatObs.map((workCats: IWorkCategory[]) => {
             this.workCategories = workCats;
 
             //Dynamic check boxes for Categories To Search for:
             let divFundiCategories: HTMLElement = document.querySelector('#fundiSearchForm div#fundiCategories');
-
 
             this.workCategories.forEach((cat) => {
                 let chBoxLabel = document.createElement('label');
@@ -52,13 +50,13 @@ export class FundiJobSearchComponent implements OnInit {
                 let attrName = document.createAttribute('name');
                 let cbzindex = document.createAttribute('style');
                 cbzindex.value = "z-index: 1";
-                value.value = cat.workCategoryType;
+                value.value = cat.workCategoryId.toString();
                 type.value = "checkbox";
                 chBox.attributes.setNamedItem(type);
                 chBox.attributes.setNamedItem(value);
                 chBox.attributes.setNamedItem(cbzindex);
 
-                attrName.value = cat.workCategoryType;
+                attrName.value = cat.workCategoryId.toString();
                 chBox.attributes.setNamedItem(attrName);
                 let hr = document.createElement('hr');
                 let br = document.createElement('br');
@@ -82,8 +80,8 @@ export class FundiJobSearchComponent implements OnInit {
                 ul.appendChild(li)
                 divFundiCategories.appendChild(ul);
 
-                let workCatObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
-                workCatObs.map((workSubCats: IWorkSubCategory[]) => {
+                let workSubCatObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
+                workSubCatObs.map((workSubCats: IWorkSubCategory[]) => {
                     let workSubCategories = workSubCats;
 
                     //Dynamic check boxes for Categories To Search for:
@@ -133,14 +131,14 @@ export class FundiJobSearchComponent implements OnInit {
                 }).subscribe();
             });
         }).subscribe();
+        jQuery('ul.ulCategories > li > checkbox').click(function () {
 
+            jQuery(this).parent('li').parent('ul.ulCategories').toggle('slow');
+        });
     }
     constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
     }
 
-    getWorkCategoryNameById(catId: number): string {
-        return this.workCategories.find(q => { return q.workCategoryId == catId }).workCategoryType;
-    }
     roundPositiveNumberTo2DecPlaces(num: number): number {
         return this.addressLocationService.roundPositiveNumberTo2DecPlaces(num);
     }
@@ -176,7 +174,7 @@ export class FundiJobSearchComponent implements OnInit {
                     viewObjects[n].coordinate.latitude = r.latitude;
                     viewObjects[n].coordinate.longitude = r.longitude;
                 }
-                let fundiJobsObs: Observable<any> = this.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, this.distanceKmLimitApart, this.skip, this.take);
+                let fundiJobsObs: Observable<any[]> = this.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, this.distanceKmLimitApart, this.skip, this.take);
 
                 fundiJobsObs.map((n: any) => {
                     debugger;

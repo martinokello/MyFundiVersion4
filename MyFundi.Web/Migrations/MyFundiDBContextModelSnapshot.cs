@@ -370,11 +370,16 @@ namespace MyFundi.Web.Migrations
                     b.Property<int>("WorkCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("WorkSubCategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("FundiWorkCategoryId");
 
                     b.HasIndex("FundiProfileId");
 
                     b.HasIndex("WorkCategoryId");
+
+                    b.HasIndex("WorkSubCategoryId");
 
                     b.ToTable("FundiWorkCategories");
                 });
@@ -529,11 +534,16 @@ namespace MyFundi.Web.Migrations
                     b.Property<int?>("WorkCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("WorkSubCategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("JobWorkCategoryId");
 
                     b.HasIndex("JobId");
 
                     b.HasIndex("WorkCategoryId");
+
+                    b.HasIndex("WorkSubCategoryId");
 
                     b.ToTable("JobWorkCategories");
                 });
@@ -885,6 +895,10 @@ namespace MyFundi.Web.Migrations
                         .HasForeignKey("WorkCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MyFundi.Domain.WorkSubCategory", "WorkSubCategory")
+                        .WithMany()
+                        .HasForeignKey("WorkSubCategoryId");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.Invoice", b =>
@@ -943,6 +957,10 @@ namespace MyFundi.Web.Migrations
                     b.HasOne("MyFundi.Domain.WorkCategory", "WorkCategory")
                         .WithMany()
                         .HasForeignKey("WorkCategoryId");
+
+                    b.HasOne("MyFundi.Domain.WorkSubCategory", "WorkSubCategory")
+                        .WithMany()
+                        .HasForeignKey("WorkSubCategoryId");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.Location", b =>

@@ -24,7 +24,7 @@ namespace MyFundi.Web.ViewModels
         public LocationViewModel Location { get; set; }
         public int? ClientFundiContractId { get; set; }
         public decimal NumberOfDaysToComplete { get; set; }
-        public int[] JobWorkCategoryIds { get; set; }
+        public JobWorkCategoryViewModel[] JobWorkCategoryIds { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
         public LocationViewModel FundiLocation { get; set; }
