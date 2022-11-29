@@ -1,67 +1,42 @@
-﻿import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IWorkSubCategory, IClientProfile, IWorkAndSubWorkCategory } from '../../services/myFundiService';
-import { Observable } from 'rxjs';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a;
+import { Component } from '@angular/core';
+import { MyFundiService } from '../../services/myFundiService';
 import { Router } from '@angular/router';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
-declare var jQuery: any;
-import { modifyHasPopulatedPage } from '../../imports.js';
-
-@Component({
-    selector: 'client-fundi-search',
-    templateUrl: './clientFundiSearch.component.html',
-    providers: [AddressLocationGeoCodeService, MyFundiService]
-})
-export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterViewChecked {
-    userDetails: any;
-    userRoles: string[];
-    profile: IProfile;
-    jobId: number;
-    jobLocationCoordinate: ICoordinate;
-    jobs: IJob[];
-    location: ILocation;
-    fundiRatings: IFundiRating[];
-    workCategories: IWorkCategory[];
-    certifications: ICertification[];
-    courses: ICourse[];
-    categories: string;
-    fundiProfileRatingDictionary: any;
-    profileIdKeys: string[];
-    currentRating: number;
-    fundiWorkCategories: string[];
-    fundiSkills: string[];
-    actualProfileIdKeys: string[];
-    fundiListSatisfyingJobRadiusDictionary: any[];
-    hasGotRating: boolean = false;
-    hasAddedAutoComplete: boolean = false;
-    setTo: NodeJS.Timeout;
-    distanceKmLimitApart: number;
-    skip: number;
-    take: number;
-    fundiProfileList: any[];
-    job: IJob;
-    jobLocation: ILocation;
-    fundiSatisfyingJobList: any[] = [];;
-
-    decoderUrl(url: string): string {
+let ClientFundiSearchComponent = class ClientFundiSearchComponent {
+    constructor(myFundiService, addressLocationService, router) {
+        this.myFundiService = myFundiService;
+        this.addressLocationService = addressLocationService;
+        this.router = router;
+        this.hasGotRating = false;
+        this.hasAddedAutoComplete = false;
+        this.fundiSatisfyingJobList = [];
+        this.userDetails = {};
+    }
+    ;
+    decoderUrl(url) {
         return decodeURIComponent(url);
     }
-
-    ngOnInit(): void {
+    ngOnInit() {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
-
         this.distanceKmLimitApart = 50000000;
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         jQuery('#fundiSearchForm div#fundiCategories').children().remove();
-
-        let workCatObs: Observable<IWorkCategory[]> = this.myFundiService.GetWorkCategories();
-        workCatObs.map((workCats: IWorkCategory[]) => {
+        let workCatObs = this.myFundiService.GetWorkCategories();
+        workCatObs.map((workCats) => {
             this.workCategories = workCats;
-
             //Dynamic check boxes for Categories To Search for:
-            let divFundiCategories: HTMLElement = document.querySelector('#fundiSearchForm div#fundiCategories');
-
+            let divFundiCategories = document.querySelector('#fundiSearchForm div#fundiCategories');
             this.workCategories.forEach((cat) => {
                 let chBoxLabel = document.createElement('label');
                 chBoxLabel.textContent = cat.workCategoryType;
@@ -76,7 +51,6 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                 chBox.attributes.setNamedItem(type);
                 chBox.attributes.setNamedItem(value);
                 chBox.attributes.setNamedItem(cbzindex);
-
                 attrName.value = cat.workCategoryId.toString();
                 chBox.attributes.setNamedItem(attrName);
                 let hr = document.createElement('hr');
@@ -87,31 +61,24 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                 let divFormGroup = document.createElement('div');
                 divFormGroup.className = "form-group";
                 divWrapper.className = "custom-control custom-checkbox";
-
                 divWrapper.appendChild(chBox);
                 divWrapper.appendChild(chBoxLabel);
                 divWrapper.appendChild(br);
                 divWrapper.appendChild(hr);
-
                 let ul = document.createElement('ul');
                 let li = document.createElement('li');
                 ul.setAttribute('class', 'ulCategories');
                 divFormGroup.appendChild(divWrapper);
-                li.append(divFormGroup)
-                ul.appendChild(li)
+                li.append(divFormGroup);
+                ul.appendChild(li);
                 divFundiCategories.appendChild(ul);
-
                 let workSubCatObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
-                workSubCatObs.map((workSubCats: IWorkSubCategory[]) => {
+                workSubCatObs.map((workSubCats) => {
                     let workSubCategories = workSubCats;
-
                     //Dynamic check boxes for Categories To Search for:
-
                     let ul2 = document.createElement('ul');
                     ul2.setAttribute('class', 'ulSubCategories');
-
                     let li2 = document.createElement('li');
-
                     workSubCategories.forEach((cat) => {
                         let chBoxLabel = document.createElement('label');
                         chBoxLabel.textContent = cat.workSubCategoryType;
@@ -126,7 +93,6 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                         chBox.attributes.setNamedItem(type);
                         chBox.attributes.setNamedItem(value);
                         chBox.attributes.setNamedItem(cbzindex);
-
                         attrName.value = cat.workSubCategoryType;
                         chBox.attributes.setNamedItem(attrName);
                         let hr = document.createElement('hr');
@@ -137,7 +103,6 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                         let divFormGroup = document.createElement('div');
                         divFormGroup.className = "form-group";
                         divWrapper.className = "custom-control custom-checkbox";
-
                         divWrapper.appendChild(chBox);
                         divWrapper.appendChild(chBoxLabel);
                         divWrapper.appendChild(br);
@@ -148,109 +113,83 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                         li.appendChild(ul2);
                     });
                     li.appendChild(hr);
-
                 }).subscribe();
             });
         }).subscribe();
-
-        let locatObs: Observable<IJob[]> = this.myFundiService.GetAllJobs();
-
-        locatObs.map((jobs: IJob[]) => {
+        let locatObs = this.myFundiService.GetAllJobs();
+        locatObs.map((jobs) => {
             this.jobs = jobs;
             let addSelect = document.querySelector('select#jobId');
             let opts = addSelect.querySelector('option');
             if (opts) {
                 opts.remove();
             }
-
-
-            let optionElem: HTMLOptionElement = document.createElement('option');
+            let optionElem = document.createElement('option');
             optionElem.selected = true;
             optionElem.value = (0).toString();
             optionElem.text = "Select Job";
             document.querySelector('select#jobId').append(optionElem);
-
             if (jobs && jobs.length > 0) {
-                let allJobs: IJob[] = jobs;
+                let allJobs = jobs;
                 this.jobs = allJobs;
-
-                allJobs.forEach((comCat: IJob, index: number, cmdCats) => {
-                    let optionElem: HTMLOptionElement = document.createElement('option');
+                allJobs.forEach((comCat, index, cmdCats) => {
+                    let optionElem = document.createElement('option');
                     optionElem.value = comCat.jobId.toString();
                     optionElem.text = comCat.jobName;
                     document.querySelector('select#jobId').append(optionElem);
                 });
             }
-
         }).subscribe();
-
         jQuery('ul.ulCategories  ul.ulSubCategories').hide('fast');
         jQuery('ul.ulCategories').children('checkbox').click(function () {
             jQuery(this).children('ul.ulSubCategories').toggle('slow');
         });
     }
-    constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
-        this.userDetails = {};
-    }
-
-
     ngAfterViewInit() {
         let curthis = this;
         this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
-
     }
-
-    runAutoCompleteOnSelects(curthis: any) {
-
+    runAutoCompleteOnSelects(curthis) {
         if (curthis.jobs && curthis.jobs.length > 0) {
-                //Check For Dom Change and Add auto complete to select elements
+            //Check For Dom Change and Add auto complete to select elements
             let hasFoundSelectsOnPage = false;
-
-                let selects = jQuery('div#clientfundisearch-wrapper select');
-
-                if (selects && selects.length > 0) {
-                    hasFoundSelectsOnPage = true;
-                }
-
-                if (hasFoundSelectsOnPage) {
-
-                    jQuery(selects.each((ind, elem) => {
-                        jQuery(elem).parent('ul').css('background', 'white');
-                        jQuery(elem).parent('ul').css('z-index', '100');
-                        let id = 'autoComplete' + jQuery(elem).attr('id');
-                        jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
-
-                    }));
-                    hasFoundSelectsOnPage = false;
-                }
-                //Check For Dom Change and Add auto complete to select elements
-                jQuery('select').each((ind, sel) => {
-                    let options = jQuery(sel).children('option');
-
-                    let vals = [];
-                    jQuery(options).each((id, el) => {
-                        let optionText = jQuery(el).html();
-                        vals.push(optionText);
-                    });
-                    //options is source of auto complete:
-                    let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-                    jQueryinpId.autocomplete({ source: vals });
-                    jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-                        jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                            return jQuery(event.target).text() == jQuery(this).html();
-                        }).attr("selected", true);
-                    });
+            let selects = jQuery('div#clientfundisearch-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
                 });
-
-                curthis.hasPopulatedPage = true;
-                clearTimeout(curthis.setTo);
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
         }
     }
-    ngAfterViewChecked(): void {
-
+    ngAfterViewChecked() {
         let curthis = this;
-
-        let profileRatingSpans: any[] = jQuery('span.profileRatingSpan');
+        let profileRatingSpans = jQuery('span.profileRatingSpan');
         if (!curthis.hasGotRating && profileRatingSpans && profileRatingSpans.length > 0) {
             jQuery('div.rate,span.rate').rateit({
                 min: 0,
@@ -263,10 +202,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             jQuery('div.rateit, span.rateit').rateit();
             jQuery(profileRatingSpans).each(function (index, value) {
                 let profileIdStr = jQuery(value).attr('id');
-
-                let fundiProfileId = parseInt(profileIdStr.split('-')[1])
-                let fundiAvgRateObs: Observable<any> = curthis.myFundiService.GetFundiProfileRatingById(fundiProfileId);
-
+                let fundiProfileId = parseInt(profileIdStr.split('-')[1]);
+                let fundiAvgRateObs = curthis.myFundiService.GetFundiProfileRatingById(fundiProfileId);
                 curthis.hasGotRating = true;
                 fundiAvgRateObs.map(q => {
                     let ratingReviewObj = this.fundiSatisfyingJobList.find(q => {
@@ -280,56 +217,43 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
     searchFundiByCategories($event) {
         let curthis = this;
         this.fundiProfileList = [];
-        let chosenCategories: string[] = [];
-        let viewObjects: any[] = [];
+        let chosenCategories = [];
+        let viewObjects = [];
         let categories = jQuery('form#fundiSearchForm div#fundiCategories ul.ulCategories > li > div > div > input[type="checkbox"]:checked');
         categories.each(function (ind, elem) {
-
             chosenCategories.push(elem.name);
-
-            let chosenSubCategories: string[] = [];
+            let chosenSubCategories = [];
             let subCategories = jQuery('form#fundiSearchForm div#fundiCategories ul.ulSubCategories > li > div > div > input[type="checkbox"]:checked');
             subCategories.each(function (ind, elem) {
-
                 chosenSubCategories.push(elem.name);
-
             });
             viewObjects.push({ username: MyFundiService.clientEmailAddress, workCategories: chosenCategories, workSubCategories: chosenSubCategories, coordinate: { latitude: 0, longitude: 0 } });
-
         });
         debugger;
-        let username: string = MyFundiService.clientEmailAddress;
-        let clientProfObjs: Observable<IClientProfile> = curthis.myFundiService.GetClientProfile(username);
-        clientProfObjs.map((q: IClientProfile) => {
-            let locsObj: Observable<IJob> = curthis.myFundiService.GetJobByJobId(this.jobId);
-
-            locsObj.map((r: IJob) => {
-                r.location
+        let username = MyFundiService.clientEmailAddress;
+        let clientProfObjs = curthis.myFundiService.GetClientProfile(username);
+        clientProfObjs.map((q) => {
+            let locsObj = curthis.myFundiService.GetJobByJobId(this.jobId);
+            locsObj.map((r) => {
+                r.location;
                 this.jobLocation = r.location;
                 for (let n = 0; n < viewObjects.length; n++) {
                     viewObjects[n].coordinate.latitude = this.jobLocation.latitude;
                     viewObjects[n].coordinate.longitude = this.jobLocation.longitude;
                 }
-                let fundiJobsObs: Observable<any[]> = this.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId,r.jobId, this.distanceKmLimitApart, this.skip, this.take);
-
-                fundiJobsObs.map((n: any[]) => {
+                let fundiJobsObs = this.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId, r.jobId, this.distanceKmLimitApart, this.skip, this.take);
+                fundiJobsObs.map((n) => {
                     debugger;
-                    let q: any[] = n;
-
+                    let q = n;
                     if (q && q.length > 0) {
-
                         this.fundiSatisfyingJobList = q;
-
-                    } else {
-                        alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
                     }
-
+                    else {
+                        alert("There are currently no jobs that match your criteria within 5Km of your chosen location!");
+                    }
                 }).subscribe();
             }).subscribe();
-
-
         }).subscribe();
-
         $event.stopPropagation();
         /*
         this.hasGotRating = false;
@@ -388,40 +312,31 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
         }*/
     }
-
     rateFundi($event) {
-
         let button = $event.target;
         let review = jQuery(button).parent('form').find('textarea').val();
-        let profileId: number = jQuery(button).parent('form').attr('id').split('-')[1];
-        let rating: number = jQuery('div#fundiRating-'+profileId).rateit('value');
-        let workCategory: string = jQuery(button).parent('form').find('select').val();
-
+        let profileId = jQuery(button).parent('form').attr('id').split('-')[1];
+        let rating = jQuery('div#fundiRating-' + profileId).rateit('value');
+        let workCategory = jQuery(button).parent('form').find('select').val();
         alert('rated: ' + rating);
-        let userIdObs: Observable<any> = this.myFundiService.GetUserGuidId(this.userDetails.username);
-
-        userIdObs.map((userId: any) => {
-
-            let fundiRated: any = {
+        let userIdObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
+        userIdObs.map((userId) => {
+            let fundiRated = {
                 fundiProfileId: profileId,
                 rating: rating,
                 review: review,
                 userId: userId,
                 workCategoryType: workCategory
             };
-
-            let fundiRatedObs: Observable<any> = this.myFundiService.RateFundiByProfileId(fundiRated);
-            fundiRatedObs.map((res: any) => {
+            let fundiRatedObs = this.myFundiService.RateFundiByProfileId(fundiRated);
+            fundiRatedObs.map((res) => {
                 alert(res.message);
-
             }).subscribe();
         }).subscribe();
-
     }
-    getFundiWorkCategoriesByProfileId(profileId: number) {
-        let fundiWorkCatObs: Observable<string[]> = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
-
-        fundiWorkCatObs.map((res: string[]) => {
+    getFundiWorkCategoriesByProfileId(profileId) {
+        let fundiWorkCatObs = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
+        fundiWorkCatObs.map((res) => {
             let fundiWorkCategories = res;
             let ul = jQuery(document).find(`ul#${profileId}-workCategory`);
             let ulskillsChildren = jQuery(document).find(`ul#${profileId}-workCategory li`);
@@ -434,10 +349,9 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             this.getFundiSkillsByProfileId(profileId);
         }).subscribe();
     }
-    getFundiSkillsByProfileId(profileId: number) {
-        let fundiSkillsObs: Observable<string[]> = this.myFundiService.GetFundiSkillsByProfileId(profileId);
-
-        fundiSkillsObs.map((res: string[]) => {
+    getFundiSkillsByProfileId(profileId) {
+        let fundiSkillsObs = this.myFundiService.GetFundiSkillsByProfileId(profileId);
+        fundiSkillsObs.map((res) => {
             let fundiSkills = res;
             let ul = jQuery(document).find(`ul#${profileId}-skills`);
             let ulskillsChildren = jQuery(document).find(`ul#${profileId}-skills li`);
@@ -447,22 +361,28 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             jQuery(ul).append(li);
         }).subscribe();
     }
-    populateFundiUserDetails($event, profileId: number) {
-        let userObs: Observable<any> = this.myFundiService.GetFundiUserByProfileId(profileId);
-
-        userObs.map((res: any) => {
+    populateFundiUserDetails($event, profileId) {
+        let userObs = this.myFundiService.GetFundiUserByProfileId(profileId);
+        userObs.map((res) => {
             localStorage.setItem("profileUserDetails", JSON.stringify(res));
             this.router.navigateByUrl('/fundiprofile-by-id');
         }).subscribe();
         $event.preventDefault();
     }
-
-    arePointsNear(checkPoint: ICoordinate, centerPoint: ICoordinate, km: number): boolean {
+    arePointsNear(checkPoint, centerPoint, km) {
         var ky = 40000 / 360;
         var kx = Math.cos(Math.PI * centerPoint.latitude / 180.0) * ky;
         var dx = Math.abs(centerPoint.longitude - checkPoint.longitude) * kx;
         var dy = Math.abs(centerPoint.latitude - checkPoint.latitude) * ky;
         return Math.sqrt(dx * dx + dy * dy) <= km;
     }
-}
-
+};
+ClientFundiSearchComponent = __decorate([
+    Component({
+        selector: 'client-fundi-search',
+        templateUrl: './clientFundiSearch.component.html',
+        providers: [AddressLocationGeoCodeService, MyFundiService]
+    }),
+    __metadata("design:paramtypes", [MyFundiService, AddressLocationGeoCodeService, typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object])
+], ClientFundiSearchComponent);
+export { ClientFundiSearchComponent };
