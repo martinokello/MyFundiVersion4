@@ -77,7 +77,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                 chBox.attributes.setNamedItem(value);
                 chBox.attributes.setNamedItem(cbzindex);
 
-                attrName.value = cat.workCategoryId.toString();
+                attrName.value = cat.workCategoryType.toString();
                 chBox.attributes.setNamedItem(attrName);
                 let hr = document.createElement('hr');
                 let br = document.createElement('br');
@@ -183,11 +183,6 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             }
 
         }).subscribe();
-
-        jQuery('ul.ulCategories  ul.ulSubCategories').hide('fast');
-        jQuery('ul.ulCategories').children('checkbox').click(function () {
-            jQuery(this).children('ul.ulSubCategories').toggle('slow');
-        });
     }
     constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
         this.userDetails = {};
@@ -297,7 +292,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             viewObjects.push({ username: MyFundiService.clientEmailAddress, workCategories: chosenCategories, workSubCategories: chosenSubCategories, coordinate: { latitude: 0, longitude: 0 } });
 
         });
-        debugger;
+
         let username: string = MyFundiService.clientEmailAddress;
         let clientProfObjs: Observable<IClientProfile> = curthis.myFundiService.GetClientProfile(username);
         clientProfObjs.map((q: IClientProfile) => {
@@ -331,62 +326,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         }).subscribe();
 
         $event.stopPropagation();
-        /*
-        this.hasGotRating = false;
-        this.fundiListSatisfyingJobRadiusDictionary = [];
-        this.fundiProfileRatingDictionary = {};
-        this.actualProfileIdKeys = [];
-        this.profileIdKeys = null;
-
-        let divFundiCategories: HTMLElement = document.querySelector('form#fundiSearchForm div#fundiCategories');
-        let chosenCategories: string[] = [];
-        let curthis = this;
-        if (this.jobs && this.jobs.length > 0) {
-            let selectedJobId: number = jQuery('div#clientfundisearch-wrapper select#jobId').val();
-            let selectedJob: IJob = this.jobs.find((j: IJob) => {
-                return j.jobId == selectedJobId;
-            });
-
-            this.jobLocationCoordinate = {
-                latitude: selectedJob.location.latitude,
-                longitude: selectedJob.location.longitude
-            };
-
-            let checkedboxes = jQuery('form#fundiSearchForm div#fundiCategories').find('input[type="checkbox"]:checked');
-            for (let n = 0; n < checkedboxes.length; n++) {
-                chosenCategories.push(checkedboxes[n].name);
-            }
-            let fundiRatingsObs: Observable<any> = this.myFundiService.GetFundiRatingsAndReviews(chosenCategories, this.jobLocationCoordinate);
-
-            fundiRatingsObs.map((q: any) => {
-
-                this.fundiProfileRatingDictionary = q;
-                this.profileIdKeys = Object.keys(this.fundiProfileRatingDictionary);
-
-                if (this.profileIdKeys && this.profileIdKeys.length > 0) {
-
-                    for (var n = 0; n < this.profileIdKeys.length; n++) {
-
-                        let fundiProfileId: number = parseInt(this.profileIdKeys[n]);
-
-                        this.getFundiWorkCategoriesByProfileId(fundiProfileId);
-
-                        this.fundiListSatisfyingJobRadiusDictionary.push(
-                            {
-                                fundiProfileId: fundiProfileId, fundiProfileData: this.fundiProfileRatingDictionary[fundiProfileId]
-                            }
-                        );
-                        this.actualProfileIdKeys.push(fundiProfileId.toString());
-                    }
-                }
-
-            }).subscribe();
-
-            $event.stopPropagation();
-        }
-        else {
-            alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
-        }*/
+      
     }
 
     rateFundi($event) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IClientProfile, IWorkSubCategory, IWorkAndSubWorkCategory } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ declare var jQuery: any;
     templateUrl: './fundiJobSearch.component.html',
     providers: [AddressLocationGeoCodeService]
 })
-export class FundiJobSearchComponent implements OnInit {
+export class FundiJobSearchComponent implements OnInit, AfterViewInit {
     userDetails: any;
     userRoles: string[];
     fundiId: number;
@@ -56,7 +56,7 @@ export class FundiJobSearchComponent implements OnInit {
                 chBox.attributes.setNamedItem(value);
                 chBox.attributes.setNamedItem(cbzindex);
 
-                attrName.value = cat.workCategoryId.toString();
+                attrName.value = cat.workCategoryType.toString();
                 chBox.attributes.setNamedItem(attrName);
                 let hr = document.createElement('hr');
                 let br = document.createElement('br');
@@ -131,12 +131,15 @@ export class FundiJobSearchComponent implements OnInit {
                 }).subscribe();
             });
         }).subscribe();
-        jQuery('ul.ulCategories  ul.ulSubCategories').hide('fast');
-        jQuery('ul.ulCategories').children('checkbox').click(function () {
-            jQuery(this).children('ul.ulSubCategories').toggle('slow');
-        });
+
     }
     constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
+    }
+    ngAfterViewInit(): void {
+        jQuery('ul.ulCategories  ul.ulSubCategories').hide('fast');
+        jQuery('ul.ulCategories > li').children('checkbox').on('click', function () {
+            jQuery(this).parents.find('ul.ulCategories').children('ul.ulSubCategories').toggle('fast');
+        });
     }
 
     roundPositiveNumberTo2DecPlaces(num: number): number {
@@ -215,8 +218,8 @@ export class FundiJobSearchComponent implements OnInit {
                 let clientUserObs: Observable<IUserDetail> = this.myFundiService.GetClientUserById(clientProfile.userId);
                 clientUserObs.map((clientUser: IUserDetail) => {
                     localStorage.setItem('CurrentClientUserDetails', JSON.stringify(clientUser));
-                    let currJobWorkCatsObs: Observable<IWorkCategory[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
-                    currJobWorkCatsObs.map((wCats: IWorkCategory[]) => {
+                    let currJobWorkCatsObs: Observable<IWorkAndSubWorkCategory[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
+                    currJobWorkCatsObs.map((wCats: IWorkAndSubWorkCategory[]) => {
 
                         localStorage.setItem('CurrentJobWorkCategories', JSON.stringify(wCats));
                         if (clientProfile && job) {

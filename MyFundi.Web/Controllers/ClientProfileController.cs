@@ -206,20 +206,20 @@ namespace MyFundi.Web.Controllers
         {
             return await Task.FromResult(Ok(_unitOfWork._clientProfileRepository.GetAll().ToArray()));
         }
-        
+
         [HttpGet]
         [AuthorizeIdentity]
         [Route("~/ClientProfile/GetResultsRemoveWorkCategoryFromJobId/{jobId}/{workCategoryId}/{workSubCategoryId}")]
         public async Task<IActionResult> GetResultsRemoveWorkCategoryFromJobId(int jobId, int workCategoryId, int workSubCategoryId)
         {
 
-            var result = _unitOfWork._jobRepository.GetAll().Where(j=> j.JobId == jobId).Include(j=> j.Location);
+            var result = _unitOfWork._jobRepository.GetAll().Where(j => j.JobId == jobId).Include(j => j.Location);
             var hasDeleted = false;
             try
             {
                 var jbWorkCatsList = new List<object>();
                 var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobId && q.WorkCategoryId == workCategoryId && q.WorkSubCategoryId == workSubCategoryId).ToList();
-                
+
                 foreach (var cat in jbWokCats)
                 {
                     hasDeleted = _unitOfWork._jobWorkCategoryRepository.Delete(cat);
@@ -241,7 +241,7 @@ namespace MyFundi.Web.Controllers
             var result = _unitOfWork._workSubCategoryRepository.GetById(workSubCategoryId);
             try
             {
-                if(result != null)
+                if (result != null)
                 {
                     var workSubCatViewModel = _mapper.Map<WorkSubCategoryViewModel>(result);
                     return await Task.FromResult(Ok(workSubCatViewModel));
@@ -261,7 +261,7 @@ namespace MyFundi.Web.Controllers
         {
 
             var result = _unitOfWork._clientProfileRepository.GetById(clientProfileId);
-            if(result != null)
+            if (result != null)
             {
                 return await Task.FromResult(Ok(result));
             }
@@ -292,7 +292,7 @@ namespace MyFundi.Web.Controllers
         public async Task<IActionResult> GetJobByJobId(int jobId)
         {
             var result = _unitOfWork._jobRepository.GetAll().Where(q => q.JobId == jobId).Include(q => q.Location);
-            if(result.Count() > 0)
+            if (result.Count() > 0)
             {
                 return await Task.FromResult(Ok(result.ToArray()[0]));
             }
@@ -308,15 +308,15 @@ namespace MyFundi.Web.Controllers
         {
 
             var jbWokCats = (from wc in _unitOfWork._workCategoryRepository.GetAll()
-                         join wsc in _unitOfWork._workSubCategoryRepository.GetAll()
-                         on wc.WorkCategoryId equals wsc.WorkCategoryId
-                         select new JobWorkCategoryViewModel
-                         {
-                             WorkCategoryId = wc.WorkCategoryId,
-                             WorkSubCategoryId = wsc.WorkSubCategoryId,
-                             WorkCategory = wc,
-                             WorkSubCategory = wsc
-                         }).ToArray();
+                             join wsc in _unitOfWork._workSubCategoryRepository.GetAll()
+                             on wc.WorkCategoryId equals wsc.WorkCategoryId
+                             select new JobWorkCategoryViewModel
+                             {
+                                 WorkCategoryId = wc.WorkCategoryId,
+                                 WorkSubCategoryId = wsc.WorkSubCategoryId,
+                                 WorkCategory = wc,
+                                 WorkSubCategory = wsc
+                             }).ToArray();
 
             try
             {
@@ -337,8 +337,8 @@ namespace MyFundi.Web.Controllers
 
             try
             {
-                var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobId).Include(ch => ch.WorkCategory).Include(q=> q.WorkSubCategory).ToArray();
-               
+                var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == jobId).Include(ch => ch.WorkCategory).Include(q => q.WorkSubCategory).ToArray();
+
                 var jbWorkCatsList = _mapper.Map<JobWorkCategoryViewModel[]>(jbWokCats);
                 return await Task.FromResult(Ok(jbWorkCatsList.ToArray()));
             }
@@ -434,74 +434,91 @@ namespace MyFundi.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateJob([FromBody] JobViewModel jobViewModel)
         {
-          
+
+            try
+            {
+                var job = _mapper.Map<Job>(jobViewModel);
+
+                var result = _unitOfWork._jobRepository.GetById(job.JobId);
+                var workCategories = jobViewModel.JobWorkCategoryIds;
+                var jobDetailsUpdated = false;
                 try
                 {
-                    var job = _mapper.Map<Job>(jobViewModel);
-                    var workCategories = jobViewModel.JobWorkCategoryIds;
-                    _unitOfWork._jobRepository.Update(job);
-                    _unitOfWork.SaveChanges();
-
-                    var result = _unitOfWork._jobRepository.GetById(job.JobId);
-
                     if (result == null)
                     {
                         return await Task.FromResult(Ok(new { Message = "Failed to Update Job. Job does not Exist!" }));
                     }
-                    else
+                    result.AssignedFundiProfileId = job.AssignedFundiProfileId;
+                    result.AssignedFundiUserId = job.AssignedFundiUserId;
+                    result.ClientFundiContractId = job.ClientFundiContractId;
+                    result.ClientProfileId = job.ClientProfileId;
+                    result.ClientUserId = job.ClientUserId;
+                    result.DateUpdated = job.DateUpdated;
+                    result.HasBeenAssignedFundi = job.HasBeenAssignedFundi;
+                    result.HasCompleted = job.HasCompleted;
+                    result.JobName = job.JobName;
+                    result.LocationId = job.LocationId;
+                    result.NumberOfDaysToComplete = job.NumberOfDaysToComplete;
+                    result.JobDescription = job.JobDescription;
+
+                    jobDetailsUpdated = _unitOfWork._jobRepository.Update(job);
+                    _unitOfWork.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                var workCats = jobViewModel.JobWorkCategoryIds;
+
+                if (workCats.Any())
+                {
+
+                    var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == job.JobId).ToList();
+                    foreach (var cat in jbWokCats)
                     {
-                        var workCats = jobViewModel.JobWorkCategoryIds;
+                        _unitOfWork._jobWorkCategoryRepository.Delete(cat);
+                    }
+                    _unitOfWork.SaveChanges();
 
-                        if (workCats.Any())
-                        {
-                            var jbWokCats = _unitOfWork._jobWorkCategoryRepository.GetAll().Where(q => q.JobId == job.JobId).ToList();
-                            foreach (var cat in jbWokCats)
-                            {
-                                _unitOfWork._jobWorkCategoryRepository.Delete(cat);
-                            }
-                            _unitOfWork.SaveChanges();
-
-                            var jobWks = _mapper.Map<JobWorkCategory[]>(workCats);
-                            foreach(var jwc in jobWks)
-                            {
-                                jwc.JobId = job.JobId;
-                                _unitOfWork._jobWorkCategoryRepository.Insert(jwc);
-                            }
-                            _unitOfWork.SaveChanges();
-                        }
-                        return await Task.FromResult(Ok(new { Message = "Succefully Updated Job" }));
-
+                    foreach (var wc in workCats)
+                    {
+                        _unitOfWork._jobWorkCategoryRepository.Insert(new JobWorkCategory { JobId = job.JobId, WorkCategoryId = wc.WorkCategoryId, WorkSubCategoryId = wc.WorkSubCategoryId });
                     }
                 }
-                catch
-                {
-                    return await Task.FromResult(BadRequest(new { Message = "Exception: Job Details are bad, therefore operation failed!" }));
-                }
+                _unitOfWork._jobRepository.Update(job);
+                _unitOfWork.SaveChanges();
+                return await Task.FromResult(Ok(new { Message = $"Succefully Updated Job: {jobDetailsUpdated.ToString()}" }));
+
+            }
+            catch
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Exception: Job Details are bad, therefore operation failed!" }));
+            }
         }
         [AuthorizeIdentity]
-            [HttpPost]
-            public async Task<IActionResult> DeleteClientProfile([FromBody] ClientProfileViewModel clientProfileViewModel)
+        [HttpPost]
+        public async Task<IActionResult> DeleteClientProfile([FromBody] ClientProfileViewModel clientProfileViewModel)
+        {
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                var clientProfile = _mapper.Map<ClientProfile>(clientProfileViewModel);
+
+                var result = _unitOfWork._clientProfileRepository.GetById(clientProfile.ClientProfileId);
+
+                if (result != null)
                 {
-                    var clientProfile = _mapper.Map<ClientProfile>(clientProfileViewModel);
-
-                    var result = _unitOfWork._clientProfileRepository.GetById(clientProfile.ClientProfileId);
-
-                    if (result != null)
-                    {
-                        _unitOfWork._clientProfileRepository.Delete(result);
-                        _unitOfWork.SaveChanges();
-                        return await Task.FromResult(Ok(new { Message = "Succefully Deleted Fundi Profile" }));
-                    }
+                    _unitOfWork._clientProfileRepository.Delete(result);
+                    _unitOfWork.SaveChanges();
+                    return await Task.FromResult(Ok(new { Message = "Succefully Deleted Fundi Profile" }));
                 }
-                return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Deleted, therefore operation failed!" }));
             }
+            return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Deleted, therefore operation failed!" }));
+        }
 
-            public WorkCategory[] GetWorkCategoriesForIds(int[] workCategoryIds)
-            {
-                var workCategories = _unitOfWork._workCategoryRepository.GetAll().Where(q => workCategoryIds.Contains(q.WorkCategoryId));
-                return workCategories.ToArray();
-            }
+        public WorkCategory[] GetWorkCategoriesForIds(int[] workCategoryIds)
+        {
+            var workCategories = _unitOfWork._workCategoryRepository.GetAll().Where(q => workCategoryIds.Contains(q.WorkCategoryId));
+            return workCategories.ToArray();
         }
     }
+}

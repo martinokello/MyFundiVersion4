@@ -88,6 +88,7 @@ C:\Development\MyFundiCurrent\PaymentCalculater\bin\Release\netcoreapp3.1\Paymen
 C:\Development\MyFundiCurrent\PaymentCalculater\bin\Release\netcoreapp3.1\PaymentCalculater.pdb
 C:\Development\MyFundiCurrent\PaymentCalculater\bin\Release\netcoreapp3.1\MyFundi.Domain.dll
 C:\Development\MyFundiCurrent\PaymentCalculater\bin\Release\netcoreapp3.1\MyFundi.Domain.pdb
+C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\PaymentCalculater.csproj.AssemblyReference.cache
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\PaymentCalculater.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\PaymentCalculater.AssemblyInfoInputs.cache
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\PaymentCalculater.AssemblyInfo.cs
@@ -95,4 +96,3 @@ C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\Paymen
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\PaymentCalculater.csproj.CopyComplete
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\PaymentCalculater.dll
 C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\PaymentCalculater.pdb
-C:\Development\MyFundiCurrent\PaymentCalculater\obj\Release\netcoreapp3.1\PaymentCalculater.csproj.AssemblyReference.cache

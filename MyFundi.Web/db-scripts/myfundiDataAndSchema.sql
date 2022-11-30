@@ -1,6 +1,6 @@
 USE [myfundiv2]
 GO
-/****** Object:  UserDefinedFunction [dbo].[ArePointsNearEnough]    Script Date: 29/11/2022 12:25:54 ******/
+/****** Object:  UserDefinedFunction [dbo].[ArePointsNearEnough]    Script Date: 30/11/2022 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -47,7 +47,7 @@ begin
 			return 
 End
 GO
-/****** Object:  UserDefinedFunction [dbo].[Split]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  UserDefinedFunction [dbo].[Split]    Script Date: 30/11/2022 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -104,7 +104,7 @@ BEGIN
 
 END -- End Function
 GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 30/11/2022 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -118,7 +118,7 @@ CREATE TABLE [dbo].[__EFMigrationsHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Addresses]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Addresses]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -139,7 +139,7 @@ CREATE TABLE [dbo].[Addresses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Certifications]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Certifications]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -156,7 +156,7 @@ CREATE TABLE [dbo].[Certifications](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClientFundiContracts]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[ClientFundiContracts]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -179,7 +179,7 @@ CREATE TABLE [dbo].[ClientFundiContracts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClientProfiles]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[ClientProfiles]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -198,7 +198,7 @@ CREATE TABLE [dbo].[ClientProfiles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Companies]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Companies]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -216,7 +216,7 @@ CREATE TABLE [dbo].[Companies](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Courses]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Courses]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -233,7 +233,7 @@ CREATE TABLE [dbo].[Courses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiProfileAndReviewRatings]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[FundiProfileAndReviewRatings]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -253,7 +253,7 @@ CREATE TABLE [dbo].[FundiProfileAndReviewRatings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiProfileCertifications]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[FundiProfileCertifications]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -270,7 +270,7 @@ CREATE TABLE [dbo].[FundiProfileCertifications](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiProfileCourses]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[FundiProfileCourses]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -287,7 +287,7 @@ CREATE TABLE [dbo].[FundiProfileCourses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiProfiles]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[FundiProfiles]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -309,7 +309,7 @@ CREATE TABLE [dbo].[FundiProfiles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FundiWorkCategories]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[FundiWorkCategories]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -328,7 +328,7 @@ CREATE TABLE [dbo].[FundiWorkCategories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Invoices]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Invoices]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -349,7 +349,7 @@ CREATE TABLE [dbo].[Invoices](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Items]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Items]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -368,7 +368,7 @@ CREATE TABLE [dbo].[Items](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Jobs]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Jobs]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -394,7 +394,7 @@ CREATE TABLE [dbo].[Jobs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[JobWorkCategories]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[JobWorkCategories]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -412,7 +412,7 @@ CREATE TABLE [dbo].[JobWorkCategories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Locations]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Locations]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -433,7 +433,7 @@ CREATE TABLE [dbo].[Locations](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MonthlySubscriptions]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[MonthlySubscriptions]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -456,7 +456,7 @@ CREATE TABLE [dbo].[MonthlySubscriptions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -470,7 +470,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRoles]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[UserRoles]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -485,7 +485,7 @@ CREATE TABLE [dbo].[UserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -510,7 +510,7 @@ CREATE TABLE [dbo].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[WorkCategories]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[WorkCategories]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -527,7 +527,7 @@ CREATE TABLE [dbo].[WorkCategories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[WorkSubCategories]    Script Date: 29/11/2022 12:25:55 ******/
+/****** Object:  Table [dbo].[WorkSubCategories]    Script Date: 30/11/2022 18:21:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -599,6 +599,8 @@ INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [Profil
 GO
 INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [ProfileSummary], [ProfileImageUrl], [DateCreated], [DateUpdated]) VALUES (5, N'f15c12e4-2d54-4699-f639-08dab52801f8', 2, N'I am Martin Okello - some call me THE MEDAllION - and been working as an Investment Fund Manager within EMEA. Recently visited Africa, to gain business ideas, and I am of the heart and feel that African Cultural Materials Can be exploited for the their explicit quality. My intentions are to open up shop in Uganda, Tanzania, Kenya, Ghana and South Africa to start with. It is viatal I get the people to build this dream, across the engineering descipline - namely:', N'', CAST(N'2022-10-29T22:21:24.1703706' AS DateTime2), CAST(N'2022-10-29T22:21:24.1703761' AS DateTime2))
 GO
+INSERT [dbo].[ClientProfiles] ([ClientProfileId], [UserId], [AddressId], [ProfileSummary], [ProfileImageUrl], [DateCreated], [DateUpdated]) VALUES (7, N'bd390c76-989f-4200-3234-08dacfb4f3b5', 4, N'I am a people person and enjoy hiring and getting work done perfectly. With a good knowlege base around properties, I know what needs doing and to what standard. So when I hire, there are traits I look for.', N'', CAST(N'2022-11-29T15:32:22.3969832' AS DateTime2), CAST(N'2022-11-29T15:32:22.3969837' AS DateTime2))
+GO
 SET IDENTITY_INSERT [dbo].[ClientProfiles] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Companies] ON 
@@ -627,6 +629,26 @@ INSERT [dbo].[Courses] ([CourseId], [CourseName], [CourseDescription], [DateCrea
 GO
 SET IDENTITY_INSERT [dbo].[Courses] OFF
 GO
+SET IDENTITY_INSERT [dbo].[FundiProfileCertifications] ON 
+GO
+INSERT [dbo].[FundiProfileCertifications] ([FundiProfileCertificationId], [FundiProfileId], [CertificationId], [DateCreated], [DateUpdated]) VALUES (1, 4, 1, CAST(N'2022-11-29T15:30:44.2141903' AS DateTime2), CAST(N'2022-11-29T15:30:44.2141908' AS DateTime2))
+GO
+INSERT [dbo].[FundiProfileCertifications] ([FundiProfileCertificationId], [FundiProfileId], [CertificationId], [DateCreated], [DateUpdated]) VALUES (2, 4, 3, CAST(N'2022-11-29T15:30:49.5317719' AS DateTime2), CAST(N'2022-11-29T15:30:49.5317724' AS DateTime2))
+GO
+INSERT [dbo].[FundiProfileCertifications] ([FundiProfileCertificationId], [FundiProfileId], [CertificationId], [DateCreated], [DateUpdated]) VALUES (3, 4, 5, CAST(N'2022-11-29T15:30:55.1010709' AS DateTime2), CAST(N'2022-11-29T15:30:55.1010709' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[FundiProfileCertifications] OFF
+GO
+SET IDENTITY_INSERT [dbo].[FundiProfileCourses] ON 
+GO
+INSERT [dbo].[FundiProfileCourses] ([FundiProfileCourseTakenId], [CourseId], [FundiProfileId], [DateCreated], [DateUpdated]) VALUES (1, 1, 4, CAST(N'2022-11-29T15:30:59.4350262' AS DateTime2), CAST(N'2022-11-29T15:30:59.4350262' AS DateTime2))
+GO
+INSERT [dbo].[FundiProfileCourses] ([FundiProfileCourseTakenId], [CourseId], [FundiProfileId], [DateCreated], [DateUpdated]) VALUES (2, 2, 4, CAST(N'2022-11-29T15:31:04.5756162' AS DateTime2), CAST(N'2022-11-29T15:31:04.5756167' AS DateTime2))
+GO
+INSERT [dbo].[FundiProfileCourses] ([FundiProfileCourseTakenId], [CourseId], [FundiProfileId], [DateCreated], [DateUpdated]) VALUES (3, 4, 4, CAST(N'2022-11-29T15:31:10.1478214' AS DateTime2), CAST(N'2022-11-29T15:31:10.1478214' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[FundiProfileCourses] OFF
+GO
 SET IDENTITY_INSERT [dbo].[FundiProfiles] ON 
 GO
 INSERT [dbo].[FundiProfiles] ([FundiProfileId], [UserId], [ProfileSummary], [ProfileImageUrl], [Skills], [UsedPowerTools], [LocationId], [FundiProfileCvUrl], [DateCreated], [DateUpdated]) VALUES (1, N'665bcf05-492a-4b94-2a22-08da940013e8', N'Simply an entrepreneur, engaging in bringing together software that makes a difference in the information age, with high security in mind. ', N'', N'MSc Computer Science
@@ -638,35 +660,175 @@ INSERT [dbo].[FundiProfiles] ([FundiProfileId], [UserId], [ProfileSummary], [Pro
 ', N'Electronic Testing Tools
 HGV Driver', 2, N'', CAST(N'2022-10-25T21:56:25.8295286' AS DateTime2), CAST(N'2022-10-25T21:56:25.8295286' AS DateTime2))
 GO
+INSERT [dbo].[FundiProfiles] ([FundiProfileId], [UserId], [ProfileSummary], [ProfileImageUrl], [Skills], [UsedPowerTools], [LocationId], [FundiProfileCvUrl], [DateCreated], [DateUpdated]) VALUES (4, N'bd390c76-989f-4200-3234-08dacfb4f3b5', N'I am a whole rounder, Electrician, Carpenter, Plumber, Gas Fitter, and many more. Perhaps the Handy man of Choice as I work across many fields from experience. From setting up whole new renovations and Building works as Lead Electrician, using all maner of Power tools in the industry. Like I said, if there is a job, I will do it. Shows from my rating. If you need insight into a project, I consult as well, on all areas. My knowledge base is based upon my vast experience in the industry.
+', N'', N'Electrician:
+1) Electronic device Fundi,.
+2) Computer Programming.
+3) Electrical Circuitry Building.
+4) Computer Programming', N'1) Electric Vibrator.
+2) Power Drill
+3) Ameter
+4) Leveler', 2, N'', CAST(N'2022-11-29T15:30:11.2447816' AS DateTime2), CAST(N'2022-11-29T15:30:11.2447821' AS DateTime2))
+GO
 SET IDENTITY_INSERT [dbo].[FundiProfiles] OFF
 GO
 SET IDENTITY_INSERT [dbo].[FundiWorkCategories] ON 
 GO
 INSERT [dbo].[FundiWorkCategories] ([FundiWorkCategoryId], [FundiProfileId], [WorkCategoryId], [JobId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (2, 3, 2, NULL, CAST(N'2022-11-29T13:37:55.1028459' AS DateTime2), CAST(N'2022-11-29T13:37:55.1028463' AS DateTime2), 9)
 GO
+INSERT [dbo].[FundiWorkCategories] ([FundiWorkCategoryId], [FundiProfileId], [WorkCategoryId], [JobId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (4, 4, 2, NULL, CAST(N'2022-11-29T15:30:26.2721126' AS DateTime2), CAST(N'2022-11-29T15:30:26.2721126' AS DateTime2), 9)
+GO
 SET IDENTITY_INSERT [dbo].[FundiWorkCategories] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Jobs] ON 
+GO
+INSERT [dbo].[Jobs] ([JobId], [JobName], [JobDescription], [LocationId], [ClientProfileId], [ClientUserId], [AssignedFundiUserId], [AssignedFundiProfileId], [HasBeenAssignedFundi], [HasCompleted], [ClientFundiContractId], [NumberOfDaysToComplete], [DateCreated], [DateUpdated]) VALUES (4, N'Administrator Administrator-Martel Lindo''s Maidavale Kitchen Refit', N'Need Kitchen refit. Looking for Plumbers, Brick Layers, Plasterers, and mostly Electricians as I intend to extend the width of my Kitchen.', 11, 7, N'bd390c76-989f-4200-3234-08dacfb4f3b5', NULL, 3, 0, 0, NULL, 28, CAST(N'2022-11-29T15:35:16.1525869' AS DateTime2), CAST(N'2022-11-29T15:35:16.1525874' AS DateTime2))
+GO
+INSERT [dbo].[Jobs] ([JobId], [JobName], [JobDescription], [LocationId], [ClientProfileId], [ClientUserId], [AssignedFundiUserId], [AssignedFundiProfileId], [HasBeenAssignedFundi], [HasCompleted], [ClientFundiContractId], [NumberOfDaysToComplete], [DateCreated], [DateUpdated]) VALUES (5, N'Jonathan Asante-Jonathan'' Gulu Development Project - Asante-Jonathan Asante-Gulu City Project Africa', N'Revamp Of Project Gulu Town rebuild 365 days. ', 8, 1, N'e9585393-5fd1-45e8-5487-08da6e1c1725', NULL, 3, 0, 0, NULL, 365, CAST(N'2022-11-30T12:29:07.6729165' AS DateTime2), CAST(N'2022-11-30T19:06:58.2334125' AS DateTime2))
+GO
+INSERT [dbo].[Jobs] ([JobId], [JobName], [JobDescription], [LocationId], [ClientProfileId], [ClientUserId], [AssignedFundiUserId], [AssignedFundiProfileId], [HasBeenAssignedFundi], [HasCompleted], [ClientFundiContractId], [NumberOfDaysToComplete], [DateCreated], [DateUpdated]) VALUES (6, N'Jonathan Asante-Jonathan Asante-Jonathan Asante-Jonathan Asante-Gulu City Project Africa', N'Project Gulu Town rebuild 365 days. ', 8, 1, N'e9585393-5fd1-45e8-5487-08da6e1c1725', NULL, 3, 0, 0, NULL, 365, CAST(N'2022-11-30T12:48:43.9984951' AS DateTime2), CAST(N'2022-11-30T12:48:43.9984956' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[Jobs] OFF
+GO
+SET IDENTITY_INSERT [dbo].[JobWorkCategories] ON 
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (1, 4, 1, CAST(N'2022-11-29T15:35:16.2381884' AS DateTime2), CAST(N'2022-11-29T15:35:16.2381894' AS DateTime2), 1)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (2, 4, 1, CAST(N'2022-11-29T15:35:16.2469149' AS DateTime2), CAST(N'2022-11-29T15:35:16.2469149' AS DateTime2), 2)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (3, 4, 1, CAST(N'2022-11-29T15:35:16.2470061' AS DateTime2), CAST(N'2022-11-29T15:35:16.2470066' AS DateTime2), 3)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (4, 4, 1, CAST(N'2022-11-29T15:35:16.2470510' AS DateTime2), CAST(N'2022-11-29T15:35:16.2470510' AS DateTime2), 4)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (5, 4, 2, CAST(N'2022-11-29T15:35:16.2470861' AS DateTime2), CAST(N'2022-11-29T15:35:16.2470861' AS DateTime2), 8)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (6, 4, 2, CAST(N'2022-11-29T15:35:16.2471080' AS DateTime2), CAST(N'2022-11-29T15:35:16.2471080' AS DateTime2), 9)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (7, 4, 10, CAST(N'2022-11-29T15:35:16.2471295' AS DateTime2), CAST(N'2022-11-29T15:35:16.2471300' AS DateTime2), 47)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (8, 4, 10, CAST(N'2022-11-29T15:35:16.2471490' AS DateTime2), CAST(N'2022-11-29T15:35:16.2471495' AS DateTime2), 48)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (9, 4, 11, CAST(N'2022-11-29T15:35:16.2471758' AS DateTime2), CAST(N'2022-11-29T15:35:16.2471763' AS DateTime2), 52)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (10, 4, 11, CAST(N'2022-11-29T15:35:16.2471982' AS DateTime2), CAST(N'2022-11-29T15:35:16.2471987' AS DateTime2), 55)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (23, 6, 1, CAST(N'2022-11-30T12:48:44.0075658' AS DateTime2), CAST(N'2022-11-30T12:48:44.0075658' AS DateTime2), 1)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (24, 6, 10, CAST(N'2022-11-30T12:48:44.0080227' AS DateTime2), CAST(N'2022-11-30T12:48:44.0080227' AS DateTime2), 47)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (25, 6, 10, CAST(N'2022-11-30T12:48:44.0080388' AS DateTime2), CAST(N'2022-11-30T12:48:44.0080388' AS DateTime2), 48)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (26, 6, 10, CAST(N'2022-11-30T12:48:44.0080603' AS DateTime2), CAST(N'2022-11-30T12:48:44.0080603' AS DateTime2), 49)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (27, 6, 11, CAST(N'2022-11-30T12:48:44.0080773' AS DateTime2), CAST(N'2022-11-30T12:48:44.0080773' AS DateTime2), 51)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (28, 6, 11, CAST(N'2022-11-30T12:48:44.0080934' AS DateTime2), CAST(N'2022-11-30T12:48:44.0080934' AS DateTime2), 52)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (29, 6, 11, CAST(N'2022-11-30T12:48:44.0081139' AS DateTime2), CAST(N'2022-11-30T12:48:44.0081139' AS DateTime2), 54)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (30, 6, 11, CAST(N'2022-11-30T12:48:44.0081295' AS DateTime2), CAST(N'2022-11-30T12:48:44.0081300' AS DateTime2), 55)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (31, 6, 11, CAST(N'2022-11-30T12:48:44.0081451' AS DateTime2), CAST(N'2022-11-30T12:48:44.0081451' AS DateTime2), 60)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (32, 6, 11, CAST(N'2022-11-30T12:48:44.0081685' AS DateTime2), CAST(N'2022-11-30T12:48:44.0081685' AS DateTime2), 61)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (33, 6, 11, CAST(N'2022-11-30T12:48:44.0081841' AS DateTime2), CAST(N'2022-11-30T12:48:44.0081841' AS DateTime2), 62)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (34, 6, 11, CAST(N'2022-11-30T12:48:44.0082041' AS DateTime2), CAST(N'2022-11-30T12:48:44.0082046' AS DateTime2), 63)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (35, 6, 11, CAST(N'2022-11-30T12:48:44.0082207' AS DateTime2), CAST(N'2022-11-30T12:48:44.0082207' AS DateTime2), 64)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (36, 6, 11, CAST(N'2022-11-30T12:48:44.0082363' AS DateTime2), CAST(N'2022-11-30T12:48:44.0082363' AS DateTime2), 65)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (37, 6, 13, CAST(N'2022-11-30T12:48:44.0082568' AS DateTime2), CAST(N'2022-11-30T12:48:44.0082568' AS DateTime2), 66)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (38, 6, 14, CAST(N'2022-11-30T12:48:44.0082724' AS DateTime2), CAST(N'2022-11-30T12:48:44.0082729' AS DateTime2), 67)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (39, 6, 9, CAST(N'2022-11-30T12:48:44.0080022' AS DateTime2), CAST(N'2022-11-30T12:48:44.0080022' AS DateTime2), 43)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (40, 6, 7, CAST(N'2022-11-30T12:48:44.0079866' AS DateTime2), CAST(N'2022-11-30T12:48:44.0079866' AS DateTime2), 37)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (41, 6, 7, CAST(N'2022-11-30T12:48:44.0079701' AS DateTime2), CAST(N'2022-11-30T12:48:44.0079701' AS DateTime2), 35)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (42, 6, 6, CAST(N'2022-11-30T12:48:44.0079491' AS DateTime2), CAST(N'2022-11-30T12:48:44.0079491' AS DateTime2), 34)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (43, 6, 1, CAST(N'2022-11-30T12:48:44.0076253' AS DateTime2), CAST(N'2022-11-30T12:48:44.0076253' AS DateTime2), 2)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (44, 6, 1, CAST(N'2022-11-30T12:48:44.0076536' AS DateTime2), CAST(N'2022-11-30T12:48:44.0076536' AS DateTime2), 4)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (45, 6, 1, CAST(N'2022-11-30T12:48:44.0076716' AS DateTime2), CAST(N'2022-11-30T12:48:44.0076716' AS DateTime2), 6)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (46, 6, 1, CAST(N'2022-11-30T12:48:44.0077141' AS DateTime2), CAST(N'2022-11-30T12:48:44.0077141' AS DateTime2), 7)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (47, 6, 2, CAST(N'2022-11-30T12:48:44.0077311' AS DateTime2), CAST(N'2022-11-30T12:48:44.0077311' AS DateTime2), 9)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (48, 6, 2, CAST(N'2022-11-30T12:48:44.0077511' AS DateTime2), CAST(N'2022-11-30T12:48:44.0077516' AS DateTime2), 8)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (49, 6, 3, CAST(N'2022-11-30T12:48:44.0077682' AS DateTime2), CAST(N'2022-11-30T12:48:44.0077682' AS DateTime2), 12)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (50, 6, 14, CAST(N'2022-11-30T12:48:44.0082934' AS DateTime2), CAST(N'2022-11-30T12:48:44.0082934' AS DateTime2), 68)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (51, 6, 4, CAST(N'2022-11-30T12:48:44.0077853' AS DateTime2), CAST(N'2022-11-30T12:48:44.0077853' AS DateTime2), 15)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (52, 6, 5, CAST(N'2022-11-30T12:48:44.0078228' AS DateTime2), CAST(N'2022-11-30T12:48:44.0078228' AS DateTime2), 23)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (53, 6, 5, CAST(N'2022-11-30T12:48:44.0078428' AS DateTime2), CAST(N'2022-11-30T12:48:44.0078428' AS DateTime2), 24)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (54, 6, 5, CAST(N'2022-11-30T12:48:44.0078594' AS DateTime2), CAST(N'2022-11-30T12:48:44.0078594' AS DateTime2), 28)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (55, 6, 5, CAST(N'2022-11-30T12:48:44.0078755' AS DateTime2), CAST(N'2022-11-30T12:48:44.0078755' AS DateTime2), 29)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (56, 6, 6, CAST(N'2022-11-30T12:48:44.0078964' AS DateTime2), CAST(N'2022-11-30T12:48:44.0078964' AS DateTime2), 30)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (57, 6, 6, CAST(N'2022-11-30T12:48:44.0079120' AS DateTime2), CAST(N'2022-11-30T12:48:44.0079125' AS DateTime2), 32)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (58, 6, 6, CAST(N'2022-11-30T12:48:44.0079325' AS DateTime2), CAST(N'2022-11-30T12:48:44.0079325' AS DateTime2), 33)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (59, 6, 5, CAST(N'2022-11-30T12:48:44.0078067' AS DateTime2), CAST(N'2022-11-30T12:48:44.0078067' AS DateTime2), 19)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (60, 6, 10, CAST(N'2022-11-30T12:48:44.0083099' AS DateTime2), CAST(N'2022-11-30T12:48:44.0083099' AS DateTime2), 47)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (61, 5, 10, CAST(N'2022-11-30T19:06:58.2141667' AS DateTime2), CAST(N'2022-11-30T19:06:58.2141677' AS DateTime2), 49)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (62, 5, 10, CAST(N'2022-11-30T19:06:58.2315879' AS DateTime2), CAST(N'2022-11-30T19:06:58.2315889' AS DateTime2), 48)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (63, 5, 5, CAST(N'2022-11-30T19:06:58.2319390' AS DateTime2), CAST(N'2022-11-30T19:06:58.2319395' AS DateTime2), 29)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (64, 5, 5, CAST(N'2022-11-30T19:06:58.2320024' AS DateTime2), CAST(N'2022-11-30T19:06:58.2320024' AS DateTime2), 20)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (65, 5, 5, CAST(N'2022-11-30T19:06:58.2321004' AS DateTime2), CAST(N'2022-11-30T19:06:58.2321008' AS DateTime2), 19)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (66, 5, 5, CAST(N'2022-11-30T19:06:58.2321954' AS DateTime2), CAST(N'2022-11-30T19:06:58.2321959' AS DateTime2), 22)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (67, 5, 5, CAST(N'2022-11-30T19:06:58.2322481' AS DateTime2), CAST(N'2022-11-30T19:06:58.2322486' AS DateTime2), 21)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (68, 5, 2, CAST(N'2022-11-30T19:06:58.2322949' AS DateTime2), CAST(N'2022-11-30T19:06:58.2322949' AS DateTime2), 8)
+GO
+INSERT [dbo].[JobWorkCategories] ([JobWorkCategoryId], [JobId], [WorkCategoryId], [DateCreated], [DateUpdated], [WorkSubCategoryId]) VALUES (69, 5, 2, CAST(N'2022-11-30T19:06:58.2323476' AS DateTime2), CAST(N'2022-11-30T19:06:58.2323481' AS DateTime2), 9)
+GO
+SET IDENTITY_INSERT [dbo].[JobWorkCategories] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Locations] ON 
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (1, N'UK', 1, N'3, 2 St John''s Terrace, London W10 4SB, UK', NULL, NULL, CAST(N'2022-11-26T15:48:51.5801924' AS DateTime2), CAST(N'2022-11-26T15:48:51.5801924' AS DateTime2), 0)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (1, N'UK', 1, N'3, 2 St John''s Terrace, London W10 4SB, UK', 51.52733, -0.2152936, CAST(N'2022-11-26T15:48:51.5801924' AS DateTime2), CAST(N'2022-11-29T15:53:59.4137855' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (2, NULL, 6, N'MartinLayooInc HQ', NULL, NULL, CAST(N'2022-11-26T20:51:51.3381244' AS DateTime2), CAST(N'2022-11-26T20:51:51.3381249' AS DateTime2), 0)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (2, NULL, 6, N'42 Queen''s Gardens, London W2 3AA, UK', 51.5133171, -0.1827191, CAST(N'2022-11-26T20:51:51.3381244' AS DateTime2), CAST(N'2022-11-29T15:54:15.9275301' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (3, NULL, 1, N'3, 2 St John''s Terrace, London W10 4SB, UK', 51.52733, -0.2152936, CAST(N'2022-11-26T20:51:51.6000609' AS DateTime2), CAST(N'2022-11-26T20:51:51.6000614' AS DateTime2), 1)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (3, NULL, 1, N'3, 2 St John''s Terrace, London W10 4SB, UK', 51.52733, -0.2152936, CAST(N'2022-11-26T20:51:51.6000609' AS DateTime2), CAST(N'2022-11-29T15:54:32.8708780' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (4, NULL, 7, N'Speke Hotel Kampala', NULL, NULL, CAST(N'2022-11-26T20:52:37.2442694' AS DateTime2), CAST(N'2022-11-26T20:52:37.2442699' AS DateTime2), 0)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (4, NULL, 7, N'55 Sixth St, Kampala, Uganda', 0.3170758, 32.6035652, CAST(N'2022-11-26T20:52:37.2442694' AS DateTime2), CAST(N'2022-11-29T15:54:48.1213076' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (5, NULL, 2, N'Nile Avenue Kimathi Ave, Kampala, Uganda', 0.3151942, 32.58282, CAST(N'2022-11-26T20:52:37.4248671' AS DateTime2), CAST(N'2022-11-26T20:52:37.4248676' AS DateTime2), 1)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (5, NULL, 2, N'Nile Avenue Kimathi Ave, Kampala, Uganda', 0.3151942, 32.58282, CAST(N'2022-11-26T20:52:37.4248671' AS DateTime2), CAST(N'2022-11-29T15:55:01.4497017' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (6, NULL, 8, N'Flat 13 Maida Vale', NULL, NULL, CAST(N'2022-11-26T20:53:20.3008587' AS DateTime2), CAST(N'2022-11-26T20:53:20.3008587' AS DateTime2), 0)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (6, NULL, 5, N'3, 13 Lanhill Rd, London W9, UK', 51.52658, -0.1963439, CAST(N'2022-11-26T20:53:20.3008587' AS DateTime2), CAST(N'2022-11-29T15:55:41.9633072' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (7, NULL, 3, N'Steve Biko Court, St John''s Terrace, London W10 4SB, UK', 51.52724, -0.2153939, CAST(N'2022-11-26T20:53:20.4772344' AS DateTime2), CAST(N'2022-11-26T20:53:20.4772344' AS DateTime2), 1)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (7, NULL, 3, N'Steve Biko Court, St John''s Terrace, London W10 4SB, UK', 51.52724, -0.2153939, CAST(N'2022-11-26T20:53:20.4772344' AS DateTime2), CAST(N'2022-11-29T15:56:05.9485475' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (8, NULL, 9, N'Hotel Acacia', NULL, NULL, CAST(N'2022-11-26T20:53:45.7030617' AS DateTime2), CAST(N'2022-11-26T20:53:45.7030622' AS DateTime2), 0)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (8, NULL, 11, N'46 Lira - Gulu Rd, Uganda', 2.29509163, 32.74466, CAST(N'2022-11-26T20:53:45.7030617' AS DateTime2), CAST(N'2022-11-30T12:30:22.0931440' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (9, NULL, 4, N'55 Sixth St, Kampala, Uganda', 0.3170758, 32.6035652, CAST(N'2022-11-26T20:53:45.8699382' AS DateTime2), CAST(N'2022-11-26T20:53:45.8699386' AS DateTime2), 1)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (9, NULL, 7, N'55 Sixth St, Kampala, Uganda', 0.3170758, 32.6035652, CAST(N'2022-11-26T20:53:45.8699382' AS DateTime2), CAST(N'2022-11-29T15:56:52.7543716' AS DateTime2), 1)
 GO
-INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (10, NULL, 10, N'Steve Biko Court', NULL, NULL, CAST(N'2022-11-26T20:54:19.6454710' AS DateTime2), CAST(N'2022-11-26T20:54:19.6454715' AS DateTime2), 0)
+INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (10, NULL, 3, N'Steve Biko Court, St John''s Terrace, London W10 4SB, UK', 51.52724, -0.2153939, CAST(N'2022-11-26T20:54:19.6454710' AS DateTime2), CAST(N'2022-11-29T15:57:40.9751266' AS DateTime2), 1)
 GO
 INSERT [dbo].[Locations] ([LocationId], [Country], [AddressId], [LocationName], [Latitude], [Longitude], [DateCreated], [DateUpdated], [IsGeocoded]) VALUES (11, NULL, 5, N'3, 13 Lanhill Rd, London W9, UK', 51.52658, -0.1963439, CAST(N'2022-11-26T20:54:19.8130520' AS DateTime2), CAST(N'2022-11-26T20:54:19.8130525' AS DateTime2), 1)
 GO
@@ -694,15 +856,15 @@ INSERT [dbo].[UserRoles] ([UserRoleId], [UserId], [RoleId]) VALUES (N'c21965d6-a
 GO
 INSERT [dbo].[UserRoles] ([UserRoleId], [UserId], [RoleId]) VALUES (N'7eb0be04-2efe-431d-9859-08dacfb4f3b9', N'bd390c76-989f-4200-3234-08dacfb4f3b5', N'57736af1-c7fe-40fe-abda-08dacfb4f3a9')
 GO
-INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'e9585393-5fd1-45e8-5487-08da6e1c1725', N'Jonathan', N'Asante', N'Jonathan.asante@martinlayooinc.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'Jonathan.asante@martinlayooinc.com', N'07809773333', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpn8dHYkIPT0fqZ84nncx9chdgwCe26D/xLPMaX57VLogpIPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxZSXCIDCDTVYRWjJlDGnHxWCnWwueNWBZQd8nh5ZHObT+bAm5FswOiMkaMaL8uTtFPo0SkP5IkyOovu79rPGQY8bc1xGc2fdfpd3tWzTk9JgcBA724hjkIisEfQ787R4Fp4cqRzAf7PjGD7UqRACJTOhz9+v8QTfQdDvzOYN7Tai7RQkJrbeBXZ1nCEwSEqN8d8nTm6ibgvOIgzVDklZnvbuBmsQX0rxFcAtGmE1ncUEjcOBKO8UtAYq4kg7Oi3lOdDK9hYi46h7XB7YnAaxpzUqifWTFULaqekFi6+xVbR8yH5KgnsSvTD8puKLbaUc8qbnjHBYgCwYAYe4DWqLl1Pva009zM9oSbjvb8XmT98cAc9p2roho0WoGIixWsYL5zv+VLUSbxUhMKKCMUCJ6LneD1bkpdJPGY1gEir+6esWwG7poBfqcjRHThCBDZLEOCafEygtAYd6qwQ5T2WKDFKkUiHTO+W9OC3tPNCKzZCzI8sPJQA/qjzYlvrydbGKA/hq+KTqVds0IdQumH2qsNRGadL/aNt1P1GJbhRMtumjNjaBygo3P3DXJYLHfHblpqr9WTDWhKbsiCpPs13sxGkMp3hp2Me5yRd3UeEycpQt3MQqwJLQQAHJzJzAXgxZ0Y9zl0os0oGU8xrMawFdUBu', NULL, CAST(N'2022-07-25T10:00:15.2484206' AS DateTime2), CAST(N'2022-11-29T13:39:23.6243698' AS DateTime2), 1, 0)
+INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'e9585393-5fd1-45e8-5487-08da6e1c1725', N'Jonathan', N'Asante', N'Jonathan.asante@martinlayooinc.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'Jonathan.asante@martinlayooinc.com', N'07809773333', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpmEN3jsbNHEoV4yBf1o79XZp4oqUlUe3wXRuBpN0EOvZ5IPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxZSXCIDCDTVYRWjJlDGnHxWCnWwueNWBZQd8nh5ZHObT+bAm5FswOiMkaMaL8uTtFPo0SkP5IkyOovu79rPGQY8bc1xGc2fdfpd3tWzTk9JgcBA724hjkIisEfQ787R4Fp4cqRzAf7PjGD7UqRACJTOhz9+v8QTfQdDvzOYN7Tai7RQkJrbeBXZ1nCEwSEqN8d8nTm6ibgvOIgzVDklZnvbuBmsQX0rxFcAtGmE1ncUEjcOBKO8UtAYq4kg7Oi3lOdDK9hYi46h7XB7YnAaxpzUqifWTFULaqekFi6+xVbR8yH5KgnsSvTD8puKLbaUc8qbnjHBYgCwYAYe4DWqLl1Pva009zM9oSbjvb8XmT98cAc9p2roho0WoGIixWsYL5zv+VLUSbxUhMKKCMUCJ6LneD1bkpdJPGY1gEir+6esWwG7poBfqcjRHThCBDZLEOCafEygtAYd6qwQ5T2WKDFKkUiHTO+W9OC3tPNCKzZCzI8sPJQA/qjzYlvrydbGKA/hq+KTqVds0IdQumH2qsNRGadL/aNt1P1GJbhRMtumjNjaBygo3P3DXJYLHfHblpqr9WTDWhKbsiCpPs13sxGkMp3hp2Me5yRd3UeEycpQt3MQqwJLQQAHJzJzAXgxZ0Y9zl0os0oGU8xrMawFdUBu', NULL, CAST(N'2022-07-25T10:00:15.2484206' AS DateTime2), CAST(N'2022-11-30T20:14:17.5050175' AS DateTime2), 1, 0)
 GO
 INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'665bcf05-492a-4b94-2a22-08da940013e8', N'Test', N'Test', N'test@test.com', N'pJ7MG0Vr0qvHA8Pue2Jjhw==', N'test@test.com', N'112', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpkq32ko3Z4Slp+fz44rO9B/8D3L4OLbpwV+KWPs712nj5IPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxYe1lzzRUKD6/JDAgcJOUGvd2HFwAquP13IZjbb+dHbJFGnCiKDci/0En+F8+64z+5rD5CgRM+NKTikVJfXp5l9GXd8UrhNq5gsVDUGVoMOalLSK8TrTEJBvXCvR6FeIYNGLpacZbargsRpK9+IzHmikax9GZur0bvf0nwtAakhAO1ADkcCNUkVXDBqW7smwAY/WW+gIBy7ZuCp6nRsNCW2C0LCThOuoUBlHhUACrzZrdr805GJMzXOgjDlhsyheTmS2qDZVTozKRLWjmEL44et7xqGoyS1RzRz3SYtewaPFV81bXLuBer8ymNi9lgZSIZTKu+Rz9P28CFhftAsEIeeGtQXUMkRpb7iWyuxKqrH72dsg+Qq2s7AtX8rcdcrkvNhFbVxYjsuOuB32Hw30jFvxwMi3KADpgfvogMM8TAsHyYUuVeCL+YNhJ4BkPS7oHqL34dCpbwQEYmIGPzUlXUmaRmAIiRRKacswMTGn4qc4VDt9d5SWEcUxz1zDRfsX7by8R1tA+0vnR2lyKVDBEfSLGQN8yQRV5ohQjegNE0HAD6KiXsxUYhxxCjmEaGG42t6P5Egx1/kckGZKNkOcXruY94WTcaNGz/hQk5dPmzEFQ==', NULL, CAST(N'2022-09-11T16:15:28.1067428' AS DateTime2), CAST(N'2022-09-11T16:15:47.0969135' AS DateTime2), 1, 0)
 GO
-INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'505c6acf-074a-4a51-8f38-08dab4e94775', N'Martin', N'Okello', N'martin.okello@martinlayooinc.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'martin.okello@martinlayooinc.com', N'07655432156', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpn8dHYkIPT0fqZ84nncx9chLFD0I3y81/67YidEw3UFI5IPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxbX5j9L10UKiFPsV5hiqot0LS7amXwGSnpXl1xsxCQpFb0l7/8ABiWYl7IPoMOoW8DHXX1qV3E1jZdCF07zS4oMz0XfXP8g3saoKLTiZeRjAYg/lIZBL3XldHcwY0t6o6DomMKA+/Paz7h/TUBEL0fgi9Mz2c3fU+TVpTwC6ZU7VGk/WGPmSFJiyNCRYJZYK6+WMpnRNqXGkGNPzzgqKobx8b6ryE96QcChNzKof3FrRAqeifE5/+KL9VJLGaZy5UGOVtjwWnbDX1LP5x0Hn9JRKdZ45I31Jr5tI2SWuz1VeZ76vQq6dejdm/W+tBDZALbMzhEqrboIufYX3D4tvO3IZkPGNXKFcrHcAoAu/GMnXf8UOy11fiTRIuO/4zHs3iXV0F3aTPTjCaJfe4F46VqJfL77Wy3CLieHMI5MFS/css5venzPG6r58q+1BrmU4+jUzeiQ081rzNeJm9mwYhrUa2k0GsAYdQe6hwa/H1ugX4tFf7UIuJOrc7AUksFo2PmKjlPdEnv0e582EBgKEt3n0rEzcDinF8Z1UeNUSEN84CIYStsDNBk8zt1ipyCH8/hVXGknhMS9M2SsVONW4xc32CoP0DV65oAmg8b/7Tgpaty6xZZdUTvULJ3ZYGhBEho=', NULL, CAST(N'2022-10-23T13:25:24.5566409' AS DateTime2), CAST(N'2022-11-29T13:35:59.5783761' AS DateTime2), 1, 0)
+INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'505c6acf-074a-4a51-8f38-08dab4e94775', N'Martin', N'Okello', N'martin.okello@martinlayooinc.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'martin.okello@martinlayooinc.com', N'07655432156', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpmEN3jsbNHEoV4yBf1o79XZdV396+nPF7l9SXpGK3l95YrHyMOR42AUkaddILeC97g2XChhvOhDGf0ib4zZWeUdst/zzOxTVuwP3oFLftLdKjesgpHHZcJo7jP41zQ2Ss6MEwgv4nM+ojOMi8G5W4bvxPiQBOdOHaw2PlecDVnyZ0OvCfIRkPUio4qzYYAA14TLBpVNCpOk1GvGRRzVwDydYE6hRPZkzM7+UpdN1iGooi8ikRYvTqYLS7usmNVeLG6PcErxBArKiJISl5PdAwjuRi6WnGW2q4LEaSvfiMx5ohl6GKlMDJ37IahnwsOnK9TZ4z+10qJztwLBLxXtqvKtmW1u+++dcnJgK19txI1yKmnIhhiIpNOtB4dxK9yTY92lUk3jxWDRBt1ACtQyE3voSWEIJACCEaDs74pnxJqrLU7/zq+MZsKp+H7Ukg01cvsSDER3XpBX7BAu0ED5MYahOUTJSR5brhyQVZjxZ1Y4s1IZHzPWOQGhaDBSKoF7g0inuKi/tllWw6RvzsQ48cV+oUh3LUTuxIR5eLdyVpKHnvzcXyEFBW1euoZ7Wam6W2wcKRR8/yD6ZUp/ArKo220xIk6JZ3U2lrZ8lxCfYz7sVb0Wvd1CuJtA8lB/ZDyr49xP6HHtIwW+guMIK7R0aXSeL5MHDcP+FJNaqApfRi7wFK/BENVM/av6Hmmierh6thoBtYZrkdrVVh6r6PvGkiErRp+CRGoHxg5zIt0KJ8pwt4YdPJYLVXep+7dq24I24JA=', NULL, CAST(N'2022-10-23T13:25:24.5566409' AS DateTime2), CAST(N'2022-11-30T13:00:23.4976803' AS DateTime2), 1, 0)
 GO
 INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'f15c12e4-2d54-4699-f639-08dab52801f8', N'Martin', N'Okello', N'martin.okello@gmail.com', N'/qoGLh0s7Ii3+H6ftcrqrA==', N'martin.okello@gmail.com', N'07898989765', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpkCQhQlfRhxRy37WsGiLanZSIba8w4njU5qP0lt/v61xJIPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxbX5j9L10UKiFPsV5hiqot0llCznzEyf0j0jdtIoOsrG41TkII5hndPTx7BRUGiWpnvaK+jKTkffoI0T2zem4n12OLQVeKuz8DNkbew0LxmQ3io+zp8fLL41J5SKZtdijz1ZIzVHg7cuvlziug6JPeTjOWBrgDjuFrWN+/1+/TtCimEkb8lgnQwR384qBwgeODI3EFEiGxzL4cVzsV8m6FfGNUyS9kDUZru7MMS8z6wN6dMYiRyQpgNW9aM4gFcNYW1fgsxLqcFvpFtCCaSvGiYXOGQlnSV+FeA8kNHp5nSvBW9ygiSyku0jtV2oNDlBjyFXNnPYUxstInvTVVpgty4Ymk7hbqTKHBplGw30u/ieokiYCPfzFbmVLxooTvD8r0RKkekAQ9Eu9jIr6+Buall6A9m4msd60xbft9HmZSK3MdOF4ln0UwUaaPAHemH6TJ26YlnggE1hztSpNbLaNYLYgKRFRxjqVXjpN9r8f/T+fqSpN7AV2PEXIsEhjV8EK4EVWPtG10hdB8C2E+nqC7EmnxMoLQGHeqsEOU9ligxShoSaxbMtHdUmfoBtCJNx8VnBSeh1M1IgTiFYxeu8z+5POnRcvMmrwVE1HNAdSFszDuisGrWFcNRkgnuxNS9BdI=', NULL, CAST(N'2022-10-23T20:54:26.2711942' AS DateTime2), CAST(N'2022-11-27T01:29:41.5253625' AS DateTime2), 1, 0)
 GO
-INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'bd390c76-989f-4200-3234-08dacfb4f3b5', N'Administrator', N'Administrator', N'administrator@martinlayooinc.com', N'3YFoEKPCH7RRX7LG30XMxw==', N'administrator@martinlayooinc.com', N'07809773365', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpkCQhQlfRhxRy37WsGiLanZTYYAkGHsgllz79E1TGVd6pIPYc+k5wYQd1afeA06EWNMufFwyQCEAL5MdJPWfCVoUDyphBCyHJ+iSA+II2jgICDzU19HiVeql2KEtt4HcxZeroDY/XzFWei5nErTq5dpFeZJ8dkqnRn+LDceM2OcR70l7/8ABiWYl7IPoMOoW8Dtf1hlX87b555xLekLfL6CVFRgjorFJXjYbi3XyMInbuYXYxaj2GbdV/pVnxDWMkKhegFqAlLsWH6EG/Mh+JQG2bCkf5wjNp87/b9Whv6AMC9OXWzG3zwNdEMdsgSmnTocjzHHqij3/hHlQ9gtHAYNJQK7vZqIKvyslfNlJon2wKUiYjOHwcVi6Co/ZxpB4i/zAmmN5d0taVkx+AA7Umzlbc1xGc2fdfpd3tWzTk9JgcBA724hjkIisEfQ787R4Fp4cqRzAf7PjGD7UqRACJTONlEjIUOfhNmZ/jMFe9rkmLycWuNngDh9v9+KDFvELQqayXLpprZb5+zNqUPv+wCKOMsT2Nd91LO9x+mgZjoR04+HtFPA6TssDkygKzWvJcQQkIjbHY7lPSmXU+pC+/MNzNMfgeLFSh/jLUzkuDvLWUM8VBB02f3iLpEgQHF42SdJbOlcjJU3EZV3fKtQZSfqe2bLxFqco6Bq7UVvV8a4KilsVCB36r8Fxp/0olFpfbBuoz3A2uyHCWCQaAunnmjEtmvv/i8946AgOSzUHsIW/IkLQ3A46naH85/mwWNOZL82vojqDhwpeT2VSswO523Rm4AC5IQEjhz2yXwnC4MHrvHZJzTIF/FjUkZMzvNnBVjE+Jo8dIAIk/qS3xz94O8VDEChH6h1Jg63wu6teYNlUuF+p54JzhQ7dv5bSADipFDlFe/9owXQaGa66OnLj3psWdwwmX8q1NOhljB7yMdMnOMtqyrYRwQR/ZXgCdgePVN7l9YYPQhOjScDE5Froj+PCYb162B/ur4jRn4oF6XMZsjsxC/8sw9RMvTQHSsUKISGt2HzhXo5kHxk7iNBnvCZg7ihCS8R8+c3MkTbgom74wWxKD0c4d5u6ijzRxPozYM=', 1, CAST(N'2022-11-26T15:48:51.6073259' AS DateTime2), CAST(N'2022-11-27T01:34:17.6773135' AS DateTime2), 1, 0)
+INSERT [dbo].[Users] ([UserId], [FirstName], [LastName], [Username], [Password], [Email], [MobileNumber], [Token], [CompanyId], [CreateTime], [LastLogInTime], [IsActive], [IsLockedOut]) VALUES (N'bd390c76-989f-4200-3234-08dacfb4f3b5', N'Administrator', N'Administrator', N'administrator@martinlayooinc.com', N'3YFoEKPCH7RRX7LG30XMxw==', N'administrator@martinlayooinc.com', N'07809773365', N'lNQGWQ/eqt6iWU4iG0A2mgNMt/OKY4HTMQf31+9z0iQSXkpqP8Pj98VLLFJiNAYUpAvFVXQqKGlf+dm7iuYumKw9GxQfdNDBoTFaMrxDDpmEN3jsbNHEoV4yBf1o79XZ5UD9KIBJ5155CJ8idcxfb9dCgUUbrxNsOiXfu/jFfw4TfMaQW59WYBRs0tL99xt5lRh4uhbhGI7EITYVsuNR4UQPrEBnme/gjjZtVjEpAr5vt6f5GWN9OfhhQQ3JsXLyooFK9e09eU6LM8rikv+3qSKWbjXLC6/6CeRbRX1KM0H6BidKtJ05q+nXcfsvDIsiBshd/mnBen5YsTFTDCej9foFZ8OTB7ltcuN+lp/kC5kkJjWmdV+BokjhfYT/Zoqo0LyOnPJadr/AXb52uI6KDaDrk5asL6FhIRGINB6By9LO/4Wm+id6Wx1jTN/Z4IygcFVubHbllJCp5ro6E8iqNqGvs6zd1h/Tcwlvz0Fe+624ESn7AtrCHPly1Vp8LBm6/JtZyCjYkC3AaVd6or0jn4H66sgMtBtJuqUdjwPzNR6h/7wb3lTc4sxCvR+O6GhAQq4XxYAG+zF4qmY6b/vstrDRwYdTg1zROdeK3a9GwqCL4aJRhBpiwfhDJKwRdwiNeKj7Onx8svjUnlIpm12KPMn5759MNs0uplwurtxPvX+xyzXjm4w9ySYkI4BgAQoVg702BFZxHfYMg+KLm+5koABH3mDJlzDuTLT5vSkxHoWfPvdH70lC49KXWTHzZvMYNw4Eo7xS0BiriSDs6LeU50Mr2FiLjqHtcHticBrGnNSqJ9ZMVQtqp6QWLr7FVtHzIfkqCexK9MPym4ottpRzypueMcFiALBgBh7gNaouXU+9rTT3Mz2hJuO9vxeZP3xwBz2nauiGjRagYiLFaxgvnO/5UtRJvFSEwooIxQInoud4PVuSl0k8ZjWASKv7p6xbAbumgF+pyNEdOEIENksQ4Jp8TKC0Bh3qrBDlPZYoMUqRSIdM75b04Le080IrNkLMjyw8lAD+qPNiW+vJ1sYoD+Gr4pOpV2zQh1C6Yfaqw1EZp0v9o23U/UYluFEy26aM2NoHKCjc/cNclgsd8duWmqv1ZMNaEpuyIKk+zXezEaQyneGnYx7nJF3dR4TJylC3cxCrAktBAAcnMnMBeDFnRj3OXSizSgZTzGsxrAV1QG4=', 1, CAST(N'2022-11-26T15:48:51.6073259' AS DateTime2), CAST(N'2022-11-30T17:38:32.7640014' AS DateTime2), 1, 0)
 GO
 SET IDENTITY_INSERT [dbo].[WorkCategories] ON 
 GO
@@ -961,7 +1123,7 @@ INSERT [dbo].[WorkSubCategories] ([WorkSubCategoryId], [WorkSubCategoryType], [W
 GO
 SET IDENTITY_INSERT [dbo].[WorkSubCategories] OFF
 GO
-/****** Object:  Index [AK_UserRoles_UserId_RoleId]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  Index [AK_UserRoles_UserId_RoleId]    Script Date: 30/11/2022 18:21:22 ******/
 ALTER TABLE [dbo].[UserRoles] ADD  CONSTRAINT [AK_UserRoles_UserId_RoleId] UNIQUE NONCLUSTERED 
 (
 	[UserId] ASC,
@@ -970,7 +1132,7 @@ ALTER TABLE [dbo].[UserRoles] ADD  CONSTRAINT [AK_UserRoles_UserId_RoleId] UNIQU
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [AK_Users_Username]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  Index [AK_Users_Username]    Script Date: 30/11/2022 18:21:22 ******/
 ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [AK_Users_Username] UNIQUE NONCLUSTERED 
 (
 	[Username] ASC
@@ -1142,7 +1304,7 @@ REFERENCES [dbo].[WorkCategories] ([WorkCategoryId])
 GO
 ALTER TABLE [dbo].[WorkSubCategories] CHECK CONSTRAINT [FK_WorkSubCategories_WorkCategories_WorkCategoryId]
 GO
-/****** Object:  StoredProcedure [dbo].[GetAllFundiRatingByProfileId]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  StoredProcedure [dbo].[GetAllFundiRatingByProfileId]    Script Date: 30/11/2022 18:21:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1162,7 +1324,7 @@ SELECT distinct
   on fr.UserId = u.UserId
   where fr.[FundiProfileId]=@fundiProfileId
 GO
-/****** Object:  StoredProcedure [dbo].[GetAllFundiWorkCategoriesForJobId]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  StoredProcedure [dbo].[GetAllFundiWorkCategoriesForJobId]    Script Date: 30/11/2022 18:21:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1181,7 +1343,7 @@ Begin
 	where j.JobId = @jobId
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetFundiAverageRatingByProfileId]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  StoredProcedure [dbo].[GetFundiAverageRatingByProfileId]    Script Date: 30/11/2022 18:21:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1195,7 +1357,7 @@ SELECT [FundiProfileId]
   where [FundiProfileId]=@fundiProfileId
   group by [FundiProfileId]
 GO
-/****** Object:  StoredProcedure [dbo].[GetFundiByLocationVsJobLocation]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  StoredProcedure [dbo].[GetFundiByLocationVsJobLocation]    Script Date: 30/11/2022 18:21:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1250,7 +1412,7 @@ BEGIN
 		from Results
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetFundiRatings]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  StoredProcedure [dbo].[GetFundiRatings]    Script Date: 30/11/2022 18:21:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1306,7 +1468,7 @@ With Results as(
 	from Results
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetWorkSubCategoriesByWorkCategoryId]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  StoredProcedure [dbo].[GetWorkSubCategoriesByWorkCategoryId]    Script Date: 30/11/2022 18:21:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1320,7 +1482,7 @@ join WorkSubCategories as wsc
 on wc.WorkCategoryId = wsc.WorkCategoryId
 where wc.WorkCategoryId = @workCategoryId
 GO
-/****** Object:  StoredProcedure [dbo].[GetWorkSubCategoriesForFundiByJobId]    Script Date: 29/11/2022 12:26:17 ******/
+/****** Object:  StoredProcedure [dbo].[GetWorkSubCategoriesForFundiByJobId]    Script Date: 30/11/2022 18:21:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

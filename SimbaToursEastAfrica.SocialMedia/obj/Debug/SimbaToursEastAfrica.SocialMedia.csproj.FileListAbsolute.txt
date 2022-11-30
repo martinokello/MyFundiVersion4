@@ -1323,4 +1323,3 @@ C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaTo
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.csproj.CopyComplete
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.pdb
-C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Memory.dll

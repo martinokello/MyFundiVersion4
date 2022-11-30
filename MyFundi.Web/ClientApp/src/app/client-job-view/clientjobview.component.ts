@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob, IEmailMessage } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob, IEmailMessage, IWorkAndSubWorkCategory } from '../../services/myFundiService';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
@@ -29,7 +29,7 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
     profileSummary: string;
     clientProfiles: IClientProfile[];
     fundiProfiles: IProfile[];
-    workCategories: IWorkCategory[];
+    workCategories: IWorkAndSubWorkCategory[];
     chosenWorkCategories: IWorkCategory[];
     job: IJob;
     jobs: IJob[];

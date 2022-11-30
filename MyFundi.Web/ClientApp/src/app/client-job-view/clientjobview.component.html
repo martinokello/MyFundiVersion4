@@ -45,7 +45,8 @@
                 <h5>Work Categories</h5>
                 <ul id="ulistWorkCategories">
                     <li *ngFor="let jwc of workCategories">
-                        {{jwc.workCategory}}
+                        <em>{{jwc.workCategory.workCategoryType}}</em><br/>
+                        {{jwc.workSubCategory.workSubCategoryType}}
                     </li>
                 </ul>
             </div>
