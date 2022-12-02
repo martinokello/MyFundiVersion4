@@ -1433,41 +1433,42 @@ With Results as(
 		clUser.FirstName as ClientFirstName,clUser.LastName as ClientLastName,clUser.Username as ClientUsername,clUser.MobileNumber as ClientMobileNumber,cp.AddressId as ClientAddressId,cp.ProfileSummary as ClientProfileSummary,
 		(select distanceApart from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) as distanceApart
 		from FundiProfiles fn 
-	join Users us on
-	fn.UserId = us.UserId
-	join Locations lc on fn.LocationId = lc.LocationId
-	cross join Jobs j
-	join JobWorkCategories jwCats on
-	j.JobId = jwCats.JobId join
-	WorkCategories wcats on
-	jwCats.WorkCategoryId = wcats.WorkCategoryId join
-	WorkSubCategories wsc on
-	wcats.WorkCategoryId = wsc.WorkCategoryId join
-	Locations jlc on
-	j.LocationId = jlc.LocationId
-	join ClientProfiles cp on 
-	j.ClientProfileId = cp.ClientProfileId
-	join Users clUser on
-	cp.UserId = clUser.UserId
-	left join FundiProfileAndReviewRatings fpAndRvRatings
-	on cp.UserId = fpAndRvRatings.UserId
-	where (wsc.WorkSubCategoryType in (select item from dbo.Split(@workSubCategories,','))) 
-	and (wcats.WorkCategoryType in (select item from dbo.Split(@workCategories,',')))  
-	and j.jobId = @jobId and cp.ClientProfileId = @clientProfileId and 
-	(select IsWithinDistance from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) = 1
-	Group By 
+		join Users us on
+		fn.UserId = us.UserId
+		join Locations lc on fn.LocationId = lc.LocationId
+		cross join Jobs j
+		join JobWorkCategories jwCats on
+		j.JobId = jwCats.JobId join
+		WorkCategories wcats on
+		jwCats.WorkCategoryId = wcats.WorkCategoryId join
+		WorkSubCategories wsc on
+		wcats.WorkCategoryId = wsc.WorkCategoryId join
+		Locations jlc on
+		j.LocationId = jlc.LocationId
+		join ClientProfiles cp on 
+		j.ClientProfileId = cp.ClientProfileId
+		join Users clUser on
+		cp.UserId = clUser.UserId
+		left join FundiProfileAndReviewRatings fpAndRvRatings
+		on cp.UserId = fpAndRvRatings.UserId
+		where (wsc.WorkSubCategoryType in (select item from dbo.Split(@workSubCategories,','))) 
+		and (wcats.WorkCategoryType in (select item from dbo.Split(@workCategories,','))) 
+		and  cp.ClientProfileId = @clientProfileId and (select IsWithinDistance from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) = 1
+		Group By 
 			fn.FundiProfileId, fn.UserId, fn.ProfileSummary, fn.LocationId, us.Username,us.FirstName,us.LastName,
 			fn.Skills, fn.UsedPowerTools, lc.LocationName, us.MobileNumber,
 			lc.Latitude, lc.Longitude,jlc.LocationId, jlc.Latitude,j.JobId, j.JobName, j.JobDescription,
-			jlc.Longitude, jlc.LocationName, cp.UserId, cp.ClientProfileId,
+			jlc.Longitude, jlc.LocationName, cp.UserId, cp.ClientProfileId, 
 			clUser.Username, clUser.FirstName, clUser.LastName, clUser.MobileNumber,cp.AddressId,cp.ProfileSummary
 		ORDER BY (select distanceApart from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart))
 		OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY
-	)
-	select distinct *
-	from Results
+		)
+		select distinct *
+		from Results
 END
 GO
+
+
 /****** Object:  StoredProcedure [dbo].[GetWorkSubCategoriesByWorkCategoryId]    Script Date: 30/11/2022 18:21:22 ******/
 SET ANSI_NULLS ON
 GO
