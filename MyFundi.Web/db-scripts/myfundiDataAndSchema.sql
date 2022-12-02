@@ -1363,56 +1363,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[GetFundiByLocationVsJobLocation](@distanceApart float, @fundiProfileId int, @workCategories nvarchar(4000), @workSubCategories nvarchar(4000), @skip int=0, @take int=5)
-AS
-BEGIN
-	With Results as(
-		select fn.FundiProfileId as FundiProfileId, fn.UserId as FundiUserId, fn.ProfileSummary as FundiProfileSummary, fn.LocationId as FundiLocationId, us.Username as FundiUsername,us.FirstName as FundiFirstName, us.LastName as FundiLastName,
-		fn.Skills as FundiSkills, fn.UsedPowerTools as FundiUsedPowerTools, lc.LocationName as FundiLocationName, us.MobileNumber as FundiMobileNumber,
-		lc.Latitude as FundiLocationLat, lc.Longitude as FundiLocationLong,jlc.LocationId as JobLocationId, jlc.Latitude as JobLocationLatitude,
-		jlc.Longitude as JobLocationLongitude,j.JobId as JobId, j.JobName as JobName, j.JobDescription as JobDescription, jlc.LocationName as JobLocationName, cp.UserId as ClientUserId, cp.ClientProfileId as ClientProfileId, 
-		clUser.FirstName as ClientFirstName,clUser.LastName as ClientLastName,clUser.Username as ClientUsername,clUser.MobileNumber as ClientMobileNumber,cp.AddressId as ClientAddressId,cp.ProfileSummary as ClientProfileSummary,
-		(select distanceApart from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) as distanceApart
-		from FundiProfiles fn 
-		join Users us on
-		fn.UserId = us.UserId
-		join FundiWorkCategories fwcats1 on
-		fn.FundiProfileId = fwcats1.FundiProfileId
-		join JobWorkCategories jwCats on
-		fwcats1.WorkCategoryId = jwCats.WorkCategoryId
-		join Jobs j on
-		j.JobId = jwCats.JobId join
-		WorkCategories wcats on
-		jwCats.WorkCategoryId = wcats.WorkCategoryId
-		join Locations lc on fn.LocationId = lc.LocationId
-		join WorkSubCategories wsc on
-		wcats.WorkCategoryId = wsc.WorkCategoryId join
-		Locations jlc on
-		j.LocationId = jlc.LocationId
-		join ClientProfiles cp on 
-		j.ClientProfileId = cp.ClientProfileId
-		join Users clUser on
-		cp.UserId = clUser.UserId
-		left join FundiProfileAndReviewRatings fpAndRvRatings
-		on cp.UserId = fpAndRvRatings.UserId and fn.FundiProfileId = fpAndRvRatings.FundiProfileId
-		where (wsc.WorkSubCategoryType in (select item from dbo.Split(@workSubCategories,','))) 
-		and (wcats.WorkCategoryType in (select item from dbo.Split(@workCategories,','))) 
-		and  fn.FundiProfileId = @fundiProfileId and (select IsWithinDistance from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) = 1
-		Group By 
-			fn.FundiProfileId, fn.UserId, fn.ProfileSummary, fn.LocationId, us.Username,us.FirstName,us.LastName,
-			fn.Skills, fn.UsedPowerTools, lc.LocationName, us.MobileNumber,
-			lc.Latitude, lc.Longitude,jlc.LocationId, jlc.Latitude,j.JobId, j.JobName, j.JobDescription,
-			jlc.Longitude, jlc.LocationName, cp.UserId, cp.ClientProfileId, 
-			clUser.Username, clUser.FirstName, clUser.LastName, clUser.MobileNumber,cp.AddressId,cp.ProfileSummary
-		ORDER BY (select distanceApart from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart))
-		OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY
-		)
-		select distinct *
-		from Results
-END
-
+USE [myfundiv2]
 GO
-/****** Object:  StoredProcedure [dbo].[GetFundiRatings]    Script Date: 02/12/2022 14:26:23 ******/
+/****** Object:  StoredProcedure [dbo].[GetFundiRatings]    Script Date: 02/12/2022 14:57:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1422,7 +1375,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[GetFundiRatings](@clientProfileId int,@jobId int, @distanceApart float, @workCategories nvarchar(4000), @workSubCategories nvarchar(4000), @skip int=0, @take int=5)
+create PROCEDURE [dbo].[GetFundiRatings](@clientProfileId int,@jobId int, @distanceApart float, @workCategories nvarchar(4000), @workSubCategories nvarchar(4000), @skip int=0, @take int=5)
 AS
 BEGIN
 With Results as(
@@ -1433,28 +1386,28 @@ With Results as(
 		clUser.FirstName as ClientFirstName,clUser.LastName as ClientLastName,clUser.Username as ClientUsername,clUser.MobileNumber as ClientMobileNumber,cp.AddressId as ClientAddressId,cp.ProfileSummary as ClientProfileSummary,
 		(select distanceApart from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) as distanceApart
 		from FundiProfiles fn 
-		join Users us on
-		fn.UserId = us.UserId
-		join FundiWorkCategories fwcats1 on
-		fn.FundiProfileId = fwcats1.FundiProfileId
+		join Users us 
+		on fn.UserId = us.UserId
+		join FundiWorkCategories fwcats1 
+		on fn.FundiProfileId = fwcats1.FundiProfileId
+		join Locations lc 
+		on fn.LocationId = lc.LocationId
 		join JobWorkCategories jwCats on
 		fwcats1.WorkCategoryId = jwCats.WorkCategoryId
-		join Jobs j on
-		j.JobId = jwCats.JobId join
-		WorkCategories wcats on
-		jwCats.WorkCategoryId = wcats.WorkCategoryId
-		join Locations lc on fn.LocationId = lc.LocationId
+		join WorkCategories fuWorkCat
+		on jwCats.WorkCategoryId = fuWorkCat.WorkCategoryId
 		join WorkSubCategories wsc on
-		wcats.WorkCategoryId = wsc.WorkCategoryId join
-		Locations jlc on
+		fuWorkCat.WorkCategoryId = wsc.WorkCategoryId
+		cross join Jobs j 
+		join Locations jlc on
 		j.LocationId = jlc.LocationId
 		join ClientProfiles cp on 
 		j.ClientProfileId = cp.ClientProfileId
 		join Users clUser on
 		cp.UserId = clUser.UserId
 		left join FundiProfileAndReviewRatings fpAndRvRatings
-		on cp.UserId = fpAndRvRatings.UserId and fn.FundiProfileId = fpAndRvRatings.FundiProfileId
-		where (wcats.WorkCategoryType in (select item from dbo.Split(@workCategories,','))) and
+		on fn.FundiProfileId = fpAndRvRatings.FundiProfileId
+		where (fuWorkCat.WorkCategoryType in (select item from dbo.Split(@workCategories,','))) and
 		(wsc.WorkSubCategoryType in (select item from dbo.Split(@workSubCategories,',')))  
 		and  j.JobId = @jobId and cp.ClientProfileId = @clientProfileId and (select IsWithinDistance from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) = 1
 		Group By 
@@ -1469,7 +1422,61 @@ With Results as(
 		select distinct *
 		from Results
 END
+go
+/****** Object:  StoredProcedure [dbo].[GetFundiByLocationVsJobLocation]    Script Date: 02/12/2022 16:03:48 ******/
+SET ANSI_NULLS ON
 GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[GetFundiByLocationVsJobLocation](@distanceApart float, @fundiProfileId int, @workCategories nvarchar(4000), @workSubCategories nvarchar(4000), @skip int=0, @take int=5)
+AS
+BEGIN
+	With Results as(
+		select fn.FundiProfileId as FundiProfileId, fn.UserId as FundiUserId, fn.ProfileSummary as FundiProfileSummary, fn.LocationId as FundiLocationId, us.Username as FundiUsername,us.FirstName as FundiFirstName, us.LastName as FundiLastName,
+		fn.Skills as FundiSkills, fn.UsedPowerTools as FundiUsedPowerTools, lc.LocationName as FundiLocationName, us.MobileNumber as FundiMobileNumber,
+		lc.Latitude as FundiLocationLat, lc.Longitude as FundiLocationLong,jlc.LocationId as JobLocationId, jlc.Latitude as JobLocationLatitude,
+		jlc.Longitude as JobLocationLongitude,j.JobId as JobId, j.JobName as JobName, j.JobDescription as JobDescription, jlc.LocationName as JobLocationName, cp.UserId as ClientUserId, cp.ClientProfileId as ClientProfileId, 
+		clUser.FirstName as ClientFirstName,clUser.LastName as ClientLastName,clUser.Username as ClientUsername,clUser.MobileNumber as ClientMobileNumber,cp.AddressId as ClientAddressId,cp.ProfileSummary as ClientProfileSummary,
+		(select distanceApart from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) as distanceApart
+		from FundiProfiles fn 
+		join Users us 
+		on fn.UserId = us.UserId
+		join FundiWorkCategories fwcats1 
+		on fn.FundiProfileId = fwcats1.FundiProfileId
+		join Locations lc 
+		on fn.LocationId = lc.LocationId
+		join JobWorkCategories jwCats on
+		fwcats1.WorkCategoryId = jwCats.WorkCategoryId
+		join WorkCategories fuWorkCat
+		on jwCats.WorkCategoryId = fuWorkCat.WorkCategoryId
+		join WorkSubCategories wsc on
+		fuWorkCat.WorkCategoryId = wsc.WorkCategoryId
+		cross join Jobs j 
+		join Locations jlc on
+		j.LocationId = jlc.LocationId
+		join ClientProfiles cp on 
+		j.ClientProfileId = cp.ClientProfileId
+		join Users clUser on
+		cp.UserId = clUser.UserId
+		left join FundiProfileAndReviewRatings fpAndRvRatings
+		on fn.FundiProfileId = fpAndRvRatings.FundiProfileId		
+		where (fuWorkCat.WorkCategoryType in (select item from dbo.Split(@workCategories,','))) and
+		(wsc.WorkSubCategoryType in (select item from dbo.Split(@workSubCategories,',')))  
+		and  fn.FundiProfileId = @fundiProfileId and (select IsWithinDistance from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart)) = 1
+		Group By 
+			fn.FundiProfileId, fn.UserId, fn.ProfileSummary, fn.LocationId, us.Username,us.FirstName,us.LastName,
+			fn.Skills, fn.UsedPowerTools, lc.LocationName, us.MobileNumber,
+			lc.Latitude, lc.Longitude,jlc.LocationId, jlc.Latitude,j.JobId, j.JobName, j.JobDescription,
+			jlc.Longitude, jlc.LocationName, cp.UserId, cp.ClientProfileId, 
+			clUser.Username, clUser.FirstName, clUser.LastName, clUser.MobileNumber,cp.AddressId,cp.ProfileSummary
+		ORDER BY (select distanceApart from dbo.ArePointsNearEnough(lc.Latitude,lc.Longitude,jlc.Latitude,jlc.Longitude,@distanceApart))
+		OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY
+		)
+		select distinct *
+		from Results
+END
+
+go
 /****** Object:  StoredProcedure [dbo].[GetWorkSubCategoriesByWorkCategoryId]    Script Date: 02/12/2022 14:26:23 ******/
 SET ANSI_NULLS ON
 GO
