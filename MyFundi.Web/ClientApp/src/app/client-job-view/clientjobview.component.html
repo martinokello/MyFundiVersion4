@@ -45,7 +45,7 @@
                 <h5>Work Categories</h5>
                 <ul id="ulistWorkCategories">
                     <li *ngFor="let jwc of workCategories">
-                        <em>{{jwc.workCategory.workCategoryType}}</em><br/>
+                        <em>{{jwc.workCategory.workCategoryType}}</em><br />
                         {{jwc.workSubCategory.workSubCategoryType}}
                     </li>
                 </ul>
@@ -73,36 +73,44 @@
             <form #fundiJobApplicationForm="ngForm" id="fundiJobApplicationForm" (ngSubmit)="fundiJobApplicationForm.form.valid" enctype="multipart/form-data" method="post">
                 <div class="row" style="margin: 5px 0px !important;">
                     <h3>Apply For Job With CV And Cover Note</h3>
-                    <hr/>
+                    <hr />
                     <div class="col-lg-12">
                         <div style="width: 100%;">
                             <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailFrom.invalid" class="text-danger">
                                 email from field required.
                                 <br />
                             </div>
-                            <input style="width: 100% !important;" name="emailFrom" type="email" [(ngModel)]="email.emailFrom" #emailFrom="ngModel" required placeholder="your email address" style="font-weight: bold; width: 100%; color: #000040" /><br />
+                            <div class="form-group">
+                                <input style="width: 100% !important;" name="emailFrom" type="email" [(ngModel)]="email.emailFrom" #emailFrom="ngModel" required placeholder="your email address" style="font-weight: bold; width: 100%; color: #000040" /><br />
 
+                            </div>
                             <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailSubject.invalid" class="text-danger">
                                 email subject field required.
                                 <br />
                             </div>
-                            <input name="emailSubject" type="text" required #emailSubject="ngModel" [(ngModel)]="email.emailSubject" placeholder="subject" style="font-weight: bold; width: 100%;color: #000040;" /><br />
+                            <div class="form-group">
+                                <input name="emailSubject" type="text" required #emailSubject="ngModel" [(ngModel)]="email.emailSubject" placeholder="subject" style="font-weight: bold; width: 100%;color: #000040;" /><br />
 
-                            <input type="file" name="attachment" (change)="getFiles($event)" value="Attach CV file"  id="attachment" /><br />
+                                <input type="file" name="attachment" (change)="getFiles($event)" value="Attach CV file" id="attachment" /><br />
+                            </div>
                         </div>
                         <div style="margin:5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailBody.invalid" class="text-danger">
                             email body field required.
                             <br />
                         </div>
-                        <textarea name="emailBody" required #emailBody="ngModel" [(ngModel)]="email.emailBody" style="width: 100% !important; height:50vh !important; !important;" placeholder="email body required"></textarea>
+                        <div class="form-group">
+                            <textarea name="emailBody" required #emailBody="ngModel" [(ngModel)]="email.emailBody" style="width: 100% !important; height:50vh !important; !important;" placeholder="email body required"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div style="width:100%;">
+                    <div style="width:100%;"  class="col-lg-12">
                         <div style="clear:both;width: 90%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;margin:0px 5px;">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>
                         <hr />
                         <myrecaptcha></myrecaptcha>
-                        <input type="submit" id="submit" class="btn-primary" value="Apply For Job" style="margin:5px 0px;display:none;" (click)="sendEmail($event)" />
+                        <div class="form-group">
+                            <input type="submit" id="submit" class="btn-primary" value="Apply For Job" style="margin:5px 0px;display:none;" (click)="sendEmail($event)" />
+                        </div>
                     </div>
                 </div>
             </form>
