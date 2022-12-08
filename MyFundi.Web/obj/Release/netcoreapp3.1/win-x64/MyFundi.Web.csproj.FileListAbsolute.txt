@@ -452,3 +452,8 @@ C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\Pass
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\EpsilonCryptoSystemEngine.dll.config
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\Microsoft.EntityFrameworkCore.Design.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\mscordaccore_amd64_amd64_4.700.22.51102.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\staticwebassets\MyFundi.Web.StaticWebAssets.Pack.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\staticwebassets\msbuild.MyFundi.Web.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\staticwebassets\msbuild.build.MyFundi.Web.props
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\staticwebassets\msbuild.buildMultiTargeting.MyFundi.Web.props
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\staticwebassets\msbuild.buildTransitive.MyFundi.Web.props

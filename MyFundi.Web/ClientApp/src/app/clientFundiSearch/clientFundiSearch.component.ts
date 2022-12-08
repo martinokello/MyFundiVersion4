@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IWorkSubCategory, IClientProfile, IWorkAndSubWorkCategory } from '../../services/myFundiService';
-import { Observable } from 'rxjs';
+import { Observable, ObservableInput } from 'rxjs';
 import { Router } from '@angular/router';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
 declare var jQuery: any;
@@ -153,35 +153,38 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             });
         }).subscribe();
 
-        let locatObs: Observable<IJob[]> = this.myFundiService.GetAllJobs();
+        let clientProfileObs: Observable<IClientProfile> = this.myFundiService.GetClientProfile(this.userDetails.username);
+        clientProfileObs.map((clientProfile: IClientProfile) => {
+            let jobCatObs: Observable<IJob[]> = this.myFundiService.GetAllClientJobByClientProfileId(clientProfile.clientProfileId);
 
-        locatObs.map((jobs: IJob[]) => {
-            this.jobs = jobs;
-            let addSelect = document.querySelector('select#jobId');
-            let opts = addSelect.querySelector('option');
-            if (opts) {
-                opts.remove();
-            }
+            jobCatObs.map((jobs: IJob[]) => {
+                this.jobs = jobs;
+                let addSelect = document.querySelector('select#jobId');
+                let opts = addSelect.querySelector('option');
+                if (opts) {
+                    opts.remove();
+                }
 
 
-            let optionElem: HTMLOptionElement = document.createElement('option');
-            optionElem.selected = true;
-            optionElem.value = (0).toString();
-            optionElem.text = "Select Job";
-            document.querySelector('select#jobId').append(optionElem);
+                let optionElem: HTMLOptionElement = document.createElement('option');
+                optionElem.selected = true;
+                optionElem.value = (0).toString();
+                optionElem.text = "Select Job";
+                document.querySelector('select#jobId').append(optionElem);
 
-            if (jobs && jobs.length > 0) {
-                let allJobs: IJob[] = jobs;
-                this.jobs = allJobs;
+                if (jobs && jobs.length > 0) {
+                    let allJobs: IJob[] = jobs;
+                    this.jobs = allJobs;
 
-                allJobs.forEach((comCat: IJob, index: number, cmdCats) => {
-                    let optionElem: HTMLOptionElement = document.createElement('option');
-                    optionElem.value = comCat.jobId.toString();
-                    optionElem.text = comCat.jobName;
-                    document.querySelector('select#jobId').append(optionElem);
-                });
-            }
+                    allJobs.forEach((comCat: IJob, index: number, cmdCats) => {
+                        let optionElem: HTMLOptionElement = document.createElement('option');
+                        optionElem.value = comCat.jobId.toString();
+                        optionElem.text = comCat.jobName;
+                        document.querySelector('select#jobId').append(optionElem);
+                    });
+                }
 
+            }).subscribe();
         }).subscribe();
     }
     constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
@@ -198,55 +201,52 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
     runAutoCompleteOnSelects(curthis: any) {
 
         if (curthis.jobs && curthis.jobs.length > 0) {
-                //Check For Dom Change and Add auto complete to select elements
+            //Check For Dom Change and Add auto complete to select elements
             let hasFoundSelectsOnPage = false;
 
-                let selects = jQuery('div#clientfundisearch-wrapper select');
+            let selects = jQuery('div#clientfundisearch-wrapper select');
 
-                if (selects && selects.length > 0) {
-                    hasFoundSelectsOnPage = true;
-                }
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
 
-                if (hasFoundSelectsOnPage) {
+            if (hasFoundSelectsOnPage) {
 
-                    jQuery(selects.each((ind, elem) => {
-                        jQuery(elem).parent('ul').css('background', 'white');
-                        jQuery(elem).parent('ul').css('z-index', '100');
-                        let id = 'autoComplete' + jQuery(elem).attr('id');
-                        jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
 
-                    }));
-                    hasFoundSelectsOnPage = false;
-                }
-                //Check For Dom Change and Add auto complete to select elements
-                jQuery('select').each((ind, sel) => {
-                    let options = jQuery(sel).children('option');
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
 
-                    let vals = [];
-                    jQuery(options).each((id, el) => {
-                        let optionText = jQuery(el).html();
-                        vals.push(optionText);
-                    });
-                    //options is source of auto complete:
-                    let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-                    jQueryinpId.autocomplete({ source: vals });
-                    jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-                        jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                            return jQuery(event.target).text() == jQuery(this).html();
-                        }).attr("selected", true);
-                    });
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
                 });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
 
-                curthis.hasPopulatedPage = true;
-                clearTimeout(curthis.setTo);
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
         }
     }
     ngAfterViewChecked(): void {
-
-        let curthis = this;
-
-        let profileRatingSpans: any[] = jQuery('span.profileRatingSpan');
-        if (!curthis.hasGotRating && profileRatingSpans && profileRatingSpans.length > 0) {
+        (this.fundiSatisfyingJobList.length > 0)
+        {
             jQuery('div.rate,span.rate').rateit({
                 min: 0,
                 max: 5,
@@ -256,19 +256,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                 resetable: true
             });
             jQuery('div.rateit, span.rateit').rateit();
-            jQuery(profileRatingSpans).each(function (index, value) {
-                let profileIdStr = jQuery(value).attr('id');
-
-                let fundiProfileId = parseInt(profileIdStr.split('-')[1])
-                let fundiAvgRateObs: Observable<any> = curthis.myFundiService.GetFundiProfileRatingById(fundiProfileId);
-
-                curthis.hasGotRating = true;
-                fundiAvgRateObs.map(q => {
-                    let ratingReviewObj = this.fundiSatisfyingJobList.find(q => {
-                        return parseInt(q.fundiProfileId) == fundiProfileId;
-                    });
-                    jQuery('span#averageFundiRating-' + fundiProfileId).rateit('value', ratingReviewObj.averageFundiRating);
-                }).subscribe();
+            this.fundiSatisfyingJobList.forEach((r, ind, q) => {
+                jQuery('span#averageFundiRating-' + r.fundiProfileId).rateit('value', r.averageFundiRating);
             });
         }
     }
@@ -277,6 +266,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         this.fundiProfileList = [];
         let chosenCategories: string[] = [];
         let viewObjects: any[] = [];
+
         let categories = jQuery('form#fundiSearchForm div#fundiCategories ul.ulCategories > li > div > div > input[type="checkbox"]:checked');
         categories.each(function (ind, elem) {
 
@@ -296,25 +286,23 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         let username: string = MyFundiService.clientEmailAddress;
         let clientProfObjs: Observable<IClientProfile> = curthis.myFundiService.GetClientProfile(username);
         clientProfObjs.map((q: IClientProfile) => {
-            let locsObj: Observable<IJob> = curthis.myFundiService.GetJobByJobId(this.jobId);
-
-            locsObj.map((r: IJob) => {
+            let jobsObj: Observable<IJob> = curthis.myFundiService.GetJobByJobId(this.jobId);
+            
+            jobsObj.map((r: IJob) => {
                 r.location
                 this.jobLocation = r.location;
                 for (let n = 0; n < viewObjects.length; n++) {
                     viewObjects[n].coordinate.latitude = this.jobLocation.latitude;
                     viewObjects[n].coordinate.longitude = this.jobLocation.longitude;
                 }
-                let fundiJobsObs: Observable<any[]> = this.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId,r.jobId, this.distanceKmLimitApart, this.skip, this.take);
+                let fundiRatingsObs: Observable<any[]> = this.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId, r.jobId, this.distanceKmLimitApart, this.skip, this.take);
 
-                fundiJobsObs.map((n: any[]) => {
+                fundiRatingsObs.map((n: any[]) => {
                     debugger;
                     let q: any[] = n;
 
                     if (q && q.length > 0) {
-
                         this.fundiSatisfyingJobList = q;
-
                     } else {
                         alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
                     }
@@ -326,7 +314,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         }).subscribe();
 
         $event.stopPropagation();
-      
+
     }
 
     rateFundi($event) {
@@ -334,7 +322,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         let button = $event.target;
         let review = jQuery(button).parent('form').find('textarea').val();
         let profileId: number = jQuery(button).parent('form').attr('id').split('-')[1];
-        let rating: number = jQuery('div#fundiRating-'+profileId).rateit('value');
+        let rating: number = jQuery('div#fundiRating-' + profileId).rateit('value');
         let workCategory: string = jQuery(button).parent('form').find('select').val();
 
         alert('rated: ' + rating);

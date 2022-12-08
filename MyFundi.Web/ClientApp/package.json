@@ -2,7 +2,7 @@
   "name": "myfundi.web",
   "version": "0.0.0",
   "scripts": {
-    "build": "ng build --base-href \"/myfundi/\" --deploy-url \"/myfundi/\"  --prod",
+    "build": "ng build --base-href \"/myfundi/\" --deploy-url \"/myfundi/\"  ",
     "build:ssr": "ng run MyFundi.Web:server:dev",
     "e2e": "ng e2e",
     "lint": "ng lint",

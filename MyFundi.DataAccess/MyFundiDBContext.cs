@@ -62,7 +62,7 @@ namespace MyFundi.DataAccess
                 SqlCommand cmd = (SqlCommand)con.CreateCommand();
                 cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
 
-                cmd.CommandText = "[dbo].[GetAllFundiRatingByProfileId]";
+                cmd.CommandText = "[dbo].[GetFundiAverageRatingByProfileId]";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 if (cmd.Connection.State != System.Data.ConnectionState.Open)
                 {

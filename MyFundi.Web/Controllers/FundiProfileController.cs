@@ -25,12 +25,14 @@ using SimbaToursEastAfrica.Caching;
 using SimbaToursEastAfrica.Caching.Interfaces;
 using SimbaToursEastAfrica.Caching.Concretes;
 using System.Linq.Expressions;
+using Newtonsoft.Json;
 
 namespace MyFundi.Web.Controllers
 {
     [EnableCors(PolicyName = "CorsPolicy")]
     public class FundiProfileController : Controller
     {
+        private AppSettingsConfigurations _appSettings;
         private IMailService _emailService;
         private MyFundiUnitOfWork _unitOfWork;
         private ServicesEndPoint _serviceEndPoint;
@@ -43,6 +45,7 @@ namespace MyFundi.Web.Controllers
         private SimbaToursEastAfricaCahing _caching;
         public FundiProfileController(IMailService emailService, MyFundiUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, PaymentsManager paymentsManager, Mapper mapper, IHostingEnvironment _environment, ICaching caching)
         {
+            _appSettings = appSettings;
             _emailService = emailService;
             _unitOfWork = unitOfWork;
             _applicationConstants = appSettings.AppSettings.GetSection("ApplicationConstants");
@@ -415,8 +418,8 @@ namespace MyFundi.Web.Controllers
 
         [AuthorizeIdentity]
         [HttpPost]
-        [Route("~/FundiProfile/PayMonthlySubscriptionFee")]
-        public async Task<IActionResult> PayMonthlySubscriptionFee([FromBody] MonthlySubscriptionViewModel subscriptionViewModel)
+        [Route("~/FundiProfile/PayMonthlySubscriptionFeeWithPaypal")]
+        public async Task<IActionResult> PayMonthlySubscriptionFeeWithPaypal([FromBody] MonthlySubscriptionViewModel subscriptionViewModel)
         {
             try
             {
@@ -426,9 +429,9 @@ namespace MyFundi.Web.Controllers
                      _applicationConstants.GetSection("SuccessUrl").Value,
                     _applicationConstants.GetSection("CancelUrl").Value,
                      _applicationConstants.GetSection("NotifyUrl").Value,
-                     subscriptionViewModel.Username));
+                     subscriptionViewModel.Username),null);
 
-                var paypalRequestUrl = await paymentsManager.MakePayments(subscriptionViewModel.Username, new List<Product> {
+                var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product> {
                     new Product{
                         Amount = subscription.SubscriptionFee,
                         HasPaidInfull = true,
@@ -449,7 +452,88 @@ namespace MyFundi.Web.Controllers
                 return await Task.FromResult(Ok(new { Message = e.Message + " error: Failed To Pay. Please Contact Admin on Site" }));
             }
         }
+        [AuthorizeIdentity]
+        [HttpPost]
+        [Route("~/FundiProfile/PayMonthlySubscriptionFeeWithAirTel")]
+        public async Task<IActionResult> PayMonthlySubscriptionFeeWithAirTel([FromBody] MonthlySubscriptionViewModel subscriptionViewModel)
+        {
+            try
+            {
+                var subscription = _mapper.Map<MonthlySubscription>(subscriptionViewModel);
+                var paymentsManager = new PaymentsManager(null, new MtnAirTelHandler(_appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("AirTelBaseUrl").Value,
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("BusinessEmail").Value,
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("SuccessUrl").Value,
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("CancelUrl").Value,
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("NotifyUrl").Value, 
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("Phone").Value,
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("Username").Value,
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("Password").Value,
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("Currency").Value,
+                    _appSettings.AppSettings.GetSection("AirTelApiConfig").GetSection("Action").Value,
+                     subscriptionViewModel.Username));
 
+                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product> {
+                    new Product{
+                        Amount = subscription.SubscriptionFee,
+                        HasPaidInfull = true,
+                        ProductDescription =subscription.SubscriptionDescription,
+                        ProductName = subscription.SubscriptionName,
+                        Quantity= 1,
+                        VATAmmount=(decimal) 0
+                    }
+
+                });
+
+                _unitOfWork._monthlySubscriptionRepository.Insert(subscription);
+                _unitOfWork.SaveChanges();
+                return await Task.FromResult(Ok(new { Message = JsonConvert.SerializeObject(mtnAirtelObject) }));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = e.Message + " error: Failed To Pay. Please Contact Admin on Site" }));
+            }
+        }
+        [AuthorizeIdentity]
+        [HttpPost]
+        [Route("~/FundiProfile/PayMonthlySubscriptionFeeWithMtn")]
+        public async Task<IActionResult> PayMonthlySubscriptionFeeWithMtn([FromBody] MonthlySubscriptionViewModel subscriptionViewModel)
+        {
+            try
+            {
+                var subscription = _mapper.Map<MonthlySubscription>(subscriptionViewModel);
+                var paymentsManager = new PaymentsManager(null, new MtnAirTelHandler(_appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("MTNBaseUrl").Value,
+                    _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("BusinessEmail").Value,
+                     _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("SuccessUrl").Value,
+                    _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("CancelUrl").Value,
+                    _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("NotifyUrl").Value,
+                    _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("JonathanPhone").Value,
+                    _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("Username").Value,
+                    _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("Password").Value,
+                    _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("Currency").Value,
+                    _appSettings.AppSettings.GetSection("MTNApiConfig").GetSection("Action").Value, 
+                     subscriptionViewModel.Username));
+
+                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product> {
+                    new Product{
+                        Amount = subscription.SubscriptionFee,
+                        HasPaidInfull = true,
+                        ProductDescription =subscription.SubscriptionDescription,
+                        ProductName = subscription.SubscriptionName,
+                        Quantity= 1,
+                        VATAmmount=(decimal) 0
+                    }
+
+                });
+
+                _unitOfWork._monthlySubscriptionRepository.Insert(subscription);
+                _unitOfWork.SaveChanges();
+                return await Task.FromResult(Ok(new { Message = JsonConvert.SerializeObject(mtnAirtelObject) }));
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(Ok(new { Message = e.Message + " error: Failed To Pay. Please Contact Admin on Site" }));
+            }
+        }
         [AuthorizeIdentity]
         [HttpPost]
         [Route("~/FundiProfile/FundiSubscriptionValidByProfileId/{fundiProfileId}")]
@@ -478,8 +562,8 @@ namespace MyFundi.Web.Controllers
                     workSubCatagories.AddRange(item.WorkSubCategories);
                 }
 
-                var wkCatArry = workCategories.ToArray();
-                var wkSubCatArry = workSubCatagories.ToArray();
+                var wkCatArry = workCategories.Union(new List<string> { "" }).ToArray();
+                var wkSubCatArry = workSubCatagories.Union(new List<string> { "" }).ToArray();
 
                 var reviewCateg = _unitOfWork.MyFundiDBContext.GetJobsByFundiWorkCategoriesWithinDistance(fundiProfileId, wkCatArry, wkSubCatArry, distanceKmLimitApart, skip, take);
 
@@ -548,8 +632,8 @@ namespace MyFundi.Web.Controllers
                     workCategories.AddRange(item.WorkCategories);
                     workSubCatagories.AddRange(item.WorkSubCategories);
                 }
-                var wkCatArry = workCategories.ToArray();
-                var wkSubCatArry = workSubCatagories.ToArray();
+                var wkCatArry = workCategories.Union(new List<string> { "" }).ToArray();
+                var wkSubCatArry = workSubCatagories.Union(new List<string>{""}).ToArray();
 
                 var reviewCateg = _unitOfWork.MyFundiDBContext.GetFundiAvgRatingsAndJobWithinDistance(clientProfileId, jobId, wkCatArry, wkSubCatArry, distanceKmLimitApart, skip, take);
 

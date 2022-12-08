@@ -43,7 +43,9 @@ export class MyFundiService {
     public getFundiProfileRatingByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileRatingById";
     public getFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
     public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
-    public payMonthlySubscriptionFeeUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFee";
+    public payMonthlySubscriptionFeeWithPaypalUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithPaypal";
+    public payMonthlySubscriptionFeeWithMtnUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithMtn";
+    public payMonthlySubscriptionFeeWithAirTelUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithAirTel";
     public getFundiSkillsByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
     public getFundiWorkCategoriesByFundiProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId"; 
     public getFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategories"; 
@@ -704,17 +706,44 @@ export class MyFundiService {
             return res;
         });
     }
-    public PayMonthlySubscriptionFee(subscriptionFee: any): Observable<any> {
+    public PayMonthlySubscriptionFeeWithPaypal(subscriptionFee: any): Observable<any> {
         let body = JSON.stringify(subscriptionFee);
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
         let requestOptions: any = {
-            url: this.payMonthlySubscriptionFeeUrl,
+            url: this.payMonthlySubscriptionFeeWithPaypalUrl,
             headers: headers,
             body: body
         };
         return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
+        });
+    } 
+    public PayMonthlySubscriptionFeeWithMtn(subscriptionFee: any): Observable<any> {
+        let body = JSON.stringify(subscriptionFee);
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.payMonthlySubscriptionFeeWithMtnUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    } 
+    public PayMonthlySubscriptionFeeWithAirTel(subscriptionFee: any): Observable<IMtnAirTelModel> {
+        let body = JSON.stringify(subscriptionFee);
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.payMonthlySubscriptionFeeWithAirTelUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            let result: IMtnAirTelModel = res;
+            return result;
         });
     } 
     public AddFundiWorkCategory(workCategoryId: number, workSubCategoryId:number, username: string): Observable<boolean> {
@@ -1308,6 +1337,21 @@ export class MyFundiService {
             return res;
         });
     }
+
+    public postToMtnAirtelApi(mtnAirtelBaseUrl: string, newMtnAirtelObject: any): Observable<any> {
+        let body = JSON.stringify(newMtnAirtelObject);
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: mtnAirtelBaseUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
     public PostOrCreateLocation(location: ILocation): Observable<any> {
         let body = JSON.stringify(location);
 
@@ -1836,3 +1880,19 @@ export interface IJob {
     dateCreated: Date;
     dateUpdated: Date;
 }
+
+export interface IMtnAirTelModel
+{
+    action: string;
+    reason: string;
+    currency: string;
+    amount : string;
+    username: string;
+    password: string;
+    reference: string;
+    phone :string;
+    mtnAirtelBaseUrl: string;
+    notifyUrl: string;
+    cancelUrl: string;
+    successUrl: string;
+};

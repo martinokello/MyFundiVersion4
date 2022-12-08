@@ -1439,4 +1439,3 @@ C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Release\Simba
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Release\SimbaToursEastAfrica.SocialMedia.csproj.CopyComplete
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Release\SimbaToursEastAfrica.SocialMedia.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Release\SimbaToursEastAfrica.SocialMedia.pdb
-C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\System.Memory.dll

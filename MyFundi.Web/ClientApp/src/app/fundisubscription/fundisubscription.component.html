@@ -70,10 +70,12 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>
-                    Make Payment
-                  </label><br />
-                  <input type="button" value="Make Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFee($event)" /><br />
+                    <label>
+                        Make Payment
+                    </label><br />
+                    <input type="button" value="Paypal Make Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFeeWithPaypal($event)" /><br />
+                    <input type="button" value="MTN Make Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFeeWithMtn($event)" /><br />
+                    <input type="button" value="AirTel Make Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFeeWithAirTel($event)" /><br />
                 </div>
                 <hr />
               </div>

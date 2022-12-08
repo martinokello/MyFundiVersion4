@@ -34,6 +34,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\jquery-rateit\rateit.css" />
+    <Content Remove="wwwroot\assets\jquery-rateit\rateit.js" />
+    <Content Remove="wwwroot\assets\jquery-rateit\web-font.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\dist\index.html" />
     <None Remove="ClientApp\src\assets\images\CarMechanic.jpg" />
     <None Remove="ClientApp\src\assets\images\carpentryMetalwork.jpg" />
@@ -182,6 +188,9 @@
     <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\zh-hk.js" />
     <None Include="wwwroot\assets\fullcalendar-3.10.0\locale\zh-tw.js" />
     <None Include="wwwroot\assets\google\googleMaps.js" />
+    <None Include="wwwroot\assets\jquery-rateit\rateit.css" />
+    <None Include="wwwroot\assets\jquery-rateit\rateit.js" />
+    <None Include="wwwroot\assets\jquery-rateit\web-font.js" />
     <None Include="wwwroot\assets\js\breakpoints.min.js" />
     <None Include="wwwroot\assets\js\browser.min.js" />
     <None Include="wwwroot\assets\js\datetimepicker\jquery.datetimepicker.min.js" />

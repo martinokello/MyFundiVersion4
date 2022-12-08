@@ -335,7 +335,7 @@ export class Html5Qrcode {
                     .catch(error => {
                         reject(Html5QrcodeStrings.errorGettingUserMedia(error));
                     });
-            } else if (navigator.getUserMedia) {
+            } else if (navigator.mediaDevices.getUserMedia) {
                 if (typeof cameraIdOrConfig != "string") {
                     // TODO(mebjas): Make errors more concrete and categorizable.
                     throw Html5QrcodeStrings.onlyDeviceSupportedError();
@@ -343,8 +343,8 @@ export class Html5Qrcode {
                 const getCameraConfig: MediaStreamConstraints = {
                     video: videoConstraints
                 };
-                navigator.getUserMedia(getCameraConfig,
-                    stream => {
+                navigator.mediaDevices.getUserMedia(getCameraConfig)
+                    .then((stream) => {
                         $this.onMediaStreamReceived(
                             stream,
                             internalConfig,
