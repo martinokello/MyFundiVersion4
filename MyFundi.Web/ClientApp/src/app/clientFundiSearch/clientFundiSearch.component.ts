@@ -16,6 +16,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
     userDetails: any;
     userRoles: string[];
     profile: IProfile;
+    profileId: number;
     jobId: number;
     jobLocationCoordinate: ICoordinate;
     jobs: IJob[];
@@ -256,9 +257,10 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                 resetable: true
             });
             jQuery('div.rateit, span.rateit').rateit();
-            this.fundiSatisfyingJobList.forEach((r, ind, q) => {
-                jQuery('span#averageFundiRating-' + r.fundiProfileId).rateit('value', r.averageFundiRating);
-            });
+                this.fundiSatisfyingJobList.forEach((r, ind, q) => {
+                    this.profileId = r.fundiProfileId
+                    jQuery('span#averageFundiRating-' + r.fundiProfileId).rateit('value', r.averageFundiRating);
+                });
         }
     }
     searchFundiByCategories($event) {
@@ -298,7 +300,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                 let fundiRatingsObs: Observable<any[]> = this.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId, r.jobId, this.distanceKmLimitApart, this.skip, this.take);
 
                 fundiRatingsObs.map((n: any[]) => {
-                    debugger;
+
                     let q: any[] = n;
 
                     if (q && q.length > 0) {
@@ -379,6 +381,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         let userObs: Observable<any> = this.myFundiService.GetFundiUserByProfileId(profileId);
 
         userObs.map((res: any) => {
+            res.fundiProfileId = profileId;
             localStorage.setItem("profileUserDetails", JSON.stringify(res));
             this.router.navigateByUrl('/fundiprofile-by-id');
         }).subscribe();

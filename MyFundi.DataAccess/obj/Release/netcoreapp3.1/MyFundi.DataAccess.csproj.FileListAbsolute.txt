@@ -96,6 +96,7 @@ C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFun
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.DataAccess.pdb
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.Domain.dll
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\bin\Release\netcoreapp3.1\MyFundi.Domain.pdb
+C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.csproj.AssemblyReference.cache
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.AssemblyInfoInputs.cache
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.AssemblyInfo.cs
@@ -104,4 +105,3 @@ C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFun
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.dll
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.pdb
 C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.genruntimeconfig.cache
-C:\Development\MyFundiCurrent\MyFundi.DataAccess\obj\Release\netcoreapp3.1\MyFundi.DataAccess.csproj.AssemblyReference.cache

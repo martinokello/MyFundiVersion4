@@ -20,7 +20,6 @@ namespace PaymentGateway
         {
             _PayPalHandler = paypalHandler;
             _MtnAirTelHandler = mtnAirTelHandler;
-            //_monthlySubscription = monthlySubscription;
         }
         public async Task<string> MakePaymentsPaypal(string username,List<Product> products)
         {
@@ -33,11 +32,11 @@ namespace PaymentGateway
             //Client will make a non cors request with returned requestUrl
             return await Task.FromResult(requestUrl);
         }
-        public async Task<dynamic> MakePaymentsMtnAirTel(string username, List<Product> products)
+        public async Task<MtnAirTelModel> MakePaymentsMtnAirTel(string username, List<Product> products)
         {
             _MtnAirTelHandler.BuyerEmail = username;
 
-            dynamic requestObject = _MtnAirTelHandler.RedirectToMtnAirTel(products);
+            var requestObject = _MtnAirTelHandler.RedirectToMtnAirTel(products);
             //HttpClient httpClient = new HttpClient();
             //Send request to Paypal: Response is handled by IPN Notification class later on.
             //await httpClient.SendAsync(new HttpRequestMessage { RequestUri = new Uri(requestUrl)});

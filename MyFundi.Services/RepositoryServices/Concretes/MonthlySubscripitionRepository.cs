@@ -38,16 +38,14 @@ namespace MyFundi.Services.RepositoryServices.Concretes
             try
             {
                 var subs = GetById(toUpdate.MonthlySubscriptionId);
-                subs.SubscriptionDescription = toUpdate.SubscriptionDescription;
+
                 subs.DateUpdated = DateTime.Now;
-                subs.SubscriptionName = toUpdate.SubscriptionName;
-                subs.SubscriptionFee = toUpdate.SubscriptionFee;
                 subs.HasPaid = toUpdate.HasPaid;
                 subs.StartDate = toUpdate.StartDate;
                 subs.EndDate = toUpdate.EndDate;
                 subs.FundiProfileId = toUpdate.FundiProfileId;
+                subs.HasExpired = toUpdate.HasExpired;
                 subs.UserId = toUpdate.UserId;
-                subs.SubscriptionDescription = toUpdate.SubscriptionDescription;
                 return true;
             }
             catch (Exception e)

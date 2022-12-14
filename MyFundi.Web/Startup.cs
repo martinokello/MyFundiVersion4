@@ -302,10 +302,12 @@ namespace MyFundi.Web
                 conf.CreateMap<JobViewModel, Job>().ReverseMap();
                 conf.CreateMap<JobWorkCategoryViewModel, JobWorkCategory>();
                 conf.CreateMap<JobWorkCategoryViewModel, JobWorkCategory>().ReverseMap();
-                conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>();
-                conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>().ReverseMap();
                 conf.CreateMap<WorkSubCategoryViewModel, WorkSubCategory>();
                 conf.CreateMap<WorkSubCategoryViewModel, WorkSubCategory>().ReverseMap();
+                conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>();
+                conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>().ReverseMap();
+                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>();
+                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>().ReverseMap(); 
 
             });
 
@@ -318,9 +320,23 @@ namespace MyFundi.Web
             var masterkeyDirPath = $"{Directory.GetCurrentDirectory()}\\Master";
             var masterKeyFilePath = $"{masterkeyDirPath}\\masterkey.txt";
             var paypalSettings = Configuration.GetSection("ApplicationConstants");
-            services.AddScoped<PayPalHandler>(pHandle => new PayPalHandler(paypalSettings.GetSection("PaypalBaseUrl").Value,
-              paypalSettings.GetSection("BusinessEmail").Value, paypalSettings.GetSection("SuccessUrl").Value, paypalSettings.GetSection("CancelUrl").Value,
+            services.AddScoped<PayPalHandler>(pHandle => new PayPalHandler(
+              paypalSettings.GetSection("PaypalBaseUrl").Value,
+              paypalSettings.GetSection("BusinessEmail").Value, 
+              paypalSettings.GetSection("SuccessUrl").Value, 
+              paypalSettings.GetSection("CancelUrl").Value,
               paypalSettings.GetSection("NotifyUrl").Value, ""));
+            services.AddScoped<MtnAirTelHandler>(pHandle => new MtnAirTelHandler(
+             Configuration.GetSection("MTNApiConfig").GetSection("MTNBaseUrl").Value,
+             Configuration.GetSection("MTNApiConfig").GetSection("BusinessEmail").Value, 
+             Configuration.GetSection("MTNApiConfig").GetSection("SuccessUrl").Value, 
+             Configuration.GetSection("MTNApiConfig").GetSection("CancelUrl").Value,
+             Configuration.GetSection("MTNApiConfig").GetSection("NotifyUrl").Value, "", 
+             Configuration.GetSection("MTNApiConfig").GetSection("Phone").Value,
+             Configuration.GetSection("MTNApiConfig").GetSection("Username").Value,
+             Configuration.GetSection("MTNApiConfig").GetSection("Password").Value,
+             Configuration.GetSection("MTNApiConfig").GetSection("Currency").Value, 
+             Configuration.GetSection("MTNApiConfig").GetSection("Action").Value));
             services.AddScoped<Mapper>(map => new Mapper(mapperConfiguration));
             services.AddScoped<MyFundiUnitOfWork>();
             services.AddScoped<ServicesEndPoint, ServicesEndPoint>();
@@ -347,6 +363,7 @@ namespace MyFundi.Web
             services.AddScoped<AbstractRepository<JobWorkCategory>, JobWorkCategoryRepository>();
             services.AddScoped<AbstractRepository<MonthlySubscription>, MonthlySubscriptionRepository>();
             services.AddScoped<AbstractRepository<WorkSubCategory>, WorkSubCategoryRepository>();
+            services.AddScoped<AbstractRepository<FundiSubscription>, FundiSubscriptionRepository>(); 
             services.AddScoped<SimbaToursEastAfrica.Caching.Interfaces.ICaching, SimbaToursEastAfrica.Caching.Concretes.SimbaToursEastAfricaCahing>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();

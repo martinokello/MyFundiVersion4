@@ -17,10 +17,11 @@ namespace MyFundi.Web.ViewModels
         public string SubscriptionName { get; set; }
         public decimal SubscriptionFee { get; set; }
         public string SubscriptionDescription { get; set; }
-        public DateTime DescriptionDate { get; set; }
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; } = DateTime.Now.AddDays(31);
         public DateTime DateCreated = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
+        public bool HasExpired { get; set; } = false;
+        public WorkCategoryAndSubCategoryIdsTo[] WorkCategoryAndSubCategoryIds { get;set;}
     }
 }

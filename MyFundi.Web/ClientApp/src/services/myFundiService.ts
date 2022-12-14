@@ -5,12 +5,11 @@ import { Observable } from 'rxjs/Observable';
 import { Binary } from '@angular/compiler';
 import { APP_BASE_HREF } from '@angular/common';
 import * as google from '../assets/google/googleMaps.js';
-import * as $ from 'jquery';
 declare const google: any;
 
 @Injectable()
 export class MyFundiService {
-
+    
     private baseServerUrl: string = /*"https://localhost:44343";*/ "https://myfundiv2.martinlayooinc.com";
 
     public constructor(private httpClient: HttpClient) {
@@ -41,6 +40,7 @@ export class MyFundiService {
     public addFundiCertificateUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCertificate";
     public addFundiCourseUrl: string = this.baseServerUrl + "/FundiProfile/AddFundiCourse"; 
     public getFundiProfileRatingByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileRatingById";
+    public getFundiLevelOfEngagementByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiLevelOfEngagementById";
     public getFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
     public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
     public payMonthlySubscriptionFeeWithPaypalUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithPaypal";
@@ -178,6 +178,21 @@ export class MyFundiService {
             return clientProf;
         });
     } 
+    GetFundiLevelOfEngagement(fundiProfileId: number): Observable<IFundiEngagement[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiLevelOfEngagementByIdUrl + "/" + fundiProfileId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IFundiEngagement[] => {
+            let fundiEngagement: IFundiEngagement[] = res;
+            return fundiEngagement;
+        });
+    }
 
     GetWorkCategoriesAndSubCategories(): Observable<IWorkAndSubWorkCategory[]> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -463,7 +478,7 @@ export class MyFundiService {
             return location;
         });
     }
-    public GetFundiProfileByProfileId(profileId: string): Observable<any> {
+    public GetFundiProfileByProfileId(profileId: string): Observable<IProfile> {
 
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getFundiProfileByProfileIdUrl + "/" + profileId;
@@ -1896,3 +1911,10 @@ export interface IMtnAirTelModel
     cancelUrl: string;
     successUrl: string;
 };
+
+export interface IFundiEngagement {
+    fundiProfileId: number;
+    firstName: string;
+    lastName: string;
+    numberOfAssignments: number;
+}

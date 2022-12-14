@@ -750,6 +750,10 @@
               "version": "[3.1.31, 3.1.31]"
             },
             {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.31, 3.1.31]"
+            },
+            {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
               "version": "[3.1.31, 3.1.31]"
             },
@@ -929,7 +933,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj": {
+                "projectPath": "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -944,7 +952,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
-              "version": "[2.2.0-preview2-35157, )"
+              "version": "[2.2.0, )"
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",

@@ -54,6 +54,8 @@ namespace MyFundi.DataAccess
         public DbSet<JobWorkCategory> JobWorkCategories { get; set; }
         public DbSet<MonthlySubscription> MonthlySubscriptions { get; set; }
         public DbSet<WorkSubCategory> WorkSubCategories { get; set; }
+        public DbSet<FundiSubscription> FundiSubscriptions { get; set; }
+
 
         public Tuple<int, int> GetFundiProfileAvgRatingById(int fundiProfileId)
         {
@@ -81,7 +83,7 @@ namespace MyFundi.DataAccess
             }
 
         }
-        
+
         public List<WorkCategoryTypesTO> GetWorkSubCategoriesForFundiByJobId(int jobId, int fundiProfileId)
         {
             var list = new List<WorkCategoryTypesTO>();
@@ -177,7 +179,7 @@ namespace MyFundi.DataAccess
                         FundiRating = (reader["FundiRating"] == DBNull.Value ? 0 : (int)reader["FundiRating"]),
                         ClientUserId = (Guid)reader["ClientUserId"]
                     });
-                
+
                 }
                 con.Close();
                 return list;
@@ -221,7 +223,7 @@ namespace MyFundi.DataAccess
         }
 
 
-        public List<FundiRatingsReviewLocationApart> GetFundiAvgRatingsAndJobWithinDistance(int clientProfileId,int jobId, string[] fundiCategories, string[] fundiSubCategories, float distanceApart, int skip, int take)
+        public List<FundiRatingsReviewLocationApart> GetFundiAvgRatingsAndJobWithinDistance(int clientProfileId, int jobId, string[] fundiCategories, string[] fundiSubCategories, float distanceApart, int skip, int take)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -300,7 +302,7 @@ namespace MyFundi.DataAccess
             }
 
         }
-        public List<JobsFundiCategoriesLocationApart> GetJobsByFundiWorkCategoriesWithinDistance(int fundiProfileId, string[] fundiCategories,string[] fundiSubCategories, float distanceApart, int skip, int take)
+        public List<JobsFundiCategoriesLocationApart> GetJobsByFundiWorkCategoriesWithinDistance(int fundiProfileId, string[] fundiCategories, string[] fundiSubCategories, float distanceApart, int skip, int take)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -376,6 +378,40 @@ namespace MyFundi.DataAccess
                 return listItems;
             }
         }
+
+        public List<dynamic> GetFundiLevelOfEngagementById(int fundiProfileId)
+        {
+            var list = new List<dynamic>();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
+
+                cmd.CommandText = "[dbo].[FundiLevelOfEngagement]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(
+                        new
+                        {
+                            FundiProfileId = reader["FundiProfileId"] == DBNull.Value ? 0 : (int)reader["FundiProfileId"],
+                            FirstName = reader["FirstName"] == DBNull.Value ? "Not Found" : (string)reader["FirstName"],
+                            LastName = reader["LastName"] == DBNull.Value ? "Not Found" : (string)reader["LastName"],
+                            NumberOfAssignments = reader["NumberOfAssignments"] == DBNull.Value ? 0 : (int)reader["NumberOfAssignments"]
+                        });
+                }
+                con.Close();
+            }
+            return list;
+        }
     }
 }
-

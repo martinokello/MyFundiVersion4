@@ -4,14 +4,14 @@
     "C:\\Development\\MyFundiCurrent\\PaypalFacility\\PaypalFacility.csproj": {}
   },
   "projects": {
-    "C:\\Development\\MyFundiCurrent\\PaypalFacility\\PaypalFacility.csproj": {
+    "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\MyFundiCurrent\\PaypalFacility\\PaypalFacility.csproj",
-        "projectName": "PaypalFacility",
-        "projectPath": "C:\\Development\\MyFundiCurrent\\PaypalFacility\\PaypalFacility.csproj",
+        "projectUniqueName": "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj",
+        "projectName": "MyFundi.Domain",
+        "projectPath": "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj",
         "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\MyFundiCurrent\\PaypalFacility\\obj\\",
+        "outputPath": "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mart4\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,9 +40,87 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.22, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Development\\MyFundiCurrent\\PaypalFacility\\PaypalFacility.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Development\\MyFundiCurrent\\PaypalFacility\\PaypalFacility.csproj",
+        "projectName": "PaypalFacility",
+        "projectPath": "C:\\Development\\MyFundiCurrent\\PaypalFacility\\PaypalFacility.csproj",
+        "packagesPath": "C:\\Users\\mart4\\.nuget\\packages\\",
+        "outputPath": "C:\\Development\\MyFundiCurrent\\PaypalFacility\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mart4\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj": {
+                "projectPath": "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
-              "version": "[2.2.0-preview2-35157, )"
+              "version": "[2.2.0, )"
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",

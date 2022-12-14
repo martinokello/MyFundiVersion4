@@ -17,13 +17,15 @@
         <div *ngIf="fundiSatisfyingJobList.length > 0">
             <section id="Profile" *ngFor="let profile of fundiSatisfyingJobList">
                 <div class="row" style="text-align: center !important; align-content: center !important;">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6" style="text-align:center !important;">
                         <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
                         <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />
                         <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />
                         <span id="averageFundiRating-{{profile.fundiProfileId}}" class="profileRatingSpan rateit" data-rateit-mode="font" style="text-align:left;font-size: 40px; max-width: 10%;"></span><br />
                     </div>
+                    <fundi-engagement class="col-lg-6" id="clientSearchEngagement-{{profile.fundiProfileId}}" [profileId]="profile.fundiProfileId" style="margin-top:40px !important;"></fundi-engagement>
                 </div>
+               
                 <div class="row" style="text-align: center !important; align-content: center !important;">
                     <div class="col-lg-12">
                         <a href="#" (click)="populateFundiUserDetails($event,profile.fundiProfileId)" style="width:250px; height:auto; align-content:center !important;">View Fundi Profile</a><br />

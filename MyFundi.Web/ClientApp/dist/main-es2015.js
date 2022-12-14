@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>\r\n    <section id=\"Profile\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"viewProfileSummary\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Client Profile Summary</h5>\r\n                <div>{{clientProfile.profileSummary}} <br /></div>\r\n                <!--<h5>Client Phone Number: {{userDetails.mobileNumber}}</h5>-->\r\n                <hr />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job ID</h5>\r\n                <label id=\"jobId\" name=\"jobId\">#{{job.jobId}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Name</h5>\r\n                <label type=\"text\" id=\"jobName\" name=\"jobName\">{{job.jobName}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Location Name</h5>\r\n                <Label id=\"locationName\" name=\"locationName\">{{job.location.locationName}}</Label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Description</h5>\r\n                <div id=\"jobDescription\" name=\"jobDescription\">\r\n                    {{job.jobDescription}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul id=\"ulistWorkCategories\">\r\n                    <li *ngFor=\"let jwc of workCategories\">\r\n                        <em>{{jwc.workCategory.workCategoryType}}</em><br />\r\n                        {{jwc.workSubCategory.workSubCategoryType}}\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Estimate Of Days To Complete</h5>\r\n                <label type=\"number\" id=\"numberOfDaysToComplete\">{{job.numberOfDaysToComplete}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"custom-control custom-checkbox\">\r\n                    <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasBeenAssignedFundi\" [(ngModel)]=\"job.hasBeenAssignedFundi\" id=\"hasBeenAssignedFundi\" readonly />\r\n                    <label class=\"custom-control-label\" for=\"hasBeenAssignedFundi\">Has Been Assigned Fundi</label>\r\n                </div>\r\n                <div class=\"custom-control custom-checkbox\">\r\n                    <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasCompleted\" [(ngModel)]=\"job.hasCompleted\" id=\"hasCompleted\" readonly />\r\n                    <label class=\"custom-control-label\" for=\"hasCompleted\">Has Completed</label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div  class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <form #fundiJobApplicationForm=\"ngForm\" id=\"fundiJobApplicationForm\" (ngSubmit)=\"fundiJobApplicationForm.form.valid\" enctype=\"multipart/form-data\" method=\"post\" class=\"col-lg-12\">\r\n                <div style=\"margin: 5px 0px !important;\">\r\n                    <h3>Apply For Job With CV And Cover Note</h3>\r\n                    <hr />\r\n                    <div style=\"width: 100%;\">\r\n                        <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailFrom.invalid\" class=\"text-danger\">\r\n                            email from field required.\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <input style=\"width: 100% !important;\" class=\"form-control\" name=\"emailFrom\" type=\"email\" [(ngModel)]=\"email.emailFrom\" #emailFrom=\"ngModel\" required placeholder=\"your email address\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                        </div>\r\n\r\n                        <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailSubject.invalid\" class=\"text-danger\">\r\n                            email subject field required.\r\n                            <br />\r\n                        </div>\r\n\r\n                        <div class=\"form-group\">\r\n                            <input name=\"emailSubject\" type=\"text\" class=\"form-control\" required #emailSubject=\"ngModel\" [(ngModel)]=\"email.emailSubject\" placeholder=\"subject\" style=\"font-weight: bold; width: 100%;color: #000040;\" /><br />\r\n                            <input type=\"file\" name=\"attachment\" (change)=\"getFiles($event)\" value=\"Attach CV file\" id=\"attachment\" /><br />\r\n                        </div>\r\n                        <div style=\"margin:5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailBody.invalid\" class=\"text-danger\">\r\n                            email body field required.\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <textarea name=\"emailBody\" class=\"form-control\" required #emailBody=\"ngModel\" [(ngModel)]=\"email.emailBody\" style=\"width: 100% !important; height:50vh !important; !important;\" placeholder=\"email body required\"></textarea>\r\n                        </div>\r\n                    </div>\r\n                    <div style=\"width:100%;\">\r\n                        <div style=\"clear:both;width: 90%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;margin:0px 5px;\">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>\r\n                        <hr />\r\n                        <myrecaptcha></myrecaptcha>\r\n                        <input type=\"submit\" id=\"submit\" class=\"btn-primary\" value=\"Apply For Job\" style=\"margin:5px 0px;display:none;\" (click)=\"sendEmail($event)\" />\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>\r\n    <section id=\"Profile\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"viewProfileSummary\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Client Profile Summary</h5>\r\n                <div>{{clientProfile.profileSummary}} <br /></div>\r\n                <!--<h5>Client Phone Number: {{userDetails.mobileNumber}}</h5>-->\r\n                <hr />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job ID</h5>\r\n                <label id=\"jobId\" name=\"jobId\">#{{job.jobId}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Name</h5>\r\n                <label type=\"text\" id=\"jobName\" name=\"jobName\">{{job.jobName}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Location Name</h5>\r\n                <Label id=\"locationName\" name=\"locationName\">{{job.location.locationName}}</Label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Description</h5>\r\n                <div id=\"jobDescription\" name=\"jobDescription\">\r\n                    {{job.jobDescription}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul id=\"ulistWorkCategories\">\r\n                    <li *ngFor=\"let jwc of workCategories\">\r\n                        <em>{{jwc.workCategory.workCategoryType}}</em><br />\r\n                        {{jwc.workSubCategory.workSubCategoryType}}\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Estimate Of Days To Complete</h5>\r\n                <label type=\"number\" id=\"numberOfDaysToComplete\">{{job.numberOfDaysToComplete}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"custom-control custom-checkbox\">\r\n                    <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasBeenAssignedFundi\" [(ngModel)]=\"job.hasBeenAssignedFundi\" id=\"hasBeenAssignedFundi\" readonly />\r\n                    <label class=\"custom-control-label\" for=\"hasBeenAssignedFundi\">Has Been Assigned Fundi</label>\r\n                </div>\r\n                <div class=\"custom-control custom-checkbox\">\r\n                    <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasCompleted\" [(ngModel)]=\"job.hasCompleted\" id=\"hasCompleted\" readonly />\r\n                    <label class=\"custom-control-label\" for=\"hasCompleted\">Has Completed</label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <form #fundiJobApplicationForm=\"ngForm\" id=\"fundiJobApplicationForm\" (ngSubmit)=\"fundiJobApplicationForm.form.valid\" enctype=\"multipart/form-data\" method=\"post\" class=\"col-lg-12\">\r\n                <div style=\"margin: 5px 0px !important;\">\r\n                    <h3>Apply For Job With CV And Cover Note</h3>\r\n                    <hr />\r\n                    <div style=\"width: 100%;\">\r\n                        <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailFrom.invalid\" class=\"text-danger\">\r\n                            email from field required.\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"emailFrom\" type=\"email\" [(ngModel)]=\"email.emailFrom\" #emailFrom=\"ngModel\" required placeholder=\"your email address\" /><br />\r\n                        </div>\r\n\r\n                        <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailSubject.invalid\" class=\"text-danger\">\r\n                            email subject field required.\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" name=\"emailSubject\" type=\"text\" class=\"form-control\" required #emailSubject=\"ngModel\" [(ngModel)]=\"email.emailSubject\" placeholder=\"subject\" /><br />\r\n                            <input type=\"file\" name=\"attachment\" (change)=\"getFiles($event)\" value=\"Attach CV file\" id=\"attachment\" /><br />\r\n                        </div>\r\n                        <div style=\"margin:5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailBody.invalid\" class=\"text-danger\">\r\n                            email body field required.\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <textarea name=\"emailBody\" class=\"form-control\" required #emailBody=\"ngModel\" [(ngModel)]=\"email.emailBody\" style=\"width: 100% !important; height:50vh !important;;\" placeholder=\"email body required\"></textarea>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div style=\"width:100%;\" class=\"col-lg-12\">\r\n                    <div style=\"clear:both;width: 100%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;margin:0px 5px;\">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>\r\n                    <hr />\r\n                    <myrecaptcha></myrecaptcha>\r\n                    <div class=\"form-group\">\r\n                        <input type=\"submit\" id=\"submit\" class=\"btn-primary\" value=\"Apply For Job\" style=\"margin:5px 0px;display:none;\" (click)=\"sendEmail($event)\" />\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </section>\r\n</div>");
 
 /***/ }),
 
@@ -74,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"clientfundisearch-wrapper\">\r\n        <section id=\"searchFundi\">\r\n            <form id=\"fundiSearchForm\" ngForm>\r\n                <div class=\"form-group\">\r\n                    <label>Search By Fundi Categories</label>\r\n                    <div id=\"fundiCategories\">\r\n                    </div>\r\n                </div><br />\r\n                <div class=\"form-group\">\r\n                    <label>Job Name</label>\r\n                    <select id=\"jobId\" name=\"jobId\" [(ngModel)]=\"jobId\"></select>\r\n                </div><br />\r\n                <input type=\"button\" value=\"Search Fundi By Categories\" class=\"but-primary\" (click)=\"searchFundiByCategories($event)\" />\r\n            </form>\r\n        </section>\r\n        <div *ngIf=\"fundiSatisfyingJobList.length > 0\">\r\n            <section id=\"Profile\" *ngFor=\"let profile of fundiSatisfyingJobList\">\r\n                <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                    <div class=\"col-lg-12\">\r\n                        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n                        <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />\r\n                        <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />\r\n                        <span id=\"averageFundiRating-{{profile.fundiProfileId}}\" class=\"profileRatingSpan rateit\" data-rateit-mode=\"font\" style=\"text-align:left;font-size: 40px; max-width: 10%;\"></span><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                    <div class=\"col-lg-12\">\r\n                        <a href=\"#\" (click)=\"populateFundiUserDetails($event,profile.fundiProfileId)\" style=\"width:250px; height:auto; align-content:center !important;\">View Fundi Profile</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Profile Summary</h5>\r\n                        <ul>\r\n                            <li>\r\n                                {{profile.fundiProfileSummary}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"text-align: center !important; align-content: center !important;margin:2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Profile Rating &amp; Reviews</h5>\r\n                        <ul>\r\n                            <li *ngFor=\"let rating of profile.fundiRatingsAndReviews\">\r\n                                <div>\r\n                                    Rated By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{rating.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Rating: <span style=\"color:brown !important;\">{{rating.fundiRating?rating.fundiRating:\"No Rating Yet\"}} out of 5</span><br />\r\n                                </div>\r\n                                <div>\r\n                                    Review By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{profile.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Review: {{rating.clientReview}}<br />\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                        <h5>Rate This Fundi</h5>\r\n                        <form id=\"ratingForm-{{profile.fundiProfileId}}\">\r\n                            <div id=\"fundiRating-{{profile.fundiProfileId}}\" class=\"rateit\" data-rateit-mode=\"font\" style=\"text-align: left; font-size: 40px; max-width: 10% !important;\"></div><br />\r\n                            <span>Choose Work Category:</span><br />\r\n                            <h5>Fundi Work Category Types</h5>\r\n                            <div *ngFor=\"let wcdata of profile.jobWorkCategoryDetails\">\r\n                                <h6>{{wcdata.workCategoryType}}</h6>\r\n                                <h5>Work Sub Category Type</h5>\r\n                                <select id=\"workCategory-{{profile.fundiProfileId}}\" name=\"workCategory\" class=\"form-control\">\r\n                                    <option value=\"{{wcdata.workSubCategoryId}}\">{{wcdata.workSubCategoryType}}</option>\r\n                                </select>\r\n                            </div>\r\n                            <br />\r\n                            <textarea id=\"review-{{profileId}}\" placeholder=\"Write review\" rows=\"5\" cols=\"20\"></textarea><br />\r\n                            <input type=\"button\" id=\"{{profileId}}\" class=\"but-primary\" value=\"Rate Fundi\" (click)=\"rateFundi($event)\" />\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"skills\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Skills</h5>\r\n                        <ul id=\"{{profile.fundiProfileId}}-skills\">\r\n                            <li>{{profile.fundiSkills}}</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <hr /><br />\r\n            </section>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"clientfundisearch-wrapper\">\r\n        <section id=\"searchFundi\">\r\n            <form id=\"fundiSearchForm\" ngForm>\r\n                <div class=\"form-group\">\r\n                    <label>Search By Fundi Categories</label>\r\n                    <div id=\"fundiCategories\">\r\n                    </div>\r\n                </div><br />\r\n                <div class=\"form-group\">\r\n                    <label>Job Name</label>\r\n                    <select id=\"jobId\" name=\"jobId\" [(ngModel)]=\"jobId\"></select>\r\n                </div><br />\r\n                <input type=\"button\" value=\"Search Fundi By Categories\" class=\"but-primary\" (click)=\"searchFundiByCategories($event)\" />\r\n            </form>\r\n        </section>\r\n        <div *ngIf=\"fundiSatisfyingJobList.length > 0\">\r\n            <section id=\"Profile\" *ngFor=\"let profile of fundiSatisfyingJobList\">\r\n                <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                    <div class=\"col-lg-6\" style=\"text-align:center !important;\">\r\n                        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n                        <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />\r\n                        <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />\r\n                        <span id=\"averageFundiRating-{{profile.fundiProfileId}}\" class=\"profileRatingSpan rateit\" data-rateit-mode=\"font\" style=\"text-align:left;font-size: 40px; max-width: 10%;\"></span><br />\r\n                    </div>\r\n                    <fundi-engagement class=\"col-lg-6\" id=\"clientSearchEngagement-{{profile.fundiProfileId}}\" [profileId]=\"profile.fundiProfileId\" style=\"margin-top:40px !important;\"></fundi-engagement>\r\n                </div>\r\n               \r\n                <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                    <div class=\"col-lg-12\">\r\n                        <a href=\"#\" (click)=\"populateFundiUserDetails($event,profile.fundiProfileId)\" style=\"width:250px; height:auto; align-content:center !important;\">View Fundi Profile</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Profile Summary</h5>\r\n                        <ul>\r\n                            <li>\r\n                                {{profile.fundiProfileSummary}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"text-align: center !important; align-content: center !important;margin:2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Profile Rating &amp; Reviews</h5>\r\n                        <ul>\r\n                            <li *ngFor=\"let rating of profile.fundiRatingsAndReviews\">\r\n                                <div>\r\n                                    Rated By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{rating.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Rating: <span style=\"color:brown !important;\">{{rating.fundiRating?rating.fundiRating:\"No Rating Yet\"}} out of 5</span><br />\r\n                                </div>\r\n                                <div>\r\n                                    Review By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{profile.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Review: {{rating.clientReview}}<br />\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                        <h5>Rate This Fundi</h5>\r\n                        <form id=\"ratingForm-{{profile.fundiProfileId}}\">\r\n                            <div id=\"fundiRating-{{profile.fundiProfileId}}\" class=\"rateit\" data-rateit-mode=\"font\" style=\"text-align: left; font-size: 40px; max-width: 10% !important;\"></div><br />\r\n                            <span>Choose Work Category:</span><br />\r\n                            <h5>Fundi Work Category Types</h5>\r\n                            <div *ngFor=\"let wcdata of profile.jobWorkCategoryDetails\">\r\n                                <h6>{{wcdata.workCategoryType}}</h6>\r\n                                <h5>Work Sub Category Type</h5>\r\n                                <select id=\"workCategory-{{profile.fundiProfileId}}\" name=\"workCategory\" class=\"form-control\">\r\n                                    <option value=\"{{wcdata.workSubCategoryId}}\">{{wcdata.workSubCategoryType}}</option>\r\n                                </select>\r\n                            </div>\r\n                            <br />\r\n                            <textarea id=\"review-{{profileId}}\" placeholder=\"Write review\" rows=\"5\" cols=\"20\"></textarea><br />\r\n                            <input type=\"button\" id=\"{{profileId}}\" class=\"but-primary\" value=\"Rate Fundi\" (click)=\"rateFundi($event)\" />\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"skills\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Skills</h5>\r\n                        <ul id=\"{{profile.fundiProfileId}}-skills\">\r\n                            <li>{{profile.fundiSkills}}</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <hr /><br />\r\n            </section>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -260,6 +260,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-engagement/fundiengagement.component.html":
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-engagement/fundiengagement.component.html ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"margin-top: 20px !important;\">\r\n    <div style=\"text-align:left !important; margin-top: 20px !important;\">\r\n        <h6 style=\"display:block !important;width:auto;\">Level Of Fundi Engagements</h6>\r\n        <em>Fundi Number Of Assignments: {{currentFundiNumbOfAssignments}}</em><br />\r\n    </div>\r\n    <div style=\"text-align:left !important;background-color: #EEEEEE;margin-top:10px !important;\">\r\n        <div class=\"levelOfEngagement\" style=\"margin:!important; width: 40px !important; line-height: 50px !important; border: gray solid thin !important; text-align: center !important; border-radius: 20px !important;\">\r\n            <div id=\"indicator\" style=\"background-color:gray !important;display:none;margin-left:-4px !important;width:48px !important;z-index:200;position:absolute !important;height:2% !important;\"></div>\r\n            <div id=\"fundiRed\" style=\"background-color: #FF0000 !important; width: 100% !important; height: 24% !important; border: gray solid thin !important; border-radius: 20px 20px 0px 0px !important;\">.</div>\r\n            <div id=\"fundiOrange\" style=\"background-color: #FF8040 !important; width: 100% !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; \">.</div>\r\n            <div id=\"fundiYellow\" style=\"background-color: #EAF50A !important; width: 100% !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; \">.</div>\r\n            <div id=\"fundiGreen\" style=\"background-color: #99FF00 !important; width: 100% !important; height: 24% !important; border: gray thin medium !important; border-radius: 0px 0px 20px 20px !important; \">.</div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/fundiJobSearch/fundiJobSearch.component.html":
 /*!****************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/fundiJobSearch/fundiJobSearch.component.html ***!
@@ -282,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{profileUserDetails.firstName}} {{profileUserDetails.lastName}} Profile</h1>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{profileUserDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;margin:2px 0px !important;\">\r\n      <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n        <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\">Download {{profileUserDetails.firstName}} {{profileUserDetails.lastName}} Profile CV</a><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Rating</h5>\r\n        <ul>\r\n          <li *ngFor=\"let fundiRating of fundiRatings\">\r\n            <div>\r\n              <em style=\"color:brown !important;\">Rating: {{fundiRating.rating}} out of 5</em>\r\n            </div>\r\n            <div>\r\n              Review: {{fundiRating.review}}\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Work Categories</h5>\r\n        <ul>\r\n            <li *ngFor=\"let wcat of workCategories\">\r\n                <em>{{wcat.workCategory.workCategoryType}}</em><br />\r\n                {{wcat.workSubCategory.workSubCategoryType}}\r\n            </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{profile.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Skills</h5>\r\n        <div class=\"col-lg-12\" id=\"skills\">\r\n          {{profile.skills}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Power Tools Used</h5>\r\n        <div class=\"col-lg-12\" id=\"usedPowerTools\">\r\n          {{profile.usedPowerTools}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Certifications</h5>\r\n        <div class=\"col-lg-12\" id=\"certifications\">\r\n          <ul>\r\n            <li *ngFor=\"let cert of certifications\">\r\n              {{cert.certificationName}}<br />\r\n              <div>{{cert.certificationDescription}}</div>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <h5>Courses Attended</h5>\r\n        <div class=\"col-lg-12\" id=\"courses\" style=\"margin: 2px 0px !important;\">\r\n          <ul>\r\n            <li *ngFor=\"let course of courses\">\r\n              {{course.courseName}}<br />\r\n              <div>{{course.courseDescription}}</div>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h1 style=\"padding:10px 0px !important;text-align:center !important;\">{{profileUserDetails.firstName}} {{profileUserDetails.lastName}} Profile</h1>\r\n    <section id=\"Profile\">\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-6\" style=\"text-align:center !important;margin-top:20px !important;\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{profileUserDetails.username}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto;\" /><br />\r\n            </div>\r\n            <fundi-engagement class=\"col-lg-6\" id=\"engagement-{{profileUserDetails.fundiProfileId}}\" [profileId]=\"profileUserDetails.fundiProfileId\"></fundi-engagement>\r\n        </div>\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;margin:2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\">Download {{profileUserDetails.firstName}} {{profileUserDetails.lastName}} Profile CV</a><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Rating</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let fundiRating of fundiRatings\">\r\n                        <div>\r\n                            <em style=\"color:brown !important;\">Rating: {{fundiRating.rating}} out of 5</em>\r\n                        </div>\r\n                        <div>\r\n                            Review: {{fundiRating.review}}\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let wcat of workCategories\">\r\n                        <em>{{wcat.workCategory.workCategoryType}}</em><br />\r\n                        {{wcat.workSubCategory.workSubCategoryType}}\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Summary</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{profile.profileSummary}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Skills</h5>\r\n                <div class=\"col-lg-12\" id=\"skills\">\r\n                    {{profile.skills}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Power Tools Used</h5>\r\n                <div class=\"col-lg-12\" id=\"usedPowerTools\">\r\n                    {{profile.usedPowerTools}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Certifications</h5>\r\n                <div class=\"col-lg-12\" id=\"certifications\">\r\n                    <ul>\r\n                        <li *ngFor=\"let cert of certifications\">\r\n                            {{cert.certificationName}}<br />\r\n                            <div>{{cert.certificationDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h5>Courses Attended</h5>\r\n                <div class=\"col-lg-12\" id=\"courses\" style=\"margin: 2px 0px !important;\">\r\n                    <ul>\r\n                        <li *ngFor=\"let course of courses\">\r\n                            {{course.courseName}}<br />\r\n                            <div>{{course.courseDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -295,7 +308,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf(\"Fundi\") > -1 ?\"Fundi\":\"Client\"}} Profile</h1>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n            <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n              <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n              </div>\r\n              <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                  <label>\r\n                    Fundi Profile ID\r\n                  </label><br />\r\n                  <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                  <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                    Fundi ID Required\r\n                  </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label>\r\n                    Fundi User ID\r\n                  </label><br />\r\n                  <input type=\"text\" class=\"form-control\" required name=\"userId\" #fundUserId=\"ngModel\" readonly [(ngModel)]=\"fundi.userId\" /><br />\r\n                  <div *ngIf=\"fs.submitted && fundUserId.invalid\" class=\"text-danger\">\r\n                    Fundi User Id Required\r\n                  </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label>\r\n                    Subscripton Name\r\n                  </label><br />\r\n                  <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\"/><br />\r\n                  <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                    Subscription Name Required\r\n                  </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label>\r\n                    Monthly Subscription Description\r\n                  </label><br />\r\n                  <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                  <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                    Subscription Name Required\r\n                  </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label>\r\n                    Subscripton Monthly Fee\r\n                  </label><br />\r\n                  <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" #subscriptionFee=\"ngModel\"/><br />\r\n                  <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                    Subscription Fee Required\r\n                  </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label>\r\n                        Make Payment\r\n                    </label><br />\r\n                    <input type=\"button\" value=\"Paypal Make Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                    <input type=\"button\" value=\"MTN Make Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                    <input type=\"button\" value=\"AirTel Make Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                </div>\r\n                <hr />\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid subcworkSubCategories-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf(\"Fundi\") > -1 ?\"Fundi\":\"Client\"}} Profile</h1>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n            <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n              <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n              </div>\r\n              <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Fundi Profile ID\r\n                      </label><br />\r\n                      <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                      <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                          Fundi ID Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>Work Category Id</label>\r\n                      <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>Work Sub Category Id</label>\r\n                      <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                      <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                      <br />\r\n                      <ul id=\"ulistWorkCategories\"></ul>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Subscripton Name\r\n                      </label><br />\r\n                      <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                          Subscription Name Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Monthly Subscription Description\r\n                      </label><br />\r\n                      <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                          Subscription Name Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Subscripton Monthly Fee\r\n                      </label><br />\r\n                      <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                          Subscription Fee Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Make Payment\r\n                      </label><br />\r\n                      <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                      <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                      <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                  </div>\r\n                  <hr />\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -399,7 +412,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <section>\r\n    <a style=\"padding-top:10px;padding-bottom:10px !important;\" [routerLink]=\"['/create-profile']\"   routerLinkActive='link-active'>\r\n      Create Or Edit Profile\r\n    </a>\r\n  </section>\r\n  <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf(\"Fundi\") > -1 ?\"Fundi\":\"Client\"}} Profile</h1>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;margin:2px 0px !important;\">\r\n      <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n        <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\">Download {{userDetails.firstName}} {{userDetails.lastName}} Profile CV</a><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Rating</h5>\r\n        <ul>\r\n          <li *ngFor=\"let fundiRating of fundiRatings\">\r\n            <div>\r\n              <em style=\"color:brown !important;\">Rating: {{fundiRating.rating}} out of 5</em>\r\n            </div>\r\n            <div>\r\n              {{fundiRating.review}}\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Work Categories</h5>\r\n        <ul>\r\n            <li *ngFor=\"let workCatSubCat of workCategories\">\r\n                {{workCatSubCat.workCategory.workCategoryType}}\r\n                <ul>\r\n                    <li>{{workCatSubCat.workSubCategory.workSubCategoryType}}</li>\r\n                </ul>\r\n            </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummaryView\">\r\n          {{profile.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Skills</h5>\r\n        <div class=\"col-lg-12\" id=\"skills\">\r\n          {{profile.skills}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Power Tools Used</h5>\r\n        <div class=\"col-lg-12\" id=\"usedPowerTools\">\r\n          {{profile.usedPowerTools}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Certifications</h5>\r\n        <div class=\"col-lg-12\" id=\"certifications\">\r\n          <ul>\r\n            <li *ngFor=\"let cert of certifications\">\r\n              {{cert.certificationName}}<br />\r\n              <div>{{cert.certificationDescription}}</div>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <h5>Courses Attended</h5>\r\n        <div class=\"col-lg-12\" id=\"courses\" style=\"margin: 2px 0px !important;\">\r\n          <ul>\r\n            <li *ngFor=\"let course of courses\">\r\n              {{course.courseName}}<br />\r\n              <div>{{course.courseDescription}}</div>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <section>\r\n    <a style=\"padding-top:10px;padding-bottom:10px !important;\" [routerLink]=\"['/create-profile']\"   routerLinkActive='link-active'>\r\n      Create Or Edit Profile\r\n    </a>\r\n  </section>\r\n  <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf(\"Fundi\") > -1 ?\"Fundi\":\"Client\"}} Profile</h1>\r\n  <section id=\"Profile\">\r\n      <div class=\"row\">\r\n          <div class=\"col-lg-6\" style=\"text-align:center !important;margin-top:20px !important;\">\r\n              <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto;\" /><br />\r\n          </div>\r\n          <fundi-engagement class=\"col-lg-6\" id=\"engagement-{{profile.fundiProfileId}}\" [profileId]=\"profile.fundiProfileId\"></fundi-engagement>\r\n      </div>\r\n      <div class=\"row\" style=\"text-align: center !important; align-content: center !important;margin:2px 0px !important;\">\r\n          <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n              <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\">Download {{userDetails.firstName}} {{userDetails.lastName}} Profile CV</a><br />\r\n          </div>\r\n      </div>\r\n      <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n          <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n              <h5>Profile Rating</h5>\r\n              <ul>\r\n                  <li *ngFor=\"let fundiRating of fundiRatings\">\r\n                      <div>\r\n                          <em style=\"color:brown !important;\">Rating: {{fundiRating.rating}} out of 5</em>\r\n                      </div>\r\n                      <div>\r\n                          {{fundiRating.review}}\r\n                      </div>\r\n                  </li>\r\n              </ul>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n          <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n              <h5>Work Categories</h5>\r\n              <ul>\r\n                  <li *ngFor=\"let workCatSubCat of workCategories\">\r\n                      {{workCatSubCat.workCategory.workCategoryType}}\r\n                      <ul>\r\n                          <li>{{workCatSubCat.workSubCategory.workSubCategoryType}}</li>\r\n                      </ul>\r\n                  </li>\r\n              </ul>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n          <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n              <h5>Profile Summary</h5>\r\n              <div class=\"col-lg-12\" id=\"profileSummaryView\">\r\n                  {{profile.profileSummary}}\r\n              </div>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n          <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n              <h5>Skills</h5>\r\n              <div class=\"col-lg-12\" id=\"skills\">\r\n                  {{profile.skills}}\r\n              </div>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n          <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n              <h5>Power Tools Used</h5>\r\n              <div class=\"col-lg-12\" id=\"usedPowerTools\">\r\n                  {{profile.usedPowerTools}}\r\n              </div>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n          <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n              <h5>Certifications</h5>\r\n              <div class=\"col-lg-12\" id=\"certifications\">\r\n                  <ul>\r\n                      <li *ngFor=\"let cert of certifications\">\r\n                          {{cert.certificationName}}<br />\r\n                          <div>{{cert.certificationDescription}}</div>\r\n                      </li>\r\n                  </ul>\r\n              </div>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n          <div class=\"col-lg-12\">\r\n              <h5>Courses Attended</h5>\r\n              <div class=\"col-lg-12\" id=\"courses\" style=\"margin: 2px 0px !important;\">\r\n                  <ul>\r\n                      <li *ngFor=\"let course of courses\">\r\n                          {{course.courseName}}<br />\r\n                          <div>{{course.courseDescription}}</div>\r\n                      </li>\r\n                  </ul>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -889,6 +902,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./client-job-view/clientjobview.component */ "./src/app/client-job-view/clientjobview.component.ts");
 /* harmony import */ var _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./crud-operations/courses/courses.component */ "./src/app/crud-operations/courses/courses.component.ts");
 /* harmony import */ var _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./crud-operations/worksubcategorycrud/worksubcategorycrud.component */ "./src/app/crud-operations/worksubcategorycrud/worksubcategorycrud.component.ts");
+/* harmony import */ var _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./fundi-engagement/fundiengagement.component */ "./src/app/fundi-engagement/fundiengagement.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -934,6 +948,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 ;
+
 
 
 
@@ -1004,7 +1019,8 @@ AppModule = __decorate([
             _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_51__["VehicleMonitorComponent"],
             _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_52__["myRecaptchaComponent"],
             _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_53__["ClientJobViewComponent"],
-            _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_55__["WorkSubCategoryCrudComponent"]
+            _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_55__["WorkSubCategoryCrudComponent"],
+            _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_56__["FundiEngagementComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"].withServerTransition({ appId: 'ng-cli-universal' }),
@@ -1751,6 +1767,7 @@ let ClientFundiSearchComponent = class ClientFundiSearchComponent {
             });
             jQuery('div.rateit, span.rateit').rateit();
             this.fundiSatisfyingJobList.forEach((r, ind, q) => {
+                this.profileId = r.fundiProfileId;
                 jQuery('span#averageFundiRating-' + r.fundiProfileId).rateit('value', r.averageFundiRating);
             });
         }
@@ -1783,7 +1800,6 @@ let ClientFundiSearchComponent = class ClientFundiSearchComponent {
                 }
                 let fundiRatingsObs = this.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId, r.jobId, this.distanceKmLimitApart, this.skip, this.take);
                 fundiRatingsObs.map((n) => {
-                    debugger;
                     let q = n;
                     if (q && q.length > 0) {
                         this.fundiSatisfyingJobList = q;
@@ -1848,6 +1864,7 @@ let ClientFundiSearchComponent = class ClientFundiSearchComponent {
     populateFundiUserDetails($event, profileId) {
         let userObs = this.myFundiService.GetFundiUserByProfileId(profileId);
         userObs.map((res) => {
+            res.fundiProfileId = profileId;
             localStorage.setItem("profileUserDetails", JSON.stringify(res));
             this.router.navigateByUrl('/fundiprofile-by-id');
         }).subscribe();
@@ -3873,7 +3890,6 @@ let WorkSubCategoryCrudComponent = class WorkSubCategoryCrudComponent {
         this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
     }
     runAutoCompleteOnSelects(curthis) {
-        debugger;
         let hasFoundSelectsOnPage = false;
         if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
             let selects = jQuery('div#workSubCategoriescrud-wrapper select');
@@ -4165,6 +4181,117 @@ ForgotPasswordComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
     __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
 ], ForgotPasswordComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/fundi-engagement/fundiengagement.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/fundi-engagement/fundiengagement.component.ts ***!
+  \***************************************************************/
+/*! exports provided: FundiEngagementComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FundiEngagementComponent", function() { return FundiEngagementComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+let FundiEngagementComponent = class FundiEngagementComponent {
+    constructor(myFundiService) {
+        this.myFundiService = myFundiService;
+        this.profileUserDetails = {};
+    }
+    decoderUrl(url) {
+        return decodeURIComponent(url);
+    }
+    ngOnInit() {
+        if (isNaN(this.profileId) || this.profileId == 0) {
+            let profileUserDetails = JSON.parse(localStorage.getItem("profileUserDetails"));
+            if (profileUserDetails) {
+                this.profileId = parseInt(profileUserDetails.fundiProfileId);
+                let levelEngObs = this.myFundiService.GetFundiLevelOfEngagement(this.profileId);
+                levelEngObs.map((fundiEngagements) => {
+                    let numberOfAssignments = fundiEngagements[0].numberOfAssignments;
+                    this.currentFundiNumbOfAssignments = numberOfAssignments;
+                    let top = `${numberOfAssignments <= 1 ? '87%' : (numberOfAssignments == 2) ? '62%' : numberOfAssignments == 3 ? '37%' : '12%'}`;
+                    jQuery("fundi-engagement#engagement-" + this.profileId + " div#indicator").css('height', '2%');
+                    jQuery("fundi-engagement#engagement-" + this.profileId + " div#indicator").css('position', 'absolute');
+                    jQuery("fundi-engagement#engagement-" + this.profileId + " div#indicator").css('top', top);
+                    jQuery("fundi-engagement#engagement-" + this.profileId + " div#indicator").css('display', 'block');
+                }).subscribe();
+            }
+            else {
+                let userDetails = JSON.parse(localStorage.getItem("userDetails"));
+                let fundiProfObs = this.myFundiService.GetFundiProfile(userDetails.username);
+                fundiProfObs.map((fprof) => {
+                    let fundiProfile = fprof;
+                    let levelEngObs = this.myFundiService.GetFundiLevelOfEngagement(fundiProfile.fundiProfileId);
+                    levelEngObs.map((fundiEngagements) => {
+                        let numberOfAssignments = fundiEngagements[0].numberOfAssignments;
+                        this.currentFundiNumbOfAssignments = numberOfAssignments;
+                        let top = `${numberOfAssignments <= 1 ? '87%' : (numberOfAssignments == 2) ? '62%' : numberOfAssignments == 3 ? '37%' : '12%'}`;
+                        jQuery(`div#indicator`).css('height', '2%');
+                        jQuery(`div#indicator`).css('position', 'absolute');
+                        jQuery(`div#indicator`).css('top', top);
+                        jQuery(`div#indicator`).css('display', 'block');
+                    }).subscribe();
+                }).subscribe();
+            }
+        }
+        else {
+            let fundiProfObs = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());
+            fundiProfObs.map((fprof) => {
+                this.profile = fprof;
+                let levelEngObs = this.myFundiService.GetFundiLevelOfEngagement(this.profileId);
+                levelEngObs.map((fundiEngagements) => {
+                    let numberOfAssignments = fundiEngagements[0].numberOfAssignments;
+                    this.currentFundiNumbOfAssignments = numberOfAssignments;
+                    let top = `${numberOfAssignments <= 1 ? '87%' : (numberOfAssignments == 2) ? '62%' : numberOfAssignments == 3 ? '37%' : '12%'}`;
+                    jQuery('fundi-engagement#clientSearchEngagement-' + this.profileId + ' div#indicator').css('height', '2%');
+                    jQuery('fundi-engagement#clientSearchEngagement-' + this.profileId + ' div#indicator').css('position', 'absolute');
+                    jQuery('fundi-engagement#clientSearchEngagement-' + this.profileId + ' div#indicator').css('top', top);
+                    jQuery('fundi-engagement#clientSearchEngagement-' + this.profileId + ' div#indicator').css('display', 'block');
+                    jQuery("fundi-engagement#engagement-" + this.profileId + " div#indicator").css('height', '2%');
+                    jQuery("fundi-engagement#engagement-" + this.profileId + " div#indicator").css('position', 'absolute');
+                    jQuery("fundi-engagement#engagement-" + this.profileId + " div#indicator").css('top', top);
+                    jQuery("fundi-engagement#engagement-" + this.profileId + " div#indicator").css('display', 'block');
+                }).subscribe();
+            }).subscribe();
+        }
+        let downloadLink = document.querySelector('a#downloadCV');
+        downloadLink.setAttribute('href', `/FundiProfile/GetFundiCVByUsername?username=${this.profileUserDetails.username}`);
+    }
+};
+FundiEngagementComponent.ctorParameters = () => [
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] }
+];
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("profileId"),
+    __metadata("design:type", Number)
+], FundiEngagementComponent.prototype, "profileId", void 0);
+FundiEngagementComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'fundi-engagement',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./fundiengagement.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-engagement/fundiengagement.component.html")).default
+    }),
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
+], FundiEngagementComponent);
 
 
 
@@ -4477,25 +4604,28 @@ let FundiProfileByIdComponent = class FundiProfileByIdComponent {
     }
     ngOnInit() {
         this.profileUserDetails = JSON.parse(localStorage.getItem("profileUserDetails"));
-        let resObs = this.myFundiService.GetFundiProfile(this.profileUserDetails.username);
+        this.profileId = this.profileUserDetails.fundiProfileId;
+        let resObs = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());
         let certsObs = this.myFundiService.GetFundiCertifications(this.profileUserDetails.username);
         let workCatObs = this.myFundiService.GetFundiWorkCategories(this.profileUserDetails.username);
         let coursesObs = this.myFundiService.GetFundiCourses(this.profileUserDetails.username);
         let ratingsObs = this.myFundiService.GetFundiRatings(this.profileUserDetails.username);
         resObs.map((fundiProf) => {
             this.profile = fundiProf;
-        }).subscribe();
-        ratingsObs.map((ratings) => {
-            this.fundiRatings = ratings;
-        }).subscribe();
-        coursesObs.map((courses) => {
-            this.courses = courses;
-        }).subscribe();
-        workCatObs.map((workCats) => {
-            this.workCategories = workCats;
-        }).subscribe();
-        certsObs.map((certs) => {
-            this.certifications = certs;
+            ;
+            ratingsObs.map((ratings) => {
+                this.fundiRatings = ratings;
+            }).subscribe();
+            coursesObs.map((courses) => {
+                this.courses = courses;
+            }).subscribe();
+            workCatObs.map((workCats) => {
+                this.workCategories = workCats;
+            }).subscribe();
+            certsObs.map((certs) => {
+                this.certifications = certs;
+            }).subscribe();
+            localStorage.removeItem("profileUserDetails");
         }).subscribe();
         let downloadLink = document.querySelector('a#downloadCV');
         downloadLink.setAttribute('href', `/FundiProfile/GetFundiCVByUsername?username=${this.profileUserDetails.username}`);
@@ -4553,6 +4683,63 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         return decodeURIComponent(url);
     }
     ngOnInit() {
+        this.subscriptionFeeExpense = {
+            monthlySubscriptionId: 0,
+            userId: this.fundi.userId,
+            fundiProfileId: this.fundi.fundiProfileId,
+            startDate: new Date(),
+            username: this.userDetails.username,
+            subscriptionFee: this.fundi.subscriptionFee,
+            hasPaid: false,
+            subscriptionName: this.fundi.subscriptionName,
+            subscriptionDescription: this.fundi.subscriptionDescription,
+            fundiWorkCategoryIds: []
+        };
+        this.workCategory = { workCategoryId: 0 };
+        this.workCategories = [];
+        let optionElem = document.createElement('option');
+        optionElem.selected = true;
+        optionElem.value = (0).toString();
+        optionElem.text = "Select WorkCategory";
+        document.querySelector('select#subcworkCategoryId').append(optionElem);
+        this.workSubCategory = {
+            workSubCategoryId: 0,
+            workCategoryId: 0,
+            workSubCategoryType: "",
+            workSubCategoryDescription: ""
+        };
+        this.workCategory = {
+            workCategoryId: 0,
+            workCategoryType: "",
+            workCategoryDescription: ""
+        };
+        this.workSubCategories = [];
+        optionElem = document.createElement('option');
+        optionElem.selected = true;
+        optionElem.value = (0).toString();
+        optionElem.text = "Select WorkSubCategory";
+        document.querySelector('select#subcworkSubCategoryId').append(optionElem);
+        let workCategoriesObs = this.myFundiService.GetWorkCategories();
+        workCategoriesObs.map((wcs) => {
+            this.workCategories = wcs;
+            wcs.forEach((c, index, wcs) => {
+                let optionElem = document.createElement('option');
+                optionElem.value = c.workCategoryId.toString();
+                optionElem.text = c.workCategoryType;
+                document.querySelector('select#subcworkCategoryId').append(optionElem);
+            });
+            let workSubCategoriesObs = this.myFundiService.GetWorkSubCategories();
+            workSubCategoriesObs.map((wcs) => {
+                this.workSubCategories = wcs;
+                ;
+                wcs.forEach((c, index, wcs) => {
+                    let optionElem = document.createElement('option');
+                    optionElem.value = c.workSubCategoryId.toString();
+                    optionElem.text = c.workSubCategoryType;
+                    document.querySelector('select#subcworkSubCategoryId').append(optionElem);
+                });
+            }).subscribe();
+        }).subscribe();
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
@@ -4567,8 +4754,73 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             }).subscribe();
         }).subscribe();
     }
+    getWorkSubCategoriesByWorkCategoryId() {
+        let workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workCategory.workCategoryId);
+        workSubCategoriesObs.map((wcs) => {
+            //clear the workCategory options menu and add new options:
+            jQuery('select#subcworkSubCategoryId option').remove();
+            this.workSubCategories = [];
+            let optionElem = document.createElement('option');
+            optionElem.selected = true;
+            optionElem.value = (0).toString();
+            optionElem.text = "Select WorkSubCategory";
+            document.querySelector('select#subcworkSubCategoryId').append(optionElem);
+            this.workSubCategories = wcs;
+            wcs.forEach((c, index, wcs) => {
+                let optionElem = document.createElement('option');
+                optionElem.value = c.workSubCategoryId.toString();
+                optionElem.text = c.workSubCategoryType;
+                document.querySelector('select#subcworkSubCategoryId').append(optionElem);
+            });
+        }).subscribe();
+    }
+    selectworkSubCategory($event) {
+        let workSubCatValue = this.workSubCategory.workSubCategoryId;
+        let actualResult = this.myFundiService.GetworkSubCategoryById(workSubCatValue);
+        actualResult.map((p) => {
+            this.workSubCategory = p;
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+        $event.preventDefault();
+    }
+    addSubCategory($event) {
+        let indexWorkCatToRemove;
+        let chosenCategory = this.subscriptionFeeExpense.fundiWorkCategoryIds.find((q, index) => {
+            indexWorkCatToRemove = index;
+            return q.workCategoryId == this.workCategory.workCategoryId;
+        });
+        if (chosenCategory) {
+            let indexWorkSubCatToRemove;
+            let chosenWorkSubCatId = chosenCategory.workSubCategoryIds.find((q, index) => {
+                indexWorkSubCatToRemove = index;
+                return q == this.workSubCategory.workSubCategoryId;
+            });
+            if (chosenWorkSubCatId) {
+                return;
+            }
+            else {
+                this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.push(this.workSubCategory.workSubCategoryId);
+                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                let li = document.createElement("li");
+                li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text()}]`;
+                ulSelectedCategories.appendChild(li);
+            }
+        }
+        else {
+            let workCategorySubCatIds = [];
+            workCategorySubCatIds.push(this.workSubCategory.workSubCategoryId);
+            this.subscriptionFeeExpense.fundiWorkCategoryIds.push({
+                workCategoryId: this.workCategory.workCategoryId, workSubCategoryIds: workCategorySubCatIds
+            });
+            let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+            let li = document.createElement("li");
+            li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text()}]`;
+            ulSelectedCategories.appendChild(li);
+        }
+        $event.preventDefault();
+    }
     paySubscriptionMonthlyFeeWithPaypal($event) {
-        let subscriptionFeeExpense = {
+        let subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
             fundiProfileId: this.fundi.fundiProfileId,
@@ -4577,9 +4829,10 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             subscriptionFee: this.fundi.subscriptionFee,
             hasPaid: false,
             subscriptionName: this.fundi.subscriptionName,
-            subscriptionDescription: this.fundi.subscriptionDescription
+            subscriptionDescription: this.fundi.subscriptionDescription,
+            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.fundiWorkCategoryIds
         };
-        let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithPaypal(subscriptionFeeExpense);
+        let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid);
         resultObs.map((q) => {
             if (q.payPalRedirectUrl) {
                 window.open(q.payPalRedirectUrl);
@@ -4594,7 +4847,7 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         $event.preventDefault();
     }
     paySubscriptionMonthlyFeeWithAirTel($event) {
-        let subscriptionFeeExpense = {
+        let subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
             fundiProfileId: this.fundi.fundiProfileId,
@@ -4603,9 +4856,10 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             subscriptionFee: this.fundi.subscriptionFee,
             hasPaid: false,
             subscriptionName: this.fundi.subscriptionName,
-            subscriptionDescription: this.fundi.subscriptionDescription
+            subscriptionDescription: this.fundi.subscriptionDescription,
+            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.fundiWorkCategoryIds
         };
-        let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpense);
+        let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
         resultObs.map((q) => {
             if (q.mtnAirtelBaseUrl) {
                 //Requires POST Verb.
@@ -4635,7 +4889,7 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         $event.preventDefault();
     }
     paySubscriptionMonthlyFeeWithMtn($event) {
-        let subscriptionFeeExpense = {
+        let subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
             fundiProfileId: this.fundi.fundiProfileId,
@@ -4644,9 +4898,10 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             subscriptionFee: this.fundi.subscriptionFee,
             hasPaid: false,
             subscriptionName: this.fundi.subscriptionName,
-            subscriptionDescription: this.fundi.subscriptionDescription
+            subscriptionDescription: this.fundi.subscriptionDescription,
+            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.fundiWorkCategoryIds
         };
-        let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpense);
+        let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
         resultObs.map((q) => {
             if (q.mtnAirtelBaseUrl) {
                 //Requires POST Verb.
@@ -4674,6 +4929,45 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             }
         }).subscribe();
         $event.preventDefault();
+    }
+    runAutoCompleteOnSelects(curthis) {
+        debugger;
+        let hasFoundSelectsOnPage = false;
+        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
+            let selects = jQuery('div#subcworkSubCategories-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
     }
 };
 FundiSubscriptionComponent.ctorParameters = () => [
@@ -5382,6 +5676,17 @@ let ProfileComponent = class ProfileComponent {
     constructor(myFundiService) {
         this.myFundiService = myFundiService;
         this.userDetails = {};
+        this.profile = {
+            fundiProfileId: 0,
+            userId: "",
+            profileSummary: "",
+            profileImageUrl: "",
+            skills: "",
+            usedPowerTools: "",
+            fundiProfileCvUrl: "",
+            locationId: 0,
+            user: null
+        };
     }
     decoderUrl(url) {
         return decodeURIComponent(url);
@@ -5394,8 +5699,8 @@ let ProfileComponent = class ProfileComponent {
         let workCatObs = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
         let coursesObs = this.myFundiService.GetFundiCourses(this.userDetails.username);
         let ratingsObs = this.myFundiService.GetFundiRatings(this.userDetails.username);
-        resObs.map((fundiProf) => {
-            this.profile = fundiProf;
+        resObs.map((prof) => {
+            this.profile = prof;
         }).subscribe();
         ratingsObs.map((ratings) => {
             this.fundiRatings = ratings;
@@ -5558,8 +5863,8 @@ let myRecaptchaComponent = class myRecaptchaComponent {
         this.router = router;
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
-        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr"; */
+        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
+        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
     }
     ngAfterViewInit() {
         this.isRecaptchaVerified = false;
@@ -8988,6 +9293,7 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         this.addFundiCertificateUrl = this.baseServerUrl + "/FundiProfile/AddFundiCertificate";
         this.addFundiCourseUrl = this.baseServerUrl + "/FundiProfile/AddFundiCourse";
         this.getFundiProfileRatingByIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiProfileRatingById";
+        this.getFundiLevelOfEngagementByIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiLevelOfEngagementById";
         this.getFundiCoursesUrl = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
         this.getFundiRatingsUrl = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
         this.payMonthlySubscriptionFeeWithPaypalUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithPaypal";
@@ -9091,6 +9397,20 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res) => {
             let clientProf = res;
             return clientProf;
+        });
+    }
+    GetFundiLevelOfEngagement(fundiProfileId) {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiLevelOfEngagementByIdUrl + "/" + fundiProfileId;
+        let requestOptions = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res) => {
+            let fundiEngagement = res;
+            return fundiEngagement;
         });
     }
     GetWorkCategoriesAndSubCategories() {

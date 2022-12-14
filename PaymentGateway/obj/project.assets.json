@@ -2573,7 +2573,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0-preview2-35157",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "MyFundi.Domain": "1.0.0",
           "System.Configuration.ConfigurationManager": "5.0.0",
           "System.Data.SqlClient": "4.8.3"
         },
@@ -5237,7 +5238,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0-preview2-35157",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "MyFundi.Domain": "1.0.0",
           "System.Configuration.ConfigurationManager": "5.0.0",
           "System.Data.SqlClient": "4.8.3"
         },

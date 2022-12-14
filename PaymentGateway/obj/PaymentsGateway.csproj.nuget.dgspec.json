@@ -168,7 +168,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj": {
+                "projectPath": "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -183,7 +187,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
-              "version": "[2.2.0-preview2-35157, )"
+              "version": "[2.2.0, )"
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",

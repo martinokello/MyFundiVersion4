@@ -18,9 +18,8 @@ namespace MyFundi.Domain
         public int? FundiProfileId { get; set; }
         public FundiProfile FundiProfile { get; set; }
         public bool HasPaid { get; set; }
-        public string SubscriptionName { get; set; }
+        public bool HasExpired { get; set; }
         public decimal SubscriptionFee { get; set; }
-        public string SubscriptionDescription { get; set; }
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; }
         public DateTime DateCreated = DateTime.Now;

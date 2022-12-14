@@ -179,7 +179,7 @@ export class WorkSubCategoryCrudComponent implements OnInit, AfterContentInit, A
 
     }
     runAutoCompleteOnSelects(curthis: any) {
-        debugger;
+        
         let hasFoundSelectsOnPage = false;
 
         if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {

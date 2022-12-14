@@ -6,10 +6,10 @@ C:\Development\MyFundiV2\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAcc
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\bin\Debug\netstandard2.1\ExcelAccessDataEngine.deps.json
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\bin\Debug\netstandard2.1\ExcelAccessDataEngine.dll
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\bin\Debug\netstandard2.1\ExcelAccessDataEngine.pdb
+C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.csproj.AssemblyReference.cache
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.AssemblyInfoInputs.cache
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.AssemblyInfo.cs
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.csproj.CoreCompileInputs.cache
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.dll
 C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.pdb
-C:\Development\MyFundiCurrent\ExcelAccessDataEngine\obj\Debug\netstandard2.1\ExcelAccessDataEngine.csproj.AssemblyReference.cache

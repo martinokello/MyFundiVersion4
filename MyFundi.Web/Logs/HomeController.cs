@@ -25,6 +25,7 @@ using MyFundi.Web.IdentityServices;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
+using System.Transactions;
 
 namespace MyFundi.Web.Controllers
 {
@@ -93,10 +94,13 @@ namespace MyFundi.Web.Controllers
             decimal amountPaid = Decimal.Parse(formsCollection["amount"]);
             int clientId = Int32.Parse(formsCollection["clientId"]);
             var userInvoice = _unitOfWork._monthlySubscriptionRepository.GetAll().FirstOrDefault(q => q.User.Username.ToLower().Equals(formsCollection["buyer_id"]));
+            var fundiSubsc = _unitOfWork._fundiSubscriptionRepository.GetAll().FirstOrDefault(q => q.MonthlySubscriptionId == userInvoice.MonthlySubscriptionId);
 
             try
             {
-                if (userInvoice.User.Username.ToLower().Equals(formsCollection["buyer_email"].First().ToLower()) && amountPaid == userInvoice.SubscriptionFee)                {
+                if (userInvoice.User.Username.ToLower().Equals(formsCollection["buyer_email"].First().ToLower()) && amountPaid == fundiSubsc.SubscriptionFee)
+                {
+
                     userInvoice.HasPaid = true;
                     _unitOfWork.SaveChanges();
                     _emailService.SendEmail(new EmailDao
@@ -106,7 +110,7 @@ namespace MyFundi.Web.Controllers
                         DateCreated = DateTime.Now,
                         DateUpdated = DateTime.Now,
                         EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.SuccessBuyCommodityMessage).Replace("[[FirstName]]", userInvoice.User.FirstName).
-    Replace("[[TransactionCommoditesList]]", userInvoice.SubscriptionName + ", Net Price:" + userInvoice.SubscriptionFee + ", Gross Total Payable: " + userInvoice.SubscriptionFee)
+                        Replace("[[TransactionCommoditesList]]", fundiSubsc.SubscriptionName + ", Net Price:" + fundiSubsc.SubscriptionFee + ", Gross Total Payable: " + fundiSubsc.SubscriptionFee)
                     });
 
                     _emailService.SendEmail(new EmailDao
@@ -116,7 +120,7 @@ namespace MyFundi.Web.Controllers
                         DateCreated = DateTime.Now,
                         DateUpdated = DateTime.Now,
                         EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.ArrangeTransportScheduleMessage).Replace("[[FirstName]]", userInvoice.User.FirstName).
-Replace("[[CommodiyName]]", userInvoice.SubscriptionName)
+                        Replace("[[CommodiyName]]", fundiSubsc.SubscriptionName)
                     });
                     return await Task.FromResult(Json(new { Result = "Success" }));
                 }
@@ -130,20 +134,20 @@ Replace("[[CommodiyName]]", userInvoice.SubscriptionName)
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.TransactionFailureMessage).Replace("[[FirstName]]", userInvoice.User.FirstName).
-Replace("[[TransactionCommoditesList]]", userInvoice.SubscriptionName + ", Net Price:" + userInvoice.SubscriptionFee + ", Gross Total Payable: " + userInvoice.SubscriptionFee)
+                    Replace("[[TransactionCommoditesList]]", fundiSubsc.SubscriptionName + ", Net Price:" + fundiSubsc.SubscriptionFee + ", Gross Total Payable: " + fundiSubsc.SubscriptionFee)
                 });
                 //email exception to admin email
-                return Json(new { Result = "Failed" });
+                _emailService.SendEmail(new EmailDao
+                {
+                    EmailTo = userInvoice.User.Username,
+                    EmailSubject = "Transaction for: " + userInvoice.User.FirstName + ", failed Processing By Paypal.",
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.TransactionFailureMessage).Replace("[[FirstName]]", userInvoice.User.FirstName).
+                    Replace("[[TransactionCommoditesList]]", fundiSubsc.SubscriptionName + ", Net Price:" + fundiSubsc.SubscriptionFee + ", Gross Total Payable: " + fundiSubsc.SubscriptionFee)
+                });
+                return Json(new { Result = "Bad Input" });
             }
-            _emailService.SendEmail(new EmailDao
-            {
-                EmailTo = userInvoice.User.Username,
-                EmailSubject = "Transaction for: " + userInvoice.User.FirstName + ", failed Processing By Paypal.",
-                DateCreated = DateTime.Now,
-                DateUpdated = DateTime.Now,
-                EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.TransactionFailureMessage).Replace("[[FirstName]]", userInvoice.User.FirstName).
-Replace("[[TransactionCommoditesList]]", userInvoice.SubscriptionName + ", Net Price:" + userInvoice.SubscriptionFee + ", Gross Total Payable: " + userInvoice.SubscriptionFee)
-            });
             return Json(new { Result = "Failed" });
         }
         [HttpPost]
@@ -182,7 +186,8 @@ Replace("[[TransactionCommoditesList]]", userInvoice.SubscriptionName + ", Net P
         {
             var results = _mapper.Map<JobViewModel[]>(this._unitOfWork._jobRepository.GetAll().Include(q => q.Location).ToArray());
 
-            if (results.Any()) {  
+            if (results.Any())
+            {
                 return await Task.FromResult(Ok(results));
             }
             return await Task.FromResult(NotFound(new JobViewModel[] { }));

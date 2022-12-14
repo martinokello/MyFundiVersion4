@@ -348,6 +348,52 @@ namespace MyFundi.Web.Migrations
                     b.ToTable("FundiProfileAndReviewRatings");
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.FundiSubscription", b =>
+                {
+                    b.Property<int>("FundiSubscriptionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FundiWorkCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FundiWorkSubCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MonthlySubscriptionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SubscriptionDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SubscriptionFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SubscriptionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FundiSubscriptionId");
+
+                    b.HasIndex("FundiWorkSubCategoryId");
+
+                    b.HasIndex("MonthlySubscriptionId");
+
+                    b.ToTable("FundiSubscriptions");
+                });
+
             modelBuilder.Entity("MyFundi.Domain.FundiWorkCategory", b =>
                 {
                     b.Property<int>("FundiWorkCategoryId")
@@ -602,20 +648,17 @@ namespace MyFundi.Web.Migrations
                     b.Property<int?>("FundiProfileId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("HasExpired")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("HasPaid")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SubscriptionDescription")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("SubscriptionFee")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("SubscriptionName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -878,6 +921,21 @@ namespace MyFundi.Web.Migrations
                     b.HasOne("MyFundi.Domain.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.FundiSubscription", b =>
+                {
+                    b.HasOne("MyFundi.Domain.WorkSubCategory", "WorkSubCategory")
+                        .WithMany()
+                        .HasForeignKey("FundiWorkSubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyFundi.Domain.MonthlySubscription", "MonthlySubscription")
+                        .WithMany()
+                        .HasForeignKey("MonthlySubscriptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

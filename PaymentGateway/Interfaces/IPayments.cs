@@ -1,4 +1,5 @@
-﻿using PaypalFacility;
+﻿using MyFundi.Domain;
+using PaypalFacility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace PaymentsGateway.Interfaces
     public interface IPayments
     {
         Task<string> MakePaymentsPaypal(string username, List<Product> products);
-        Task<dynamic> MakePaymentsMtnAirTel(string username, List<Product> products);
+        Task<MtnAirTelModel> MakePaymentsMtnAirTel(string username, List<Product> products);
         Task<string> MakePaymentByCreditFacilities(string username, List<Product> products);
     }
 }

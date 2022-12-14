@@ -1,0 +1,248 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Development\MyFundiCurrent\MyFundi.Web
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'AgreedCost' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NumberOfDaysToComplete' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'FundiSubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'GrossCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NetCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'PercentTaxAppliable' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ItemCost' on entity type 'Item'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: . Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadAndMoveToContent()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at MyFundi.IdentityServices.UserService.ReadToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 155
+   at MyFundi.IdentityServices.UserService.GetUserClaimsFromToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 320
+   at MyFundi.Web.IdentityServices.AuthorizeIdentity.OnActionExecuting(ActionExecutingContext context) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\AuthorizeIdentity.cs:line 22
+   at Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: ?. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadAndMoveToContent()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at MyFundi.IdentityServices.UserService.ReadToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 155
+   at MyFundi.IdentityServices.UserService.GetUserClaimsFromToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 320
+   at MyFundi.Web.IdentityServices.AuthorizeIdentity.OnActionExecuting(ActionExecutingContext context) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\AuthorizeIdentity.cs:line 22
+   at Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: G. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadAndMoveToContent()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at MyFundi.IdentityServices.UserService.ReadToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 155
+   at MyFundi.IdentityServices.UserService.GetUserClaimsFromToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 320
+   at MyFundi.Web.IdentityServices.AuthorizeIdentity.OnActionExecuting(ActionExecutingContext context) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\AuthorizeIdentity.cs:line 22
+   at Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: U. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadAndMoveToContent()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at MyFundi.IdentityServices.UserService.ReadToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 155
+   at MyFundi.IdentityServices.UserService.GetUserClaimsFromToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 320
+   at MyFundi.Web.IdentityServices.AuthorizeIdentity.OnActionExecuting(ActionExecutingContext context) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\AuthorizeIdentity.cs:line 22
+   at Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.SpaServices[0]
+      ERROR in app/fundi-engagement/fundiengagement.component.ts:35:51 - error TS1005: ',' expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                     ~
+app/fundi-engagement/fundiengagement.component.ts:35:52 - error TS1005: ',' expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                      ~
+app/fundi-engagement/fundiengagement.component.ts:35:58 - error TS1005: ':' expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                            ~
+app/fundi-engagement/fundiengagement.component.ts:35:116 - error TS1109: Expression expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                                                                                      ~
+app/fundi-engagement/fundiengagement.component.ts:35:173 - error TS1005: ',' expected.
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                                                                                                                                               ~
+app/fundi-engagement/fundiengagement.component.ts:35:177 - error TS1005: ':' expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                                                                                                                                                   ~
+app/fundi-engagement/fundiengagement.component.ts:35:178 - error TS1109: Expression expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                                                                                                                                                    ~
+app/fundi-engagement/fundiengagement.component.ts:35:184 - error TS1005: ':' expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                                                                                                                                                          ~
+app/fundi-engagement/fundiengagement.component.ts:35:239 - error TS1109: Expression expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                                                                                                                                                                                                                 ~
+app/fundi-engagement/fundiengagement.component.ts:35:244 - error TS1109: Expression expected.
+
+35                 jQuery('div#indicator').css(`top:`${ this.fundiLevelOfEngagement[0].numberOfAssignments <= 1 ? 87 %: this.fundiLevelOfEngagement[0].numberOfAssignments <= 2: 63%: this.fundiLevelOfEngagement[0].numberOfAssignments <= 3?37%:12% }`);
+                                                                                                                                                                                                                                                      ~
+app/fundi-engagement/fundiengagement.component.ts:39:89 - error TS1005: ':' expected.
+
+39         downloadLink.setAttribute('href', `/FundiProfile/GetFundiCVByUsername?username=${this.profileUserDetails.username}`);
+                                                                                           ~
+app/fundi-engagement/fundiengagement.component.ts:39:94 - error TS1005: ':' expected.
+
+39         downloadLink.setAttribute('href', `/FundiProfile/GetFundiCVByUsername?username=${this.profileUserDetails.username}`);
+                                                                                                ~
+app/fundi-engagement/fundiengagement.component.ts:44:1 - error TS1160: Unterminated template literal.
+
+44 
+   
+
+    
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+          ERROR in src/app/fundi-engagement/fundiengagement.component.ts(35,51): error TS2592: Cannot find name '$'. Do you need to install type definitions for jQuery? Try `npm i @types/jquery` and then add `jquery` to the types field in your tsconfig.
+          src/app/fundi-engagement/fundiengagement.component.ts(35,52): error TS2349: Cannot invoke an expression whose type lacks a call signature. Type '{ this: number; 63: number; }' has no compatible call signatures.
+          src/app/fundi-engagement/fundiengagement.component.ts(35,180): error TS1117: An object literal cannot have multiple properties with the same name in strict mode.
+          src/app/fundi-engagement/fundiengagement.component.ts(39,45): error TS2304: Cannot find name 'FundiProfile'.
+          src/app/fundi-engagement/fundiengagement.component.ts(39,58): error TS2304: Cannot find name 'GetFundiCVByUsername'.
+          src/app/fundi-engagement/fundiengagement.component.ts(39,79): error TS2304: Cannot find name 'username'.
+          src/app/fundi-engagement/fundiengagement.component.ts(39,88): error TS2592: Cannot find name '$'. Do you need to install type definitions for jQuery? Try `npm i @types/jquery` and then add `jquery` to the types field in your tsconfig.
+          src/app/fundi-engagement/fundiengagement.component.ts(39,89): error TS2349: Cannot invoke an expression whose type lacks a call signature. Type '{ this: any; }' has no compatible call signatures.
+          
+
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: ?. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at MyFundi.IdentityServices.UserService.ReadToken(String authToken) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\UserService.cs:line 157
+   at MyFundi.Web.IdentityServices.AuthorizeIdentity.OnActionExecuting(ActionExecutingContext context) in C:\Development\MyFundiCurrent\MyFundi.Web\IdentityServices\AuthorizeIdentity.cs:line 16
+   at Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: c. Path '', line 0, position 0.
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type ob

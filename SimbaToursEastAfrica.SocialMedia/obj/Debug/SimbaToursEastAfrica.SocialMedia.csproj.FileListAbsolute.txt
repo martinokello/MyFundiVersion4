@@ -1306,7 +1306,12 @@ C:\Development\MyFundiV2\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Value
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\SimbaToursEastAfrica.SocialMedia.dll.config
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\SimbaToursEastAfrica.SocialMedia.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\SimbaToursEastAfrica.SocialMedia.pdb
+C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\Newtonsoft.Json.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\SimbaToursEastAfrica.Caching.dll
+C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Buffers.dll
+C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Numerics.Vectors.dll
+C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.ValueTuple.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\Twitter.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
@@ -1318,8 +1323,3 @@ C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaTo
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.csproj.CopyComplete
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\obj\Debug\SimbaToursEastAfrica.SocialMedia.pdb
-C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\Newtonsoft.Json.dll
-C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Buffers.dll
-C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Numerics.Vectors.dll
-C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Debug\System.ValueTuple.dll

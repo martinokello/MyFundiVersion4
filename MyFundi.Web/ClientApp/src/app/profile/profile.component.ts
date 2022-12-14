@@ -28,8 +28,8 @@ export class ProfileComponent implements OnInit {
         let coursesObs = this.myFundiService.GetFundiCourses(this.userDetails.username);
         let ratingsObs = this.myFundiService.GetFundiRatings(this.userDetails.username);
 
-        resObs.map((fundiProf: IProfile) => {
-            this.profile = fundiProf;
+        resObs.map((prof: IProfile) => {
+            this.profile = prof;
         }).subscribe();
         ratingsObs.map((ratings: IFundiRating[]) => {
             this.fundiRatings = ratings;
@@ -51,6 +51,17 @@ export class ProfileComponent implements OnInit {
     }
     constructor(private myFundiService: MyFundiService) {
         this.userDetails = {};
+        this.profile = {
+            fundiProfileId: 0,
+            userId: "",
+            profileSummary: "",
+            profileImageUrl: "",
+            skills: "",
+            usedPowerTools: "",
+            fundiProfileCvUrl: "",
+            locationId: 0,
+            user: null
+        };
     }
 }
 
