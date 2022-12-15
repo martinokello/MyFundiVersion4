@@ -51,10 +51,10 @@ export class FundiEngagementComponent implements OnInit {
                         let numberOfAssignments = fundiEngagements[0].numberOfAssignments;
                         this.currentFundiNumbOfAssignments = numberOfAssignments;
                         let top = `${numberOfAssignments <= 1 ? '87%' : (numberOfAssignments == 2) ? '62%' : numberOfAssignments == 3 ? '37%' : '12%'}`;
-                        jQuery(`div#indicator`).css('height', '2%');
-                        jQuery(`div#indicator`).css('position', 'absolute');
-                        jQuery(`div#indicator`).css('top', top);
-                        jQuery(`div#indicator`).css('display', 'block');
+                        jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('height', '2%');
+                        jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('position', 'absolute');
+                        jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('top', top);
+                        jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('display', 'block');
                     }).subscribe();
                 }).subscribe(); }
 
