@@ -58,8 +58,16 @@
                   </div>
               </form>
           </div>
+      </div>                
+      <div class="row" style="margin: 2px 0px !important;">
+          <div class="col-lg-12" style="margin: 2px 0px !important;">
+              <h5>Work Categories</h5>
+              <select id="workCategoryAndSubCatId" name="workCategoryId" [(ngModel)]="workCategoryAndSubCatId"></select><br />
+              <input type="button" value="Add Work Category" (click)="addWorkCategory($event)" /><br />
+              <input type="button" value="Remove Work Category" (click)="removeWorkCategory($event)" /><br />
+              <ul id="ulistWorkCategories"></ul>
+          </div>
       </div>
-      <workcategory></workcategory><br />
       <certification></certification><br />
       <courses></courses><br />
   </section>

@@ -27,7 +27,8 @@ export class RegisterComponent implements OnInit{
           keepLoggedIn: false,
           authToken: "",
           fundi: false,
-          client:false
+            client: false,
+            message: ""
         };
 
         this.userDetail = userDetail;

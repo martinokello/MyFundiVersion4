@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IWorkAndSubWorkCategory } from '../../services/myFundiService';
 import { AfterViewChecked } from '@angular/core';
+import { Observable } from 'rxjs';
 declare var jQuery: any;
 
 @Component({
@@ -16,12 +17,14 @@ export class ProfileCreateComponent implements OnInit {
     profile: IProfile;
     location: ILocation;
     fundiRatings: IFundiRating[];
-    workCategories: IWorkCategory[];
     certifications: ICertification[];
     courses: ICourse[];
     userGuidId: string;
     hasPopulatedPage: boolean = false;
     setTo: any;
+    workCategories: IWorkAndSubWorkCategory[];
+    chosenWorkCategories: IWorkAndSubWorkCategory[];
+    workCategoryAndSubCatId: string;
 
     constructor(private myFundiService: MyFundiService, private httpClient: HttpClient) {
         this.userDetails = {};
@@ -42,13 +45,8 @@ export class ProfileCreateComponent implements OnInit {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
-
-        userGuidObs.map((q: string) => {
-            this.userGuidId = q;
-        }).subscribe();
-
-        let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
-
+        let workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
+        let resObs: Observable<any> = this.myFundiService.GetFundiProfile(this.userDetails.username);
 
         resObs.map((fundiProf: IProfile) => {
             if (fundiProf) {
@@ -73,9 +71,50 @@ export class ProfileCreateComponent implements OnInit {
                 }
             }
         }).subscribe();
+        userGuidObs.map((q: string) => {
+            this.userGuidId = q;
+        }).subscribe();
 
 
-    }
+        workCatObs.map((workCats: IWorkAndSubWorkCategory[]) => {
+
+            this.workCategories = workCats;
+
+            //Dynamic check boxes for Categories To Search for:
+            let selectWorkCategories: HTMLSelectElement = document.querySelector('select#workCategoryAndSubCatId');
+            let selectWorkCategoriesOptions: HTMLSelectElement = document.querySelector('select#workCategoryAndSubCatId option');
+            if (selectWorkCategoriesOptions) {
+                selectWorkCategoriesOptions.remove();
+            }
+
+            let option = document.createElement('option');
+            option.textContent = "Select Work Category: [SubWork Category]";
+            option.value = "0,0";
+            selectWorkCategories.appendChild(option);
+
+            this.workCategories.forEach((cat) => {
+                let option = document.createElement('option');
+                option.textContent = `${cat.workCategory.workCategoryType}: [${cat.workSubCategory.workSubCategoryType}]`;
+                option.value = `${cat.workCategoryId.toString()},${cat.workSubCategoryId.toString()}`;
+                selectWorkCategories.appendChild(option);
+            });
+        }).subscribe();
+        let listWorkCatObs: Observable<IWorkAndSubWorkCategory[]> = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
+
+        listWorkCatObs.map((q: IWorkAndSubWorkCategory[]) => {
+            debugger;
+            if (q && q.length > 0) {
+                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                q.forEach((wkcCatSubCat, index, q) => {
+                    let li = document.createElement("li");
+                    li.setAttribute('id', `${wkcCatSubCat.workCategoryId.toString()},${wkcCatSubCat.workSubCategoryId.toString()}`);
+                    li.textContent = wkcCatSubCat.workCategory.workCategoryType + ` :[${wkcCatSubCat.workSubCategory.workSubCategoryType}]`;
+
+                    ulSelectedCategories.appendChild(li);
+                });
+            }
+        }).subscribe();
+   }
 
     handleProfileCV(files: FileList) {
         this.profileCV = files.item(0);
@@ -120,6 +159,55 @@ export class ProfileCreateComponent implements OnInit {
             alert(res.message);
         }).subscribe();
     }
+    addWorkCategory($event) {
+
+        let selectedWorkCategory: IWorkAndSubWorkCategory = this.workCategories.find((workCat: IWorkAndSubWorkCategory) => {
+            return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
+
+        });
+        let addWkCatObs:Observable<boolean> = this.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
+        //this.chosenWorkCategories.push(selectedWorkCategory);
+        addWkCatObs.map((q: boolean) => {
+            if (q) {
+                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                let li = document.createElement("li");
+                li.setAttribute('id',`${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}`);
+
+                li.textContent = selectedWorkCategory.workCategory.workCategoryType + ` :[${selectedWorkCategory.workSubCategory.workSubCategoryType}]`;
+                ulSelectedCategories.appendChild(li);
+
+                let addWkCatSubCatObs = this.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
+                addWkCatSubCatObs.map((q: any) => {
+                    if (q) {
+                        alert(q.message);
+                    }
+                }).subscribe();
+            }
+        }).subscribe();
+
+        $event.preventDefault();
+    }
+    removeWorkCategory($event) {
+
+        let selectedWorkCategory: IWorkAndSubWorkCategory = this.workCategories.find((workCat: IWorkAndSubWorkCategory) => {
+            return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
+
+        });
+        let curThis = this;
+        debugger;
+        let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+        let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}`+ '"]');
+        ulSelectedCategories.removeChild(li);
+
+        let resObs: Observable<any> = this.myFundiService.RemoveFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
+        resObs.map((removed: any) => {
+            if (removed) {
+                alert(removed.message);
+            }
+        }).subscribe();
+        $event.preventDefault();
+    }
+
     getSelectedLocation(locationId: number) {
         this.profile.locationId = locationId;
         let curAddObs = this.myFundiService.GetLocationById(locationId);

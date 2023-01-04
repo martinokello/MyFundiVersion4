@@ -13,8 +13,11 @@
             <li style="margin: 10px 0px !important; padding: 10px !important;">
                 <a routerLink='/manage-entities'>Manage Entities</a>
             </li>
+            <li style="margin: 10px 0px !important; padding: 10px !important;">
+                <a routerLink='/chat'>Live Chat</a>
+            </li>
         </ng-container>
-        <ng-container *ngIf="userRoles && userRoles.indexOf('Fundi') > -1" ngDefaultControl ngModel="userRoles">
+        <ng-container *ngIf="userRoles && (userRoles.indexOf('Fundi') > -1 ||  userRoles.indexOf('Guest')) > -1" ngDefaultControl ngModel="userRoles">
           <li style="margin: 10px 0px !important; padding: 10px !important;">
             <a routerLink='/fundi-subscription'>Fundi Subscription</a>
           </li>

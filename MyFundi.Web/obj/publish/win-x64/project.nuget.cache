@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jAq8Aq3Hd1IHnpyGCO0sIQTpPy1YTQQ+wMSc72+0HGq1xNDA8qI65brGMsi8Tu971tDN3twhm5G/RJ2k7jmQ6w==",
+  "dgSpecHash": "ybp/NuH4ivV0gDXvCyJ4ZGdTXBBoJy9MZ6O1Fo3J6ELTB0wo1aZ4cqhsBelM9++7GGa+1DIIdpWxw4SNrA8kiw==",
   "success": true,
   "projectFilePath": "C:\\Development\\MyFundiCurrent\\MyFundi.Web\\MyFundi.Web.csproj",
   "expectedPackageFiles": [
@@ -192,10 +192,9 @@
     "C:\\Users\\mart4\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\mart4\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
     "C:\\Users\\mart4\\.nuget\\packages\\system.xml.xpath.xdocument\\4.0.1\\system.xml.xpath.xdocument.4.0.1.nupkg.sha512",
-    "C:\\Users\\mart4\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\3.1.31\\microsoft.netcore.app.runtime.win-x64.3.1.31.nupkg.sha512",
-    "C:\\Users\\mart4\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\3.1.31\\microsoft.windowsdesktop.app.runtime.win-x64.3.1.31.nupkg.sha512",
-    "C:\\Users\\mart4\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\3.1.31\\microsoft.aspnetcore.app.runtime.win-x64.3.1.31.nupkg.sha512",
-    "C:\\Users\\mart4\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.31\\microsoft.netcore.app.host.win-x64.3.1.31.nupkg.sha512"
+    "C:\\Users\\mart4\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\3.1.32\\microsoft.netcore.app.runtime.win-x64.3.1.32.nupkg.sha512",
+    "C:\\Users\\mart4\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\3.1.32\\microsoft.windowsdesktop.app.runtime.win-x64.3.1.32.nupkg.sha512",
+    "C:\\Users\\mart4\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\3.1.32\\microsoft.aspnetcore.app.runtime.win-x64.3.1.32.nupkg.sha512"
   ],
   "logs": []
 }

@@ -5,19 +5,17 @@
         </a>
     </section>
     <div>
-        <h2 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf("Fundi") > -1 ?"Fundi":"Client"}} Profile</h2>
-        <br/>
+        <h2 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf("Fundi") > -1  || userRoles.indexOf("Guest") > 1)?"Fundi":"Guest"}} Profile</h2>
+        <br />
     </div>
     <section id="Profile">
         <div class="row">
             <div class="col-lg-12">
-                <div style="width: 40% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
+                <div style="width: 30% !important; display: inline-block !important; margin-left: 5px !important; text-align: center !important; margin-top: 0px !important;">
                     <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}" alt="profileImage" style="width:150px !important; height:auto;" /><br />
                 </div>
-                <div style="width: 60% !important; display: inline-block !important; text-align: left !important; margin-top: 0px !important;">
-                    <div style="width:100% !important;">
-                        <fundi-engagement id="profile-engagement-{{profile.fundiProfileId}}" [profileId]="profile.fundiProfileId"></fundi-engagement>
-                    </div>
+                <div style="width: 70% !important; display: inline-block !important; text-align: left !important; margin-top: 0px !important;">
+                    <fundi-engagement id="profile-engagement-{{profile.fundiProfileId}}" [profileId]="profile.fundiProfileId"></fundi-engagement>
                 </div>
             </div>
         </div>

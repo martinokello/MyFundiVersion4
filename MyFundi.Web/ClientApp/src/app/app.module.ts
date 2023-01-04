@@ -57,6 +57,9 @@ import { ClientJobViewComponent } from './client-job-view/clientjobview.componen
 import { CoursesComponent } from './crud-operations/courses/courses.component';
 import { WorkSubCategoryCrudComponent } from './crud-operations/worksubcategorycrud/worksubcategorycrud.component';
 import { FundiEngagementComponent } from './fundi-engagement/fundiengagement.component';
+import { PagingComponent } from './paging/paging.component';
+import { ChatComponent } from './chat/chat.component';
+import { AuthFundiClientAdminGuard } from '../guards/AuthFundiClientAdminGuard';
 
 @NgModule({
     declarations: [
@@ -105,7 +108,9 @@ import { FundiEngagementComponent } from './fundi-engagement/fundiengagement.com
         myRecaptchaComponent,
         ClientJobViewComponent,
         WorkSubCategoryCrudComponent,
-        FundiEngagementComponent
+        FundiEngagementComponent,
+        PagingComponent,
+        ChatComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -115,6 +120,7 @@ import { FundiEngagementComponent } from './fundi-engagement/fundiengagement.com
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'manage-entities', component: ActiveCrudOperationsComponent, canActivate: [AuthGuard] },
+            { path: 'chat', component: ChatComponent, canActivate: [AuthFundiClientAdminGuard] },
             { path: 'create-profile', component: ProfileCreateComponent, canActivate: [AuthGuard] },
             { path: 'Fundi', component: FundiRoleComponent, canActivate: [AuthGuard] },
             { path: 'add-location', component: LocationComponent, canActivate: [AdminAuthGuard] },
@@ -150,6 +156,7 @@ import { FundiEngagementComponent } from './fundi-engagement/fundiengagement.com
         { provide: AdminAuthGuard, useClass: AdminAuthGuard },
         { provide: AuthFundiGuard, useClass: AuthFundiGuard },
         { provide: AuthClientGuard, useClass: AuthClientGuard },
+        { provide: AuthFundiClientAdminGuard, useClass: AuthFundiClientAdminGuard },
         { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
         { provide: APP_BASE_HREF, useValue: '/myFundi/' },
         { provide: AuthFundiSubscriptionGuard, useClass: AuthFundiSubscriptionGuard },

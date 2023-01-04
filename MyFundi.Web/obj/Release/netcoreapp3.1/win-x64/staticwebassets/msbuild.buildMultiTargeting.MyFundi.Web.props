@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\MyFundi.Web.props" />
-</Project>

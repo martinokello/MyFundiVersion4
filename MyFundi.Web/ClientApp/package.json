@@ -32,6 +32,7 @@
     "core-js": "^3.20.2",
     "file-saver": "^2.0.5",
     "jquery": "^3.6.0",
+    "ng-media-query": "^1.0.3",
     "ng-recaptcha": "^5.0.0",
     "node": "^14.16.1",
     "oidc-client": "~1.11.5",

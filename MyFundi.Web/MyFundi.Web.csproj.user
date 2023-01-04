@@ -4,4 +4,14 @@
     <ShowAllFiles>true</ShowAllFiles>
     <NameOfLastUsedPublishProfile>C:\Development\MyFundiCurrent\MyFundi.Web\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\guards\AuthFundiClientAdminGuard.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\app\chat\chat.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
 </Project>

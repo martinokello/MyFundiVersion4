@@ -12,24 +12,25 @@
                     <select id="jobId" name="jobId" [(ngModel)]="jobId"></select>
                 </div><br />
                 <input type="button" value="Search Fundi By Categories" class="but-primary" (click)="searchFundiByCategories($event)" />
-                <br /><br/>
+                <br /><br />
             </form>
-            <br/>
+            <br />
         </section>
-        <div *ngIf="fundiSatisfyingJobList.length > 0">
+        <div>
+            <paging [pagingContentModel]="pagingContentModel" (searchEventEmitter)="searchCommand($event)"></paging><br />
+        </div>
+        <div id="results" *ngIf="fundiSatisfyingJobList.length > 0">
             <section id="Profile" *ngFor="let profile of fundiSatisfyingJobList">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div style="width: 40% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
+                        <div style=" width: 30% !important; margin-left: 5px !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
                             <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}" alt="profileImage" style="width:150px !important; height:auto; align-content:center !important;" /><br />
                             <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />
                             <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />
                             <span id="averageFundiRating-{{profile.fundiProfileId}}" class="profileRatingSpan rateit" data-rateit-mode="font" style="text-align:left;font-size: 40px; max-width: 10%;"></span><br />
                         </div>
-                        <div style="width: 60% !important; display: inline-block !important; text-align: left !important; margin-top: 0px !important;">
-                            <div style="width:100% !important;">
-                                <fundi-engagement id="clientSearchEngagement-{{profile.fundiProfileId}}" [profileId]="profile.fundiProfileId"></fundi-engagement>
-                            </div>
+                        <div style="width: 70% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
+                            <fundi-engagement id="clientSearchEngagement-{{profile.fundiProfileId}}" [profileId]="profile.fundiProfileId"></fundi-engagement>
                         </div>
                     </div>
                 </div>
@@ -96,6 +97,9 @@
                 </div>
                 <hr /><br />
             </section>
+        </div>
+        <div>
+            <paging [pagingContentModel]="pagingContentModel" (searchEventEmitter)="searchCommand($event)"></paging>
         </div>
     </div>
 </div>

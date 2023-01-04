@@ -6,7 +6,6 @@ using MyFundi.UnitOfWork.Concretes;
 using MyFundi.UnitOfWork.Interfaces;
 using MyFundi.Domain;
 using MyFundi.Services.EmailServices.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using MyFundi.Web.IdentityServices;
@@ -19,7 +18,10 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using MyFundi.AppConfigurations;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
-
+using MyFundi.Web.Infrastructure;
+using MartinLayooInc.Web.Infrastructure;
+using System.Text;
+using System.Threading;
 
 namespace MyFundi.Web.Controllers
 {
@@ -32,15 +34,16 @@ namespace MyFundi.Web.Controllers
         private ServicesEndPoint _serviceEndPoint;
         private IConfigurationSection _businessSmtpDetails;
 
+        private MartinLayooIncChat ChatResource = null;
         private Mapper _mapper;
-        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork,Mapper mapper, AppSettingsConfigurations appSettings)
+        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper, AppSettingsConfigurations appSettings, MartinLayooIncChat martinLayooIncChat)
         {
+            ChatResource = martinLayooIncChat;
             _emailService = emailService;
             _unitOfWork = unitOfWork;
             _currentFundilocations = new List<FundiLocationViewModel>();
             _mapper = mapper;
             _businessSmtpDetails = appSettings.AppSettings.GetSection("BusinessSmtpDetails");
-
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
         }
         [HttpGet]
@@ -146,17 +149,19 @@ namespace MyFundi.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> RemoveFundiFromMonitor([FromBody] FundiLocationViewModel fundiLocationViewModel)
         {
-            try {
+            try
+            {
                 if (_currentFundilocations.Contains(fundiLocationViewModel))
                 {
                     _currentFundilocations.Remove(fundiLocationViewModel);
                     return await Task.FromResult(Ok(new { Message = $"Removed Fundi: {fundiLocationViewModel.fundiUserDetails.Username} from Map" }));
                 }
-                else{
+                else
+                {
                     return await Task.FromResult(BadRequest(new { Message = $" Fundi: {fundiLocationViewModel.fundiUserDetails.Username} Is not being tracked at the moment!!" }));
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return await Task.FromResult(BadRequest(new { Message = "An Error Occured While Removing Fundi!!" }));
             }
@@ -187,7 +192,7 @@ namespace MyFundi.Web.Controllers
                 _emailService.BusinessEmailDetails = _businessSmtpDetails;
                 //Send Email:
                 _emailService.SendEmail(new EmailDao { Attachment = Request.Form.Files.Any() ? Request.Form.Files[0] : null, EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
-                return await Task.FromResult(Ok(new {Succeded = true, Message = "Succesfully Sent Your Email!"}));
+                return await Task.FromResult(Ok(new { Succeded = true, Message = "Succesfully Sent Your Email!" }));
             }
             catch (Exception e)
             {
@@ -199,7 +204,7 @@ namespace MyFundi.Web.Controllers
         {
             try
             {
-                User fundiUser = null; 
+                User fundiUser = null;
                 var httpClient = new HttpClient();
                 var content = new { authToken = Request.Headers["authToken"], emailAddress = string.Empty, username = string.Empty };
 
@@ -248,6 +253,187 @@ namespace MyFundi.Web.Controllers
                 return await Task.FromResult(BadRequest(new { result = false, message = "Failed To Add Tracking" }));
             }
         }
- 
+
+        //Chat Functions.............................//////
+
+
+        [Route("~/Adhoc/IsInPrivateRoom")]
+        public bool IsInPrivateRoom([FromBody] Client clt)
+        {
+            if (ChatResource.Rooms[clt.RoomNumber].First().FirstOrDefault(q => q.Username.ToLower().Equals(clt.Username.ToLower())) != null) return true;
+            return false;
+        }
+        [Route("~/Adhoc/InviteClient")]
+        public void InviteClient([FromBody] Client clt)
+        {
+            Client client = new Client { Username = clt.Username, Messages = new Queue<Message>(), RoomNumber = clt.RoomNumber, TimeStarted = DateTime.Now };
+            client.Messages.Enqueue(new Message { ClientMessage = clt.CurrentMessage, MessageWasSent = false });
+        }
+        [Route("~/Adhoc/ExitPrivateRoom")]
+        public void ExitPrivateRoom([FromBody] Client clt)
+        {
+            Client client = new Client { Username = clt.Username, CurrentMessage = clt.CurrentMessage };
+            var clientToRemove = ChatResource.Rooms[clt.RoomNumber].First().FirstOrDefault(q => q.Username.ToLower().Equals(clt.Username.ToLower()));
+
+            if (clientToRemove != null)
+            {
+                clientToRemove.RemoveFromRoom = true;
+                AddExitMessagePrivateRoom(clt);
+            }
+        }
+        [Route("~/Adhoc/ClearPrivateRoom/{roomNumber}")]
+        public void ClearPrivateRoom(int roomNumber)
+        {
+            ChatResource.Rooms.Remove(roomNumber);
+        }
+
+        [Route("~/Adhoc/AddExitMessagePrivateRoom")]
+        public void AddExitMessagePrivateRoom([FromBody] Client clt)
+        {
+            Client client = new Client { Username = clt.Username, CurrentMessage = clt.CurrentMessage, RemoveFromRoom = true };
+            var actualClient = ChatResource.Rooms[clt.RoomNumber].First().FirstOrDefault(q => q.Username.ToLower().Equals(clt.Username.ToLower()));
+            if (actualClient != null)
+                actualClient.Messages.Enqueue(new Message { ClientMessage = clt.CurrentMessage, TimeSent = DateTime.Now });
+        }
+
+        [Route("~/Adhoc/AddMessagePrivateRoom")]
+        public bool AddMessagePrivateRoom([FromBody] Client clt)
+        {
+            Client client = new Client { Username = clt.Username };
+            var actualClient = ChatResource.Rooms[clt.RoomNumber].First().FirstOrDefault(q => q.Username.ToLower().Equals(clt.Username.ToLower()));
+            if (actualClient != null && !string.IsNullOrEmpty(clt.CurrentMessage))
+            {
+                actualClient.Messages.Enqueue(new Message { ClientMessage = clt.CurrentMessage, TimeSent = DateTime.Now });
+                return true;
+            }
+            return false;
+        }
+
+        [Route("~/Adhoc/AddMessageAllRooms")]
+        public Client AddMessageAllRooms([FromBody] Client clt)
+        {
+            if (!string.IsNullOrEmpty(clt.CurrentMessage))
+            {
+                Client client = new Client { Username = clt.Username, CurrentMessage = clt.CurrentMessage };
+
+                foreach (var chatRoom in ChatResource.Rooms)
+                {
+
+                    foreach (var queue in ChatResource.Rooms[chatRoom.Key])
+                    {
+                        foreach (var currentClient in queue)
+                        {
+                            if (currentClient != null)
+                            {
+                                currentClient.CurrentMessage = client.CurrentMessage;
+                            }
+                        }
+                    }
+                }
+                return client;
+            }
+            return null;
+        }
+
+        [Route("~/Adhoc/GetMessage/{roomNumber}")]
+        public Message GetMessage(int roomNumber)
+        {
+            if (ChatResource.Rooms[roomNumber].First() != null)
+            {
+
+                var queue = ChatResource.Rooms[roomNumber].First();
+                var clt = queue.LastOrDefault();
+                Thread.Sleep(1500);
+                if (clt != null)
+                {
+                    var msg = clt.Messages.LastOrDefault();
+
+                    if (msg != null && !string.IsNullOrEmpty(msg.ClientMessage))
+                    {
+                        
+                        return new Message
+                        {
+                            ClientMessage = $"<span style=\"color:red !important;\">{clt.Username}: </span>{msg.ClientMessage}<br>",
+                            MessageWasSent = true,
+                            TimeSent = DateTime.Now
+                        };
+                    }
+                    else
+                    {
+                        if (clt.Messages.Count > 0)
+                            clt.Messages.Dequeue();
+                        return null;
+                    }
+                }
+            }
+            return null;
+        }
+        [Route("~/Adhoc/GetBroadcastMessages")]
+        public dynamic GetBroadcastMessages()
+        {
+            var messageBuilder = new StringBuilder();
+
+            Thread.Sleep(2500);
+            foreach (var chatRoom in ChatResource.Rooms)
+            {
+
+                foreach (var queue in ChatResource.Rooms[chatRoom.Key])
+                {
+                    foreach (var clt in queue)
+                    {
+                        if (!string.IsNullOrEmpty(clt.CurrentMessage))
+                            messageBuilder.Append($"<div style=\"font-color:orange;\"><span style=\"color:red\">{clt.Username + ": </span>" + clt.CurrentMessage}<br></div>");
+                    }
+                }
+            }
+
+            return new { Message = messageBuilder.ToString() };
+        }
+
+        [Route("~/Adhoc/GetUserList/{roomNumber}")]
+        public Client[] GetUserList(int roomNumber)
+        {
+            Thread.Sleep(2500);
+            var list = new List<Client>();
+            if (ChatResource.Rooms[roomNumber].First() == null) return list.ToArray();
+
+            foreach (var clt in ChatResource.Rooms[roomNumber].First())
+            {
+                list.Add(clt);
+            }
+
+            return list.ToArray();
+        }
+
+
+        [Route("~/Adhoc/BookPrivateRoom")]
+        public Client BookPrivateRoom([FromBody] Client clt)
+        {
+            if (String.IsNullOrEmpty(clt.Username))
+            {
+                return null;
+            }
+            Client client = new Client { Username = clt.Username, Messages = clt.Messages = new Queue<Message>(), CurrentMessage = clt.CurrentMessage };
+            client.ClientBooker = clt.Username;
+            client.TimeStarted = DateTime.Now;
+
+            if (ChatResource.AddClientToChatRoom(clt))
+            {
+                return clt;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [Route("~/Adhoc/GetBookerClient/{roomNumber}")]
+        public string GetBookerClient(int roomNumber)
+        {
+            Client bclient = null;
+            bclient = ChatResource.Rooms[roomNumber].First().FirstOrDefault(q => !string.IsNullOrEmpty(q.ClientBooker));
+            if (bclient != null) return bclient.ClientBooker;
+            else return null;
+        }
+
     }
 }

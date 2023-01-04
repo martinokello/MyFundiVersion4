@@ -1425,6 +1425,7 @@ C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\Simba
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\Newtonsoft.Json.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\SimbaToursEastAfrica.Caching.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\System.Buffers.dll
+C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\System.Memory.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\System.Numerics.Vectors.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
 C:\Development\MyFundiCurrent\SimbaToursEastAfrica.SocialMedia\bin\Release\System.ValueTuple.dll

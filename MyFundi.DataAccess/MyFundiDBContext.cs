@@ -84,6 +84,57 @@ namespace MyFundi.DataAccess
 
         }
 
+        public string ValidateFundiSubscription(int fundiProfileId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = (SqlCommand)con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
+
+                cmd.CommandText = "[dbo].[GetFundiProfileDatedOnSubscription]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+                var message = "Subscription Is Still Valid";
+                while (reader.Read())
+                {
+                    message = "User Subscription Expired!! Please renew Subscription.";
+                }
+                con.Close();
+                return message;
+
+            }
+
+        }
+        public string ValidateFundiSubscriptionDaysToExpiry(int fundiProfileId, int daysWithin)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = (SqlCommand)con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
+                cmd.Parameters.Add(new SqlParameter("@daysWithin", daysWithin));
+
+                cmd.CommandText = "[dbo].[[GetFundiProfileDatedWithinDaysOfSubscriptionEnd]]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+                var message = "Subscription Is Still Valid";
+                while (reader.Read())
+                {
+                    message = $"User Subscription Is about to expire in {daysWithin} Days!! Please renew Subscription sooner.";
+                }
+                con.Close();
+                return message;
+
+            }
+
+        }
         public List<WorkCategoryTypesTO> GetWorkSubCategoriesForFundiByJobId(int jobId, int fundiProfileId)
         {
             var list = new List<WorkCategoryTypesTO>();

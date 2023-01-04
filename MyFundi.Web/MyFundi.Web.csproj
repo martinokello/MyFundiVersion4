@@ -14,6 +14,7 @@
     <OutputType>Exe</OutputType>
     <StartupObject>MyFundi.Web.Program</StartupObject>
     <PlatformTarget>x64</PlatformTarget>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,9 +42,11 @@
 
   <ItemGroup>
     <None Remove="ClientApp\dist\index.html" />
+    <None Remove="ClientApp\src\app\activecrudoperations\chat.component.ts" />
     <None Remove="ClientApp\src\assets\images\CarMechanic.jpg" />
     <None Remove="ClientApp\src\assets\images\carpentryMetalwork.jpg" />
     <None Remove="ClientApp\src\environments\index.html" />
+    <None Remove="ClientApp\src\guards\AuthFundiClientAdminGuard.ts" />
     <None Remove="ClientApp\src\images\CarMechanic.jpg" />
     <None Remove="ClientApp\src\images\carpentryMetalwork.jpg" />
     <None Remove="ClientApp\src\index.html" />
@@ -279,6 +282,11 @@
   <ItemGroup>
     <Folder Include="MyFundiProfile\" />
     <Folder Include="ClientProfile\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\chat\chat.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthFundiClientAdminGuard.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -39,6 +39,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/chat/chat.component.html":
+/*!********************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/chat/chat.component.html ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"chat-wrapper\">\r\n    <div style=\"text-align: center;\">\r\n        <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px;padding-left:20px; text-align: left;\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <h2>MartinLayooInc. Private Chat Room No: #{{roomNumber?roomNumber.toString():\"\"}}</h2><br />\r\n                </div>\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <span style=\"color: #0080ff;margin-left:20px;\"><b><i>Private Chat Room</i></b></span><br />\r\n                </div>\r\n\r\n                <div class=\"row\" style=\"background-color: #DADADA; margin-left: 0px; margin-right: 0px;\">\r\n                    <div class=\"col-lg-8\">\r\n                        <div id=\"txtMessages\" style=\"border: solid 1px #999999; padding: 5px 5px 5px 5px;  \tmargin-top: 15px; margin-left: 0px; width:auto !important; height: 240px; overflow-y: auto; overflow-x: hidden;  \tfont-family: Times New Roman; font-size: small; color: blue; background-color: White;\">\r\n                        </div>\r\n                        <textarea id=\"txtTypeHere\" style=\"margin-top:10px;width:100% !important; height:240px;margin-left: 0px; padding: 5px 5px 5px 5px; \" placeholder=\"Type messages here and click return or send button\" title=\"type messages here and click return or send button\" (keydown)=\"keyDownMessage($event)\"></textarea>\r\n                    </div>\r\n                    <div class=\"col-lg-4\">\r\n                        <div style=\"color: Green; margin-left: 10px; margin-top:-15px; font-style: italic; font-weight: bold; font-size:small;\">Please select the User you want to invite to Secret Room</div>\r\n                        <div style=\"margin-top:15px;\">\r\n                            <ul class=\"listless\" id=\"radioList\" style=\"margin-right: 10px; background-color: white; height: 490px; width: auto; color: teal;list-style:none !important;\"></ul>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div style=\"margin-top: 10px; margin-left: 0px; margin-bottom: 10px;padding-bottom:5px;\">\r\n                    <input type=\"button\" id=\"btnSubmit\" value=\"Send Message\" class=\"oneRowButton\" (click)=\"wasClicked($event);\" />\r\n                    <input type=\"button\" id=\"btnBookRoom\" value=\"Book Room\" class=\"oneRowButton\" (click)=\"BookPrivateRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnInvite\" value=\"Invite Friend\" class=\"oneRowButton\" (click)=\"InviteClient($event);\" />\r\n                    <input type=\"button\" id=\"btnClearRoom\" value=\"Stop Meeting\" class=\"oneRowButton\" (click)=\"ClearRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnExitRoom\" value=\"Exit Meeting\" class=\"oneRowButton\" (click)=\"ExitRoom($event);\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/client-job-view/clientjobview.component.html":
 /*!****************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/client-job-view/clientjobview.component.html ***!
@@ -74,7 +87,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"clientfundisearch-wrapper\">\r\n        <section id=\"searchFundi\">\r\n            <form id=\"fundiSearchForm\" ngForm>\r\n                <div class=\"form-group\">\r\n                    <label>Search By Fundi Categories</label>\r\n                    <div id=\"fundiCategories\">\r\n                    </div>\r\n                </div><br />\r\n                <div class=\"form-group\">\r\n                    <label>Job Name</label>\r\n                    <select id=\"jobId\" name=\"jobId\" [(ngModel)]=\"jobId\"></select>\r\n                </div><br />\r\n                <input type=\"button\" value=\"Search Fundi By Categories\" class=\"but-primary\" (click)=\"searchFundiByCategories($event)\" />\r\n                <br /><br/>\r\n            </form>\r\n            <br/>\r\n        </section>\r\n        <div *ngIf=\"fundiSatisfyingJobList.length > 0\">\r\n            <section id=\"Profile\" *ngFor=\"let profile of fundiSatisfyingJobList\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-12\">\r\n                        <div style=\"width: 40% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                            <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto; align-content:center !important;\" /><br />\r\n                            <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />\r\n                            <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />\r\n                            <span id=\"averageFundiRating-{{profile.fundiProfileId}}\" class=\"profileRatingSpan rateit\" data-rateit-mode=\"font\" style=\"text-align:left;font-size: 40px; max-width: 10%;\"></span><br />\r\n                        </div>\r\n                        <div style=\"width: 60% !important; display: inline-block !important; text-align: left !important; margin-top: 0px !important;\">\r\n                            <div style=\"width:100% !important;\">\r\n                                <fundi-engagement id=\"clientSearchEngagement-{{profile.fundiProfileId}}\" [profileId]=\"profile.fundiProfileId\"></fundi-engagement>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important;\">\r\n                    <div class=\"col-lg-12\">\r\n                        <a href=\"#\" (click)=\"populateFundiUserDetails($event,profile.fundiProfileId)\" style=\"width:250px; height:auto; align-content:center !important;\">View Fundi Profile</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Profile Summary</h5>\r\n                        <ul>\r\n                            <li>\r\n                                {{profile.fundiProfileSummary}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Profile Rating &amp; Reviews</h5>\r\n                        <ul>\r\n                            <li *ngFor=\"let rating of profile.fundiRatingsAndReviews\">\r\n                                <div>\r\n                                    Rated By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{rating.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Rating: <span style=\"color:brown !important;\">{{rating.fundiRating?rating.fundiRating:\"No Rating Yet\"}} out of 5</span><br />\r\n                                </div>\r\n                                <div>\r\n                                    Review By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{profile.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Review: {{rating.clientReview}}<br />\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                        <h5>Rate This Fundi</h5>\r\n                        <form id=\"ratingForm-{{profile.fundiProfileId}}\">\r\n                            <div id=\"fundiRating-{{profile.fundiProfileId}}\" class=\"rateit\" data-rateit-mode=\"font\" style=\"text-align: left; font-size: 40px; max-width: 10% !important;\"></div><br />\r\n                            <span>Choose Work Category:</span><br />\r\n                            <h5>Fundi Work Category Types</h5>\r\n                            <div *ngFor=\"let wcdata of profile.jobWorkCategoryDetails\">\r\n                                <h6>{{wcdata.workCategoryType}}</h6>\r\n                                <h5>Work Sub Category Type</h5>\r\n                                <select id=\"workCategory-{{profile.fundiProfileId}}\" name=\"workCategory\" class=\"form-control\">\r\n                                    <option value=\"{{wcdata.workSubCategoryId}}\">{{wcdata.workSubCategoryType}}</option>\r\n                                </select>\r\n                            </div>\r\n                            <br />\r\n                            <textarea id=\"review-{{profileId}}\" placeholder=\"Write review\" rows=\"5\" cols=\"20\"></textarea><br />\r\n                            <input type=\"button\" id=\"{{profileId}}\" class=\"but-primary\" value=\"Rate Fundi\" (click)=\"rateFundi($event)\" />\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"skills\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Skills</h5>\r\n                        <ul id=\"{{profile.fundiProfileId}}-skills\">\r\n                            <li>{{profile.fundiSkills}}</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <hr /><br />\r\n            </section>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"clientfundisearch-wrapper\">\r\n        <section id=\"searchFundi\">\r\n            <form id=\"fundiSearchForm\" ngForm>\r\n                <div class=\"form-group\">\r\n                    <label>Search By Fundi Categories</label>\r\n                    <div id=\"fundiCategories\">\r\n                    </div>\r\n                </div><br />\r\n                <div class=\"form-group\">\r\n                    <label>Job Name</label>\r\n                    <select id=\"jobId\" name=\"jobId\" [(ngModel)]=\"jobId\"></select>\r\n                </div><br />\r\n                <input type=\"button\" value=\"Search Fundi By Categories\" class=\"but-primary\" (click)=\"searchFundiByCategories($event)\" />\r\n                <br /><br />\r\n            </form>\r\n            <br />\r\n        </section>\r\n        <div>\r\n            <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging><br />\r\n        </div>\r\n        <div id=\"results\" *ngIf=\"fundiSatisfyingJobList.length > 0\">\r\n            <section id=\"Profile\" *ngFor=\"let profile of fundiSatisfyingJobList\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-12\">\r\n                        <div style=\" width: 30% !important; margin-left: 5px !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                            <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto; align-content:center !important;\" /><br />\r\n                            <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />\r\n                            <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />\r\n                            <span id=\"averageFundiRating-{{profile.fundiProfileId}}\" class=\"profileRatingSpan rateit\" data-rateit-mode=\"font\" style=\"text-align:left;font-size: 40px; max-width: 10%;\"></span><br />\r\n                        </div>\r\n                        <div style=\"width: 70% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                            <fundi-engagement id=\"clientSearchEngagement-{{profile.fundiProfileId}}\" [profileId]=\"profile.fundiProfileId\"></fundi-engagement>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important;\">\r\n                    <div class=\"col-lg-12\">\r\n                        <a href=\"#\" (click)=\"populateFundiUserDetails($event,profile.fundiProfileId)\" style=\"width:250px; height:auto; align-content:center !important;\">View Fundi Profile</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Profile Summary</h5>\r\n                        <ul>\r\n                            <li>\r\n                                {{profile.fundiProfileSummary}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Profile Rating &amp; Reviews</h5>\r\n                        <ul>\r\n                            <li *ngFor=\"let rating of profile.fundiRatingsAndReviews\">\r\n                                <div>\r\n                                    Rated By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{rating.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Rating: <span style=\"color:brown !important;\">{{rating.fundiRating?rating.fundiRating:\"No Rating Yet\"}} out of 5</span><br />\r\n                                </div>\r\n                                <div>\r\n                                    Review By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{profile.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Review: {{rating.clientReview}}<br />\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                        <h5>Rate This Fundi</h5>\r\n                        <form id=\"ratingForm-{{profile.fundiProfileId}}\">\r\n                            <div id=\"fundiRating-{{profile.fundiProfileId}}\" class=\"rateit\" data-rateit-mode=\"font\" style=\"text-align: left; font-size: 40px; max-width: 10% !important;\"></div><br />\r\n                            <span>Choose Work Category:</span><br />\r\n                            <h5>Fundi Work Category Types</h5>\r\n                            <div *ngFor=\"let wcdata of profile.jobWorkCategoryDetails\">\r\n                                <h6>{{wcdata.workCategoryType}}</h6>\r\n                                <h5>Work Sub Category Type</h5>\r\n                                <select id=\"workCategory-{{profile.fundiProfileId}}\" name=\"workCategory\" class=\"form-control\">\r\n                                    <option value=\"{{wcdata.workSubCategoryId}}\">{{wcdata.workSubCategoryType}}</option>\r\n                                </select>\r\n                            </div>\r\n                            <br />\r\n                            <textarea id=\"review-{{profileId}}\" placeholder=\"Write review\" rows=\"5\" cols=\"20\"></textarea><br />\r\n                            <input type=\"button\" id=\"{{profileId}}\" class=\"but-primary\" value=\"Rate Fundi\" (click)=\"rateFundi($event)\" />\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"skills\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Skills</h5>\r\n                        <ul id=\"{{profile.fundiProfileId}}-skills\">\r\n                            <li>{{profile.fundiSkills}}</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <hr /><br />\r\n            </section>\r\n        </div>\r\n        <div>\r\n            <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging>\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -269,7 +282,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"width: 100% !important; background-color: #EEEEEE;\">\r\n    <div style=\"top: 0px !important; right: 74px !important; text-align: left !important; display: block !important; position: absolute;\">\r\n        <br />\r\n        <div style=\"width:auto;font-weight:bolder !important;\">Level Of Fundi Engagements</div>\r\n        <em>Fundi Number Of Assignments: {{currentFundiNumbOfAssignments}}</em><br />\r\n    </div>\r\n    <div style=\"top: 0px !important; right: 10px !important; position: absolute !important; text-align: left !important;\">\r\n        <div class=\"levelOfEngagement\" style=\"margin: !important; width: 40px !important; line-height: 60px !important; border: gray solid thin !important; position: absolute !important; text-align: center !important; border-radius: 20px !important; top: 5px !important;\">\r\n            <div id=\"indicator\" style=\"background-color:gray !important;display:none;margin-left:-4px !important;width:48px !important;z-index:200;position:absolute !important;height:2% !important;\">.</div>\r\n            <div id=\"fundiRed\" style=\"background-color: #FF0000 !important; height: 24% !important; border: gray solid thin !important; border-radius: 20px 20px 0px 0px !important; position: relative !important;\">.</div>\r\n            <div id=\"fundiOrange\" style=\"background-color: #FF8040 !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; position: relative !important; \">.</div>\r\n            <div id=\"fundiYellow\" style=\"background-color: #EAF50A !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; position: relative !important; \">.</div>\r\n            <div id=\"fundiGreen\" style=\"background-color: #99FF00 !important; height: 24% !important; border: gray thin medium !important; border-radius: 0px 0px 20px 20px !important; position: relative !important; \">.</div>\r\n        </div>\r\n        <br />\r\n    </div>\r\n    <br />\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"background-color: #EEEEEE;\">\r\n    <div style=\"top: 0px !important; right: 74px !important; width: 200px !important; text-align: right !important; position: absolute;\">\r\n        <span style=\"width:auto;font-weight:bolder !important;\">Fundi<br/>Engagements</span><br/><span style=\"font-style:italic;\">Number Of<br />Assignments: {{currentFundiNumbOfAssignments}}</span><br />\r\n    </div>\r\n    <div style=\"top: 0px !important; right: 10px !important; position: absolute !important; width: 60px !important; text-align:center !important;\">\r\n        <div class=\"levelOfEngagement\" style=\"width: 40px !important; line-height: 60px !important; border: gray solid thin !important; position: absolute !important; text-align: left !important; border-radius: 20px !important;\">\r\n            <div id=\"indicator\" style=\"background-color:gray !important;display:none;margin-left:-4px !important;width:48px !important;z-index:200;position:absolute !important;height:2% !important;\">.</div>\r\n            <div id=\"fundiRed\" style=\"background-color: #FF0000 !important; height: 24% !important; border: gray solid thin !important; border-radius: 20px 20px 0px 0px !important; position: relative !important;\">.</div>\r\n            <div id=\"fundiOrange\" style=\"background-color: #FF8040 !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; position: relative !important; \">.</div>\r\n            <div id=\"fundiYellow\" style=\"background-color: #EAF50A !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; position: relative !important; \">.</div>\r\n            <div id=\"fundiGreen\" style=\"background-color: #99FF00 !important; height: 24% !important; border: gray thin medium !important; border-radius: 0px 0px 20px 20px !important; position: relative !important; \">.</div>\r\n        </div>\r\n        <br />\r\n    </div>\r\n    <br />\r\n</div>");
 
 /***/ }),
 
@@ -282,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section id=\"searchFundi\">\r\n        <form id=\"fundiSearchForm\" ngForm>\r\n            <div class=\"form-group\">\r\n                <label>Search By Categories</label>\r\n                <div id=\"fundiCategories\">\r\n                </div>\r\n            </div><br />\r\n            <input type=\"button\" value=\"Search Jobs By Categories\" class=\"but-primary\" (click)=\"searchJobsByCategories($event)\" />\r\n        </form>\r\n    </section>\r\n    <div *ngIf=\"fundiJobList.length > 0\">\r\n        <section id=\"Profile\" *ngFor=\"let clientJob of fundiJobList\">\r\n            <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <span>Client Name: {{clientJob.clientFirstName}} {{clientJob.clientLastName}}</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=`jobName-${clientJob.JobId}` style=\"margin: 2px 0px !important;\">\r\n                    <h5>Job Name</h5>\r\n                    <div>\r\n                        <div>{{clientJob.jobName}} - #{{clientJob.jobId}}<br /></div>\r\n                        <div>\r\n                            <input type=\"button\" class=\"btn-primary\" routerLink='#' id=\"{{clientJob.jobId}}\" (click)=\"getJobPage($event)\" value=\"Job Details\" />\r\n                            <br />\r\n                        </div>\r\n                        <div>\r\n                            Distance from current Fundi's registered Location: {{clientJob.distanceApart}} Km.\r\n                            <br />\r\n                        </div>\r\n                        <div>Location: {{clientJob.jobLocationName}}</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategory\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Job Description:</h5>\r\n                    {{clientJob.jobDescription}}\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategory\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Work Category Types</h5>\r\n                    <div>\r\n                        <ul id=\"{{clientJob.jobId}}-workCategory\">\r\n                            <li *ngFor=\"let wsc of clientJob.jobWorkCategoryDetails\">\r\n                                <h5>Work Categories</h5>\r\n                                <em>{{wsc.workCategoryType}}</em><br />\r\n                                {{wsc.workSubCategoryType}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <hr /><br />\r\n        </section>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section id=\"searchFundi\">\r\n        <form id=\"fundiSearchForm\" ngForm>\r\n            <div class=\"form-group\">\r\n                <label>Search By Categories</label>\r\n                <div id=\"fundiCategories\">\r\n                </div>\r\n            </div><br />\r\n            <input type=\"button\" value=\"Search Jobs By Categories\" class=\"but-primary\" (click)=\"searchJobsByCategories($event)\" />\r\n        </form>\r\n        <br/>\r\n    </section>\r\n    <div>\r\n        <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging><br/>\r\n    </div>\r\n    <div id=\"results\" *ngIf=\"fundiJobList.length > 0\">\r\n        <section id=\"Profile\" *ngFor=\"let clientJob of fundiJobList\">\r\n            <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <span>Client Name: {{clientJob.clientFirstName}} {{clientJob.clientLastName}}</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=`jobName-${clientJob.JobId}` style=\"margin: 2px 0px !important;\">\r\n                    <h5>Job Name</h5>\r\n                    <div>\r\n                        <div>{{clientJob.jobName}} - #{{clientJob.jobId}}<br /></div>\r\n                        <div>\r\n                            <input type=\"button\" class=\"btn-primary\" routerLink='#' id=\"{{clientJob.jobId}}\" (click)=\"getJobPage($event)\" value=\"Job Details\" />\r\n                            <br />\r\n                        </div>\r\n                        <div>\r\n                            Distance from current Fundi's registered Location: {{clientJob.distanceApart}} Km.\r\n                            <br />\r\n                        </div>\r\n                        <div>Location: {{clientJob.jobLocationName}}</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategory\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Job Description:</h5>\r\n                    {{clientJob.jobDescription}}\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategory\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Work Category Types</h5>\r\n                    <div>\r\n                        <ul id=\"{{clientJob.jobId}}-workCategory\">\r\n                            <li *ngFor=\"let wsc of clientJob.jobWorkCategoryDetails\">\r\n                                <h5>Work Categories</h5>\r\n                                <em>{{wsc.workCategoryType}}</em><br />\r\n                                {{wsc.workSubCategoryType}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <hr /><br />\r\n        </section>\r\n    </div>\r\n    <div>\r\n        <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -295,7 +308,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h1 style=\"padding:10px 0px !important;text-align:center !important;\">{{profileUserDetails.firstName}} {{profileUserDetails.lastName}} Profile</h1>\r\n    <br/>\r\n    <section id=\"Profile\"><br />\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div style=\"width: 40% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                    <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{profileUserDetails.username}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto;\" /><br />\r\n                </div>\r\n                <div style=\"width: 60% !important; display: inline-block !important; text-align: left !important; margin-top: 0px !important;\">\r\n                    <div style=\"width:100% !important;\">\r\n                        <fundi-engagement id=\"engagement-{{profileUserDetails.fundiProfileId}}\" [profileId]=\"profileUserDetails.fundiProfileId\"></fundi-engagement>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\"><div class=\"col-lg-13\">&nbsp;</div></div>\r\n        <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\">Download {{profileUserDetails.firstName}} {{profileUserDetails.lastName}} Profile CV</a><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important; position: relative !important;\">\r\n            <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Rating</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let fundiRating of fundiRatings\">\r\n                        <div>\r\n                            <em style=\"color:brown !important;\">Rating: {{fundiRating.rating}} out of 5</em>\r\n                        </div>\r\n                        <div>\r\n                            Review: {{fundiRating.review}}\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let wcat of workCategories\">\r\n                        <em>{{wcat.workCategory.workCategoryType}}</em><br />\r\n                        {{wcat.workSubCategory.workSubCategoryType}}\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important; position: relative !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Summary</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{profile.profileSummary}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Skills</h5>\r\n                <div class=\"col-lg-12\" id=\"skills\">\r\n                    {{profile.skills}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important; position: relative !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Power Tools Used</h5>\r\n                <div class=\"col-lg-12\" id=\"usedPowerTools\">\r\n                    {{profile.usedPowerTools}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Certifications</h5>\r\n                <div class=\"col-lg-12\" id=\"certifications\">\r\n                    <ul>\r\n                        <li *ngFor=\"let cert of certifications\">\r\n                            {{cert.certificationName}}<br />\r\n                            <div>{{cert.certificationDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h5>Courses Attended</h5>\r\n                <div class=\"col-lg-12\" id=\"courses\" style=\"margin: 2px 0px !important;\">\r\n                    <ul>\r\n                        <li *ngFor=\"let course of courses\">\r\n                            {{course.courseName}}<br />\r\n                            <div>{{course.courseDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h1 style=\"padding:10px 0px !important;text-align:center !important;\">{{profileUserDetails.firstName}} {{profileUserDetails.lastName}} Profile</h1>\r\n    <br/>\r\n    <section id=\"Profile\"><br />\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div style=\"margin-left: 5px !important; width: 50% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                    <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{profileUserDetails.username}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto;\" /><br />\r\n                </div>\r\n                <div style=\"width: 70% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                    <fundi-engagement id=\"engagement-{{profileUserDetails.fundiProfileId}}\" [profileId]=\"profileUserDetails.fundiProfileId\"></fundi-engagement>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\"><div class=\"col-lg-13\">&nbsp;</div></div>\r\n        <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\">Download {{profileUserDetails.firstName}} {{profileUserDetails.lastName}} Profile CV</a><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important; position: relative !important;\">\r\n            <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Rating</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let fundiRating of fundiRatings\">\r\n                        <div>\r\n                            <em style=\"color:brown !important;\">Rating: {{fundiRating.rating}} out of 5</em>\r\n                        </div>\r\n                        <div>\r\n                            Review: {{fundiRating.review}}\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let wcat of workCategories\">\r\n                        <em>{{wcat.workCategory.workCategoryType}}</em><br />\r\n                        {{wcat.workSubCategory.workSubCategoryType}}\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important; position: relative !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Summary</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{profile.profileSummary}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Skills</h5>\r\n                <div class=\"col-lg-12\" id=\"skills\">\r\n                    {{profile.skills}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important; position: relative !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Power Tools Used</h5>\r\n                <div class=\"col-lg-12\" id=\"usedPowerTools\">\r\n                    {{profile.usedPowerTools}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Certifications</h5>\r\n                <div class=\"col-lg-12\" id=\"certifications\">\r\n                    <ul>\r\n                        <li *ngFor=\"let cert of certifications\">\r\n                            {{cert.certificationName}}<br />\r\n                            <div>{{cert.certificationDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h5>Courses Attended</h5>\r\n                <div class=\"col-lg-12\" id=\"courses\" style=\"margin: 2px 0px !important;\">\r\n                    <ul>\r\n                        <li *ngFor=\"let course of courses\">\r\n                            {{course.courseName}}<br />\r\n                            <div>{{course.courseDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -308,7 +321,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid subcworkSubCategories-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf(\"Fundi\") > -1 ?\"Fundi\":\"Client\"}} Profile</h1>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n            <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n              <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n              </div>\r\n              <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Fundi Profile ID\r\n                      </label><br />\r\n                      <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                      <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                          Fundi ID Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>Work Category Id</label>\r\n                      <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>Work Sub Category Id</label>\r\n                      <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                      <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                      <br />\r\n                      <ul id=\"ulistWorkCategories\"></ul>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Subscripton Name\r\n                      </label><br />\r\n                      <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                          Subscription Name Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Monthly Subscription Description\r\n                      </label><br />\r\n                      <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                          Subscription Name Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Subscripton Monthly Fee\r\n                      </label><br />\r\n                      <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                          Subscription Fee Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Make Payment\r\n                      </label><br />\r\n                      <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                      <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                      <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                  </div>\r\n                  <hr />\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid subcworkSubCategories-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n            <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n              <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n              </div>\r\n              <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Fundi Profile ID\r\n                      </label><br />\r\n                      <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                      <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                          Fundi ID Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>Work Category Id</label>\r\n                      <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>Work Sub Category Id</label>\r\n                      <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                      <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                      <input type=\"button\" value=\"Remove SubCategory\" (click)=\"removeWorkSubCategory($event)\" /><br />\r\n                      <br />\r\n                      <ul id=\"ulistWorkCategories\"></ul>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Subscripton Name\r\n                      </label><br />\r\n                      <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                          Subscription Name Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Monthly Subscription Description\r\n                      </label><br />\r\n                      <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                          Subscription Name Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Subscripton Monthly Fee\r\n                      </label><br />\r\n                      <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                      <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                          Subscription Fee Required\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                      <label>\r\n                          Make Payment\r\n                      </label><br />\r\n                      <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                      <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                      <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                  </div>\r\n                  <hr />\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -347,7 +360,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section id=\"banner\" style=\"height:auto !important;\">\r\n  <header style=\"margin-top:5px !important;position:relative !important;\">\r\n    <!-- Nav -->\r\n    <nav id=\"nav\">\r\n      <div style=\"position:relative !important;margin-bottom:5px;text-align:left;\">\r\n        <span style=\"color:red;background-color:black;padding:5px;display:none;font-size:small;\" class=\"col-lg-4\" id=\"loginName\"></span><br />\r\n      </div>\r\n      <ul style=\"margin: 6px 0px !important;\">\r\n        <li style=\"margin:10px 0px !important;padding:10px !important;\">\r\n          <a [routerLink]=\"['/']\">Home</a>\r\n        </li>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-entities'>Manage Entities</a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && userRoles.indexOf('Fundi') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-subscription'>Fundi Subscription</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/manage-profile'>Manage Fundi Profile</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-search-job'>Search For Jobs</a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && userRoles.indexOf('Client') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/client-create-job'>Manage Jobs</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/clientsearch']\">\r\n              Search For Fundi\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-roles'>\r\n                    Manage Roles\r\n                </a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/admin-entities-override'>\r\n                    Admin Overrides\r\n                </a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/contactus']\">\r\n              Contact Us\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/aboutus']\">\r\n              About Us\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/login']\">\r\n              login\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/register']\">\r\n              Register\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngModel=\"actUserStatus\" ngDefaultControl>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/scanqrcode']\">\r\n              Scan Qr-Code\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a (click)=\"setIsLogInPage()\" [routerLink]=\"['/home']\">\r\n              Logout\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n          <a [routerLink]=\"['/forgot-password']\">\r\n            Forgot password\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!-- Roles Banner-->\r\n    <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl>\r\n      <!-- Nav -->\r\n      <nav style=\"text-align:left !important;\">\r\n          <ul style=\"margin: 6px 0px !important;\">\r\n              <li style=\"margin:10px 0px !important;padding:10px !important;\" *ngFor=\"let role of userRoles\">\r\n                  <a routerLink=\"/{{role}}\" routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">{{role}}</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">Fundi Locations</a>\r\n              </li>\r\n          </ul>\r\n      </nav>\r\n    </ng-container>\r\n    <hr/>\r\n  </header>\r\n</section>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section id=\"banner\" style=\"height:auto !important;\">\r\n  <header style=\"margin-top:5px !important;position:relative !important;\">\r\n    <!-- Nav -->\r\n    <nav id=\"nav\">\r\n      <div style=\"position:relative !important;margin-bottom:5px;text-align:left;\">\r\n        <span style=\"color:red;background-color:black;padding:5px;display:none;font-size:small;\" class=\"col-lg-4\" id=\"loginName\"></span><br />\r\n      </div>\r\n      <ul style=\"margin: 6px 0px !important;\">\r\n        <li style=\"margin:10px 0px !important;padding:10px !important;\">\r\n          <a [routerLink]=\"['/']\">Home</a>\r\n        </li>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-entities'>Manage Entities</a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/chat'>Live Chat</a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && (userRoles.indexOf('Fundi') > -1 ||  userRoles.indexOf('Guest')) > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-subscription'>Fundi Subscription</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/manage-profile'>Manage Fundi Profile</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-search-job'>Search For Jobs</a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && userRoles.indexOf('Client') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/client-create-job'>Manage Jobs</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/clientsearch']\">\r\n              Search For Fundi\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-roles'>\r\n                    Manage Roles\r\n                </a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/admin-entities-override'>\r\n                    Admin Overrides\r\n                </a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/contactus']\">\r\n              Contact Us\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/aboutus']\">\r\n              About Us\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/login']\">\r\n              login\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/register']\">\r\n              Register\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngModel=\"actUserStatus\" ngDefaultControl>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/scanqrcode']\">\r\n              Scan Qr-Code\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a (click)=\"setIsLogInPage()\" [routerLink]=\"['/home']\">\r\n              Logout\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n          <a [routerLink]=\"['/forgot-password']\">\r\n            Forgot password\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!-- Roles Banner-->\r\n    <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl>\r\n      <!-- Nav -->\r\n      <nav style=\"text-align:left !important;\">\r\n          <ul style=\"margin: 6px 0px !important;\">\r\n              <li style=\"margin:10px 0px !important;padding:10px !important;\" *ngFor=\"let role of userRoles\">\r\n                  <a routerLink=\"/{{role}}\" routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">{{role}}</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">Fundi Locations</a>\r\n              </li>\r\n          </ul>\r\n      </nav>\r\n    </ng-container>\r\n    <hr/>\r\n  </header>\r\n</section>\r\n");
 
 /***/ }),
 
@@ -361,6 +374,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div #rolesView class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <h4>Create Or Delete Roles</h4>\r\n    <form #f3=\"ngForm\" (ngSubmit)=\"f3.form.valid\">\r\n        <div class=\"form-group\">\r\n            <label>User Role</label>\r\n            <input type=\"text\" name=\"newRoleName\" [(ngModel)]=\"newRoleName\" required #newRoleNameMessage=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && newRoleNameMessage.invalid\" class=\"text-danger\">\r\n                Role Name required\r\n            </div>\r\n        </div>\r\n        <input type=\"submit\" (click)=\"createUserRole()\" class=\"but-primary\" name=\"CreateRole\" value=\"Create User Role\"  style=\"margin-top:10px;margin-left:7px;\"/>\r\n        <input type=\"submit\" (click)=\"deleteUserRole()\" class=\"but-primary\" name=\"DeleteRole\"value=\"Delete User Role\"  style=\"margin-top: 10px; margin-left: 7px;\"/>\r\n    </form>\r\n</div>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/paging/paging.component.html":
+/*!************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/paging/paging.component.html ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div id=\"pagerIdBottom\"class=\"container-fluid\" style=\"background-color: dimgrey !important; text-align: center !important; \">\r\n    <span id=\"search-navigation-links\" style=\"color: dimgrey; padding-top: 5px !important; padding-bottom: 5px !important;\">\r\n        <span>\r\n            <a id=\"prev3\" href=\"#results\" style=\"width: 20px !important; padding: 3px !important; background-color: white !important;\" (click)=\"prev3PagesClicked($event)\"> <<  </a> |\r\n        </span>\r\n        <span>\r\n            <a id=\"prev\" href=\"#results\" style=\"width: 20px !important; padding: 3px !important; background-color: white !important;\" (click)=\"prevPageClicked($event)\"> < </a> |\r\n        </span>\r\n        <span>\r\n            <a id=\"next\" href=\"#results\" style=\"width:20px!important;padding:3px !important;background-color:white !important;\" (click)=\"nextPageClicked($event)\"> > </a> |\r\n        </span>\r\n        <span>\r\n            <a id=\"next3\" href=\"#results\" style=\"width: 20px !important; padding: 3px !important; background-color: white !important;\" (click)=\"next3PagesClicked($event)\"> >> </a>\r\n        </span>\r\n    </span>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -399,7 +425,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #F0F0F0; text-align: left;\">\r\n  <section>\r\n    <a [routerLink]=\"['/manage-profile']\">\r\n      View Profile\r\n    </a>\r\n  </section>\r\n  <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf(\"Fundi\") > -1 ?\"Fundi\":\"Client\"}} Profile</h1>\r\n  <section id=\"Profile\">\r\n      <div class=\"row\">\r\n          <div class=\"col-lg-12\">\r\n              <h4>Fundi Profile Picture</h4><br />\r\n              <div id=\"loadingProfileImage\" style=\"display:none !important;\"><img src=\"/assets/images/loading.gif\" alt=\"busy\" /></div>\r\n              <form id=profileImageForm enctype=\"multipart/form-data\" method=\"post\">\r\n                  <input type=\"hidden\" name=\"username\" value=\"{{userDetails.username}}\" />\r\n                  <input type=\"file\" id=\"profileImageId\" name=\"profileImage\" (change)=\"handleProfileImage($event.target.files)\" /><br />\r\n                  <input type=\"button\" value=\"Upload Profile Image\" class=\"but-primary\" (click)=\"uploadProfileImage()\" /><br />\r\n              </form>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\">\r\n          <div class=\"col-lg-12\">\r\n              <h4>Fundi Profile CV</h4><br />\r\n              <div id=\"loadingProfileCV\" style=\"display:none !important;\"><img src=\"/assets/images/loading.gif\" alt=\"busy\" /></div>\r\n              <form id=fundiProfileCvForm enctype=\"multipart/form-data\" method=\"post\">\r\n                  <input type=\"hidden\" name=\"username\" value=\"{{userDetails.username}}\" />\r\n                  <input type=\"file\" id=\"fundiProfileCvId\" name=\"fundiProfileCv\" (change)=\"handleProfileCV($event.target.files)\" /><br />\r\n                  <input type=\"button\" class=\"but-primary\" value=\"Upload CV\" (click)=\"uploadFundiCV()\" /><br />\r\n              </form>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\">\r\n          <div class=\"col-lg-12\" id=\"locationName\">\r\n              <br />\r\n              <location (locationEventEmitter)=\"getSelectedLocation($event)\" [location]=\"location\"></location><br />\r\n          </div>\r\n          <div class=\"container-fluid\" style=\"background-color: #F0F0F0; text-align: left;\">\r\n              <form id=\"formProfileSection\">\r\n                  <div class=\"row\">\r\n                      <div class=\"col-lg-12\">\r\n                          <h4>Profile Summary</h4><br />\r\n                          <textarea id=\"profileSummary\" name=\"profileSummary\" [(ngModel)]=\"profile.profileSummary\"></textarea><br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                      <div class=\"col-lg-12\">\r\n                          <h4>Skills</h4>\r\n                          <textarea id=\"skills\" name=\"skills\" [(ngModel)]=\"profile.skills\"></textarea><br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                      <div class=\"col-lg-12\">\r\n                          <h4>Power Tools Used</h4><br />\r\n                          <textarea id=\"usedPowerTools\" name=\"usedPowerTools\" [(ngModel)]=\"profile.usedPowerTools\"></textarea><br />\r\n                      </div>\r\n                  </div>\r\n                  <div>\r\n                      <input type=\"button\" value=\"Save Profile\" class=\"but-primary\" (click)=\"saveProfile()\" /><br />\r\n                  </div>\r\n              </form>\r\n          </div>\r\n      </div>\r\n      <workcategory></workcategory><br />\r\n      <certification></certification><br />\r\n      <courses></courses><br />\r\n  </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #F0F0F0; text-align: left;\">\r\n  <section>\r\n    <a [routerLink]=\"['/manage-profile']\">\r\n      View Profile\r\n    </a>\r\n  </section>\r\n  <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf(\"Fundi\") > -1 ?\"Fundi\":\"Client\"}} Profile</h1>\r\n  <section id=\"Profile\">\r\n      <div class=\"row\">\r\n          <div class=\"col-lg-12\">\r\n              <h4>Fundi Profile Picture</h4><br />\r\n              <div id=\"loadingProfileImage\" style=\"display:none !important;\"><img src=\"/assets/images/loading.gif\" alt=\"busy\" /></div>\r\n              <form id=profileImageForm enctype=\"multipart/form-data\" method=\"post\">\r\n                  <input type=\"hidden\" name=\"username\" value=\"{{userDetails.username}}\" />\r\n                  <input type=\"file\" id=\"profileImageId\" name=\"profileImage\" (change)=\"handleProfileImage($event.target.files)\" /><br />\r\n                  <input type=\"button\" value=\"Upload Profile Image\" class=\"but-primary\" (click)=\"uploadProfileImage()\" /><br />\r\n              </form>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\">\r\n          <div class=\"col-lg-12\">\r\n              <h4>Fundi Profile CV</h4><br />\r\n              <div id=\"loadingProfileCV\" style=\"display:none !important;\"><img src=\"/assets/images/loading.gif\" alt=\"busy\" /></div>\r\n              <form id=fundiProfileCvForm enctype=\"multipart/form-data\" method=\"post\">\r\n                  <input type=\"hidden\" name=\"username\" value=\"{{userDetails.username}}\" />\r\n                  <input type=\"file\" id=\"fundiProfileCvId\" name=\"fundiProfileCv\" (change)=\"handleProfileCV($event.target.files)\" /><br />\r\n                  <input type=\"button\" class=\"but-primary\" value=\"Upload CV\" (click)=\"uploadFundiCV()\" /><br />\r\n              </form>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\">\r\n          <div class=\"col-lg-12\" id=\"locationName\">\r\n              <br />\r\n              <location (locationEventEmitter)=\"getSelectedLocation($event)\" [location]=\"location\"></location><br />\r\n          </div>\r\n          <div class=\"container-fluid\" style=\"background-color: #F0F0F0; text-align: left;\">\r\n              <form id=\"formProfileSection\">\r\n                  <div class=\"row\">\r\n                      <div class=\"col-lg-12\">\r\n                          <h4>Profile Summary</h4><br />\r\n                          <textarea id=\"profileSummary\" name=\"profileSummary\" [(ngModel)]=\"profile.profileSummary\"></textarea><br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                      <div class=\"col-lg-12\">\r\n                          <h4>Skills</h4>\r\n                          <textarea id=\"skills\" name=\"skills\" [(ngModel)]=\"profile.skills\"></textarea><br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                      <div class=\"col-lg-12\">\r\n                          <h4>Power Tools Used</h4><br />\r\n                          <textarea id=\"usedPowerTools\" name=\"usedPowerTools\" [(ngModel)]=\"profile.usedPowerTools\"></textarea><br />\r\n                      </div>\r\n                  </div>\r\n                  <div>\r\n                      <input type=\"button\" value=\"Save Profile\" class=\"but-primary\" (click)=\"saveProfile()\" /><br />\r\n                  </div>\r\n              </form>\r\n          </div>\r\n      </div>                \r\n      <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n          <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n              <h5>Work Categories</h5>\r\n              <select id=\"workCategoryAndSubCatId\" name=\"workCategoryId\" [(ngModel)]=\"workCategoryAndSubCatId\"></select><br />\r\n              <input type=\"button\" value=\"Add Work Category\" (click)=\"addWorkCategory($event)\" /><br />\r\n              <input type=\"button\" value=\"Remove Work Category\" (click)=\"removeWorkCategory($event)\" /><br />\r\n              <ul id=\"ulistWorkCategories\"></ul>\r\n          </div>\r\n      </div>\r\n      <certification></certification><br />\r\n      <courses></courses><br />\r\n  </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -412,7 +438,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section>\r\n        <a style=\"padding-top:10px;padding-bottom:10px !important;\" [routerLink]=\"['/create-profile']\" routerLinkActive='link-active'>\r\n            Create Or Edit Profile\r\n        </a>\r\n    </section>\r\n    <div>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf(\"Fundi\") > -1 ?\"Fundi\":\"Client\"}} Profile</h2>\r\n        <br/>\r\n    </div>\r\n    <section id=\"Profile\">\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div style=\"width: 40% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                    <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto;\" /><br />\r\n                </div>\r\n                <div style=\"width: 60% !important; display: inline-block !important; text-align: left !important; margin-top: 0px !important;\">\r\n                    <div style=\"width:100% !important;\">\r\n                        <fundi-engagement id=\"profile-engagement-{{profile.fundiProfileId}}\" [profileId]=\"profile.fundiProfileId\"></fundi-engagement>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\">Download {{userDetails.firstName}} {{userDetails.lastName}} Profile CV</a><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Rating</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let fundiRating of fundiRatings\">\r\n                        <div>\r\n                            <em style=\"color:brown !important;\">Rating: {{fundiRating.rating}} out of 5</em>\r\n                        </div>\r\n                        <div>\r\n                            {{fundiRating.review}}\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let workCatSubCat of workCategories\">\r\n                        {{workCatSubCat.workCategory.workCategoryType}}\r\n                        <ul>\r\n                            <li>{{workCatSubCat.workSubCategory.workSubCategoryType}}</li>\r\n                        </ul>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Summary</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummaryView\">\r\n                    {{profile.profileSummary}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Skills</h5>\r\n                <div class=\"col-lg-12\" id=\"skills\">\r\n                    {{profile.skills}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Power Tools Used</h5>\r\n                <div class=\"col-lg-12\" id=\"usedPowerTools\">\r\n                    {{profile.usedPowerTools}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Certifications</h5>\r\n                <div class=\"col-lg-12\" id=\"certifications\">\r\n                    <ul>\r\n                        <li *ngFor=\"let cert of certifications\">\r\n                            {{cert.certificationName}}<br />\r\n                            <div>{{cert.certificationDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h5>Courses Attended</h5>\r\n                <div class=\"col-lg-12\" id=\"courses\" style=\"margin: 2px 0px !important;\">\r\n                    <ul>\r\n                        <li *ngFor=\"let course of courses\">\r\n                            {{course.courseName}}<br />\r\n                            <div>{{course.courseDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section>\r\n        <a style=\"padding-top:10px;padding-bottom:10px !important;\" [routerLink]=\"['/create-profile']\" routerLinkActive='link-active'>\r\n            Create Or Edit Profile\r\n        </a>\r\n    </section>\r\n    <div>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Profile</h2>\r\n        <br />\r\n    </div>\r\n    <section id=\"Profile\">\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div style=\"width: 30% !important; display: inline-block !important; margin-left: 5px !important; text-align: center !important; margin-top: 0px !important;\">\r\n                    <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto;\" /><br />\r\n                </div>\r\n                <div style=\"width: 70% !important; display: inline-block !important; text-align: left !important; margin-top: 0px !important;\">\r\n                    <fundi-engagement id=\"profile-engagement-{{profile.fundiProfileId}}\" [profileId]=\"profile.fundiProfileId\"></fundi-engagement>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\">Download {{userDetails.firstName}} {{userDetails.lastName}} Profile CV</a><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Rating</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let fundiRating of fundiRatings\">\r\n                        <div>\r\n                            <em style=\"color:brown !important;\">Rating: {{fundiRating.rating}} out of 5</em>\r\n                        </div>\r\n                        <div>\r\n                            {{fundiRating.review}}\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul>\r\n                    <li *ngFor=\"let workCatSubCat of workCategories\">\r\n                        {{workCatSubCat.workCategory.workCategoryType}}\r\n                        <ul>\r\n                            <li>{{workCatSubCat.workSubCategory.workSubCategoryType}}</li>\r\n                        </ul>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Profile Summary</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummaryView\">\r\n                    {{profile.profileSummary}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Skills</h5>\r\n                <div class=\"col-lg-12\" id=\"skills\">\r\n                    {{profile.skills}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Power Tools Used</h5>\r\n                <div class=\"col-lg-12\" id=\"usedPowerTools\">\r\n                    {{profile.usedPowerTools}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Certifications</h5>\r\n                <div class=\"col-lg-12\" id=\"certifications\">\r\n                    <ul>\r\n                        <li *ngFor=\"let cert of certifications\">\r\n                            {{cert.certificationName}}<br />\r\n                            <div>{{cert.certificationDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h5>Courses Attended</h5>\r\n                <div class=\"col-lg-12\" id=\"courses\" style=\"margin: 2px 0px !important;\">\r\n                    <ul>\r\n                        <li *ngFor=\"let course of courses\">\r\n                            {{course.courseName}}<br />\r\n                            <div>{{course.courseDescription}}</div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -903,6 +929,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./crud-operations/courses/courses.component */ "./src/app/crud-operations/courses/courses.component.ts");
 /* harmony import */ var _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./crud-operations/worksubcategorycrud/worksubcategorycrud.component */ "./src/app/crud-operations/worksubcategorycrud/worksubcategorycrud.component.ts");
 /* harmony import */ var _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./fundi-engagement/fundiengagement.component */ "./src/app/fundi-engagement/fundiengagement.component.ts");
+/* harmony import */ var _paging_paging_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./paging/paging.component */ "./src/app/paging/paging.component.ts");
+/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./chat/chat.component */ "./src/app/chat/chat.component.ts");
+/* harmony import */ var _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ../guards/AuthFundiClientAdminGuard */ "./src/guards/AuthFundiClientAdminGuard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -948,6 +977,9 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 ;
+
+
+
 
 
 
@@ -1020,7 +1052,9 @@ AppModule = __decorate([
             _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_52__["myRecaptchaComponent"],
             _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_53__["ClientJobViewComponent"],
             _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_55__["WorkSubCategoryCrudComponent"],
-            _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_56__["FundiEngagementComponent"]
+            _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_56__["FundiEngagementComponent"],
+            _paging_paging_component__WEBPACK_IMPORTED_MODULE_57__["PagingComponent"],
+            _chat_chat_component__WEBPACK_IMPORTED_MODULE_58__["ChatComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"].withServerTransition({ appId: 'ng-cli-universal' }),
@@ -1030,6 +1064,7 @@ AppModule = __decorate([
                 { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"], pathMatch: 'full' },
                 { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"] },
                 { path: 'manage-entities', component: _activecrudoperations_activecrudoperations_component__WEBPACK_IMPORTED_MODULE_8__["ActiveCrudOperationsComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
+                { path: 'chat', component: _chat_chat_component__WEBPACK_IMPORTED_MODULE_58__["ChatComponent"], canActivate: [_guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__["AuthFundiClientAdminGuard"]] },
                 { path: 'create-profile', component: _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_41__["ProfileCreateComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
                 { path: 'Fundi', component: _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_31__["FundiRoleComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
                 { path: 'add-location', component: _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], canActivate: [_guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__["AdminAuthGuard"]] },
@@ -1065,6 +1100,7 @@ AppModule = __decorate([
             { provide: _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__["AdminAuthGuard"], useClass: _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__["AdminAuthGuard"] },
             { provide: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_33__["AuthFundiGuard"], useClass: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_33__["AuthFundiGuard"] },
             { provide: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_37__["AuthClientGuard"], useClass: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_37__["AuthClientGuard"] },
+            { provide: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__["AuthFundiClientAdminGuard"], useClass: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__["AuthFundiClientAdminGuard"] },
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _interceptors_app_interceptor__WEBPACK_IMPORTED_MODULE_22__["AppInterceptor"], multi: true },
             { provide: _angular_common__WEBPACK_IMPORTED_MODULE_20__["APP_BASE_HREF"], useValue: '/myFundi/' },
             { provide: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_50__["AuthFundiSubscriptionGuard"], useClass: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_50__["AuthFundiSubscriptionGuard"] },
@@ -1072,6 +1108,354 @@ AppModule = __decorate([
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/chat/chat.component.ts":
+/*!****************************************!*\
+  !*** ./src/app/chat/chat.component.ts ***!
+  \****************************************/
+/*! exports provided: ChatComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatComponent", function() { return ChatComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/AddressLocationGeoCodeService */ "./src/services/AddressLocationGeoCodeService.ts");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+let ChatComponent = class ChatComponent {
+    constructor(router, zone, myFundiService, addressLocationGeoCodeService) {
+        this.router = router;
+        this.zone = zone;
+        this.myFundiService = myFundiService;
+        this.addressLocationGeoCodeService = addressLocationGeoCodeService;
+    }
+    normalizeMessage(message) {
+        return message.replace(/@[a-zA-Z0-9\.]+:/, ':');
+    }
+    LoadUserList() {
+        let curThis = this;
+        if (this.roomNumber) {
+            jQuery.ajax({
+                url: "/Adhoc/GetUserList/" + curThis.roomNumber,
+                type: "GET",
+                dataType: "json",
+                success: function (userList) {
+                    let userListCont = document.getElementById('radioList');
+                    if (userList && userList.length > 0) {
+                        for (var i = 0; i < userList.length; i++) {
+                            if (userList[i].username != curThis.userDetails.username) {
+                                //only create checkbox if not exists:
+                                let length = jQuery(userListCont).find('input:checkbox[value="' + userList[i].username + '"]').length;
+                                if (length === 0) {
+                                    let divWithcheckbox = curThis.CreateCheckbox('userList', userList[i].username);
+                                    jQuery(divWithcheckbox).css('color', 'green');
+                                    let li = document.createElement("li");
+                                    let lb = document.createElement("span");
+                                    jQuery(lb).addClass('custom-control-input');
+                                    jQuery(lb).css('display', 'inline-block');
+                                    jQuery(lb).css('margin-left', '5px;');
+                                    lb.innerHTML = userList[i].substring(0, userList[i].username.indexOf('@'));
+                                    jQuery(divWithcheckbox).append(lb);
+                                    jQuery(li).append(divWithcheckbox);
+                                    jQuery(userListCont).append(li);
+                                }
+                            }
+                        }
+                    }
+                    if (curThis.listTimeout)
+                        clearTimeout(curThis.listTimeout);
+                    curThis.listTimeout = setTimeout(curThis.LoadUserList, 12000);
+                },
+                error: function () {
+                    if (curThis.listTimeout)
+                        clearTimeout(curThis.listTimeout);
+                    curThis.listTimeout = setTimeout(curThis.LoadUserList, 12000);
+                }
+            });
+        }
+    }
+    AddJoiningUsersToList(client) {
+        let userListCont = document.getElementById('radioList');
+        let checkbox = null;
+        if (client && !(jQuery('ul#radioList').find('radioList > li checkbox[id="userList' + client.username + '"]').length > 0)) {
+            checkbox = this.CreateCheckbox('userList', client.username);
+            checkbox.setAttribute('class', 'custom-control-input');
+            jQuery(checkbox).css('color', 'green');
+            let li = document.createElement("li");
+            let lb = document.createElement("span");
+            lb.innerHTML = client.username.substring(0, client.username.indexOf('@'));
+            jQuery(li).append(checkbox);
+            jQuery(lb).css('margin-left', '5px;');
+            jQuery(li).append(lb);
+            jQuery(userListCont).append(li);
+        }
+    }
+    BookPrivateRoom($event) {
+        let curThis = this;
+        let userName = curThis.userDetails.username;
+        //Create Client Object:
+        let client = { username: userName, currentMessage: 'Has Booked A Room' };
+        let jsonData = JSON.stringify(client);
+        jQuery.ajax({
+            url: "/Adhoc/BookPrivateRoom",
+            type: "POST",
+            data: jsonData,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data) {
+                    curThis.roomNumber = data.roomNumber;
+                    alert('You booked Private Room: #' + curThis.roomNumber);
+                }
+            }
+        });
+        $event.preventDefault();
+    }
+    CreateCheckbox(name, value) {
+        let divwrapper = document.createElement('div');
+        divwrapper.setAttribute('style', 'margin-left:1em !important;');
+        divwrapper.setAttribute('class', 'form-control');
+        let element = document.createElement("input");
+        let id = name + value;
+        element.setAttribute('type', 'checkbox');
+        element.setAttribute('class', 'custom-control-input checkbox');
+        element.setAttribute('value', value);
+        element.setAttribute('name', name);
+        element.setAttribute('id', id);
+        divwrapper.appendChild(element);
+        return divwrapper;
+    }
+    IsInSecretRoom() {
+        let curThis = this;
+        let userName = this.userDetails.username;
+        //Create Client Object:
+        let client = { username: userName, Message: '', roomNumber: this.roomNumber };
+        let jsonData = JSON.stringify(client);
+        jQuery.ajax({
+            url: "/Adhoc/IsInPrivateRoom/" + curThis.roomNumber,
+            type: "POST",
+            data: jsonData,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data !== true) {
+                    curThis.router.navigateByUrl('home');
+                }
+            }
+        });
+    }
+    ClearRoom($event) {
+        let curThis = this;
+        jQuery.ajax({
+            url: "/Adhoc/ClearPrivateRoom/" + curThis.roomNumber,
+            type: "GET"
+        });
+        $event.preventDefault();
+    }
+    ExitRoom($event) {
+        let userName = this.userDetails.username;
+        let curThis = this;
+        //Create Client Object:
+        let client = { username: userName, currentMessage: 'Client has exited the Secret Room.\n', roomNumber: curThis.roomNumber };
+        let jsonData = JSON.stringify(client);
+        jQuery.ajax({
+            url: "/Adhoc/ExitPrivateRoom",
+            type: "POST",
+            dataType: "json",
+            data: jsonData,
+            contentType: "application/json"
+        });
+        $event.preventDefault();
+        this.router.navigateByUrl('home');
+    }
+    wasClicked($event) {
+        let userName = this.userDetails.username;
+        let message = jQuery('#txtTypeHere').val();
+        let curThis = this;
+        jQuery('#txtTypeHere').val('');
+        //Create Client Object:
+        let client = { username: userName, currentMessage: message, roomNumber: this.roomNumber };
+        let jsonData = JSON.stringify(client);
+        if (this.roomNumber) {
+            jQuery.ajax({
+                url: "/Adhoc/AddMessagePrivateRoom",
+                type: "POST",
+                dataType: "json",
+                data: jsonData,
+                contentType: "application/json",
+                success: function (messageAdded) {
+                    console.log(messageAdded.toString());
+                }
+            });
+        }
+        $event.preventDefault();
+    }
+    getMsgs() {
+        let curThis = this;
+        if (this.roomNumber) {
+            jQuery.ajax({
+                url: "/Adhoc/GetMessage/" + curThis.roomNumber,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (res, xHRq, method) {
+                    if (res) {
+                        let msg = res.clientMessage;
+                        if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
+                            //normalize res message email address user:
+                            //let normalizedMessage = curThis.normalizeMessage();
+                            if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
+                                jQuery('div#txtMessages').append(msg);
+                            }
+                            //curThis.scrollContentDown();
+                        }
+                        if (curThis.messageTimeout)
+                            clearTimeout(curThis.messageTimeout);
+                        curThis.messageTimeout = setTimeout(curThis.getMsgs, 3500);
+                    }
+                    else {
+                        if (curThis.messageTimeout)
+                            clearTimeout(curThis.messageTimeout);
+                        curThis.messageTimeout = setTimeout(curThis.getMsgs, 8500);
+                    }
+                },
+                error: function (xHRq, status, error) {
+                    //console.log(xHRq.responseText);
+                    if (curThis.messageTimeout)
+                        clearTimeout(curThis.messageTimeout);
+                    curThis.messageTimeout = setTimeout(curThis.getMsgs, 12000);
+                },
+            });
+        }
+    }
+    getBroadcastMsgs() {
+        let curThis = this;
+        jQuery.ajax({
+            url: "/Adhoc/GetBroadcastMessages",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res, xHRq, method) {
+                let msg = res.message;
+                if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br><\/div>$/g)) {
+                    //let normalizedMessage = curThis.normalizeMessage(msg);
+                    if (jQuery('div#txtMessages').html() && msg.indexOf(jQuery('div#txtMessages').html()) > -1) {
+                        msg = msg.substr(msg.indexOf(jQuery('div#txtMessages').html() + jQuery('div#txtMessages').html().length));
+                        jQuery('div#txtMessages').append(msg);
+                    }
+                    else if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
+                        jQuery('div#txtMessages').append(msg);
+                    }
+                    curThis.scrollContentDown();
+                }
+                if (curThis.broadcastMessageTimeout)
+                    clearTimeout(curThis.broadcastMessageTimeout);
+                curThis.broadcastMessageTimeout = setTimeout(curThis.getBroadcastMsgs, 10000);
+            },
+            error: function (xHRq, status, error) {
+                //console.log(xHRq.responseText);
+                if (curThis.broadcastMessageTimeout)
+                    clearTimeout(curThis.broadcastMessageTimeout);
+                curThis.broadcastMessageTimeout = setTimeout(curThis.getBroadcastMsgs, 15000);
+            },
+        });
+    }
+    InviteClient($event) {
+        let curThis = this;
+        let invitedUser = jQuery("input[type='checkbox'][name='userList']:checked").attr('value');
+        if (typeof (invitedUser) != "undefined") {
+            let client = { username: invitedUser, roomNumber: curThis.roomNumber, currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser.substring(0, invitedUser.indexOf('@')) + ', enter my Conversation at Secret Room via the link in the Public Room Please</span></em><br>' };
+            let jsonData = JSON.stringify(client);
+            jQuery.ajax({
+                url: "/Adhoc/InviteClient/" + curThis.roomNumber,
+                type: "POST",
+                dataType: "json",
+                data: jsonData,
+                contentType: "application/json"
+            });
+        }
+        $event.preventDefault();
+    }
+    keyDownMessage($event) {
+        if ($event.keyCode == 13) {
+            this.wasClicked($event);
+            jQuery('#txtTypeHere').val('');
+            jQuery('#txtTypeHere').focus();
+        }
+    }
+    scrollContentDown() {
+        let theDiv = document.getElementById('txtMessages');
+        theDiv.scrollTop =
+            theDiv.scrollHeight - theDiv.clientHeight;
+        let theMsg = document.getElementById('txtTypeHere');
+        if (theMsg != null)
+            theMsg.focus();
+    }
+    ngOnInit() {
+        let curThis = this;
+        jQuery('textarea#txtTypeHere').focus();
+        jQuery("div#chat-wrapper").keydown(curThis.keyDownMessage);
+        this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+    }
+    ngAfterViewInit() {
+        let curThis = this;
+        if (_services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"].actUserStatus.isUserLoggedIn) {
+            let client = { username: this.userDetails.username, roomNumber: curThis.roomNumber, currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + this.userDetails.username.substring(0, this.userDetails.username.indexOf('@')) + ', is available now!!</span></em><br>' };
+            let jsonData = JSON.stringify(client);
+            jQuery.ajax({
+                url: "/Adhoc/AddMessageAllRooms",
+                type: "POST",
+                dataType: "json",
+                data: jsonData,
+                contentType: "application/json",
+                success: function (client) {
+                    curThis.AddJoiningUsersToList(client);
+                }
+            });
+        }
+    }
+    ngAfterViewChecked() {
+        this.LoadUserList();
+        this.getMsgs();
+        this.getBroadcastMsgs();
+    }
+};
+ChatComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"] },
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"] },
+    { type: _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_2__["AddressLocationGeoCodeService"] }
+];
+ChatComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'chat',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./chat.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/chat/chat.component.html")).default,
+        providers: [_services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_2__["AddressLocationGeoCodeService"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"]]
+    }),
+    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"], _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_2__["AddressLocationGeoCodeService"]])
+], ChatComponent);
 
 
 
@@ -1590,11 +1974,72 @@ let ClientFundiSearchComponent = class ClientFundiSearchComponent {
         this.fundiSatisfyingJobList = [];
         this.userDetails = {};
     }
-    ;
     decoderUrl(url) {
         return decodeURIComponent(url);
     }
+    searchCommand($event) {
+        this.pagingContentModel = $event;
+        this.bindContentToSearchResultsDiv();
+        this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+        /*
+                if (this.pagingContentModel.pageNextClicked) {
+                    this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+                }
+                if (this.pagingContentModel.pagePrevClicked) {
+                    this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+                }
+                if (this.pagingContentModel.pageNext3Clicked) {
+                    this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage + this.numberOfPageJumps + this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage + this.numberOfPageJumps *this.numberOfResultsPerPage + this.numberOfResultsPerPage);
+                }
+                if (this.pagingContentModel.pagePrev3Clicked) {
+                    this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage * this.numberOfPageJumps, this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage * this.numberOfPageJumps + this.numberOfResultsPerPage);
+                }
+                */
+        let mod = this.listToShow.length % this.numberOfResultsPerPage;
+        let numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
+        if (mod > 0)
+            numberOfPages += 1;
+        this.fundiSatisfyingJobList = this.pagingContentModel.content;
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+        if (this.currentPage > this.numberOfPageJumps) {
+            this.pagingContentModel.isPagePrev3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrev3Enabled = false;
+        }
+    }
     ngOnInit() {
+        this.numberOfResultsPerPage = 2;
+        this.currentPage = 1;
+        this.numberOfPageJumps = 2;
+        this.pagingContentModel = {
+            isPageNextEnabled: false,
+            isPageNext3Enabled: false,
+            isPagePrevEnabled: false,
+            isPagePrev3Enabled: false,
+            pageNextClicked: false,
+            pageNext3Clicked: false,
+            pagePrevClicked: false,
+            pagePrev3Clicked: false,
+            content: []
+        };
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         this.distanceKmLimitApart = 50000000;
@@ -1772,6 +2217,47 @@ let ClientFundiSearchComponent = class ClientFundiSearchComponent {
             });
         }
     }
+    showFirstPage() {
+        this.pagingContentModel.content = this.listToShow.slice(0, (this.currentPage * this.numberOfResultsPerPage));
+        this.fundiSatisfyingJobList = this.pagingContentModel.content;
+        let mod = this.listToShow.length % this.numberOfResultsPerPage;
+        let numberOfPages = Math.floor(this.listToShow.length / this.numberOfResultsPerPage);
+        if (mod > 0)
+            numberOfPages += 1;
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+        this.pagingContentModel.isPagePrev3Enabled = false;
+    }
+    bindContentToSearchResultsDiv() {
+        if (this.pagingContentModel.pageNextClicked) {
+            this.currentPage += 1;
+        }
+        else if (this.pagingContentModel.pagePrevClicked) {
+            this.currentPage -= 1;
+        }
+        else if (this.pagingContentModel.pageNext3Clicked) {
+            this.currentPage += this.numberOfPageJumps;
+        }
+        else if (this.pagingContentModel.pagePrev3Clicked) {
+            this.currentPage -= this.numberOfPageJumps;
+        }
+    }
     searchFundiByCategories($event) {
         let curthis = this;
         this.fundiProfileList = [];
@@ -1802,7 +2288,8 @@ let ClientFundiSearchComponent = class ClientFundiSearchComponent {
                 fundiRatingsObs.map((n) => {
                     let q = n;
                     if (q && q.length > 0) {
-                        this.fundiSatisfyingJobList = q;
+                        this.listToShow = q;
+                        this.showFirstPage();
                     }
                     else {
                         alert("There are currently no jobs that match your criteria within 5Km of your chosen location!");
@@ -4159,7 +4646,8 @@ let ForgotPasswordComponent = class ForgotPasswordComponent {
             keepLoggedIn: false,
             authToken: "",
             fundi: false,
-            client: false
+            client: false,
+            message: ""
         };
         this.userDetail = userDetail;
     }
@@ -4338,6 +4826,20 @@ let FundiJobSearchComponent = class FundiJobSearchComponent {
         return decodeURIComponent(url);
     }
     ngOnInit() {
+        this.numberOfResultsPerPage = 2;
+        this.currentPage = 1;
+        this.numberOfPageJumps = 2;
+        this.pagingContentModel = {
+            isPageNextEnabled: false,
+            isPageNext3Enabled: false,
+            isPagePrevEnabled: false,
+            isPagePrev3Enabled: false,
+            pageNextClicked: false,
+            pageNext3Clicked: false,
+            pagePrevClicked: false,
+            pagePrev3Clicked: false,
+            content: []
+        };
         this.distanceKmLimitApart = 50000000;
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         jQuery('#fundiSearchForm div#fundiCategories').children().remove();
@@ -4467,7 +4969,8 @@ let FundiJobSearchComponent = class FundiJobSearchComponent {
                     let q = n;
                     debugger;
                     if (q && q.length > 0) {
-                        this.fundiJobList = q;
+                        this.listToShow = q;
+                        this.showFirstPage();
                     }
                     else {
                         alert("There are currently no jobs that match your criteria within 5Km of your chosen location!");
@@ -4476,6 +4979,82 @@ let FundiJobSearchComponent = class FundiJobSearchComponent {
             }).subscribe();
         }).subscribe();
         $event.stopPropagation();
+    }
+    searchCommand($event) {
+        debugger;
+        this.pagingContentModel = $event;
+        this.bindContentToSearchResultsDiv();
+        this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+        let mod = this.listToShow.length % this.numberOfResultsPerPage;
+        let numberOfPages = Math.floor(this.listToShow.length / this.numberOfResultsPerPage);
+        if (mod > 0)
+            numberOfPages += 1;
+        this.fundiJobList = this.pagingContentModel.content;
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+        if (this.currentPage > this.numberOfPageJumps) {
+            this.pagingContentModel.isPagePrev3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrev3Enabled = false;
+        }
+    }
+    showFirstPage() {
+        this.pagingContentModel.content = this.listToShow.slice(0, (this.currentPage * this.numberOfResultsPerPage));
+        this.fundiJobList = this.pagingContentModel.content;
+        let mod = this.listToShow.length % this.numberOfResultsPerPage;
+        let numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
+        if (mod > 0)
+            numberOfPages += 1;
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+        this.pagingContentModel.isPagePrev3Enabled = false;
+    }
+    bindContentToSearchResultsDiv() {
+        if (this.pagingContentModel.pageNextClicked) {
+            this.currentPage += 1;
+        }
+        else if (this.pagingContentModel.pagePrevClicked) {
+            this.currentPage -= 1;
+        }
+        else if (this.pagingContentModel.pageNext3Clicked) {
+            this.currentPage += this.numberOfPageJumps;
+        }
+        else if (this.pagingContentModel.pagePrev3Clicked) {
+            this.currentPage -= this.numberOfPageJumps;
+        }
     }
     getJobPage($event) {
         localStorage.removeItem('CurrentJob');
@@ -4802,6 +5381,7 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
                 this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.push(this.workSubCategory.workSubCategoryId);
                 let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
                 let li = document.createElement("li");
+                li.setAttribute('id', `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`);
                 li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text()}]`;
                 ulSelectedCategories.appendChild(li);
             }
@@ -4814,8 +5394,33 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             });
             let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
             let li = document.createElement("li");
+            li.setAttribute('id', `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`);
             li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text()}]`;
             ulSelectedCategories.appendChild(li);
+        }
+        $event.preventDefault();
+    }
+    removeWorkSubCategory($event) {
+        let indexWorkCatToRemove;
+        let chosenCategory = this.subscriptionFeeExpense.fundiWorkCategoryIds.find((q, index) => {
+            indexWorkCatToRemove = index;
+            return q.workCategoryId == this.workCategory.workCategoryId;
+        });
+        if (chosenCategory) {
+            let indexWorkSubCatToRemove;
+            let chosenWorkSubCatId = chosenCategory.workSubCategoryIds.find((q, index) => {
+                indexWorkSubCatToRemove = index;
+                return q == this.workSubCategory.workSubCategoryId;
+            });
+            if (chosenWorkSubCatId) {
+                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}` + '"]');
+                ulSelectedCategories.removeChild(li);
+                this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.splice(indexWorkSubCatToRemove, 1);
+                if (this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.length == 0) {
+                    this.subscriptionFeeExpense.fundiWorkCategoryIds.splice(indexWorkCatToRemove, 1);
+                }
+            }
         }
         $event.preventDefault();
     }
@@ -5102,7 +5707,8 @@ let LoginComponent = class LoginComponent {
             keepLoggedIn: false,
             authToken: "",
             fundi: false,
-            client: false
+            client: false,
+            message: ""
         };
     }
     loginUser() {
@@ -5112,8 +5718,12 @@ let LoginComponent = class LoginComponent {
         this.userDetail.username = this.userDetail.emailAddress;
         let loginResults = this.myFundiService.LoginByPost(this.userDetail);
         loginResults.map((q) => {
-            console.log(q.toString());
-            if (q.isLoggedIn === true) {
+            console.log(JSON.stringify(q));
+            debugger;
+            if (q.isLoggedIn == true) {
+                if (q.message) {
+                    alert(q.message);
+                }
                 this.userDetail.firstName = q.firstName;
                 this.userDetail.lastName = q.lastName;
                 this.userDetail.userId = q.userId;
@@ -5133,6 +5743,9 @@ let LoginComponent = class LoginComponent {
                 this.ensureUserRolesGot();
             }
             else {
+                if (q.message) {
+                    alert(q.message);
+                }
                 jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').css('display', 'none');
                 jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("");
                 alert('Login Failed. Unknown User');
@@ -5440,6 +6053,132 @@ NewRolesComponent = __decorate([
 
 /***/ }),
 
+/***/ "./src/app/paging/paging.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/paging/paging.component.ts ***!
+  \********************************************/
+/*! exports provided: PagingComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagingComponent", function() { return PagingComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+let PagingComponent = class PagingComponent {
+    constructor() {
+        this.searchEventEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+    }
+    ngAfterViewChecked() {
+        let prevLk = jQuery('a#prev');
+        let prev3Lk = jQuery('a#prev3');
+        let next3Lk = jQuery('a#next3');
+        let nextLk = jQuery('a#next');
+        if (!(this.pagingContentModel.isPagePrev3Enabled)) {
+            prev3Lk.css('pointer-events', 'none');
+            prev3Lk.css('cursor', 'default');
+        }
+        else {
+            prev3Lk.css('pointer-events', 'auto');
+            prev3Lk.css('cursor', 'pointer');
+        }
+        if (!(this.pagingContentModel.isPagePrevEnabled)) {
+            prevLk.css('pointer-events', 'none');
+            prevLk.css('cursor', 'default');
+        }
+        else {
+            prevLk.css('pointer-events', 'auto');
+            prevLk.css('cursor', 'pointer');
+        }
+        if (!(this.pagingContentModel.isPageNext3Enabled)) {
+            next3Lk.css('pointer-events', 'none');
+            next3Lk.css('cursor', 'default');
+        }
+        else {
+            next3Lk.css('pointer-events', 'auto');
+            next3Lk.css('cursor', 'pointer');
+        }
+        if (!(this.pagingContentModel.isPageNextEnabled)) {
+            nextLk.css('pointer-events', 'none');
+            nextLk.css('cursor', 'default');
+        }
+        else {
+            nextLk.css('pointer-events', 'auto');
+            nextLk.css('cursor', 'pointer');
+        }
+        jQuery('span#search-navigation-links').parent('div').css('line-height', '3em');
+        if (this.pagingContentModel && this.pagingContentModel.content.length == 0) {
+            jQuery('span#search-navigation-links').parent('div').css('display', 'none');
+        }
+        else {
+            jQuery('span#search-navigation-links').parent('div').css('display', 'block');
+        }
+    }
+    nextPageClicked($event) {
+        this.pagingContentModel.pageNextClicked = true;
+        this.pagingContentModel.pagePrevClicked = false;
+        this.pagingContentModel.pageNext3Clicked = false;
+        this.pagingContentModel.pagePrev3Clicked = false;
+        this.searchEventEmitter.emit(this.pagingContentModel);
+        $event.preventDefault();
+    }
+    prevPageClicked($event) {
+        this.pagingContentModel.pageNextClicked = false;
+        this.pagingContentModel.pagePrevClicked = true;
+        this.pagingContentModel.pageNext3Clicked = false;
+        this.pagingContentModel.pagePrev3Clicked = false;
+        this.searchEventEmitter.emit(this.pagingContentModel);
+        $event.preventDefault();
+    }
+    next3PagesClicked($event) {
+        this.pagingContentModel.pageNext3Clicked = true;
+        this.pagingContentModel.pageNextClicked = false;
+        this.pagingContentModel.pagePrevClicked = false;
+        this.pagingContentModel.pagePrev3Clicked = false;
+        this.searchEventEmitter.emit(this.pagingContentModel);
+        $event.preventDefault();
+    }
+    prev3PagesClicked($event) {
+        this.pagingContentModel.pagePrev3Clicked = true;
+        this.pagingContentModel.pageNextClicked = false;
+        this.pagingContentModel.pagePrevClicked = false;
+        this.pagingContentModel.pageNext3Clicked = false;
+        this.searchEventEmitter.emit(this.pagingContentModel);
+        $event.preventDefault();
+    }
+};
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("pagingContentModel"),
+    __metadata("design:type", Object)
+], PagingComponent.prototype, "pagingContentModel", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+], PagingComponent.prototype, "searchEventEmitter", void 0);
+PagingComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'paging',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./paging.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/paging/paging.component.html")).default
+    }),
+    __metadata("design:paramtypes", [])
+], PagingComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/paypalFailure/paypal-failure.component.ts":
 /*!***********************************************************!*\
   !*** ./src/app/paypalFailure/paypal-failure.component.ts ***!
@@ -5558,9 +6297,7 @@ let ProfileCreateComponent = class ProfileCreateComponent {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
-        userGuidObs.map((q) => {
-            this.userGuidId = q;
-        }).subscribe();
+        let workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
         let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
         resObs.map((fundiProf) => {
             if (fundiProf) {
@@ -5582,6 +6319,41 @@ let ProfileCreateComponent = class ProfileCreateComponent {
                     fundiProfileCvUrl: "",
                     locationId: 0
                 };
+            }
+        }).subscribe();
+        userGuidObs.map((q) => {
+            this.userGuidId = q;
+        }).subscribe();
+        workCatObs.map((workCats) => {
+            this.workCategories = workCats;
+            //Dynamic check boxes for Categories To Search for:
+            let selectWorkCategories = document.querySelector('select#workCategoryAndSubCatId');
+            let selectWorkCategoriesOptions = document.querySelector('select#workCategoryAndSubCatId option');
+            if (selectWorkCategoriesOptions) {
+                selectWorkCategoriesOptions.remove();
+            }
+            let option = document.createElement('option');
+            option.textContent = "Select Work Category: [SubWork Category]";
+            option.value = "0,0";
+            selectWorkCategories.appendChild(option);
+            this.workCategories.forEach((cat) => {
+                let option = document.createElement('option');
+                option.textContent = `${cat.workCategory.workCategoryType}: [${cat.workSubCategory.workSubCategoryType}]`;
+                option.value = `${cat.workCategoryId.toString()},${cat.workSubCategoryId.toString()}`;
+                selectWorkCategories.appendChild(option);
+            });
+        }).subscribe();
+        let listWorkCatObs = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
+        listWorkCatObs.map((q) => {
+            debugger;
+            if (q && q.length > 0) {
+                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                q.forEach((wkcCatSubCat, index, q) => {
+                    let li = document.createElement("li");
+                    li.setAttribute('id', `${wkcCatSubCat.workCategoryId.toString()},${wkcCatSubCat.workSubCategoryId.toString()}`);
+                    li.textContent = wkcCatSubCat.workCategory.workCategoryType + ` :[${wkcCatSubCat.workSubCategory.workSubCategoryType}]`;
+                    ulSelectedCategories.appendChild(li);
+                });
             }
         }).subscribe();
     }
@@ -5620,6 +6392,46 @@ let ProfileCreateComponent = class ProfileCreateComponent {
         profileObs.map((res) => {
             alert(res.message);
         }).subscribe();
+    }
+    addWorkCategory($event) {
+        let selectedWorkCategory = this.workCategories.find((workCat) => {
+            return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
+        });
+        let addWkCatObs = this.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
+        //this.chosenWorkCategories.push(selectedWorkCategory);
+        addWkCatObs.map((q) => {
+            if (q) {
+                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                let li = document.createElement("li");
+                li.setAttribute('id', `${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}`);
+                li.textContent = selectedWorkCategory.workCategory.workCategoryType + ` :[${selectedWorkCategory.workSubCategory.workSubCategoryType}]`;
+                ulSelectedCategories.appendChild(li);
+                let addWkCatSubCatObs = this.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
+                addWkCatSubCatObs.map((q) => {
+                    if (q) {
+                        alert(q.message);
+                    }
+                }).subscribe();
+            }
+        }).subscribe();
+        $event.preventDefault();
+    }
+    removeWorkCategory($event) {
+        let selectedWorkCategory = this.workCategories.find((workCat) => {
+            return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
+        });
+        let curThis = this;
+        debugger;
+        let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+        let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}` + '"]');
+        ulSelectedCategories.removeChild(li);
+        let resObs = this.myFundiService.RemoveFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
+        resObs.map((removed) => {
+            if (removed) {
+                alert(removed.message);
+            }
+        }).subscribe();
+        $event.preventDefault();
     }
     getSelectedLocation(locationId) {
         this.profile.locationId = locationId;
@@ -5863,8 +6675,8 @@ let myRecaptchaComponent = class myRecaptchaComponent {
         this.router = router;
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
-        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
+        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost:*/ /* "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
+        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost*/ /* "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
     }
     ngAfterViewInit() {
         this.isRecaptchaVerified = false;
@@ -5997,7 +6809,8 @@ let RegisterComponent = class RegisterComponent {
             keepLoggedIn: false,
             authToken: "",
             fundi: false,
-            client: false
+            client: false,
+            message: ""
         };
         this.userDetail = userDetail;
     }
@@ -6767,6 +7580,61 @@ AuthClientGuard = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
     __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]])
 ], AuthClientGuard);
+
+
+
+/***/ }),
+
+/***/ "./src/guards/AuthFundiClientAdminGuard.ts":
+/*!*************************************************!*\
+  !*** ./src/guards/AuthFundiClientAdminGuard.ts ***!
+  \*************************************************/
+/*! exports provided: AuthFundiClientAdminGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthFundiClientAdminGuard", function() { return AuthFundiClientAdminGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/myFundiService */ "./src/services/myFundiService.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+let AuthFundiClientAdminGuard = class AuthFundiClientAdminGuard {
+    // Inject Router so we can hand off the user to the Login Page 
+    constructor(router, myFundiService) {
+        this.router = router;
+        this.myFundiService = myFundiService;
+    }
+    canActivate() {
+        if (_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles != null && _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles.length > 0) {
+            this.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles;
+            return (this.userRoles.indexOf("Administrator") > -1 || this.userRoles.indexOf('Client') > -1 || this.userRoles.indexOf('Fundi') > -1);
+        }
+        return false;
+    }
+};
+AuthFundiClientAdminGuard.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"] }
+];
+AuthFundiClientAdminGuard = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]])
+], AuthFundiClientAdminGuard);
 
 
 
@@ -10720,7 +11588,8 @@ MyFundiService.userDetails = {
     lastName: "",
     authToken: "",
     fundi: false,
-    client: false
+    client: false,
+    message: ""
 };
 MyFundiService.userRoles = [];
 MyFundiService = MyFundiService_1 = __decorate([

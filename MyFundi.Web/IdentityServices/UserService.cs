@@ -141,6 +141,8 @@ namespace MyFundi.IdentityServices
             var fnameClaims = token.Claims.Where(c => c.Key == "firstname");
             var lnameClaims = token.Claims.Where(c => c.Key == "lastname");
 
+            
+
             if (!emailClaim.Any()) return await Task.FromResult(new User());
 
             if(token.Expires > DateTime.Now)

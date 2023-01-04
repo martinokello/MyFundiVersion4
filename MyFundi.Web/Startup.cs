@@ -36,12 +36,12 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.SpaServices;
 using AesCryptoSystemExtra.AESCryptoSystem.ExternalCryptoUnit;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
+using MartinLayooInc.Web.Infrastructure;
 
 namespace MyFundi.Web
 {
 
     // This method gets called by the runtime. Use this method to add services to the container.
-
     public class RoleInitializationMiddleware
     {
         public async Task Invoke(HttpContext context)
@@ -310,7 +310,7 @@ namespace MyFundi.Web
                 conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>().ReverseMap(); 
 
             });
-
+            services.AddSingleton<MartinLayooIncChat>();
             services.AddScoped<AppSettingsConfigurations>();
             services.AddScoped<IMailService, EmailService>(smtp => new EmailService(new AppSettingsConfigurations(Configuration)));
             services.AddScoped<DbContext, MyFundiDBContext>();

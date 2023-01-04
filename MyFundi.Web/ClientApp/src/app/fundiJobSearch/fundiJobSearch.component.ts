@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IClientProfile, IWorkSubCategory, IWorkAndSubWorkCategory } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IClientProfile, IWorkSubCategory, IWorkAndSubWorkCategory, IPagingContent } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
@@ -18,18 +18,39 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
     jobs: IJob[];
     workCategories: IWorkCategory[];
     categories: string;
-    fundiJobList: any[] =[];
+    fundiJobList: any[] = [];
+    listToShow: any[];
     fundiWorkCategories: string[];
     distanceKmLimitApart: number;
     skip: number;
     take: number;
     fundiLocation: ILocation;
+    pagingContentModel: IPagingContent;
+    numberOfResultsPerPage: number;
+    currentPage: number;
+    numberOfPageJumps: number;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
     }
 
     ngOnInit(): void {
+        this.numberOfResultsPerPage = 2;
+        this.currentPage = 1;
+        this.numberOfPageJumps = 2;
+
+        this.pagingContentModel = {
+            isPageNextEnabled: false,
+            isPageNext3Enabled: false,
+            isPagePrevEnabled: false,
+            isPagePrev3Enabled: false,
+            pageNextClicked: false,
+            pageNext3Clicked: false,
+            pagePrevClicked: false,
+            pagePrev3Clicked: false,
+
+            content: []
+        }
         this.distanceKmLimitApart = 50000000;
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         jQuery('#fundiSearchForm div#fundiCategories').children().remove();
@@ -184,9 +205,8 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
                     let q: any[] = n;
                     debugger
                     if (q && q.length > 0) {
-
-                        this.fundiJobList = q;
-
+                        this.listToShow = q;
+                        this.showFirstPage();
                     } else {
                         alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
                     }
@@ -198,6 +218,96 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
         }).subscribe();
 
         $event.stopPropagation();
+    }
+    searchCommand($event) {
+        debugger;
+        this.pagingContentModel = $event;
+        this.bindContentToSearchResultsDiv();
+
+        this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+
+        let mod = this.listToShow.length % this.numberOfResultsPerPage
+
+        let numberOfPages = Math.floor(this.listToShow.length / this.numberOfResultsPerPage);
+
+        if (mod > 0) numberOfPages += 1;
+
+        this.fundiJobList = this.pagingContentModel.content;
+
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+
+        if (this.currentPage > this.numberOfPageJumps) {
+            this.pagingContentModel.isPagePrev3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrev3Enabled = false;
+        }
+    }
+
+    showFirstPage() {
+        this.pagingContentModel.content = this.listToShow.slice(0, (this.currentPage * this.numberOfResultsPerPage));
+        this.fundiJobList = this.pagingContentModel.content;
+
+        let mod = this.listToShow.length % this.numberOfResultsPerPage
+        let numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
+
+        if (mod > 0) numberOfPages += 1;
+
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+        this.pagingContentModel.isPagePrev3Enabled = false;
+    }
+
+    bindContentToSearchResultsDiv() {
+
+        if (this.pagingContentModel.pageNextClicked) {
+            this.currentPage += 1;
+        }
+        else if (this.pagingContentModel.pagePrevClicked) {
+            this.currentPage -= 1;
+        }
+        else if (this.pagingContentModel.pageNext3Clicked) {
+            this.currentPage += this.numberOfPageJumps;
+        }
+        else if (this.pagingContentModel.pagePrev3Clicked) {
+            this.currentPage -= this.numberOfPageJumps;
+        }
     }
     getJobPage($event) {
         localStorage.removeItem('CurrentJob');

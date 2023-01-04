@@ -1,5 +1,5 @@
 <div class="container-fluid subcworkSubCategories-wrapper" style="background-color: #EEEEEE; text-align: left;">
-  <h1 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{userRoles.indexOf("Fundi") > -1 ?"Fundi":"Client"}} Profile</h1>
+  <h2 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf("Fundi") > -1  || userRoles.indexOf("Guest") > 1)?"Fundi":"Guest"}} Profile</h2>
   <section id="Profile">
     <div class="row" style="text-align: center !important; align-content: center !important;">
       <div class="col-lg-12">
@@ -41,6 +41,7 @@
                       <label>Work Sub Category Id</label>
                       <select id="subcworkSubCategoryId" name="workSubCategoryId" [(ngModel)]="workSubCategory.workSubCategoryId"></select>
                       <input type="button" value="Add SubCategory" class="but-primary" (click)="addSubCategory($event)" /><br />
+                      <input type="button" value="Remove SubCategory" (click)="removeWorkSubCategory($event)" /><br />
                       <br />
                       <ul id="ulistWorkCategories"></ul>
                   </div>

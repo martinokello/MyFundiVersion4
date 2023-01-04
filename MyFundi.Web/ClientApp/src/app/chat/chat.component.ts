@@ -1,0 +1,359 @@
+﻿import { Component, OnInit, Inject, AfterViewInit, AfterViewChecked, NgZone } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, ObservableInput } from 'rxjs';
+import { Router } from '@angular/router';
+import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
+import { MyFundiService } from '../../services/myFundiService';
+declare let jQuery: any;
+
+
+@Component({
+    selector: 'chat',
+    templateUrl: './chat.component.html',
+    providers: [AddressLocationGeoCodeService, MyFundiService]
+})
+export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
+    userDetails: any;
+    userRoles: string[];
+    roomNumber: number;
+    thisCurrent: any;
+    listTimeout: any;
+    messageTimeout: any;
+    broadcastMessageTimeout: any;
+
+    constructor(private router: Router, private zone: NgZone, private myFundiService: MyFundiService, private addressLocationGeoCodeService: AddressLocationGeoCodeService) {
+
+    }
+    normalizeMessage(message) {
+        return message.replace(/@[a-zA-Z0-9\.]+:/, ':');
+    }
+    LoadUserList() {
+        let curThis = this;
+        if (this.roomNumber) {
+
+            jQuery.ajax({
+                url: "/Adhoc/GetUserList/" + curThis.roomNumber,
+                type: "GET",
+                dataType: "json",
+                success: function (userList) {
+                    let userListCont = document.getElementById('radioList');
+                    if (userList && userList.length > 0) {
+                        for (var i = 0; i < userList.length; i++) {
+                            if (userList[i].username != curThis.userDetails.username) {
+                                //only create checkbox if not exists:
+                                let length = jQuery(userListCont).find('input:checkbox[value="' + userList[i].username + '"]').length;
+                                if (length === 0) {
+                                    let divWithcheckbox = curThis.CreateCheckbox('userList', userList[i].username);
+                                    jQuery(divWithcheckbox).css('color', 'green');
+                                    let li = document.createElement("li");
+                                    let lb = document.createElement("span");
+                                    jQuery(lb).addClass('custom-control-input');
+                                    jQuery(lb).css('display', 'inline-block');
+                                    jQuery(lb).css('margin-left', '5px;');
+                                    lb.innerHTML = userList[i].substring(0, userList[i].username.indexOf('@'));
+                                    jQuery(divWithcheckbox).append(lb);
+                                    jQuery(li).append(divWithcheckbox);
+                                    jQuery(userListCont).append(li);
+                                }
+                            }
+                        }
+                    }
+                    if (curThis.listTimeout)
+                        clearTimeout(curThis.listTimeout);
+                    curThis.listTimeout = setTimeout(curThis.LoadUserList, 12000);
+
+                },
+                error: function () {
+                    if (curThis.listTimeout)
+                        clearTimeout(curThis.listTimeout);
+                    curThis.listTimeout = setTimeout(curThis.LoadUserList, 12000);
+
+                }
+            });
+        }
+    }
+
+    AddJoiningUsersToList(client: any) {
+        let userListCont = document.getElementById('radioList');
+
+        let checkbox = null;
+
+
+        if (client && !(jQuery('ul#radioList').find('radioList > li checkbox[id="userList' + client.username + '"]').length > 0)) {
+            checkbox = this.CreateCheckbox('userList', client.username);
+            checkbox.setAttribute('class', 'custom-control-input');
+            jQuery(checkbox).css('color', 'green');
+            let li = document.createElement("li");
+            let lb = document.createElement("span");
+            lb.innerHTML = client.username.substring(0, client.username.indexOf('@'));
+            jQuery(li).append(checkbox);
+            jQuery(lb).css('margin-left', '5px;');
+            jQuery(li).append(lb);
+            jQuery(userListCont).append(li);
+        }
+    }
+    BookPrivateRoom($event) {
+        let curThis = this;
+        let userName = curThis.userDetails.username;
+        //Create Client Object:
+        let client = { username: userName, currentMessage:  'Has Booked A Room' };
+        let jsonData = JSON.stringify(client);
+        jQuery.ajax({
+            url: "/Adhoc/BookPrivateRoom",
+            type: "POST",
+            data: jsonData,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data) {
+                    curThis.roomNumber = data.roomNumber;
+                    alert('You booked Private Room: #' + curThis.roomNumber);
+                }
+            }
+        });
+        $event.preventDefault();
+    }
+    CreateCheckbox(name, value) {
+        let divwrapper = document.createElement('div');
+        divwrapper.setAttribute('style', 'margin-left:1em !important;')
+        divwrapper.setAttribute('class', 'form-control');
+        let element = document.createElement("input");
+        let id = name + value;
+        element.setAttribute('type', 'checkbox');
+        element.setAttribute('class', 'custom-control-input checkbox');
+        element.setAttribute('value', value);
+        element.setAttribute('name', name);
+        element.setAttribute('id', id);
+        divwrapper.appendChild(element);
+        return divwrapper;
+    }
+    IsInSecretRoom() {
+        let curThis = this;
+        let userName = this.userDetails.username;
+        //Create Client Object:
+        let client = { username: userName, Message: '', roomNumber: this.roomNumber };
+        let jsonData = JSON.stringify(client);
+        jQuery.ajax({
+            url: "/Adhoc/IsInPrivateRoom/" + curThis.roomNumber,
+            type: "POST",
+            data: jsonData,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data !== true) {
+
+                    curThis.router.navigateByUrl('home');
+                }
+            }
+        });
+    }
+
+    ClearRoom($event) {
+        let curThis = this;
+        jQuery.ajax({
+            url: "/Adhoc/ClearPrivateRoom/" + curThis.roomNumber,
+            type: "GET"
+        });
+
+        $event.preventDefault();
+    }
+
+    ExitRoom($event) {
+        let userName = this.userDetails.username;
+        let curThis = this;
+        //Create Client Object:
+        let client = { username: userName, currentMessage: 'Client has exited the Secret Room.\n', roomNumber: curThis.roomNumber };
+
+        let jsonData = JSON.stringify(client);
+        jQuery.ajax({
+            url: "/Adhoc/ExitPrivateRoom",
+            type: "POST",
+            dataType: "json",
+            data: jsonData,
+            contentType: "application/json"
+        });
+        $event.preventDefault();
+        this.router.navigateByUrl('home');
+    }
+    wasClicked($event) {
+        let userName = this.userDetails.username;
+
+        let message = jQuery('#txtTypeHere').val();
+        let curThis = this;
+        jQuery('#txtTypeHere').val('');
+        //Create Client Object:
+        let client = { username: userName, currentMessage: message, roomNumber: this.roomNumber };
+        let jsonData = JSON.stringify(client);
+        if (this.roomNumber) {
+            jQuery.ajax({
+                url: "/Adhoc/AddMessagePrivateRoom",
+                type: "POST",
+                dataType: "json",
+                data: jsonData,
+                contentType: "application/json",
+                success: function (messageAdded) {
+                    console.log(messageAdded.toString());
+                }
+            });
+        }
+
+        $event.preventDefault();
+    }
+
+    getMsgs() {
+        let curThis = this;
+        if (this.roomNumber) {
+
+            jQuery.ajax({
+                url: "/Adhoc/GetMessage/" + curThis.roomNumber,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (res, xHRq, method) {
+
+                    if (res) {
+                        let msg = res.clientMessage;
+                        
+                        if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
+                            //normalize res message email address user:
+                            //let normalizedMessage = curThis.normalizeMessage();
+                            if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
+                                jQuery('div#txtMessages').append(msg);
+                            }
+                            //curThis.scrollContentDown();
+
+                        }
+
+                        if (curThis.messageTimeout)
+                            clearTimeout(curThis.messageTimeout);
+                        curThis.messageTimeout = setTimeout(curThis.getMsgs, 3500);
+                    }
+                    else {
+                        if (curThis.messageTimeout)
+                            clearTimeout(curThis.messageTimeout);
+                        curThis.messageTimeout = setTimeout(curThis.getMsgs, 8500);
+                    }
+                },
+                error: function (xHRq, status, error) {
+                    //console.log(xHRq.responseText);
+                    if (curThis.messageTimeout)
+                        clearTimeout(curThis.messageTimeout);
+                    curThis.messageTimeout = setTimeout(curThis.getMsgs, 12000);
+
+                },
+            });
+        }
+
+    }
+    getBroadcastMsgs() {
+        let curThis = this;
+
+        jQuery.ajax({
+            url: "/Adhoc/GetBroadcastMessages",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res, xHRq, method) {
+                let msg = res.message;
+
+                if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br><\/div>$/g)) {
+
+                    //let normalizedMessage = curThis.normalizeMessage(msg);
+                    if (jQuery('div#txtMessages').html() && msg.indexOf(jQuery('div#txtMessages').html()) > -1) {
+                        msg = msg.substr(msg.indexOf(jQuery('div#txtMessages').html() + jQuery('div#txtMessages').html().length));
+                        jQuery('div#txtMessages').append(msg);
+                    }
+                    else if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
+                        jQuery('div#txtMessages').append(msg);
+                    }
+                    curThis.scrollContentDown();
+                }
+
+                if (curThis.broadcastMessageTimeout)
+                    clearTimeout(curThis.broadcastMessageTimeout);
+                curThis.broadcastMessageTimeout = setTimeout(curThis.getBroadcastMsgs, 10000);
+            },
+            error: function (xHRq,status, error) {
+                //console.log(xHRq.responseText);
+                if (curThis.broadcastMessageTimeout)
+                    clearTimeout(curThis.broadcastMessageTimeout);
+                curThis.broadcastMessageTimeout = setTimeout(curThis.getBroadcastMsgs, 15000);
+            },
+        });
+    }
+
+
+    InviteClient($event) {
+
+        let curThis = this;
+        let invitedUser = jQuery("input[type='checkbox'][name='userList']:checked").attr('value');
+        if (typeof (invitedUser) != "undefined") {
+            let client = { username: invitedUser, roomNumber: curThis.roomNumber, currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser.substring(0, invitedUser.indexOf('@')) + ', enter my Conversation at Secret Room via the link in the Public Room Please</span></em><br>' };
+
+            let jsonData = JSON.stringify(client);
+            jQuery.ajax({
+                url: "/Adhoc/InviteClient/" + curThis.roomNumber,
+                type: "POST",
+                dataType: "json",
+                data: jsonData,
+                contentType: "application/json"
+            });
+        }
+
+        $event.preventDefault();
+    }
+    keyDownMessage($event) {
+        if ($event.keyCode == 13) {
+            this.wasClicked($event);
+            jQuery('#txtTypeHere').val('');
+            jQuery('#txtTypeHere').focus();
+        }
+    }
+    scrollContentDown() {
+        let theDiv = document.getElementById('txtMessages');
+        theDiv.scrollTop =
+            theDiv.scrollHeight - theDiv.clientHeight;
+
+        let theMsg = document.getElementById('txtTypeHere');
+        if (theMsg != null)
+            theMsg.focus();
+    }
+
+    ngOnInit() {
+
+        let curThis = this;
+
+        jQuery('textarea#txtTypeHere').focus();
+        jQuery("div#chat-wrapper").keydown(curThis.keyDownMessage);
+
+        this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+        this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+
+    }
+    ngAfterViewInit() {
+
+        let curThis = this;
+
+        if (MyFundiService.actUserStatus.isUserLoggedIn) {
+            let client = { username: this.userDetails.username, roomNumber: curThis.roomNumber, currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + this.userDetails.username.substring(0, this.userDetails.username.indexOf('@')) + ', is available now!!</span></em><br>' };
+
+            let jsonData = JSON.stringify(client);
+            jQuery.ajax({
+                url: "/Adhoc/AddMessageAllRooms",
+                type: "POST",
+                dataType: "json",
+                data: jsonData,
+                contentType: "application/json",
+                success: function (client) {
+                    curThis.AddJoiningUsersToList(client);
+                }
+            });
+        }
+    }
+    ngAfterViewChecked() {
+        this.LoadUserList();
+        this.getMsgs();
+        this.getBroadcastMsgs();
+    }
+}

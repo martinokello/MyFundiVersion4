@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uhJ9/sbQoD46DLWIFOFm0F5vwk5w3CBaG51DaOy7OxoPacTj2k6Br1sbi/MiWu2E1dWvDTYCrwXs0q0kLwVt4Q==",
+  "dgSpecHash": "fGfvRjUijYVke8ghgwY+8Og/FuEB78jLCrr86OYERJ/eX4hAQC65LN7cTLP9duzcm8EBO0Aq3yftg0wefl928w==",
   "success": true,
   "projectFilePath": "C:\\Development\\MyFundiCurrent\\MyFundi.Web\\MyFundi.Web.csproj",
   "expectedPackageFiles": [
@@ -165,8 +165,7 @@
     "C:\\Users\\mart4\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\mart4\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\mart4\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
-    "C:\\Users\\mart4\\.nuget\\packages\\system.xml.xpath.xdocument\\4.0.1\\system.xml.xpath.xdocument.4.0.1.nupkg.sha512",
-    "C:\\Users\\mart4\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.31\\microsoft.netcore.app.host.win-x64.3.1.31.nupkg.sha512"
+    "C:\\Users\\mart4\\.nuget\\packages\\system.xml.xpath.xdocument\\4.0.1\\system.xml.xpath.xdocument.4.0.1.nupkg.sha512"
   ],
   "logs": []
 }

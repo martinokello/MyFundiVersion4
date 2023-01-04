@@ -4,13 +4,11 @@
     <section id="Profile"><br />
         <div class="row">
             <div class="col-lg-12">
-                <div style="width: 40% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
+                <div style="margin-left: 5px !important; width: 50% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
                     <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByUsername?username={{profileUserDetails.username}}" alt="profileImage" style="width:150px !important; height:auto;" /><br />
                 </div>
-                <div style="width: 60% !important; display: inline-block !important; text-align: left !important; margin-top: 0px !important;">
-                    <div style="width:100% !important;">
-                        <fundi-engagement id="engagement-{{profileUserDetails.fundiProfileId}}" [profileId]="profileUserDetails.fundiProfileId"></fundi-engagement>
-                    </div>
+                <div style="width: 70% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
+                    <fundi-engagement id="engagement-{{profileUserDetails.fundiProfileId}}" [profileId]="profileUserDetails.fundiProfileId"></fundi-engagement>
                 </div>
             </div>
         </div>

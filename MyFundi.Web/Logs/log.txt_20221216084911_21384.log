@@ -1,0 +1,116 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Development\MyFundiCurrent\MyFundi.Web
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'AgreedCost' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NumberOfDaysToComplete' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'FundiSubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'GrossCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NetCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'PercentTaxAppliable' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ItemCost' on entity type 'Item'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+fail: Microsoft.AspNetCore.SpaServices[0]
+      ERROR in app/recaptcha/myrecaptcha.component.ts:19:127 - error TS1003: Identifier expected.
+
+19     private siteKey = /*"6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; localhost:*/ "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
+                                                                                                                                 ~
+app/recaptcha/myrecaptcha.component.ts:19:128 - error TS1161: Unterminated regular expression literal.
+
+19     private siteKey = /*"6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; localhost:*/ "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
+                                                                                                                                  
+app/recaptcha/myrecaptcha.component.ts:20:5 - error TS1128: Declaration or statement expected.
+
+20     private isRecaptchaVerified: boolean
+       ~~~~~~~
+app/recaptcha/myrecaptcha.component.ts:21:5 - error TS1128: Declaration or statement expected.
+
+21     private showContent: boolean;
+       ~~~~~~~
+app/recaptcha/myrecaptcha.component.ts:22:5 - error TS1128: Declaration or statement expected.
+
+22     private recaptchaSecretKey = /*"6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost*/ "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";
+       ~~~~~~~
+app/recaptcha/myrecaptcha.component.ts:24:25 - error TS1005: ',' expected.
+
+24     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
+                           ~~~~~~~~~~~~~~
+app/recaptcha/myrecaptcha.component.ts:24:39 - error TS1005: ',' expected.
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      
+24     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
+                                         ~
+app/recaptcha/myrecaptcha.component.ts:24:65 - error TS1005: ',' expected.
+
+24     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
+                                                                   ~~~~~~
+app/recaptcha/myrecaptcha.component.ts:24:71 - error TS1005: ',' expected.
+
+24     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
+                                                                         ~
+app/recaptcha/myrecaptcha.component.ts:24:89 - error TS1005: ',' expected.
+
+24     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
+                                                                                           ~~~~~~~~~~
+app/recaptcha/myrecaptcha.component.ts:24:99 - error TS1005: ',' expected.
+
+24     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
+                                                                                                     ~
+app/recaptcha/myrecaptcha.component.ts:24:113 - error TS1005: ';' expected.
+
+24     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
+                                                                                                                   ~
+app/recaptcha/myrecaptcha.component.ts:27:22 - error TS1005: ';' expected.
+
+27     ngAfterViewInit(): void {
+                        ~
+app/recaptcha/myrecaptcha.component.ts:28:13 - error TS1005: ':' expected.
+
+28         this.isRecaptchaVerified = false;
+               ~
+app/recaptcha/myrecaptcha.component.ts:28:41 - error TS1005: ',' expected.
+
+28         this.isRecaptchaVerified = false;
+                                           ~
+app/recaptcha/myrecaptcha.component.ts:29:17 - error TS1005: ',' expected.
+
+29         if (this.isUrlValidForRecaptcha()) {
+                   ~
+app/recaptcha/myrecaptcha.component.ts:29:42 - error TS1005: ',' expected.
+
+29         if (this.isUrlValidForRecaptcha()) {
+                                            ~
+app/recaptcha/myrecaptcha.component.ts:29:44 - error TS1136: Property assignment expected.
+
+29         if (this.isUrlValidForRecaptcha()) {
+                                              ~
+app/recaptcha/myrecaptcha.component.ts:35:5 - error TS1128: Declaration or statement expected.
+
+35     }
+       ~
+app/recaptcha/myrecaptcha.component.ts:37:5 - error TS1128: Declaration or statement expected.
+
+37     private CallRecaptureVerify(dataStr:string): void {
+       ~~~~~~~
+app/recaptcha/myrecaptcha.component.ts:37:40 - error TS1005: ',' expected.
+
+37     private CallRecaptureVerify(dataStr:string): void {
+                                          ~
+app/recaptcha/myrecaptcha.component.ts:37:48 - error TS1005: ';' expected.
+
+37     private CallRecaptureVerify(dataStr:string): void {
+                                                  ~
+app/recaptcha/myrecaptcha.component.ts:39:13 - error TS1005: ',' expected.
+
+39 

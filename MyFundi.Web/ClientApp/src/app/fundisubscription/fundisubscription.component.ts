@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IMtnAirTelModel, IWorkSubCategory } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IMtnAirTelModel, IWorkSubCategory, IWorkAndSubWorkCategory } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
 
@@ -164,6 +164,7 @@ export class FundiSubscriptionComponent implements OnInit {
                
                 let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
                 let li = document.createElement("li");
+                li.setAttribute('id', `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`);
 
                 li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text()}]`;
                 ulSelectedCategories.appendChild(li);
@@ -177,10 +178,40 @@ export class FundiSubscriptionComponent implements OnInit {
             });
             let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
             let li = document.createElement("li");
+            li.setAttribute('id', `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`);
 
             li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text() }]`;
             ulSelectedCategories.appendChild(li);
         }
+        $event.preventDefault();
+    }
+    removeWorkSubCategory($event) {
+
+        let indexWorkCatToRemove: number;
+
+        let chosenCategory = this.subscriptionFeeExpense.fundiWorkCategoryIds.find((q, index) => {
+            indexWorkCatToRemove = index;
+            return q.workCategoryId == this.workCategory.workCategoryId;
+        })
+        if (chosenCategory) {
+            let indexWorkSubCatToRemove: number;
+            let chosenWorkSubCatId = chosenCategory.workSubCategoryIds.find((q, index) => {
+                indexWorkSubCatToRemove = index;
+                return q == this.workSubCategory.workSubCategoryId;
+            });
+            if (chosenWorkSubCatId) {
+                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`+'"]');
+
+                ulSelectedCategories.removeChild(li);
+
+                this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.splice(indexWorkSubCatToRemove, 1);
+                if (this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.length == 0) {
+                    this.subscriptionFeeExpense.fundiWorkCategoryIds.splice(indexWorkCatToRemove, 1);
+                }
+            }
+        }
+
         $event.preventDefault();
     }
     public paySubscriptionMonthlyFeeWithPaypal($event) {

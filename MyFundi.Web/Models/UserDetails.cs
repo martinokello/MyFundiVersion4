@@ -19,6 +19,15 @@
     {
         public string role { get; set; }
         public string email { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return this.role.ToLower().Equals(((UserRole)obj).role.ToLower());
+        }
+        public override int GetHashCode()
+        {
+            return this.role.Length;
+        }
     }
     public class ResetPassword
     {

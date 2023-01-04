@@ -144,7 +144,8 @@ export class MyFundiService {
         lastName: "",
         authToken: "",
         fundi: false,
-        client: false
+        client: false,
+        message: ""
     }
     public static userRoles = []
 
@@ -761,7 +762,7 @@ export class MyFundiService {
             return result;
         });
     } 
-    public AddFundiWorkCategory(workCategoryId: number, workSubCategoryId:number, username: string): Observable<boolean> {
+    public AddFundiWorkCategory(workCategoryId: number, workSubCategoryId:number, username: string): Observable<any> {
 
         let body = JSON.stringify({ workCategoryId: workCategoryId, workSubCategoryId: workSubCategoryId, username: username });
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -775,7 +776,7 @@ export class MyFundiService {
             return res;
         });
     }
-    public RemoveFundiWorkCategory(workCategoryId: number, workSubCategoryId: number, username: string): Observable<boolean> {
+    public RemoveFundiWorkCategory(workCategoryId: number, workSubCategoryId: number, username: string): Observable<any> {
 
         let body = JSON.stringify({ workCategoryId: workCategoryId, workSubCategoryId: workSubCategoryId, username: username });
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -1743,7 +1744,8 @@ export interface IUserDetail {
     lastName: string;
     authToken: string;
     fundi: boolean,
-    client: boolean
+    client: boolean,
+    message:string
 }
 export interface IEmailMessage {
     emailFrom: string;
@@ -1917,4 +1919,16 @@ export interface IFundiEngagement {
     firstName: string;
     lastName: string;
     numberOfAssignments: number;
+}
+
+export interface IPagingContent {
+    content: any[];
+    isPageNextEnabled: boolean;
+    isPagePrevEnabled: boolean;
+    isPageNext3Enabled: boolean;
+    isPagePrev3Enabled: boolean;
+    pageNextClicked: boolean;
+    pageNext3Clicked: boolean;
+    pagePrevClicked: boolean;
+    pagePrev3Clicked: boolean;
 }

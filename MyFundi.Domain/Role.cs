@@ -12,6 +12,5 @@ namespace MyFundi.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid RoleId { get; set; }
         public string RoleName { get; set; }
-
     }
 }

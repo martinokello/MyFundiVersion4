@@ -106,7 +106,7 @@ namespace MyFundi.Web.Controllers
                 var roleInsertionResult = await _roleService.AddToRoleAsync(newUser, userDetails.fundi ? "Fundi" : "Client");
                 try
                 {
-                    if(roleInsertionResult == UserInteractionResults.Succeeded)
+                    if (roleInsertionResult == UserInteractionResults.Succeeded)
                     {
                         _emailService.SendEmail(new EmailDao
                         {
@@ -126,40 +126,163 @@ namespace MyFundi.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<LoginResult> Authenticate(string authToken)
+        public async Task<LoginResult> Authenticate(string authToken,string email)
         {
+            var expiryDueWithin7 = 7;
+            var expiryDueWithin5 = 5;
+            var expiryDueWithin2 = 2;
+
             if (!string.IsNullOrEmpty(authToken))
             {
                 var user = await _userService.Authenticate(authToken);
+                var fundi = _unitOfWork._fundiProfileRepository.GetAll().FirstOrDefault(q => q.UserId == user.UserId);
+
+                if (fundi != null)
+                {
+                    var message = _unitOfWork.MyFundiDBContext.ValidateFundiSubscription(fundi.FundiProfileId);
+                    if (!message.ToLower().Equals("Subscription Is Still Valid".ToLower()) && 
+                        !await _userService.IsUserInRoleAsync(user.Username, "administrator"))
+                    {
+                        await UserAddToRole(new Models.UserRole { role = "Guest", email = user.Email });
+                        await UserRemoveFromRole(new Models.UserRole { role = "Fundi", email = user.Email });
+
+                        return new LoginResult
+                        {
+                            ErrorMessage = message,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            IsLoggedIn = false,
+                            IsFundi = false,
+                            IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            Message = message,
+                            AuthToken = ""
+                        };
+                    }
+                    else
+                    {
+                        var isUserInRoleFundi1 = await _userService.IsUserInRoleAsync(user.Username, "Fundi");
+                        if (!isUserInRoleFundi1)
+                        {
+                            await UserRemoveFromRole(new Models.UserRole { role = "Guest", email = user.Email });
+                            await UserAddToRole(new Models.UserRole { role = "Fundi", email = user.Email });
+                        }
+                    }
+
+                    message = _unitOfWork.MyFundiDBContext.ValidateFundiSubscriptionDaysToExpiry(fundi.FundiProfileId, expiryDueWithin2);
+                    if (!message.ToLower().Equals("Subscription Is Still Valid".ToLower()))
+                    {
+                        var tmpResult = new LoginResult { ErrorMessage = "", FirstName = user.FirstName, LastName = user.LastName, IsLoggedIn = false, IsFundi = true, IsAdministrator = false, IsClient = false, Message = "", AuthToken = authToken };
+                        var actualResult = new LoginResult
+                        {
+                            IsLoggedIn = true,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Username = user.Username,
+                            IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "Administrator"),
+                            Message = tmpResult.Message,
+                            AuthToken = authToken,
+                            IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                        };
+                        return actualResult;
+                    }
+                    message = _unitOfWork.MyFundiDBContext.ValidateFundiSubscriptionDaysToExpiry(fundi.FundiProfileId, expiryDueWithin5);
+                    if (!message.ToLower().Equals("Subscription Is Still Valid".ToLower()))
+                    {
+                        var tmpResult = new LoginResult { ErrorMessage = "", FirstName = user.FirstName, LastName = user.LastName, IsLoggedIn = false, IsFundi = true, IsAdministrator = false, IsClient = false, Message = message, AuthToken = authToken };
+                        var actualResult = new LoginResult
+                        {
+                            IsLoggedIn = true,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Username = user.Username,
+                            IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "administrator"),
+                            Message = tmpResult.Message,
+                            AuthToken = authToken,
+                            IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                        };
+                        return actualResult;
+                    }
+                    message = _unitOfWork.MyFundiDBContext.ValidateFundiSubscriptionDaysToExpiry(fundi.FundiProfileId, expiryDueWithin7);
+                    if (!message.ToLower().Equals("Subscription Is Still Valid".ToLower()))
+                    {
+                        var tmpResult = new LoginResult { ErrorMessage = "", FirstName = user.FirstName, LastName = user.LastName, IsLoggedIn = false, IsFundi = true, IsAdministrator = false, IsClient = false, Message = message, AuthToken = authToken };
+                        var actualResult = new LoginResult
+                        {
+                            IsLoggedIn = true,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Username = user.Username,
+                            IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "administrator"),
+                            Message = tmpResult.Message,
+                            AuthToken = authToken,
+                            IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                        };
+                        return actualResult;
+                    }
+                }
+                var isUserInRoleFundi2 = await _userService.IsUserInRoleAsync(user.Username, "Fundi");
+                if (isUserInRoleFundi2 && !await _userService.IsUserInRoleAsync(user.Username, "administrator"))
+                {
+                    await UserRemoveFromRole(new Models.UserRole { role = "Fundi", email = email });
+                    await UserAddToRole(new Models.UserRole { role = "Guest", email = email });
+                }
                 if (!string.IsNullOrEmpty(user.Username))
                 {
-                    return new LoginResult { IsLoggedIn = true, FirstName= user.FirstName, LastName=user.LastName, Username = user.Username,
-                        IsAdministrator = await _userService.IsUserInRoleAsync(user.Username.ToLower(), "administrator") 
-                    
+                    return new LoginResult
+                    {
+                        IsLoggedIn = true,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Username = user.Username,
+                        IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "Administrator"),
+                        Message = "",
+                        AuthToken = authToken,
+                        IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                        IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
                     };
                 }
             }
-            return new LoginResult { IsLoggedIn = false, IsAdministrator = false };
+            return new LoginResult
+            {
+                IsLoggedIn = false,
+                IsAdministrator = false,
+                Message = "Bad Request!!",
+                AuthToken = "",
+                ErrorMessage = "Bad Request",
+                IsClient = false,
+                IsFundi = false,
+            };
         }
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] UserDetails userDetails)
         {
             if (!string.IsNullOrEmpty(userDetails.authToken))
             {
-                var result = await Authenticate(userDetails.authToken);
-                LoginResult res = JsonConvert.DeserializeObject<LoginResult>(JsonConvert.SerializeObject(result));
+                LoginResult res = await Authenticate(userDetails.authToken,userDetails.username);
 
                 if (res.IsLoggedIn)
                 {
                     await SignInUserWithClaims(userDetails);
                     return Ok(res);
                 }
+                return BadRequest(userDetails);
             }
-            var signInResult = await CreateAuthoriseUsingLoginCredentials(userDetails);
+            else
+            {
+                var signInResult = await CreateAuthoriseUsingLoginCredentials(userDetails);
 
-            await SignInUserWithClaims(userDetails);
-
-            return signInResult;
+                var result = await Authenticate(signInResult.AuthToken, userDetails.username);
+                if (result.Message.ToLower().Equals("Subscription Is Still Valid".ToLower()))
+                {
+                    await SignInUserWithClaims(userDetails);
+                    return Ok(signInResult);
+                }
+                else return Ok(result);
+            }
         }
         private async Task SignInUserWithClaims(UserDetails userDetails)
         {
@@ -192,35 +315,45 @@ namespace MyFundi.Web.Controllers
                 throw ex;
             }
         }
-        private async Task<IActionResult> CreateAuthoriseUsingLoginCredentials(UserDetails userDetails)
+        private async Task<LoginResult> CreateAuthoriseUsingLoginCredentials(UserDetails userDetails)
         {
             var user = await _userService.FindByEmailAsync(userDetails.emailAddress);
             if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "Invalid login");
 
-                return BadRequest(new { IsLoggedIn = false, ErrorMessage = "Invalid login" });
+                return new LoginResult { IsLoggedIn = false, ErrorMessage = "Invalid login" };
             }
 
             UserInteractionResults result = await _userService.PasswordSignInAsync(user, userDetails.password, isPersistent: userDetails.keepLoggedIn, lockoutOnFailure: false);
             if (result != UserInteractionResults.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Invalid login");
-                return BadRequest(new { IsLoggedIn = false, ErrorMessage = "Invalid Login" });
+                return new LoginResult { IsLoggedIn = false, ErrorMessage = "Invalid Login" };
             }
             else if (result == UserInteractionResults.Succeeded)
             {
-               // var tmpUser = await _userService.FindByNameAsync(user.Username);
+                // var tmpUser = await _userService.FindByNameAsync(user.Username);
                 var userRoles = await _roleService.FindByUserNameAsync(user.Username);
-                var authToken = await _userService.AddUserRolesClaimAsync(user.Username, userRoles, user);
-                user.Token = authToken;
+                var authToken = string.Empty;
+                if (userRoles == null)
+                {
+                    var roles= await _roleService.GetAllRoles();
+                    userRoles = new Role[] { roles.FirstOrDefault(q => q.RoleName == "Guest") };
+                }
+                user.Token = await _userService.AddUserRolesClaimAsync(user.Username, userRoles, user);
+
                 _unitOfWork.SaveChanges();
 
-                var isAdministrator = await _userService.IsUserInRoleAsync(user.Username.ToLower(), "administrator");
-                return Ok(new { AuthToken = authToken, IsLoggedIn = true, IsAdministrator = isAdministrator, FirstName=user.FirstName, LastName=user.LastName });
+                return new LoginResult { AuthToken = user.Token, IsLoggedIn = true, 
+                    IsAdministrator = await _userService.IsUserInRoleAsync(user.Username.ToLower(), "administrator"),
+                    IsClient = await _userService.IsUserInRoleAsync(user.Username.ToLower(), "Client"),
+                    IsFundi = await _userService.IsUserInRoleAsync(user.Username.ToLower(), "Fundi"),
+                    FirstName = user.FirstName, LastName = user.LastName
+                };
             }
 
-            return Ok(new { IsLoggedIn = false, IsAdministrator = false, Message = "Failed to Login!", Result = result.ToString() });
+            return new LoginResult { IsLoggedIn = false, IsAdministrator = false, Message = "Failed to Login!" };
         }
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(string emailAddress)
@@ -286,39 +419,50 @@ namespace MyFundi.Web.Controllers
 
         [HttpPost]
         [CustomAuthorize(Roles = new string[] { "Administrator" })]
-        public async Task<IActionResult> AddUserToRole([FromBody] MyFundi.Web.Models.UserRole userRole)
+        public async Task<IActionResult> AddUserToRole([FromBody] Models.UserRole userRole)
         {
-            var user = await _userService.FindByEmailAsync(userRole.email);
+            var result = await UserAddToRole(userRole);
+
+            return Json(new { Result = result.ToString() });
+        }
+        public async Task<UserInteractionResults> UserAddToRole(Models.UserRole userRole)
+        {
             var isUserInrole = false;
+            var user = await _userService.FindByEmailAsync(userRole.email);
             if (user != null)
             {
-                isUserInrole = await _userService.IsUserInRoleAsync(user.Email.ToLower(), userRole.role.ToLower());
+                isUserInrole = await _userService.IsUserInRoleAsync(user.Email.ToLower(), userRole.role);
             }
             if (!isUserInrole)
             {
                 UserInteractionResults result = await _userService.AddToRoleAsync(user, userRole.role);
-                return Json(new { Result = result.ToString() });
+                return await Task.FromResult(result);
             }
-            return Ok(new { Message = UserInteractionResults.Failed.ToString() });
+            return await Task.FromResult(UserInteractionResults.Failed);
         }
-
         [HttpPost]
         [CustomAuthorize(Roles = new string[] { "Administrator" })]
-        public async Task<IActionResult> RemoveUserFromRole([FromBody] MyFundi.Web.Models.UserRole userRole)
+        public async Task<IActionResult> RemoveUserFromRole([FromBody] Models.UserRole userRole)
         {
-            var user = await _userService.FindByEmailAsync(userRole.email);
+            var result = await UserRemoveFromRole(userRole);
 
+            return Json(new { Result = result.ToString() });
+        }
+
+        public async Task<UserInteractionResults> UserRemoveFromRole(Models.UserRole userRole)
+        {
             var userInRole = false;
+            var user = await _userService.FindByEmailAsync(userRole.email);
             if (user != null)
             {
                 userInRole = await _userService.IsUserInRoleAsync(user.Email.ToLower(), userRole.role.ToLower());
             }
             if (userInRole)
             {
-                UserInteractionResults result = await _userService.RemoveFromRolesAsync(user, new string[] { userRole.role });
-                return Ok(new { Result = result.ToString() });
+                UserInteractionResults result = await _userService.RemoveFromRolesAsync(user, new string[] { userRole.role});
+                return await Task.FromResult(result);
             }
-            return BadRequest(new { Result = UserInteractionResults.Failed.ToString(), ErrorMessage = "Failed to remove user from Role" });
+            return await Task.FromResult(UserInteractionResults.Failed);
         }
         [HttpGet]
         [AuthorizeIdentity]

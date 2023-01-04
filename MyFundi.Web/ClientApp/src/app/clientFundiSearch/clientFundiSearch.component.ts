@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IWorkSubCategory, IClientProfile, IWorkAndSubWorkCategory } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IWorkSubCategory, IClientProfile, IWorkAndSubWorkCategory, IPagingContent } from '../../services/myFundiService';
 import { Observable, ObservableInput } from 'rxjs';
 import { Router } from '@angular/router';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
@@ -22,6 +22,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
     jobs: IJob[];
     location: ILocation;
     fundiRatings: IFundiRating[];
+    listToShow: any[];
     workCategories: IWorkCategory[];
     certifications: ICertification[];
     courses: ICourse[];
@@ -42,13 +43,85 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
     fundiProfileList: any[];
     job: IJob;
     jobLocation: ILocation;
-    fundiSatisfyingJobList: any[] = [];;
+    fundiSatisfyingJobList: any[] = [];
+    pagingContentModel: IPagingContent;
+    numberOfResultsPerPage: number;
+    currentPage: number;
+    numberOfPageJumps: number;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
     }
 
+    searchCommand($event) {
+        this.pagingContentModel = $event;
+        this.bindContentToSearchResultsDiv();
+        this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+/*
+        if (this.pagingContentModel.pageNextClicked) {
+            this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+        }
+        if (this.pagingContentModel.pagePrevClicked) {
+            this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+        }
+        if (this.pagingContentModel.pageNext3Clicked) {
+            this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage + this.numberOfPageJumps + this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage + this.numberOfPageJumps *this.numberOfResultsPerPage + this.numberOfResultsPerPage);
+        }
+        if (this.pagingContentModel.pagePrev3Clicked) {
+            this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage * this.numberOfPageJumps, this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage * this.numberOfPageJumps + this.numberOfResultsPerPage);
+        }
+        */
+        let mod = this.listToShow.length % this.numberOfResultsPerPage
+        let numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
+
+        if (mod > 0) numberOfPages += 1;
+
+        this.fundiSatisfyingJobList = this.pagingContentModel.content;
+
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+
+        if (this.currentPage > this.numberOfPageJumps) {
+            this.pagingContentModel.isPagePrev3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrev3Enabled = false;
+        }
+    }
     ngOnInit(): void {
+        this.numberOfResultsPerPage = 2;
+        this.currentPage = 1;
+        this.numberOfPageJumps = 2;
+
+        this.pagingContentModel = {
+            isPageNextEnabled: false,
+            isPageNext3Enabled: false,
+            isPagePrevEnabled: false,
+            isPagePrev3Enabled: false,
+            pageNextClicked: false,
+            pageNext3Clicked: false,
+            pagePrevClicked: false,
+            pagePrev3Clicked: false,
+            content:[]
+        }
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
 
@@ -263,6 +336,52 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                 });
         }
     }
+    showFirstPage() {
+        this.pagingContentModel.content = this.listToShow.slice(0, (this.currentPage * this.numberOfResultsPerPage));
+        this.fundiSatisfyingJobList = this.pagingContentModel.content;
+
+        let mod = this.listToShow.length % this.numberOfResultsPerPage
+
+        let numberOfPages = Math.floor(this.listToShow.length / this.numberOfResultsPerPage);
+
+        if (mod > 0) numberOfPages += 1;
+
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+        this.pagingContentModel.isPagePrev3Enabled = false;
+    }
+    bindContentToSearchResultsDiv() {
+
+        if (this.pagingContentModel.pageNextClicked) {
+            this.currentPage += 1;
+        }
+        else if (this.pagingContentModel.pagePrevClicked) {
+            this.currentPage -= 1;
+        }
+        else if (this.pagingContentModel.pageNext3Clicked) {
+            this.currentPage += this.numberOfPageJumps;
+        }
+        else if (this.pagingContentModel.pagePrev3Clicked) {
+            this.currentPage -= this.numberOfPageJumps;
+        }
+    }
     searchFundiByCategories($event) {
         let curthis = this;
         this.fundiProfileList = [];
@@ -282,7 +401,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
 
             });
             viewObjects.push({ username: MyFundiService.clientEmailAddress, workCategories: chosenCategories, workSubCategories: chosenSubCategories, coordinate: { latitude: 0, longitude: 0 } });
-
+            
         });
 
         let username: string = MyFundiService.clientEmailAddress;
@@ -304,7 +423,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                     let q: any[] = n;
 
                     if (q && q.length > 0) {
-                        this.fundiSatisfyingJobList = q;
+                        this.listToShow = q;
+                        this.showFirstPage();
                     } else {
                         alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
                     }
