@@ -51,17 +51,11 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
                     if (userList.length > 0) {
                         for (var i = 0; i < userList.length; i++) {
                                 //only create checkbox if not exists:
-                                let length = jQuery(userListCont).find('input:checkbox[value="' + userList[i].username + '"]').length;
+                                let length = jQuery(userListCont).find('input:checkbox[name="' + userList[i].username + '"]').length;
                                 if (length === 0) {
                                     let divWithcheckbox = curThis.CreateCheckbox('userList', userList[i].username);
                                     jQuery(divWithcheckbox).css('color', 'green');
                                     let li = document.createElement("li");
-                                    let lb = document.createElement("span");
-                                    jQuery(lb).addClass('custom-control-input');
-                                    jQuery(lb).css('display', 'inline-block');
-                                    jQuery(lb).css('margin-left', '5px;');
-                                    lb.innerHTML = userList[i].substring(0, userList[i].username.indexOf('@'));
-                                    jQuery(divWithcheckbox).append(lb);
                                     jQuery(li).append(divWithcheckbox);
                                     jQuery(userListCont).append(li);
                                 }
@@ -83,16 +77,8 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
         if (client && !(jQuery('ul#radioList').find('radioList > li checkbox[id="userList' + client.username + '"]').length > 0)) {
-            checkbox = this.CreateCheckbox('userList', client.username);
-            checkbox.setAttribute('class', 'custom-control-input');
-            jQuery(checkbox).css('color', 'green');
-            let li = document.createElement("li");
-            let lb = document.createElement("span");
-            lb.innerHTML = client.username.substring(0, client.username.indexOf('@'));
-            jQuery(li).append(checkbox);
-            jQuery(lb).css('margin-left', '5px;');
-            jQuery(li).append(lb);
-            jQuery(userListCont).append(li);
+            let divwrapper = this.CreateCheckbox('userList', client.username);
+            jQuery(userListCont).append(divwrapper);
         }
     }
     BookPrivateRoom($event) {
@@ -121,15 +107,20 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
     CreateCheckbox(name, value) {
         let divwrapper = document.createElement('div');
         divwrapper.setAttribute('style', 'margin-left:1em !important;')
-        divwrapper.setAttribute('class', 'form-control');
+        divwrapper.setAttribute('class', 'custom-control');
         let element = document.createElement("input");
         let id = name + value;
         element.setAttribute('type', 'checkbox');
-        element.setAttribute('class', 'custom-control-input checkbox');
-        element.setAttribute('value', value);
-        element.setAttribute('name', name);
+        element.setAttribute('class', 'custom-control-input');
+		element.setAttribute('style','left:4% !important;display:inline-block !important;z-index:2000 !important; visibility:visible !important;');
+        element.setAttribute('name', value);
         element.setAttribute('id', id);
         divwrapper.appendChild(element);
+        let lbl = document.createElement('label');
+        lbl.setAttribute('class', 'custom-control-label');
+        lbl.setAttribute('style', 'width:80% !important;display:inline-block !important;');
+        lbl.innerHTML = value;
+        divwrapper.appendChild(lbl);
         return divwrapper;
     }
     IsInSecretRoom() {
@@ -273,7 +264,7 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
     InviteClient($event) {
 
         let curThis = this;
-        let invitedUser = jQuery("input[type='checkbox'][name='userList']:checked").attr('value');
+        let invitedUser = jQuery("input[type='checkbox']:checked").attr('name');
         if (typeof (invitedUser) != "undefined") {
             let client = { username: invitedUser, roomNumber: parseInt(localStorage.getItem('roomNumber')), currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser.substring(0, invitedUser.indexOf('@')) + ', enter my Conversation at Secret Room via the link in the Public Room Please</span></em><br>' };
 

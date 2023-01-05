@@ -81,7 +81,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"chat-wrapper\">\r\n    <div style=\"text-align: center;\">\r\n        <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px;padding-left:20px; text-align: left;\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <h2>MartinLayooInc. Private Chat Room No: #{{roomNumber?roomNumber.toString():\"\"}}</h2><br />\r\n                </div>\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <span style=\"color: #0080ff;margin-left:20px;\"><b><i>Private Chat Room</i></b></span><br />\r\n                </div>\r\n\r\n                <div class=\"row\" style=\"background-color: #DADADA; margin-left: 0px; margin-right: 0px;\">\r\n                    <div class=\"col-lg-8\">\r\n                        <div id=\"txtMessages\" style=\"border: solid 1px #999999; padding: 5px 5px 5px 5px;  \tmargin-top: 15px; margin-left: 0px; width:auto !important; height: 240px; overflow-y: auto; overflow-x: hidden;  \tfont-family: Times New Roman; font-size: small; color: blue; background-color: White;\">\r\n                        </div>\r\n                        <textarea id=\"txtTypeHere\" style=\"margin-top:10px;width:100% !important; height:240px;margin-left: 0px; padding: 5px 5px 5px 5px; \" placeholder=\"Type messages here and click return or send button\" title=\"type messages here and click return or send button\" (keydown)=\"keyDownMessage($event)\"></textarea>\r\n                    </div>\r\n                    <div class=\"col-lg-4\">\r\n                        <div style=\"color: Green; margin-left: 10px; margin-top:-15px; font-style: italic; font-weight: bold; font-size:small;\">Please select the User you want to invite to Secret Room</div>\r\n                        <div style=\"margin-top:15px;\">\r\n                            <ul class=\"listless\" id=\"radioList\" style=\"margin-right: 10px; background-color: white; height: 490px; width: auto; color: teal;list-style:none !important;\"></ul>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div style=\"margin-top: 10px; margin-left: 0px; margin-bottom: 10px;padding-bottom:5px;\">\r\n                    <input type=\"button\" id=\"btnSubmit\" value=\"Send Message\" class=\"oneRowButton\" (click)=\"wasClicked($event);\" />\r\n                    <input type=\"button\" id=\"btnBookRoom\" value=\"Book Room\" class=\"oneRowButton\" (click)=\"BookPrivateRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnInvite\" value=\"Invite Friend\" class=\"oneRowButton\" (click)=\"InviteClient($event);\" />\r\n                    <input type=\"button\" id=\"btnClearRoom\" value=\"Stop Meeting\" class=\"oneRowButton\" (click)=\"ClearRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnExitRoom\" value=\"Exit Meeting\" class=\"oneRowButton\" (click)=\"ExitRoom($event);\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"chat-wrapper\">\r\n    <div style=\"text-align: center;\">\r\n        <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px;padding-left:20px; text-align: left;\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <h2>MartinLayooInc. Private Chat Room No: #{{roomNumber?roomNumber.toString():\"\"}}</h2><br />\r\n                </div>\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <span style=\"color: #0080ff;margin-left:20px;\"><b><i>Private Chat Room</i></b></span><br />\r\n                </div>\r\n\r\n                <div class=\"row\" style=\"background-color: #DADADA; margin-left: 0px; margin-right: 0px;\">\r\n                    <div class=\"col-lg-8\">\r\n                        <div id=\"txtMessages\" style=\"border: solid 1px #999999; padding: 5px 5px 5px 5px;  \tmargin-top: 15px; margin-left: 0px; width:auto !important; height: 240px; overflow-y: auto; overflow-x: hidden;  \tfont-family: Times New Roman; font-size: small; color: blue; background-color: White;\">\r\n                        </div>\r\n                        <textarea id=\"txtTypeHere\" style=\"margin-top:10px;width:100% !important; height:240px;margin-left: 0px; padding: 5px 5px 5px 5px; \" placeholder=\"Type messages here and click return or send button\" title=\"type messages here and click return or send button\" (keydown)=\"keyDownMessage($event)\"></textarea>\r\n                    </div>\r\n                    <div class=\"col-lg-4\">\r\n                        <form>\r\n                            <div style=\"color: Green; margin-left: 10px; margin-top:-15px; font-style: italic; font-weight: bold; font-size:small;\">Please select the User you want to invite to Secret Room</div>\r\n                            <div style=\"margin-top:15px;\">\r\n                                <ul class=\"listless\" id=\"radioList\" style=\"margin-right: 10px; background-color: white; height: 490px; width: auto; color: teal;list-style:none !important;\"></ul>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div style=\"margin-top: 10px; margin-left: 0px; margin-bottom: 10px;padding-bottom:5px;\">\r\n                    <input type=\"button\" id=\"btnSubmit\" value=\"Send Message\" class=\"oneRowButton\" (click)=\"wasClicked($event);\" />\r\n                    <input type=\"button\" id=\"btnBookRoom\" value=\"Book Room\" class=\"oneRowButton\" (click)=\"BookPrivateRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnInvite\" value=\"Invite Friend\" class=\"oneRowButton\" (click)=\"InviteClient($event);\" />\r\n                    <input type=\"button\" id=\"btnClearRoom\" value=\"Stop Meeting\" class=\"oneRowButton\" (click)=\"ClearRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnExitRoom\" value=\"Exit Meeting\" class=\"oneRowButton\" (click)=\"ExitRoom($event);\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
     /***/
   },
 
@@ -1978,18 +1978,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (userList.length > 0) {
                   for (var i = 0; i < userList.length; i++) {
                     //only create checkbox if not exists:
-                    var length = jQuery(userListCont).find('input:checkbox[value="' + userList[i].username + '"]').length;
+                    var length = jQuery(userListCont).find('input:checkbox[name="' + userList[i].username + '"]').length;
 
                     if (length === 0) {
                       var divWithcheckbox = curThis.CreateCheckbox('userList', userList[i].username);
                       jQuery(divWithcheckbox).css('color', 'green');
                       var li = document.createElement("li");
-                      var lb = document.createElement("span");
-                      jQuery(lb).addClass('custom-control-input');
-                      jQuery(lb).css('display', 'inline-block');
-                      jQuery(lb).css('margin-left', '5px;');
-                      lb.innerHTML = userList[i].substring(0, userList[i].username.indexOf('@'));
-                      jQuery(divWithcheckbox).append(lb);
                       jQuery(li).append(divWithcheckbox);
                       jQuery(userListCont).append(li);
                     }
@@ -2007,16 +2001,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var checkbox = null;
 
           if (client && !(jQuery('ul#radioList').find('radioList > li checkbox[id="userList' + client.username + '"]').length > 0)) {
-            checkbox = this.CreateCheckbox('userList', client.username);
-            checkbox.setAttribute('class', 'custom-control-input');
-            jQuery(checkbox).css('color', 'green');
-            var li = document.createElement("li");
-            var lb = document.createElement("span");
-            lb.innerHTML = client.username.substring(0, client.username.indexOf('@'));
-            jQuery(li).append(checkbox);
-            jQuery(lb).css('margin-left', '5px;');
-            jQuery(li).append(lb);
-            jQuery(userListCont).append(li);
+            var divwrapper = this.CreateCheckbox('userList', client.username);
+            jQuery(userListCont).append(divwrapper);
           }
         }
       }, {
@@ -2052,15 +2038,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function CreateCheckbox(name, value) {
           var divwrapper = document.createElement('div');
           divwrapper.setAttribute('style', 'margin-left:1em !important;');
-          divwrapper.setAttribute('class', 'form-control');
+          divwrapper.setAttribute('class', 'custom-control');
           var element = document.createElement("input");
           var id = name + value;
           element.setAttribute('type', 'checkbox');
-          element.setAttribute('class', 'custom-control-input checkbox');
-          element.setAttribute('value', value);
-          element.setAttribute('name', name);
+          element.setAttribute('class', 'custom-control-input');
+          element.setAttribute('style', 'left:4% !important;display:inline-block !important;z-index:2000 !important; visibility:visible !important;');
+          element.setAttribute('name', value);
           element.setAttribute('id', id);
           divwrapper.appendChild(element);
+          var lbl = document.createElement('label');
+          lbl.setAttribute('class', 'custom-control-label');
+          lbl.setAttribute('style', 'width:80% !important;display:inline-block !important;');
+          lbl.innerHTML = value;
+          divwrapper.appendChild(lbl);
           return divwrapper;
         }
       }, {
@@ -2214,7 +2205,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "InviteClient",
         value: function InviteClient($event) {
           var curThis = this;
-          var invitedUser = jQuery("input[type='checkbox'][name='userList']:checked").attr('value');
+          var invitedUser = jQuery("input[type='checkbox']:checked").attr('name');
 
           if (typeof invitedUser != "undefined") {
             var client = {
