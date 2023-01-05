@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Inject, AfterViewInit, AfterViewChecked, NgZone } from '@angular/core';
+﻿import { Component, OnInit, Inject, AfterViewInit, OnDestroy, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ObservableInput } from 'rxjs';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ declare let jQuery: any;
     templateUrl: './chat.component.html',
     providers: [AddressLocationGeoCodeService, MyFundiService]
 })
-export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
+export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
     userDetails: any;
     userRoles: string[];
     roomNumber: number;
@@ -27,19 +27,29 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     normalizeMessage(message) {
         return message.replace(/@[a-zA-Z0-9\.]+:/, ':');
     }
+    RemoveUserListItems(radioList) {
+        let userListCont = document.getElementById(radioList);
+
+        jQuery(userListCont).empty();
+    }
+
     LoadUserList() {
         let curThis = this;
         if (this.roomNumber) {
 
             jQuery.ajax({
-                url: "/Adhoc/GetUserList/" + curThis.roomNumber,
+                url: "/Adhoc/GetUserList/" + localStorage.getItem('roomNumber'),
                 type: "GET",
                 dataType: "json",
+                cache: false,
                 success: function (userList) {
+
+                    curThis.RemoveUserListItems('radioList');
+
                     let userListCont = document.getElementById('radioList');
-                    if (userList && userList.length > 0) {
+
+                    if (userList.length > 0) {
                         for (var i = 0; i < userList.length; i++) {
-                            if (userList[i].username != curThis.userDetails.username) {
                                 //only create checkbox if not exists:
                                 let length = jQuery(userListCont).find('input:checkbox[value="' + userList[i].username + '"]').length;
                                 if (length === 0) {
@@ -56,18 +66,11 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
                                     jQuery(userListCont).append(li);
                                 }
                             }
-                        }
                     }
-                    if (curThis.listTimeout)
-                        clearTimeout(curThis.listTimeout);
-                    curThis.listTimeout = setTimeout(curThis.LoadUserList, 12000);
 
                 },
                 error: function () {
-                    if (curThis.listTimeout)
-                        clearTimeout(curThis.listTimeout);
-                    curThis.listTimeout = setTimeout(curThis.LoadUserList, 12000);
-
+                    
                 }
             });
         }
@@ -102,11 +105,13 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
             url: "/Adhoc/BookPrivateRoom",
             type: "POST",
             data: jsonData,
+            cache: false,
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
                 if (data) {
                     curThis.roomNumber = data.roomNumber;
+                    localStorage.setItem('roomNumber', data.roomNumber);
                     alert('You booked Private Room: #' + curThis.roomNumber);
                 }
             }
@@ -131,14 +136,15 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
         let curThis = this;
         let userName = this.userDetails.username;
         //Create Client Object:
-        let client = { username: userName, Message: '', roomNumber: this.roomNumber };
+        let client = { username: userName, Message: '', roomNumber: parseInt(localStorage.getItem('roomNumber')) };
         let jsonData = JSON.stringify(client);
         jQuery.ajax({
-            url: "/Adhoc/IsInPrivateRoom/" + curThis.roomNumber,
+            url: "/Adhoc/IsInPrivateRoom/" + localStorage.getItem('roomNumber'),
             type: "POST",
             data: jsonData,
             dataType: "json",
             contentType: "application/json",
+            cache: false,
             success: function (data) {
                 if (data !== true) {
 
@@ -151,7 +157,8 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     ClearRoom($event) {
         let curThis = this;
         jQuery.ajax({
-            url: "/Adhoc/ClearPrivateRoom/" + curThis.roomNumber,
+            url: "/Adhoc/ClearPrivateRoom/" + localStorage.getItem('roomNumber'),
+            cache: false,
             type: "GET"
         });
 
@@ -162,13 +169,14 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
         let userName = this.userDetails.username;
         let curThis = this;
         //Create Client Object:
-        let client = { username: userName, currentMessage: 'Client has exited the Secret Room.\n', roomNumber: curThis.roomNumber };
+        let client = { username: userName, currentMessage: 'Client has exited the Secret Room.\n', roomNumber: parseInt(localStorage.getItem('roomNumber')) };
 
         let jsonData = JSON.stringify(client);
         jQuery.ajax({
             url: "/Adhoc/ExitPrivateRoom",
             type: "POST",
             dataType: "json",
+            cache: false,
             data: jsonData,
             contentType: "application/json"
         });
@@ -188,6 +196,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
             jQuery.ajax({
                 url: "/Adhoc/AddMessagePrivateRoom",
                 type: "POST",
+                cache: false,
                 dataType: "json",
                 data: jsonData,
                 contentType: "application/json",
@@ -202,11 +211,12 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     getMsgs() {
         let curThis = this;
-        if (this.roomNumber) {
+        if (localStorage.getItem('roomNumber')) {
 
             jQuery.ajax({
-                url: "/Adhoc/GetMessage/" + curThis.roomNumber,
+                url: "/Adhoc/GetMessage/" + localStorage.getItem('roomNumber'),
                 type: "GET",
+                cache: false,
                 dataType: "json",
                 contentType: "application/json",
                 success: function (res, xHRq, method) {
@@ -223,27 +233,14 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
                             //curThis.scrollContentDown();
 
                         }
-
-                        if (curThis.messageTimeout)
-                            clearTimeout(curThis.messageTimeout);
-                        curThis.messageTimeout = setTimeout(curThis.getMsgs, 3500);
-                    }
-                    else {
-                        if (curThis.messageTimeout)
-                            clearTimeout(curThis.messageTimeout);
-                        curThis.messageTimeout = setTimeout(curThis.getMsgs, 8500);
                     }
                 },
                 error: function (xHRq, status, error) {
                     //console.log(xHRq.responseText);
-                    if (curThis.messageTimeout)
-                        clearTimeout(curThis.messageTimeout);
-                    curThis.messageTimeout = setTimeout(curThis.getMsgs, 12000);
 
                 },
             });
         }
-
     }
     getBroadcastMsgs() {
         let curThis = this;
@@ -251,6 +248,7 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
         jQuery.ajax({
             url: "/Adhoc/GetBroadcastMessages",
             type: "GET",
+            cache:false,
             dataType: "json",
             contentType: "application/json",
             success: function (res, xHRq, method) {
@@ -259,25 +257,14 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
                 if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br><\/div>$/g)) {
 
                     //let normalizedMessage = curThis.normalizeMessage(msg);
-                    if (jQuery('div#txtMessages').html() && msg.indexOf(jQuery('div#txtMessages').html()) > -1) {
-                        msg = msg.substr(msg.indexOf(jQuery('div#txtMessages').html() + jQuery('div#txtMessages').html().length));
+                    if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
                         jQuery('div#txtMessages').append(msg);
                     }
-                    else if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
-                        jQuery('div#txtMessages').append(msg);
-                    }
-                    curThis.scrollContentDown();
+                    //curThis.scrollContentDown();
                 }
-
-                if (curThis.broadcastMessageTimeout)
-                    clearTimeout(curThis.broadcastMessageTimeout);
-                curThis.broadcastMessageTimeout = setTimeout(curThis.getBroadcastMsgs, 10000);
             },
             error: function (xHRq,status, error) {
                 //console.log(xHRq.responseText);
-                if (curThis.broadcastMessageTimeout)
-                    clearTimeout(curThis.broadcastMessageTimeout);
-                curThis.broadcastMessageTimeout = setTimeout(curThis.getBroadcastMsgs, 15000);
             },
         });
     }
@@ -288,13 +275,14 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
         let curThis = this;
         let invitedUser = jQuery("input[type='checkbox'][name='userList']:checked").attr('value');
         if (typeof (invitedUser) != "undefined") {
-            let client = { username: invitedUser, roomNumber: curThis.roomNumber, currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser.substring(0, invitedUser.indexOf('@')) + ', enter my Conversation at Secret Room via the link in the Public Room Please</span></em><br>' };
+            let client = { username: invitedUser, roomNumber: parseInt(localStorage.getItem('roomNumber')), currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser.substring(0, invitedUser.indexOf('@')) + ', enter my Conversation at Secret Room via the link in the Public Room Please</span></em><br>' };
 
             let jsonData = JSON.stringify(client);
             jQuery.ajax({
                 url: "/Adhoc/InviteClient/" + curThis.roomNumber,
                 type: "POST",
                 dataType: "json",
+                cache: false,
                 data: jsonData,
                 contentType: "application/json"
             });
@@ -322,7 +310,9 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
     ngOnInit() {
 
         let curThis = this;
-
+        if (localStorage.getItem('roomNumber')) {
+            curThis.roomNumber = parseInt(localStorage.getItem('roomNumber'));
+        }
         jQuery('textarea#txtTypeHere').focus();
         jQuery("div#chat-wrapper").keydown(curThis.keyDownMessage);
 
@@ -332,9 +322,10 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     }
     ngAfterViewInit() {
-
         let curThis = this;
-
+        if (localStorage.getItem('roomNumber')) {
+            curThis.roomNumber = parseInt(localStorage.getItem('roomNumber'));
+        }
         if (MyFundiService.actUserStatus.isUserLoggedIn) {
             let client = { username: this.userDetails.username, roomNumber: curThis.roomNumber, currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + this.userDetails.username.substring(0, this.userDetails.username.indexOf('@')) + ', is available now!!</span></em><br>' };
 
@@ -344,16 +335,27 @@ export class ChatComponent implements OnInit, AfterViewInit, AfterViewChecked {
                 type: "POST",
                 dataType: "json",
                 data: jsonData,
+                cache: false,
                 contentType: "application/json",
                 success: function (client) {
                     curThis.AddJoiningUsersToList(client);
                 }
             });
         }
+        this.messageTimeout = setInterval(this.getMsgs, 2500);
+        this.broadcastMessageTimeout = setInterval(this.getBroadcastMsgs, 4000);
+        this.listTimeout = setInterval(this.LoadUserList, 6000);
+
     }
-    ngAfterViewChecked() {
-        this.LoadUserList();
-        this.getMsgs();
-        this.getBroadcastMsgs();
+    ngOnDestroy() {
+        if (this.messageTimeout) {
+            clearInterval(this.messageTimeout);
+        }
+        if (this.broadcastMessageTimeout) {
+            clearInterval(this.broadcastMessageTimeout);
+        }
+        if (this.listTimeout) {
+            clearInterval(this.listTimeout);
+        }
     }
 }

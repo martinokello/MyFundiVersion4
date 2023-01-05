@@ -285,6 +285,12 @@ namespace MyFundi.Web.Controllers
         public void ClearPrivateRoom(int roomNumber)
         {
             ChatResource.Rooms.Remove(roomNumber);
+            ChatResource.CleanRoom();
+        }
+        [Route("~/Adhoc/ClearAllRooms")]
+        public void ClearAllRooms()
+        {
+            ChatResource.CleanRoom();
         }
 
         [Route("~/Adhoc/AddExitMessagePrivateRoom")]
@@ -315,21 +321,7 @@ namespace MyFundi.Web.Controllers
             if (!string.IsNullOrEmpty(clt.CurrentMessage))
             {
                 Client client = new Client { Username = clt.Username, CurrentMessage = clt.CurrentMessage };
-
-                foreach (var chatRoom in ChatResource.Rooms)
-                {
-
-                    foreach (var queue in ChatResource.Rooms[chatRoom.Key])
-                    {
-                        foreach (var currentClient in queue)
-                        {
-                            if (currentClient != null)
-                            {
-                                currentClient.CurrentMessage = client.CurrentMessage;
-                            }
-                        }
-                    }
-                }
+                MartinLayooIncChat.GlobalMessageQueue.Enqueue(new Message { ClientMessage = client.CurrentMessage });
                 return client;
             }
             return null;
@@ -350,7 +342,7 @@ namespace MyFundi.Web.Controllers
 
                     if (msg != null && !string.IsNullOrEmpty(msg.ClientMessage))
                     {
-                        
+
                         return new Message
                         {
                             ClientMessage = $"<span style=\"color:red !important;\">{clt.Username}: </span>{msg.ClientMessage}<br>",
@@ -371,23 +363,17 @@ namespace MyFundi.Web.Controllers
         [Route("~/Adhoc/GetBroadcastMessages")]
         public dynamic GetBroadcastMessages()
         {
-            var messageBuilder = new StringBuilder();
 
-            Thread.Sleep(2500);
-            foreach (var chatRoom in ChatResource.Rooms)
+            var currentGlobalMessage = MartinLayooIncChat.GlobalMessageQueue.Last();
+
+            Thread.Sleep(5000);
+            if (currentGlobalMessage != null)
             {
-
-                foreach (var queue in ChatResource.Rooms[chatRoom.Key])
-                {
-                    foreach (var clt in queue)
-                    {
-                        if (!string.IsNullOrEmpty(clt.CurrentMessage))
-                            messageBuilder.Append($"<div style=\"font-color:orange;\"><span style=\"color:red\">{clt.Username + ": </span>" + clt.CurrentMessage}<br></div>");
-                    }
-                }
+                currentGlobalMessage.TimeSent = DateTime.Now;
+                currentGlobalMessage.MessageWasSent = true;
+                return new { Message = currentGlobalMessage.ClientMessage, MessageWasSent = currentGlobalMessage.MessageWasSent, TimeSent = currentGlobalMessage.TimeSent };
             }
-
-            return new { Message = messageBuilder.ToString() };
+            return null;
         }
 
         [Route("~/Adhoc/GetUserList/{roomNumber}")]

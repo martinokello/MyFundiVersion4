@@ -1955,48 +1955,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return message.replace(/@[a-zA-Z0-9\.]+:/, ':');
         }
       }, {
+        key: "RemoveUserListItems",
+        value: function RemoveUserListItems(radioList) {
+          var userListCont = document.getElementById(radioList);
+          jQuery(userListCont).empty();
+        }
+      }, {
         key: "LoadUserList",
         value: function LoadUserList() {
           var curThis = this;
 
           if (this.roomNumber) {
             jQuery.ajax({
-              url: "/Adhoc/GetUserList/" + curThis.roomNumber,
+              url: "/Adhoc/GetUserList/" + localStorage.getItem('roomNumber'),
               type: "GET",
               dataType: "json",
+              cache: false,
               success: function success(userList) {
+                curThis.RemoveUserListItems('radioList');
                 var userListCont = document.getElementById('radioList');
 
-                if (userList && userList.length > 0) {
+                if (userList.length > 0) {
                   for (var i = 0; i < userList.length; i++) {
-                    if (userList[i].username != curThis.userDetails.username) {
-                      //only create checkbox if not exists:
-                      var length = jQuery(userListCont).find('input:checkbox[value="' + userList[i].username + '"]').length;
+                    //only create checkbox if not exists:
+                    var length = jQuery(userListCont).find('input:checkbox[value="' + userList[i].username + '"]').length;
 
-                      if (length === 0) {
-                        var divWithcheckbox = curThis.CreateCheckbox('userList', userList[i].username);
-                        jQuery(divWithcheckbox).css('color', 'green');
-                        var li = document.createElement("li");
-                        var lb = document.createElement("span");
-                        jQuery(lb).addClass('custom-control-input');
-                        jQuery(lb).css('display', 'inline-block');
-                        jQuery(lb).css('margin-left', '5px;');
-                        lb.innerHTML = userList[i].substring(0, userList[i].username.indexOf('@'));
-                        jQuery(divWithcheckbox).append(lb);
-                        jQuery(li).append(divWithcheckbox);
-                        jQuery(userListCont).append(li);
-                      }
+                    if (length === 0) {
+                      var divWithcheckbox = curThis.CreateCheckbox('userList', userList[i].username);
+                      jQuery(divWithcheckbox).css('color', 'green');
+                      var li = document.createElement("li");
+                      var lb = document.createElement("span");
+                      jQuery(lb).addClass('custom-control-input');
+                      jQuery(lb).css('display', 'inline-block');
+                      jQuery(lb).css('margin-left', '5px;');
+                      lb.innerHTML = userList[i].substring(0, userList[i].username.indexOf('@'));
+                      jQuery(divWithcheckbox).append(lb);
+                      jQuery(li).append(divWithcheckbox);
+                      jQuery(userListCont).append(li);
                     }
                   }
                 }
-
-                if (curThis.listTimeout) clearTimeout(curThis.listTimeout);
-                curThis.listTimeout = setTimeout(curThis.LoadUserList, 12000);
               },
-              error: function error() {
-                if (curThis.listTimeout) clearTimeout(curThis.listTimeout);
-                curThis.listTimeout = setTimeout(curThis.LoadUserList, 12000);
-              }
+              error: function error() {}
             });
           }
         }
@@ -2034,11 +2034,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             url: "/Adhoc/BookPrivateRoom",
             type: "POST",
             data: jsonData,
+            cache: false,
             dataType: "json",
             contentType: "application/json",
             success: function success(data) {
               if (data) {
                 curThis.roomNumber = data.roomNumber;
+                localStorage.setItem('roomNumber', data.roomNumber);
                 alert('You booked Private Room: #' + curThis.roomNumber);
               }
             }
@@ -2070,15 +2072,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var client = {
             username: userName,
             Message: '',
-            roomNumber: this.roomNumber
+            roomNumber: parseInt(localStorage.getItem('roomNumber'))
           };
           var jsonData = JSON.stringify(client);
           jQuery.ajax({
-            url: "/Adhoc/IsInPrivateRoom/" + curThis.roomNumber,
+            url: "/Adhoc/IsInPrivateRoom/" + localStorage.getItem('roomNumber'),
             type: "POST",
             data: jsonData,
             dataType: "json",
             contentType: "application/json",
+            cache: false,
             success: function success(data) {
               if (data !== true) {
                 curThis.router.navigateByUrl('home');
@@ -2091,7 +2094,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ClearRoom($event) {
           var curThis = this;
           jQuery.ajax({
-            url: "/Adhoc/ClearPrivateRoom/" + curThis.roomNumber,
+            url: "/Adhoc/ClearPrivateRoom/" + localStorage.getItem('roomNumber'),
+            cache: false,
             type: "GET"
           });
           $event.preventDefault();
@@ -2105,13 +2109,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var client = {
             username: userName,
             currentMessage: 'Client has exited the Secret Room.\n',
-            roomNumber: curThis.roomNumber
+            roomNumber: parseInt(localStorage.getItem('roomNumber'))
           };
           var jsonData = JSON.stringify(client);
           jQuery.ajax({
             url: "/Adhoc/ExitPrivateRoom",
             type: "POST",
             dataType: "json",
+            cache: false,
             data: jsonData,
             contentType: "application/json"
           });
@@ -2137,6 +2142,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             jQuery.ajax({
               url: "/Adhoc/AddMessagePrivateRoom",
               type: "POST",
+              cache: false,
               dataType: "json",
               data: jsonData,
               contentType: "application/json",
@@ -2153,10 +2159,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getMsgs() {
           var curThis = this;
 
-          if (this.roomNumber) {
+          if (localStorage.getItem('roomNumber')) {
             jQuery.ajax({
-              url: "/Adhoc/GetMessage/" + curThis.roomNumber,
+              url: "/Adhoc/GetMessage/" + localStorage.getItem('roomNumber'),
               type: "GET",
+              cache: false,
               dataType: "json",
               contentType: "application/json",
               success: function success(res, xHRq, method) {
@@ -2171,18 +2178,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     } //curThis.scrollContentDown();
 
                   }
-
-                  if (curThis.messageTimeout) clearTimeout(curThis.messageTimeout);
-                  curThis.messageTimeout = setTimeout(curThis.getMsgs, 3500);
-                } else {
-                  if (curThis.messageTimeout) clearTimeout(curThis.messageTimeout);
-                  curThis.messageTimeout = setTimeout(curThis.getMsgs, 8500);
                 }
               },
-              error: function error(xHRq, status, _error) {
-                //console.log(xHRq.responseText);
-                if (curThis.messageTimeout) clearTimeout(curThis.messageTimeout);
-                curThis.messageTimeout = setTimeout(curThis.getMsgs, 12000);
+              error: function error(xHRq, status, _error) {//console.log(xHRq.responseText);
               }
             });
           }
@@ -2194,6 +2192,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jQuery.ajax({
             url: "/Adhoc/GetBroadcastMessages",
             type: "GET",
+            cache: false,
             dataType: "json",
             contentType: "application/json",
             success: function success(res, xHRq, method) {
@@ -2201,23 +2200,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br><\/div>$/g)) {
                 //let normalizedMessage = curThis.normalizeMessage(msg);
-                if (jQuery('div#txtMessages').html() && msg.indexOf(jQuery('div#txtMessages').html()) > -1) {
-                  msg = msg.substr(msg.indexOf(jQuery('div#txtMessages').html() + jQuery('div#txtMessages').html().length));
+                if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
                   jQuery('div#txtMessages').append(msg);
-                } else if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
-                  jQuery('div#txtMessages').append(msg);
-                }
+                } //curThis.scrollContentDown();
 
-                curThis.scrollContentDown();
               }
-
-              if (curThis.broadcastMessageTimeout) clearTimeout(curThis.broadcastMessageTimeout);
-              curThis.broadcastMessageTimeout = setTimeout(curThis.getBroadcastMsgs, 10000);
             },
-            error: function error(xHRq, status, _error2) {
-              //console.log(xHRq.responseText);
-              if (curThis.broadcastMessageTimeout) clearTimeout(curThis.broadcastMessageTimeout);
-              curThis.broadcastMessageTimeout = setTimeout(curThis.getBroadcastMsgs, 15000);
+            error: function error(xHRq, status, _error2) {//console.log(xHRq.responseText);
             }
           });
         }
@@ -2230,7 +2219,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (typeof invitedUser != "undefined") {
             var client = {
               username: invitedUser,
-              roomNumber: curThis.roomNumber,
+              roomNumber: parseInt(localStorage.getItem('roomNumber')),
               currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser.substring(0, invitedUser.indexOf('@')) + ', enter my Conversation at Secret Room via the link in the Public Room Please</span></em><br>'
             };
             var jsonData = JSON.stringify(client);
@@ -2238,6 +2227,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               url: "/Adhoc/InviteClient/" + curThis.roomNumber,
               type: "POST",
               dataType: "json",
+              cache: false,
               data: jsonData,
               contentType: "application/json"
             });
@@ -2266,6 +2256,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {
           var curThis = this;
+
+          if (localStorage.getItem('roomNumber')) {
+            curThis.roomNumber = parseInt(localStorage.getItem('roomNumber'));
+          }
+
           jQuery('textarea#txtTypeHere').focus();
           jQuery("div#chat-wrapper").keydown(curThis.keyDownMessage);
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -2275,6 +2270,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
           var curThis = this;
+
+          if (localStorage.getItem('roomNumber')) {
+            curThis.roomNumber = parseInt(localStorage.getItem('roomNumber'));
+          }
 
           if (_services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"].actUserStatus.isUserLoggedIn) {
             var client = {
@@ -2288,19 +2287,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               type: "POST",
               dataType: "json",
               data: jsonData,
+              cache: false,
               contentType: "application/json",
               success: function success(client) {
                 curThis.AddJoiningUsersToList(client);
               }
             });
           }
+
+          this.messageTimeout = setInterval(this.getMsgs, 2500);
+          this.broadcastMessageTimeout = setInterval(this.getBroadcastMsgs, 4000);
+          this.listTimeout = setInterval(this.LoadUserList, 6000);
         }
       }, {
-        key: "ngAfterViewChecked",
-        value: function ngAfterViewChecked() {
-          this.LoadUserList();
-          this.getMsgs();
-          this.getBroadcastMsgs();
+        key: "ngOnDestroy",
+        value: function ngOnDestroy() {
+          if (this.messageTimeout) {
+            clearInterval(this.messageTimeout);
+          }
+
+          if (this.broadcastMessageTimeout) {
+            clearInterval(this.broadcastMessageTimeout);
+          }
+
+          if (this.listTimeout) {
+            clearInterval(this.listTimeout);
+          }
         }
       }]);
 

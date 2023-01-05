@@ -12,7 +12,7 @@ namespace MartinLayooInc.Web.Infrastructure
     {
         public Dictionary<int, List<Queue<Client>>> Rooms;
         public static int RoomNumber = 0;
-
+        public static Queue<Message> GlobalMessageQueue { get; set; } = new Queue<Message>();
         public MartinLayooIncChat()
         {
             Rooms = new Dictionary<int, List<Queue<Client>>>();
@@ -22,7 +22,7 @@ namespace MartinLayooInc.Web.Infrastructure
             threadCleaner.Start();
         }
        
-        private void CleanRoom()
+        public void CleanRoom()
         {
             foreach (var roomKey in Rooms.Keys)
             {
@@ -30,8 +30,9 @@ namespace MartinLayooInc.Web.Infrastructure
                 TimeSpan span = DateTime.Now - firstClient.TimeStarted;
                 if (span.Minutes >= 30) Rooms.Remove(roomKey);
             }
-
-            Thread.Sleep(20000);
+            foreach (var mes in GlobalMessageQueue)
+                GlobalMessageQueue.Dequeue();
+            Thread.Sleep(30* 60 * 1000);
         }
 
         public bool AddClientToChatRoom(Client client)
