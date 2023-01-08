@@ -13,79 +13,91 @@ declare let jQuery: any;
     providers: [AddressLocationGeoCodeService, MyFundiService]
 })
 export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
-    userDetails: any;
     userRoles: string[];
     roomNumber: number;
     thisCurrent: any;
     listTimeout: any;
     messageTimeout: any;
     broadcastMessageTimeout: any;
+	checkRegisterTimeout:any;
 
     constructor(private router: Router, private zone: NgZone, private myFundiService: MyFundiService, private addressLocationGeoCodeService: AddressLocationGeoCodeService) {
-
+       
     }
     normalizeMessage(message) {
         return message.replace(/@[a-zA-Z0-9\.]+:/, ':');
     }
-    RemoveUserListItems(radioList) {
-        let userListCont = document.getElementById(radioList);
-
-        jQuery(userListCont).empty();
-    }
 
     LoadUserList() {
         let curThis = this;
-        if (this.roomNumber) {
+		jQuery.ajax({
+			url: "/Adhoc/GetAllUsers",
+			type: "GET",
+			dataType: "json",
+			cache: false,
+			success: function (userList) {
 
-            jQuery.ajax({
-                url: "/Adhoc/GetUserList/" + localStorage.getItem('roomNumber'),
-                type: "GET",
-                dataType: "json",
-                cache: false,
-                success: function (userList) {
-
-                    curThis.RemoveUserListItems('radioList');
-
+				if(userList)
+				{
                     let userListCont = document.getElementById('radioList');
 
                     if (userList.length > 0) {
                         for (var i = 0; i < userList.length; i++) {
-                                //only create checkbox if not exists:
-                                let length = jQuery(userListCont).find('input:checkbox[name="' + userList[i].username + '"]').length;
-                                if (length === 0) {
-                                    let divWithcheckbox = curThis.CreateCheckbox('userList', userList[i].username);
-                                    jQuery(divWithcheckbox).css('color', 'green');
-                                    let li = document.createElement("li");
-                                    jQuery(li).append(divWithcheckbox);
-                                    jQuery(userListCont).append(li);
-                                }
+                            //only create checkbox if not exists:                  
+                            if (jQuery(userListCont).find('input[name="' + userList[i].username + '"]').length < 1) {
+                                let divwrapper = document.createElement('div');
+                                divwrapper.setAttribute('style', 'margin-left:0px !important;')
+                                divwrapper.setAttribute('class', 'custom-control');
+                                let element = document.createElement("input");
+                                let id = 'userList' + userList[i].username;
+                                element.setAttribute('type', 'checkbox');
+                                element.setAttribute('class', 'custom-control-input');
+                                element.setAttribute('style', '!important;display:inline-block !important;z-index:2000 !important; visibility:visible !important;');
+                                element.setAttribute('name', userList[i].username);
+                                element.setAttribute('id', id);
+                                divwrapper.appendChild(element);
+                                let lbl = document.createElement('label');
+                                lbl.setAttribute('class', 'custom-control-label');
+                                lbl.setAttribute('style', 'width:90% !important;display:inline-block !important;');
+                                lbl.innerHTML = userList[i].username;
+                                divwrapper.appendChild(lbl);
+                                jQuery(divwrapper).css('color', 'green');
+                                let li = document.createElement("li");
+                                li.setAttribute('style', 'margin-left:0px !important;');
+                                jQuery(li).append(divwrapper);
+                                jQuery(userListCont).append(li);
                             }
+                        }
+                    }
+                    else {
+                        jQuery(userListCont).children().remove();
                     }
 
-                },
-                error: function () {
-                    
-                }
-            });
-        }
-    }
-
-    AddJoiningUsersToList(client: any) {
-        let userListCont = document.getElementById('radioList');
-
-        let checkbox = null;
-
-
-        if (client && !(jQuery('ul#radioList').find('radioList > li checkbox[id="userList' + client.username + '"]').length > 0)) {
-            let divwrapper = this.CreateCheckbox('userList', client.username);
-            jQuery(userListCont).append(divwrapper);
-        }
+                    let curChecboxes = jQuery(userListCont).find('input[type="checkbox"]');
+                    if (curChecboxes.length > 0) {
+                        for (let i = 0; i < userList.length; i++) {
+                            let found = false;
+                            for (let c = 0; c < curChecboxes.length; c++) {
+                                if (jQuery(curChecboxes[c]).attr('name') === userList[i].username) {
+                                    found = true;
+                                }
+                                if (!found) {
+                                    jQuery(userListCont).children('input[name="' + userList[i].username + '"]').parent('li').remove();
+                                }
+                            }
+                        }
+                    }
+				}
+			},
+			error: function () {
+				
+			}
+		});
     }
     BookPrivateRoom($event) {
         let curThis = this;
-        let userName = curThis.userDetails.username;
         //Create Client Object:
-        let client = { username: userName, currentMessage:  'Has Booked A Room' };
+        let client = { username: JSON.parse(localStorage.getItem("userDetails")).username, currentMessage:  'Has Booked A Room' };
         let jsonData = JSON.stringify(client);
         jQuery.ajax({
             url: "/Adhoc/BookPrivateRoom",
@@ -104,28 +116,10 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
         });
         $event.preventDefault();
     }
-    CreateCheckbox(name, value) {
-        let divwrapper = document.createElement('div');
-        divwrapper.setAttribute('style', 'margin-left:1em !important;')
-        divwrapper.setAttribute('class', 'custom-control');
-        let element = document.createElement("input");
-        let id = name + value;
-        element.setAttribute('type', 'checkbox');
-        element.setAttribute('class', 'custom-control-input');
-		element.setAttribute('style','left:4% !important;display:inline-block !important;z-index:2000 !important; visibility:visible !important;');
-        element.setAttribute('name', value);
-        element.setAttribute('id', id);
-        divwrapper.appendChild(element);
-        let lbl = document.createElement('label');
-        lbl.setAttribute('class', 'custom-control-label');
-        lbl.setAttribute('style', 'width:80% !important;display:inline-block !important;');
-        lbl.innerHTML = value;
-        divwrapper.appendChild(lbl);
-        return divwrapper;
-    }
+
     IsInSecretRoom() {
         let curThis = this;
-        let userName = this.userDetails.username;
+        let userName = JSON.parse(localStorage.getItem("userDetails")).username;
         //Create Client Object:
         let client = { username: userName, Message: '', roomNumber: parseInt(localStorage.getItem('roomNumber')) };
         let jsonData = JSON.stringify(client);
@@ -157,7 +151,7 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ExitRoom($event) {
-        let userName = this.userDetails.username;
+        let userName = JSON.parse(localStorage.getItem("userDetails")).username;
         let curThis = this;
         //Create Client Object:
         let client = { username: userName, currentMessage: 'Client has exited the Secret Room.\n', roomNumber: parseInt(localStorage.getItem('roomNumber')) };
@@ -175,7 +169,7 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
         this.router.navigateByUrl('home');
     }
     wasClicked($event) {
-        let userName = this.userDetails.username;
+        let userName = JSON.parse(localStorage.getItem("userDetails")).username;
 
         let message = jQuery('#txtTypeHere').val();
         let curThis = this;
@@ -214,7 +208,20 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
 
                     if (res) {
                         let msg = res.clientMessage;
-                        
+                        if (msg.match(/\[\[[1-9]+\]\]-Invite$"/g)) {
+                            msg = msg.substring(msg.indexOf("[["));
+                            let msgElms = msg.split("-");
+                            msg = msgElms[0].trim("[").trim("]");
+                            let tmpRoomNo = this.roomNumber;
+                            try {
+                                this.roomNumber = parseInt(msg);
+                                localStorage.setItem("roomNumber", this.roomNumber);
+                            }
+                            catch (e) {
+                                this.roomNumber = tmpRoomNo;
+                                localStorage.setItem('roomNumber', tmpRoomNo);
+                            }
+                        }
                         if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
                             //normalize res message email address user:
                             //let normalizedMessage = curThis.normalizeMessage();
@@ -264,18 +271,25 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
     InviteClient($event) {
 
         let curThis = this;
+		
         let invitedUser = jQuery("input[type='checkbox']:checked").attr('name');
         if (typeof (invitedUser) != "undefined") {
-            let client = { username: invitedUser, roomNumber: parseInt(localStorage.getItem('roomNumber')), currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser.substring(0, invitedUser.indexOf('@')) + ', enter my Conversation at Secret Room via the link in the Public Room Please</span></em><br>' };
-
+            let client = { username: invitedUser, roomNumber: parseInt(localStorage.getItem('roomNumber')), currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser + ', enter my Conversation at Private Room via the link in the Public Room Please</span></em><br>' };
+            localStorage.setItem("InvitedUsername", client.username);
             let jsonData = JSON.stringify(client);
             jQuery.ajax({
-                url: "/Adhoc/InviteClient/" + curThis.roomNumber,
+                url: "/Adhoc/InviteClient",
                 type: "POST",
                 dataType: "json",
                 cache: false,
                 data: jsonData,
-                contentType: "application/json"
+                contentType: "application/json",
+                success: function (data) {
+                    alert(data.username + ", was added to room" + client.roomNumber);
+                },
+                error: function (xHRq, status, error) {
+                    alert(localStorage.getItem("InvitedUsername") + ", failed to be added to room" + client.roomNumber);
+                }
             });
         }
 
@@ -297,28 +311,53 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
         if (theMsg != null)
             theMsg.focus();
     }
-
+	
+	checkRegisterAvailability(){
+        let username = JSON.parse(localStorage.getItem("userDetails")).username;
+        let newClient = { username: username, currentMessage: '<em><span style="color:Orange;font-style:italic;font-weight:bolder;">' + username + ',Available</ span > </em><br>', roomNumber: 0 };
+        let data = JSON.stringify(newClient);
+        jQuery.ajax({
+            url: "/Adhoc/CheckRegisterUserAvailability",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            cache: false,
+            contentType: "application/json",
+            success: function (result) {
+                console.log(username+' availability check: '+result.isRegistered);
+            },
+            error: function () {
+            }
+        });
+	}
     ngOnInit() {
 
-        let curThis = this;
-        if (localStorage.getItem('roomNumber')) {
-            curThis.roomNumber = parseInt(localStorage.getItem('roomNumber'));
-        }
         jQuery('textarea#txtTypeHere').focus();
-        jQuery("div#chat-wrapper").keydown(curThis.keyDownMessage);
-
-        this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
 
+        if (localStorage.getItem('roomNumber')) {
+            this.roomNumber = parseInt(localStorage.getItem('roomNumber'));
+        }
+
+        let curThis = this;
+        jQuery("div#chat-wrapper").keydown(curThis.keyDownMessage);
+
     }
     ngAfterViewInit() {
+        jQuery('textarea#txtTypeHere').focus();
+        let username = JSON.parse(localStorage.getItem("userDetails")).username;
+        this.listTimeout = setInterval(this.LoadUserList, 4500);
+        this.messageTimeout = setInterval(this.getMsgs, 2500);
+        this.broadcastMessageTimeout = setInterval(this.getBroadcastMsgs, 4000);
+		this.checkRegisterTimeout = setInterval(this.checkRegisterAvailability,5000);
+		
         let curThis = this;
         if (localStorage.getItem('roomNumber')) {
             curThis.roomNumber = parseInt(localStorage.getItem('roomNumber'));
         }
         if (MyFundiService.actUserStatus.isUserLoggedIn) {
-            let client = { username: this.userDetails.username, roomNumber: curThis.roomNumber, currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + this.userDetails.username.substring(0, this.userDetails.username.indexOf('@')) + ', is available now!!</span></em><br>' };
+            let client = { username: username, roomNumber: curThis.roomNumber, currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + username.substring(0, username.indexOf('@')) + ', is available now!!</span></em><br>' };
 
             let jsonData = JSON.stringify(client);
             jQuery.ajax({
@@ -329,16 +368,32 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
                 cache: false,
                 contentType: "application/json",
                 success: function (client) {
-                    curThis.AddJoiningUsersToList(client);
                 }
             });
         }
-        this.messageTimeout = setInterval(this.getMsgs, 2500);
-        this.broadcastMessageTimeout = setInterval(this.getBroadcastMsgs, 4000);
-        this.listTimeout = setInterval(this.LoadUserList, 6000);
 
     }
     ngOnDestroy() {
+        localStorage.removeItem('roomNumber');
+        let username = JSON.parse(localStorage.getItem("userDetails")).username;
+        let newClient = { username: username, currentMessage: '<em><span style="color:Orange;font-style:italic;font-weight:bolder;">' + username + ',Available</ span > </em><br>', roomNumber: 0 };
+        let data = JSON.stringify(newClient);
+        let curThis = this;
+        jQuery.ajax({
+            url: "/Adhoc/RemoveUserAvailability",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            contentType: "application/json",
+            cache: false,
+            success: function (result) {
+                console.log(JSON.parse(localStorage.getItem("userDetails")).username+' is removed: '+result.isRemoved);
+            },
+            error: function () {
+
+            }
+        });
+
         if (this.messageTimeout) {
             clearInterval(this.messageTimeout);
         }
@@ -347,6 +402,9 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         if (this.listTimeout) {
             clearInterval(this.listTimeout);
+        }
+        if (this.checkRegisterTimeout) {
+            clearInterval(this.checkRegisterTimeout);
         }
     }
 }

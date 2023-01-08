@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Collections.Generic;
-using System.Web;
 using MyFundi.Web.Infrastructure;
 
 namespace MartinLayooInc.Web.Infrastructure
 {
     public partial class MartinLayooIncChat
-    {
+    { 
         public Dictionary<int, List<Queue<Client>>> Rooms;
+        public static List<Client> AllUsersList = new List<Client>();
         public static int RoomNumber = 0;
         public static Queue<Message> GlobalMessageQueue { get; set; } = new Queue<Message>();
         public MartinLayooIncChat()

@@ -81,7 +81,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"chat-wrapper\">\r\n    <div style=\"text-align: center;\">\r\n        <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px;padding-left:20px; text-align: left;\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <h2>MartinLayooInc. Private Chat Room No: #{{roomNumber?roomNumber.toString():\"\"}}</h2><br />\r\n                </div>\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <span style=\"color: #0080ff;margin-left:20px;\"><b><i>Private Chat Room</i></b></span><br />\r\n                </div>\r\n\r\n                <div class=\"row\" style=\"background-color: #DADADA; margin-left: 0px; margin-right: 0px;\">\r\n                    <div class=\"col-lg-8\">\r\n                        <div id=\"txtMessages\" style=\"border: solid 1px #999999; padding: 5px 5px 5px 5px;  \tmargin-top: 15px; margin-left: 0px; width:auto !important; height: 240px; overflow-y: auto; overflow-x: hidden;  \tfont-family: Times New Roman; font-size: small; color: blue; background-color: White;\">\r\n                        </div>\r\n                        <textarea id=\"txtTypeHere\" style=\"margin-top:10px;width:100% !important; height:240px;margin-left: 0px; padding: 5px 5px 5px 5px; \" placeholder=\"Type messages here and click return or send button\" title=\"type messages here and click return or send button\" (keydown)=\"keyDownMessage($event)\"></textarea>\r\n                    </div>\r\n                    <div class=\"col-lg-4\">\r\n                        <form>\r\n                            <div style=\"color: Green; margin-left: 10px; margin-top:-15px; font-style: italic; font-weight: bold; font-size:small;\">Please select the User you want to invite to Secret Room</div>\r\n                            <div style=\"margin-top:15px;\">\r\n                                <ul class=\"listless\" id=\"radioList\" style=\"margin-right: 10px; background-color: white; height: 490px; width: auto; color: teal;list-style:none !important;\"></ul>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div style=\"margin-top: 10px; margin-left: 0px; margin-bottom: 10px;padding-bottom:5px;\">\r\n                    <input type=\"button\" id=\"btnSubmit\" value=\"Send Message\" class=\"oneRowButton\" (click)=\"wasClicked($event);\" />\r\n                    <input type=\"button\" id=\"btnBookRoom\" value=\"Book Room\" class=\"oneRowButton\" (click)=\"BookPrivateRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnInvite\" value=\"Invite Friend\" class=\"oneRowButton\" (click)=\"InviteClient($event);\" />\r\n                    <input type=\"button\" id=\"btnClearRoom\" value=\"Stop Meeting\" class=\"oneRowButton\" (click)=\"ClearRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnExitRoom\" value=\"Exit Meeting\" class=\"oneRowButton\" (click)=\"ExitRoom($event);\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"chat-wrapper\">\r\n    <div style=\"text-align: center;\">\r\n        <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px;padding-left:20px; text-align: left;\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <h2>MartinLayooInc. Private Chat Room No: #{{roomNumber?roomNumber.toString():\"\"}}</h2><br />\r\n                </div>\r\n                <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;\">\r\n                    <span style=\"color: #0080ff;margin-left:20px;\"><b><i>Private Chat Room</i></b></span><br />\r\n                </div>\r\n\r\n                <div class=\"row\" style=\"background-color: #DADADA; margin-left: 0px; margin-right: 0px;\">\r\n                    <div class=\"col-lg-8\">\r\n                        <div id=\"txtMessages\" style=\"border: solid 1px #999999; padding: 5px 5px 5px 5px;  \tmargin-top: 15px; margin-left: 0px; width:auto !important; height: 240px; overflow-y: auto; overflow-x: hidden;  \tfont-family: Times New Roman; font-size: small; color: blue; background-color: White;\">\r\n                        </div>\r\n                        <textarea id=\"txtTypeHere\" style=\"margin-top:10px;width:100% !important; height:240px;margin-left: 0px; padding: 5px 5px 5px 5px; \" placeholder=\"Type messages here and click return or send button\" title=\"type messages here and click return or send button\" (keydown)=\"keyDownMessage($event)\"></textarea>\r\n                    </div>\r\n                    <div class=\"col-lg-4\">\r\n                        <form>\r\n                            <div style=\"color: Green; margin-left: 10px; margin-top:-15px; font-style: italic; font-weight: bold; font-size:small;\">Please select the User you want to invite to Secret Room</div>\r\n                            <div style=\"margin-top:15px;margin-left:10px;\">\r\n                                <ul class=\"listless\" id=\"radioList\" style=\"margin-right: 10px;margin-left:0px !important; background-color: white; height: 490px; width: auto; color: teal;list-style:none !important;\"></ul>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div style=\"margin-top: 10px; margin-left: 0px; margin-bottom: 10px;padding-bottom:5px;\">\r\n                    <input type=\"button\" id=\"btnSubmit\" value=\"Send Message\" class=\"oneRowButton\" (click)=\"wasClicked($event);\" />\r\n                    <input type=\"button\" id=\"btnBookRoom\" value=\"Book Room\" class=\"oneRowButton\" (click)=\"BookPrivateRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnInvite\" value=\"Invite Friend\" class=\"oneRowButton\" (click)=\"InviteClient($event);\" />\r\n                    <input type=\"button\" id=\"btnClearRoom\" value=\"Stop Meeting\" class=\"oneRowButton\" (click)=\"ClearRoom($event);\" />\r\n                    <input type=\"button\" id=\"btnExitRoom\" value=\"Exit Meeting\" class=\"oneRowButton\" (click)=\"ExitRoom($event);\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
     /***/
   },
 
@@ -1955,64 +1955,78 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return message.replace(/@[a-zA-Z0-9\.]+:/, ':');
         }
       }, {
-        key: "RemoveUserListItems",
-        value: function RemoveUserListItems(radioList) {
-          var userListCont = document.getElementById(radioList);
-          jQuery(userListCont).empty();
-        }
-      }, {
         key: "LoadUserList",
         value: function LoadUserList() {
           var curThis = this;
-
-          if (this.roomNumber) {
-            jQuery.ajax({
-              url: "/Adhoc/GetUserList/" + localStorage.getItem('roomNumber'),
-              type: "GET",
-              dataType: "json",
-              cache: false,
-              success: function success(userList) {
-                curThis.RemoveUserListItems('radioList');
+          jQuery.ajax({
+            url: "/Adhoc/GetAllUsers",
+            type: "GET",
+            dataType: "json",
+            cache: false,
+            success: function success(userList) {
+              if (userList) {
                 var userListCont = document.getElementById('radioList');
 
                 if (userList.length > 0) {
                   for (var i = 0; i < userList.length; i++) {
-                    //only create checkbox if not exists:
-                    var length = jQuery(userListCont).find('input:checkbox[name="' + userList[i].username + '"]').length;
-
-                    if (length === 0) {
-                      var divWithcheckbox = curThis.CreateCheckbox('userList', userList[i].username);
-                      jQuery(divWithcheckbox).css('color', 'green');
+                    //only create checkbox if not exists:                  
+                    if (jQuery(userListCont).find('input[name="' + userList[i].username + '"]').length < 1) {
+                      var divwrapper = document.createElement('div');
+                      divwrapper.setAttribute('style', 'margin-left:0px !important;');
+                      divwrapper.setAttribute('class', 'custom-control');
+                      var element = document.createElement("input");
+                      var id = 'userList' + userList[i].username;
+                      element.setAttribute('type', 'checkbox');
+                      element.setAttribute('class', 'custom-control-input');
+                      element.setAttribute('style', '!important;display:inline-block !important;z-index:2000 !important; visibility:visible !important;');
+                      element.setAttribute('name', userList[i].username);
+                      element.setAttribute('id', id);
+                      divwrapper.appendChild(element);
+                      var lbl = document.createElement('label');
+                      lbl.setAttribute('class', 'custom-control-label');
+                      lbl.setAttribute('style', 'width:90% !important;display:inline-block !important;');
+                      lbl.innerHTML = userList[i].username;
+                      divwrapper.appendChild(lbl);
+                      jQuery(divwrapper).css('color', 'green');
                       var li = document.createElement("li");
-                      jQuery(li).append(divWithcheckbox);
+                      li.setAttribute('style', 'margin-left:0px !important;');
+                      jQuery(li).append(divwrapper);
                       jQuery(userListCont).append(li);
                     }
                   }
+                } else {
+                  jQuery(userListCont).children().remove();
                 }
-              },
-              error: function error() {}
-            });
-          }
-        }
-      }, {
-        key: "AddJoiningUsersToList",
-        value: function AddJoiningUsersToList(client) {
-          var userListCont = document.getElementById('radioList');
-          var checkbox = null;
 
-          if (client && !(jQuery('ul#radioList').find('radioList > li checkbox[id="userList' + client.username + '"]').length > 0)) {
-            var divwrapper = this.CreateCheckbox('userList', client.username);
-            jQuery(userListCont).append(divwrapper);
-          }
+                var curChecboxes = jQuery(userListCont).find('input[type="checkbox"]');
+
+                if (curChecboxes.length > 0) {
+                  for (var _i = 0; _i < userList.length; _i++) {
+                    var found = false;
+
+                    for (var c = 0; c < curChecboxes.length; c++) {
+                      if (jQuery(curChecboxes[c]).attr('name') === userList[_i].username) {
+                        found = true;
+                      }
+
+                      if (!found) {
+                        jQuery(userListCont).children('input[name="' + userList[_i].username + '"]').parent('li').remove();
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            error: function error() {}
+          });
         }
       }, {
         key: "BookPrivateRoom",
         value: function BookPrivateRoom($event) {
-          var curThis = this;
-          var userName = curThis.userDetails.username; //Create Client Object:
+          var curThis = this; //Create Client Object:
 
           var client = {
-            username: userName,
+            username: JSON.parse(localStorage.getItem("userDetails")).username,
             currentMessage: 'Has Booked A Room'
           };
           var jsonData = JSON.stringify(client);
@@ -2034,31 +2048,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           $event.preventDefault();
         }
       }, {
-        key: "CreateCheckbox",
-        value: function CreateCheckbox(name, value) {
-          var divwrapper = document.createElement('div');
-          divwrapper.setAttribute('style', 'margin-left:1em !important;');
-          divwrapper.setAttribute('class', 'custom-control');
-          var element = document.createElement("input");
-          var id = name + value;
-          element.setAttribute('type', 'checkbox');
-          element.setAttribute('class', 'custom-control-input');
-          element.setAttribute('style', 'left:4% !important;display:inline-block !important;z-index:2000 !important; visibility:visible !important;');
-          element.setAttribute('name', value);
-          element.setAttribute('id', id);
-          divwrapper.appendChild(element);
-          var lbl = document.createElement('label');
-          lbl.setAttribute('class', 'custom-control-label');
-          lbl.setAttribute('style', 'width:80% !important;display:inline-block !important;');
-          lbl.innerHTML = value;
-          divwrapper.appendChild(lbl);
-          return divwrapper;
-        }
-      }, {
         key: "IsInSecretRoom",
         value: function IsInSecretRoom() {
           var curThis = this;
-          var userName = this.userDetails.username; //Create Client Object:
+          var userName = JSON.parse(localStorage.getItem("userDetails")).username; //Create Client Object:
 
           var client = {
             username: userName,
@@ -2094,7 +2087,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ExitRoom",
         value: function ExitRoom($event) {
-          var userName = this.userDetails.username;
+          var userName = JSON.parse(localStorage.getItem("userDetails")).username;
           var curThis = this; //Create Client Object:
 
           var client = {
@@ -2117,7 +2110,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "wasClicked",
         value: function wasClicked($event) {
-          var userName = this.userDetails.username;
+          var userName = JSON.parse(localStorage.getItem("userDetails")).username;
           var message = jQuery('#txtTypeHere').val();
           var curThis = this;
           jQuery('#txtTypeHere').val(''); //Create Client Object:
@@ -2160,6 +2153,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               success: function success(res, xHRq, method) {
                 if (res) {
                   var msg = res.clientMessage;
+
+                  if (msg.match(/\[\[[1-9]+\]\]-Invite$"/g)) {
+                    msg = msg.substring(msg.indexOf("[["));
+                    var msgElms = msg.split("-");
+                    msg = msgElms[0].trim("[").trim("]");
+                    var tmpRoomNo = this.roomNumber;
+
+                    try {
+                      this.roomNumber = parseInt(msg);
+                      localStorage.setItem("roomNumber", this.roomNumber);
+                    } catch (e) {
+                      this.roomNumber = tmpRoomNo;
+                      localStorage.setItem('roomNumber', tmpRoomNo);
+                    }
+                  }
 
                   if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
                     //normalize res message email address user:
@@ -2211,16 +2219,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var client = {
               username: invitedUser,
               roomNumber: parseInt(localStorage.getItem('roomNumber')),
-              currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser.substring(0, invitedUser.indexOf('@')) + ', enter my Conversation at Secret Room via the link in the Public Room Please</span></em><br>'
+              currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + invitedUser + ', enter my Conversation at Private Room via the link in the Public Room Please</span></em><br>'
             };
+            localStorage.setItem("InvitedUsername", client.username);
             var jsonData = JSON.stringify(client);
             jQuery.ajax({
-              url: "/Adhoc/InviteClient/" + curThis.roomNumber,
+              url: "/Adhoc/InviteClient",
               type: "POST",
               dataType: "json",
               cache: false,
               data: jsonData,
-              contentType: "application/json"
+              contentType: "application/json",
+              success: function success(data) {
+                alert(data.username + ", was added to room" + client.roomNumber);
+              },
+              error: function error(xHRq, status, _error3) {
+                alert(localStorage.getItem("InvitedUsername") + ", failed to be added to room" + client.roomNumber);
+              }
             });
           }
 
@@ -2244,22 +2259,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (theMsg != null) theMsg.focus();
         }
       }, {
+        key: "checkRegisterAvailability",
+        value: function checkRegisterAvailability() {
+          var username = JSON.parse(localStorage.getItem("userDetails")).username;
+          var newClient = {
+            username: username,
+            currentMessage: '<em><span style="color:Orange;font-style:italic;font-weight:bolder;">' + username + ',Available</ span > </em><br>',
+            roomNumber: 0
+          };
+          var data = JSON.stringify(newClient);
+          jQuery.ajax({
+            url: "/Adhoc/CheckRegisterUserAvailability",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            cache: false,
+            contentType: "application/json",
+            success: function success(result) {
+              console.log(username + ' availability check: ' + result.isRegistered);
+            },
+            error: function error() {}
+          });
+        }
+      }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var curThis = this;
+          jQuery('textarea#txtTypeHere').focus();
+          this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
 
           if (localStorage.getItem('roomNumber')) {
-            curThis.roomNumber = parseInt(localStorage.getItem('roomNumber'));
+            this.roomNumber = parseInt(localStorage.getItem('roomNumber'));
           }
 
-          jQuery('textarea#txtTypeHere').focus();
+          var curThis = this;
           jQuery("div#chat-wrapper").keydown(curThis.keyDownMessage);
-          this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
-          this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         }
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
+          jQuery('textarea#txtTypeHere').focus();
+          var username = JSON.parse(localStorage.getItem("userDetails")).username;
+          this.listTimeout = setInterval(this.LoadUserList, 4500);
+          this.messageTimeout = setInterval(this.getMsgs, 2500);
+          this.broadcastMessageTimeout = setInterval(this.getBroadcastMsgs, 4000);
+          this.checkRegisterTimeout = setInterval(this.checkRegisterAvailability, 5000);
           var curThis = this;
 
           if (localStorage.getItem('roomNumber')) {
@@ -2268,9 +2311,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           if (_services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"].actUserStatus.isUserLoggedIn) {
             var client = {
-              username: this.userDetails.username,
+              username: username,
               roomNumber: curThis.roomNumber,
-              currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + this.userDetails.username.substring(0, this.userDetails.username.indexOf('@')) + ', is available now!!</span></em><br>'
+              currentMessage: '<em><span style="color:Teal;font-style:italic;font-weight:bold;">' + username.substring(0, username.indexOf('@')) + ', is available now!!</span></em><br>'
             };
             var jsonData = JSON.stringify(client);
             jQuery.ajax({
@@ -2280,19 +2323,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               data: jsonData,
               cache: false,
               contentType: "application/json",
-              success: function success(client) {
-                curThis.AddJoiningUsersToList(client);
-              }
+              success: function success(client) {}
             });
           }
-
-          this.messageTimeout = setInterval(this.getMsgs, 2500);
-          this.broadcastMessageTimeout = setInterval(this.getBroadcastMsgs, 4000);
-          this.listTimeout = setInterval(this.LoadUserList, 6000);
         }
       }, {
         key: "ngOnDestroy",
         value: function ngOnDestroy() {
+          localStorage.removeItem('roomNumber');
+          var username = JSON.parse(localStorage.getItem("userDetails")).username;
+          var newClient = {
+            username: username,
+            currentMessage: '<em><span style="color:Orange;font-style:italic;font-weight:bolder;">' + username + ',Available</ span > </em><br>',
+            roomNumber: 0
+          };
+          var data = JSON.stringify(newClient);
+          var curThis = this;
+          jQuery.ajax({
+            url: "/Adhoc/RemoveUserAvailability",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            contentType: "application/json",
+            cache: false,
+            success: function success(result) {
+              console.log(JSON.parse(localStorage.getItem("userDetails")).username + ' is removed: ' + result.isRemoved);
+            },
+            error: function error() {}
+          });
+
           if (this.messageTimeout) {
             clearInterval(this.messageTimeout);
           }
@@ -2303,6 +2362,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           if (this.listTimeout) {
             clearInterval(this.listTimeout);
+          }
+
+          if (this.checkRegisterTimeout) {
+            clearInterval(this.checkRegisterTimeout);
           }
         }
       }]);
@@ -9574,15 +9637,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB";
-        /*localhost:*/
-
-        /* "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
-
         this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo";
         /*localhost*/
 
-        /* "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
+        /* "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr"; */
+
+        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB";
+        /*localhost:*/
+
+        /* "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
       }
 
       _createClass(myRecaptchaComponent, [{

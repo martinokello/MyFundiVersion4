@@ -257,18 +257,27 @@ namespace MyFundi.Web.Controllers
         //Chat Functions.............................//////
 
 
+        [HttpPost]
         [Route("~/Adhoc/IsInPrivateRoom")]
         public bool IsInPrivateRoom([FromBody] Client clt)
         {
             if (ChatResource.Rooms[clt.RoomNumber].First().FirstOrDefault(q => q.Username.ToLower().Equals(clt.Username.ToLower())) != null) return true;
             return false;
         }
+
+        [HttpPost]
         [Route("~/Adhoc/InviteClient")]
-        public void InviteClient([FromBody] Client clt)
+        public Client InviteClient([FromBody] Client clt)
         {
             Client client = new Client { Username = clt.Username, Messages = new Queue<Message>(), RoomNumber = clt.RoomNumber, TimeStarted = DateTime.Now };
-            client.Messages.Enqueue(new Message { ClientMessage = clt.CurrentMessage, MessageWasSent = false });
+            ChatResource.AddClientToChatRoom(client);
+            MartinLayooIncChat.GlobalMessageQueue.Enqueue(new Message { ClientMessage = clt.CurrentMessage, MessageWasSent = false });
+            client.CurrentMessage += $" [[{clt.RoomNumber}]]-Invite";
+            ChatResource.Rooms[clt.RoomNumber].First().Enqueue(client);
+            return client;
         }
+
+        [HttpPost]
         [Route("~/Adhoc/ExitPrivateRoom")]
         public void ExitPrivateRoom([FromBody] Client clt)
         {
@@ -293,6 +302,7 @@ namespace MyFundi.Web.Controllers
             ChatResource.CleanRoom();
         }
 
+        [HttpPost]
         [Route("~/Adhoc/AddExitMessagePrivateRoom")]
         public void AddExitMessagePrivateRoom([FromBody] Client clt)
         {
@@ -302,6 +312,7 @@ namespace MyFundi.Web.Controllers
                 actualClient.Messages.Enqueue(new Message { ClientMessage = clt.CurrentMessage, TimeSent = DateTime.Now });
         }
 
+        [HttpPost]
         [Route("~/Adhoc/AddMessagePrivateRoom")]
         public bool AddMessagePrivateRoom([FromBody] Client clt)
         {
@@ -315,6 +326,7 @@ namespace MyFundi.Web.Controllers
             return false;
         }
 
+        [HttpPost]
         [Route("~/Adhoc/AddMessageAllRooms")]
         public Client AddMessageAllRooms([FromBody] Client clt)
         {
@@ -330,7 +342,7 @@ namespace MyFundi.Web.Controllers
         [Route("~/Adhoc/GetMessage/{roomNumber}")]
         public Message GetMessage(int roomNumber)
         {
-            if (ChatResource.Rooms[roomNumber].First() != null)
+            if (ChatResource.Rooms[roomNumber].FirstOrDefault() != null)
             {
 
                 var queue = ChatResource.Rooms[roomNumber].First();
@@ -364,7 +376,7 @@ namespace MyFundi.Web.Controllers
         public dynamic GetBroadcastMessages()
         {
 
-            var currentGlobalMessage = MartinLayooIncChat.GlobalMessageQueue.Last();
+            var currentGlobalMessage = MartinLayooIncChat.GlobalMessageQueue.LastOrDefault();
 
             Thread.Sleep(5000);
             if (currentGlobalMessage != null)
@@ -381,7 +393,7 @@ namespace MyFundi.Web.Controllers
         {
             Thread.Sleep(2500);
             var list = new List<Client>();
-            if (ChatResource.Rooms[roomNumber].First() == null) return list.ToArray();
+            if (ChatResource.Rooms[roomNumber].FirstOrDefault() == null) return list.ToArray();
 
             foreach (var clt in ChatResource.Rooms[roomNumber].First())
             {
@@ -390,8 +402,63 @@ namespace MyFundi.Web.Controllers
 
             return list.ToArray();
         }
+        [HttpPost]
+        [Route("~/Adhoc/CheckRegisterUserAvailability")]
+        public dynamic CheckRegisterUserAvailability([FromBody] Client availableClient)
+        {
+            try
+            {
+                var client = MartinLayooIncChat.AllUsersList.FirstOrDefault(q => q.Username.ToLower().Equals(availableClient.Username.ToLower()));
+                if (client != null)
+                {
+                    return new { IsRegistered = true, registration="Client already Registered" };
+                }
+                else
+                {
+                    MartinLayooIncChat.AllUsersList.Add(availableClient);
+                    return new { IsRegistered = true, registration="New Client Registration!" };
+                }
+            }
+            catch(Exception e)
+            {
+                return new { IsRegistered = false};
+            }
 
+        }
+        [HttpPost]
+        [Route("~/Adhoc/RemoveUserAvailability")]
+        public dynamic RemoveUserAvailability([FromBody] Client availableClient)
+        {
+            try
+            {
+                var isRemovable = false;
+                var n = 0;
+                for (n = 0; n < MartinLayooIncChat.AllUsersList.Count; n++)
+                {
+                    if (MartinLayooIncChat.AllUsersList[n].Username.ToLower().Equals(availableClient.Username.ToLower()))
+                    {
+                        isRemovable = true;
+                        break;
+                    }
+                }
+                if(isRemovable)
+                MartinLayooIncChat.AllUsersList.RemoveAt(n);
 
+                return new { isRemoved = true };
+            }
+            catch (Exception e)
+            {
+                return new { isRemoved = false };
+            }
+
+        }
+        [Route("~/Adhoc/GetAllUsers")]
+        public Client[] GetAllUsers()
+        {
+            return MartinLayooIncChat.AllUsersList.ToArray();
+        }
+
+        [HttpPost]
         [Route("~/Adhoc/BookPrivateRoom")]
         public Client BookPrivateRoom([FromBody] Client clt)
         {

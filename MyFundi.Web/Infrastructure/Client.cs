@@ -14,6 +14,15 @@ namespace MyFundi.Web.Infrastructure
         public string ClientBooker { get; set; }
         public string CurrentMessage { get; set; }
         public bool RemoveFromRoom { get; set; }
+
+ /*       public override bool Equals(object obj)
+        {
+            return this.Username.ToLower().Equals(((Client)obj).Username.ToLower());
+        }
+        public override int GetHashCode()
+        {
+            return this.Username.Length;
+        }*/
     }
 
     public class Message

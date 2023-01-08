@@ -100,4 +100,3 @@ C:\Development\MyFundiCurrent\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\
 C:\Development\MyFundiCurrent\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.dll
 C:\Development\MyFundiCurrent\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.pdb
 C:\Development\MyFundiCurrent\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.genruntimeconfig.cache
-C:\Development\MyFundiCurrent\MyFundi.AppConfigurations\obj\Debug\netcoreapp3.1\MyFundi.AppConfigurations.csproj.AssemblyReference.cache
