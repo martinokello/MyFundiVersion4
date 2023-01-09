@@ -19,7 +19,8 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
     listTimeout: any;
     messageTimeout: any;
     broadcastMessageTimeout: any;
-	checkRegisterTimeout:any;
+    checkRegisterTimeout: any;
+    inviteResetRoomNumber: boolean;
 
     constructor(private router: Router, private zone: NgZone, private myFundiService: MyFundiService, private addressLocationGeoCodeService: AddressLocationGeoCodeService) {
        
@@ -208,28 +209,14 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
 
                     if (res) {
                         let msg = res.clientMessage;
-                        if (msg.match(/\[\[[1-9]+\]\]-Invite$"/g)) {
-                            msg = msg.substring(msg.indexOf("[["));
-                            let msgElms = msg.split("-");
-                            msg = msgElms[0].trim("[").trim("]");
-                            let tmpRoomNo = this.roomNumber;
-                            try {
-                                this.roomNumber = parseInt(msg);
-                                localStorage.setItem("roomNumber", this.roomNumber);
-                            }
-                            catch (e) {
-                                this.roomNumber = tmpRoomNo;
-                                localStorage.setItem('roomNumber', tmpRoomNo);
-                            }
-                        }
-                        if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
+
+                        if (parseInt(localStorage.getItem('roomNumber')) && msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
                             //normalize res message email address user:
                             //let normalizedMessage = curThis.normalizeMessage();
                             if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
                                 jQuery('div#txtMessages').append(msg);
                             }
                             //curThis.scrollContentDown();
-
                         }
                     }
                 },
@@ -242,7 +229,7 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     getBroadcastMsgs() {
         let curThis = this;
-
+        
         jQuery.ajax({
             url: "/Adhoc/GetBroadcastMessages",
             type: "GET",
@@ -251,7 +238,23 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
             contentType: "application/json",
             success: function (res, xHRq, method) {
                 let msg = res.message;
-
+                if (msg.match(/\[\[[1-9]+-Invite\]\]$/g) && msg.indexOf(JSON.parse(localStorage.getItem("userDetails")).username)>0) {
+                    let msg2 = msg.substring(msg.indexOf("[[")+2);
+                    msg2 = msg2.split("-")[0];
+                    let tmpRoomNo = curThis.roomNumber;
+                    try {
+                        curThis.roomNumber = parseInt(msg2);
+                        localStorage.setItem("roomNumber", msg2);
+                        if (!curThis.inviteResetRoomNumber) {
+                            curThis.inviteResetRoomNumber = true;
+                            window.location.href = "/";
+                        }
+                    }
+                    catch (e) {
+                        curThis.roomNumber = tmpRoomNo;
+                        localStorage.setItem('roomNumber', tmpRoomNo.toString());
+                    }
+                }
                 if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br><\/div>$/g)) {
 
                     //let normalizedMessage = curThis.normalizeMessage(msg);

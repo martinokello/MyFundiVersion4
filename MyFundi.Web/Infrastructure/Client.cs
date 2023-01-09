@@ -27,6 +27,7 @@ namespace MyFundi.Web.Infrastructure
 
     public class Message
     {
+        public string MessageFrom { get; set; }
         public string ClientMessage { get; set; }
         public DateTime TimeSent { get; set; }
         public bool MessageWasSent { get; set; }

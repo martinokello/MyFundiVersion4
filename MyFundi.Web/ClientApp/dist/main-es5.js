@@ -2154,22 +2154,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (res) {
                   var msg = res.clientMessage;
 
-                  if (msg.match(/\[\[[1-9]+\]\]-Invite$"/g)) {
-                    msg = msg.substring(msg.indexOf("[["));
-                    var msgElms = msg.split("-");
-                    msg = msgElms[0].trim("[").trim("]");
-                    var tmpRoomNo = this.roomNumber;
-
-                    try {
-                      this.roomNumber = parseInt(msg);
-                      localStorage.setItem("roomNumber", this.roomNumber);
-                    } catch (e) {
-                      this.roomNumber = tmpRoomNo;
-                      localStorage.setItem('roomNumber', tmpRoomNo);
-                    }
-                  }
-
-                  if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
+                  if (parseInt(localStorage.getItem('roomNumber')) && msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
                     //normalize res message email address user:
                     //let normalizedMessage = curThis.normalizeMessage();
                     if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
@@ -2196,6 +2181,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             contentType: "application/json",
             success: function success(res, xHRq, method) {
               var msg = res.message;
+
+              if (msg.match(/\[\[[1-9]+-Invite\]\]$/g) && msg.indexOf(JSON.parse(localStorage.getItem("userDetails")).username) > 0) {
+                var msg2 = msg.substring(msg.indexOf("[[") + 2);
+                msg2 = msg2.split("-")[0];
+                var tmpRoomNo = curThis.roomNumber;
+
+                try {
+                  curThis.roomNumber = parseInt(msg2);
+                  localStorage.setItem("roomNumber", msg2);
+
+                  if (!curThis.inviteResetRoomNumber) {
+                    curThis.inviteResetRoomNumber = true;
+                    window.location.href = "/";
+                  }
+                } catch (e) {
+                  curThis.roomNumber = tmpRoomNo;
+                  localStorage.setItem('roomNumber', tmpRoomNo.toString());
+                }
+              }
 
               if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br><\/div>$/g)) {
                 //let normalizedMessage = curThis.normalizeMessage(msg);

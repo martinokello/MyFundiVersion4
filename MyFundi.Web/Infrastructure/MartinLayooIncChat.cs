@@ -50,7 +50,6 @@ namespace MartinLayooInc.Web.Infrastructure
                     Rooms[RoomNumber].Add(new Queue<Client>());
                     client.TimeStarted = DateTime.Now;
                     client.RoomNumber = RoomNumber;
-                    client.CurrentMessage = client.CurrentMessage;
                     Rooms[client.RoomNumber].First().Enqueue(client);
                 }
                 return true;

@@ -21,7 +21,6 @@ using MyFundiProfile.ServiceEndPoint.GeneralSevices;
 using MyFundi.Web.Infrastructure;
 using MartinLayooInc.Web.Infrastructure;
 using System.Text;
-using System.Threading;
 
 namespace MyFundi.Web.Controllers
 {
@@ -269,11 +268,10 @@ namespace MyFundi.Web.Controllers
         [Route("~/Adhoc/InviteClient")]
         public Client InviteClient([FromBody] Client clt)
         {
-            Client client = new Client { Username = clt.Username, Messages = new Queue<Message>(), RoomNumber = clt.RoomNumber, TimeStarted = DateTime.Now };
+            Client client = new Client {CurrentMessage=clt.CurrentMessage+ $" [[{clt.RoomNumber}-Invite]]",Username = clt.Username, Messages = new Queue<Message>(), RoomNumber = clt.RoomNumber, TimeStarted = DateTime.Now };
             ChatResource.AddClientToChatRoom(client);
-            MartinLayooIncChat.GlobalMessageQueue.Enqueue(new Message { ClientMessage = clt.CurrentMessage, MessageWasSent = false });
-            client.CurrentMessage += $" [[{clt.RoomNumber}]]-Invite";
-            ChatResource.Rooms[clt.RoomNumber].First().Enqueue(client);
+            MartinLayooIncChat.GlobalMessageQueue.Enqueue(new Message { ClientMessage = client.CurrentMessage, MessageWasSent = false, MessageFrom=clt.Username });
+             
             return client;
         }
 
@@ -321,6 +319,7 @@ namespace MyFundi.Web.Controllers
             if (actualClient != null && !string.IsNullOrEmpty(clt.CurrentMessage))
             {
                 actualClient.Messages.Enqueue(new Message { ClientMessage = clt.CurrentMessage, TimeSent = DateTime.Now });
+                ChatResource.Rooms[clt.RoomNumber].First().Enqueue(actualClient);
                 return true;
             }
             return false;
@@ -333,7 +332,7 @@ namespace MyFundi.Web.Controllers
             if (!string.IsNullOrEmpty(clt.CurrentMessage))
             {
                 Client client = new Client { Username = clt.Username, CurrentMessage = clt.CurrentMessage };
-                MartinLayooIncChat.GlobalMessageQueue.Enqueue(new Message { ClientMessage = client.CurrentMessage });
+                MartinLayooIncChat.GlobalMessageQueue.Enqueue(new Message { ClientMessage = client.CurrentMessage, MessageFrom=clt.Username });
                 return client;
             }
             return null;
@@ -347,7 +346,6 @@ namespace MyFundi.Web.Controllers
 
                 var queue = ChatResource.Rooms[roomNumber].First();
                 var clt = queue.LastOrDefault();
-                Thread.Sleep(1500);
                 if (clt != null)
                 {
                     var msg = clt.Messages.LastOrDefault();
@@ -378,7 +376,6 @@ namespace MyFundi.Web.Controllers
 
             var currentGlobalMessage = MartinLayooIncChat.GlobalMessageQueue.LastOrDefault();
 
-            Thread.Sleep(5000);
             if (currentGlobalMessage != null)
             {
                 currentGlobalMessage.TimeSent = DateTime.Now;
@@ -391,7 +388,6 @@ namespace MyFundi.Web.Controllers
         [Route("~/Adhoc/GetUserList/{roomNumber}")]
         public Client[] GetUserList(int roomNumber)
         {
-            Thread.Sleep(2500);
             var list = new List<Client>();
             if (ChatResource.Rooms[roomNumber].FirstOrDefault() == null) return list.ToArray();
 
