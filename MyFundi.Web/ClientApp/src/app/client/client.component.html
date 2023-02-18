@@ -25,7 +25,7 @@
                         <div class="col-lg-12">
                             <div style="margin: 2px 0px !important;">
                                 <h5>Client Address</h5>
-                                <select id="clientAddressId" name="clientAddressId" [(ngModel)]="clientAddressId"></select><br /><br/>
+                                <select id="clientAddressId" name="clientAddressId" [(ngModel)]="clientAddressId"></select><br /><br />
                             </div>
                             <div style="margin: 2px 0px !important;">
                                 <textarea rows="5" cols="10" name="profileSummary" [(ngModel)]="profileSummary" placeholder="Edit Client Profile"></textarea><br />
@@ -83,6 +83,8 @@
                     <div class="col-lg-12" style="margin: 2px 0px !important;">
                         <h5>Assigned Fundi</h5>
                         <select id="assignedFundiProfileId" name="assignedFundiProfileId" [(ngModel)]="fundiProfile.fundiProfileId"></select><br />
+                        <input type="button" class="btn-primary" value="Draft Contract" style="margin-top:10px;" (click)="draftContract($event)" /><br />
+                        <hr />
                     </div>
                 </div>
                 <div class="row" style="margin: 2px 0px !important;">

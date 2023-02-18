@@ -89,8 +89,23 @@ namespace MyFundi.Web.Migrations
                     b.Property<decimal>("AgreedCost")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("ClientUserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("AgreedEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("AgreedStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ClientFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ClientProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClientUsername")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContractualDescription")
                         .HasColumnType("nvarchar(max)");
@@ -101,10 +116,25 @@ namespace MyFundi.Web.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("FundiUserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("FundiFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FundiLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FundiProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FundiUsername")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSignedByClient")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSignedByFundi")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsSignedOffByClient")
@@ -118,9 +148,9 @@ namespace MyFundi.Web.Migrations
 
                     b.HasKey("ClientFundiContractId");
 
-                    b.HasIndex("ClientUserId");
+                    b.HasIndex("ClientProfileId");
 
-                    b.HasIndex("FundiUserId");
+                    b.HasIndex("FundiProfileId");
 
                     b.ToTable("ClientFundiContracts");
                 });
@@ -210,6 +240,35 @@ namespace MyFundi.Web.Migrations
                     b.HasKey("CourseId");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.FundiLocation", b =>
+                {
+                    b.Property<int>("FundiLocationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FundiProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.HasKey("FundiLocationId");
+
+                    b.HasIndex("FundiProfileId");
+
+                    b.ToTable("FundiLocations");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.FundiProfile", b =>
@@ -657,8 +716,14 @@ namespace MyFundi.Web.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SubscriptionDescription")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("SubscriptionFee")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SubscriptionName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -828,15 +893,15 @@ namespace MyFundi.Web.Migrations
 
             modelBuilder.Entity("MyFundi.Domain.ClientFundiContract", b =>
                 {
-                    b.HasOne("MyFundi.Domain.User", "ClientUser")
+                    b.HasOne("MyFundi.Domain.ClientProfile", "ClientProfile")
                         .WithMany()
-                        .HasForeignKey("ClientUserId")
+                        .HasForeignKey("ClientProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyFundi.Domain.User", "FundiUser")
+                    b.HasOne("MyFundi.Domain.FundiProfile", "FundiProfile")
                         .WithMany()
-                        .HasForeignKey("FundiUserId")
+                        .HasForeignKey("FundiProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -861,6 +926,15 @@ namespace MyFundi.Web.Migrations
                     b.HasOne("MyFundi.Domain.Location", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.FundiLocation", b =>
+                {
+                    b.HasOne("MyFundi.Domain.FundiProfile", "FundiProfile")
+                        .WithMany()
+                        .HasForeignKey("FundiProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

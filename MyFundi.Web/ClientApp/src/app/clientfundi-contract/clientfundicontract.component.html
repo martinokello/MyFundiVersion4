@@ -1,0 +1,98 @@
+<div class="container-fluid" id="fundiClientContract-wrapper" style="background-color: #EEEEEE; text-align: left;">
+    <h2 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf("Fundi") > -1  || userRoles.indexOf("Guest") > 1)?"Fundi":"Guest"}} Client/Fundi Contract</h2>
+    <section id="Contract">
+        <div class="row" style="text-align: center !important; align-content: center !important;">
+            <div class="col-lg-12">
+                <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="contractHeader" style="margin: 2px 0px !important;">
+                <h5>My Fundi Contract Documentation</h5>
+                <div class="col-lg-12" id="profileSummary">
+                    {{clientFundiContract.contractualDescription}}<br />
+                </div>
+                <div>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+
+        <form #cfcForm="ngForm" method="post" (ngSubmit)="fs.form.valid && docuemntContract($event)">
+            <div class="row" id="contractdiv" style="margin: 2px 0px !important;">
+                <div class="form-group col-lg-12">
+                    <label>Client Fundi Contract Id - optional</label><br />
+                    <select id="clientFundiContractId" name="clientFundiContractId" [(ngModel)]="clientFundiContract.clientFundiContractId"></select><br />
+                </div>
+                <div class="form-group col-lg-12">
+                    <h6>Agreed Costs</h6>
+                    <input type="number" id="agreedCost" name="agreedCost" [(ngModel)]="clientFundiContract.agreedCost" /><br />
+                </div>
+                <div class="form-group col-lg-12">
+                    <h6>Notes Of Contract</h6>
+                    <textarea rows="5" cols="10" name="notesForNotice" [(ngModel)]="clientFundiContract.notesForNotice" placeholder="Enter Notes Of Contract"></textarea><br />
+                </div>
+                <div class="form-group col-lg-12">
+                    <label>Agreed Start Date </label>
+                    <input type="text" id="agreedStartDate" name="agreedStartDate" [(ngModel)]="clientFundiContract.agreedStartDate" /><br />
+                </div>
+                <div class="form-group col-lg-12">
+                    <label>Agreed End Date </label>
+                    <input type="text" id="startDate" name="agreedEndDate" [(ngModel)]="clientFundiContract.agreedEndDate" /><br />
+                </div>
+                <div class="form-group col-lg-12">
+                    <div class="form-group">
+                        <label>
+                            Fundi Profile ID
+                        </label><br />
+                        <input type="text" class="form-control" name="fundiProfileId" #fundiProfileId="ngModel" readonly [(ngModel)]="clientFundiContract.fundiProfileId" placeholder="fundiProfileId" /><br />
+                        <input type="text" class="form-control" name="fundiUsername" #fundiUsername="ngModel" readonly [(ngModel)]="clientFundiContract.fundiUsername" placeholder="Fundi Username" /><br />
+                        <input type="text" class="form-control" name="fundiFirstName" #fundiFirstName="ngModel" readonly [(ngModel)]="clientFundiContract.fundiFirstName" placeholder="Fundi First Name" /><br />
+                        <input type="text" class="form-control" name="fundiLastName" #fundiLastName="ngModel" readonly [(ngModel)]="clientFundiContract.fundiLastName"  placeholder="Fundi Last Name" /><br />
+                        <div *ngIf="cfcForm.submitted && fundiProfileId.invalid" class="text-danger">
+                            Fundi Profile ID Required!
+                        </div>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="isSignedByFundi" name="isSignedByFundi" [(ngModel)]="clientFundiContract.isSignedByFundi" /><label class="custom-control-label">Is Fundi Signed</label>
+                        <br />
+                        <hr />
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Client Profile ID
+                        </label><br />
+                        <input type="text" class="form-control" name="clientProfileId" #fundiProfileId="ngModel" readonly [(ngModel)]="clientFundiContract.clientProfileId" placeholder="clientProfileId" /><br />
+                        <input type="text" class="form-control" name="clientUsername" #clientUsername="ngModel" readonly [(ngModel)]="clientFundiContract.clientUsername" placeholder="Client Username" /><br />
+                        <input type="text" class="form-control" name="clientFirstName" #clientFirstName="ngModel" readonly [(ngModel)]="clientFundiContract.clientFirstName" placeholder="Client First Name" /><br />
+                        <input type="text" class="form-control" name="clientLastName" #clientLastNamefundiProfileId="ngModel" readonly [(ngModel)]="clientFundiContract.clientLastName" placeholder="Client Last Name" /><br />
+                        <div *ngIf="cfcForm.submitted && fundiProfileId.invalid" class="text-danger">
+                            Client Profile ID required!
+                        </div>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="isSignedByClient" name="isSignedByClient" [(ngModel)]="clientFundiContract.isSignedByClient" /><label class="custom-control-label">Is Client Signed</label>
+                        <br />
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="isCompleted" name="isCompleted" [(ngModel)]="clientFundiContract.isCompleted" /><label class="custom-control-label">Has Job Been Completed</label>
+                        <br />
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="isSignedOffByClient" name="isSignedOffByClient" [(ngModel)]="clientFundiContract.IsSignedOffByClient" /><label class="custom-control-label">Has Job Been Signed Off</label>
+                        <br />
+                    </div>
+                </div>
+                <div class="form-group col-lg-12">
+                    <input type="button" value="Create Contract" class="but-primary" (click)="createContract($event)" style="margin-top:10px;" />
+                    <input type="button" value="Select Contract" class="but-primary" (click)="selectContract($event)" style="margin-top:10px;" />
+                    <input type="button" value="Update Contract" class="but-primary" (click)="updateContract($event)" style="margin-top:10px;" />
+                    <input type="button" value="Delete Contract" class="but-primary" (click)="deleteContract($event)" style="margin-top:10px;" />
+                    <hr />
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

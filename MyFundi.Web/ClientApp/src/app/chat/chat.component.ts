@@ -210,13 +210,10 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
                     if (res) {
                         let msg = res.clientMessage;
 
-                        if (parseInt(localStorage.getItem('roomNumber')) && msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g)) {
-                            //normalize res message email address user:
-                            //let normalizedMessage = curThis.normalizeMessage();
-                            if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
-                                jQuery('div#txtMessages').append(msg);
-                            }
-                            //curThis.scrollContentDown();
+                        if (parseInt(localStorage.getItem('roomNumber')) && msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br>$/g) && jQuery('div#txtMessages').html().indexOf(msg) < 0) {
+
+                            jQuery('div#txtMessages').append(msg);
+                            curThis.scrollContentDown();
                         }
                     }
                 },
@@ -255,13 +252,11 @@ export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
                         localStorage.setItem('roomNumber', tmpRoomNo.toString());
                     }
                 }
-                if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br><\/div>$/g)) {
+                if (msg && !msg.match(/@[a-zA-Z0-9\.]+: <\/span><br><\/div>$/g) && jQuery('div#txtMessages').html().indexOf(msg) < 0) {
 
                     //let normalizedMessage = curThis.normalizeMessage(msg);
-                    if (jQuery('div#txtMessages').html().indexOf(msg) < 0) {
-                        jQuery('div#txtMessages').append(msg);
-                    }
-                    //curThis.scrollContentDown();
+                    jQuery('div#txtMessages').append(msg);
+                    curThis.scrollContentDown();
                 }
             },
             error: function (xHRq,status, error) {

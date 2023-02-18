@@ -127,7 +127,7 @@ namespace MyFundi.Web.Controllers
         [Route("~/ClientProfile/GetAllClientJobByClientProfileId/{clientProfileId}")]
         public async Task<IActionResult> GetAllClientJobByClientProfileId(int clientProfileId)
         {
-            var clientJobs = _unitOfWork._jobRepository.GetAll().Where(q => q.ClientProfileId == clientProfileId);
+            var clientJobs = _unitOfWork._jobRepository.GetAll().Where(q => q.ClientProfileId == clientProfileId).Include(q=> q.AssignedFundiProfile);
 
             if (clientJobs.Any())
             {
@@ -135,7 +135,23 @@ namespace MyFundi.Web.Controllers
             }
             return await Task.FromResult(NotFound(new { Message = "Jobs not found" }));
         }
+        [AuthorizeIdentity]
+        [Route("~/ClientProfile/DeleteJob/{jobId}")]
+        public async Task<IActionResult> DeleteJob(int jobId)
+        {
+            var job = _unitOfWork._jobRepository.GetById(jobId);
+            if (job != null)
+            {
+                job.AssignedFundiProfileId = null;
+                job.AssignedFundiUserId = null;
+                job.ClientFundiContractId = null;
 
+                var hasDeleted = _unitOfWork._jobRepository.Delete(job);
+                return await Task.FromResult(Ok(new { Message = "Job Deleted", Result = hasDeleted }));
+            }
+            else return await Task.FromResult(NotFound(new { Message = "Job Not Found", Result = false }));
+
+        }
         [AuthorizeIdentity]
         [HttpGet]
         [Route("~/ClientProfile/GetClientProfile/{username}")]

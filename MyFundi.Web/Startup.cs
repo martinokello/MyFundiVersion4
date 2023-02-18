@@ -37,6 +37,7 @@ using Microsoft.AspNetCore.SpaServices;
 using AesCryptoSystemExtra.AESCryptoSystem.ExternalCryptoUnit;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
 using MartinLayooInc.Web.Infrastructure;
+using System.Collections.Generic;
 
 namespace MyFundi.Web
 {
@@ -307,10 +308,13 @@ namespace MyFundi.Web
                 conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>();
                 conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>().ReverseMap();
                 conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>();
-                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>().ReverseMap(); 
+                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>().ReverseMap();
+                conf.CreateMap<FundiLocationViewModel, FundiLocation>();
+                conf.CreateMap<FundiLocationViewModel, FundiLocation>().ReverseMap();
 
             });
             services.AddSingleton<MartinLayooIncChat>();
+            services.AddSingleton<List<FundiLocationViewModel>>();
             services.AddScoped<AppSettingsConfigurations>();
             services.AddScoped<IMailService, EmailService>(smtp => new EmailService(new AppSettingsConfigurations(Configuration)));
             services.AddScoped<DbContext, MyFundiDBContext>();
@@ -363,7 +367,8 @@ namespace MyFundi.Web
             services.AddScoped<AbstractRepository<JobWorkCategory>, JobWorkCategoryRepository>();
             services.AddScoped<AbstractRepository<MonthlySubscription>, MonthlySubscriptionRepository>();
             services.AddScoped<AbstractRepository<WorkSubCategory>, WorkSubCategoryRepository>();
-            services.AddScoped<AbstractRepository<FundiSubscription>, FundiSubscriptionRepository>(); 
+            services.AddScoped<AbstractRepository<FundiSubscription>, FundiSubscriptionRepository>();
+            services.AddScoped<AbstractRepository<FundiLocation>, FundiLocationRepository>(); 
             services.AddScoped<SimbaToursEastAfrica.Caching.Interfaces.ICaching, SimbaToursEastAfrica.Caching.Concretes.SimbaToursEastAfricaCahing>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();

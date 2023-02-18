@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IWorkSubCategory, IClientProfile, IWorkAndSubWorkCategory, IPagingContent } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IWorkSubCategory, IClientProfile, IWorkAndSubWorkCategory, IPagingContent, IFundiLocationMonitor } from '../../services/myFundiService';
 import { Observable, ObservableInput } from 'rxjs';
 import { Router } from '@angular/router';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
@@ -22,7 +22,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
     jobs: IJob[];
     location: ILocation;
     fundiRatings: IFundiRating[];
-    listToShow: any[];
+    listToShow: [];
     workCategories: IWorkCategory[];
     certifications: ICertification[];
     courses: ICourse[];
@@ -48,6 +48,9 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
     numberOfResultsPerPage: number;
     currentPage: number;
     numberOfPageJumps: number;
+    isSearchingOnLocality: boolean;
+    numberOfResultsSet: 20;
+    numberOfResultSetToSkip: 0;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
@@ -57,20 +60,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         this.pagingContentModel = $event;
         this.bindContentToSearchResultsDiv();
         this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
-/*
-        if (this.pagingContentModel.pageNextClicked) {
-            this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
-        }
-        if (this.pagingContentModel.pagePrevClicked) {
-            this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
-        }
-        if (this.pagingContentModel.pageNext3Clicked) {
-            this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage + this.numberOfPageJumps + this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage + this.numberOfPageJumps *this.numberOfResultsPerPage + this.numberOfResultsPerPage);
-        }
-        if (this.pagingContentModel.pagePrev3Clicked) {
-            this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage * this.numberOfPageJumps, this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage * this.numberOfPageJumps + this.numberOfResultsPerPage);
-        }
-        */
+
         let mod = this.listToShow.length % this.numberOfResultsPerPage
         let numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
 
@@ -110,6 +100,8 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         this.numberOfResultsPerPage = 2;
         this.currentPage = 1;
         this.numberOfPageJumps = 2;
+        this.numberOfResultsSet = 20;
+        this.numberOfResultSetToSkip = 0;
 
         this.pagingContentModel = {
             isPageNextEnabled: false,
@@ -120,7 +112,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             pageNext3Clicked: false,
             pagePrevClicked: false,
             pagePrev3Clicked: false,
-            content:[]
+            content: []
         }
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
@@ -233,6 +225,106 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
 
             jobCatObs.map((jobs: IJob[]) => {
                 this.jobs = jobs;
+                if (this.jobs.length > 0) this.job = this.jobs[0];
+                else {
+                    this.job = {
+                        jobId : 0,
+                        jobName:"",
+                        jobDescription: "",
+                        clientProfileId: 0,
+                        clientProfile:
+                        {
+                            clientProfileId: 0,
+                            userId: "",
+                            profileSummary: "",
+                            profileImageUrl: "",
+                            addressId: 0
+                        },
+                        clientUserId: 0,
+                        clientUser: {
+                            emailAddress: "",
+                            username: "",
+                            mobileNumber: "",
+                            password: "",
+                            keepLoggedIn: false,
+                            repassword: "",
+                            role: "",
+                            firstName: "",
+                            lastName: "",
+                            authToken: "",
+                            fundi: false,
+                            client: false,
+                            message: ""
+                        },
+                        hasCompleted: false,
+                        hasBeenAssignedFundi: false,
+                        locationId: 0,
+                        location: {
+                            locationId: 0,
+                            country: "",
+                            locationName: "",
+                            latitude: 0,
+                            longitude: 0,
+                            addressId: 0,
+                            address: {
+                                addressId: 0,
+                                addressLine1: "",
+                                addressLine2: "",
+                                town: "",
+                                postCode: "",
+                                country: "",
+                            },
+                            isGeocoded: false
+                        },
+                        numberOfDaysToComplete: 0,
+                        assignedFundiProfileId: 0,
+                        assignedFundiProfile: {
+
+                            fundiProfileId: 0,
+                            userId: "",
+                            profileSummary: "",
+                            profileImageUrl: "",
+                            skills: "",
+                            usedPowerTools: "",
+                            fundiProfileCvUrl: "",
+                            locationId:0,
+                            user: {
+                                emailAddress: "",
+                                username: "",
+                                mobileNumber: "",
+                                password: "",
+                                keepLoggedIn: false,
+                                repassword: "",
+                                role: "",
+                                firstName: "",
+                                lastName: "",
+                                authToken: "",
+                                fundi: false,
+                                client: false,
+                                message: ""
+                            },
+                        },
+                        assignedFundiUserId: "",
+                        assignedFundiUser: {
+                            emailAddress: "",
+                            username: "",
+                            mobileNumber: "",
+                            password: "",
+                            keepLoggedIn: false,
+                            repassword: "",
+                            role: "",
+                            firstName: "",
+                            lastName: "",
+                            authToken: "",
+                            fundi: false,
+                            client: false,
+                            message: ""
+                        },
+                        clientFundiContractId: 0,
+                        dateCreated: new Date(),
+                        dateUpdated: new Date()
+                    }
+                }
                 let addSelect = document.querySelector('select#jobId');
                 let opts = addSelect.querySelector('option');
                 if (opts) {
@@ -330,10 +422,10 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                 resetable: true
             });
             jQuery('div.rateit, span.rateit').rateit();
-                this.fundiSatisfyingJobList.forEach((r, ind, q) => {
-                    this.profileId = r.fundiProfileId
-                    jQuery('span#averageFundiRating-' + r.fundiProfileId).rateit('value', r.averageFundiRating);
-                });
+            this.fundiSatisfyingJobList.forEach((r, ind, q) => {
+                this.profileId = r.fundiProfileId
+                jQuery('span#averageFundiRating-' + r.fundiProfileId).rateit('value', r.averageFundiRating);
+            });
         }
     }
     showFirstPage() {
@@ -382,11 +474,12 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             this.currentPage -= this.numberOfPageJumps;
         }
     }
-    searchFundiByCategories($event) {
+    searchFundiByCurrentGeoLocation($event) {
         let curthis = this;
         this.fundiProfileList = [];
         let chosenCategories: string[] = [];
         let viewObjects: any[] = [];
+        this.isSearchingOnLocality = true;
 
         let categories = jQuery('form#fundiSearchForm div#fundiCategories ul.ulCategories > li > div > div > input[type="checkbox"]:checked');
         categories.each(function (ind, elem) {
@@ -401,14 +494,86 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
 
             });
             viewObjects.push({ username: MyFundiService.clientEmailAddress, workCategories: chosenCategories, workSubCategories: chosenSubCategories, coordinate: { latitude: 0, longitude: 0 } });
-            
+
+        });
+        let username: string = MyFundiService.clientEmailAddress;
+
+        let clientProfObjs: Observable<IClientProfile> = curthis.myFundiService.GetClientProfile(username);
+
+        let jobsObj: Observable<IJob> = curthis.myFundiService.GetJobByJobId(this.job.jobId);
+
+            jobsObj.map((j: IJob) => {
+                clientProfObjs.map((q: IClientProfile) => {
+                    let fundiLocObs: Observable<IFundiLocationMonitor[]> = curthis.myFundiService.GetFundiRealTimeLocations();
+
+                    fundiLocObs.map((r: IFundiLocationMonitor[]) => {
+                        for (let f = 0; f < r.length; f++) {
+
+                            let profObs: Observable<IProfile> = this.myFundiService.GetFundiProfileByUsername(r[f].username);
+
+                            profObs.map((pr: IProfile) => {
+                                if (pr) {
+                                    for (let n = 0; n < viewObjects.length; n++) {
+
+                                    viewObjects[n].coordinate.latitude = r[f].latitude;
+                                    viewObjects[n].coordinate.longitude = r[f].longitude;
+                                    viewObjects[n].fundiProfileId = pr.fundiProfileId;
+                                    }
+                                }
+                                let fundiRatingsObs: Observable<[]> = this.myFundiService.GetFundiRatingsAndReviewsGeolocation(viewObjects, q.clientProfileId, j.jobId, this.distanceKmLimitApart, this.numberOfResultSetToSkip, this.numberOfResultsSet);
+                                this.numberOfResultSetToSkip += (this.numberOfResultsSet + 1);
+
+                                fundiRatingsObs.map((q: []) => {
+
+                                    if (q && q.length > 0 && this.isSearchingOnLocality) {
+                                        this.listToShow = q;
+                                        this.showFirstPage();
+                                    } else {
+                                        this.numberOfResultSetToSkip = 0;
+                                        alert("There are currently no jobs that match your\ncriteria within your chosen location!")
+                                    }
+
+                                    this.isSearchingOnLocality = false;
+                                }).subscribe();
+                            }).subscribe();
+                        }
+
+                    }).subscribe();
+                }).subscribe();
+            }).subscribe();
+
+    }
+
+    searchFundiByCategories($event) {
+        let curthis = this;
+        this.fundiProfileList = [];
+        let chosenCategories: string[] = [];
+        let viewObjects: any[] = [];
+        this.isSearchingOnLocality = false;
+
+
+        let categories = jQuery('form#fundiSearchForm div#fundiCategories ul.ulCategories > li > div > div > input[type="checkbox"]:checked');
+        categories.each(function (ind, elem) {
+
+            chosenCategories.push(elem.name);
+
+            let chosenSubCategories: string[] = [];
+            let subCategories = jQuery('form#fundiSearchForm div#fundiCategories ul.ulSubCategories > li > div > div > input[type="checkbox"]:checked');
+            subCategories.each(function (ind, elem) {
+
+                chosenSubCategories.push(elem.name);
+
+            });
+
+            viewObjects.push({ username: MyFundiService.clientEmailAddress, workCategories: chosenCategories, workSubCategories: chosenSubCategories, coordinate: { latitude: 0, longitude: 0 } });
+
         });
 
         let username: string = MyFundiService.clientEmailAddress;
         let clientProfObjs: Observable<IClientProfile> = curthis.myFundiService.GetClientProfile(username);
         clientProfObjs.map((q: IClientProfile) => {
             let jobsObj: Observable<IJob> = curthis.myFundiService.GetJobByJobId(this.jobId);
-            
+
             jobsObj.map((r: IJob) => {
                 r.location
                 this.jobLocation = r.location;
@@ -416,23 +581,20 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                     viewObjects[n].coordinate.latitude = this.jobLocation.latitude;
                     viewObjects[n].coordinate.longitude = this.jobLocation.longitude;
                 }
-                let fundiRatingsObs: Observable<any[]> = this.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId, r.jobId, this.distanceKmLimitApart, this.skip, this.take);
+                let fundiRatingsObs: Observable<[]> = this.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId, r.jobId, this.distanceKmLimitApart, this.numberOfResultSetToSkip, this.numberOfResultsSet);
+                this.numberOfResultSetToSkip += (this.numberOfResultsSet + 1);
 
-                fundiRatingsObs.map((n: any[]) => {
-
-                    let q: any[] = n;
+                fundiRatingsObs.map((q: []) => {
 
                     if (q && q.length > 0) {
                         this.listToShow = q;
                         this.showFirstPage();
                     } else {
-                        alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
+                        this.numberOfResultSetToSkip = 0;
+                        alert("There are currently no jobs that match your\ncriteria within your chosen location!")
                     }
-
                 }).subscribe();
             }).subscribe();
-
-
         }).subscribe();
 
         $event.stopPropagation();

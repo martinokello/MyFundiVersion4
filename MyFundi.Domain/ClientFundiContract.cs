@@ -10,15 +10,25 @@ namespace MyFundi.Domain
     {
         [Key]
         public int ClientFundiContractId { get; set; }
-        [ForeignKey("ClientUser")]
-        public Guid ClientUserId { get; set; }
-        public User ClientUser { get; set; }
-        [ForeignKey("FundiUser")]
-        public Guid FundiUserId { get; set; }
-        public User FundiUser { get; set; }
+        [ForeignKey("ClientProfile")]
+        public int ClientProfileId { get; set; }
+        public ClientProfile ClientProfile { get; set; }
+        [ForeignKey("FundiProfile")]
+        public int FundiProfileId { get; set; }
+        public FundiProfile FundiProfile { get; set; }
+        public string ClientUsername { get; set; }
+        public string ClientFirstName { get; set; }
+        public string ClientLastName { get; set; }
+        public string FundiUsername { get; set; }
+        public string FundiFirstName { get; set; }
+        public string FundiLastName { get; set; }
         public decimal NumberOfDaysToComplete { get; set; }
         public string ContractualDescription { get; set; }
+        public DateTime AgreedStartDate { get; set; }
+        public DateTime AgreedEndDate { get; set; }
         public bool IsCompleted { get; set; }
+        public bool IsSignedByClient { get; set; }
+        public bool IsSignedByFundi { get; set; }
         public bool IsSignedOffByClient { get; set; }
         public string NotesForNotice { get; set; }
         public Decimal AgreedCost { get; set; }

@@ -135,11 +135,13 @@ namespace MyFundi.Web.Controllers
             if (!string.IsNullOrEmpty(authToken))
             {
                 var user = await _userService.Authenticate(authToken);
+                user = _unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(user.Username.ToLower()));
                 var fundi = _unitOfWork._fundiProfileRepository.GetAll().FirstOrDefault(q => q.UserId == user.UserId);
 
                 if (fundi != null)
                 {
                     var message = _unitOfWork.MyFundiDBContext.ValidateFundiSubscription(fundi.FundiProfileId);
+                    var tmpTopMessage = message;
                     if (!message.ToLower().Equals("Subscription Is Still Valid".ToLower()) && 
                         !await _userService.IsUserInRoleAsync(user.Username, "administrator"))
                     {
@@ -151,21 +153,45 @@ namespace MyFundi.Web.Controllers
                             ErrorMessage = message,
                             FirstName = user.FirstName,
                             LastName = user.LastName,
-                            IsLoggedIn = false,
+                            IsLoggedIn = true,
                             IsFundi = false,
-                            IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "Administrator"),
                             IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
                             Message = message,
-                            AuthToken = ""
+                            AuthToken = authToken
                         };
                     }
-                    else
+                    else if(await _userService.IsUserInRoleAsync(user.Username, "administrator"))
                     {
                         var isUserInRoleFundi1 = await _userService.IsUserInRoleAsync(user.Username, "Fundi");
                         if (!isUserInRoleFundi1)
                         {
-                            await UserRemoveFromRole(new Models.UserRole { role = "Guest", email = user.Email });
                             await UserAddToRole(new Models.UserRole { role = "Fundi", email = user.Email });
+                        }
+                        var actualResult = new LoginResult
+                        {
+                            IsLoggedIn = true,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Username = user.Username,
+                            IsAdministrator = true,
+                            Message = string.Empty,
+                            AuthToken = authToken,
+                            IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                        };
+                        return actualResult;
+                    }
+                    else if(message.ToLower().Equals("Subscription Is Still Valid".ToLower()))
+                    {
+                        var isUserInRoleFundi1 = await _userService.IsUserInRoleAsync(user.Username, "Fundi");
+                        if (!isUserInRoleFundi1)
+                        {
+                            await UserAddToRole(new Models.UserRole { role = "Fundi", email = user.Email });
+                        }
+                        if (await _userService.IsUserInRoleAsync(user.Username, "Guest"))
+                        {
+                            await UserRemoveFromRole(new Models.UserRole { role = "Guest", email = user.Email });
                         }
                     }
 
@@ -223,12 +249,27 @@ namespace MyFundi.Web.Controllers
                         };
                         return actualResult;
                     }
+                    else if(tmpTopMessage.ToLower().Equals("Subscription Is Still Valid".ToLower()))
+                    {
+                        var actualResult = new LoginResult
+                        {
+                            IsLoggedIn = true,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Username = user.Username,
+                            IsAdministrator = false,
+                            Message = tmpTopMessage,
+                            AuthToken = authToken,
+                            IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                        };
+                        return actualResult;
+                    }
                 }
-                var isUserInRoleFundi2 = await _userService.IsUserInRoleAsync(user.Username, "Fundi");
-                if (isUserInRoleFundi2 && !await _userService.IsUserInRoleAsync(user.Username, "administrator"))
+                if (!await _userService.IsUserInRoleAsync(user.Username, "administrator"))
                 {
                     await UserRemoveFromRole(new Models.UserRole { role = "Fundi", email = email });
-                    await UserAddToRole(new Models.UserRole { role = "Guest", email = email });
+                    await UserRemoveFromRole(new Models.UserRole { role = "Guest", email = email });
                 }
                 if (!string.IsNullOrEmpty(user.Username))
                 {

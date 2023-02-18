@@ -42,6 +42,10 @@ export class ProfileCreateComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        
+        jQuery('input#locationAddLocationId').css('display', 'none');
+        jQuery('input#locationUpdateLocationId').css('display', 'none');
+        jQuery('input#locationDeleteLocationId').css('display', 'none');
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);

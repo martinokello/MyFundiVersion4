@@ -11,13 +11,13 @@
     <form #monitorView="ngForm">
         <div class="form-group">
             <label>Fundi Name</label>
-            <select id="vhmonitor" name="fundiProfileId" #fundiProfileId="ngModel" required [ngModel]="currentFundi.fundiUserDetails.emailAddress" (change)="showFundi()"></select>
+            <select id="vhmonitor" name="fundiProfileId" #fundiProfileId="ngModel" required [ngModel]="currentFundi.username" (change)="showFundi()"></select>
             <div *ngIf="monitorView.submitted && fundiProfileId.invalid" class="text-danger">
-                Subscription Fee Required
+                Fundi Username Required
             </div>
         </div>
       <input type="button" value="Select Fundi" class="but-primary" (click)="showFundi()" />
-      <input type="button" value="Show All Fundis" class="but-primary" (click)="showAllFundis()" />
+      <input type="button" value="Show All Fundis" class="but-primary" (click)="getVehiclesHttp()" />
       <input type="button" value="Remove Fundi" class="but-primary" (click)="removeFundi()" />
     </form>
   </div>

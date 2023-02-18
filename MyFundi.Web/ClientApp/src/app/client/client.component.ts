@@ -36,7 +36,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
     workCategories: IWorkAndSubWorkCategory[];
     chosenWorkCategories: IWorkAndSubWorkCategory[];
     workCategoryAndSubCatId: string;
-    job: IJob | any;
+    job:any;
     jobs: IJob[];
     clientAddresses: IAddress[];
     locations: ILocation[]
@@ -222,7 +222,31 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
             }).subscribe();
         }).subscribe();
     }
+    draftContract($event) {
+        let assigneFundiProfileId =parseInt(jQuery('select#assignedFundiProfileId').val());
+        let fundiUserObs: Observable<any> = this.myFundiService.GetFundiUserByProfileId(assigneFundiProfileId);
+        fundiUserObs.map((fundiUser: any) => {
 
+            let draftContractData: any = {
+                fundiProfileId: assigneFundiProfileId,
+                clientProfileId: this.clientProfile.clientProfileId,
+                fundiFirstName: fundiUser.firstName,
+                fundiLastName: fundiUser.lastName,
+                fundiUsername: fundiUser.username,
+                clientFirstName: this.userDetails.firstName,
+                clientLastName: this.userDetails.lastName,
+                clientUsername: this.userDetails.username,
+                clientFundiContractId: this.clientFundiContractId,
+                numberOfDaysToComplete: this.numberOfDaysToComplete,
+                jobName: this.job.jobName,
+                contractualDescription: this.job.jobDescription
+            }
+            localStorage.setItem("DraftContractData", JSON.stringify(draftContractData));
+            this.router.navigateByUrl("/client-fundi-contract");
+        }).subscribe();
+
+        $event.preventDefault();
+    }
     handleProfileImage(files: FileList) {
         this.profileImage = files.item(0);
     }
@@ -289,11 +313,12 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
         let selectedJobId: number = jQuery('div#client-wrapper select#jobId').val();
 
         let job: IJob = this.jobs.find((j: IJob) => {
+
             return j.jobId == selectedJobId;
         });
-
         this.job = job;
-        let jWCatsObs: Observable<IWorkAndSubWorkCategory[]> = this.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
+        jQuery('select#assignedFundiProfileId').val(this.job.assignedFundiProfileId);
+        let jWCatsObs: Observable<IWorkAndSubWorkCategory[]> = this.myFundiService.GetJobWorkCategoriesByJobId(this.job.jobId);
 
         this.chosenWorkCategories = [];
         jWCatsObs.map((jwCats: IWorkAndSubWorkCategory[]) => {
@@ -307,12 +332,22 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
                 ulWCats.append('<li id="' + `${cat.workCategoryId.toString()},${cat.workSubCategoryId.toString()}` + '">' + `${cat.workCategory.workCategoryType}: [${cat.workSubCategory.workSubCategoryType}]` + '</li>');
             });
         }).subscribe();
+
+        jQuery('select#assignedFundiProfileId').val(job.assignedFundiProfileId);
         $event.preventDefault();
     }
     updateJob($event) {
         this.job.jobWorkCategoryIds = this.chosenWorkCategories;
 
         let jobObs: Observable<any> = this.myFundiService.UpdateJob(this.job);
+        jobObs.map((q: any) => {
+            alert(q.message);
+        }).subscribe();
+
+        $event.preventDefault();
+    }
+    deleteJob($event) {
+        let jobObs: Observable<any> = this.myFundiService.DeleteJob(this.job.jobId);
         jobObs.map((q: any) => {
             alert(q.message);
         }).subscribe();

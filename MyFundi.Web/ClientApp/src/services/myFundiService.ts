@@ -9,7 +9,7 @@ declare const google: any;
 
 @Injectable()
 export class MyFundiService {
-    
+
     private baseServerUrl: string = /*"https://localhost:44343";*/ "https://myfundiv2.martinlayooinc.com";
 
     public constructor(private httpClient: HttpClient) {
@@ -42,8 +42,12 @@ export class MyFundiService {
     public getFundiProfileRatingByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileRatingById";
     public getFundiLevelOfEngagementByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiLevelOfEngagementById";
     public getFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
-    public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
+    public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings"; 
     public payMonthlySubscriptionFeeWithPaypalUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithPaypal";
+    public getFundiSubscriptionByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSubscriptionById";
+    public deleteFundiSubscriptionByIdUrl: string = this.baseServerUrl + "/FundiProfile/DeleteFundiSubscriptionById";
+    public updateFundiSubscriptionUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiSubscription";
+    public getAllFundiSubscriptionsByFundiIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSubscriptionsByFundiId";
     public payMonthlySubscriptionFeeWithMtnUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithMtn";
     public payMonthlySubscriptionFeeWithAirTelUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithAirTel";
     public getFundiSkillsByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
@@ -63,8 +67,10 @@ export class MyFundiService {
     public getWorkSubCategoriesBySubCategoryIdUrl: string = this.baseServerUrl + "/ClientProfile/GetWorkSubCategoriesBySubCategoryId";
     public getAllclientProfilesUrl: string = this.baseServerUrl + "/ClientProfile/GetAllClientProfiles"; 
     public getResultsRemoveWorkCategorFromJobIdUrl: string = this.baseServerUrl + "/ClientProfile/GetResultsRemoveWorkCategoryFromJobId";
-
+    
+    public getJobsByCategoriesAndFundiUserGeoLocationUrl: string = this.baseServerUrl + "/FundiProfile/JobsByCategoriesAndFundiUserGeoLocation";
     public getJobsByCategoriesAndFundiUserUrl: string = this.baseServerUrl + "/FundiProfile/JobsByCategoriesAndFundiUser";
+    public postAllFundiRatingsAndReviewsByCategoriesGeolocationUrl: string = this.baseServerUrl + "/FundiProfile/PostAllFundiRatingsAndReviewsByCategoriesGeoLocation";
     public postAllFundiRatingsAndReviewsByCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/PostAllFundiRatingsAndReviewsByCategories";
     public updateFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiProfile";
     public getFundiProfileUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfile";
@@ -92,7 +98,13 @@ export class MyFundiService {
     
     public getJobByJobIdUrl: string = this.baseServerUrl + "/ClientProfile/getJobByJobId";
 
-    public getFundiLocationByUsernameUrl: string = this.baseServerUrl + "GetFundiProfile";
+    public createContractUrl: string = this.baseServerUrl + "/FundiProfile/CreateContract"; 
+    public selectContractUrl: string = this.baseServerUrl + "/FundiProfile/SelectContract";
+    public updateContractUrl: string = this.baseServerUrl + "/FundiProfile/UpdateContract";
+    public deleteContractUrl: string = this.baseServerUrl + "/FundiProfile/DeleteContract";
+    public getFundiProfileByUsernameUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileByUsername";  
+    public getClientContractsByUsernameUrl: string = this.baseServerUrl + "/FundiProfile/GetClientContracts";
+    public getFundiContractsByUsernameUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiContracts";
     public getClientUserByIdUrl: string = this.baseServerUrl + "/ClientProfile/GetClientUserById";
     public getAllClientJobByClientProfileIdUrl: string = this.baseServerUrl + "/ClientProfile/GetAllClientJobByClientProfileId";
     public getClientProfileUrl: string = this.baseServerUrl + "/ClientProfile/GetClientProfile";
@@ -105,6 +117,8 @@ export class MyFundiService {
 
 
     public getAllJobsUrl: string = this.baseServerUrl + "/Home/GetAllJobs";
+    public deleteJobUrl: string = this.baseServerUrl + "/ClientProfile/DeleteJob";
+    
 
     public postOrCreateCertificationUrl: string = this.baseServerUrl + "/Administration/PostOrCreateCertification";
     public updateCertificationUrl: string = this.baseServerUrl + "/Administration/UpdateCertification";
@@ -113,8 +127,10 @@ export class MyFundiService {
     public deleteCertificationUrl: string = this.baseServerUrl + "/Administration/DeleteCertification"
 
     public postRemoveFundiFromMonitorUrl: string = this.baseServerUrl + "/AdhocReporting/RemoveFundiFromMonitor";
-    public getFundiMobileLocationAppUrl: string = this.baseServerUrl + "/AdhocReporting/GetLocationEmitterApp";
+    public getFundiMobileLocationAppUrl: string = this.baseServerUrl + "/AdhocReporting/GetLocationEmitterApp"; 
+    public getFundiRealTimeLocationsByUsernameUrl: string = this.baseServerUrl + "/AdhocReporting/GetFundiLiveLocationsByUsername";
     public getFundiRealTimeLocationsUrl: string = this.baseServerUrl + "/AdhocReporting/GetFundiLiveLocations";
+    public saveFundiGeoLocationUrl: string = this.baseServerUrl + "/AdhocReporting/SaveFundiGeoLocation";
 
     public postOrCreateAddressUrl: string = this.baseServerUrl + "/LocationAndAddress/PostOrCreateAddress";
     public updateAddressUrl: string = this.baseServerUrl + "/LocationAndAddress/UpdateAddress";
@@ -162,6 +178,56 @@ export class MyFundiService {
         return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): string[] => {
             let roles: string[] = res;
             return roles;
+        
+        });
+    } 
+
+    GetFundiContractsByUsername(username: string): Observable<any[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl: string = this.getFundiContractsByUsernameUrl + "/" + username;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any[] => {
+            let clientContracts: any[] = res;
+            return clientContracts;
+
+        });
+    }
+    GetClientContractsByUsername(username: string): Observable<any[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl: string = this.getClientContractsByUsernameUrl + "/" + username;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any[] => {
+            let clientContracts: any[] = res;
+            return clientContracts;
+
+        });
+    }
+    public GetFundiProfileByUsername(username: string): Observable<IProfile> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl: string = this.getFundiProfileByUsernameUrl + "/" + username;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IProfile => {
+            let prof: IProfile = res;
+            return prof;
+
         });
     }
     GetClientProfileById(clientProfileId: number): Observable<IClientProfile> {
@@ -178,7 +244,130 @@ export class MyFundiService {
             let clientProf: IClientProfile = res;
             return clientProf;
         });
-    } 
+    }
+
+    GetAllFundiSubscriptions(fundiProfileId: number): Observable<ISubscription[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getAllFundiSubscriptionsByFundiIdUrl + "/" + fundiProfileId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): ISubscription[] => {
+            let clientProf: ISubscription[] = res;
+            return clientProf;
+        });
+    }
+    DeleteFundiSubscription(subscriptionId: number): Observable<any> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.deleteFundiSubscriptionByIdUrl + "/" + subscriptionId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any => {
+            let clientProf: any = res;
+            return clientProf;
+        });
+    }
+
+    GetFundiSubscription(subscriptionId: number): Observable<ISubscription> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiSubscriptionByIdUrl + "/" + subscriptionId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): ISubscription => {
+            let clientProf: ISubscription = res;
+            return clientProf;
+        });
+    }
+
+    UpdateFundiSubscription(subscription: any): Observable<any> {
+        var body = JSON.stringify(subscription);
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.updateFundiSubscriptionUrl,
+            headers: headers,
+            body: body
+        }; headers.append('Content-Type', 'application/json');
+
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
+    CreateContract(clientFundiContract: IClientFundiContract): Observable<any> {
+        var body = JSON.stringify(clientFundiContract);
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.createContractUrl,
+            headers: headers,
+            body: body
+        }; headers.append('Content-Type', 'application/json');
+
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
+    DeleteContract(clientFundiContractId: number): Observable<any> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.deleteContractUrl + "/" + clientFundiContractId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IClientFundiContract => {
+            let clientFundiContract: IClientFundiContract = res;
+            return clientFundiContract;
+        });
+    }
+    UpdateContract(clientFundiContract: IClientFundiContract): Observable<any> {
+        var body = JSON.stringify(clientFundiContract);
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.updateContractUrl,
+            headers: headers,
+            body: body
+        }; headers.append('Content-Type', 'application/json');
+
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
+    SelectContract(clientFundiContractId: number): Observable<any> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.selectContractUrl + "/" + clientFundiContractId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IClientFundiContract => {
+            let clientFundiContract: IClientFundiContract = res;
+            return clientFundiContract;
+        });
+    }
     GetFundiLevelOfEngagement(fundiProfileId: number): Observable<IFundiEngagement[]> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getFundiLevelOfEngagementByIdUrl + "/" + fundiProfileId;
@@ -321,6 +510,21 @@ export class MyFundiService {
             return res;
         });
     }
+    SaveFundiGeoLocation(vehMonitor: IFundiLocationMonitor): Observable<any> {
+        var body = JSON.stringify(vehMonitor);
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.saveFundiGeoLocationUrl,
+            headers: headers,
+            body: body
+        }; headers.append('Content-Type', 'application/json');
+
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
     UpdateWorkSubCategory(workSubCategory: IWorkSubCategory): Observable<any> {
         var body = JSON.stringify(workSubCategory);
 
@@ -424,9 +628,8 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): object[] => {
-            let courses: object[] = res;
-            return courses;
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any => {
+            return res;
         });
     }
 
@@ -1128,6 +1331,20 @@ export class MyFundiService {
             return res;
         });
     }
+    DeleteJob(jobId: number) {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.deleteJobUrl;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
     public DeleteAddress(address: IAddress): any {
         let body: string = JSON.stringify(address);
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -1178,6 +1395,47 @@ export class MyFundiService {
             return res;
         });
     }
+    GetJobsByCategoriesAndFundiUserGeoLocation(categories: any[], fundiProfileId: number, distanceKmLimitApart: number, skip: number = 0, take: number = 5): Observable<any> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let body: string = JSON.stringify(categories);
+
+
+        let requestUrl = this.getJobsByCategoriesAndFundiUserGeoLocationUrl + `/${fundiProfileId}/${distanceKmLimitApart}/${skip}/${take}`;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'POST',
+            headers: headers,
+            body: body,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any) => {
+
+            return res;
+        });
+    }
+
+    GetFundiRatingsAndReviewsGeolocation(categories: any[], clientProfileId, jobId: number, distanceKmLimitApart: number, skip: number = 0, take: number = 5): Observable<any> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let body: string = JSON.stringify(categories);
+
+        let requestUrl = this.postAllFundiRatingsAndReviewsByCategoriesGeolocationUrl + `/${clientProfileId}/${jobId}/${distanceKmLimitApart}/${skip}/${take}`;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'POST',
+            headers: headers,
+            body: body,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any[]) => {
+
+            return res;
+        });
+    }
+
     GetFundiRatingsAndReviews(categories: any[], clientProfileId,jobId: number, distanceKmLimitApart: number, skip: number = 0, take: number = 5): Observable<any> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
@@ -1670,6 +1928,22 @@ export class MyFundiService {
             return result;
         });
     }
+    GetFundiRealTimeLocationsByUsername(username: string): Observable<IFundiLocationMonitor> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiRealTimeLocationsByUsernameUrl+"/"+username;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any) => {
+            let results: IFundiLocationMonitor = res;
+            return results;
+        });
+    }
+
     public GetFundiRealTimeLocations(): Observable<IFundiLocationMonitor[]> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getFundiRealTimeLocationsUrl;
@@ -1688,10 +1962,16 @@ export class MyFundiService {
 
 }
 export interface IFundiLocationMonitor {
-    fundiUserDetails: IUserDetail | any;
-    phoneNumber: string;
-    lattitude: number;
+    mobileNumber: string;
+    latitude: number;
     longitude: number;
+    firstName: string;
+    lastName: string;
+    username: string;
+    email: string;
+    updatePhoneNumber: boolean;
+    driverName: string;
+    fundiProfileId: number;
 }
 export interface IExtraCharges {
     tourClientId: number;
@@ -1913,12 +2193,44 @@ export interface IMtnAirTelModel
     cancelUrl: string;
     successUrl: string;
 };
+export interface ISubscription {
 
+    monthlySubscriptionId: number;
+    userId: number;
+    fundiProfileId: number;
+    startDate: Date;
+    username: string;
+    subscriptionFee: number;
+    hasPaid: boolean;
+    subscriptionName: string;
+    subscriptionDescription: string;
+    workCategoryAndSubCategoryIds: any[];
+}
 export interface IFundiEngagement {
     fundiProfileId: number;
     firstName: string;
     lastName: string;
     numberOfAssignments: number;
+}
+export interface IClientFundiContract {
+    clientFundiContractId: number;
+    clientUsername: string;
+    clientFirstName: string;
+    clientLastName: string;
+    clientProfileId: number;
+    fundiProfileId: number;
+    fundiUsername: string;
+    fundiFirstName: string;
+    fundiLastName: string;
+    contractualDescription: string;
+    isSignedByClient: boolean;
+    isSignedByFundi: boolean;
+    isCompleted: boolean;
+    isSignedOffByClient: boolean;
+    notesForNotice: string;
+    agreedStartDate: string;
+    agreedEndDate: string;
+    agreedCost: number;
 }
 
 export interface IPagingContent {

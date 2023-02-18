@@ -6,9 +6,13 @@
                 <div id="fundiCategories">
                 </div>
             </div><br />
-            <input type="button" value="Search Jobs By Categories" class="but-primary" (click)="searchJobsByCategories($event)" />
-        </form>
-        <br/>
+            <input type="button" value="More Search Results Jobs By Categories" class="but-primary" (click)="searchJobsByCategories($event)" />
+            <br />
+        </form> 
+    </section>
+    <section style="text-align:center !important;">
+        <em style="font-weight:bolder !important;">View Jobs In your current locality travel zone.</em><br/>
+        <input type="button" value="More Search Results Jobs within locality" class="but-primary" (click)="seachJobsByCurrentGeoLocation($event)" />
     </section>
     <div>
         <paging [pagingContentModel]="pagingContentModel" (searchEventEmitter)="searchCommand($event)"></paging><br/>

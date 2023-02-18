@@ -1,4 +1,5 @@
-﻿using MyFundi.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using MyFundi.Domain;
 using MyFundi.Services.RepositoryServices.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace MyFundi.Services.RepositoryServices.Concretes
 
         public override ClientFundiContract GetById(int id)
         {
-            return MyFundiDBContext.ClientFundiContracts.SingleOrDefault(p => p.ClientFundiContractId == id);
+            return MyFundiDBContext.ClientFundiContracts.Where(p => p.ClientFundiContractId == id).Include(q=> q.FundiProfile).Include(q=> q.ClientProfile).FirstOrDefault();
         }
 
         public override bool Update(ClientFundiContract toUpdate)
@@ -39,14 +40,18 @@ namespace MyFundi.Services.RepositoryServices.Concretes
             {
                 var cert = GetById(toUpdate.ClientFundiContractId);
                 cert.ContractualDescription = toUpdate.ContractualDescription;
-                cert.ClientUserId = toUpdate.ClientUserId;
+                cert.ClientProfileId = toUpdate.ClientProfileId;
                 cert.DateUpdated = toUpdate.DateUpdated;
-                cert.FundiUserId = toUpdate.FundiUserId;
+                cert.FundiProfileId = toUpdate.FundiProfileId;
                 cert.NotesForNotice = toUpdate.NotesForNotice;
+                cert.IsSignedByClient = toUpdate.IsSignedByClient;
+                cert.IsSignedByFundi = toUpdate.IsSignedByFundi;
                 cert.IsCompleted = toUpdate.IsCompleted;
                 cert.IsSignedOffByClient = toUpdate.IsSignedOffByClient;
                 cert.NumberOfDaysToComplete = toUpdate.NumberOfDaysToComplete;
                 cert.AgreedCost = toUpdate.AgreedCost;
+                cert.AgreedStartDate = toUpdate.AgreedStartDate;
+                cert.AgreedEndDate = toUpdate.AgreedEndDate;
                 cert.DateUpdated = toUpdate.DateUpdated;
                 return true;
             }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IClientProfile, IWorkSubCategory, IWorkAndSubWorkCategory, IPagingContent } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IFundiRatingDictionary, IJob, ICoordinate, IClientProfile, IWorkSubCategory, IWorkAndSubWorkCategory, IPagingContent, IFundiLocationMonitor, ISubscription } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AddressLocationGeoCodeService } from '../../services/AddressLocationGeoCodeService';
@@ -19,7 +19,7 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
     workCategories: IWorkCategory[];
     categories: string;
     fundiJobList: any[] = [];
-    listToShow: any[];
+    listToShow: [];
     fundiWorkCategories: string[];
     distanceKmLimitApart: number;
     skip: number;
@@ -29,6 +29,9 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
     numberOfResultsPerPage: number;
     currentPage: number;
     numberOfPageJumps: number;
+    isSearchingOnLocality: boolean;
+    numberOfResultsSet: 20;
+    numberOfResultSetToSkip: 0;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
@@ -58,101 +61,119 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
         let workCatObs: Observable<IWorkCategory[]> = this.myFundiService.GetWorkCategories();
         workCatObs.map((workCats: IWorkCategory[]) => {
             this.workCategories = workCats;
+            this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+            this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+            let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
 
-            //Dynamic check boxes for Categories To Search for:
-            let divFundiCategories: HTMLElement = document.querySelector('#fundiSearchForm div#fundiCategories');
+            resObs.map((fundiProf: IProfile) => {
+                let fundiSubsObs: Observable<ISubscription[]> = this.myFundiService.GetAllFundiSubscriptions(fundiProf.fundiProfileId);
+                fundiSubsObs.map((q: ISubscription[]) => {
+                    q.forEach((sub: ISubscription, ind: number) => {
 
-            this.workCategories.forEach((cat) => {
-                let chBoxLabel = document.createElement('label');
-                chBoxLabel.textContent = cat.workCategoryType;
-                let chBox = document.createElement('input');
-                let type = document.createAttribute('type');
-                let value = document.createAttribute('value');
-                let attrName = document.createAttribute('name');
-                let cbzindex = document.createAttribute('style');
-                cbzindex.value = "z-index: 1";
-                value.value = cat.workCategoryId.toString();
-                type.value = "checkbox";
-                chBox.attributes.setNamedItem(type);
-                chBox.attributes.setNamedItem(value);
-                chBox.attributes.setNamedItem(cbzindex);
+                        //Dynamic check boxes for Categories To Search for:
+                        let divFundiCategories: HTMLElement = document.querySelector('#fundiSearchForm div#fundiCategories');
 
-                attrName.value = cat.workCategoryType.toString();
-                chBox.attributes.setNamedItem(attrName);
-                let hr = document.createElement('hr');
-                let br = document.createElement('br');
-                chBoxLabel.className = 'custom-control-label';
-                chBox.className = 'custom-control-input';
-                let divWrapper = document.createElement('div');
-                let divFormGroup = document.createElement('div');
-                divFormGroup.className = "form-group";
-                divWrapper.className = "custom-control custom-checkbox";
+                        for (let id = 0; id < sub.workCategoryAndSubCategoryIds.length; id++) {
 
-                divWrapper.appendChild(chBox);
-                divWrapper.appendChild(chBoxLabel);
-                divWrapper.appendChild(br);
-                divWrapper.appendChild(hr);
+                            this.workCategories.forEach((cat) => {
+                                if (sub.workCategoryAndSubCategoryIds[id].workCategoryId == cat.workCategoryId) {
 
-                let ul = document.createElement('ul');
-                let li = document.createElement('li');
-                ul.setAttribute('class', 'ulCategories');
-                divFormGroup.appendChild(divWrapper);
-                li.append(divFormGroup)
-                ul.appendChild(li)
-                divFundiCategories.appendChild(ul);
+                                    let chBoxLabel = document.createElement('label');
+                                    chBoxLabel.textContent = cat.workCategoryType;
+                                    let chBox = document.createElement('input');
+                                    let type = document.createAttribute('type');
+                                    let value = document.createAttribute('value');
+                                    let attrName = document.createAttribute('name');
+                                    let cbzindex = document.createAttribute('style');
+                                    cbzindex.value = "z-index: 1";
+                                    value.value = cat.workCategoryId.toString();
+                                    type.value = "checkbox";
+                                    chBox.attributes.setNamedItem(type);
+                                    chBox.attributes.setNamedItem(value);
+                                    chBox.attributes.setNamedItem(cbzindex);
 
-                let workSubCatObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
-                workSubCatObs.map((workSubCats: IWorkSubCategory[]) => {
-                    let workSubCategories = workSubCats;
+                                    attrName.value = cat.workCategoryType.toString();
+                                    chBox.attributes.setNamedItem(attrName);
+                                    let hr = document.createElement('hr');
+                                    let br = document.createElement('br');
+                                    chBoxLabel.className = 'custom-control-label';
+                                    chBox.className = 'custom-control-input';
+                                    let divWrapper = document.createElement('div');
+                                    let divFormGroup = document.createElement('div');
+                                    divFormGroup.className = "form-group";
+                                    divWrapper.className = "custom-control custom-checkbox";
 
-                    //Dynamic check boxes for Categories To Search for:
+                                    divWrapper.appendChild(chBox);
+                                    divWrapper.appendChild(chBoxLabel);
+                                    divWrapper.appendChild(br);
+                                    divWrapper.appendChild(hr);
 
-                    let ul2 = document.createElement('ul');
-                    ul2.setAttribute('class', 'ulSubCategories');
+                                    let ul = document.createElement('ul');
+                                    let li = document.createElement('li');
+                                    ul.setAttribute('class', 'ulCategories');
+                                    divFormGroup.appendChild(divWrapper);
+                                    li.append(divFormGroup)
+                                    ul.appendChild(li)
+                                    divFundiCategories.appendChild(ul);
 
-                    let li2 = document.createElement('li');
+                                    let workSubCatObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
+                                    workSubCatObs.map((workSubCats: IWorkSubCategory[]) => {
+                                        let workSubCategories = workSubCats;
+                                        let subCatIds: number[] = sub.workCategoryAndSubCategoryIds[id].workSubCategoryIds;
+                                        //Dynamic check boxes for Categories To Search for:
+                                        let ul2 = document.createElement('ul');
+                                        ul2.setAttribute('class', 'ulSubCategories');
 
-                    workSubCategories.forEach((cat) => {
-                        let chBoxLabel = document.createElement('label');
-                        chBoxLabel.textContent = cat.workSubCategoryType;
-                        let chBox = document.createElement('input');
-                        let type = document.createAttribute('type');
-                        let value = document.createAttribute('value');
-                        let attrName = document.createAttribute('name');
-                        let cbzindex = document.createAttribute('style');
-                        cbzindex.value = "z-index: 1";
-                        value.value = cat.workSubCategoryType;
-                        type.value = "checkbox";
-                        chBox.attributes.setNamedItem(type);
-                        chBox.attributes.setNamedItem(value);
-                        chBox.attributes.setNamedItem(cbzindex);
+                                        let li2 = document.createElement('li');
 
-                        attrName.value = cat.workSubCategoryType;
-                        chBox.attributes.setNamedItem(attrName);
-                        let hr = document.createElement('hr');
-                        let br = document.createElement('br');
-                        chBoxLabel.className = 'custom-control-label';
-                        chBox.className = 'custom-control-input';
-                        let divWrapper = document.createElement('div');
-                        let divFormGroup = document.createElement('div');
-                        divFormGroup.className = "form-group";
-                        divWrapper.className = "custom-control custom-checkbox";
+                                        workSubCategories.forEach((cat) => {
+                                            if (subCatIds.indexOf(cat.workSubCategoryId) > -1) {
+                                                let chBoxLabel = document.createElement('label');
+                                                chBoxLabel.textContent = cat.workSubCategoryType;
+                                                let chBox = document.createElement('input');
+                                                let type = document.createAttribute('type');
+                                                let value = document.createAttribute('value');
+                                                let attrName = document.createAttribute('name');
+                                                let cbzindex = document.createAttribute('style');
+                                                cbzindex.value = "z-index: 1";
+                                                value.value = cat.workSubCategoryType;
+                                                type.value = "checkbox";
+                                                chBox.attributes.setNamedItem(type);
+                                                chBox.attributes.setNamedItem(value);
+                                                chBox.attributes.setNamedItem(cbzindex);
 
-                        divWrapper.appendChild(chBox);
-                        divWrapper.appendChild(chBoxLabel);
-                        divWrapper.appendChild(br);
-                        divFormGroup.append(divWrapper);
-                        li2.appendChild(divFormGroup);
-                        li2.appendChild(hr);
-                        ul2.appendChild(li2);
-                        li.appendChild(ul2);
+                                                attrName.value = cat.workSubCategoryType;
+                                                chBox.attributes.setNamedItem(attrName);
+                                                let hr = document.createElement('hr');
+                                                let br = document.createElement('br');
+                                                chBoxLabel.className = 'custom-control-label';
+                                                chBox.className = 'custom-control-input';
+                                                let divWrapper = document.createElement('div');
+                                                let divFormGroup = document.createElement('div');
+                                                divFormGroup.className = "form-group";
+                                                divWrapper.className = "custom-control custom-checkbox";
+
+                                                divWrapper.appendChild(chBox);
+                                                divWrapper.appendChild(chBoxLabel);
+                                                divWrapper.appendChild(br);
+                                                divFormGroup.append(divWrapper);
+                                                li2.appendChild(divFormGroup);
+                                                li2.appendChild(hr);
+                                                ul2.appendChild(li2);
+                                                li.appendChild(ul2);
+                                            }
+                                        });
+                                        li.appendChild(hr);
+
+                                    }).subscribe();
+                                }
+                            });
+                        }
                     });
-                    li.appendChild(hr);
-
                 }).subscribe();
-            });
-        }).subscribe();
 
+            }).subscribe();
+        }).subscribe();
     }
     constructor(private myFundiService: MyFundiService, private addressLocationService: AddressLocationGeoCodeService, private router: Router) {
     }
@@ -166,8 +187,67 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
     roundPositiveNumberTo2DecPlaces(num: number): number {
         return this.addressLocationService.roundPositiveNumberTo2DecPlaces(num);
     }
+    seachJobsByCurrentGeoLocation($event) {
+        this.numberOfResultsSet = 20;
+        this.numberOfResultSetToSkip = 0;
+        this.isSearchingOnLocality = true;
+        let curthis = this;
+        this.fundiJobList = [];
+        let chosenCategories: string[] = [];
+        let viewObjects: any[] = [];
+        let categories = jQuery('form#fundiSearchForm div#fundiCategories ul.ulCategories > li > div > div > input[type="checkbox"]:checked');
+        categories.each(function (ind, elem) {
+
+            chosenCategories.push(elem.name);
+
+            let chosenSubCategories: string[] = [];
+            let subCategories = jQuery('form#fundiSearchForm div#fundiCategories ul.ulSubCategories > li > div > div > input[type="checkbox"]:checked');
+            subCategories.each(function (ind, elem) {
+
+                chosenSubCategories.push(elem.name);
+                viewObjects.push({ username: MyFundiService.clientEmailAddress, workCategories: chosenCategories, workSubCategories: chosenSubCategories, coordinate: { latitude: 0, longitude: 0 }, fundiProfileId: -1 });
+            });
+        });
+        let fundiLocObs: Observable<IFundiLocationMonitor> = this.myFundiService.GetFundiRealTimeLocationsByUsername(this.userDetails.username.toLowerCase());
+
+        fundiLocObs.map((flocMon: IFundiLocationMonitor) => {
+
+            if (flocMon) {
+                let profObs: Observable<IProfile> = this.myFundiService.GetFundiProfileByUsername(flocMon.username);
+                profObs.map((pr: IProfile) => {
+                    if (pr) {
+                        viewObjects[0].coordinate = { latitude: flocMon.latitude, longitude: flocMon.longitude };
+                        viewObjects[0].fundiProfileId = pr.fundiProfileId;
+                        let fundiJobsObs: Observable<[]> = this.myFundiService.GetJobsByCategoriesAndFundiUserGeoLocation(viewObjects, pr.fundiProfileId, this.distanceKmLimitApart, this.numberOfResultSetToSkip, this.numberOfResultsSet);
+                        this.numberOfResultSetToSkip += (this.numberOfResultsSet + 1);
+
+                        fundiJobsObs.map((q: []) => {
+
+                            if (q && q.length > 0 && this.isSearchingOnLocality) {
+                                this.listToShow = q;
+                                this.showFirstPage();
+                            } else {
+                                this.numberOfResultSetToSkip = 0;
+                                alert("There are currently no jobs that match your\ncriteria within your chosen location!");
+                            }
+
+                            this.isSearchingOnLocality = false;
+                        }).subscribe();
+                    }
+                    else {
+
+                        this.numberOfResultSetToSkip = 0;
+                        alert("You are current location not being monitored on map!!\nPlease use android app to start monitoring.");
+                    }
+                }).subscribe();
+            }
+
+        }).subscribe();
+        $event.stopPropagation();
+    }
+
     searchJobsByCategories($event) {
-;
+
         let curthis = this;
         this.fundiJobList = [];
         let chosenCategories: string[] = [];
@@ -198,17 +278,16 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
                     viewObjects[n].coordinate.latitude = r.latitude;
                     viewObjects[n].coordinate.longitude = r.longitude;
                 }
-                let fundiJobsObs: Observable<any[]> = this.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, this.distanceKmLimitApart, this.skip, this.take);
+                let fundiJobsObs: Observable<[]> = this.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, this.distanceKmLimitApart, this.numberOfResultSetToSkip, this.numberOfResultsSet);
+                this.numberOfResultSetToSkip += (this.numberOfResultsSet + 1);
 
-                fundiJobsObs.map((n: any) => {
-                    debugger;
-                    let q: any[] = n;
-                    debugger
+                fundiJobsObs.map((q: []) => {
                     if (q && q.length > 0) {
                         this.listToShow = q;
                         this.showFirstPage();
                     } else {
-                        alert("There are currently no jobs that match your criteria within 5Km of your chosen location!")
+                        this.numberOfResultSetToSkip = 0;
+                        alert("There are currently no jobs that match your\ncriteria within your chosen location!")
                     }
 
                 }).subscribe();

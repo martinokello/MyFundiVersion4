@@ -1,3 +1,11 @@
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.csproj.AssemblyReference.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.GeneratedMSBuildEditorConfig.editorconfig
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.AssemblyInfoInputs.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.AssemblyInfo.cs
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.csproj.CoreCompileInputs.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.MvcApplicationPartsAssemblyInfo.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.RazorAssemblyInfo.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.RazorAssemblyInfo.cs
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\extLibs\EpsilonCryptoSystemEngine.dll.config
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\web.config
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\appsettings.json
@@ -123,15 +131,6 @@ C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\SimbaToursEa
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\SimbaToursEastAfrica.SocialMedia.dll.config
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\Twitter.pdb
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\EpsilonCryptoSystemEngine.dll.config
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.csproj.AssemblyReference.cache
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.GeneratedMSBuildEditorConfig.editorconfig
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.AssemblyInfoInputs.cache
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.AssemblyInfo.cs
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.csproj.CoreCompileInputs.cache
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.MvcApplicationPartsAssemblyInfo.cs
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.MvcApplicationPartsAssemblyInfo.cache
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.RazorAssemblyInfo.cache
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.RazorAssemblyInfo.cs
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\MyFundi.Web.StaticWebAssets.Manifest.cache
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\MyFundi.Web.StaticWebAssets.xml
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\scopedcss\bundle\MyFundi.Web.styles.css
@@ -147,3 +146,4 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.pdb
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.genruntimeconfig.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.MvcApplicationPartsAssemblyInfo.cs

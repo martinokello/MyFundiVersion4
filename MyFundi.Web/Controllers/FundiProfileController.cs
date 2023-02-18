@@ -292,7 +292,22 @@ namespace MyFundi.Web.Controllers
 
             return await Task.FromResult(Ok(new { Message = "Fundi Courses updated" }));
         }
-        
+
+        [Route("~/FundiProfile/GetFundiProfileByUsername/{username}")]
+        public async Task<IActionResult> GetFundiProfileByUsername(string username)
+        {
+            var user = _unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(username.ToLower()));
+            if (user != null)
+            {
+                var fundiProfile = _unitOfWork._fundiProfileRepository.GetAll().FirstOrDefault(q => q.UserId.Equals(user.UserId));
+
+                if (fundiProfile != null)
+                {
+                    return await Task.FromResult(Ok(_mapper.Map<FundiProfileViewModel>(fundiProfile)));
+                }
+            }
+            return await Task.FromResult(NotFound(null));
+        }
         [Route("~/FundiProfile/GetFundiProfileByProfileId/{profileId}")]
         public async Task<IActionResult> GetFundiProfileByProfileId(int profileId)
         {
@@ -410,6 +425,97 @@ namespace MyFundi.Web.Controllers
         }
 
 
+        [HttpPost]
+        [AuthorizeIdentity]
+        public async Task<IActionResult> CreateContract([FromBody] ClientFundiContractViewModel clientFundiContractViewModel)
+        {
+            try
+            {
+                var clientFundiContr = _mapper.Map<ClientFundiContract>(clientFundiContractViewModel);
+
+                _unitOfWork._clientFundiContractRepository.Insert(clientFundiContr);
+                _unitOfWork.SaveChanges();
+                return await Task.FromResult(Ok(new { Message = "Contract Created!", Result = true }));
+            }
+            catch(Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Failed To Create Contract!", Result=false }));
+            }
+
+        }
+        [HttpPost]
+        [AuthorizeIdentity]
+        public async Task<IActionResult> UpdateContract([FromBody] ClientFundiContractViewModel clientFundiContractViewModel)
+        {
+            try
+            {
+                var clientFundiContr = _mapper.Map<ClientFundiContract>(clientFundiContractViewModel);
+
+                var result = _unitOfWork._clientFundiContractRepository.Update(clientFundiContr);
+                _unitOfWork.SaveChanges();
+                if (result)
+                {
+                    return await Task.FromResult(Ok(new { Message = "Contract Updated!", Result = result }));
+                }
+                else
+                {
+                    return await Task.FromResult(Ok(new { Message = "Failed To Update Contract!", Result = result }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Failed To Create Contract!", Result = false }));
+            }
+
+        }
+        [AuthorizeIdentity]
+        [HttpGet]
+        [Route("~/FundiProfile/DeleteContract/{contractId}")]
+        public async Task<IActionResult> DeleteContract(int contractId)
+        {
+            try
+            {
+                var clientFundiContr = _unitOfWork._clientFundiContractRepository.GetById(contractId);
+                if (clientFundiContr != null)
+                {
+                    var result = _unitOfWork._clientFundiContractRepository.Delete(clientFundiContr);
+                    return await Task.FromResult(Ok(new { Message = "Contract Deleted", Result = result }));
+                }
+                else
+                {
+                    return await Task.FromResult(NotFound(new { Message = "Contract not found", Result = false }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Failed To Create Contract!", Result = false }));
+            }
+
+        }
+        [AuthorizeIdentity]
+        [HttpGet]
+        [Route("~/FundiProfile/SelectContract/{contractId}")]
+        public async Task<IActionResult> SelectContract(int contractId)
+        {
+            try
+            {
+                var clientFundiContr = _unitOfWork._clientFundiContractRepository.GetById(contractId);
+                if(clientFundiContr != null)
+                {
+                    var clientFundiContractViewModel = _mapper.Map<ClientFundiContractViewModel>(clientFundiContr);
+                    return await Task.FromResult(Ok(clientFundiContractViewModel));
+                }
+                else
+                {
+                    return await Task.FromResult(NotFound(new { Message="Contract not found", Result=false}));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Failed To Create Contract!", Result = false }));
+            }
+
+        }
         [AuthorizeIdentity]
         public async Task<IActionResult> RateFundiByProfileId([FromBody] FundiRatingAndReviewViewModel fundiRatingReview)
         {
@@ -425,7 +531,180 @@ namespace MyFundi.Web.Controllers
 
             return await Task.FromResult(Ok(new { Message = "Fundi Profile Rated!" }));
         }
+        [AuthorizeIdentity]
+        [HttpGet]
+        [Route("~/FundiProfile/GetFundiSubscriptionsByFundiId/{fundiProfileId}")]
+        public async Task<IActionResult> GetFundiSubscriptionsByFundiId(int fundiProfileId)
+        {
+            try
+            {
+                var subscriptions = _unitOfWork._monthlySubscriptionRepository.GetAll().Where(q => q.FundiProfileId == fundiProfileId).ToArray();
+                if (subscriptions.Any())
+                {
+                    List<WorkCategoryAndSubCategoryIdsTo> wkCatSubCatIds = new List<WorkCategoryAndSubCategoryIdsTo>();
+                    var monthlySubscriptions = _mapper.Map<MonthlySubscriptionViewModel[]>(subscriptions);
+                    foreach (var monthlySubscription in monthlySubscriptions)
+                    {
+                        var actuGranularSubscs = _unitOfWork._fundiSubscriptionRepository.GetAll().Where(q => q.MonthlySubscriptionId == monthlySubscription.MonthlySubscriptionId).ToArray();
 
+                        var grps = actuGranularSubscs.GroupBy(q => q.FundiWorkCategoryId);
+                        foreach (var g in grps)
+                        {
+                            var wkSubCatsIds = new List<int>();
+                            WorkCategoryAndSubCategoryIdsTo wCat = new WorkCategoryAndSubCategoryIdsTo();
+                            wCat.WorkCategoryId = g.Key;
+                            foreach(var gp in g.AsEnumerable())
+                            {
+                                wkSubCatsIds.Add(gp.FundiWorkSubCategoryId);
+                            }
+                            wCat.WorkSubCategoryIds = wkSubCatsIds.ToArray();
+
+                            wkCatSubCatIds.Add(wCat);
+                        }
+                        monthlySubscription.WorkCategoryAndSubCategoryIds = wkCatSubCatIds.ToArray();
+                    }
+
+                    return await Task.FromResult(Ok(monthlySubscriptions));
+                }
+                else
+                {
+                    return await Task.FromResult(NotFound(new { Message = "Subscription Not Found", Result = false }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Bad Request", Result = false }));
+            }
+        }
+
+        [AuthorizeIdentity]
+        [HttpGet]
+        [Route("~/FundiProfile/GetFundiSubscriptionById/{subscriptionId}")]
+        public async Task<IActionResult> GetFundiSubscriptionById(int subscriptionId)
+        {
+            try
+            {
+                var monthlySubscription = _unitOfWork._fundiSubscriptionRepository.GetAll().Where(q => q.MonthlySubscriptionId == subscriptionId).Include(q => q.MonthlySubscription).FirstOrDefault();
+                List<WorkCategoryAndSubCategoryIdsTo> wkCatSubCatIds = new List<WorkCategoryAndSubCategoryIdsTo>();
+                var monthlySubscriptionViewModel = _mapper.Map<MonthlySubscriptionViewModel>(monthlySubscription);
+                
+                if(monthlySubscription != null)
+                {
+                    var actuGranularSubscs = _unitOfWork._fundiSubscriptionRepository.GetAll().Where(q => q.MonthlySubscriptionId == monthlySubscription.MonthlySubscriptionId).ToArray();
+
+                    var grps = actuGranularSubscs.GroupBy(q => q.FundiWorkCategoryId);
+                    foreach (var g in grps)
+                    {
+                        var wkSubCatsIds = new List<int>();
+                        WorkCategoryAndSubCategoryIdsTo wCat = new WorkCategoryAndSubCategoryIdsTo();
+                        wCat.WorkCategoryId = g.Key;
+                        foreach (var gp in g.AsEnumerable())
+                        {
+                            wkSubCatsIds.Add(gp.FundiWorkSubCategoryId);
+                        }
+                        wCat.WorkSubCategoryIds = wkSubCatsIds.ToArray();
+
+                        wkCatSubCatIds.Add(wCat);
+                    }
+                    monthlySubscriptionViewModel.WorkCategoryAndSubCategoryIds = wkCatSubCatIds.ToArray();
+                    return await Task.FromResult(Ok(monthlySubscriptionViewModel));
+                }
+                else
+                {
+                    return await Task.FromResult(NotFound(new { Message = "Subscription Not Found", Result = false }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Bad Request", Result = false }));
+            }
+        }
+        [AuthorizeIdentity]
+        [HttpGet]
+        [Route("~/FundiProfile/DeleteFundiSubscriptionById/{subscriptionId}")]
+        public async Task<IActionResult> DeleteFundiSubscriptionById(int subscriptionId)
+        {
+            try
+            {
+                var subscriptions = _unitOfWork._fundiSubscriptionRepository.GetAll().Where(q => q.MonthlySubscriptionId == subscriptionId).Include(q => q.MonthlySubscription).ToArray();
+                if (subscriptions.Any())
+                {
+                    var monthlySubscription = subscriptions.First().MonthlySubscription;
+                    if (monthlySubscription != null)
+                    {
+                        foreach (var fundiSubcription in subscriptions)
+                        {
+                            _unitOfWork._fundiSubscriptionRepository.Delete(fundiSubcription);
+                            _unitOfWork.SaveChanges();
+                        }
+                        _unitOfWork._monthlySubscriptionRepository.Delete(monthlySubscription);
+                        _unitOfWork.SaveChanges();
+                        return await Task.FromResult(Ok(new { Message = "Deleted Subscription", Result = true }));
+                    }
+                    else
+                    {
+                        return await Task.FromResult(NotFound(new { Message = "Subscription Not Found", Result = false }));
+                    }
+                }
+                else
+                {
+                    return await Task.FromResult(NotFound(new { Message = "Subscription Not Found", Result = false }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Bad Request", Result = false }));
+            }
+        }
+
+        [AuthorizeIdentity]
+        [HttpPost]
+        public async Task<IActionResult> UpdateFundiSubscription([FromBody] MonthlySubscriptionViewModel monthlySubscription)
+        {
+            try
+            {
+                var subscriptions = _unitOfWork._fundiSubscriptionRepository.GetAll().Where(q => q.MonthlySubscriptionId == monthlySubscription.MonthlySubscriptionId).Include(q => q.MonthlySubscription).ToArray();
+                if (subscriptions.Any())
+                {
+                    var actualMonthlySubscription = subscriptions.First().MonthlySubscription;
+                    if (monthlySubscription != null)
+                    {
+                        foreach (var fundiSubcription in subscriptions)
+                        {
+                            _unitOfWork._fundiSubscriptionRepository.Delete(fundiSubcription);
+                            _unitOfWork.SaveChanges();
+                        }
+                        foreach (var wcId in monthlySubscription.WorkCategoryAndSubCategoryIds)
+                        {
+                            foreach (var wscId in wcId.WorkSubCategoryIds)
+                            {
+                                var fundiSubscription = _mapper.Map<FundiSubscription>(monthlySubscription);
+                                fundiSubscription.MonthlySubscriptionId = monthlySubscription.MonthlySubscriptionId;
+                                fundiSubscription.FundiWorkCategoryId = wcId.WorkCategoryId;
+                                fundiSubscription.FundiWorkSubCategoryId = wscId;
+                                _unitOfWork._fundiSubscriptionRepository.Insert(fundiSubscription);
+                                _unitOfWork.SaveChanges();
+                            }
+                        }
+                        _unitOfWork._monthlySubscriptionRepository.Update(actualMonthlySubscription);
+                        _unitOfWork.SaveChanges();
+                        return await Task.FromResult(Ok(new { Message = "Updated Subscription", Result = true }));
+                    }
+                    else
+                    {
+                        return await Task.FromResult(NotFound(new { Message = "Subscription Not Found", Result = false }));
+                    }
+                }
+                else
+                {
+                    return await Task.FromResult(NotFound(new { Message = "Subscription Not Found", Result = false }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Bad Request", Result = false }));
+            }
+        }
         [AuthorizeIdentity]
         [HttpPost]
         [Route("~/FundiProfile/PayMonthlySubscriptionFeeWithPaypal")]
@@ -438,31 +717,33 @@ namespace MyFundi.Web.Controllers
                     var subscription = _mapper.Map<MonthlySubscription>(subscriptionViewModel);
                     var paymentsManager = this.PaymentsManager;
 
-                    var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product> {
-                    new Product{
-                        Amount = subscriptionViewModel.SubscriptionFee,
-                        HasPaidInfull = true,
-                        Quantity= 1,
-                        VATAmmount=(decimal) 0,
-                        ProductName = subscriptionViewModel.SubscriptionName,
-                        ProductDescription = subscriptionViewModel.SubscriptionDescription
-                    }
+                    var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product>
+                    {
+                        new Product{
+                            Amount = subscriptionViewModel.SubscriptionFee,
+                            HasPaidInfull = true,
+                            Quantity= 1,
+                            VATAmmount=(decimal) 0,
+                            ProductName = subscriptionViewModel.SubscriptionName,
+                            ProductDescription = subscriptionViewModel.SubscriptionDescription
+                        }
 
-                });
+                    });
                     _unitOfWork._monthlySubscriptionRepository.Insert(subscription);
                     _unitOfWork.SaveChanges();
-                    var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
-                    fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
-                    foreach(var wcId in subscriptionViewModel.WorkCategoryAndSubCategoryIds)
+                    foreach (var wcId in subscriptionViewModel.WorkCategoryAndSubCategoryIds)
                     {
-                        foreach(var wscId in wcId.WorkSubCategoryIds)
+                        foreach (var wscId in wcId.WorkSubCategoryIds)
                         {
+                            var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
+                            fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
                             fundiSubscription.FundiWorkCategoryId = wcId.WorkCategoryId;
                             fundiSubscription.FundiWorkSubCategoryId = wscId;
                             _unitOfWork._fundiSubscriptionRepository.Insert(fundiSubscription);
                             _unitOfWork.SaveChanges();
                         }
                     }
+                    transaction.Commit();
                     return await Task.FromResult(Ok(new { Message = "Inserted Subscription", PayPalRedirectUrl = paypalRequestUrl }));
                 }
             }
@@ -498,18 +779,19 @@ namespace MyFundi.Web.Controllers
                     });
                     _unitOfWork._monthlySubscriptionRepository.Insert(subscription);
                     _unitOfWork.SaveChanges();
-                    var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
-                    fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
                     foreach (var wcId in subscriptionViewModel.WorkCategoryAndSubCategoryIds)
                     {
                         foreach (var wscId in wcId.WorkSubCategoryIds)
                         {
+                            var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
+                            fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
                             fundiSubscription.FundiWorkCategoryId = wcId.WorkCategoryId;
                             fundiSubscription.FundiWorkSubCategoryId = wscId;
                             _unitOfWork._fundiSubscriptionRepository.Insert(fundiSubscription);
                             _unitOfWork.SaveChanges();
                         }
                     }
+                    transaction.Commit();
                     return await Task.FromResult(Ok(mtnAirtelObject));
                 }
             }
@@ -531,7 +813,7 @@ namespace MyFundi.Web.Controllers
                     var subscription = _mapper.Map<MonthlySubscription>(subscriptionViewModel);
                     var paymentsManager = this.PaymentsManager;
 
-                    var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product> 
+                    var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
                     {
                         new Product{
                             Amount = subscriptionViewModel.SubscriptionFee,
@@ -545,18 +827,19 @@ namespace MyFundi.Web.Controllers
                     });
                     _unitOfWork._monthlySubscriptionRepository.Insert(subscription);
                     _unitOfWork.SaveChanges();
-                    var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
-                    fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
                     foreach (var wcId in subscriptionViewModel.WorkCategoryAndSubCategoryIds)
                     {
                         foreach (var wscId in wcId.WorkSubCategoryIds)
                         {
+                            var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
+                            fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
                             fundiSubscription.FundiWorkCategoryId = wcId.WorkCategoryId;
                             fundiSubscription.FundiWorkSubCategoryId = wscId;
                             _unitOfWork._fundiSubscriptionRepository.Insert(fundiSubscription);
                             _unitOfWork.SaveChanges();
                         }
                     }
+                    transaction.Commit();
                     return await Task.FromResult(Ok(mtnAirtelObject));
                 }
             }
@@ -635,7 +918,7 @@ namespace MyFundi.Web.Controllers
                 }
                 else
                 {
-                    return await Task.FromResult(NotFound(new string[] { }));
+                    return await Task.FromResult(Ok(new string[] { }));
                 }
             }
             catch (Exception ex)
@@ -664,7 +947,7 @@ namespace MyFundi.Web.Controllers
                     workSubCatagories.AddRange(item.WorkSubCategories);
                 }
                 var wkCatArry = workCategories.Union(new List<string> { "" }).ToArray();
-                var wkSubCatArry = workSubCatagories.Union(new List<string>{""}).ToArray();
+                var wkSubCatArry = workSubCatagories.Union(new List<string> { "" }).ToArray();
 
                 var reviewCateg = _unitOfWork.MyFundiDBContext.GetFundiAvgRatingsAndJobWithinDistance(clientProfileId, jobId, wkCatArry, wkSubCatArry, distanceKmLimitApart, skip, take);
 
@@ -706,7 +989,149 @@ namespace MyFundi.Web.Controllers
                 }
                 else
                 {
-                    return await Task.FromResult(NotFound(new string[] { }));
+                    return await Task.FromResult(Ok(new string[] { }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new string[] { }));
+            }
+        }
+        [AuthorizeIdentity]
+        [HttpPost]
+        [Route("~/FundiProfile/JobsByCategoriesAndFundiUserGeoLocation/{fundiProfileId}/{distanceKmLimitApart}/{skip}/{take}")]
+        public async Task<IActionResult> JobsByCategoriesAndFundiUserGeoLocation([FromBody] CategoriesViewModel[] categoriesViewModel, int fundiProfileId, float distanceKmLimitApart = 500000000, int skip = 0, int take = 5)
+        {
+
+            List<dynamic> resMerged = new List<dynamic>();
+            var listCoords = new List<CoordinateTo>();
+            try
+            {
+                var workCategories = new List<string>();
+                var workSubCatagories = new List<string>();
+
+                foreach (var item in categoriesViewModel)
+                {
+                    workCategories.AddRange(item.WorkCategories);
+                    workSubCatagories.AddRange(item.WorkSubCategories);
+                    listCoords.Add(new CoordinateTo { ProfileId = item.FundiProfileId, Latitude = item.Coordinate.Latitude, Longitude = item.Coordinate.Longitude });
+                }
+
+                var wkCatArry = workCategories.Union(new List<string> { "" }).ToArray();
+                var wkSubCatArry = workSubCatagories.Union(new List<string> { "" }).ToArray();
+
+                var reviewCateg = _unitOfWork.MyFundiDBContext.GetJobsByFundiWorkCategoriesWithinDistanceGeoLocation(wkCatArry, wkSubCatArry, listCoords.ToArray(), distanceKmLimitApart, skip, take);
+
+
+                if (reviewCateg.Any())
+                {
+                    var results = reviewCateg.GroupBy(res => (res.FundiProfileId, res.FundiUserId, res.FundiUsername, res.FundiFirstName, res.FundiLastName, res.FundiLocationId,
+                    res.FundiProfileSummary, res.FundiSkills, res.FundiUsedPowerTools, res.FundiLocationName, res.ClientUsername, res.JobId, res.JobLocationId,
+                    res.JobName, res.JobDescription, res.ClientFirstName, res.ClientLastName, res.JobLocationName, res.DistanceApart)).
+                    Select(g => new
+                    {
+                        FundiProfileId = g.Key.FundiProfileId,
+                        FundiUserId = g.Key.FundiUserId,
+                        FundiUsername = g.Key.FundiUsername,
+                        FundiFirstName = g.Key.FundiFirstName,
+                        FundiLastName = g.Key.FundiLastName,
+                        FundiLocationId = g.Key.FundiLocationId,
+                        FundiProfileSummary = g.Key.FundiProfileSummary,
+                        FundiSkills = g.Key.FundiSkills,
+                        FundiUsedPowerTools = g.Key.FundiUsedPowerTools,
+                        FundiLocationName = g.Key.FundiLocationName,
+                        ClientUserName = g.Key.ClientUsername,
+                        ClientFirstName = g.Key.ClientFirstName,
+                        ClientLastName = g.Key.ClientLastName,
+                        JobId = g.Key.JobId,
+                        JobLocationId = g.Key.JobLocationId,
+                        JobName = g.Key.JobName,
+                        JobDescription = g.Key.JobDescription,
+                        JobLocationName = g.Key.JobLocationName,
+                        DistanceApart = Math.Round(g.Key.DistanceApart, 3, MidpointRounding.AwayFromZero),
+                        JobWorkCategoryDetails = _unitOfWork.MyFundiDBContext.GetWorkSubCategoriesForFundiByJobId(g.Key.JobId, g.Key.FundiProfileId).Where(q => wkSubCatArry.Contains((string)(q.WorkSubCategoryType))).ToArray(),
+                    });
+                    resMerged.AddRange(results);
+                }
+                if (resMerged.Count > 0)
+                {
+                    return await Task.FromResult(Ok(resMerged.ToArray()));
+                }
+                else
+                {
+                    return await Task.FromResult(Ok(new string[] { }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new string[] { }));
+            }
+
+        }
+        [AuthorizeIdentity]
+        [HttpPost]
+        [Route("~/FundiProfile/PostAllFundiRatingsAndReviewsByCategoriesGeoLocation/{clientProfileId}/{jobId}/{distanceKmLimitApart}/{skip}/{take}")]
+        public async Task<IActionResult> PostAllFundiRatingsAndReviewsByCategoriesGeoLocation([FromBody] CategoriesViewModel[] categoriesViewModel, int clientProfileId, int jobId, float distanceKmLimitApart = 500000000, int skip = 0, int take = 5)
+        {
+            List<dynamic> resMerged = new List<dynamic>();
+            var listCoords = new List<CoordinateTo>();
+
+            try
+            {
+                var workCategories = new List<string>();
+                var workSubCatagories = new List<string>();
+
+
+                foreach (var item in categoriesViewModel)
+                {
+                    workCategories.AddRange(item.WorkCategories);
+                    workSubCatagories.AddRange(item.WorkSubCategories);
+                    listCoords.Add(new CoordinateTo { ProfileId = item.FundiProfileId, Latitude = item.Coordinate.Latitude, Longitude = item.Coordinate.Longitude });
+                }
+                var wkCatArry = workCategories.Union(new List<string> { "" }).ToArray();
+                var wkSubCatArry = workSubCatagories.Union(new List<string> { "" }).ToArray();
+
+                var reviewCateg = _unitOfWork.MyFundiDBContext.GetFundiAvgRatingsAndJobWithinDistanceGeoLocation(clientProfileId, jobId, wkCatArry, wkSubCatArry, listCoords.ToArray(), distanceKmLimitApart, skip, take);
+
+                if (reviewCateg.Any())
+                {
+                    var results = reviewCateg.GroupBy(res => (res.FundiProfileId, res.FundiUserId, res.FundiUsername, res.FundiFirstName, res.FundiLastName, res.FundiLocationId,
+                    res.FundiProfileSummary, res.FundiSkills, res.FundiUsedPowerTools, res.FundiLocationName, res.ClientUsername, res.JobId, res.JobLocationId,
+                    res.JobName, res.JobDescription, res.ClientFirstName, res.ClientLastName, res.JobLocationName, res.DistanceApart)).
+                    Select(g => new
+                    {
+                        FundiProfileId = g.Key.FundiProfileId,
+                        FundiUserId = g.Key.FundiUserId,
+                        FundiUsername = g.Key.FundiUsername,
+                        FundiFirstName = g.Key.FundiFirstName,
+                        FundiLastName = g.Key.FundiLastName,
+                        FundiLocationId = g.Key.FundiLocationId,
+                        FundiProfileSummary = g.Key.FundiProfileSummary,
+                        FundiSkills = g.Key.FundiSkills,
+                        FundiUsedPowerTools = g.Key.FundiUsedPowerTools,
+                        FundiLocationName = g.Key.FundiLocationName,
+                        ClientUserName = g.Key.ClientUsername,
+                        ClientFirstName = g.Key.ClientFirstName,
+                        ClientLastName = g.Key.ClientLastName,
+                        JobId = g.Key.JobId,
+                        JobLocationId = g.Key.JobLocationId,
+                        JobName = g.Key.JobName,
+                        JobDescription = g.Key.JobDescription,
+                        JobLocationName = g.Key.JobLocationName,
+                        DistanceApart = Math.Round(g.Key.DistanceApart, 3, MidpointRounding.AwayFromZero),
+                        FundiRatingsAndReviews = _unitOfWork.MyFundiDBContext.GetAllFundiRatingByProfileId(g.Key.FundiProfileId).ToArray(),
+                        JobWorkCategoryDetails = _unitOfWork.MyFundiDBContext.GetWorkSubCategoriesForFundiByJobId(g.Key.JobId, g.Key.FundiProfileId).Where(q => wkSubCatArry.Contains((string)(q.WorkSubCategoryType))).ToArray(),
+                        AverageFundiRating = _unitOfWork.MyFundiDBContext.GetFundiProfileAvgRatingById(g.Key.FundiProfileId).ToValueTuple().Item2
+                    });
+                    resMerged.AddRange(results);
+                }
+                if (resMerged.Count > 0)
+                {
+                    return await Task.FromResult(Ok(resMerged.ToArray()));
+                }
+                else
+                {
+                    return await Task.FromResult(Ok(new string[] { }));
                 }
             }
             catch (Exception ex)
@@ -715,6 +1140,7 @@ namespace MyFundi.Web.Controllers
             }
         }
 
+        [HttpGet]
         [AuthorizeIdentity]
         public async Task<IActionResult> GetFundiCertifications(string username)
         {
@@ -735,6 +1161,7 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(Ok(_mapper.Map<CertificationViewModel[]>(fundiCertifications.ToArray())));
         }
 
+        [HttpGet]
         [AuthorizeIdentity]
         public async Task<IActionResult> GetAllFundiCertificates()
         {
@@ -742,6 +1169,7 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(Ok(_mapper.Map<CertificationViewModel[]>(allCerts)));
         }
 
+        [HttpGet]
         [AuthorizeIdentity]
         public async Task<IActionResult> GetFundiCoursesTaken(string username)
         {
@@ -761,6 +1189,7 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(Ok(_mapper.Map<CourseViewModel[]>(fundiCoursesTaken.ToArray())));
         }
 
+        [HttpGet]
         [AuthorizeIdentity]
         public async Task<IActionResult> GetWorkCategories()
         {
@@ -775,6 +1204,7 @@ namespace MyFundi.Web.Controllers
         }
 
 
+        [HttpGet]
         [AuthorizeIdentity]
         public async Task<IActionResult> GetWorkSubCategories()
         {
@@ -788,6 +1218,7 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(NotFound(new { Message = "No Work Categories exist!" }));
         }
 
+        [HttpGet]
         [AuthorizeIdentity]
         public async Task<IActionResult> GetFundiWorkCategories(string username)
         {
@@ -808,6 +1239,7 @@ namespace MyFundi.Web.Controllers
                                       select new JobWorkCategoryViewModel { WorkCategoryId = w.WorkCategoryId, WorkSubCategoryId = wsc.WorkSubCategoryId, WorkCategory = w, WorkSubCategory = wsc };
             return await Task.FromResult(Ok(fundiWorkCategories.ToArray()));
         }
+        [HttpGet]
         [AuthorizeIdentity]
         public async Task<IActionResult> GetAllFundiWorkCategories()
         {
@@ -820,6 +1252,7 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(NotFound(new { Message = "No Work Categories Found!" }));
         }
 
+        [HttpGet]
         [AuthorizeIdentity]
         [Route("~/FundiProfile/GetAllFundiWorkSubCategoriesByWorkCategoryId/{workCategoryId}")]
         public async Task<IActionResult> GetAllFundiWorkSubCategoriesByWorkCategoryId(int workCategoryId)
@@ -833,6 +1266,7 @@ namespace MyFundi.Web.Controllers
             return await Task.FromResult(NotFound(new { Message = "No Work Categories Found!" }));
         }
 
+        [HttpGet]
         [AuthorizeIdentity]
         public async Task<IActionResult> GetAllFundiCourses()
         {
@@ -844,22 +1278,41 @@ namespace MyFundi.Web.Controllers
             }
             return await Task.FromResult(NotFound(new { Message = "No Work Categories Found!" }));
         }
+
+        [HttpGet]
         [AuthorizeIdentity]
+        [Route("~/FundiProfile/GetFundiContracts/{username}")]
         public async Task<IActionResult> GetFundiContracts(string username)
         {
             User user = _serviceEndPoint.GetUserByEmailAddress(username);
-            var fundiProfile = _unitOfWork._fundiProfileRepository.GetAll().FirstOrDefault(q => q.UserId.ToString().ToLower().Equals(user.ToString().ToLower()));
+            var fundiProfile = _unitOfWork._fundiProfileRepository.GetAll().FirstOrDefault(q => q.UserId.ToString().ToLower().Equals(user.UserId.ToString().ToLower()));
 
             if (user == null || fundiProfile == null)
             {
                 return await Task.FromResult(NotFound(new { Message = $"user {username} profile not Found!" }));
             }
-            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.FundiUserId.ToString().ToLower() == user.UserId.ToString().ToLower())
+            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.FundiProfileId == fundiProfile.FundiProfileId)
                                  select c;
             return await Task.FromResult(Ok(_mapper.Map<ClientFundiContractViewModel[]>(fundiContracts.ToArray())));
         }
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/FundiProfile/GetClientContracts/{username}")]
+        public async Task<IActionResult> GetClientContracts(string username)
+        {
+            User user = _serviceEndPoint.GetUserByEmailAddress(username);
+            var clientProfile = _unitOfWork._clientProfileRepository.GetAll().FirstOrDefault(q => q.UserId.ToString().ToLower().Equals(user.UserId.ToString().ToLower()));
 
+            if (user == null || clientProfile == null)
+            {
+                return await Task.FromResult(NotFound(new { Message = $"user {username} profile not Found!" }));
+            }
+            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.ClientProfileId == clientProfile.ClientProfileId).Include(q=>q.ClientProfile).Include(q=> q.FundiProfile)
+                                 select c;
+            return await Task.FromResult(Ok(_mapper.Map<ClientFundiContractViewModel[]>(fundiContracts.ToArray())));
+        }
         [HttpPost]
+        [AuthorizeIdentity]
         public async Task<IActionResult> SaveFundiProfileImage(string username, [FromForm] IFormFile profileImage)
         {
             try
@@ -903,6 +1356,7 @@ namespace MyFundi.Web.Controllers
 
         }
         [HttpPost]
+        [AuthorizeIdentity]
         public async Task<IActionResult> SaveFundiCV(string username, [FromForm] IFormFile fundiProfileCv)
         {
             try

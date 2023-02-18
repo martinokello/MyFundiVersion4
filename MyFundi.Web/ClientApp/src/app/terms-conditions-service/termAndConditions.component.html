@@ -1,0 +1,22 @@
+<div class="container-fluid" id="termsAndConditionsOfService-wrapper" style="background-color: #EEEEEE; text-align: left;">
+    <section>
+        <h2 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf("Fundi") > -1  || userRoles.indexOf("Guest") > 1)?"Fundi":"Guest"}} Conditions Of Service To Observe</h2>
+        <h2>{{currentDate}} &copy; MartinLayooInc.</h2>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+                <h5>Terms And Conditions Of Service</h5>
+                <div>
+                    {{termsAndConditionsOfService}}
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="terms" style="margin: 2px 0px !important;">
+                <h5>Additional Notes Of Liabilities</h5>
+                <div>
+                    {{liabilityNotes}}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

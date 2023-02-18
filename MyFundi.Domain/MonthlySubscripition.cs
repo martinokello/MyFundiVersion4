@@ -13,6 +13,8 @@ namespace MyFundi.Domain
         [ForeignKey("User")]
         public Guid? UserId { get; set; }
         public string Username { get; set; }
+        public string SubscriptionName { get; set; }
+        public string SubscriptionDescription { get; set; }
         public User User { get; set; }
         [ForeignKey("FundiProfile")]
         public int? FundiProfileId { get; set; }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IMtnAirTelModel, IWorkSubCategory, IWorkAndSubWorkCategory } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IMtnAirTelModel, IWorkSubCategory, IWorkAndSubWorkCategory, ISubscription } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
 
@@ -15,12 +15,14 @@ export class FundiSubscriptionComponent implements OnInit {
     subscriptionFee: number = 2500;
     subscriptionDescription: string;
     subscriptionName: string;
+    startingDate: string;
     fundi: any = {};
     public workCategories: IWorkCategory[];
     public workCategory: IWorkCategory | any;
     public workSubCategory: IWorkSubCategory | any;
     public workSubCategories: IWorkSubCategory[];
-    subscriptionFeeExpense: any;
+    subscriptionFeeExpense: ISubscription;
+    subscription: ISubscription;
 
     constructor(private myFundiService: MyFundiService) {
         this.userDetails = {};
@@ -30,7 +32,7 @@ export class FundiSubscriptionComponent implements OnInit {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
-        this.subscriptionFeeExpense = {
+        this.subscription = this.subscriptionFeeExpense = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
             fundiProfileId: this.fundi.fundiProfileId,
@@ -40,8 +42,8 @@ export class FundiSubscriptionComponent implements OnInit {
             hasPaid: false,
             subscriptionName: this.fundi.subscriptionName,
             subscriptionDescription: this.fundi.subscriptionDescription,
-            fundiWorkCategoryIds: []
-}
+            workCategoryAndSubCategoryIds: []
+        }
         this.workCategory = { workCategoryId: 0 };
         this.workCategories = [];
         let optionElem = document.createElement('option');
@@ -104,9 +106,37 @@ export class FundiSubscriptionComponent implements OnInit {
             this.fundi.subscriptionName = `Fundi User ${this.userDetails.firstName} ${this.userDetails.lastName} Subscription for 31 days`;
             this.fundi.subscriptionDescription = "Attempting Monthly Payment!";
 
+
             let userIdObs: Observable<string> = this.myFundiService.GetUserGuidId(this.userDetails.username);
             userIdObs.map((q: string) => {
                 this.fundi.userId = q;
+                let subscrObs: Observable<ISubscription[]> = this.myFundiService.GetAllFundiSubscriptions(this.fundi.fundiProfileId);
+                subscrObs.map((subs: ISubscription[]) => {
+                    let opt: HTMLOptionElement = document.createElement('option');
+                    opt.value = "0";
+                    opt.text = "Select Month Subscription";
+                    let subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
+                    subscrSelect.appendChild(opt);
+                    if (subs.length > 0) {
+                        this.subscriptionFeeExpense = this.subscription = subs[0];
+                        this.startingDate = this.formatDate(subs[0].startDate);
+                        this.appendCategoriesAndSubCategoriesToUi();
+                    }
+                    else {
+                        let dateNow = new Date();
+                        this.startingDate = this.formatDate(dateNow);
+                        this.subscription = this.subscriptionFeeExpense;
+                        this.subscription.monthlySubscriptionId = 0;
+                    }
+                    subs.forEach((sub: ISubscription, ind: number) => {
+
+                        let opt1: HTMLOptionElement = document.createElement('option');
+                        opt1.value = sub.monthlySubscriptionId.toString();
+                        opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
+                        subscrSelect.appendChild(opt1);
+                    });
+
+                }).subscribe();
             }).subscribe();
         }).subscribe();
     }
@@ -137,6 +167,7 @@ export class FundiSubscriptionComponent implements OnInit {
         let workSubCatValue: number = this.workSubCategory.workSubCategoryId;
         let actualResult: Observable<any> = this.myFundiService.GetworkSubCategoryById(workSubCatValue);
         actualResult.map((p: any) => {
+
             this.workSubCategory = p;
         }).subscribe();
         jQuery('form#locationView').css('display', 'block').slideDown();
@@ -145,7 +176,7 @@ export class FundiSubscriptionComponent implements OnInit {
     public addSubCategory($event) {
         let indexWorkCatToRemove: number;
 
-        let chosenCategory = this.subscriptionFeeExpense.fundiWorkCategoryIds.find((q, index) => {
+        let chosenCategory = this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.find((q, index) => {
             indexWorkCatToRemove = index;
            return q.workCategoryId == this.workCategory.workCategoryId;
         })
@@ -160,7 +191,7 @@ export class FundiSubscriptionComponent implements OnInit {
             }
             else {
 
-                this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.push(this.workSubCategory.workSubCategoryId);
+                this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.push(this.workSubCategory.workSubCategoryId);
                
                 let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
                 let li = document.createElement("li");
@@ -173,7 +204,7 @@ export class FundiSubscriptionComponent implements OnInit {
         else {
             let workCategorySubCatIds: any[] = [];
             workCategorySubCatIds.push(this.workSubCategory.workSubCategoryId);
-            this.subscriptionFeeExpense.fundiWorkCategoryIds.push({
+            this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.push({
                 workCategoryId: this.workCategory.workCategoryId, workSubCategoryIds: workCategorySubCatIds
             });
             let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
@@ -185,11 +216,36 @@ export class FundiSubscriptionComponent implements OnInit {
         }
         $event.preventDefault();
     }
+    appendCategoriesAndSubCategoriesToUi() {
+        let curThis = this;
+        let ulSelectedCategories = document.querySelector('div#fundiSubscription-wrapper ul#ulistWorkCategories');
+
+        jQuery('div#fundiSubscription-wrapper ul#ulistWorkCategories').children('li').remove();
+
+        for (let n = 0; n < this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.length; n++) {
+            jQuery('select#subcworkCategoryId').val(curThis.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString()).trigger('change');
+
+            for (let s = 0; s < curThis.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds.length; s++) {
+
+                var res = this.myFundiService.GetworkSubCategoryById(parseInt(this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s])).toPromise()
+                .then((q: IWorkSubCategory) => {
+
+                    let li = document.createElement("li");
+                    li.setAttribute('id', `${this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString()},${this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s].toString()}`);
+
+                    li.textContent = jQuery('select#subcworkCategoryId > option[value="' + this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId + '"]').text() +
+                        ` [${q.workSubCategoryType}]`;
+                    ulSelectedCategories.appendChild(li);
+                });
+
+            }
+        }
+    }
     removeWorkSubCategory($event) {
 
         let indexWorkCatToRemove: number;
 
-        let chosenCategory = this.subscriptionFeeExpense.fundiWorkCategoryIds.find((q, index) => {
+        let chosenCategory = this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.find((q, index) => {
             indexWorkCatToRemove = index;
             return q.workCategoryId == this.workCategory.workCategoryId;
         })
@@ -205,18 +261,47 @@ export class FundiSubscriptionComponent implements OnInit {
 
                 ulSelectedCategories.removeChild(li);
 
-                this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.splice(indexWorkSubCatToRemove, 1);
-                if (this.subscriptionFeeExpense.fundiWorkCategoryIds[indexWorkCatToRemove].workSubCategoryIds.length == 0) {
-                    this.subscriptionFeeExpense.fundiWorkCategoryIds.splice(indexWorkCatToRemove, 1);
+                this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.splice(indexWorkSubCatToRemove, 1);
+                if (this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.length == 0) {
+                    this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.splice(indexWorkCatToRemove, 1);
                 }
             }
         }
 
         $event.preventDefault();
     }
+    public selectSubscription($event) {
+
+        let subObs: Observable<ISubscription> = this.myFundiService.GetFundiSubscription(this.subscription.monthlySubscriptionId);
+        subObs.map((q: ISubscription) => {
+            this.subscription = this.subscriptionFeeExpense = q;
+            this.startingDate = this.formatDate(q.startDate);
+            this.appendCategoriesAndSubCategoriesToUi();
+        }).subscribe();
+        $event.preventDefault();
+    }
+    public updateSubscription($event) {
+        let subObs: Observable<any> = this.myFundiService.UpdateFundiSubscription(this.subscription);
+        subObs.map((q: any) => {
+            if (q && q.result) {
+                alert(q.message);
+            }
+        }).subscribe();
+        $event.preventDefault();
+    }
+    public deleteSubscription($event) {
+
+        let subObs: Observable<any> = this.myFundiService.DeleteFundiSubscription(this.subscription.monthlySubscriptionId);
+        subObs.map((q: any) => {
+            if (q && q.result) {
+                alert(q.message);
+            }
+        }).subscribe();
+        $event.preventDefault();
+    }
     public paySubscriptionMonthlyFeeWithPaypal($event) {
 
-        let subscriptionFeeExpenseToBePaid:any = {
+        let subscriptionFeeExpenseToBePaid: ISubscription = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
             fundiProfileId: this.fundi.fundiProfileId,
@@ -224,9 +309,9 @@ export class FundiSubscriptionComponent implements OnInit {
             username: this.userDetails.username,
             subscriptionFee: this.fundi.subscriptionFee,
             hasPaid: false,
-            subscriptionName: this.fundi.subscriptionName,
+            subscriptionName: this.userDetails.username+"-"+this.fundi.subscriptionName,
             subscriptionDescription: this.fundi.subscriptionDescription,
-            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.fundiWorkCategoryIds
+            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.workCategoryAndSubCategoryIds
         };
 
         let resultObs: Observable<any> = this.myFundiService.PayMonthlySubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid);
@@ -246,7 +331,7 @@ export class FundiSubscriptionComponent implements OnInit {
     }
     paySubscriptionMonthlyFeeWithAirTel($event) {
 
-        let subscriptionFeeExpenseToBePaid: any = {
+        let subscriptionFeeExpenseToBePaid: ISubscription = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
             fundiProfileId: this.fundi.fundiProfileId,
@@ -256,7 +341,7 @@ export class FundiSubscriptionComponent implements OnInit {
             hasPaid: false,
             subscriptionName: this.fundi.subscriptionName,
             subscriptionDescription: this.fundi.subscriptionDescription,
-            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.fundiWorkCategoryIds
+            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.workCategoryAndSubCategoryIds
         };
 
         let resultObs: Observable<IMtnAirTelModel> = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
@@ -303,7 +388,7 @@ export class FundiSubscriptionComponent implements OnInit {
             hasPaid: false,
             subscriptionName: this.fundi.subscriptionName,
             subscriptionDescription: this.fundi.subscriptionDescription,
-            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.fundiWorkCategoryIds
+            workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.workCategoryAndSubCategoryIds
         };
         let resultObs: Observable<IMtnAirTelModel> = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
 
@@ -338,7 +423,19 @@ export class FundiSubscriptionComponent implements OnInit {
         }).subscribe();
         $event.preventDefault();
     }
+   formatDate(date):string {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 
     runAutoCompleteOnSelects(curthis: any) {
         debugger;

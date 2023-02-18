@@ -60,6 +60,8 @@ import { FundiEngagementComponent } from './fundi-engagement/fundiengagement.com
 import { PagingComponent } from './paging/paging.component';
 import { ChatComponent } from './chat/chat.component';
 import { AuthFundiClientAdminGuard } from '../guards/AuthFundiClientAdminGuard';
+import { ClientFundiContractComponent } from './clientfundi-contract/clientfundicontract.component';
+import { TermsAndConditionsComponent } from './terms-conditions-service/termAndConditions.component';
 
 @NgModule({
     declarations: [
@@ -110,7 +112,10 @@ import { AuthFundiClientAdminGuard } from '../guards/AuthFundiClientAdminGuard';
         WorkSubCategoryCrudComponent,
         FundiEngagementComponent,
         PagingComponent,
-        ChatComponent
+        ChatComponent,
+        TermsAndConditionsComponent,
+        ClientFundiContractComponent
+
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -146,7 +151,9 @@ import { AuthFundiClientAdminGuard } from '../guards/AuthFundiClientAdminGuard';
             { path: 'manage-profile', component: ProfileComponent, canActivate: [AuthGuard] }, 
             { path: 'job-details', component: ClientJobViewComponent, canActivate: [AuthGuard] },
             { path: 'fundi-subscription', component: FundiSubscriptionComponent, canActivate: [AuthGuard] },
-            { path: 'fundi-search-job', component: FundiJobSearchComponent, canActivate: [AuthFundiGuard] }
+            { path: 'fundi-search-job', component: FundiJobSearchComponent, canActivate: [AuthFundiGuard] },
+            { path: 'client-fundi-contract', component: ClientFundiContractComponent, canActivate: [AuthFundiClientAdminGuard] },
+            { path: 'terms-and-conditions', component: TermsAndConditionsComponent, canActivate: [AuthGuard] }
         ])
     ],
     providers: [

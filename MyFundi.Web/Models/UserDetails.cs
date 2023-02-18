@@ -13,6 +13,7 @@
         public string authToken { get; set; }
         public bool client { get; set; }
         public bool fundi { get; set; }
+        public bool replaceMobileNumber { get; set; }
     }
 
     public class UserRole

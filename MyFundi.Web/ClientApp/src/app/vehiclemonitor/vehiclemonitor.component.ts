@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Injectable, AfterViewInit, Inject } from '@angular/core';
-import { MyFundiService, IFundiLocationMonitor } from '../../services/myFundiService';
+import { MyFundiService, IFundiLocationMonitor, IProfile } from '../../services/myFundiService';
 import 'rxjs/Rx';
 import * as $ from "jquery";
 import { saveAs } from 'file-saver';
@@ -26,10 +26,16 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
         this.myFundiService = myFundiService;
 
         let defaultVehMonitor: IFundiLocationMonitor = {
-            lattitude: 0,
+            latitude: 0,
             longitude: 0,
-            fundiUserDetails: {},
-            phoneNumber: "N/A"
+            fundiProfileId: 0,
+            username: "",
+            email: "",
+            driverName: "",
+            mobileNumber: "",
+            firstName: "",
+            lastName: "",
+            updatePhoneNumber: false
         };
         this.currentFundi = defaultVehMonitor;
 
@@ -44,14 +50,14 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
 
         let actualResult: Observable<Blob> = this.myFundiService.GetFundiMobileLocationApp('android');
         actualResult.map((blob: Blob) => {
-            saveAs(blob, 'XamarinForms.locationservice.apk');
+            saveAs(blob, 'MartinLayooInc.MyFundi.locationservice.apk');
         }).subscribe()
     }
     public getIosMobileLocationApp() {
 
         let actualResult: Observable<Blob> = this.myFundiService.GetFundiMobileLocationApp('ios');
         actualResult.map((blob: Blob) => {
-            saveAs(blob, 'XamarinForms.locationservice.ipa');
+            saveAs(blob, 'MartinLayooInc.MyFundi.locationservice.ipa');
         }).subscribe()
     }
     public getVehiclesHttp(): void {
@@ -62,20 +68,23 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
                 this.fundiLocations = p;
                 let selector: HTMLSelectElement = document.querySelector('select#vhmonitor');
 
-                if (this.fundiLocations.length > 0 && selector.children.length > 0) {
-                    selector.querySelector('option').remove();
+                //greater than default node: Select Fundi 1st Option:
+                if (selector.children.length > 0) {
+                    for (let n = selector.children.length - 1; n >= 0; n--) {
+                        selector.children[n].remove();
+                    }
                 }
 
                 let optionElem: HTMLOptionElement = document.createElement('option');
                 optionElem.selected = true;
                 optionElem.value = (0).toString();
-                optionElem.text = "Select Vehicle";
+                optionElem.text = "Select Fundi";
                 selector.append(optionElem);
 
                 this.fundiLocations.forEach((vhm: IFundiLocationMonitor, index: number) => {
                     let optionElem1: HTMLOptionElement = document.createElement('option');
-                    optionElem1.value = vhm.fundiUserDetails.username;
-                    optionElem1.text = vhm.fundiUserDetails.username;
+                    optionElem1.value = vhm.username;
+                    optionElem1.text = vhm.username;
                     selector.append(optionElem1);
                 });
 
@@ -84,10 +93,16 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
             else {
                 this.fundiLocations = [];
                 let defaultVehMonitor: IFundiLocationMonitor = {
-                    lattitude: 0,
+                    latitude: 0,
                     longitude: 0,
-                    phoneNumber: "N/A",
-                    fundiUserDetails: {}
+                    fundiProfileId:0,
+                    username: "",
+                    email: "",
+                    driverName: "",
+                    mobileNumber: "",
+                    firstName: "",
+                    lastName: "",
+                    updatePhoneNumber: false
                 };
                 this.currentFundi = defaultVehMonitor;
             }
@@ -102,10 +117,36 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
             zoom: 8,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
+
+        //Timer to keep plotting on Map Fundi Locations:
+        let curThis = this;
+        setInterval(() => {
+            curThis.showAllFundis();
+            for (let n = 0; n < curThis.fundiLocations.length; n++) {
+                let vehMonitor: IFundiLocationMonitor = curThis.fundiLocations[n];
+                let profObs: Observable<IProfile> = this.myFundiService.GetFundiProfileByUsername(vehMonitor.username);
+                //Insert FundiMonitor In Database:
+                profObs.map((pr: IProfile) => {
+                    if (pr) {
+                        vehMonitor.fundiProfileId = pr.fundiProfileId;
+                        let vehMonObs: Observable<any> = this.myFundiService.SaveFundiGeoLocation(vehMonitor);
+                        vehMonObs.map((res: any) => {
+                            if (res.result) {
+                                console.log(`Saved fundi ${vehMonitor.firstName} ${vehMonitor.firstName}, geolocation: ${vehMonitor.latitude},${vehMonitor.longitude}`)
+                            }
+                            else {
+                                console.log(`Failed Saving fundi ${vehMonitor.firstName} ${vehMonitor.firstName}, geolocation: ${vehMonitor.latitude},${vehMonitor.longitude}`)
+                            }
+                        }).subscribe;
+                    }
+                }).subscribe();
+            }
+        }, 5 * 60 * 1000);
+
+        this.showAllFundis();
     }
 
     public fundiPlotOnMap() {
-
         if (this.markers != null && this.markers.length > 0) {
             this.clearMarkers();
         }
@@ -117,15 +158,15 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
     public initMap(vehMonitor: IFundiLocationMonitor): void {
 
         let marker = new google.maps.Marker({
-            position: new google.maps.LatLng(parseFloat(`${vehMonitor.lattitude}`), parseFloat(`${vehMonitor.longitude}`)),
-            title: vehMonitor.fundiUserDetails.username + ", " + vehMonitor.phoneNumber,
+            position: new google.maps.LatLng(parseFloat(`${vehMonitor.latitude}`), parseFloat(`${vehMonitor.longitude}`)),
+            title: vehMonitor.username + ", " + vehMonitor.mobileNumber,
             map: this.myMap
         });
 
         // Attaching a click event to the current marker
         google.maps.event.addListener(marker, 'click', (function (marker, map, vehMonitor) {
             let infowindow = new google.maps.InfoWindow({
-                content: "<p>Marker Location:" + marker.getPosition().lat().toString() + "," + marker.getPosition().lng().toString() + "</p><p>" + vehMonitor.fundiUserDetails.username + "</p><p>" + vehMonitor.phoneNumber + "</p>"
+                content: "<p>Marker Location:" + marker.getPosition().lat().toString() + "," + marker.getPosition().lng().toString() + "</p><p>" + vehMonitor.username + "</p><p>" + vehMonitor.mobileNumber + "</p>"
             });
             infowindow.open(map, marker);
         })(marker, this.myMap, vehMonitor));
@@ -139,9 +180,9 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
 
     showFundi(): void {
 
-        let currentUsername: string = this.currentFundi.fundiUserDetails.username;
-        let selectedVe = this.fundiLocations.find(v => v.fundiUserDetails.username == currentUsername);
-
+        let currentUsername: string = this.currentFundi.username;
+        let selectedVe = this.fundiLocations.find(v => v.username.toLowerCase() == currentUsername.toLowerCase());
+        //debugger;
         this.markers.forEach((mrk: google.maps.Marker, index: number) => {
             mrk.setMap(null);
         });
@@ -149,22 +190,26 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
         this.initMap(selectedVe);
     }
     showAllFundis() {
-        this.markers = [];
-        this.fundiPlotOnMap();
+        this.getVehiclesHttp();
     }
     removeFundi() {
-        let currentUsername: string = this.currentFundi.fundiUserDetails.username;
+        let currentUsername: string = this.currentFundi.username;
         let index: number = -1;
-        let selectedVeh = this.fundiLocations.find((v, n) => {
+        let selectedVeh = this.fundiLocations.find((v: IFundiLocationMonitor, n:number) => {
             index = n;
-            return v.fundiUserDetails.username == currentUsername
+            return v.username.toLowerCase() == currentUsername.toLowerCase()
         });
         this.markers = [];
         this.fundiLocations.splice(index);
         let result: Observable<any> = this.myFundiService.RemoveFundiFromMonitor(selectedVeh);
         result.map((res: any) => {
             alert(res.message);
-            this.showAllFundis();
+            if (res.success) {
+                this.ngOnInit();
+            }
+            else {
+                alert(res.message);
+            }
         }).subscribe();
 
     }

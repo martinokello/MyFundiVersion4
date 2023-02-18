@@ -46,6 +46,8 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 subs.FundiProfileId = toUpdate.FundiProfileId;
                 subs.HasExpired = toUpdate.HasExpired;
                 subs.UserId = toUpdate.UserId;
+                subs.SubscriptionDescription = toUpdate.SubscriptionDescription;
+                subs.SubscriptionName = toUpdate.SubscriptionName;
                 return true;
             }
             catch (Exception e)

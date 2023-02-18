@@ -18,9 +18,9 @@
                 <select id="locaddressId" name="addressId" [(ngModel)]="location.addressId"></select>
             </div>
             <input type="button" value="Select Location" class="but-primary" (click)="selectLocation()" style="margin-top:10px;" />
-            <input type="button" value="Add Location" class="but-primary" [disabled]="locationView.invalid" (click)="addLocation()" style="margin-top:10px;" />
-            <input type="button" value="Update Location" class="but-primary" [disabled]="locationView.invalid" (click)="updateLocation()" style="margin-top:10px;" />
-            <input type="button" value="Delete Location" class="but-primary" [disabled]="locationView.invalid" (click)="deleteLocation()" style="margin-top:10px;" />
+            <input type="button" value="Add Location" id="locationAddLocationId" class="but-primary" [disabled]="locationView.invalid" (click)="addLocation()" style="margin-top:10px;" />
+            <input type="button" value="Update Location"  id="locationUpdateLocationId"class="but-primary" [disabled]="locationView.invalid" (click)="updateLocation()" style="margin-top:10px;" />
+            <input type="button" value="Delete Location" id="locationDeleteLocationId" class="but-primary" [disabled]="locationView.invalid" (click)="deleteLocation()" style="margin-top:10px;" />
         </form>
         <div id="locmap" style="min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;display:none !important;">
         </div>

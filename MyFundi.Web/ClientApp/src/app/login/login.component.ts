@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         let loginResults: Observable<any> = this.myFundiService.LoginByPost(this.userDetail);
         loginResults.map((q: any) => {
             console.log(JSON.stringify(q));
-            debugger;
+
             if (q.isLoggedIn == true) {
                 if (q.message) {
                     alert(q.message);

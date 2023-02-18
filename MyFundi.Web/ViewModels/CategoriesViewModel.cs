@@ -10,6 +10,7 @@ namespace MyFundi.Web.ViewModels
         public string[] WorkCategories { get; set; }
         public string[] WorkSubCategories { get; set; }
         public string Username { get; set; }
+        public int FundiProfileId { get; set; }
         public CoordinateViewModel Coordinate { get; set; }
     }
 }

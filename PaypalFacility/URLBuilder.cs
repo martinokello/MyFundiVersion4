@@ -35,6 +35,7 @@ namespace PaypalFacility
             StringBuilder sbUrl = new StringBuilder();
             sbUrl.Append("cmd=_cart&upload=1");
             sbUrl.AppendFormat("&business={0}",HttpUtility.UrlEncode(businessEmail));
+            sbUrl.AppendFormat("&mc_currency=UGX");
             var index = 1;
             foreach (var prod in invoice.Products)
             {

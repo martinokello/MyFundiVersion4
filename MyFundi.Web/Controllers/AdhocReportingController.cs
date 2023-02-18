@@ -35,15 +35,15 @@ namespace MyFundi.Web.Controllers
 
         private MartinLayooIncChat ChatResource = null;
         private Mapper _mapper;
-        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper, AppSettingsConfigurations appSettings, MartinLayooIncChat martinLayooIncChat)
+        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper, AppSettingsConfigurations appSettings, MartinLayooIncChat martinLayooIncChat, List<FundiLocationViewModel> currentFundiLocations)
         {
             ChatResource = martinLayooIncChat;
             _emailService = emailService;
             _unitOfWork = unitOfWork;
-            _currentFundilocations = new List<FundiLocationViewModel>();
             _mapper = mapper;
             _businessSmtpDetails = appSettings.AppSettings.GetSection("BusinessSmtpDetails");
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
+            _currentFundilocations = currentFundiLocations;
         }
         [HttpGet]
         [Route("~/{Controller}/{Action}/{appType}")]
@@ -144,7 +144,23 @@ namespace MyFundi.Web.Controllers
             }
             return await Task.FromResult(File(System.Text.Encoding.UTF8.GetBytes("Failed to Download IOS App"), "text/plain"));
         }
+        [HttpPost]
+        public async Task<IActionResult> SaveFundiGeoLocation([FromBody] FundiLocationViewModel fundiLocationViewModel)
+        {
+            try
+            {
+                var fundiLocation = _mapper.Map<FundiLocation>(fundiLocationViewModel);
+                _unitOfWork._fundiLocationRepository.Insert(fundiLocation);
+                _unitOfWork.SaveChanges();
+               return await Task.FromResult(Ok( new { Message = "Geolocation Saved", Result=true }));
+            }
+            catch (Exception e)
+            {
 
+                return await Task.FromResult(BadRequest(new { Message = "Failed To Save Geolocation", Result = false }));
+            }
+        }
+        
         [HttpPost]
         public async Task<IActionResult> RemoveFundiFromMonitor([FromBody] FundiLocationViewModel fundiLocationViewModel)
         {
@@ -153,16 +169,17 @@ namespace MyFundi.Web.Controllers
                 if (_currentFundilocations.Contains(fundiLocationViewModel))
                 {
                     _currentFundilocations.Remove(fundiLocationViewModel);
-                    return await Task.FromResult(Ok(new { Message = $"Removed Fundi: {fundiLocationViewModel.fundiUserDetails.Username} from Map" }));
+                    await SaveFundiGeoLocation(fundiLocationViewModel);
+                    return await Task.FromResult(Ok(new { Message = $"Removed Fundi: {fundiLocationViewModel.Username} from Map", Success = true })); ;
                 }
                 else
                 {
-                    return await Task.FromResult(BadRequest(new { Message = $" Fundi: {fundiLocationViewModel.fundiUserDetails.Username} Is not being tracked at the moment!!" }));
+                    return await Task.FromResult(BadRequest(new { Message = $" Fundi: {fundiLocationViewModel.Username} Is not being tracked at the moment!!", Success = false }));
                 }
             }
             catch (Exception e)
             {
-                return await Task.FromResult(BadRequest(new { Message = "An Error Occured While Removing Fundi!!" }));
+                return await Task.FromResult(BadRequest(new { Message = "An Error Occured While Removing Fundi!!", Success = false }));
             }
         }
         [HttpPost]
@@ -177,10 +194,42 @@ namespace MyFundi.Web.Controllers
                 {
                     return await Task.FromResult(Ok(new { message = "Verified", statusCode = 200 }));
                 }
+                else if(userDetail.replaceMobileNumber)
+                {
+                    var currentUser = _unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(userDetail.username.ToLower()));
+                    currentUser.MobileNumber = userDetail.mobileNumber;
+                    _unitOfWork.SaveChanges();
+                    return await Task.FromResult(Ok(new { message = "Verified, and Mobile Number Updated, to "+currentUser.MobileNumber, statusCode = 200 }));
+                }
             }
-            return await Task.FromResult(Ok(new { message = "Failed Validation. User not Found!", statusCode = 400 }));
+            return await Task.FromResult(NotFound(new { message = "Failed Validation. User not Found!", statusCode = 400 }));
         }
-
+        [HttpGet]
+        [Route("~/AdhocReporting/GetFundiLiveLocationsByUsername/{username}")]
+        public async Task<IActionResult> GetFundiLiveLocationsByUsername(string username)
+        {
+            try
+            {
+                return await Task.FromResult(Ok(_currentFundilocations.FirstOrDefault(q => q.Username.ToLower().Equals(username.ToLower()))));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { result = false, message = "Failed To Get Fundi Location" }));
+            }
+        }
+        
+       [HttpGet]
+        public async Task<IActionResult> GetFundiLiveLocations()
+        {
+            try
+            {
+                return await Task.FromResult(Ok(_currentFundilocations));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { result = false, message = "Failed To Get Fundi Location" }));
+            }
+        }
         [AuthorizeIdentity]
         [HttpPost]
         [Consumes("multipart/form-data")]
@@ -203,53 +252,35 @@ namespace MyFundi.Web.Controllers
         {
             try
             {
-                User fundiUser = null;
-                var httpClient = new HttpClient();
-                var content = new { authToken = Request.Headers["authToken"], emailAddress = string.Empty, username = string.Empty };
+                User fundiUser = _unitOfWork._userRepository.GetAll().FirstOrDefault(u => u.Email.ToLower().Equals(fundiLocationViewModel.Username.ToLower()));
 
-                var jsonString = JsonSerializer.Serialize(content);
-
-                //Request.Headers.Add("Content-Type", "application/json");
-                var httpContent = new StringContent(jsonString);
-
-                HttpResponseMessage respContent = await httpClient.PostAsync("https://myfundiv2/Account/UserCredentialsAuthenticate", httpContent);
-
-                var jsonStr = await respContent.Content.ReadAsStringAsync();
-
-                var userCredential = JsonSerializer.Deserialize<LoginResult>(jsonStr);
-                fundiUser = _unitOfWork._userRepository.GetAll().FirstOrDefault(u => u.Email.ToLower().Equals(userCredential.Username.ToLower()));
-
-                fundiLocationViewModel.fundiUserDetails = _mapper.Map<UserViewModel>(fundiUser);
-
-                if (fundiLocationViewModel.UpdatePhoneNumber)
+                if (fundiUser != null)
                 {
 
-                    if (userCredential != null && !string.IsNullOrEmpty(userCredential.Username))
+                    if (_currentFundilocations.Count == 0 || !_currentFundilocations.Contains(fundiLocationViewModel))
                     {
-                        if (fundiUser != null)
-                        {
-                            fundiUser.MobileNumber = fundiLocationViewModel.PhoneNumber;
-                            _unitOfWork.SaveChanges();
-                        }
+                        _currentFundilocations.Add(fundiLocationViewModel);
                     }
+                    else
+                    {
+                        var actLocations = _currentFundilocations.FirstOrDefault(q => q.Username.ToLower().Equals(fundiLocationViewModel.Username.ToLower()));
+                        actLocations.Latitude = fundiLocationViewModel.Latitude;
+                        actLocations.Longitude = fundiLocationViewModel.Longitude;
+                        actLocations.MobileNumber = fundiLocationViewModel.MobileNumber;
+                    }
+                    if (fundiLocationViewModel.replaceMobileNumber)
+                    {
+                        fundiUser.MobileNumber = fundiLocationViewModel.MobileNumber;
+                        _unitOfWork.SaveChanges();
+                        return await Task.FromResult(Ok(new { Message = "Verified, and Mobile Number Updated, to " + fundiLocationViewModel.MobileNumber, statusCode = 200, Result=true }));
+                    }
+                    return await Task.FromResult(Ok(new { Result = true, Message = "Added Fundi Tracking" }));
                 }
-                if (!_currentFundilocations.Contains(fundiLocationViewModel))
-                {
-                    _currentFundilocations.Add(fundiLocationViewModel);
-                }
-                else
-                {
-                    var actLocations = _currentFundilocations.FirstOrDefault(q => q.EmailAddress.ToLower().Equals(fundiLocationViewModel.EmailAddress.ToLower()));
-                    actLocations.Lattitude = fundiLocationViewModel.Lattitude;
-                    actLocations.Longitude = fundiLocationViewModel.Longitude;
-                    actLocations.fundiUserDetails = fundiLocationViewModel.fundiUserDetails;
-                    actLocations.PhoneNumber = fundiLocationViewModel.PhoneNumber;
-                }
-                return await Task.FromResult(Ok(new { Result = true, Message = "Added Fundi Tracking" }));
+                return await Task.FromResult(NotFound(new { Result = false, Message = "Fundi Not Found!!" }));
             }
             catch (Exception ex)
             {
-                return await Task.FromResult(BadRequest(new { result = false, message = "Failed To Add Tracking" }));
+                return await Task.FromResult(BadRequest(new { result = false, message = "Failed To Add Tracking"+Environment.NewLine+ex.Message+Environment.NewLine+ex.StackTrace }));
             }
         }
 
