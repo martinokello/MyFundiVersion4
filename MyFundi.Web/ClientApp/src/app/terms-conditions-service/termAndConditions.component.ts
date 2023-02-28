@@ -11,16 +11,27 @@ declare var jQuery: any;
 export class TermsAndConditionsComponent implements OnInit {
     userDetails: any;
     userRoles: string[];
-    termsAndConditionsOfService: string;
-    liabilityNotes: string;
+    liabilityNotesHtml: string = "";
+    termsAndConditionsOfServiceHtml: string = "";
     currentDate: string;
+    termsAndConditionOfService: boolean = false;
 
     constructor(private myFundiService: MyFundiService) {
         this.userDetails = {};
         let date = new Date();
         this.currentDate = this.formatDate(date);
     }
-
+    acceptTermsAndConditions($event) {
+        if (!this.termsAndConditionOfService) {
+            alert('You should accept the terms and conditions\nof service before registering!');
+            localStorage.setItem('HasAcceptedTermsOfService', "false");
+            return;
+        }
+        localStorage.setItem('HasAcceptedTermsOfService', "true");
+        alert("You have accepted the Terms And Conditions. You can\nclose this form now, and continue with Registration!");
+        $event.preventDefault();
+        window.close();
+    }
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
     }

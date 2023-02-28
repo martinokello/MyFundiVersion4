@@ -11,7 +11,9 @@
         </li>
         <ng-container *ngIf="actUserStatus.isUserLoggedIn" ngDefaultControl ngModel="actUserStatus">
             <li style="margin: 10px 0px !important; padding: 10px !important;">
-                <a routerLink='/manage-entities'>Manage Entities</a>
+                <a routerLink='/authenticated-entities-override'>
+                    User Overrides
+                </a>
             </li>
             <li style="margin: 10px 0px !important; padding: 10px !important;">
                 <a routerLink='/chat'>Live Chat</a>
@@ -40,13 +42,11 @@
         </ng-container>
         <ng-container *ngIf="actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
             <li style="margin: 10px 0px !important; padding: 10px !important;">
-                <a routerLink='/manage-roles'>
-                    Manage Roles
-                </a>
+                <a routerLink='/manage-entities'>Manage Entities</a>
             </li>
             <li style="margin: 10px 0px !important; padding: 10px !important;">
-                <a routerLink='/admin-entities-override'>
-                    Admin Overrides
+                <a routerLink='/manage-roles'>
+                    Manage Roles
                 </a>
             </li>
         </ng-container>

@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\r\n  <h2>Manage Handy Man &amp; Entities</h2>\r\n  <div id=\"createEcosystem\" style=\"margin-top:40px !important;\">\r\n      <ul class=\"nav nav-tabs\">\r\n          <li id=\"menuliAddress\" class=\"nav-item\"><a class=\"nav-link active\">Address</a></li>\r\n          <li id=\"menuliLocation\" class=\"nav-item\"><a class=\"nav-link\">Location</a></li>\r\n          <li id=\"menuliCertification\" class=\"nav-item\"><a class=\"nav-link\">Certification</a></li>\r\n          <li id=\"menuliWorkCategory\" class=\"nav-item\"><a class=\"nav-link\">WorkCategory</a></li>\r\n          <li id=\"menuliWorkSubCategory\" class=\"nav-item\"><a class=\"nav-link\">WorkSubCategory</a></li>\r\n          <li id=\"menuliCourse\" class=\"nav-item\"><a class=\"nav-link\">Course</a></li>\r\n      </ul>\r\n    <div id=\"tabContent\" class=\"container\" style=\"margin-top:25px !important;\">\r\n        <div id=\"address\" class=\"container\" style=\"display:block;\">\r\n            <address></address>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"location\" class=\"container\" style=\"display:none;\">\r\n            <location></location>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"workcategory\" class=\"container\" style=\"display:none;\">\r\n            <workcategorycrud></workcategorycrud>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"worksubcategory\" class=\"container\" style=\"display:none;\">\r\n            <worksubcategorycrud></worksubcategorycrud>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"certification\" class=\"container\" style=\"display:none;\">\r\n            <certificationcrud></certificationcrud>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"course\" class=\"container\" style=\"display:none;\">\r\n            <coursecrud></coursecrud>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\r\n  <h2>Administer Or Manage Handy Man &amp; Entities</h2>\r\n  <div id=\"createEcosystem\" style=\"margin-top:40px !important;\">\r\n      <ul class=\"nav nav-tabs\">\r\n          <li id=\"menuliAddress\" class=\"nav-item\"><a class=\"nav-link active\">Address</a></li>\r\n          <li id=\"menuliLocation\" class=\"nav-item\"><a class=\"nav-link\">Location</a></li>\r\n          <li id=\"menuliCertification\" class=\"nav-item\"><a class=\"nav-link\">Certification</a></li>\r\n          <li id=\"menuliWorkCategory\" class=\"nav-item\"><a class=\"nav-link\">WorkCategory</a></li>\r\n          <li id=\"menuliWorkSubCategory\" class=\"nav-item\"><a class=\"nav-link\">WorkSubCategory</a></li>\r\n          <li id=\"menuliCourse\" class=\"nav-item\"><a class=\"nav-link\">Course</a></li>\r\n      </ul>\r\n    <div id=\"tabContent\" class=\"container\" style=\"margin-top:25px !important;\">\r\n        <div id=\"address\" class=\"container\" style=\"display:block;\">\r\n            <address></address>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"location\" class=\"container\" style=\"display:none;\">\r\n            <location></location>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"workcategory\" class=\"container\" style=\"display:none;\">\r\n            <workcategorycrud></workcategorycrud>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"worksubcategory\" class=\"container\" style=\"display:none;\">\r\n            <worksubcategorycrud></worksubcategorycrud>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"certification\" class=\"container\" style=\"display:none;\">\r\n            <certificationcrud></certificationcrud>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n        <div id=\"course\" class=\"container\" style=\"display:none;\">\r\n            <coursecrud></coursecrud>\r\n            <div style=\"padding:7px 20px;\"><hr /></div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -101,6 +101,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiClientContract-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{clientFundiContract.contractualDescription}}<br />\r\n                </div>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Client Fundi Contract Id - optional</label><br />\r\n                    <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Agreed Costs</h6>\r\n                    <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Fundi Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\"  placeholder=\"Fundi Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Fundi Profile ID Required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Client Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Client Profile ID required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" /><label class=\"custom-control-label\">Is Client Signed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" /><label class=\"custom-control-label\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" /><label class=\"custom-control-label\">Has Job Been Signed Off</label>\r\n                        <br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/clientsubscription/clientsubscription.component.html":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/clientsubscription/clientsubscription.component.html ***!
+  \************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" readonly/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                            <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                                Subscription Description Required\r\n                            </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -334,7 +347,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Subscription Id - optional</label>\r\n                      <select id=\"subscriptionId\" name=\"subscriptionId\" [(ngModel)]=\"subscription.monthlySubscriptionId\"></select><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"startingDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" /><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <input type=\"button\" value=\"Select Subscription\" class=\"but-primary\" (click)=\"selectSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Update Subscription\" class=\"but-primary\" (click)=\"updateSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Delete Subscription\" class=\"but-primary\" (click)=\"deleteSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <hr />\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Fundi Profile ID\r\n                          </label><br />\r\n                          <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                          <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                              Fundi ID Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Work Category Id</label>\r\n                          <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Work Sub Category Id</label>\r\n                          <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                          <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                          <input type=\"button\" value=\"Remove SubCategory\" (click)=\"removeWorkSubCategory($event)\" /><br />\r\n                          <br />\r\n                          <ul id=\"ulistWorkCategories\"></ul>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Subscription Id - optional</label>\r\n                      <select id=\"subscriptionId\" name=\"subscriptionId\" [(ngModel)]=\"subscription.monthlySubscriptionId\"></select><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"startingDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" readonly/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <input type=\"button\" value=\"Select Subscription\" class=\"but-primary\" (click)=\"selectSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Update Subscription\" class=\"but-primary\" (click)=\"updateSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Delete Subscription\" class=\"but-primary\" (click)=\"deleteSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <hr />\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Fundi Profile ID\r\n                          </label><br />\r\n                          <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                          <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                              Fundi ID Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Category Id</label>\r\n                          <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Sub Category Id</label>\r\n                          <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                          <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                          <input type=\"button\" value=\"Remove SubCategory\" (click)=\"removeWorkSubCategory($event)\" /><br />\r\n                          <br />\r\n                          <ul id=\"ulistWorkCategories\"></ul>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" readonly #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -373,7 +386,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section id=\"banner\" style=\"height:auto !important;\">\r\n  <header style=\"margin-top:5px !important;position:relative !important;\">\r\n    <!-- Nav -->\r\n    <nav id=\"nav\">\r\n      <div style=\"position:relative !important;margin-bottom:5px;text-align:left;\">\r\n        <span style=\"color:red;background-color:black;padding:5px;display:none;font-size:small;\" class=\"col-lg-4\" id=\"loginName\"></span><br />\r\n      </div>\r\n      <ul style=\"margin: 6px 0px !important;\">\r\n        <li style=\"margin:10px 0px !important;padding:10px !important;\">\r\n          <a [routerLink]=\"['/']\">Home</a>\r\n        </li>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-entities'>Manage Entities</a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/chat'>Live Chat</a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && (userRoles.indexOf('Fundi') > -1 ||  userRoles.indexOf('Guest')) > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-subscription'>Fundi Subscription</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/manage-profile'>Manage Fundi Profile</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-search-job'>Search For Jobs</a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && userRoles.indexOf('Client') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/client-create-job'>Manage Jobs</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/clientsearch']\">\r\n              Search For Fundi\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-roles'>\r\n                    Manage Roles\r\n                </a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/admin-entities-override'>\r\n                    Admin Overrides\r\n                </a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/contactus']\">\r\n              Contact Us\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/aboutus']\">\r\n              About Us\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/login']\">\r\n              login\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/register']\">\r\n              Register\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngModel=\"actUserStatus\" ngDefaultControl>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/scanqrcode']\">\r\n              Scan Qr-Code\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a (click)=\"setIsLogInPage()\" [routerLink]=\"['/home']\">\r\n              Logout\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n          <a [routerLink]=\"['/forgot-password']\">\r\n            Forgot password\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!-- Roles Banner-->\r\n    <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl>\r\n      <!-- Nav -->\r\n      <nav style=\"text-align:left !important;\">\r\n          <ul style=\"margin: 6px 0px !important;\">\r\n              <li style=\"margin:10px 0px !important;padding:10px !important;\" *ngFor=\"let role of userRoles\">\r\n                  <a routerLink=\"/{{role}}\" routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">{{role}}</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">Fundi Locations</a>\r\n              </li>\r\n          </ul>\r\n      </nav>\r\n    </ng-container>\r\n    <hr/>\r\n  </header>\r\n</section>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section id=\"banner\" style=\"height:auto !important;\">\r\n  <header style=\"margin-top:5px !important;position:relative !important;\">\r\n    <!-- Nav -->\r\n    <nav id=\"nav\">\r\n      <div style=\"position:relative !important;margin-bottom:5px;text-align:left;\">\r\n        <span style=\"color:red;background-color:black;padding:5px;display:none;font-size:small;\" class=\"col-lg-4\" id=\"loginName\"></span><br />\r\n      </div>\r\n      <ul style=\"margin: 6px 0px !important;\">\r\n        <li style=\"margin:10px 0px !important;padding:10px !important;\">\r\n          <a [routerLink]=\"['/']\">Home</a>\r\n        </li>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/authenticated-entities-override'>\r\n                    User Overrides\r\n                </a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/chat'>Live Chat</a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && (userRoles.indexOf('Fundi') > -1 ||  userRoles.indexOf('Guest')) > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-subscription'>Fundi Subscription</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/manage-profile'>Manage Fundi Profile</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-search-job'>Search For Jobs</a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && userRoles.indexOf('Client') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/client-create-job'>Manage Jobs</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/clientsearch']\">\r\n              Search For Fundi\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-entities'>Manage Entities</a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-roles'>\r\n                    Manage Roles\r\n                </a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/contactus']\">\r\n              Contact Us\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/aboutus']\">\r\n              About Us\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/login']\">\r\n              login\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/register']\">\r\n              Register\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngModel=\"actUserStatus\" ngDefaultControl>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/scanqrcode']\">\r\n              Scan Qr-Code\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a (click)=\"setIsLogInPage()\" [routerLink]=\"['/home']\">\r\n              Logout\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n          <a [routerLink]=\"['/forgot-password']\">\r\n            Forgot password\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!-- Roles Banner-->\r\n    <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl>\r\n      <!-- Nav -->\r\n      <nav style=\"text-align:left !important;\">\r\n          <ul style=\"margin: 6px 0px !important;\">\r\n              <li style=\"margin:10px 0px !important;padding:10px !important;\" *ngFor=\"let role of userRoles\">\r\n                  <a routerLink=\"/{{role}}\" routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">{{role}}</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">Fundi Locations</a>\r\n              </li>\r\n          </ul>\r\n      </nav>\r\n    </ng-container>\r\n    <hr/>\r\n  </header>\r\n</section>\r\n");
 
 /***/ }),
 
@@ -490,20 +503,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div #vehicleView class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <h4>Register</h4>\r\n    <form #f3=\"ngForm\" (ngSubmit)=\"f3.form.valid && registerUser()\">\r\n        <div>\r\n            <label>First Name</label>\r\n            <input type=\"text\" name=\"firstName\" [(ngModel)]=\"userDetail.firstName\" required #firstName=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && firstName.invalid\" class=\"text-danger\">\r\n                First Name required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Last Name</label>\r\n            <input type=\"text\" name=\"lastName\" [(ngModel)]=\"userDetail.lastName\" required #lastName=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && lastName.invalid\" class=\"text-danger\">\r\n                Last Name required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Email</label>\r\n            <input type=\"email\" name=\"email\" [(ngModel)]=\"userDetail.emailAddress\" required #emailAddress=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && emailAddress.invalid\" class=\"text-danger\">\r\n                Email required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Mobile Phone Number</label>\r\n            <input type=\"text\" name=\"mobileNumber\" [(ngModel)]=\"userDetail.mobileNumber\" required #mobileNumber=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && mobileNumber.invalid\" class=\"text-danger\">\r\n                Mobile Number required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Password</label>\r\n            <input type=\"password\" name=\"password\" [(ngModel)]=\"userDetail.password\" required #password=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && password.invalid\" class=\"text-danger\">\r\n                Password required<br />\r\n            </div>\r\n        </div>\r\n\r\n        <div>\r\n            <label>Retype password</label>\r\n            <input type=\"password\" name=\"repassword\" [(ngModel)]=\"userDetail.repassword\" required #confirmPassword=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && confirmPassword.invalid\" class=\"text-danger\">\r\n                Retype password required<br />\r\n            </div><br /><br />\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"form-group\">\r\n                <span>\r\n                    <label style=\"text-align:left; display:inline !important;\" class=\"label col-lg-5\" id=\"client\">I am a Fundi</label>\r\n                </span>\r\n                <span>\r\n                    <input type=\"checkbox\" style=\"display: inline !important;\" class=\"col-lg-1\" name=\"fundi\" [(ngModel)]=\"userDetail.fundi\" />\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <span>\r\n                    <label style=\"text-align:left; display:inline !important;\" class=\"label col-lg-5\" id=\"client\">I am a Client</label>\r\n                </span>\r\n                <span>\r\n                    <input type=\"checkbox\" style=\"display: inline !important;\" class=\"col-lg-1\" name=\"client\" [(ngModel)]=\"userDetail.client\" />\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <myrecaptcha></myrecaptcha>\r\n        <br />\r\n        <input type=\"submit\" id=\"submit\" (click)=\"registerUser()\" class=\"but-primary\" value=\"register user\" style=\"margin-top:10px;display:none !important;\" />\r\n    </form>\r\n    <div asp-validation-summary=\"All\"></div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div #vehicleView class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <h4>Register</h4>\r\n    <form #f3=\"ngForm\" (ngSubmit)=\"f3.form.valid && registerUser()\">\r\n        <div>\r\n            <label>First Name</label>\r\n            <input type=\"text\" name=\"firstName\" [(ngModel)]=\"userDetail.firstName\" required #firstName=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && firstName.invalid\" class=\"text-danger\">\r\n                First Name required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Last Name</label>\r\n            <input type=\"text\" name=\"lastName\" [(ngModel)]=\"userDetail.lastName\" required #lastName=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && lastName.invalid\" class=\"text-danger\">\r\n                Last Name required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Email</label>\r\n            <input type=\"email\" name=\"email\" [(ngModel)]=\"userDetail.emailAddress\" required #emailAddress=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && emailAddress.invalid\" class=\"text-danger\">\r\n                Email required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Mobile Phone Number</label>\r\n            <input type=\"text\" name=\"mobileNumber\" [(ngModel)]=\"userDetail.mobileNumber\" required #mobileNumber=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && mobileNumber.invalid\" class=\"text-danger\">\r\n                Mobile Number required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Password</label>\r\n            <input type=\"password\" name=\"password\" [(ngModel)]=\"userDetail.password\" required #password=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && password.invalid\" class=\"text-danger\">\r\n                Password required<br />\r\n            </div>\r\n        </div>\r\n\r\n        <div>\r\n            <label>Retype password</label>\r\n            <input type=\"password\" name=\"repassword\" [(ngModel)]=\"userDetail.repassword\" required #confirmPassword=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && confirmPassword.invalid\" class=\"text-danger\">\r\n                Retype password required<br />\r\n            </div><br /><br />\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"form-group\">\r\n                <span>\r\n                    <label style=\"text-align:left; display:inline !important;\" class=\"label col-lg-5\" id=\"client\">I am a Fundi</label>\r\n                </span>\r\n                <span>\r\n                    <input type=\"checkbox\" style=\"display: inline !important;\" class=\"col-lg-1\" name=\"fundi\" [(ngModel)]=\"userDetail.fundi\" />\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <span>\r\n                    <label style=\"text-align:left; display:inline !important;\" class=\"label col-lg-5\" id=\"client\">I am a Client</label>\r\n                </span>\r\n                <span>\r\n                    <input type=\"checkbox\" style=\"display: inline !important;\" class=\"col-lg-1\" name=\"client\" [(ngModel)]=\"userDetail.client\" />\r\n                </span>\r\n                <br />\r\n            </div>\r\n            <myrecaptcha></myrecaptcha>\r\n            <br />\r\n            <a href=\"\" data-toggle=\"modal\" data-target=\"#myModalAgreement\">Accept Terms &amp; Conditions</a>\r\n            <br />\r\n            <input type=\"submit\" id=\"submit\" (click)=\"registerUser()\" class=\"but-primary\" value=\"register user\" style=\"margin-top:10px;display:none !important;\" />\r\n        </div>\r\n    </form>\r\n\r\n    <div class=\"modal fade\" id=\"myModalAgreement\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Accept Terms &amp; Conditions</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <terms-and-conditions></terms-and-conditions>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/roles/administrator/administrator.component.html":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/roles/administrator/administrator.component.html ***!
-  \********************************************************************************************************/
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/roles/authenticateduser/authenticateduser.component.html":
+/*!****************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/roles/authenticateduser/authenticateduser.component.html ***!
+  \****************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h1>Administrator</h1>\r\n\r\n<div class=\"container-fluid\" style=\"background-color: #F0F0F0; text-align: left;\">\r\n  <section>\r\n    <address ngDefaultControl></address>\r\n    <hr />\r\n  </section>\r\n  <section>\r\n    <location ngDefaultControl></location>\r\n    <hr />\r\n  </section>\r\n  <section>\r\n    <company ngDefaultControl></company>\r\n    <hr />\r\n  </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h1>Authenticated User Overrides</h1>\r\n\r\n<div class=\"container-fluid\" style=\"background-color: #F0F0F0; text-align: left;\">\r\n  <section>\r\n    <address ngDefaultControl></address>\r\n    <hr />\r\n  </section>\r\n  <section>\r\n    <location ngDefaultControl></location>\r\n    <hr />\r\n  </section>\r\n  <section>\r\n    <company ngDefaultControl></company>\r\n    <hr />\r\n  </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -581,7 +594,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"termsAndConditionsOfService-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Conditions Of Service To Observe</h2>\r\n        <h2>{{currentDate}} &copy; MartinLayooInc.</h2>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Terms And Conditions Of Service</h5>\r\n                <div>\r\n                    {{termsAndConditionsOfService}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Additional Notes Of Liabilities</h5>\r\n                <div>\r\n                    {{liabilityNotes}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"termsAndConditionsOfService-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">Agreement &amp; Conditions Of Service To Observe</h2>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{currentDate}} &copy; MartinLayooInc.</h2>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Terms And Conditions Of Service</h5>\r\n                <div>\r\n                    {{termsAndConditionsOfServiceHtml}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Additional Notes Of Liabilities</h5>\r\n                <div>\r\n                    {{liabilityNotesHtml}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <form #fxs=\"ngForm\" (ngSubmit)=\"acceptTermsAndConditions($event)\">\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" style=\"z-index: 1000 !important;\" type=\"checkbox\" name=\"termsAndConditionOfService\" [(ngModel)]=\"termsAndConditionOfService\" id=\"termsOfService\" />\r\n                        <label class=\"custom-control-label\" for=\"termsAndConditionOfService\">\r\n                            Please accept the terms and conditions of service\r\n                        </label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <input type=\"submit\" class=\"btn-primary\" value=\"Accept\" style=\"margin-top:10px;\" />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -927,39 +940,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./crud-operations/location/location.component */ "./src/app/crud-operations/location/location.component.ts");
 /* harmony import */ var _success_success_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./success/success.component */ "./src/app/success/success.component.ts");
 /* harmony import */ var _failure_failure_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./failure/failure.component */ "./src/app/failure/failure.component.ts");
-/* harmony import */ var _roles_administrator_administrator_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./roles/administrator/administrator.component */ "./src/app/roles/administrator/administrator.component.ts");
-/* harmony import */ var _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./roles/guest/guest.component */ "./src/app/roles/guest/guest.component.ts");
-/* harmony import */ var _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./roles/fundi/fundi.component */ "./src/app/roles/fundi/fundi.component.ts");
-/* harmony import */ var _guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../guards/AuthGuard */ "./src/guards/AuthGuard.ts");
-/* harmony import */ var _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../guards/AuthFundiGuard */ "./src/guards/AuthFundiGuard.ts");
-/* harmony import */ var _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../guards/AdminAuthGuard */ "./src/guards/AdminAuthGuard.ts");
-/* harmony import */ var _socialmedia_twitterfeeds_twitterprofilefeeds_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../socialmedia/twitterfeeds/twitterprofilefeeds.component */ "./src/socialmedia/twitterfeeds/twitterprofilefeeds.component.ts");
-/* harmony import */ var _roles_client_client_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./roles/client/client.component */ "./src/app/roles/client/client.component.ts");
-/* harmony import */ var _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../guards/AuthClientGuard */ "./src/guards/AuthClientGuard.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
-/* harmony import */ var _crud_operations_certification_certification_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./crud-operations/certification/certification.component */ "./src/app/crud-operations/certification/certification.component.ts");
-/* harmony import */ var _crud_operations_work_category_workcategory_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./crud-operations/work-category/workcategory.component */ "./src/app/crud-operations/work-category/workcategory.component.ts");
-/* harmony import */ var _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./profile-create/profilecreate.component */ "./src/app/profile-create/profilecreate.component.ts");
-/* harmony import */ var _crud_operations_coursescrud_coursescrud_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./crud-operations/coursescrud/coursescrud.component */ "./src/app/crud-operations/coursescrud/coursescrud.component.ts");
-/* harmony import */ var _crud_operations_certificationcrud_certificationcrud_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./crud-operations/certificationcrud/certificationcrud.component */ "./src/app/crud-operations/certificationcrud/certificationcrud.component.ts");
-/* harmony import */ var _crud_operations_workcategorycrud_workcategorycrud_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./crud-operations/workcategorycrud/workcategorycrud.component */ "./src/app/crud-operations/workcategorycrud/workcategorycrud.component.ts");
-/* harmony import */ var _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./clientFundiSearch/clientFundiSearch.component */ "./src/app/clientFundiSearch/clientFundiSearch.component.ts");
-/* harmony import */ var _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./fundiProfile-by-id/fundiProfileById.component */ "./src/app/fundiProfile-by-id/fundiProfileById.component.ts");
-/* harmony import */ var _client_client_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./client/client.component */ "./src/app/client/client.component.ts");
-/* harmony import */ var _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./fundiJobSearch/fundiJobSearch.component */ "./src/app/fundiJobSearch/fundiJobSearch.component.ts");
-/* harmony import */ var _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./fundisubscription/fundisubscription.component */ "./src/app/fundisubscription/fundisubscription.component.ts");
-/* harmony import */ var _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ../guards/AuthFundiSubscriptionGuard */ "./src/guards/AuthFundiSubscriptionGuard.ts");
-/* harmony import */ var _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./vehiclemonitor/vehiclemonitor.component */ "./src/app/vehiclemonitor/vehiclemonitor.component.ts");
-/* harmony import */ var _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./recaptcha/myrecaptcha.component */ "./src/app/recaptcha/myrecaptcha.component.ts");
-/* harmony import */ var _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./client-job-view/clientjobview.component */ "./src/app/client-job-view/clientjobview.component.ts");
-/* harmony import */ var _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./crud-operations/courses/courses.component */ "./src/app/crud-operations/courses/courses.component.ts");
-/* harmony import */ var _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./crud-operations/worksubcategorycrud/worksubcategorycrud.component */ "./src/app/crud-operations/worksubcategorycrud/worksubcategorycrud.component.ts");
-/* harmony import */ var _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./fundi-engagement/fundiengagement.component */ "./src/app/fundi-engagement/fundiengagement.component.ts");
-/* harmony import */ var _paging_paging_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./paging/paging.component */ "./src/app/paging/paging.component.ts");
-/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./chat/chat.component */ "./src/app/chat/chat.component.ts");
-/* harmony import */ var _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ../guards/AuthFundiClientAdminGuard */ "./src/guards/AuthFundiClientAdminGuard.ts");
-/* harmony import */ var _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./clientfundi-contract/clientfundicontract.component */ "./src/app/clientfundi-contract/clientfundicontract.component.ts");
-/* harmony import */ var _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./terms-conditions-service/termAndConditions.component */ "./src/app/terms-conditions-service/termAndConditions.component.ts");
+/* harmony import */ var _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./roles/guest/guest.component */ "./src/app/roles/guest/guest.component.ts");
+/* harmony import */ var _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./roles/fundi/fundi.component */ "./src/app/roles/fundi/fundi.component.ts");
+/* harmony import */ var _guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../guards/AuthGuard */ "./src/guards/AuthGuard.ts");
+/* harmony import */ var _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../guards/AuthFundiGuard */ "./src/guards/AuthFundiGuard.ts");
+/* harmony import */ var _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../guards/AdminAuthGuard */ "./src/guards/AdminAuthGuard.ts");
+/* harmony import */ var _socialmedia_twitterfeeds_twitterprofilefeeds_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../socialmedia/twitterfeeds/twitterprofilefeeds.component */ "./src/socialmedia/twitterfeeds/twitterprofilefeeds.component.ts");
+/* harmony import */ var _roles_client_client_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./roles/client/client.component */ "./src/app/roles/client/client.component.ts");
+/* harmony import */ var _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../guards/AuthClientGuard */ "./src/guards/AuthClientGuard.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _crud_operations_certification_certification_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./crud-operations/certification/certification.component */ "./src/app/crud-operations/certification/certification.component.ts");
+/* harmony import */ var _crud_operations_work_category_workcategory_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./crud-operations/work-category/workcategory.component */ "./src/app/crud-operations/work-category/workcategory.component.ts");
+/* harmony import */ var _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./profile-create/profilecreate.component */ "./src/app/profile-create/profilecreate.component.ts");
+/* harmony import */ var _crud_operations_coursescrud_coursescrud_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./crud-operations/coursescrud/coursescrud.component */ "./src/app/crud-operations/coursescrud/coursescrud.component.ts");
+/* harmony import */ var _crud_operations_certificationcrud_certificationcrud_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./crud-operations/certificationcrud/certificationcrud.component */ "./src/app/crud-operations/certificationcrud/certificationcrud.component.ts");
+/* harmony import */ var _crud_operations_workcategorycrud_workcategorycrud_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./crud-operations/workcategorycrud/workcategorycrud.component */ "./src/app/crud-operations/workcategorycrud/workcategorycrud.component.ts");
+/* harmony import */ var _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./clientFundiSearch/clientFundiSearch.component */ "./src/app/clientFundiSearch/clientFundiSearch.component.ts");
+/* harmony import */ var _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./fundiProfile-by-id/fundiProfileById.component */ "./src/app/fundiProfile-by-id/fundiProfileById.component.ts");
+/* harmony import */ var _client_client_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./client/client.component */ "./src/app/client/client.component.ts");
+/* harmony import */ var _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./fundiJobSearch/fundiJobSearch.component */ "./src/app/fundiJobSearch/fundiJobSearch.component.ts");
+/* harmony import */ var _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./fundisubscription/fundisubscription.component */ "./src/app/fundisubscription/fundisubscription.component.ts");
+/* harmony import */ var _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ../guards/AuthFundiSubscriptionGuard */ "./src/guards/AuthFundiSubscriptionGuard.ts");
+/* harmony import */ var _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./vehiclemonitor/vehiclemonitor.component */ "./src/app/vehiclemonitor/vehiclemonitor.component.ts");
+/* harmony import */ var _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./recaptcha/myrecaptcha.component */ "./src/app/recaptcha/myrecaptcha.component.ts");
+/* harmony import */ var _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./client-job-view/clientjobview.component */ "./src/app/client-job-view/clientjobview.component.ts");
+/* harmony import */ var _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./crud-operations/courses/courses.component */ "./src/app/crud-operations/courses/courses.component.ts");
+/* harmony import */ var _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./crud-operations/worksubcategorycrud/worksubcategorycrud.component */ "./src/app/crud-operations/worksubcategorycrud/worksubcategorycrud.component.ts");
+/* harmony import */ var _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./fundi-engagement/fundiengagement.component */ "./src/app/fundi-engagement/fundiengagement.component.ts");
+/* harmony import */ var _paging_paging_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./paging/paging.component */ "./src/app/paging/paging.component.ts");
+/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./chat/chat.component */ "./src/app/chat/chat.component.ts");
+/* harmony import */ var _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ../guards/AuthFundiClientAdminGuard */ "./src/guards/AuthFundiClientAdminGuard.ts");
+/* harmony import */ var _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./clientfundi-contract/clientfundicontract.component */ "./src/app/clientfundi-contract/clientfundicontract.component.ts");
+/* harmony import */ var _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./terms-conditions-service/termAndConditions.component */ "./src/app/terms-conditions-service/termAndConditions.component.ts");
+/* harmony import */ var _clientsubscription_clientsubscription_component__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./clientsubscription/clientsubscription.component */ "./src/app/clientsubscription/clientsubscription.component.ts");
+/* harmony import */ var _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ./roles/authenticateduser/authenticateduser.component */ "./src/app/roles/authenticateduser/authenticateduser.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -969,7 +983,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-
 
 
 
@@ -1032,6 +1045,8 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
+
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -1060,33 +1075,34 @@ AppModule = __decorate([
             _crud_operations_company_company_component__WEBPACK_IMPORTED_MODULE_25__["CompanyComponent"],
             _success_success_component__WEBPACK_IMPORTED_MODULE_27__["SuccessComponent"],
             _failure_failure_component__WEBPACK_IMPORTED_MODULE_28__["FailureComponent"],
-            _roles_administrator_administrator_component__WEBPACK_IMPORTED_MODULE_29__["AdministratorRoleComponent"],
-            _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_30__["GuestRoleComponent"],
-            _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_31__["FundiRoleComponent"],
-            _roles_client_client_component__WEBPACK_IMPORTED_MODULE_36__["ClientRoleComponent"],
-            _socialmedia_twitterfeeds_twitterprofilefeeds_component__WEBPACK_IMPORTED_MODULE_35__["TwitterProfileFeedsComponent"],
-            _profile_profile_component__WEBPACK_IMPORTED_MODULE_38__["ProfileComponent"],
-            _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_41__["ProfileCreateComponent"],
-            _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_54__["CoursesComponent"],
-            _crud_operations_certification_certification_component__WEBPACK_IMPORTED_MODULE_39__["CertificationComponent"],
-            _crud_operations_work_category_workcategory_component__WEBPACK_IMPORTED_MODULE_40__["WorkCategoryComponent"],
-            _crud_operations_coursescrud_coursescrud_component__WEBPACK_IMPORTED_MODULE_42__["CourseCrudComponent"],
-            _crud_operations_certificationcrud_certificationcrud_component__WEBPACK_IMPORTED_MODULE_43__["CertificationCrudComponent"],
-            _crud_operations_workcategorycrud_workcategorycrud_component__WEBPACK_IMPORTED_MODULE_44__["WorkCategoryCrudComponent"],
-            _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_45__["ClientFundiSearchComponent"],
-            _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_46__["FundiProfileByIdComponent"],
-            _client_client_component__WEBPACK_IMPORTED_MODULE_47__["ClientProfileComponent"],
-            _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_48__["FundiJobSearchComponent"],
-            _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_49__["FundiSubscriptionComponent"],
-            _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_51__["VehicleMonitorComponent"],
-            _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_52__["myRecaptchaComponent"],
-            _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_53__["ClientJobViewComponent"],
-            _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_55__["WorkSubCategoryCrudComponent"],
-            _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_56__["FundiEngagementComponent"],
-            _paging_paging_component__WEBPACK_IMPORTED_MODULE_57__["PagingComponent"],
-            _chat_chat_component__WEBPACK_IMPORTED_MODULE_58__["ChatComponent"],
-            _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_61__["TermsAndConditionsComponent"],
-            _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_60__["ClientFundiContractComponent"]
+            _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__["AuthenticatedUserOveridesComponent"],
+            _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_29__["GuestRoleComponent"],
+            _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_30__["FundiRoleComponent"],
+            _roles_client_client_component__WEBPACK_IMPORTED_MODULE_35__["ClientRoleComponent"],
+            _socialmedia_twitterfeeds_twitterprofilefeeds_component__WEBPACK_IMPORTED_MODULE_34__["TwitterProfileFeedsComponent"],
+            _profile_profile_component__WEBPACK_IMPORTED_MODULE_37__["ProfileComponent"],
+            _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_40__["ProfileCreateComponent"],
+            _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_53__["CoursesComponent"],
+            _crud_operations_certification_certification_component__WEBPACK_IMPORTED_MODULE_38__["CertificationComponent"],
+            _crud_operations_work_category_workcategory_component__WEBPACK_IMPORTED_MODULE_39__["WorkCategoryComponent"],
+            _crud_operations_coursescrud_coursescrud_component__WEBPACK_IMPORTED_MODULE_41__["CourseCrudComponent"],
+            _crud_operations_certificationcrud_certificationcrud_component__WEBPACK_IMPORTED_MODULE_42__["CertificationCrudComponent"],
+            _crud_operations_workcategorycrud_workcategorycrud_component__WEBPACK_IMPORTED_MODULE_43__["WorkCategoryCrudComponent"],
+            _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_44__["ClientFundiSearchComponent"],
+            _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_45__["FundiProfileByIdComponent"],
+            _client_client_component__WEBPACK_IMPORTED_MODULE_46__["ClientProfileComponent"],
+            _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__["FundiJobSearchComponent"],
+            _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_48__["FundiSubscriptionComponent"],
+            _clientsubscription_clientsubscription_component__WEBPACK_IMPORTED_MODULE_61__["ClientSubscriptionComponent"],
+            _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_50__["VehicleMonitorComponent"],
+            _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_51__["myRecaptchaComponent"],
+            _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_52__["ClientJobViewComponent"],
+            _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_54__["WorkSubCategoryCrudComponent"],
+            _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_55__["FundiEngagementComponent"],
+            _paging_paging_component__WEBPACK_IMPORTED_MODULE_56__["PagingComponent"],
+            _chat_chat_component__WEBPACK_IMPORTED_MODULE_57__["ChatComponent"],
+            _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"],
+            _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"].withServerTransition({ appId: 'ng-cli-universal' }),
@@ -1095,49 +1111,50 @@ AppModule = __decorate([
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot([
                 { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"], pathMatch: 'full' },
                 { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"] },
-                { path: 'manage-entities', component: _activecrudoperations_activecrudoperations_component__WEBPACK_IMPORTED_MODULE_8__["ActiveCrudOperationsComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'chat', component: _chat_chat_component__WEBPACK_IMPORTED_MODULE_58__["ChatComponent"], canActivate: [_guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__["AuthFundiClientAdminGuard"]] },
-                { path: 'create-profile', component: _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_41__["ProfileCreateComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'Fundi', component: _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_31__["FundiRoleComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'add-location', component: _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], canActivate: [_guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__["AdminAuthGuard"]] },
+                { path: 'manage-entities', component: _activecrudoperations_activecrudoperations_component__WEBPACK_IMPORTED_MODULE_8__["ActiveCrudOperationsComponent"], canActivate: [_guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__["AdminAuthGuard"]] },
+                { path: 'chat', component: _chat_chat_component__WEBPACK_IMPORTED_MODULE_57__["ChatComponent"], canActivate: [_guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"]] },
+                { path: 'create-profile', component: _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_40__["ProfileCreateComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'Fundi', component: _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_30__["FundiRoleComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'add-location', component: _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], canActivate: [_guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__["AdminAuthGuard"]] },
                 { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"] },
                 { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_11__["RegisterComponent"] },
-                { path: 'scanqrcode', component: _qrCodeReader_qrCodeReader_component__WEBPACK_IMPORTED_MODULE_23__["QrCodeComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
+                { path: 'scanqrcode', component: _qrCodeReader_qrCodeReader_component__WEBPACK_IMPORTED_MODULE_23__["QrCodeComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
                 { path: 'forgot-password', component: _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"] },
                 { path: 'logout', component: _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"] },
-                { path: 'manage-roles', component: _userroles_userroles_component__WEBPACK_IMPORTED_MODULE_13__["UserRolesComponent"], canActivate: [_guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__["AdminAuthGuard"]] },
+                { path: 'manage-roles', component: _userroles_userroles_component__WEBPACK_IMPORTED_MODULE_13__["UserRolesComponent"], canActivate: [_guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__["AdminAuthGuard"]] },
                 { path: 'contactus', component: _contactus_contactus_component__WEBPACK_IMPORTED_MODULE_14__["ContactUsComponent"] },
                 { path: 'aboutus', component: _about_aboutus_component__WEBPACK_IMPORTED_MODULE_15__["AboutUsComponent"] },
                 { path: 'paypal-success', component: _paypalSuccess_paypal_success_component__WEBPACK_IMPORTED_MODULE_17__["PayPalSuccessComponent"] },
                 { path: 'paypal-failure', component: _paypalFailure_paypal_failure_component__WEBPACK_IMPORTED_MODULE_18__["PayPalFailureComponent"] },
                 { path: 'success', component: _success_success_component__WEBPACK_IMPORTED_MODULE_27__["SuccessComponent"] },
                 { path: 'failure', component: _failure_failure_component__WEBPACK_IMPORTED_MODULE_28__["FailureComponent"] },
-                { path: 'admin-entities-override', component: _roles_administrator_administrator_component__WEBPACK_IMPORTED_MODULE_29__["AdministratorRoleComponent"], canActivate: [_guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__["AdminAuthGuard"]] },
-                { path: 'fundi-locations', component: _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_51__["VehicleMonitorComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'Guest', component: _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_30__["GuestRoleComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'Client', component: _roles_client_client_component__WEBPACK_IMPORTED_MODULE_36__["ClientRoleComponent"], canActivate: [_guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_37__["AuthClientGuard"]] },
-                { path: 'clientsearch', component: _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_45__["ClientFundiSearchComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'fundiprofile-by-id', component: _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_46__["FundiProfileByIdComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'client-create-job', component: _client_client_component__WEBPACK_IMPORTED_MODULE_47__["ClientProfileComponent"], canActivate: [_guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_37__["AuthClientGuard"]] },
-                { path: 'manage-profile', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_38__["ProfileComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'job-details', component: _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_53__["ClientJobViewComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'fundi-subscription', component: _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_49__["FundiSubscriptionComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] },
-                { path: 'fundi-search-job', component: _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_48__["FundiJobSearchComponent"], canActivate: [_guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_33__["AuthFundiGuard"]] },
-                { path: 'client-fundi-contract', component: _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_60__["ClientFundiContractComponent"], canActivate: [_guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__["AuthFundiClientAdminGuard"]] },
-                { path: 'terms-and-conditions', component: _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_61__["TermsAndConditionsComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"]] }
+                { path: 'authenticated-entities-override', component: _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__["AuthenticatedUserOveridesComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'fundi-locations', component: _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_50__["VehicleMonitorComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'Guest', component: _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_29__["GuestRoleComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'Client', component: _roles_client_client_component__WEBPACK_IMPORTED_MODULE_35__["ClientRoleComponent"], canActivate: [_guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__["AuthClientGuard"]] },
+                { path: 'clientsearch', component: _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_44__["ClientFundiSearchComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'fundiprofile-by-id', component: _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_45__["FundiProfileByIdComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'client-create-job', component: _client_client_component__WEBPACK_IMPORTED_MODULE_46__["ClientProfileComponent"], canActivate: [_guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__["AuthClientGuard"]] },
+                { path: 'manage-profile', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_37__["ProfileComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'job-details', component: _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_52__["ClientJobViewComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'fundi-subscription', component: _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_48__["FundiSubscriptionComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
+                { path: 'client-subscription', component: _clientsubscription_clientsubscription_component__WEBPACK_IMPORTED_MODULE_61__["ClientSubscriptionComponent"] },
+                { path: 'fundi-search-job', component: _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__["FundiJobSearchComponent"], canActivate: [_guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__["AuthFundiGuard"]] },
+                { path: 'client-fundi-contract', component: _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"], canActivate: [_guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"]] },
+                { path: 'terms-and-conditions', component: _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"] }
             ])
         ],
         providers: [
-            { provide: _guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"], useClass: _guards_AuthGuard__WEBPACK_IMPORTED_MODULE_32__["AuthGuard"] },
+            { provide: _guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"], useClass: _guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"] },
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], useClass: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] },
             { provide: _services_myFundiService__WEBPACK_IMPORTED_MODULE_21__["MyFundiService"], useClass: _services_myFundiService__WEBPACK_IMPORTED_MODULE_21__["MyFundiService"] },
-            { provide: _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__["AdminAuthGuard"], useClass: _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_34__["AdminAuthGuard"] },
-            { provide: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_33__["AuthFundiGuard"], useClass: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_33__["AuthFundiGuard"] },
-            { provide: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_37__["AuthClientGuard"], useClass: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_37__["AuthClientGuard"] },
-            { provide: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__["AuthFundiClientAdminGuard"], useClass: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_59__["AuthFundiClientAdminGuard"] },
+            { provide: _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__["AdminAuthGuard"], useClass: _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__["AdminAuthGuard"] },
+            { provide: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__["AuthFundiGuard"], useClass: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__["AuthFundiGuard"] },
+            { provide: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__["AuthClientGuard"], useClass: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__["AuthClientGuard"] },
+            { provide: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"], useClass: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"] },
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _interceptors_app_interceptor__WEBPACK_IMPORTED_MODULE_22__["AppInterceptor"], multi: true },
             { provide: _angular_common__WEBPACK_IMPORTED_MODULE_20__["APP_BASE_HREF"], useValue: '/myFundi/' },
-            { provide: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_50__["AuthFundiSubscriptionGuard"], useClass: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_50__["AuthFundiSubscriptionGuard"] },
+            { provide: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__["AuthFundiSubscriptionGuard"], useClass: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__["AuthFundiSubscriptionGuard"] },
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
@@ -2809,6 +2826,218 @@ ClientFundiContractComponent = __decorate([
     }),
     __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
 ], ClientFundiContractComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/clientsubscription/clientsubscription.component.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/clientsubscription/clientsubscription.component.ts ***!
+  \********************************************************************/
+/*! exports provided: ClientSubscriptionComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientSubscriptionComponent", function() { return ClientSubscriptionComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+let ClientSubscriptionComponent = class ClientSubscriptionComponent {
+    constructor(myFundiService, router) {
+        this.myFundiService = myFundiService;
+        this.router = router;
+        this.subscriptionFee = 2000;
+        this.clientLoginDetails = {};
+        this.userDetails = {};
+    }
+    decoderUrl(url) {
+        return decodeURIComponent(url);
+    }
+    ngOnInit() {
+        this.clientLoginDetails = JSON.parse(localStorage.getItem("ClientLoginDetails"));
+        debugger;
+        this.subscription = {
+            userId: "",
+            firstName: this.clientLoginDetails.firstName,
+            lastName: this.clientLoginDetails.lastName,
+            startDate: this.formatDate(new Date()),
+            username: this.clientLoginDetails.username,
+            subscriptionFee: this.subscriptionFee,
+            hasPaid: false,
+            subscriptionName: this.clientLoginDetails.username + ": Client Subscription",
+            subscriptionDescription: this.clientLoginDetails.firstName + " " + this.clientLoginDetails.lastName + ": Client Subscription"
+        };
+        let userIdObs = this.myFundiService.GetUserGuidId(this.subscription.username);
+        userIdObs.map((q) => {
+            this.subscription.userId = q;
+        }).subscribe();
+    }
+    paySubscriptionMonthlyFeeWithPaypal($event) {
+        let subscriptionFeeExpenseToBePaid = this.subscription;
+        let resultObs = this.myFundiService.PayClientSubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid);
+        resultObs.map((q) => {
+            if (q.success) {
+                console.log('Response received');
+                alert("Payment made. Currently being processed by paypal service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
+                this.router.navigateByUrl('/login');
+            }
+            else {
+                alert("Paypal error happened. We are sorry something went bad. Please contact Admin");
+            }
+            localStorage.removeItem("ClientLoginDetails");
+        }).subscribe();
+        $event.preventDefault();
+    }
+    payClientSubscriptionFeeWithAirTel($event) {
+        let subscriptionFeeExpenseToBePaid = this.subscription;
+        let resultObs = this.myFundiService.PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
+        resultObs.map((q) => {
+            if (q.mtnAirtelBaseUrl) {
+                //Requires POST Verb.
+                //window.open(q.mtnAirTelBaseUrl);
+                var newMtnAirtelObject = {
+                    action: q.action,
+                    reason: q.reason,
+                    currency: q.currency,
+                    amount: q.amount,
+                    username: q.username,
+                    password: q.password,
+                    reference: q.reference,
+                    phone: q.phone
+                };
+                console.log('Response received: ' + q.mtnAirtelBaseUrl);
+                let resObs = this.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+                resObs.map((q) => {
+                    console.log("Was Successful: " + q.success);
+                    console.log("Result Data: " + q.data);
+                    if (q.success) {
+                        alert("Payment made. Currently being processed by Airtel service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
+                        this.router.navigateByUrl("/login");
+                    }
+                    else {
+                        alert("Payment Failed!!");
+                    }
+                }).subscribe();
+            }
+            else {
+                alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
+            }
+        }).subscribe();
+        $event.preventDefault();
+    }
+    payClientSubscriptionFeeWithMtn($event) {
+        let subscriptionFeeExpenseToBePaid = this.subscription;
+        let resultObs = this.myFundiService.PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
+        resultObs.map((q) => {
+            if (q.mtnAirtelBaseUrl) {
+                //Requires POST Verb.
+                //window.open(q.mtnAirTelBaseUrl);
+                var newMtnAirtelObject = {
+                    action: q.action,
+                    reason: q.reason,
+                    currency: q.currency,
+                    amount: q.amount,
+                    username: q.username,
+                    password: q.password,
+                    reference: q.reference,
+                    phone: q.phone
+                };
+                console.log('Response received: ' + q.mtnAirtelBaseUrl);
+                let resObs = this.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+                resObs.map((q) => {
+                    console.log("Was Successful: " + q.success);
+                    console.log("Result Data: " + q.data);
+                    if (q.success) {
+                        alert("Payment made. Currently being processed by MTN service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
+                        this.router.navigateByUrl("/login");
+                    }
+                    else {
+                        alert("Payment Failed!!");
+                    }
+                }).subscribe();
+            }
+            else {
+                alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
+            }
+        }).subscribe();
+        $event.preventDefault();
+    }
+    formatDate(date) {
+        var d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        return [year, month, day].join('-');
+    }
+    runAutoCompleteOnSelects(curthis) {
+        debugger;
+        let hasFoundSelectsOnPage = false;
+        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
+            let selects = jQuery('div#subcworkSubCategories-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
+    }
+};
+ClientSubscriptionComponent.ctorParameters = () => [
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+];
+ClientSubscriptionComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'clientsubscription',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./clientsubscription.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/clientsubscription/clientsubscription.component.html")).default
+    }),
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+], ClientSubscriptionComponent);
 
 
 
@@ -5771,11 +6000,6 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         };
         this.workCategory = { workCategoryId: 0 };
         this.workCategories = [];
-        let optionElem = document.createElement('option');
-        optionElem.selected = true;
-        optionElem.value = (0).toString();
-        optionElem.text = "Select WorkCategory";
-        document.querySelector('select#subcworkCategoryId').append(optionElem);
         this.workSubCategory = {
             workSubCategoryId: 0,
             workCategoryId: 0,
@@ -5788,11 +6012,6 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             workCategoryDescription: ""
         };
         this.workSubCategories = [];
-        optionElem = document.createElement('option');
-        optionElem.selected = true;
-        optionElem.value = (0).toString();
-        optionElem.text = "Select WorkSubCategory";
-        document.querySelector('select#subcworkSubCategoryId').append(optionElem);
         let workCategoriesObs = this.myFundiService.GetWorkCategories();
         workCategoriesObs.map((wcs) => {
             this.workCategories = wcs;
@@ -5802,7 +6021,9 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
                 optionElem.text = c.workCategoryType;
                 document.querySelector('select#subcworkCategoryId').append(optionElem);
             });
-            let workSubCategoriesObs = this.myFundiService.GetWorkSubCategories();
+            let selectedWorkCatId = parseInt(jQuery('select#subcworkCategoryId > option:selected').val());
+            debugger;
+            let workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(selectedWorkCatId);
             workSubCategoriesObs.map((wcs) => {
                 this.workSubCategories = wcs;
                 ;
@@ -5849,6 +6070,13 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
                         opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
                         subscrSelect.appendChild(opt1);
                     });
+                    let lastMonthlySubsObs = this.myFundiService.GetFundiLastSubscriptionFees(this.subscription.userId);
+                    lastMonthlySubsObs.map((q) => {
+                        debugger;
+                        if (q.result) {
+                            this.fundi.subscriptionFee = q.subscriptionFee;
+                        }
+                    }).subscribe();
                 }).subscribe();
             }).subscribe();
         }).subscribe();
@@ -5858,12 +6086,6 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         workSubCategoriesObs.map((wcs) => {
             //clear the workCategory options menu and add new options:
             jQuery('select#subcworkSubCategoryId option').remove();
-            this.workSubCategories = [];
-            let optionElem = document.createElement('option');
-            optionElem.selected = true;
-            optionElem.value = (0).toString();
-            optionElem.text = "Select WorkSubCategory";
-            document.querySelector('select#subcworkSubCategoryId').append(optionElem);
             this.workSubCategories = wcs;
             wcs.forEach((c, index, wcs) => {
                 let optionElem = document.createElement('option');
@@ -5884,37 +6106,43 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
     }
     addSubCategory($event) {
         let indexWorkCatToRemove;
+        let selWorkCat = jQuery('select#subcworkCategoryId > option:selected').val();
+        let selWorkSubCat = jQuery('select#subcworkSubCategoryId > option:selected').val();
         let chosenCategory = this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.find((q, index) => {
             indexWorkCatToRemove = index;
-            return q.workCategoryId == this.workCategory.workCategoryId;
+            return q.workCategoryId == selWorkCat;
         });
         if (chosenCategory) {
             let indexWorkSubCatToRemove;
             let chosenWorkSubCatId = chosenCategory.workSubCategoryIds.find((q, index) => {
                 indexWorkSubCatToRemove = index;
-                return q == this.workSubCategory.workSubCategoryId;
+                return q == selWorkSubCat;
             });
             if (chosenWorkSubCatId) {
                 return;
             }
             else {
-                this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.push(this.workSubCategory.workSubCategoryId);
+                let selWorkCat = jQuery('select#subcworkCategoryId > option:selected').val();
+                let selWorkSubCat = jQuery('select#subcworkSubCategoryId > option:selected').val();
+                this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.push(selWorkSubCat);
                 let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
                 let li = document.createElement("li");
-                li.setAttribute('id', `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`);
+                li.setAttribute('id', `${selWorkCat},${selWorkSubCat}`);
                 li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text()}]`;
                 ulSelectedCategories.appendChild(li);
             }
         }
         else {
             let workCategorySubCatIds = [];
-            workCategorySubCatIds.push(this.workSubCategory.workSubCategoryId);
+            let selWorkCat = jQuery('select#subcworkCategoryId > option:selected').val();
+            let selWorkSubCat = jQuery('select#subcworkSubCategoryId > option:selected').val();
+            workCategorySubCatIds.push(selWorkSubCat);
             this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.push({
-                workCategoryId: this.workCategory.workCategoryId, workSubCategoryIds: workCategorySubCatIds
+                workCategoryId: selWorkCat, workSubCategoryIds: workCategorySubCatIds
             });
             let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
             let li = document.createElement("li");
-            li.setAttribute('id', `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`);
+            li.setAttribute('id', `${selWorkCat},${selWorkSubCat}`);
             li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text()}]`;
             ulSelectedCategories.appendChild(li);
         }
@@ -5940,19 +6168,21 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
     }
     removeWorkSubCategory($event) {
         let indexWorkCatToRemove;
+        let selWorkCat = jQuery('select#subcworkCategoryId > option:selected').val();
+        let selWorkSubCat = jQuery('select#subcworkSubCategoryId > option:selected').val();
         let chosenCategory = this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.find((q, index) => {
             indexWorkCatToRemove = index;
-            return q.workCategoryId == this.workCategory.workCategoryId;
+            return q.workCategoryId == selWorkCat;
         });
         if (chosenCategory) {
             let indexWorkSubCatToRemove;
             let chosenWorkSubCatId = chosenCategory.workSubCategoryIds.find((q, index) => {
                 indexWorkSubCatToRemove = index;
-                return q == this.workSubCategory.workSubCategoryId;
+                return q == selWorkSubCat;
             });
             if (chosenWorkSubCatId) {
                 let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
-                let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}` + '"]');
+                let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${selWorkCat},${selWorkSubCat}` + '"]');
                 ulSelectedCategories.removeChild(li);
                 this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.splice(indexWorkSubCatToRemove, 1);
                 if (this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.length == 0) {
@@ -5966,6 +6196,7 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         let subObs = this.myFundiService.GetFundiSubscription(this.subscription.monthlySubscriptionId);
         subObs.map((q) => {
             this.subscription = this.subscriptionFeeExpense = q;
+            this.fundi.subscriptionFee = this.subscription.subscriptionFee;
             this.startingDate = this.formatDate(q.startDate);
             this.appendCategoriesAndSubCategoriesToUi();
         }).subscribe();
@@ -6286,13 +6517,17 @@ let LoginComponent = class LoginComponent {
     }
     loginUser() {
         localStorage.setItem("userRoles", '');
-        sessionStorage.removeItem("Orders");
         this.userDetail.authToken = localStorage.getItem('authToken');
         this.userDetail.username = this.userDetail.emailAddress;
         let loginResults = this.myFundiService.LoginByPost(this.userDetail);
         loginResults.map((q) => {
             console.log(JSON.stringify(q));
-            if (q.isLoggedIn == true) {
+            if (q.clientDueToPaySubscription) {
+                localStorage.setItem("ClientLoginDetails", JSON.stringify(q));
+                this.router.navigateByUrl('/client-subscription');
+                return;
+            }
+            else if (q.isLoggedIn == true) {
                 if (q.message) {
                     alert(q.message);
                 }
@@ -7250,8 +7485,8 @@ let myRecaptchaComponent = class myRecaptchaComponent {
         this.router = router;
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
-        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
+        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr"; */
+        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost:"6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
     }
     ngAfterViewInit() {
         this.isRecaptchaVerified = false;
@@ -7347,9 +7582,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterComponent", function() { return RegisterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
-/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7362,6 +7599,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+
 
 
 
@@ -7388,8 +7626,13 @@ let RegisterComponent = class RegisterComponent {
             message: ""
         };
         this.userDetail = userDetail;
+        jquery__WEBPACK_IMPORTED_MODULE_1__("#myModalAgreement").modal();
     }
     registerUser() {
+        if (localStorage.getItem("HasAcceptedTermsOfService") !== "true") {
+            alert("You can't register unless you accept the terms and conditions");
+            return;
+        }
         if (this.userDetail.fundi && this.userDetail.client) {
             alert("You have to either be a Fundi or Client, and not Both!");
             return;
@@ -7400,7 +7643,8 @@ let RegisterComponent = class RegisterComponent {
             registeResults.map((q) => {
                 if (q.isRegistered) {
                     alert('Registration Successfull: ' + q.isRegistered);
-                    this.router.navigateByUrl("/login");
+                    localStorage.removeItem("HasAcceptedTermsOfService");
+                    this.router.navigateByUrl("/client-subscription");
                 }
                 else {
                     alert('Registration Failed: ');
@@ -7412,34 +7656,34 @@ let RegisterComponent = class RegisterComponent {
     }
 };
 RegisterComponent.ctorParameters = () => [
-    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
 ];
 RegisterComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'register',
         template: __importDefault(__webpack_require__(/*! raw-loader!./register.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/register/register.component.html")).default,
-        providers: [_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]],
+        providers: [_services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"]],
         styles: [__importDefault(__webpack_require__(/*! ./register.component.css */ "./src/app/register/register.component.css")).default]
     }),
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
 ], RegisterComponent);
 
 
 
 /***/ }),
 
-/***/ "./src/app/roles/administrator/administrator.component.ts":
-/*!****************************************************************!*\
-  !*** ./src/app/roles/administrator/administrator.component.ts ***!
-  \****************************************************************/
-/*! exports provided: AdministratorRoleComponent */
+/***/ "./src/app/roles/authenticateduser/authenticateduser.component.ts":
+/*!************************************************************************!*\
+  !*** ./src/app/roles/authenticateduser/authenticateduser.component.ts ***!
+  \************************************************************************/
+/*! exports provided: AuthenticatedUserOveridesComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdministratorRoleComponent", function() { return AdministratorRoleComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthenticatedUserOveridesComponent", function() { return AuthenticatedUserOveridesComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7451,14 +7695,14 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
-let AdministratorRoleComponent = class AdministratorRoleComponent {
+let AuthenticatedUserOveridesComponent = class AuthenticatedUserOveridesComponent {
 };
-AdministratorRoleComponent = __decorate([
+AuthenticatedUserOveridesComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'administrator-role',
-        template: __importDefault(__webpack_require__(/*! raw-loader!./administrator.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/roles/administrator/administrator.component.html")).default
+        template: __importDefault(__webpack_require__(/*! raw-loader!./authenticateduser.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/roles/authenticateduser/authenticateduser.component.html")).default
     })
-], AdministratorRoleComponent);
+], AuthenticatedUserOveridesComponent);
 
 
 
@@ -7744,9 +7988,23 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 let TermsAndConditionsComponent = class TermsAndConditionsComponent {
     constructor(myFundiService) {
         this.myFundiService = myFundiService;
+        this.liabilityNotesHtml = "";
+        this.termsAndConditionsOfServiceHtml = "";
+        this.termsAndConditionOfService = false;
         this.userDetails = {};
         let date = new Date();
         this.currentDate = this.formatDate(date);
+    }
+    acceptTermsAndConditions($event) {
+        if (!this.termsAndConditionOfService) {
+            alert('You should accept the terms and conditions\nof service before registering!');
+            localStorage.setItem('HasAcceptedTermsOfService', "false");
+            return;
+        }
+        localStorage.setItem('HasAcceptedTermsOfService', "true");
+        alert("You have accepted the Terms And Conditions. You can\nclose this form now, and continue with Registration!");
+        $event.preventDefault();
+        window.close();
     }
     decoderUrl(url) {
         return decodeURIComponent(url);
@@ -10885,12 +11143,16 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         this.getFundiLevelOfEngagementByIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiLevelOfEngagementById";
         this.getFundiCoursesUrl = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
         this.getFundiRatingsUrl = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
+        this.getFundiLastSubscriptionFeesUrl = this.baseServerUrl + "/FundiProfile/GetFundiLastSubscriptionFees";
+        this.payClientSubscriptionFeeWithPaypalUrl = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithPaypal";
         this.payMonthlySubscriptionFeeWithPaypalUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithPaypal";
         this.getFundiSubscriptionByIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiSubscriptionById";
         this.deleteFundiSubscriptionByIdUrl = this.baseServerUrl + "/FundiProfile/DeleteFundiSubscriptionById";
         this.updateFundiSubscriptionUrl = this.baseServerUrl + "/FundiProfile/UpdateFundiSubscription";
         this.getAllFundiSubscriptionsByFundiIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiSubscriptionsByFundiId";
+        this.payClientSubscriptionFeeWithMTNUrl = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithMtn";
         this.payMonthlySubscriptionFeeWithMtnUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithMtn";
+        this.payClientSubscriptionFeeWithAirTelUrl = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithAirTel";
         this.payMonthlySubscriptionFeeWithAirTelUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithAirTel";
         this.getFundiSkillsByProfileIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
         this.getFundiWorkCategoriesByFundiProfileIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId";
@@ -11062,6 +11324,20 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
     DeleteFundiSubscription(subscriptionId) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
         let requestUrl = this.deleteFundiSubscriptionByIdUrl + "/" + subscriptionId;
+        let requestOptions = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res) => {
+            let clientProf = res;
+            return clientProf;
+        });
+    }
+    GetFundiLastSubscriptionFees(userId) {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiLastSubscriptionFeesUrl + "/" + userId;
         let requestOptions = {
             url: requestUrl,
             method: 'GET',
@@ -11633,6 +11909,42 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
         let requestOptions = {
             url: this.postCreateWorkCategoryUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res) => {
+            return res;
+        });
+    }
+    PayClientSubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid) {
+        let body = JSON.stringify(subscriptionFeeExpenseToBePaid);
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestOptions = {
+            url: this.payClientSubscriptionFeeWithPaypalUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res) => {
+            return res;
+        });
+    }
+    PayClientSubscriptionFeeWithMTN(subscriptionFeeExpenseToBePaid) {
+        let body = JSON.stringify(subscriptionFeeExpenseToBePaid);
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestOptions = {
+            url: this.payClientSubscriptionFeeWithMTNUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res) => {
+            return res;
+        });
+    }
+    PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid) {
+        let body = JSON.stringify(subscriptionFeeExpenseToBePaid);
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestOptions = {
+            url: this.payClientSubscriptionFeeWithAirTelUrl,
             headers: headers,
             body: body
         };

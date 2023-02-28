@@ -38,6 +38,7 @@ using AesCryptoSystemExtra.AESCryptoSystem.ExternalCryptoUnit;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
 using MartinLayooInc.Web.Infrastructure;
 using System.Collections.Generic;
+using PaymentCalculater;
 
 namespace MyFundi.Web
 {
@@ -307,12 +308,15 @@ namespace MyFundi.Web
                 conf.CreateMap<WorkSubCategoryViewModel, WorkSubCategory>().ReverseMap();
                 conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>();
                 conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscription>().ReverseMap();
-                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>();
-                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>().ReverseMap();
                 conf.CreateMap<FundiLocationViewModel, FundiLocation>();
                 conf.CreateMap<FundiLocationViewModel, FundiLocation>().ReverseMap();
+                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>();
+                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>().ReverseMap();
+                conf.CreateMap<ClientSubscriptionViewModel, ClientSubscription>();
+                conf.CreateMap<ClientSubscriptionViewModel, ClientSubscription>().ReverseMap();
 
             });
+            services.AddScoped<DiscountCalculator>(ds => new DiscountCalculator(Decimal.Parse(Configuration.GetSection("MTNApiConfig").GetSection("FundiMonthlySubscritpion").Value)));
             services.AddSingleton<MartinLayooIncChat>();
             services.AddSingleton<List<FundiLocationViewModel>>();
             services.AddScoped<AppSettingsConfigurations>();
@@ -329,18 +333,23 @@ namespace MyFundi.Web
               paypalSettings.GetSection("BusinessEmail").Value, 
               paypalSettings.GetSection("SuccessUrl").Value, 
               paypalSettings.GetSection("CancelUrl").Value,
-              paypalSettings.GetSection("NotifyUrl").Value, ""));
+              paypalSettings.GetSection("NotifyUrl").Value, 
+              "",
+              new DiscountCalculator(Decimal.Parse(paypalSettings.GetSection("FundiMonthlySubscritpion").Value))
+              ));
             services.AddScoped<MtnAirTelHandler>(pHandle => new MtnAirTelHandler(
              Configuration.GetSection("MTNApiConfig").GetSection("MTNBaseUrl").Value,
-             Configuration.GetSection("MTNApiConfig").GetSection("BusinessEmail").Value, 
-             Configuration.GetSection("MTNApiConfig").GetSection("SuccessUrl").Value, 
+             Configuration.GetSection("MTNApiConfig").GetSection("BusinessEmail").Value,
+             Configuration.GetSection("MTNApiConfig").GetSection("SuccessUrl").Value,
              Configuration.GetSection("MTNApiConfig").GetSection("CancelUrl").Value,
-             Configuration.GetSection("MTNApiConfig").GetSection("NotifyUrl").Value, "", 
+             Configuration.GetSection("MTNApiConfig").GetSection("NotifyUrl").Value, "",
              Configuration.GetSection("MTNApiConfig").GetSection("Phone").Value,
              Configuration.GetSection("MTNApiConfig").GetSection("Username").Value,
              Configuration.GetSection("MTNApiConfig").GetSection("Password").Value,
-             Configuration.GetSection("MTNApiConfig").GetSection("Currency").Value, 
-             Configuration.GetSection("MTNApiConfig").GetSection("Action").Value));
+             Configuration.GetSection("MTNApiConfig").GetSection("Currency").Value,
+             Configuration.GetSection("MTNApiConfig").GetSection("Action").Value,
+              new DiscountCalculator(Decimal.Parse(Configuration.GetSection("MTNApiConfig").GetSection("FundiMonthlySubscritpion").Value))
+              ));
             services.AddScoped<Mapper>(map => new Mapper(mapperConfiguration));
             services.AddScoped<MyFundiUnitOfWork>();
             services.AddScoped<ServicesEndPoint, ServicesEndPoint>();
@@ -365,10 +374,11 @@ namespace MyFundi.Web
             services.AddScoped<AbstractRepository<ClientProfile>, ClientProfileRepository>();
             services.AddScoped<AbstractRepository<Job>, JobRepository>();
             services.AddScoped<AbstractRepository<JobWorkCategory>, JobWorkCategoryRepository>();
-            services.AddScoped<AbstractRepository<MonthlySubscription>, MonthlySubscriptionRepository>();
             services.AddScoped<AbstractRepository<WorkSubCategory>, WorkSubCategoryRepository>();
+            services.AddScoped<AbstractRepository<FundiLocation>, FundiLocationRepository>();
+            services.AddScoped<AbstractRepository<MonthlySubscription>, MonthlySubscriptionRepository>();
             services.AddScoped<AbstractRepository<FundiSubscription>, FundiSubscriptionRepository>();
-            services.AddScoped<AbstractRepository<FundiLocation>, FundiLocationRepository>(); 
+            services.AddScoped<AbstractRepository<ClientSubscription>, ClientSubscriptionRepository>();
             services.AddScoped<SimbaToursEastAfrica.Caching.Interfaces.ICaching, SimbaToursEastAfrica.Caching.Concretes.SimbaToursEastAfricaCahing>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();

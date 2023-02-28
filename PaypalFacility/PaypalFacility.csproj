@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyFundi.Domain\MyFundi.Domain.csproj" />
+    <ProjectReference Include="..\PaymentCalculater\PaymentCalculater.csproj" />
   </ItemGroup>
 
 </Project>

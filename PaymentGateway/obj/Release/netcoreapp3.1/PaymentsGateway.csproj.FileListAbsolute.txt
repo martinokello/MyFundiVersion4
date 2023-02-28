@@ -140,3 +140,5 @@ C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsG
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.csproj.CopyComplete
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.dll
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.pdb
+C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentCalculater.dll
+C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentCalculater.pdb

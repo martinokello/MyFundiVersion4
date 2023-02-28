@@ -101,3 +101,5 @@ C:\Development\MyFundiCurrent\PaypalFacility\obj\Release\netcoreapp3.1\PaypalFac
 C:\Development\MyFundiCurrent\PaypalFacility\obj\Release\netcoreapp3.1\PaypalFacility.csproj.CopyComplete
 C:\Development\MyFundiCurrent\PaypalFacility\obj\Release\netcoreapp3.1\PaypalFacility.dll
 C:\Development\MyFundiCurrent\PaypalFacility\obj\Release\netcoreapp3.1\PaypalFacility.pdb
+C:\Development\MyFundiCurrent\PaypalFacility\bin\Release\netcoreapp3.1\PaymentCalculater.dll
+C:\Development\MyFundiCurrent\PaypalFacility\bin\Release\netcoreapp3.1\PaymentCalculater.pdb

@@ -32,14 +32,19 @@ export class RegisterComponent implements OnInit{
         };
 
         this.userDetail = userDetail;
+        $("#myModalAgreement").modal();
     }
   public constructor(myFundiService: MyFundiService , private router:Router) {
     this.myFundiService = myFundiService;
     }
-  public registerUser(): void {
-    if (this.userDetail.fundi && this.userDetail.client) {
-      alert("You have to either be a Fundi or Client, and not Both!");
-      return;
+    public registerUser(): void {
+        if (localStorage.getItem("HasAcceptedTermsOfService") !== "true") {
+            alert("You can't register unless you accept the terms and conditions");
+            return;
+        }
+        if (this.userDetail.fundi && this.userDetail.client) {
+          alert("You have to either be a Fundi or Client, and not Both!");
+          return;
     }
     if (this.userDetail.fundi || this.userDetail.client) {
 
@@ -48,8 +53,9 @@ export class RegisterComponent implements OnInit{
 
       registeResults.map((q: ILogInStatus) => {
             if (q.isRegistered) {
-              alert('Registration Successfull: ' + q.isRegistered);
-              this.router.navigateByUrl("/login");
+                alert('Registration Successfull: ' + q.isRegistered);
+                localStorage.removeItem("HasAcceptedTermsOfService");
+                this.router.navigateByUrl("/client-subscription");
             }
             else {
               alert('Registration Failed: ');

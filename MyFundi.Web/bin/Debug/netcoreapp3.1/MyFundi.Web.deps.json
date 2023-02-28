@@ -2323,6 +2323,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "MyFundi.Domain": "1.0.0",
+          "PaymentCalculater": "1.0.0",
           "System.Configuration.ConfigurationManager": "5.0.0",
           "System.Data.SqlClient": "4.8.3"
         },

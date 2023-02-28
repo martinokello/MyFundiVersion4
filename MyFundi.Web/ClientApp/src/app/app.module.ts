@@ -28,7 +28,6 @@ import { LocationComponent } from './crud-operations/location/location.component
 import { SuccessComponent } from './success/success.component';
 import { FailureComponent } from './failure/failure.component';
 
-import { AdministratorRoleComponent } from './roles/administrator/administrator.component';
 import { GuestRoleComponent } from './roles/guest/guest.component';
 import { FundiRoleComponent } from './roles/fundi/fundi.component';
 import { AuthGuard } from '../guards/AuthGuard';
@@ -61,7 +60,9 @@ import { PagingComponent } from './paging/paging.component';
 import { ChatComponent } from './chat/chat.component';
 import { AuthFundiClientAdminGuard } from '../guards/AuthFundiClientAdminGuard';
 import { ClientFundiContractComponent } from './clientfundi-contract/clientfundicontract.component';
-import { TermsAndConditionsComponent } from './terms-conditions-service/termAndConditions.component';
+import { TermsAndConditionsComponent } from './terms-conditions-service/termAndConditions.component'; 
+import { ClientSubscriptionComponent } from './clientsubscription/clientsubscription.component';
+import { AuthenticatedUserOveridesComponent } from './roles/authenticateduser/authenticateduser.component';
 
 @NgModule({
     declarations: [
@@ -88,7 +89,7 @@ import { TermsAndConditionsComponent } from './terms-conditions-service/termAndC
         CompanyComponent,
         SuccessComponent,
         FailureComponent,
-        AdministratorRoleComponent,
+        AuthenticatedUserOveridesComponent,
         GuestRoleComponent,
         FundiRoleComponent,
         ClientRoleComponent,
@@ -106,6 +107,7 @@ import { TermsAndConditionsComponent } from './terms-conditions-service/termAndC
         ClientProfileComponent,
         FundiJobSearchComponent,
         FundiSubscriptionComponent,
+        ClientSubscriptionComponent,
         VehicleMonitorComponent,
         myRecaptchaComponent,
         ClientJobViewComponent,
@@ -124,7 +126,7 @@ import { TermsAndConditionsComponent } from './terms-conditions-service/termAndC
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'manage-entities', component: ActiveCrudOperationsComponent, canActivate: [AuthGuard] },
+            { path: 'manage-entities', component: ActiveCrudOperationsComponent, canActivate: [AdminAuthGuard] },
             { path: 'chat', component: ChatComponent, canActivate: [AuthFundiClientAdminGuard] },
             { path: 'create-profile', component: ProfileCreateComponent, canActivate: [AuthGuard] },
             { path: 'Fundi', component: FundiRoleComponent, canActivate: [AuthGuard] },
@@ -141,7 +143,7 @@ import { TermsAndConditionsComponent } from './terms-conditions-service/termAndC
             { path: 'paypal-failure', component: PayPalFailureComponent },
             { path: 'success', component: SuccessComponent },
             { path: 'failure', component: FailureComponent },
-            { path: 'admin-entities-override', component: AdministratorRoleComponent, canActivate: [AdminAuthGuard] },
+            { path: 'authenticated-entities-override', component: AuthenticatedUserOveridesComponent, canActivate: [AuthGuard] },
             { path: 'fundi-locations', component: VehicleMonitorComponent, canActivate: [AuthGuard] },
             { path: 'Guest', component: GuestRoleComponent, canActivate: [AuthGuard] },
             { path: 'Client', component: ClientRoleComponent, canActivate: [AuthClientGuard] },
@@ -151,9 +153,10 @@ import { TermsAndConditionsComponent } from './terms-conditions-service/termAndC
             { path: 'manage-profile', component: ProfileComponent, canActivate: [AuthGuard] }, 
             { path: 'job-details', component: ClientJobViewComponent, canActivate: [AuthGuard] },
             { path: 'fundi-subscription', component: FundiSubscriptionComponent, canActivate: [AuthGuard] },
+            { path: 'client-subscription', component: ClientSubscriptionComponent},
             { path: 'fundi-search-job', component: FundiJobSearchComponent, canActivate: [AuthFundiGuard] },
             { path: 'client-fundi-contract', component: ClientFundiContractComponent, canActivate: [AuthFundiClientAdminGuard] },
-            { path: 'terms-and-conditions', component: TermsAndConditionsComponent, canActivate: [AuthGuard] }
+            { path: 'terms-and-conditions', component: TermsAndConditionsComponent}
         ])
     ],
     providers: [

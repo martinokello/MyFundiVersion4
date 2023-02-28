@@ -45,14 +45,9 @@ namespace PaypalFacility
             set { products = value; }
         }
 
-        public decimal Ammount
+        public decimal Amount
         {
             get {
-                decimal amount = 0.00M;
-                foreach(var prod in Products)
-                {
-                    amount += prod.Amount;
-                }
                 return amount;
             }
             set { amount = value; }

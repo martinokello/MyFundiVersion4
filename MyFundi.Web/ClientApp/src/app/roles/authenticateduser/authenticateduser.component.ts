@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'administrator-role',
-    templateUrl: './administrator.component.html'
+    templateUrl: './authenticateduser.component.html'
 })
-export class AdministratorRoleComponent {
+export class AuthenticatedUserOveridesComponent {
 }
 

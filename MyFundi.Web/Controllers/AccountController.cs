@@ -30,24 +30,20 @@ namespace MyFundi.Web.Controllers
         public readonly IUserService _userService;
         private readonly IRoleService _roleService;
         private readonly IMailService _emailService;
+        private readonly AppSettingsConfigurations _appSettings;
         public AccountController(IUserService userService, IRoleService roleService, MyFundiUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, IMailService emailService)
         {
             _unitOfWork = unitOfWork;
             _roleService = roleService;
             _userService = userService;
             _emailService = emailService;
+            _appSettings = appSettings;
         }
+
 
         [HttpGet]
         public async Task<IActionResult> VerifyLoggedInUser()
         {
-            /* if (!string.IsNullOrEmpty(User.Identity.Name))
-             {
-                 var user = await _userService.FindByNameAsync(User.Identity.Name);
-
-                 return Ok(new { name = user.Email, IsLoggedIn = true, IsAdministrator = _userService.IsUserInRoleAsync(user.Username.ToLower(), "administrator").ConfigureAwait(true).GetAwaiter().GetResult() });
-             }
-             return Ok(new { IsLoggedIn = false });*/
 
             var authToken = HttpContext.Request.Headers["authToken"];
             if (!string.IsNullOrEmpty(authToken))
@@ -90,7 +86,8 @@ namespace MyFundi.Web.Controllers
                 LastName = userDetails.lastName,
                 CreateTime = DateTime.Now,
                 IsActive = false,
-                IsLockedOut = false
+                IsLockedOut = false, 
+                LastLogInTime = DateTime.Now
             };
 
             UserInteractionResults userCreationResult = await _userService.CreateAsync(newUser, userDetails.password);
@@ -108,18 +105,43 @@ namespace MyFundi.Web.Controllers
                 {
                     if (roleInsertionResult == UserInteractionResults.Succeeded)
                     {
-                        _emailService.SendEmail(new EmailDao
+                        
+                        if (userDetails.fundi)
+                        {
+                            await _roleService.AddToRoleAsync(newUser, "Guest");
+                        }
+                        else if (userDetails.client)
+                        {
+                            var result = _unitOfWork._clientSubscriptionRepository.Insert(
+                                new ClientSubscription { 
+                                    UserId = newUser.UserId, 
+                                    DateCreated = DateTime.Now, 
+                                    DateUpdated = DateTime.Now, 
+                                    SubscriptionFee = decimal.Parse(_appSettings.AppSettings.GetSection("ApplicationConstants").GetSection("ClientSubscriptionFee").Value), 
+                                    HasPaid = false,
+                                    Username = newUser.Username, 
+                                    ClientProfileId = null,
+                                    StartDate = DateTime.Now, 
+                                    SubscriptionName = "Initial Registration", 
+                                    SubscriptionDescription = "Initial Registration"
+                                });
+                            _unitOfWork.SaveChanges();
+                        }
+                        /*_emailService.SendEmail(new EmailDao
                         {
                             EmailTo = userDetails.emailAddress,
                             EmailSubject = "Welcome to MyFundi Web App",
                             DateCreated = DateTime.Now,
                             DateUpdated = DateTime.Now,
                             EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.WelcomeMessage).Replace("[[FirstName]]", userDetails.firstName)
-                        });
+                        });*/
                     }
 
                 }
-                catch (Exception e) { }
+                catch (Exception e) 
+                {
+                    return Ok(new { IsRegistered = true, IsAdministrator = false, Message = e.Message }); 
+                }
                 return Ok(new { IsRegistered = true, IsAdministrator = false, Message = UserInteractionResults.Succeeded.ToString() });
             }
 
@@ -131,6 +153,7 @@ namespace MyFundi.Web.Controllers
             var expiryDueWithin7 = 7;
             var expiryDueWithin5 = 5;
             var expiryDueWithin2 = 2;
+            var clientdurationInDaysDue = 7;
 
             if (!string.IsNullOrEmpty(authToken))
             {
@@ -140,6 +163,8 @@ namespace MyFundi.Web.Controllers
 
                 if (fundi != null)
                 {
+                    var isInRoleGuest = await _userService.IsUserInRoleAsync(user.Username, "Guest");
+
                     var message = _unitOfWork.MyFundiDBContext.ValidateFundiSubscription(fundi.FundiProfileId);
                     var tmpTopMessage = message;
                     if (!message.ToLower().Equals("Subscription Is Still Valid".ToLower()) && 
@@ -158,7 +183,8 @@ namespace MyFundi.Web.Controllers
                             IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "Administrator"),
                             IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
                             Message = message,
-                            AuthToken = authToken
+                            AuthToken = authToken,
+                            IsRegistered = true
                         };
                     }
                     else if(await _userService.IsUserInRoleAsync(user.Username, "administrator"))
@@ -178,7 +204,8 @@ namespace MyFundi.Web.Controllers
                             Message = string.Empty,
                             AuthToken = authToken,
                             IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
-                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi"),
+                            IsRegistered = true
                         };
                         return actualResult;
                     }
@@ -188,10 +215,6 @@ namespace MyFundi.Web.Controllers
                         if (!isUserInRoleFundi1)
                         {
                             await UserAddToRole(new Models.UserRole { role = "Fundi", email = user.Email });
-                        }
-                        if (await _userService.IsUserInRoleAsync(user.Username, "Guest"))
-                        {
-                            await UserRemoveFromRole(new Models.UserRole { role = "Guest", email = user.Email });
                         }
                     }
 
@@ -209,7 +232,8 @@ namespace MyFundi.Web.Controllers
                             Message = tmpResult.Message,
                             AuthToken = authToken,
                             IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
-                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi"),
+                            IsRegistered = true
                         };
                         return actualResult;
                     }
@@ -227,7 +251,8 @@ namespace MyFundi.Web.Controllers
                             Message = tmpResult.Message,
                             AuthToken = authToken,
                             IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
-                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi"),
+                            IsRegistered = true
                         };
                         return actualResult;
                     }
@@ -245,12 +270,14 @@ namespace MyFundi.Web.Controllers
                             Message = tmpResult.Message,
                             AuthToken = authToken,
                             IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
-                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi"),
+                            IsRegistered = true
                         };
                         return actualResult;
                     }
                     else if(tmpTopMessage.ToLower().Equals("Subscription Is Still Valid".ToLower()))
                     {
+                        await UserAddToRole(new Models.UserRole { role = "Fundi", email = user.Email });
                         var actualResult = new LoginResult
                         {
                             IsLoggedIn = true,
@@ -261,15 +288,35 @@ namespace MyFundi.Web.Controllers
                             Message = tmpTopMessage,
                             AuthToken = authToken,
                             IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
-                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi"),
+                            IsRegistered = true
                         };
                         return actualResult;
                     }
                 }
-                if (!await _userService.IsUserInRoleAsync(user.Username, "administrator"))
+                if (!await _userService.IsUserInRoleAsync(user.Username, "administrator") && await _userService.IsUserInRoleAsync(user.Username, "Fundi"))
                 {
                     await UserRemoveFromRole(new Models.UserRole { role = "Fundi", email = email });
-                    await UserRemoveFromRole(new Models.UserRole { role = "Guest", email = email });
+                    await AddUserToRole(new Models.UserRole { role = "Guest", email = email });
+                }
+                if(await _userService.IsUserInRoleAsync(user.Username, "Client")){
+                    if(_unitOfWork.MyFundiDBContext.IsClientToPaySubscriptionFee(user.Username, clientdurationInDaysDue))
+                    {
+                        return new LoginResult
+                        {
+                            IsLoggedIn = false,
+                            ClientDueToPaySubscription = true,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Username = user.Username,
+                            IsAdministrator = await _userService.IsUserInRoleAsync(user.Username, "Administrator"),
+                            Message = "",
+                            AuthToken = authToken,
+                            IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
+                            IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi"),
+                            IsRegistered = true
+                        };
+                    }
                 }
                 if (!string.IsNullOrEmpty(user.Username))
                 {
@@ -283,7 +330,8 @@ namespace MyFundi.Web.Controllers
                         Message = "",
                         AuthToken = authToken,
                         IsClient = await _userService.IsUserInRoleAsync(user.Username, "Client"),
-                        IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi")
+                        IsFundi = await _userService.IsUserInRoleAsync(user.Username, "Fundi"),
+                        IsRegistered = true
                     };
                 }
             }

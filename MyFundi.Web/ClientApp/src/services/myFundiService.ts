@@ -9,7 +9,6 @@ declare const google: any;
 
 @Injectable()
 export class MyFundiService {
-
     private baseServerUrl: string = /*"https://localhost:44343";*/ "https://myfundiv2.martinlayooinc.com";
 
     public constructor(private httpClient: HttpClient) {
@@ -42,14 +41,24 @@ export class MyFundiService {
     public getFundiProfileRatingByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileRatingById";
     public getFundiLevelOfEngagementByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiLevelOfEngagementById";
     public getFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
-    public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings"; 
+    public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
+
+    public getFundiLastSubscriptionFeesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiLastSubscriptionFees";
+    public payClientSubscriptionFeeWithPaypalUrl: string = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithPaypal";
     public payMonthlySubscriptionFeeWithPaypalUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithPaypal";
+
     public getFundiSubscriptionByIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSubscriptionById";
     public deleteFundiSubscriptionByIdUrl: string = this.baseServerUrl + "/FundiProfile/DeleteFundiSubscriptionById";
     public updateFundiSubscriptionUrl: string = this.baseServerUrl + "/FundiProfile/UpdateFundiSubscription";
     public getAllFundiSubscriptionsByFundiIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSubscriptionsByFundiId";
+
+    public payClientSubscriptionFeeWithMTNUrl: string = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithMtn";
     public payMonthlySubscriptionFeeWithMtnUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithMtn";
+
+
+    public payClientSubscriptionFeeWithAirTelUrl: string = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithAirTel";
     public payMonthlySubscriptionFeeWithAirTelUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithAirTel";
+
     public getFundiSkillsByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
     public getFundiWorkCategoriesByFundiProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId"; 
     public getFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategories"; 
@@ -277,6 +286,21 @@ export class MyFundiService {
         });
     }
 
+    GetFundiLastSubscriptionFees(userId: number) {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiLastSubscriptionFeesUrl + "/" + userId;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any => {
+            let clientProf: any = res;
+            return clientProf;
+        });
+    }
     GetFundiSubscription(subscriptionId: number): Observable<ISubscription> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getFundiSubscriptionByIdUrl + "/" + subscriptionId;
@@ -918,6 +942,46 @@ export class MyFundiService {
 
         let requestOptions: any = {
             url: this.postCreateWorkCategoryUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
+
+    PayClientSubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid: IClientSubscription): Observable<any> {
+        let body = JSON.stringify(subscriptionFeeExpenseToBePaid);
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.payClientSubscriptionFeeWithPaypalUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
+    PayClientSubscriptionFeeWithMTN(subscriptionFeeExpenseToBePaid: IClientSubscription): Observable<IMtnAirTelModel> {
+        let body = JSON.stringify(subscriptionFeeExpenseToBePaid);
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.payClientSubscriptionFeeWithMTNUrl,
+            headers: headers,
+            body: body
+        };
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
+    PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid: IClientSubscription): Observable<IMtnAirTelModel> {
+        let body = JSON.stringify(subscriptionFeeExpenseToBePaid);
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.payClientSubscriptionFeeWithAirTelUrl,
             headers: headers,
             body: body
         };
@@ -2193,6 +2257,18 @@ export interface IMtnAirTelModel
     cancelUrl: string;
     successUrl: string;
 };
+export interface IClientSubscription {
+
+    subscriptionId: number;
+    username: string;
+    userId: string;
+    clientProfileId: number;
+    subscriptionFee: number;
+    hasPaid: boolean;
+    subscriptionName: string;
+    subscriptionDescription: string;
+    startDate: string;
+}
 export interface ISubscription {
 
     monthlySubscriptionId: number;

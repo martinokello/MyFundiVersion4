@@ -46,12 +46,6 @@ export class FundiSubscriptionComponent implements OnInit {
         }
         this.workCategory = { workCategoryId: 0 };
         this.workCategories = [];
-        let optionElem = document.createElement('option');
-        optionElem.selected = true;
-        optionElem.value = (0).toString();
-        optionElem.text = "Select WorkCategory";
-        document.querySelector('select#subcworkCategoryId').append(optionElem);
-
 
         this.workSubCategory = {
             workSubCategoryId: 0,
@@ -67,11 +61,6 @@ export class FundiSubscriptionComponent implements OnInit {
             workCategoryDescription: ""
         };
         this.workSubCategories = [];
-        optionElem = document.createElement('option');
-        optionElem.selected = true;
-        optionElem.value = (0).toString();
-        optionElem.text = "Select WorkSubCategory";
-        document.querySelector('select#subcworkSubCategoryId').append(optionElem);
 
         let workCategoriesObs: Observable<IWorkCategory[]> = this.myFundiService.GetWorkCategories();
         workCategoriesObs.map((wcs: IWorkCategory[]) => {
@@ -83,8 +72,9 @@ export class FundiSubscriptionComponent implements OnInit {
                 document.querySelector('select#subcworkCategoryId').append(optionElem);
             });
 
-
-            let workSubCategoriesObs = this.myFundiService.GetWorkSubCategories();
+            let selectedWorkCatId = parseInt(jQuery('select#subcworkCategoryId > option:selected').val());
+            debugger;
+            let workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(selectedWorkCatId);
 
             workSubCategoriesObs.map((wcs: IWorkSubCategory[]) => {
                 this.workSubCategories = wcs;;
@@ -135,7 +125,15 @@ export class FundiSubscriptionComponent implements OnInit {
                         opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
                         subscrSelect.appendChild(opt1);
                     });
+                    let lastMonthlySubsObs: Observable<any> = this.myFundiService.GetFundiLastSubscriptionFees(this.subscription.userId);
+                   
+                    lastMonthlySubsObs.map((q: any) => {
+                        debugger;
+                        if (q.result) {
+                            this.fundi.subscriptionFee = q.subscriptionFee;
+                        }
 
+                    }).subscribe();
                 }).subscribe();
             }).subscribe();
         }).subscribe();
@@ -147,13 +145,6 @@ export class FundiSubscriptionComponent implements OnInit {
             //clear the workCategory options menu and add new options:
             jQuery('select#subcworkSubCategoryId option').remove();
             
-            this.workSubCategories = [];
-            let optionElem = document.createElement('option');
-            optionElem.selected = true;
-            optionElem.value = (0).toString();
-            optionElem.text = "Select WorkSubCategory";
-            document.querySelector('select#subcworkSubCategoryId').append(optionElem);
-
             this.workSubCategories = wcs;
             wcs.forEach((c: IWorkSubCategory, index: number, wcs) => {
                 let optionElem: HTMLOptionElement = document.createElement('option');
@@ -176,26 +167,32 @@ export class FundiSubscriptionComponent implements OnInit {
     public addSubCategory($event) {
         let indexWorkCatToRemove: number;
 
+        let selWorkCat = jQuery('select#subcworkCategoryId > option:selected').val();
+        let selWorkSubCat = jQuery('select#subcworkSubCategoryId > option:selected').val();
+
         let chosenCategory = this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.find((q, index) => {
             indexWorkCatToRemove = index;
-           return q.workCategoryId == this.workCategory.workCategoryId;
+            return q.workCategoryId == selWorkCat;
         })
         if (chosenCategory) {
             let indexWorkSubCatToRemove: number;
             let chosenWorkSubCatId = chosenCategory.workSubCategoryIds.find((q, index) => {
                 indexWorkSubCatToRemove = index;
-                return q == this.workSubCategory.workSubCategoryId;
+                return q == selWorkSubCat;
             });
             if (chosenWorkSubCatId) {
                 return;
             }
             else {
 
-                this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.push(this.workSubCategory.workSubCategoryId);
+                let selWorkCat = jQuery('select#subcworkCategoryId > option:selected').val();
+                let selWorkSubCat = jQuery('select#subcworkSubCategoryId > option:selected').val();
+
+                this.subscriptionFeeExpense.workCategoryAndSubCategoryIds[indexWorkCatToRemove].workSubCategoryIds.push(selWorkSubCat);
                
                 let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
                 let li = document.createElement("li");
-                li.setAttribute('id', `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`);
+                li.setAttribute('id', `${selWorkCat},${selWorkSubCat}`);
 
                 li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text()}]`;
                 ulSelectedCategories.appendChild(li);
@@ -203,13 +200,16 @@ export class FundiSubscriptionComponent implements OnInit {
         }
         else {
             let workCategorySubCatIds: any[] = [];
-            workCategorySubCatIds.push(this.workSubCategory.workSubCategoryId);
+            let selWorkCat = jQuery('select#subcworkCategoryId > option:selected').val();
+            let selWorkSubCat = jQuery('select#subcworkSubCategoryId > option:selected').val();
+
+            workCategorySubCatIds.push(selWorkSubCat);
             this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.push({
-                workCategoryId: this.workCategory.workCategoryId, workSubCategoryIds: workCategorySubCatIds
+                workCategoryId: selWorkCat, workSubCategoryIds: workCategorySubCatIds
             });
             let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
             let li = document.createElement("li");
-            li.setAttribute('id', `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`);
+            li.setAttribute('id', `${selWorkCat},${selWorkSubCat}`);
 
             li.textContent = jQuery('select#subcworkCategoryId > option:selected').text() + ` :[${jQuery('select#subcworkSubCategoryId > option:selected').text() }]`;
             ulSelectedCategories.appendChild(li);
@@ -245,19 +245,22 @@ export class FundiSubscriptionComponent implements OnInit {
 
         let indexWorkCatToRemove: number;
 
+        let selWorkCat = jQuery('select#subcworkCategoryId > option:selected').val();
+        let selWorkSubCat = jQuery('select#subcworkSubCategoryId > option:selected').val();
+
         let chosenCategory = this.subscriptionFeeExpense.workCategoryAndSubCategoryIds.find((q, index) => {
             indexWorkCatToRemove = index;
-            return q.workCategoryId == this.workCategory.workCategoryId;
+            return q.workCategoryId == selWorkCat;
         })
         if (chosenCategory) {
             let indexWorkSubCatToRemove: number;
             let chosenWorkSubCatId = chosenCategory.workSubCategoryIds.find((q, index) => {
                 indexWorkSubCatToRemove = index;
-                return q == this.workSubCategory.workSubCategoryId;
+                return q == selWorkSubCat;
             });
             if (chosenWorkSubCatId) {
                 let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
-                let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${this.workCategory.workCategoryId.toString()},${this.workSubCategory.workSubCategoryId.toString()}`+'"]');
+                let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${selWorkCat},${selWorkSubCat}`+'"]');
 
                 ulSelectedCategories.removeChild(li);
 
@@ -275,6 +278,7 @@ export class FundiSubscriptionComponent implements OnInit {
         let subObs: Observable<ISubscription> = this.myFundiService.GetFundiSubscription(this.subscription.monthlySubscriptionId);
         subObs.map((q: ISubscription) => {
             this.subscription = this.subscriptionFeeExpense = q;
+            this.fundi.subscriptionFee = this.subscription.subscriptionFee;
             this.startingDate = this.formatDate(q.startDate);
             this.appendCategoriesAndSubCategoriesToUi();
         }).subscribe();

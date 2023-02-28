@@ -677,7 +677,6 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubT
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.Bcl.HashCode.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\EpsilonCryptoSystemEngine.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\PasswordEncryptorEngine.dll
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\PaymentCalculater.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.CSharp.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.VisualBasic.Core.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.VisualBasic.dll
@@ -1012,6 +1011,7 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubT
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\MyFundi.Domain.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\MyFundi.Services.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\MyFundi.UnitOfWork.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\PaymentCalculater.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\PaymentsGateway.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\PaypalFacility.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\ServiceEndPoint.dll

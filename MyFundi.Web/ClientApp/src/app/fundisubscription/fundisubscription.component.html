@@ -33,7 +33,7 @@
                   </div>
                   <div class="form-groupcol-lg-12">
                       <div class="custom-control custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" id="hasPaid" name="hasPaid" [(ngModel)]="subscription.hasPaid" /><label class="custom-control-label">Has Paid Subscription</label>
+                          <input class="custom-control-input" type="checkbox" id="hasPaid" name="hasPaid" [(ngModel)]="subscription.hasPaid" readonly/><label class="custom-control-label">Has Paid Subscription</label>
                           <br />
                       </div>
                   </div>
@@ -54,11 +54,11 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label>Work Category Id</label>
+                          <label>Select Work Category Id</label>
                           <select id="subcworkCategoryId" name="workCategoryId" [(ngModel)]="workCategory.workCategoryId" (change)="getWorkSubCategoriesByWorkCategoryId($event)" required></select>
                       </div>
                       <div class="form-group">
-                          <label>Work Sub Category Id</label>
+                          <label>Select Work Sub Category Id</label>
                           <select id="subcworkSubCategoryId" name="workSubCategoryId" [(ngModel)]="workSubCategory.workSubCategoryId"></select>
                           <input type="button" value="Add SubCategory" class="but-primary" (click)="addSubCategory($event)" /><br />
                           <input type="button" value="Remove SubCategory" (click)="removeWorkSubCategory($event)" /><br />
@@ -87,7 +87,7 @@
                           <label>
                               Subscripton Monthly Fee
                           </label><br />
-                          <input type="number" name="subscriptionFee" required value="2500" [(ngModel)]="fundi.subscriptionFee" #subscriptionFee="ngModel" /><br />
+                          <input type="number" name="subscriptionFee" required value="2500" [(ngModel)]="fundi.subscriptionFee" readonly #subscriptionFee="ngModel" /><br />
                           <div *ngIf="fs.submitted && subscriptionFee.invalid" class="text-danger">
                               Subscription Fee Required
                           </div>

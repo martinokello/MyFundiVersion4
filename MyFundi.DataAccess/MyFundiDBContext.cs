@@ -54,8 +54,9 @@ namespace MyFundi.DataAccess
         public DbSet<JobWorkCategory> JobWorkCategories { get; set; }
         public DbSet<MonthlySubscription> MonthlySubscriptions { get; set; }
         public DbSet<WorkSubCategory> WorkSubCategories { get; set; }
+        public DbSet<FundiLocation> FundiLocations { get; set; }
         public DbSet<FundiSubscription> FundiSubscriptions { get; set; }
-        public DbSet<FundiLocation> FundiLocations{ get; set; }
+        public DbSet<ClientSubscription> ClientSubscriptions { get; set; }
 
         public Tuple<int, int> GetFundiProfileAvgRatingById(int fundiProfileId)
         {
@@ -79,9 +80,7 @@ namespace MyFundi.DataAccess
                 }
                 con.Close();
                 return new Tuple<int, int>(0, 0);
-
             }
-
         }
 
         public string ValidateFundiSubscription(int fundiProfileId)
@@ -360,6 +359,33 @@ namespace MyFundi.DataAccess
 
         }
 
+        public bool IsClientToPaySubscriptionFee(string username, int durationInDaysDue)
+        {
+            var list = new List<dynamic>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@clientUsername", username));
+                cmd.Parameters.Add(new SqlParameter("@durationInDays", durationInDaysDue));
+
+                cmd.CommandText = "[dbo].[CheckClientIsDueSubscriptionPayment]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+                var isDueToPaySubscription = 0;
+                while (reader.Read())
+                {
+                    isDueToPaySubscription = (reader["IsDuePayment"] == DBNull.Value ? 0 : (int)reader["IsDuePayment"]);
+                }
+                con.Close();
+                return isDueToPaySubscription > 0;
+            }
+
+        }
 
         public List<FundiRatingsReviewLocationApart> GetFundiAvgRatingsAndJobWithinDistance(int clientProfileId, int jobId, string[] fundiCategories, string[] fundiSubCategories, float distanceApart, int skip, int take)
         {
@@ -441,11 +467,11 @@ namespace MyFundi.DataAccess
             }
 
         }
-        
+
         public List<JobsFundiCategoriesLocationApart> GetJobsByFundiWorkCategoriesWithinDistanceGeoLocation(string[] fundiCategories, string[] fundiSubCategories, CoordinateTo[] coordinates, float distanceApart, int skip, int take)
         {
             var seqProfIdLatLngBuilder = new StringBuilder();
-            foreach(var el in coordinates)
+            foreach (var el in coordinates)
             {
                 seqProfIdLatLngBuilder.Append("," + el.ProfileId.ToString() + "," + el.Latitude + "," + el.Longitude);
             }
@@ -522,6 +548,62 @@ namespace MyFundi.DataAccess
                 }
                 con.Close();
                 return listItems;
+            }
+        }
+
+        public decimal GetFundiExpectedSubscriptionFee(Guid? userId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.Parameters.Add(new SqlParameter("@fundiUserId", userId.ToString()));
+
+                cmd.CommandText = "[dbo].[GetAbsoluteFundiFee]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandTimeout = 50;
+
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+                decimal absoluteChargedFee = (decimal)0.00;
+
+                while (reader.Read())
+                {
+                    absoluteChargedFee = reader[0] == DBNull.Value ? (decimal)0.00 : (decimal)reader[0];
+                }
+                con.Close();
+                return absoluteChargedFee;
+            }
+        }
+        public decimal GetFundiLastSubscriptionFees(Guid userId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.Parameters.Add(new SqlParameter("@fundiUserId", userId));
+
+                cmd.CommandText = "[dbo].[GetLastSubscriptionExistingTotalAbsoluteFundiFee]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+                decimal absoluteExistingFee = (decimal)0.00;
+
+                while (reader.Read())
+                {
+                    absoluteExistingFee = reader["AbsoluteExistingFee"] == DBNull.Value ? (decimal)0.00 : (decimal)reader["AbsoluteExistingFee"];
+                }
+                con.Close();
+                return absoluteExistingFee;
             }
         }
 
@@ -637,5 +719,6 @@ namespace MyFundi.DataAccess
             }
             return list;
         }
+
     }
 }

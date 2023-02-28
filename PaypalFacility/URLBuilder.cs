@@ -41,12 +41,12 @@ namespace PaypalFacility
             {
                 sbUrl.AppendFormat("&item_name_{0}={1}",index, HttpUtility.UrlEncode(prod.ProductName));
                 sbUrl.AppendFormat("&quantity_{0}={1}", index, HttpUtility.UrlEncode(index.ToString()));
-                sbUrl.AppendFormat("&amount_{0}={1}", index, HttpUtility.UrlEncode(invoice.Ammount.ToString()));
+                sbUrl.AppendFormat("&amount_{0}={0}",index, HttpUtility.UrlEncode(invoice.Amount.ToString()));
                 sbUrl.AppendFormat("&invoice={0}", HttpUtility.UrlEncode(index.ToString()));
                 index++;
             }
 
-            sbUrl.AppendFormat("&amount={0}", index, HttpUtility.UrlEncode(invoice.Ammount.ToString()));
+            sbUrl.AppendFormat("&amount={0}", HttpUtility.UrlEncode(invoice.Amount.ToString()));
             sbUrl.AppendFormat("&return={0}&username={1}", HttpUtility.UrlEncode(successUrl), HttpUtility.UrlEncode(clientEmail));
             sbUrl.AppendFormat("&cancel_return={0}&username={1}", HttpUtility.UrlEncode(cancelUrl), HttpUtility.UrlEncode((string)clientEmail));
             sbUrl.AppendFormat("&notify_url={0}", HttpUtility.UrlEncode(notifyUrl));

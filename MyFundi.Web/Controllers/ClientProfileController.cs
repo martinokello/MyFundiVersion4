@@ -13,6 +13,7 @@ using MyFundi.Web.IdentityServices;
 using MyFundi.Web.ViewModels;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
 using PaymentGateway;
+using PaypalFacility;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -127,7 +128,7 @@ namespace MyFundi.Web.Controllers
         [Route("~/ClientProfile/GetAllClientJobByClientProfileId/{clientProfileId}")]
         public async Task<IActionResult> GetAllClientJobByClientProfileId(int clientProfileId)
         {
-            var clientJobs = _unitOfWork._jobRepository.GetAll().Where(q => q.ClientProfileId == clientProfileId).Include(q=> q.AssignedFundiProfile);
+            var clientJobs = _unitOfWork._jobRepository.GetAll().Where(q => q.ClientProfileId == clientProfileId).Include(q => q.AssignedFundiProfile);
 
             if (clientJobs.Any())
             {
@@ -445,7 +446,191 @@ namespace MyFundi.Web.Controllers
             }
             return await Task.FromResult(BadRequest(new { Message = "Client Profile not Updated, therefore operation failed!" }));
         }
+        [HttpPost]
+        [Route("~/ClientProfile/PayClientSubscriptionFeeWithPaypal")]
+        public async Task<IActionResult> PayClientSubscriptionFeeWithPaypal([FromBody] ClientSubscriptionViewModel subscriptionViewModel)
+        {
+            try
+            {
+                var subscription = _mapper.Map<ClientSubscription>(subscriptionViewModel);
+                var registrationSubscription = _unitOfWork._clientSubscriptionRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(subscriptionViewModel.Username.ToLower()));
+                if(registrationSubscription != null)
+                {
+                    subscription = registrationSubscription;
+                }
+                var paymentsManager = this.PaymentsManager;
 
+                var subCatQuantity = 1;
+                var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product>
+                    {
+                        new Product{
+                            Amount = subscriptionViewModel.SubscriptionFee,
+                            HasPaidInfull = true,
+                            Quantity= subCatQuantity,
+                            VATAmmount=(decimal) 0,
+                            ProductName = subscriptionViewModel.SubscriptionName,
+                            ProductDescription = subscriptionViewModel.SubscriptionDescription
+                        }
+
+                    });
+                if(registrationSubscription == null)
+                {
+                    subscription.SubscriptionDescription = "Paid 7 day Subscription";
+                    subscription.SubscriptionName = "Paid 7 day Subscription";
+                    subscription.ClientProfileId = null;
+                    _unitOfWork._clientSubscriptionRepository.Insert(subscription);
+                }
+                else
+                {
+                    subscription.SubscriptionDescription = "Paid 7 day Subscription";
+                    subscription.SubscriptionName = "Paid 7 day Subscription";
+                    _unitOfWork._clientSubscriptionRepository.Update(subscription);
+                    subscription.ClientProfileId = null;
+                }
+                _unitOfWork.SaveChanges();
+                return await Task.FromResult(Ok(new { Message = "Updated Subscription", PayPalRedirectUrl = paypalRequestUrl, Success = true }));
+
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(Ok(new { Message = e.Message + " error: Failed To Pay. Please Contact Admin on Site" }));
+            }
+        }
+
+        [HttpPost]
+        [Route("~/ClientProfile/PayClientSubscriptionFeeWithMtn")]
+        public async Task<IActionResult> PayClientSubscriptionFeeWithMtn([FromBody] ClientSubscriptionViewModel subscriptionViewModel)
+        {
+            try
+            {
+                var subCatQuantity = 1;
+
+                var subscription = _mapper.Map<ClientSubscription>(subscriptionViewModel);
+                var registrationSubscription = _unitOfWork._clientSubscriptionRepository.GetAll().FirstOrDefault(q => q.User.Username.ToLower().Equals(subscriptionViewModel.Username.ToLower()));
+                if (registrationSubscription != null)
+                {
+                    subscription = registrationSubscription;
+                }
+                var paymentsManager = this.PaymentsManager;
+
+                var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product>
+                    {
+                        new Product{
+                            Amount = subscriptionViewModel.SubscriptionFee,
+                            HasPaidInfull = true,
+                            Quantity= subCatQuantity,
+                            VATAmmount=(decimal) 0,
+                            ProductName = subscriptionViewModel.SubscriptionName,
+                            ProductDescription = subscriptionViewModel.SubscriptionDescription
+                        }
+
+                    });
+                if (registrationSubscription == null)
+                {
+                    subscription.DateUpdated = DateTime.Now;
+                    subscription.StartDate = DateTime.Now;
+                    subscription.SubscriptionDescription = "Paid 7 day Subscription";
+                    subscription.SubscriptionName = "Paid 7 day Subscription";
+                    _unitOfWork._clientSubscriptionRepository.Insert(subscription);
+                }
+                else
+                {
+                    subscription.DateUpdated = DateTime.Now;
+                    subscription.StartDate = DateTime.Now;
+                    subscription.SubscriptionDescription = "Paid 7 day Subscription";
+                    subscription.SubscriptionName = "Paid 7 day Subscription";
+                    _unitOfWork._clientSubscriptionRepository.Update(subscription);
+                }
+                _unitOfWork.SaveChanges();
+
+                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
+                    {
+                        new Product{
+                            Amount = subscriptionViewModel.SubscriptionFee,
+                            HasPaidInfull = true,
+                            Quantity= subCatQuantity,
+                            VATAmmount=(decimal) 0,
+                            ProductName = subscriptionViewModel.SubscriptionName,
+                            ProductDescription = subscriptionViewModel.SubscriptionDescription
+                    }
+
+                    });
+
+                return await Task.FromResult(Ok(mtnAirtelObject));
+
+            }
+            catch (Exception e)
+            {
+                return await Task.FromResult(Ok(new { Message = e.Message + " error: Failed To Pay. Please Contact Admin on Site" }));
+            }
+        }
+
+        [HttpPost]
+        [Route("~/ClientProfile/PayClientSubscriptionFeeWithAirTel")]
+        public async Task<IActionResult> PayClientSubscriptionFeeWithAirTel([FromBody] ClientSubscriptionViewModel subscriptionViewModel)
+        {
+             try
+                {
+                    var subCatQuantity = 1;
+
+                    var subscription = _mapper.Map<ClientSubscription>(subscriptionViewModel);
+                    var registrationSubscription = _unitOfWork._clientSubscriptionRepository.GetAll().FirstOrDefault(q => q.User.Username.ToLower().Equals(subscriptionViewModel.Username.ToLower()));
+                    if (registrationSubscription != null)
+                    {
+                        subscription = registrationSubscription;
+                    }
+                    var paymentsManager = this.PaymentsManager;
+
+                    var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product>
+                    {
+                        new Product{
+                            Amount = subscriptionViewModel.SubscriptionFee,
+                            HasPaidInfull = true,
+                            Quantity= subCatQuantity,
+                            VATAmmount=(decimal) 0,
+                            ProductName = subscriptionViewModel.SubscriptionName,
+                            ProductDescription = subscriptionViewModel.SubscriptionDescription
+                        }
+
+                    });
+                    if (registrationSubscription == null)
+                    {
+                        subscription.DateUpdated = DateTime.Now;
+                        subscription.StartDate = DateTime.Now;
+                        subscription.SubscriptionDescription = "Paid 7 day Subscription";
+                        subscription.SubscriptionName = "Paid 7 day Subscription";
+                        _unitOfWork._clientSubscriptionRepository.Insert(subscription);
+                    }
+                    else
+                    {
+                        subscription.DateUpdated = DateTime.Now;
+                        subscription.StartDate = DateTime.Now;
+                        subscription.SubscriptionDescription = "Paid 7 day Subscription";
+                        subscription.SubscriptionName = "Paid 7 day Subscription";
+                        _unitOfWork._clientSubscriptionRepository.Update(subscription);
+                    }
+                    _unitOfWork.SaveChanges();
+
+                    var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
+                    {
+                        new Product{
+                            Amount = subscriptionViewModel.SubscriptionFee,
+                            HasPaidInfull = true,
+                            Quantity= subCatQuantity,
+                            VATAmmount=(decimal) 0,
+                            ProductName = subscriptionViewModel.SubscriptionName,
+                            ProductDescription = subscriptionViewModel.SubscriptionDescription
+                    }
+
+                    });
+
+                    return await Task.FromResult(Ok(mtnAirtelObject));
+                }
+            catch (Exception e)
+            {
+                return await Task.FromResult(BadRequest(new { Message = e.Message + " error: Failed To Pay. Please Contact Admin on Site" }));
+            }
+        }
         [AuthorizeIdentity]
         [HttpPost]
         public async Task<IActionResult> UpdateJob([FromBody] JobViewModel jobViewModel)

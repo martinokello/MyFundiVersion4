@@ -60,11 +60,32 @@
                 <span>
                     <input type="checkbox" style="display: inline !important;" class="col-lg-1" name="client" [(ngModel)]="userDetail.client" />
                 </span>
+                <br />
             </div>
+            <myrecaptcha></myrecaptcha>
+            <br />
+            <a href="" data-toggle="modal" data-target="#myModalAgreement">Accept Terms &amp; Conditions</a>
+            <br />
+            <input type="submit" id="submit" (click)="registerUser()" class="but-primary" value="register user" style="margin-top:10px;display:none !important;" />
         </div>
-        <myrecaptcha></myrecaptcha>
-        <br />
-        <input type="submit" id="submit" (click)="registerUser()" class="but-primary" value="register user" style="margin-top:10px;display:none !important;" />
     </form>
-    <div asp-validation-summary="All"></div>
+
+    <div class="modal fade" id="myModalAgreement" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Accept Terms &amp; Conditions</h4>
+                </div>
+                <div class="modal-body">
+                    <terms-and-conditions></terms-and-conditions>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

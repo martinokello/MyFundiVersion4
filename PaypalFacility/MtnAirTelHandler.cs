@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using MyFundi.Domain;
+using PaymentCalculater;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,12 +21,13 @@ namespace PaypalFacility
         private string phoneNumber;
         private string username;
         private string password;
+        private DiscountCalculator _discountCalculator;
         private string currency;
         private string action;
         public HttpContext _HttpContext { get; set; }
 
         public MtnAirTelHandler(string baseUrl, string businessEmail, string successUrl, string cancelUrl, string notifyUrl, string buyerEmail,
-            string phoneNumber, string username, string password, string currency, string action)
+            string phoneNumber, string username, string password, string currency, string action, DiscountCalculator discountCalculator)
         {
             this.baseUrl = baseUrl;
             this.hasBeenRedirected = false;
@@ -39,21 +41,33 @@ namespace PaypalFacility
             this.action = action;
             this.username = username;
             this.password = password;
+            _discountCalculator = discountCalculator;
         }
 
         public MtnAirTelModel RedirectToMtnAirTel(List<Product> productArray)
         {
             //fill In invoice Details
 
+            _discountCalculator.TotalBought = productArray[0].Quantity;
             StringBuilder prodNames = new StringBuilder();
-            decimal amount = 0;
+
             foreach (var prod in productArray)
             {
-                amount += prod.Amount;
                 prodNames.Append(prod.ProductName + ";");
             }
 
-            invoice = new Invoice(productArray, amount, buyerEmail);
+            if (productArray[0].Quantity < 3)
+            {
+                invoice = new Invoice(productArray, _discountCalculator.ApplyNoDealPrice(), buyerEmail);
+            }
+            else if(productArray[0].Quantity == 3)
+            {
+                invoice = new Invoice(productArray,_discountCalculator.ApplyBuy3Get1HalfPrice(), buyerEmail);
+            }
+            else if(productArray[0].Quantity > 3)
+            {
+                invoice = new Invoice(productArray, _discountCalculator.ApplyBuy4Get1Free(), buyerEmail);
+            }
 
 
             hasBeenRedirected = true;
@@ -64,7 +78,7 @@ namespace PaypalFacility
                 Action = this.action,
                 Reason = "Payment For MyFundi Site Monthly Subscription",
                 Currency = this.currency,
-                Amount = invoice.Ammount.ToString(),
+                Amount = invoice.Amount.ToString(),
                 Username = username,
                 Password = password,
                 Reference = buyerEmail+": "+invoice.InvoiceNo,

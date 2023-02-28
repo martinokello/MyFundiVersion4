@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using PaymentCalculater;
 
 namespace PaypalFacility
 {
@@ -16,9 +17,11 @@ namespace PaypalFacility
         private HttpResponse response = null;
         private string businessEmail = null;
         private string buyerEmail;
+        private DiscountCalculator _discountCalculator;
+
         public HttpContext _HttpContext { get; set; }
 
-        public PayPalHandler(string baseUrl, string businessEmail, string successUrl, string cancelUrl,string notifyUrl, string buyerEmail)
+        public PayPalHandler(string baseUrl, string businessEmail, string successUrl, string cancelUrl,string notifyUrl, string buyerEmail, DiscountCalculator discountCalculator)
         {
             this.baseUrl = baseUrl;
             this.hasBeenRedirected = false;
@@ -27,23 +30,36 @@ namespace PaypalFacility
             this.cancelUrl = cancelUrl;
             this.notifyUrl = notifyUrl;
             this.buyerEmail = buyerEmail;
+            _discountCalculator = discountCalculator;
         }
 
         public string RedirectToPayPal(List<Product> productArray)
         {
             //fill In invoice Details
-            
+            _discountCalculator.TotalBought = productArray[0].Quantity;
+
             StringBuilder prodNames = new StringBuilder();
-            decimal amount = 0;
-            foreach(var prod in productArray)
+
+
+            foreach (var prod in productArray)
             {
-                amount += prod.Amount;
                 prodNames.Append(prod.ProductName + ";");
             }
-            
-            invoice = new Invoice(productArray, amount,buyerEmail);
-            
-            
+
+            if (productArray[0].Quantity < 3)
+            {
+                invoice = new Invoice(productArray, _discountCalculator.ApplyNoDealPrice(), buyerEmail);
+            }
+            else if (productArray[0].Quantity == 3)
+            {
+                invoice = new Invoice(productArray, _discountCalculator.ApplyBuy3Get1HalfPrice(), buyerEmail);
+            }
+            else if (productArray[0].Quantity > 3)
+            {
+                invoice = new Invoice(productArray, _discountCalculator.ApplyBuy4Get1Free(), buyerEmail);
+            }
+
+
             hasBeenRedirected = true;
             URLBuilder urlBuilder = new URLBuilder(businessEmail, successUrl, cancelUrl, notifyUrl,buyerEmail,invoice);
             string requestUrl = baseUrl + urlBuilder.getFullCommandParameters();

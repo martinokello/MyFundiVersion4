@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
     public loginUser(): void {
 
         localStorage.setItem("userRoles", '');
-        sessionStorage.removeItem("Orders");
 
         this.userDetail.authToken = localStorage.getItem('authToken');
         this.userDetail.username = this.userDetail.emailAddress;
@@ -56,8 +55,12 @@ export class LoginComponent implements OnInit {
         let loginResults: Observable<any> = this.myFundiService.LoginByPost(this.userDetail);
         loginResults.map((q: any) => {
             console.log(JSON.stringify(q));
-
-            if (q.isLoggedIn == true) {
+            if (q.clientDueToPaySubscription) {
+                localStorage.setItem("ClientLoginDetails", JSON.stringify(q));
+                this.router.navigateByUrl('/client-subscription');
+                return;
+            }
+            else if (q.isLoggedIn == true) {
                 if (q.message) {
                     alert(q.message);
                 }

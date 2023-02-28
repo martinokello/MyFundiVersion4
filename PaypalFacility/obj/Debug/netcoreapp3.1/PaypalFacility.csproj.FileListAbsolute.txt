@@ -91,7 +91,9 @@ C:\Development\MyFundiCurrent\PaypalFacility\bin\Debug\netcoreapp3.1\PaypalFacil
 C:\Development\MyFundiCurrent\PaypalFacility\bin\Debug\netcoreapp3.1\PaypalFacility.dll
 C:\Development\MyFundiCurrent\PaypalFacility\bin\Debug\netcoreapp3.1\PaypalFacility.pdb
 C:\Development\MyFundiCurrent\PaypalFacility\bin\Debug\netcoreapp3.1\MyFundi.Domain.dll
+C:\Development\MyFundiCurrent\PaypalFacility\bin\Debug\netcoreapp3.1\PaymentCalculater.dll
 C:\Development\MyFundiCurrent\PaypalFacility\bin\Debug\netcoreapp3.1\MyFundi.Domain.pdb
+C:\Development\MyFundiCurrent\PaypalFacility\bin\Debug\netcoreapp3.1\PaymentCalculater.pdb
 C:\Development\MyFundiCurrent\PaypalFacility\obj\Debug\netcoreapp3.1\PaypalFacility.csproj.AssemblyReference.cache
 C:\Development\MyFundiCurrent\PaypalFacility\obj\Debug\netcoreapp3.1\PaypalFacility.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\MyFundiCurrent\PaypalFacility\obj\Debug\netcoreapp3.1\PaypalFacility.AssemblyInfoInputs.cache

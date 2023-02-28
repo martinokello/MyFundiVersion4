@@ -1017,6 +1017,9 @@
             "projectReferences": {
               "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj": {
                 "projectPath": "C:\\Development\\MyFundiCurrent\\MyFundi.Domain\\MyFundi.Domain.csproj"
+              },
+              "C:\\Development\\MyFundiCurrent\\PaymentCalculater\\PaymentCalculater.csproj": {
+                "projectPath": "C:\\Development\\MyFundiCurrent\\PaymentCalculater\\PaymentCalculater.csproj"
               }
             }
           }

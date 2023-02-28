@@ -189,6 +189,49 @@ namespace MyFundi.Web.Migrations
                     b.ToTable("ClientProfiles");
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.ClientSubscription", b =>
+                {
+                    b.Property<int>("SubscriptionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ClientProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("HasPaid")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SubscriptionDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SubscriptionFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SubscriptionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubscriptionId");
+
+                    b.HasIndex("ClientProfileId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ClientSubscriptions");
+                });
+
             modelBuilder.Entity("MyFundi.Domain.Company", b =>
                 {
                     b.Property<int>("CompanyId")
@@ -919,6 +962,17 @@ namespace MyFundi.Web.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MyFundi.Domain.ClientSubscription", b =>
+                {
+                    b.HasOne("MyFundi.Domain.ClientProfile", "ClientProfile")
+                        .WithMany()
+                        .HasForeignKey("ClientProfileId");
+
+                    b.HasOne("MyFundi.Domain.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.Company", b =>

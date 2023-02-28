@@ -1550,10 +1550,19 @@
           "MyFundi.Domain.dll": {}
         }
       },
+      "PaymentCalculater/1.0.0": {
+        "dependencies": {
+          "MyFundi.Domain": "1.0.0"
+        },
+        "runtime": {
+          "PaymentCalculater.dll": {}
+        }
+      },
       "PaypalFacility/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "MyFundi.Domain": "1.0.0",
+          "PaymentCalculater": "1.0.0",
           "System.Configuration.ConfigurationManager": "5.0.0",
           "System.Data.SqlClient": "4.8.3"
         },
@@ -2571,6 +2580,11 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "MyFundi.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PaymentCalculater/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
