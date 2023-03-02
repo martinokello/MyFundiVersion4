@@ -320,7 +320,7 @@ namespace MyFundi.Web
             services.AddSingleton<MartinLayooIncChat>();
             services.AddSingleton<List<FundiLocationViewModel>>();
             services.AddScoped<AppSettingsConfigurations>();
-            services.AddScoped<IMailService, EmailService>(smtp => new EmailService(new AppSettingsConfigurations(Configuration)));
+            services.AddScoped<IMailService, EmailService>(smtp => new EmailService(Configuration));
             services.AddScoped<DbContext, MyFundiDBContext>();
             var httpClient = new BGLHttpClient();
             httpClient.HttpRequestClient = new HttpClient();
@@ -385,7 +385,7 @@ namespace MyFundi.Web
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<AppSettingsConfigurations>();
             services.AddTransient<AesExternalProcedures>(s => new AesExternalProcedures(masterkeyDirPath));
-            services.AddScoped<IMailService, EmailService>(smtp => new EmailService(new AppSettingsConfigurations(Configuration)));
+            services.AddScoped<IMailService, EmailService>(smtp => new EmailService(Configuration));
             services.AddScoped<PaymentsManager>();
             services.AddScoped<InitializeDatabaseRoles>();
 

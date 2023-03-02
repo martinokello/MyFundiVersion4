@@ -16,13 +16,13 @@ namespace MyFundi.Services.EmailServices.Concretes
 {
     public class EmailService : IMailService
     {
-        public IConfiguration _businessSmtpDetails;
-        public EmailService(AppSettingsConfigurations businessSmtpDetails)
+        public IConfigurationSection _businessSmtpDetails;
+        public EmailService(IConfiguration configuration)
         {
-            _businessSmtpDetails = businessSmtpDetails.AppSettings.GetSection("BusinessEmailDetails");
+            _businessSmtpDetails = configuration.GetSection("BusinessEmailDetails");
         }
 
-        public IConfiguration BusinessEmailDetails {
+        public IConfigurationSection BusinessEmailDetails {
             set { _businessSmtpDetails = value; }
             get { return _businessSmtpDetails; }
         }
@@ -46,7 +46,7 @@ namespace MyFundi.Services.EmailServices.Concretes
                 mailMessage.Subject = @"From " + mail.EmailFrom + " " + mail.EmailSubject;
                 var memoryStream = new MemoryStream();
                 var fileStream = new FileInfo("/images/attachement");
-
+                
                 if (mail.Attachment != null)
                 {
                     var attachment = new Attachment(mail.Attachment.OpenReadStream(), mail.Attachment.FileName);

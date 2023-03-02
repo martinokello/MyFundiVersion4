@@ -10673,10 +10673,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
         this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo";
-        /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr"; */
+        /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
 
         this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB";
-        /*localhost:"6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
+        /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
       }
 
       _createClass(myRecaptchaComponent, [{
@@ -17305,16 +17305,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "SendEmail",
         value: function SendEmail(body) {
-          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
-            'Content-Type': 'multipart/form-data'
-          });
+          //const headers = new HttpHeaders({ 'Content-Type': undefined});
           var requestOptions = {
-            url: this.postSendEmail,
-            headers: headers
+            url: this.postSendEmail
+            /*,
+            headers: headers*/
+
           };
-          return this.httpClient.post(requestOptions.url, body, {
-            'headers': requestOptions.headers
-          }).map(function (res) {
+          return this.httpClient.post(requestOptions.url, body
+          /*, { 'headers': requestOptions.headers }*/
+          ).map(function (res) {
             return res;
           });
         }

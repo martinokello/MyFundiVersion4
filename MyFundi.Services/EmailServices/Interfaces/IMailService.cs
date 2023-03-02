@@ -21,7 +21,7 @@ namespace MyFundi.Services.EmailServices.Interfaces
     }
     public interface IMailService
     {
-        public IConfiguration BusinessEmailDetails { get; set; }
+        public IConfigurationSection BusinessEmailDetails { get; set; }
 
         void SendEmail(EmailDao mail);
         string GetTemplate(EmailTemplate template);

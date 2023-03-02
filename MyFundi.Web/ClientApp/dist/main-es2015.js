@@ -7485,8 +7485,8 @@ let myRecaptchaComponent = class myRecaptchaComponent {
         this.router = router;
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr"; */
-        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost:"6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
+        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
+        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
     }
     ngAfterViewInit() {
         this.isRecaptchaVerified = false;
@@ -12183,12 +12183,12 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         });
     }
     SendEmail(body) {
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'Content-Type': 'multipart/form-data' });
+        //const headers = new HttpHeaders({ 'Content-Type': undefined});
         let requestOptions = {
-            url: this.postSendEmail,
-            headers: headers
+            url: this.postSendEmail /*,
+            headers: headers*/
         };
-        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res) => {
+        return this.httpClient.post(requestOptions.url, body /*, { 'headers': requestOptions.headers }*/).map((res) => {
             return res;
         });
     }

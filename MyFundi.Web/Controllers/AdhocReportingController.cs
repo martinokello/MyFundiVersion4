@@ -21,6 +21,7 @@ using MyFundiProfile.ServiceEndPoint.GeneralSevices;
 using MyFundi.Web.Infrastructure;
 using MartinLayooInc.Web.Infrastructure;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace MyFundi.Web.Controllers
 {
@@ -35,13 +36,12 @@ namespace MyFundi.Web.Controllers
 
         private MartinLayooIncChat ChatResource = null;
         private Mapper _mapper;
-        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper, AppSettingsConfigurations appSettings, MartinLayooIncChat martinLayooIncChat, List<FundiLocationViewModel> currentFundiLocations)
+        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper, IConfiguration appSettings, MartinLayooIncChat martinLayooIncChat, List<FundiLocationViewModel> currentFundiLocations)
         {
             ChatResource = martinLayooIncChat;
             _emailService = emailService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _businessSmtpDetails = appSettings.AppSettings.GetSection("BusinessSmtpDetails");
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
             _currentFundilocations = currentFundiLocations;
         }
@@ -233,18 +233,17 @@ namespace MyFundi.Web.Controllers
         [AuthorizeIdentity]
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> SendEmail()
+        public async Task<IActionResult> SendEmail([FromForm(Name="attachment")] IFormFile attachment)
         {
             try
             {
-                _emailService.BusinessEmailDetails = _businessSmtpDetails;
                 //Send Email:
-                _emailService.SendEmail(new EmailDao { Attachment = Request.Form.Files.Any() ? Request.Form.Files[0] : null, EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
+                _emailService.SendEmail(new EmailDao { Attachment = attachment, EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
                 return await Task.FromResult(Ok(new { Succeded = true, Message = "Succesfully Sent Your Email!" }));
             }
             catch (Exception e)
             {
-                return await Task.FromResult(Ok(new { Succeded = false, Message = "Failed to Send Your Email!" }));
+                return await Task.FromResult(Ok(new { Succeded = false, Message = "Failed to Send Your Email!\n"+e.Message+"\n"+e.StackTrace }));
             }
         }
         [HttpPost]

@@ -127,20 +127,20 @@ namespace MyFundi.Web.Controllers
                                 });
                             _unitOfWork.SaveChanges();
                         }
-                        /*_emailService.SendEmail(new EmailDao
+                        _emailService.SendEmail(new EmailDao
                         {
                             EmailTo = userDetails.emailAddress,
                             EmailSubject = "Welcome to MyFundi Web App",
                             DateCreated = DateTime.Now,
                             DateUpdated = DateTime.Now,
                             EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.WelcomeMessage).Replace("[[FirstName]]", userDetails.firstName)
-                        });*/
+                        });
                     }
 
                 }
                 catch (Exception e) 
                 {
-                    return Ok(new { IsRegistered = true, IsAdministrator = false, Message = e.Message }); 
+                    return Ok(new { IsRegistered = false, IsAdministrator = false, Message = e.Message }); 
                 }
                 return Ok(new { IsRegistered = true, IsAdministrator = false, Message = UserInteractionResults.Succeeded.ToString() });
             }
