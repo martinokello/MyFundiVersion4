@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IWorkSubCategory, IWorkAndSubWorkCategory } from '../../services/myFundiService';
+declare var jQuery: any;
 
 @Component({
     selector: 'profile',
@@ -19,7 +20,9 @@ export class ProfileComponent implements OnInit {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
+
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
         let certsObs = this.myFundiService.GetFundiCertifications(this.userDetails.username);
@@ -45,8 +48,6 @@ export class ProfileComponent implements OnInit {
         }).subscribe();
 
 
-        let downloadLink: HTMLAnchorElement = document.querySelector('a#downloadCV');
-        downloadLink.setAttribute('href', `/FundiProfile/GetFundiCVByUsername?username=${this.userDetails.username}`);
 
     }
     constructor(private myFundiService: MyFundiService) {

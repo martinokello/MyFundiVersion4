@@ -67,6 +67,8 @@ export class LoginComponent implements OnInit {
                 this.userDetail.firstName = q.firstName;
                 this.userDetail.lastName = q.lastName;
                 this.userDetail.userId = q.userId;
+                this.userDetail.username = q.username;
+                this.userDetail.email = q.username;
 
                 localStorage.setItem("userDetails", JSON.stringify(this.userDetail));
 

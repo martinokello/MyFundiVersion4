@@ -1,4 +1,4 @@
-<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+<div id="clientprofile-wrapper" class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
     <section>
         <a style="padding-top:10px;padding-bottom:10px !important;" [routerLink]="['/create-profile']" routerLinkActive='link-active'>
             Create Or Edit Profile
@@ -21,7 +21,7 @@
         </div>
         <div class="row" style="text-align: center !important; align-content: center !important; margin: 2px 0px !important;">
             <div class="col-lg-12" style="margin: 2px 0px !important;">
-                <a style="line-height: 17px 0px !important;" id="downloadCV">Download {{userDetails.firstName}} {{userDetails.lastName}} Profile CV</a><br />
+                <a href="/FundiProfile/GetFundiCVByUsername?username={{userDetails.username}}" style="line-height: 17px 0px !important;" id="downloadCV">Download {{userDetails.firstName}} {{userDetails.lastName}} Profile CV</a><br />
             </div>
         </div>
         <div class="row" style="position: relative !important; margin: 2px 0px !important;">
