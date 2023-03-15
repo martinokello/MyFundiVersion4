@@ -47,9 +47,9 @@ namespace MyFundi.IdentityServices
                 return await Task.FromResult(UserInteractionResults.Failed);
             }
         }
-        public Task<Role[]> FindByUserNameAsync(string username)
+        public async Task<Role[]> FindByUserNameAsync(string username)
         {
-            return Task.FromResult((from u in _unitOfWork._userRepository.GetAll()
+            return await Task.FromResult((from u in _unitOfWork._userRepository.GetAll()
                                    join uir in _unitOfWork._userInRolesRepository.GetAll()
                                    on u.UserId equals uir.UserId into usri
                                    from ri in usri
@@ -58,12 +58,12 @@ namespace MyFundi.IdentityServices
                                    where ri.User.Username == username
                                    select r).ToArray());
         }
-        public Task<Role> FindByNameAsync(string rolename)
+        public async Task<Role> FindByNameAsync(string rolename)
         {
-            return Task.FromResult(_unitOfWork._rolesRepository.GetAll().FirstOrDefault(q => q.RoleName.ToLower().Equals(rolename.ToLower())));
+            return await Task.FromResult(_unitOfWork._rolesRepository.GetAll().FirstOrDefault(q => q.RoleName.ToLower().Equals(rolename.ToLower())));
         }
 
-        public Task<UserInteractionResults> AddToRoleAsync(User user, string rolename)
+        public async Task<UserInteractionResults> AddToRoleAsync(User user, string rolename)
         {
             try
             {
@@ -76,15 +76,15 @@ namespace MyFundi.IdentityServices
                         userInRole = new UserRole { UserId = user.UserId, RoleId = role.RoleId };
                         _unitOfWork._userInRolesRepository.Insert(userInRole);
                         _unitOfWork.SaveChanges();
-                        return Task.FromResult(UserInteractionResults.Succeeded);
+                        return await Task.FromResult(UserInteractionResults.Succeeded);
                     }
-                    return Task.FromResult(UserInteractionResults.Failed);
+                    return await Task.FromResult(UserInteractionResults.Failed);
                 }
-                return Task.FromResult(UserInteractionResults.Failed);
+                return await Task.FromResult(UserInteractionResults.Failed);
             }
             catch(Exception e)
             {
-               return Task.FromResult(UserInteractionResults.Failed);
+               return await Task.FromResult(UserInteractionResults.Failed);
             }
         }
 

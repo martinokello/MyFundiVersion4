@@ -10,7 +10,7 @@ import { modifyHasPopulatedPage } from '../../imports.js';
     selector: 'client-job-view',
     templateUrl: './clientjobview.component.html'
 })
-export class ClientJobViewComponent implements OnInit, AfterViewInit {
+export class ClientJobViewComponent implements OnInit, AfterViewChecked {
     userDetails: any;
     userRoles: string[];
     locationId: number;
@@ -35,6 +35,8 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
     jobs: IJob[];
     coverNote: string = "";
     email: IEmailMessage;
+    setTo: NodeJS.Timeout;
+    hasPopulatedPage: boolean = false;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
@@ -61,9 +63,8 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
         this.userDetails = {};
     }
-
     getFiles($event) {
-        this.email.attachment = $event.target.files;
+        this.email.attachment = $event.target.files.item(0);
     }
 
     sendEmail($event): void {
@@ -75,7 +76,7 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
             formData.append('emailTo', this.userDetails.username);
             formData.append('emailFrom', this.email.emailFrom);
             formData.append('emailSubject', this.email.emailSubject);
-            formData.append('attachment', this.email.attachment);
+            formData.append('fileUpload', this.email.attachment);
             let result: Observable<boolean> = this.myFundiService.SendEmail(formData);
             result.map((value: any) => {
                 alert(value.message)
@@ -84,27 +85,60 @@ export class ClientJobViewComponent implements OnInit, AfterViewInit {
         $event.preventDefault();
     }
 
-    ngAfterViewInit() {
+    ngAfterViewChecked() {
+        let curthis = this;
 
-        jQuery('select').each((ind, sel) => {
-            let options = jQuery(sel).children('option');
-           
-            let vals = [];
-            jQuery(options).each((id, el) => {
-                let optionText = jQuery(el).html();
-                vals.push(optionText);
-            });
-            //options is source of auto complete:
-            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-            jQueryinpId.autocomplete({ source: vals });
-            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                    return jQuery(event.target).text() == jQuery(this).html();
-                }).attr("selected", true);
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+    }
+    runAutoCompleteOnSelects(curthis: any) {
+        let hasFoundSelectsOnPage = false;
+
+        if (!curthis.hasPopulatedPage) {
+
+            let selects = jQuery('div#client-wrapper select');
+
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+                }));
+                hasFoundSelectsOnPage = false;
+
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
             });
 
-            modifyHasPopulatedPage(true);
-        });
+            curthis.hasPopulatedPage = true;
+
+            jQuery('div#editableClientDetails').hide(2000);
+            clearTimeout(curthis.setTo);
+        }
     }
 }
 

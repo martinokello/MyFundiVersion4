@@ -1254,13 +1254,13 @@ export class MyFundiService {
         });
     }
     public SendEmail(body: FormData): Observable<any> {
-        //const headers = new HttpHeaders({ 'Content-Type': undefined});
+        const headers = new HttpHeaders({ 'Content-Type': "multipart/form-data"});
         let requestOptions: any = {
             url: this.postSendEmail/*,
             headers: headers*/
         };
 
-        return this.httpClient.post(requestOptions.url, body/*, { 'headers': requestOptions.headers }*/).map((res: any) => {
+        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
@@ -2094,7 +2094,7 @@ export interface IUserDetail {
 export interface IEmailMessage {
     emailFrom: string;
     emailTo: string;
-    attachment: Blob;
+    attachment: File;
     emailSubject: string;
     emailBody: string;
 }

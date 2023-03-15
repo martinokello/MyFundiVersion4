@@ -181,7 +181,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" readonly/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                            <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                                Subscription Description Required\r\n                            </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"clientSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" readonly/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                            <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                                Subscription Description Required\r\n                            </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n";
     /***/
   },
 
@@ -201,7 +201,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1>Contact MartinLayooInc.</h1>\r\n\r\n<div #emailFormView>\r\n    <div class=\"centralProduct\">\r\n        <form #emailForm=\"ngForm\" (ngSubmit)=\"emailForm.form.valid\" enctype=\"multipart/form-data\" method=\"post\" action=\"/Home/SendEmail\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div id=\"hiddenContent\" style=\"display:none;\"></div>\r\n                <div class=\"centralProduct\">\r\n                    <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;padding-left: 10px;\">\r\n                        <div style=\"margin-left: auto; margin-right: auto;padding-left: 10px;\">\r\n                            <div style=\"background-color: #DADADA; padding-left: 10px; padding-top: 20px;\">\r\n                                <div style=\"margin-top:10px !important;margin:0px !important;\">\r\n                                    <div style=\"margin-top:10px !important;\">\r\n                                        <br/>\r\n                                        <label id=\"ContactUsDetails\" style=\"width: 100%; margin-top:20px !important;margin-left:20px !important; font-weight: bolder; font-size: small; color: #AD0000;\">Contact MartinLayooInc Software Solutions</label>\r\n                                    </div>\r\n\r\n                                    <div style=\"font-weight: bold; color: Red; width:100%;\">\r\n                                    </div>\r\n                                    <div style=\"padding-top: 10px; width:100%;margin-left:20px !important;\">\r\n                                        <div style=\"padding-left:10px; width:66%;float:left;\">\r\n                                            <div style=\"padding:15px; color:red;\">\r\n                                                Please Note: You should be logged in to make contact, otherwise your email won't be sent\r\n                                            </div>\r\n                                            <div style=\"width: 100%;\">\r\n                                                <div style=\"margin:5px 0px !important;\" *ngIf=\"emailForm.submitted && emailFrom.invalid\" class=\"text-danger\">\r\n                                                    email from field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailFrom\" type=\"text\" [(ngModel)]=\"email.emailFrom\" #emailFrom=\"ngModel\" required placeholder=\"your email address\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                                                <div style=\"margin: 5px 0px !important;\" *ngIf=\"emailForm.submitted && emailTo.invalid\" class=\"text-danger\">\r\n                                                    email to field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailTo\" type=\"text\" [(ngModel)]=\"email.emailTo\" #emailTo=\"ngModel\" required placeholder=\"to email addresses separated by commas\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                                                <div style=\"margin: 5px 0px !important;\" *ngIf=\"emailForm.submitted && emailSubject.invalid\" class=\"text-danger\">\r\n                                                    email subject field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailSubject\" type=\"text\" required #emailSubject=\"ngModel\" [(ngModel)]=\"email.emailSubject\" placeholder=\"subject\" style=\"font-weight: bold; width: 100%;color: #000040;\" /><br />\r\n\r\n                                                <input type=\"file\" name=\"attachment\" (change)=\"getFiles($event)\" value=\"Attach file\" ngModel #attachment=\"ngModel\" id=\"attachment\" /><br />\r\n                                            </div>\r\n                                            <div style=\"width: 98%; margin:5px 0px !important;\">\r\n                                                <div style=\"margin:5px 0px !important;\" *ngIf=\"emailForm.submitted && emailBody.invalid\" class=\"text-danger\">\r\n                                                    email body field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <textarea name=\"emailBody\" id=\"MessageText\" required [(ngModel)]=\"email.emailBody\" #emailBody=\"ngModel\" placeholder=\"Enter your post here\" style=\"font-weight: bold;width:100%; height:50vh !important;color: #000040\" autofocus></textarea>\r\n                                            </div>\r\n                                        </div>\r\n                                        <div id=\"ourContactDetails\" class=\"oneRowRegButton1\" style=\"width: auto; float: left; background-color: #AD0000; min-height: 250px; padding-left: 0px; font-weight: bolder; font-size: Smaller; color: black; margin-top: 5px !important; margin-left: 10px !important; margin-right: 10px !important;\" ></div>\r\n                                        <div style=\"clear:both;\"></div>\r\n                                    </div>\r\n                                    <div style=\"width:100%; margin-top:10px;\">\r\n                                        <myrecaptcha></myrecaptcha>\r\n                                        <input type=\"submit\" id=\"submit\" class=\"but-primary\" style=\"display:none !important;\" (click)=\"sendEmail($event)\" value=\"Submit To Email\" />\r\n                                        <div style=\"clear:both;\">\r\n                                            <br />\r\n                                        </div>\r\n                                    </div>\r\n                                    <div style=\"padding-top: 10px; width:100%;\">\r\n                                        <div style=\"text-align: center;float:left;margin-left:30px;\">\r\n                                            <img src=\"/assets/images/brickWall.jpg\" style=\"float:left;\" />\r\n                                            <img src=\"/assets/images/ug-flag.gif\" style=\"float:left;\" />\r\n                                            <div style=\"clear:both;\">\r\n                                                <br />\r\n                                            </div>\r\n                                        </div>\r\n                                        <div style=\"text-align: center;float:left;margin-left:30px;\">\r\n                                            <img src=\"/assets/images/brickWall.jpg\" style=\"float:left;\" />\r\n                                            <img src=\"/assets/images/uk-flag.gif\" style=\"float:left;\" />\r\n\r\n                                            <div style=\"clear:both;\">&nbsp;</div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div style=\"width:100%;\">\r\n                                        <div style=\"clear:both;width: 90%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;\">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>\r\n                                    </div>\r\n                                    <div id=\"map\" style=\"min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;\">\r\n                                    </div>\r\n\r\n                                    <div style=\"clear:both;\">&nbsp;</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n\r\n";
+    __webpack_exports__["default"] = "<h1>Contact MartinLayooInc.</h1>\r\n\r\n<div #emailFormView>\r\n    <div class=\"centralProduct\">\r\n        <form #emailForm=\"ngForm\" (ngSubmit)=\"emailForm.form.valid\" enctype=\"multipart/form-data\" method=\"post\" action=\"/Home/SendEmail\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div id=\"hiddenContent\" style=\"display:none;\"></div>\r\n                <div class=\"centralProduct\">\r\n                    <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;padding-left: 10px;\">\r\n                        <div style=\"margin-left: auto; margin-right: auto;padding-left: 10px;\">\r\n                            <div style=\"background-color: #DADADA; padding-left: 10px; padding-top: 20px;\">\r\n                                <div style=\"margin-top:10px !important;margin:0px !important;\">\r\n                                    <div style=\"margin-top:10px !important;\">\r\n                                        <br/>\r\n                                        <label id=\"ContactUsDetails\" style=\"width: 100%; margin-top:20px !important;margin-left:20px !important; font-weight: bolder; font-size: small; color: #AD0000;\">Contact MartinLayooInc Software Solutions</label>\r\n                                    </div>\r\n\r\n                                    <div style=\"font-weight: bold; color: Red; width:100%;\">\r\n                                    </div>\r\n                                    <div style=\"padding-top: 10px; width:100%;margin-left:20px !important;\">\r\n                                        <div style=\"padding-left:10px; width:66%;float:left;\">\r\n                                            <div style=\"padding:15px; color:red;\">\r\n                                                Please Note: You should be logged in to make contact, otherwise your email won't be sent\r\n                                            </div>\r\n                                            <div style=\"width: 100%;\">\r\n                                                <div style=\"margin:5px 0px !important;\" *ngIf=\"emailForm.submitted && emailFrom.invalid\" class=\"text-danger\">\r\n                                                    email from field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailFrom\" type=\"text\" [(ngModel)]=\"email.emailFrom\" #emailFrom=\"ngModel\" required placeholder=\"your email address\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                                                <div style=\"margin: 5px 0px !important;\" *ngIf=\"emailForm.submitted && emailTo.invalid\" class=\"text-danger\">\r\n                                                    email to field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailTo\" type=\"text\" [(ngModel)]=\"email.emailTo\" #emailTo=\"ngModel\" required placeholder=\"to email addresses separated by commas\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                                                <div style=\"margin: 5px 0px !important;\" *ngIf=\"emailForm.submitted && emailSubject.invalid\" class=\"text-danger\">\r\n                                                    email subject field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailSubject\" type=\"text\" required #emailSubject=\"ngModel\" [(ngModel)]=\"email.emailSubject\" placeholder=\"subject\" style=\"font-weight: bold; width: 100%;color: #000040;\" /><br />\r\n\r\n                                                <input type=\"file\" name=\"attachment\" (change)=\"getFiles($event)\" value=\"Attach file\" [(ngModel)]=\"email.attachment\" #attachment=\"ngModel\" id=\"attachment\" /><br />\r\n                                            </div>\r\n                                            <div style=\"width: 98%; margin:5px 0px !important;\">\r\n                                                <div style=\"margin:5px 0px !important;\" *ngIf=\"emailForm.submitted && emailBody.invalid\" class=\"text-danger\">\r\n                                                    email body field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <textarea name=\"emailBody\" id=\"MessageText\" required [(ngModel)]=\"email.emailBody\" #emailBody=\"ngModel\" placeholder=\"Enter your post here\" style=\"font-weight: bold;width:100%; height:50vh !important;color: #000040\" autofocus></textarea>\r\n                                            </div>\r\n                                        </div>\r\n                                        <div id=\"ourContactDetails\" class=\"oneRowRegButton1\" style=\"width: auto; float: left; background-color: #AD0000; min-height: 250px; padding-left: 0px; font-weight: bolder; font-size: Smaller; color: black; margin-top: 5px !important; margin-left: 10px !important; margin-right: 10px !important;\" ></div>\r\n                                        <div style=\"clear:both;\"></div>\r\n                                    </div>\r\n                                    <div style=\"width:100%; margin-top:10px;\">\r\n                                        <myrecaptcha></myrecaptcha>\r\n                                        <input type=\"submit\" id=\"submit\" class=\"but-primary\" style=\"display:none !important;\" (click)=\"sendEmail($event)\" value=\"Submit To Email\" />\r\n                                        <div style=\"clear:both;\">\r\n                                            <br />\r\n                                        </div>\r\n                                    </div>\r\n                                    <div style=\"padding-top: 10px; width:100%;\">\r\n                                        <div style=\"text-align: center;float:left;margin-left:30px;\">\r\n                                            <img src=\"/assets/images/brickWall.jpg\" style=\"float:left;\" />\r\n                                            <img src=\"/assets/images/ug-flag.gif\" style=\"float:left;\" />\r\n                                            <div style=\"clear:both;\">\r\n                                                <br />\r\n                                            </div>\r\n                                        </div>\r\n                                        <div style=\"text-align: center;float:left;margin-left:30px;\">\r\n                                            <img src=\"/assets/images/brickWall.jpg\" style=\"float:left;\" />\r\n                                            <img src=\"/assets/images/uk-flag.gif\" style=\"float:left;\" />\r\n\r\n                                            <div style=\"clear:both;\">&nbsp;</div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div style=\"width:100%;\">\r\n                                        <div style=\"clear:both;width: 90%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;\">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>\r\n                                    </div>\r\n                                    <div id=\"map\" style=\"min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;\">\r\n                                    </div>\r\n\r\n                                    <div style=\"clear:both;\">&nbsp;</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n\r\n";
     /***/
   },
 
@@ -961,7 +961,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\">\r\n  <div style=\"text-align:left !important; color:black !important;\">\r\n\r\n    <h4>Fundi Location Monitoring System</h4><br />\r\n    <input type=\"button\" class=\"btn-primary\" (click)=\"getAndroidMobileLocationApp()\" style=\"padding: 5px !important;\" value=\"Get: Android Location Emitter\"/><br/><br/>\r\n    <input type=\"button\" class=\"btn-primary\" (click)=\"getIosMobileLocationApp()\" style=\"padding:5px !important;\" value=\"Get: Mac/IOS Location Emitter\"/><br/><br/>\r\n    <section>\r\n      <div id=\"monitormap\" style=\"min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;\">\r\n      </div>\r\n    </section>\r\n    <form #monitorView=\"ngForm\">\r\n        <div class=\"form-group\">\r\n            <label>Fundi Name</label>\r\n            <select id=\"vhmonitor\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" required [ngModel]=\"currentFundi.username\" (change)=\"showFundi()\"></select>\r\n            <div *ngIf=\"monitorView.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                Fundi Username Required\r\n            </div>\r\n        </div>\r\n      <input type=\"button\" value=\"Select Fundi\" class=\"but-primary\" (click)=\"showFundi()\" />\r\n      <input type=\"button\" value=\"Show All Fundis\" class=\"but-primary\" (click)=\"getVehiclesHttp()\" />\r\n      <input type=\"button\" value=\"Remove Fundi\" class=\"but-primary\" (click)=\"removeFundi()\" />\r\n    </form>\r\n  </div>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"vehiclemonitor-wrapper\">\r\n  <div style=\"text-align:left !important; color:black !important;\">\r\n\r\n    <h4>Fundi Location Monitoring System</h4><br />\r\n    <input type=\"button\" class=\"btn-primary\" (click)=\"getAndroidMobileLocationApp()\" style=\"padding: 5px !important;\" value=\"Get: Android Location Emitter\"/><br/><br/>\r\n    <input type=\"button\" class=\"btn-primary\" (click)=\"getIosMobileLocationApp()\" style=\"padding:5px !important;\" value=\"Get: Mac/IOS Location Emitter\"/><br/><br/>\r\n    <section>\r\n      <div id=\"monitormap\" style=\"min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;\">\r\n      </div>\r\n    </section>\r\n    <form #monitorView=\"ngForm\">\r\n        <div class=\"form-group\">\r\n            <label>Fundi Name</label>\r\n            <select id=\"vhmonitor\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" required [ngModel]=\"currentFundi.username\" (change)=\"showFundi()\"></select>\r\n            <div *ngIf=\"monitorView.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                Fundi Username Required\r\n            </div>\r\n        </div>\r\n      <input type=\"button\" value=\"Select Fundi\" class=\"but-primary\" (click)=\"showFundi()\" />\r\n      <input type=\"button\" value=\"Show All Fundis\" class=\"but-primary\" (click)=\"getVehiclesHttp()\" />\r\n      <input type=\"button\" value=\"Remove Fundi\" class=\"but-primary\" (click)=\"removeFundi()\" />\r\n    </form>\r\n  </div>\r\n</div>\r\n";
     /***/
   },
 
@@ -2524,12 +2524,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
-    /* harmony import */
-
-
-    var _imports_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ../../imports.js */
-    "./src/imports.js");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -2559,6 +2553,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this.httpClient = httpClient;
         this.coverNote = "";
+        this.hasPopulatedPage = false;
         this.userDetails = {};
       }
 
@@ -2587,7 +2582,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFiles",
         value: function getFiles($event) {
-          this.email.attachment = $event.target.files;
+          this.email.attachment = $event.target.files.item(0);
         }
       }, {
         key: "sendEmail",
@@ -2600,7 +2595,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             formData.append('emailTo', this.userDetails.username);
             formData.append('emailFrom', this.email.emailFrom);
             formData.append('emailSubject', this.email.emailSubject);
-            formData.append('attachment', this.email.attachment);
+            formData.append('fileUpload', this.email.attachment);
             var result = this.myFundiService.SendEmail(formData);
             result.map(function (value) {
               alert(value.message);
@@ -2610,27 +2605,57 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           $event.preventDefault();
         }
       }, {
-        key: "ngAfterViewInit",
-        value: function ngAfterViewInit() {
-          jQuery('select').each(function (ind, sel) {
-            var options = jQuery(sel).children('option');
-            var vals = [];
-            jQuery(options).each(function (id, el) {
-              var optionText = jQuery(el).html();
-              vals.push(optionText);
-            }); //options is source of auto complete:
+        key: "ngAfterViewChecked",
+        value: function ngAfterViewChecked() {
+          var curthis = this;
+          this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+        }
+      }, {
+        key: "runAutoCompleteOnSelects",
+        value: function runAutoCompleteOnSelects(curthis) {
+          var hasFoundSelectsOnPage = false;
 
-            var jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-            jQueryinpId.autocomplete({
-              source: vals
+          if (!curthis.hasPopulatedPage) {
+            var selects = jQuery('div#client-wrapper select');
+
+            if (selects && selects.length > 0) {
+              hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+              jQuery(selects.each(function (ind, elem) {
+                jQuery(elem).parent('ul').css('background', 'white');
+                jQuery(elem).parent('ul').css('z-index', '100');
+                var id = 'autoComplete' + jQuery(elem).attr('id');
+                jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + "".concat(id) + " /><br/>");
+              }));
+              hasFoundSelectsOnPage = false;
+            } //Check For Dom Change and Add auto complete to select elements
+
+
+            debugger;
+            jQuery('select').each(function (ind, sel) {
+              var options = jQuery(sel).children('option');
+              var vals = [];
+              jQuery(options).each(function (id, el) {
+                var optionText = jQuery(el).html();
+                vals.push(optionText);
+              }); //options is source of auto complete:
+
+              var jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+              jQueryinpId.autocomplete({
+                source: vals
+              });
+              jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                  return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+              });
             });
-            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-              jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                return jQuery(event.target).text() == jQuery(this).html();
-              }).attr("selected", true);
-            });
-            Object(_imports_js__WEBPACK_IMPORTED_MODULE_4__["modifyHasPopulatedPage"])(true);
-          });
+            curthis.hasPopulatedPage = true;
+            jQuery('div#editableClientDetails').hide(2000);
+            clearTimeout(curthis.setTo);
+          }
         }
       }]);
 
@@ -4043,13 +4068,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }).subscribe();
         }
       }, {
+        key: "formatDate",
+        value: function formatDate(date) {
+          var d = new Date(date),
+              month = '' + (d.getMonth() + 1),
+              day = '' + d.getDate(),
+              year = d.getFullYear();
+          if (month.length < 2) month = '0' + month;
+          if (day.length < 2) day = '0' + day;
+          return [year, month, day].join('-');
+        }
+      }, {
+        key: "ngAfterViewChecked",
+        value: function ngAfterViewChecked() {
+          var curthis = this;
+          this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+        }
+      }, {
         key: "runAutoCompleteOnSelects",
         value: function runAutoCompleteOnSelects(curthis) {
-          debugger;
           var hasFoundSelectsOnPage = false;
 
-          if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
-            var selects = jQuery('div#subcworkSubCategories-wrapper select');
+          if (!curthis.hasPopulatedPage) {
+            var selects = jQuery('div#fundiClientContract-wrapper select');
 
             if (selects && selects.length > 0) {
               hasFoundSelectsOnPage = true;
@@ -4067,7 +4108,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
             debugger;
-            jQuery('select').each(function (ind, sel) {
+            jQuery('div#fundiClientContract-wrapper select').each(function (ind, sel) {
               var options = jQuery(sel).children('option');
               var vals = [];
               jQuery(options).each(function (id, el) {
@@ -4088,17 +4129,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             curthis.hasPopulatedPage = true;
             clearTimeout(curthis.setTo);
           }
-        }
-      }, {
-        key: "formatDate",
-        value: function formatDate(date) {
-          var d = new Date(date),
-              month = '' + (d.getMonth() + 1),
-              day = '' + d.getDate(),
-              year = d.getFullYear();
-          if (month.length < 2) month = '0' + month;
-          if (day.length < 2) day = '0' + day;
-          return [year, month, day].join('-');
         }
       }]);
 
@@ -4186,6 +4216,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this.subscriptionFee = 2000;
         this.clientLoginDetails = {};
+        this.hasPopulatedPage = false;
         this.userDetails = {};
       }
 
@@ -4341,8 +4372,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           debugger;
           var hasFoundSelectsOnPage = false;
 
-          if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
-            var selects = jQuery('div#subcworkSubCategories-wrapper select');
+          if (!curthis.hasPopulatedPage) {
+            var selects = jQuery('div#clientSubscription-wrapper select');
 
             if (selects && selects.length > 0) {
               hasFoundSelectsOnPage = true;
@@ -4360,7 +4391,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
             debugger;
-            jQuery('select').each(function (ind, sel) {
+            jQuery('div#clientSubscription-wrapper select').each(function (ind, sel) {
               var options = jQuery(sel).children('option');
               var vals = [];
               jQuery(options).each(function (id, el) {
@@ -4381,6 +4412,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             curthis.hasPopulatedPage = true;
             clearTimeout(curthis.setTo);
           }
+        }
+      }, {
+        key: "ngAfterViewChecked",
+        value: function ngAfterViewChecked() {
+          var curthis = this;
+          this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
         }
       }]);
 
@@ -4511,7 +4548,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             formData.append('emailTo', this.email.emailTo);
             formData.append('emailFrom', this.email.emailFrom);
             formData.append('emailSubject', this.email.emailSubject);
-            formData.append('attachment', this.email.attachment);
+            formData.append('fileUpload', this.email.attachment);
             var result = this.myFundiService.SendEmail(formData);
             result.subscribe(function (value) {
               alert(value.message);
@@ -4523,7 +4560,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFiles",
         value: function getFiles(event) {
-          this.email.attachment = event.target.files;
+          this.email.attachment = event.target.files.item(0);
         }
       }, {
         key: "ngOnInit",
@@ -5024,6 +5061,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this26 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+          if (!this.userDetails) this.userDetails = {};
+
+          if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
+          }
+
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var certificationsObs = this.myFundiService.GetAllFundiCertificates();
           this.selectCertificate = document.querySelector('select#slcertificationId');
@@ -5757,6 +5800,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this37 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+          if (!this.userDetails) this.userDetails = {};
+
+          if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
+          }
+
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var courseObs = this.myFundiService.GetAllFundiCourses();
           this.selectCourse = document.querySelector('select#slcourseId');
@@ -8495,6 +8544,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! ../../services/myFundiService */
     "./src/services/myFundiService.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -8517,12 +8572,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     var FundiSubscriptionComponent = /*#__PURE__*/function () {
-      function FundiSubscriptionComponent(myFundiService) {
+      function FundiSubscriptionComponent(myFundiService, router) {
         _classCallCheck(this, FundiSubscriptionComponent);
 
         this.myFundiService = myFundiService;
-        this.subscriptionFee = 2500;
+        this.router = router;
+        this.subscriptionFee = 25000;
         this.fundi = {};
+        this.hasPopulatedPage = false;
         this.userDetails = {};
       }
 
@@ -8536,18 +8593,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           var _this68 = this;
 
-          this.subscription = this.subscriptionFeeExpense = {
-            monthlySubscriptionId: 0,
-            userId: this.fundi.userId,
-            fundiProfileId: this.fundi.fundiProfileId,
-            startDate: new Date(),
-            username: this.userDetails.username,
-            subscriptionFee: this.fundi.subscriptionFee,
-            hasPaid: false,
-            subscriptionName: this.fundi.subscriptionName,
-            subscriptionDescription: this.fundi.subscriptionDescription,
-            workCategoryAndSubCategoryIds: []
-          };
           this.workCategory = {
             workCategoryId: 0
           };
@@ -8590,58 +8635,84 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }).subscribe();
           }).subscribe();
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+          if (!this.userDetails) this.userDetails = {};
+
+          if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
+          }
+
+          this.subscription = this.subscriptionFeeExpense = {
+            monthlySubscriptionId: 0,
+            userId: this.fundi.userId,
+            fundiProfileId: this.fundi.fundiProfileId,
+            startDate: new Date(),
+            username: this.userDetails.username,
+            subscriptionFee: this.fundi.subscriptionFee,
+            hasPaid: false,
+            subscriptionName: this.fundi.subscriptionName,
+            subscriptionDescription: this.fundi.subscriptionDescription,
+            workCategoryAndSubCategoryIds: []
+          };
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           resObs.map(function (fundiProf) {
-            _this68.fundi = fundiProf;
-            _this68.fundi.subscriptionFee = _this68.subscriptionFee;
-            _this68.fundi.subscriptionName = "Fundi User ".concat(_this68.userDetails.firstName, " ").concat(_this68.userDetails.lastName, " Subscription for 31 days");
-            _this68.fundi.subscriptionDescription = "Attempting Monthly Payment!";
+            if (!fundiProf) {
+              alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
 
-            var userIdObs = _this68.myFundiService.GetUserGuidId(_this68.userDetails.username);
+              _this68.router.navigateByUrl('/manage-profile');
 
-            userIdObs.map(function (q) {
-              _this68.fundi.userId = q;
+              return;
+            } else {
+              _this68.fundi = fundiProf;
+              _this68.fundi.subscriptionFee = _this68.subscriptionFee;
+              _this68.fundi.subscriptionName = "Fundi User ".concat(_this68.userDetails.firstName, " ").concat(_this68.userDetails.lastName, " Subscription for 31 days");
+              _this68.fundi.subscriptionDescription = "Attempting Monthly Payment!";
 
-              var subscrObs = _this68.myFundiService.GetAllFundiSubscriptions(_this68.fundi.fundiProfileId);
+              var userIdObs = _this68.myFundiService.GetUserGuidId(_this68.userDetails.username);
 
-              subscrObs.map(function (subs) {
-                var opt = document.createElement('option');
-                opt.value = "0";
-                opt.text = "Select Month Subscription";
-                var subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
-                subscrSelect.appendChild(opt);
+              userIdObs.map(function (q) {
+                _this68.fundi.userId = q;
 
-                if (subs.length > 0) {
-                  _this68.subscriptionFeeExpense = _this68.subscription = subs[0];
-                  _this68.startingDate = _this68.formatDate(subs[0].startDate);
+                var subscrObs = _this68.myFundiService.GetAllFundiSubscriptions(_this68.fundi.fundiProfileId);
 
-                  _this68.appendCategoriesAndSubCategoriesToUi();
-                } else {
-                  var dateNow = new Date();
-                  _this68.startingDate = _this68.formatDate(dateNow);
-                  _this68.subscription = _this68.subscriptionFeeExpense;
-                  _this68.subscription.monthlySubscriptionId = 0;
-                }
+                subscrObs.map(function (subs) {
+                  var opt = document.createElement('option');
+                  opt.value = "0";
+                  opt.text = "Select Month Subscription";
+                  var subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
+                  subscrSelect.appendChild(opt);
 
-                subs.forEach(function (sub, ind) {
-                  var opt1 = document.createElement('option');
-                  opt1.value = sub.monthlySubscriptionId.toString();
-                  opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this68.formatDate(sub.startDate);
-                  subscrSelect.appendChild(opt1);
-                });
+                  if (subs.length > 0) {
+                    _this68.subscriptionFeeExpense = _this68.subscription = subs[0];
+                    _this68.startingDate = _this68.formatDate(subs[0].startDate);
 
-                var lastMonthlySubsObs = _this68.myFundiService.GetFundiLastSubscriptionFees(_this68.subscription.userId);
-
-                lastMonthlySubsObs.map(function (q) {
-                  debugger;
-
-                  if (q.result) {
-                    _this68.fundi.subscriptionFee = q.subscriptionFee;
+                    _this68.appendCategoriesAndSubCategoriesToUi();
+                  } else {
+                    var dateNow = new Date();
+                    _this68.startingDate = _this68.formatDate(dateNow);
+                    _this68.subscription = _this68.subscriptionFeeExpense;
+                    _this68.subscription.monthlySubscriptionId = 0;
                   }
+
+                  subs.forEach(function (sub, ind) {
+                    var opt1 = document.createElement('option');
+                    opt1.value = sub.monthlySubscriptionId.toString();
+                    opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this68.formatDate(sub.startDate);
+                    subscrSelect.appendChild(opt1);
+                  });
+
+                  var lastMonthlySubsObs = _this68.myFundiService.GetFundiLastSubscriptionFees(_this68.subscription.userId);
+
+                  lastMonthlySubsObs.map(function (q) {
+                    debugger;
+
+                    if (q.result) {
+                      _this68.fundi.subscriptionFee = q.subscriptionFee;
+                    }
+                  }).subscribe();
                 }).subscribe();
               }).subscribe();
-            }).subscribe();
+            }
           }).subscribe();
         }
       }, {
@@ -8835,8 +8906,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           $event.preventDefault();
         }
       }, {
+        key: "checkFundiProfileExists",
+        value: function checkFundiProfileExists() {
+          if (!this.fundi.fundiProfileId) {
+            alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
+            return false;
+          }
+
+          return true;
+        }
+      }, {
         key: "paySubscriptionMonthlyFeeWithPaypal",
         value: function paySubscriptionMonthlyFeeWithPaypal($event) {
+          if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+          }
+
           var subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
@@ -8866,6 +8952,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "paySubscriptionMonthlyFeeWithAirTel",
         value: function paySubscriptionMonthlyFeeWithAirTel($event) {
           var _this73 = this;
+
+          if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+          }
 
           var subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
@@ -8913,6 +9004,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "paySubscriptionMonthlyFeeWithMtn",
         value: function paySubscriptionMonthlyFeeWithMtn($event) {
           var _this74 = this;
+
+          if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+          }
 
           var subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
@@ -8968,13 +9064,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return [year, month, day].join('-');
         }
       }, {
+        key: "ngAfterViewChecked",
+        value: function ngAfterViewChecked() {
+          var curthis = this;
+          this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+        }
+      }, {
         key: "runAutoCompleteOnSelects",
         value: function runAutoCompleteOnSelects(curthis) {
-          debugger;
           var hasFoundSelectsOnPage = false;
 
-          if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
-            var selects = jQuery('div#subcworkSubCategories-wrapper select');
+          if (!curthis.hasPopulatedPage) {
+            var selects = jQuery('div#fundiSubscription-wrapper select');
 
             if (selects && selects.length > 0) {
               hasFoundSelectsOnPage = true;
@@ -8992,7 +9093,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
             debugger;
-            jQuery('select').each(function (ind, sel) {
+            jQuery('div#fundiSubscription-wrapper select').each(function (ind, sel) {
               var options = jQuery(sel).children('option');
               var vals = [];
               jQuery(options).each(function (id, el) {
@@ -9022,6 +9123,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     FundiSubscriptionComponent.ctorParameters = function () {
       return [{
         type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
       }];
     };
 
@@ -9030,7 +9133,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       template: __importDefault(__webpack_require__(
       /*! raw-loader!./fundisubscription.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/fundisubscription/fundisubscription.component.html"))["default"]
-    }), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])], FundiSubscriptionComponent);
+    }), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])], FundiSubscriptionComponent);
     /***/
   },
 
@@ -9257,7 +9360,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _this75.router.navigateByUrl('/client-subscription');
 
               return;
-            } else if (q.isLoggedIn == true) {
+            }
+
+            if (q.isLoggedIn == true) {
               if (q.message) {
                 alert(q.message);
               }
@@ -9317,6 +9422,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.userRoles = JSON.parse(userRolesStr);
             _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles = this.userRoles;
             localStorage.setItem("userRoles", JSON.stringify(this.userRoles));
+            this.router.navigateByUrl("/manage-profile");
           }
 
           if (this.userRoles == null || this.userRoles.length < 1) {
@@ -9325,10 +9431,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _this76.userRoles = userroles;
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles = userroles;
 
-              _this76.router.navigateByUrl("/scanqrcode");
+              _this76.router.navigateByUrl("/manage-profile");
             }).subscribe();
-          } else {
-            this.router.navigateByUrl("/scanqrcode");
           }
         }
       }]);
@@ -10113,36 +10217,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jQuery('input#locationUpdateLocationId').css('display', 'none');
           jQuery('input#locationDeleteLocationId').css('display', 'none');
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+          if (!this.userDetails) this.userDetails = {};
+
+          if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].clientEmailAddress;
+          }
+
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
-          var workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
-          var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
-          resObs.map(function (fundiProf) {
-            if (fundiProf) {
-              _this83.profile = fundiProf;
-
-              var curAddObs = _this83.myFundiService.GetLocationById(fundiProf.locationId);
-
-              curAddObs.map(function (q) {
-                _this83.location = q;
-              }).subscribe();
-            } else {
-              _this83.profile = {
-                fundiProfileId: 0,
-                user: null,
-                userId: "",
-                profileSummary: "",
-                profileImageUrl: "",
-                skills: "",
-                usedPowerTools: "",
-                fundiProfileCvUrl: "",
-                locationId: 0
-              };
-            }
-          }).subscribe();
           userGuidObs.map(function (q) {
             _this83.userGuidId = q;
+
+            var resObs = _this83.myFundiService.GetFundiProfile(_this83.userDetails.username);
+
+            resObs.map(function (fundiProf) {
+              if (fundiProf) {
+                _this83.profile = fundiProf;
+
+                var curAddObs = _this83.myFundiService.GetLocationById(fundiProf.locationId);
+
+                curAddObs.map(function (q) {
+                  _this83.location = q;
+                }).subscribe();
+              } else {
+                _this83.profile = {
+                  fundiProfileId: 0,
+                  user: null,
+                  userId: "",
+                  profileSummary: "",
+                  profileImageUrl: "",
+                  skills: "",
+                  usedPowerTools: "",
+                  fundiProfileCvUrl: "",
+                  locationId: 0
+                };
+              }
+            }).subscribe();
           }).subscribe();
+          var workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
           workCatObs.map(function (workCats) {
             _this83.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
 
@@ -10164,20 +10276,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               option.value = "".concat(cat.workCategoryId.toString(), ",").concat(cat.workSubCategoryId.toString());
               selectWorkCategories.appendChild(option);
             });
-          }).subscribe();
-          var listWorkCatObs = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
-          listWorkCatObs.map(function (q) {
-            debugger;
 
-            if (q && q.length > 0) {
-              var ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
-              q.forEach(function (wkcCatSubCat, index, q) {
-                var li = document.createElement("li");
-                li.setAttribute('id', "".concat(wkcCatSubCat.workCategoryId.toString(), ",").concat(wkcCatSubCat.workSubCategoryId.toString()));
-                li.textContent = wkcCatSubCat.workCategory.workCategoryType + " :[".concat(wkcCatSubCat.workSubCategory.workSubCategoryType, "]");
-                ulSelectedCategories.appendChild(li);
-              });
-            }
+            var listWorkCatObs = _this83.myFundiService.GetFundiWorkCategories(_this83.userDetails.username);
+
+            listWorkCatObs.map(function (q) {
+              debugger;
+
+              if (q && q.length > 0) {
+                var ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                q.forEach(function (wkcCatSubCat, index, q) {
+                  var li = document.createElement("li");
+                  li.setAttribute('id', "".concat(wkcCatSubCat.workCategoryId.toString(), ",").concat(wkcCatSubCat.workSubCategoryId.toString()));
+                  li.textContent = wkcCatSubCat.workCategory.workCategoryType + " :[".concat(wkcCatSubCat.workSubCategory.workSubCategoryType, "]");
+                  ulSelectedCategories.appendChild(li);
+                });
+              }
+            }).subscribe();
           }).subscribe();
         }
       }, {
@@ -10224,6 +10338,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var profileObs = this.myFundiService.SaveProfile(this.profile);
           profileObs.map(function (res) {
             alert(res.message);
+
+            if (!res.result) {
+              alert("Falied to Save Profile, please contact site administrator");
+              sessionStorage.setItem("ProfileExists", '0');
+            }
           }).subscribe();
         }
       }, {
@@ -10392,26 +10511,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this87 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+          if (!this.userDetails) this.userDetails = {};
+
+          if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
+          }
+
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
-          var certsObs = this.myFundiService.GetFundiCertifications(this.userDetails.username);
-          var workCatObs = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
-          var coursesObs = this.myFundiService.GetFundiCourses(this.userDetails.username);
-          var ratingsObs = this.myFundiService.GetFundiRatings(this.userDetails.username);
           resObs.map(function (prof) {
             _this87.profile = prof;
-          }).subscribe();
-          ratingsObs.map(function (ratings) {
-            _this87.fundiRatings = ratings;
-          }).subscribe();
-          coursesObs.map(function (courses) {
-            _this87.courses = courses;
-          }).subscribe();
-          workCatObs.map(function (workCats) {
-            _this87.workCategories = workCats;
-          }).subscribe();
-          certsObs.map(function (certs) {
-            _this87.certifications = certs;
+
+            var workCatObs = _this87.myFundiService.GetFundiWorkCategories(_this87.userDetails.username);
+
+            workCatObs.map(function (workCats) {
+              _this87.workCategories = workCats;
+
+              var coursesObs = _this87.myFundiService.GetFundiCourses(_this87.userDetails.username);
+
+              coursesObs.map(function (courses) {
+                _this87.courses = courses;
+
+                var certsObs = _this87.myFundiService.GetFundiCertifications(_this87.userDetails.username);
+
+                certsObs.map(function (certs) {
+                  _this87.certifications = certs;
+
+                  var ratingsObs = _this87.myFundiService.GetFundiRatings(_this87.userDetails.username);
+
+                  ratingsObs.map(function (ratings) {
+                    _this87.fundiRatings = ratings;
+                  }).subscribe();
+                }).subscribe();
+              }).subscribe();
+            }).subscribe();
           }).subscribe();
         }
       }]);
@@ -10673,7 +10806,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
         this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo";
-        /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
+        /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr"; */
 
         this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB";
         /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
@@ -11843,6 +11976,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.fundiLocations = [];
         this.markers = [];
+        this.hasPopulatedPage = false;
         this.myFundiService = myFundiService;
         var defaultVehMonitor = {
           latitude: 0,
@@ -12053,6 +12187,58 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               alert(res.message);
             }
           }).subscribe();
+        }
+      }, {
+        key: "ngAfterViewChecked",
+        value: function ngAfterViewChecked() {
+          var curthis = this;
+          this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+        }
+      }, {
+        key: "runAutoCompleteOnSelects",
+        value: function runAutoCompleteOnSelects(curthis) {
+          var hasFoundSelectsOnPage = false;
+
+          if (!curthis.hasPopulatedPage) {
+            var selects = jQuery('div#vehiclemonitor-wrapper select');
+
+            if (selects && selects.length > 0) {
+              hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+              jQuery(selects.each(function (ind, elem) {
+                jQuery(elem).parent('ul').css('background', 'white');
+                jQuery(elem).parent('ul').css('z-index', '100');
+                var id = 'autoComplete' + jQuery(elem).attr('id');
+                jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + "".concat(id) + " /><br/>");
+              }));
+              hasFoundSelectsOnPage = false;
+            } //Check For Dom Change and Add auto complete to select elements
+
+
+            debugger;
+            jQuery('div#vehiclemonitor-wrapper select').each(function (ind, sel) {
+              var options = jQuery(sel).children('option');
+              var vals = [];
+              jQuery(options).each(function (id, el) {
+                var optionText = jQuery(el).html();
+                vals.push(optionText);
+              }); //options is source of auto complete:
+
+              var jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+              jQueryinpId.autocomplete({
+                source: vals
+              });
+              jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                  return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+              });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+          }
         }
       }]);
 
@@ -17305,16 +17491,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "SendEmail",
         value: function SendEmail(body) {
-          //const headers = new HttpHeaders({ 'Content-Type': undefined});
+          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
+            'Content-Type': "multipart/form-data"
+          });
           var requestOptions = {
             url: this.postSendEmail
             /*,
             headers: headers*/
 
           };
-          return this.httpClient.post(requestOptions.url, body
-          /*, { 'headers': requestOptions.headers }*/
-          ).map(function (res) {
+          return this.httpClient.post(requestOptions.url, body, {
+            'headers': requestOptions.headers
+          }).map(function (res) {
             return res;
           });
         }

@@ -27,7 +27,7 @@ MartinLayooInc Team.";
                 case EmailTemplate.WelcomeMessage:
                     return @"Dear [[FirstName]],
                     
-We would like to welcome you to the African Farmers Commodities site. The site offers ways to systematically buy or trade with very high secure means.
+We would like to welcome you to the My Fundi site. The site offers ways to systematically buy or trade with very high secure means.
 
 After registration you will be able to start using the site straight away.
 
@@ -38,7 +38,7 @@ MartinLayooInc Team.";
                 case EmailTemplate.InvoiceMessage:
                     return @"Dear [[FirstName]],
                     
-We would like to let you know that the following transactions were created by yourself, within the African Farmers Commodities site.
+We would like to let you know that the following transactions were created by yourself, within the My Fundi site.
 
 [[TransactionCommoditesList]]
 

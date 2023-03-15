@@ -55,34 +55,35 @@ namespace MyFundi.IdentityServices
             _unitOfWork = unitOfWork;
         }
 
-        public  Task<User> FindByNameAsync(string username)
+        public async Task<User> FindByNameAsync(string username)
         {
             var user = _unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(username.ToLower()));
-            return Task.FromResult(user);
+            return await Task.FromResult(user);
         }
 
-        public Task<UserInteractionResults> CreateAsync(User user, string userPWD)
+        public async Task<UserInteractionResults> CreateAsync(User user, string userPWD)
         {
             try
             {
+
                 var passwordEncrypted = Convert.ToBase64String(_passwordEncryptor.EncryptPassword(userPWD, _passwordEncryptor.KeyBytes));
                 user.Password = passwordEncrypted;
 
                 _unitOfWork._userRepository.Insert(user);
                 _unitOfWork.SaveChanges();
 
-                return Task.FromResult(UserInteractionResults.Succeeded);
+                return await Task.FromResult(UserInteractionResults.Succeeded);
             }
-            catch(Exception e)
+            catch
             {
-                return Task.FromResult(UserInteractionResults.Failed);
+                return await Task.FromResult(UserInteractionResults.Succeeded);
             }
         }
 
         public async Task<UserInteractionResults> AddToRoleAsync(User user, string role)
         {
             var us = _unitOfWork._userRepository.GetAll().FirstOrDefault(u => u.Username.ToLower().Equals(user.Email.ToLower()));
-            if(us != null)
+            if (us != null)
             {
                 var isUserInRole = await IsUserInRoleAsync(us.Username, role);
                 if (!isUserInRole)
@@ -141,20 +142,20 @@ namespace MyFundi.IdentityServices
             var fnameClaims = token.Claims.Where(c => c.Key == "firstname");
             var lnameClaims = token.Claims.Where(c => c.Key == "lastname");
 
-            
+
 
             if (!emailClaim.Any()) return await Task.FromResult(new User());
 
-            if(token.Expires > DateTime.Now)
+            if (token.Expires > DateTime.Now)
             {
-                return await Task.FromResult(new User { Username = emailClaim.First().Value as string, FirstName=fnameClaims.First().Value as string, LastName = lnameClaims.First().Value as string});
+                return await Task.FromResult(new User { Username = emailClaim.First().Value as string, FirstName = fnameClaims.First().Value as string, LastName = lnameClaims.First().Value as string });
             }
             return await Task.FromResult(new User());
         }
 
         public SecurityTokenDescriptor ReadToken(string authToken)
         {
-            var securityTokenDescription  = JsonConvert.DeserializeObject<SecurityTokenDescriptor>(Encoding.UTF8.GetString(_passwordEncryptor.DecryptPassword(authToken, _passwordEncryptor.KeyBytes)));
+            var securityTokenDescription = JsonConvert.DeserializeObject<SecurityTokenDescriptor>(Encoding.UTF8.GetString(_passwordEncryptor.DecryptPassword(authToken, _passwordEncryptor.KeyBytes)));
 
             return securityTokenDescription;
         }
@@ -174,9 +175,9 @@ namespace MyFundi.IdentityServices
             throw new NotImplementedException();
         }
 
-        public async Task<string> AddUserRolesClaimAsync(string username,Role[] roles, User user)
+        public async Task<string> AddUserRolesClaimAsync(string username, Role[] roles, User user)
         {
-            return await WriteToken(username, roles,user);
+            return await WriteToken(username, roles, user);
         }
         public async Task<string> WriteToken(string username, Role[] roles, User user)
         {
@@ -201,8 +202,9 @@ namespace MyFundi.IdentityServices
         {
             var encryptedPassword = Convert.ToBase64String(_passwordEncryptor.EncryptPassword(password, _passwordEncryptor.KeyBytes));
 
-            var tmpUser =_unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(user.Username.ToLower()) && q.Password.Equals(encryptedPassword));
-            if (tmpUser != null) {
+            var tmpUser = _unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(user.Username.ToLower()) && q.Password.Equals(encryptedPassword));
+            if (tmpUser != null)
+            {
                 tmpUser.LastLogInTime = DateTime.Now;
                 tmpUser.IsActive = true;
                 _unitOfWork.SaveChanges();
@@ -248,7 +250,7 @@ namespace MyFundi.IdentityServices
 
             var token = tokenHandler.ReadJwtToken(authToken);
 
-            var emailClaim = token.Claims.FirstOrDefault(q => q.Type=="email");
+            var emailClaim = token.Claims.FirstOrDefault(q => q.Type == "email");
 
             if (emailClaim == null) return await Task.FromResult(new User());
 
@@ -275,9 +277,9 @@ namespace MyFundi.IdentityServices
 
         public void SignOut(string username)
         {
-            var user =_unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(username.ToLower()));
+            var user = _unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(username.ToLower()));
 
-            if(user != null)
+            if (user != null)
             {
                 user.IsActive = false;
                 user.LastLogInTime = DateTime.Now;
@@ -307,16 +309,16 @@ namespace MyFundi.IdentityServices
                 }
                 return await Task.FromResult(UserInteractionResults.Succeeded);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return await Task.FromResult(UserInteractionResults.Failed);
             }
 
         }
-        public IDictionary<string,object> GetUserClaimsFromToken(string authToken)
+        public IDictionary<string, object> GetUserClaimsFromToken(string authToken)
         {
             // authentication successful so generate jwt token
-           // var tokenHandler = new JwtSecurityTokenHandler();
+            // var tokenHandler = new JwtSecurityTokenHandler();
             //var key = Encoding.ASCII.GetBytes(_appSettings.GetConfigSetting("ClaimsKeyBytes"));
 
             SecurityTokenDescriptor token = ReadToken(authToken);

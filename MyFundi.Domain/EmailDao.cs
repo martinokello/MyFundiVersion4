@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.IO;
 
 namespace MyFundi.Domain
 {

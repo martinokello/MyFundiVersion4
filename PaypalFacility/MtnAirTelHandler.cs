@@ -56,20 +56,6 @@ namespace PaypalFacility
                 prodNames.Append(prod.ProductName + ";");
             }
 
-            if (productArray[0].Quantity < 3)
-            {
-                invoice = new Invoice(productArray, _discountCalculator.ApplyNoDealPrice(), buyerEmail);
-            }
-            else if(productArray[0].Quantity == 3)
-            {
-                invoice = new Invoice(productArray,_discountCalculator.ApplyBuy3Get1HalfPrice(), buyerEmail);
-            }
-            else if(productArray[0].Quantity > 3)
-            {
-                invoice = new Invoice(productArray, _discountCalculator.ApplyBuy4Get1Free(), buyerEmail);
-            }
-
-
             hasBeenRedirected = true;
             URLBuilder urlBuilder = new URLBuilder(businessEmail, successUrl, cancelUrl, notifyUrl, buyerEmail, invoice);
             string requestUrl = baseUrl;

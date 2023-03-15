@@ -113,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" readonly/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                            <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                                Subscription Description Required\r\n                            </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"clientSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" readonly/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                            <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                                Subscription Description Required\r\n                            </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h1>Contact MartinLayooInc.</h1>\r\n\r\n<div #emailFormView>\r\n    <div class=\"centralProduct\">\r\n        <form #emailForm=\"ngForm\" (ngSubmit)=\"emailForm.form.valid\" enctype=\"multipart/form-data\" method=\"post\" action=\"/Home/SendEmail\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div id=\"hiddenContent\" style=\"display:none;\"></div>\r\n                <div class=\"centralProduct\">\r\n                    <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;padding-left: 10px;\">\r\n                        <div style=\"margin-left: auto; margin-right: auto;padding-left: 10px;\">\r\n                            <div style=\"background-color: #DADADA; padding-left: 10px; padding-top: 20px;\">\r\n                                <div style=\"margin-top:10px !important;margin:0px !important;\">\r\n                                    <div style=\"margin-top:10px !important;\">\r\n                                        <br/>\r\n                                        <label id=\"ContactUsDetails\" style=\"width: 100%; margin-top:20px !important;margin-left:20px !important; font-weight: bolder; font-size: small; color: #AD0000;\">Contact MartinLayooInc Software Solutions</label>\r\n                                    </div>\r\n\r\n                                    <div style=\"font-weight: bold; color: Red; width:100%;\">\r\n                                    </div>\r\n                                    <div style=\"padding-top: 10px; width:100%;margin-left:20px !important;\">\r\n                                        <div style=\"padding-left:10px; width:66%;float:left;\">\r\n                                            <div style=\"padding:15px; color:red;\">\r\n                                                Please Note: You should be logged in to make contact, otherwise your email won't be sent\r\n                                            </div>\r\n                                            <div style=\"width: 100%;\">\r\n                                                <div style=\"margin:5px 0px !important;\" *ngIf=\"emailForm.submitted && emailFrom.invalid\" class=\"text-danger\">\r\n                                                    email from field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailFrom\" type=\"text\" [(ngModel)]=\"email.emailFrom\" #emailFrom=\"ngModel\" required placeholder=\"your email address\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                                                <div style=\"margin: 5px 0px !important;\" *ngIf=\"emailForm.submitted && emailTo.invalid\" class=\"text-danger\">\r\n                                                    email to field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailTo\" type=\"text\" [(ngModel)]=\"email.emailTo\" #emailTo=\"ngModel\" required placeholder=\"to email addresses separated by commas\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                                                <div style=\"margin: 5px 0px !important;\" *ngIf=\"emailForm.submitted && emailSubject.invalid\" class=\"text-danger\">\r\n                                                    email subject field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailSubject\" type=\"text\" required #emailSubject=\"ngModel\" [(ngModel)]=\"email.emailSubject\" placeholder=\"subject\" style=\"font-weight: bold; width: 100%;color: #000040;\" /><br />\r\n\r\n                                                <input type=\"file\" name=\"attachment\" (change)=\"getFiles($event)\" value=\"Attach file\" ngModel #attachment=\"ngModel\" id=\"attachment\" /><br />\r\n                                            </div>\r\n                                            <div style=\"width: 98%; margin:5px 0px !important;\">\r\n                                                <div style=\"margin:5px 0px !important;\" *ngIf=\"emailForm.submitted && emailBody.invalid\" class=\"text-danger\">\r\n                                                    email body field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <textarea name=\"emailBody\" id=\"MessageText\" required [(ngModel)]=\"email.emailBody\" #emailBody=\"ngModel\" placeholder=\"Enter your post here\" style=\"font-weight: bold;width:100%; height:50vh !important;color: #000040\" autofocus></textarea>\r\n                                            </div>\r\n                                        </div>\r\n                                        <div id=\"ourContactDetails\" class=\"oneRowRegButton1\" style=\"width: auto; float: left; background-color: #AD0000; min-height: 250px; padding-left: 0px; font-weight: bolder; font-size: Smaller; color: black; margin-top: 5px !important; margin-left: 10px !important; margin-right: 10px !important;\" ></div>\r\n                                        <div style=\"clear:both;\"></div>\r\n                                    </div>\r\n                                    <div style=\"width:100%; margin-top:10px;\">\r\n                                        <myrecaptcha></myrecaptcha>\r\n                                        <input type=\"submit\" id=\"submit\" class=\"but-primary\" style=\"display:none !important;\" (click)=\"sendEmail($event)\" value=\"Submit To Email\" />\r\n                                        <div style=\"clear:both;\">\r\n                                            <br />\r\n                                        </div>\r\n                                    </div>\r\n                                    <div style=\"padding-top: 10px; width:100%;\">\r\n                                        <div style=\"text-align: center;float:left;margin-left:30px;\">\r\n                                            <img src=\"/assets/images/brickWall.jpg\" style=\"float:left;\" />\r\n                                            <img src=\"/assets/images/ug-flag.gif\" style=\"float:left;\" />\r\n                                            <div style=\"clear:both;\">\r\n                                                <br />\r\n                                            </div>\r\n                                        </div>\r\n                                        <div style=\"text-align: center;float:left;margin-left:30px;\">\r\n                                            <img src=\"/assets/images/brickWall.jpg\" style=\"float:left;\" />\r\n                                            <img src=\"/assets/images/uk-flag.gif\" style=\"float:left;\" />\r\n\r\n                                            <div style=\"clear:both;\">&nbsp;</div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div style=\"width:100%;\">\r\n                                        <div style=\"clear:both;width: 90%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;\">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>\r\n                                    </div>\r\n                                    <div id=\"map\" style=\"min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;\">\r\n                                    </div>\r\n\r\n                                    <div style=\"clear:both;\">&nbsp;</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h1>Contact MartinLayooInc.</h1>\r\n\r\n<div #emailFormView>\r\n    <div class=\"centralProduct\">\r\n        <form #emailForm=\"ngForm\" (ngSubmit)=\"emailForm.form.valid\" enctype=\"multipart/form-data\" method=\"post\" action=\"/Home/SendEmail\">\r\n            <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;\">\r\n                <div id=\"hiddenContent\" style=\"display:none;\"></div>\r\n                <div class=\"centralProduct\">\r\n                    <div style=\"background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;padding-left: 10px;\">\r\n                        <div style=\"margin-left: auto; margin-right: auto;padding-left: 10px;\">\r\n                            <div style=\"background-color: #DADADA; padding-left: 10px; padding-top: 20px;\">\r\n                                <div style=\"margin-top:10px !important;margin:0px !important;\">\r\n                                    <div style=\"margin-top:10px !important;\">\r\n                                        <br/>\r\n                                        <label id=\"ContactUsDetails\" style=\"width: 100%; margin-top:20px !important;margin-left:20px !important; font-weight: bolder; font-size: small; color: #AD0000;\">Contact MartinLayooInc Software Solutions</label>\r\n                                    </div>\r\n\r\n                                    <div style=\"font-weight: bold; color: Red; width:100%;\">\r\n                                    </div>\r\n                                    <div style=\"padding-top: 10px; width:100%;margin-left:20px !important;\">\r\n                                        <div style=\"padding-left:10px; width:66%;float:left;\">\r\n                                            <div style=\"padding:15px; color:red;\">\r\n                                                Please Note: You should be logged in to make contact, otherwise your email won't be sent\r\n                                            </div>\r\n                                            <div style=\"width: 100%;\">\r\n                                                <div style=\"margin:5px 0px !important;\" *ngIf=\"emailForm.submitted && emailFrom.invalid\" class=\"text-danger\">\r\n                                                    email from field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailFrom\" type=\"text\" [(ngModel)]=\"email.emailFrom\" #emailFrom=\"ngModel\" required placeholder=\"your email address\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                                                <div style=\"margin: 5px 0px !important;\" *ngIf=\"emailForm.submitted && emailTo.invalid\" class=\"text-danger\">\r\n                                                    email to field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailTo\" type=\"text\" [(ngModel)]=\"email.emailTo\" #emailTo=\"ngModel\" required placeholder=\"to email addresses separated by commas\" style=\"font-weight: bold; width: 100%; color: #000040\" /><br />\r\n                                                <div style=\"margin: 5px 0px !important;\" *ngIf=\"emailForm.submitted && emailSubject.invalid\" class=\"text-danger\">\r\n                                                    email subject field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <input name=\"emailSubject\" type=\"text\" required #emailSubject=\"ngModel\" [(ngModel)]=\"email.emailSubject\" placeholder=\"subject\" style=\"font-weight: bold; width: 100%;color: #000040;\" /><br />\r\n\r\n                                                <input type=\"file\" name=\"attachment\" (change)=\"getFiles($event)\" value=\"Attach file\" [(ngModel)]=\"email.attachment\" #attachment=\"ngModel\" id=\"attachment\" /><br />\r\n                                            </div>\r\n                                            <div style=\"width: 98%; margin:5px 0px !important;\">\r\n                                                <div style=\"margin:5px 0px !important;\" *ngIf=\"emailForm.submitted && emailBody.invalid\" class=\"text-danger\">\r\n                                                    email body field required.\r\n                                                    <br />\r\n                                                </div>\r\n                                                <textarea name=\"emailBody\" id=\"MessageText\" required [(ngModel)]=\"email.emailBody\" #emailBody=\"ngModel\" placeholder=\"Enter your post here\" style=\"font-weight: bold;width:100%; height:50vh !important;color: #000040\" autofocus></textarea>\r\n                                            </div>\r\n                                        </div>\r\n                                        <div id=\"ourContactDetails\" class=\"oneRowRegButton1\" style=\"width: auto; float: left; background-color: #AD0000; min-height: 250px; padding-left: 0px; font-weight: bolder; font-size: Smaller; color: black; margin-top: 5px !important; margin-left: 10px !important; margin-right: 10px !important;\" ></div>\r\n                                        <div style=\"clear:both;\"></div>\r\n                                    </div>\r\n                                    <div style=\"width:100%; margin-top:10px;\">\r\n                                        <myrecaptcha></myrecaptcha>\r\n                                        <input type=\"submit\" id=\"submit\" class=\"but-primary\" style=\"display:none !important;\" (click)=\"sendEmail($event)\" value=\"Submit To Email\" />\r\n                                        <div style=\"clear:both;\">\r\n                                            <br />\r\n                                        </div>\r\n                                    </div>\r\n                                    <div style=\"padding-top: 10px; width:100%;\">\r\n                                        <div style=\"text-align: center;float:left;margin-left:30px;\">\r\n                                            <img src=\"/assets/images/brickWall.jpg\" style=\"float:left;\" />\r\n                                            <img src=\"/assets/images/ug-flag.gif\" style=\"float:left;\" />\r\n                                            <div style=\"clear:both;\">\r\n                                                <br />\r\n                                            </div>\r\n                                        </div>\r\n                                        <div style=\"text-align: center;float:left;margin-left:30px;\">\r\n                                            <img src=\"/assets/images/brickWall.jpg\" style=\"float:left;\" />\r\n                                            <img src=\"/assets/images/uk-flag.gif\" style=\"float:left;\" />\r\n\r\n                                            <div style=\"clear:both;\">&nbsp;</div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div style=\"width:100%;\">\r\n                                        <div style=\"clear:both;width: 90%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;\">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>\r\n                                    </div>\r\n                                    <div id=\"map\" style=\"min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;\">\r\n                                    </div>\r\n\r\n                                    <div style=\"clear:both;\">&nbsp;</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n\r\n");
 
 /***/ }),
 
@@ -620,7 +620,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\r\n  <div style=\"text-align:left !important; color:black !important;\">\r\n\r\n    <h4>Fundi Location Monitoring System</h4><br />\r\n    <input type=\"button\" class=\"btn-primary\" (click)=\"getAndroidMobileLocationApp()\" style=\"padding: 5px !important;\" value=\"Get: Android Location Emitter\"/><br/><br/>\r\n    <input type=\"button\" class=\"btn-primary\" (click)=\"getIosMobileLocationApp()\" style=\"padding:5px !important;\" value=\"Get: Mac/IOS Location Emitter\"/><br/><br/>\r\n    <section>\r\n      <div id=\"monitormap\" style=\"min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;\">\r\n      </div>\r\n    </section>\r\n    <form #monitorView=\"ngForm\">\r\n        <div class=\"form-group\">\r\n            <label>Fundi Name</label>\r\n            <select id=\"vhmonitor\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" required [ngModel]=\"currentFundi.username\" (change)=\"showFundi()\"></select>\r\n            <div *ngIf=\"monitorView.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                Fundi Username Required\r\n            </div>\r\n        </div>\r\n      <input type=\"button\" value=\"Select Fundi\" class=\"but-primary\" (click)=\"showFundi()\" />\r\n      <input type=\"button\" value=\"Show All Fundis\" class=\"but-primary\" (click)=\"getVehiclesHttp()\" />\r\n      <input type=\"button\" value=\"Remove Fundi\" class=\"but-primary\" (click)=\"removeFundi()\" />\r\n    </form>\r\n  </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"vehiclemonitor-wrapper\">\r\n  <div style=\"text-align:left !important; color:black !important;\">\r\n\r\n    <h4>Fundi Location Monitoring System</h4><br />\r\n    <input type=\"button\" class=\"btn-primary\" (click)=\"getAndroidMobileLocationApp()\" style=\"padding: 5px !important;\" value=\"Get: Android Location Emitter\"/><br/><br/>\r\n    <input type=\"button\" class=\"btn-primary\" (click)=\"getIosMobileLocationApp()\" style=\"padding:5px !important;\" value=\"Get: Mac/IOS Location Emitter\"/><br/><br/>\r\n    <section>\r\n      <div id=\"monitormap\" style=\"min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;\">\r\n      </div>\r\n    </section>\r\n    <form #monitorView=\"ngForm\">\r\n        <div class=\"form-group\">\r\n            <label>Fundi Name</label>\r\n            <select id=\"vhmonitor\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" required [ngModel]=\"currentFundi.username\" (change)=\"showFundi()\"></select>\r\n            <div *ngIf=\"monitorView.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                Fundi Username Required\r\n            </div>\r\n        </div>\r\n      <input type=\"button\" value=\"Select Fundi\" class=\"but-primary\" (click)=\"showFundi()\" />\r\n      <input type=\"button\" value=\"Show All Fundis\" class=\"but-primary\" (click)=\"getVehiclesHttp()\" />\r\n      <input type=\"button\" value=\"Remove Fundi\" class=\"but-primary\" (click)=\"removeFundi()\" />\r\n    </form>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -1576,7 +1576,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _imports_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../imports.js */ "./src/imports.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1593,13 +1592,13 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
-
 let ClientJobViewComponent = class ClientJobViewComponent {
     constructor(myFundiService, router, httpClient) {
         this.myFundiService = myFundiService;
         this.router = router;
         this.httpClient = httpClient;
         this.coverNote = "";
+        this.hasPopulatedPage = false;
         this.userDetails = {};
     }
     decoderUrl(url) {
@@ -1621,7 +1620,7 @@ let ClientJobViewComponent = class ClientJobViewComponent {
         };
     }
     getFiles($event) {
-        this.email.attachment = $event.target.files;
+        this.email.attachment = $event.target.files.item(0);
     }
     sendEmail($event) {
         let form = document.querySelector("form#fundiJobApplicationForm");
@@ -1631,7 +1630,7 @@ let ClientJobViewComponent = class ClientJobViewComponent {
             formData.append('emailTo', this.userDetails.username);
             formData.append('emailFrom', this.email.emailFrom);
             formData.append('emailSubject', this.email.emailSubject);
-            formData.append('attachment', this.email.attachment);
+            formData.append('fileUpload', this.email.attachment);
             let result = this.myFundiService.SendEmail(formData);
             result.map((value) => {
                 alert(value.message);
@@ -1639,24 +1638,48 @@ let ClientJobViewComponent = class ClientJobViewComponent {
         }
         $event.preventDefault();
     }
-    ngAfterViewInit() {
-        jQuery('select').each((ind, sel) => {
-            let options = jQuery(sel).children('option');
-            let vals = [];
-            jQuery(options).each((id, el) => {
-                let optionText = jQuery(el).html();
-                vals.push(optionText);
+    ngAfterViewChecked() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+    }
+    runAutoCompleteOnSelects(curthis) {
+        let hasFoundSelectsOnPage = false;
+        if (!curthis.hasPopulatedPage) {
+            let selects = jQuery('div#client-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
             });
-            //options is source of auto complete:
-            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-            jQueryinpId.autocomplete({ source: vals });
-            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                    return jQuery(event.target).text() == jQuery(this).html();
-                }).attr("selected", true);
-            });
-            Object(_imports_js__WEBPACK_IMPORTED_MODULE_4__["modifyHasPopulatedPage"])(true);
-        });
+            curthis.hasPopulatedPage = true;
+            jQuery('div#editableClientDetails').hide(2000);
+            clearTimeout(curthis.setTo);
+        }
     }
 };
 ClientJobViewComponent.ctorParameters = () => [
@@ -2768,11 +2791,22 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
             }).subscribe();
         }).subscribe();
     }
+    formatDate(date) {
+        var d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        return [year, month, day].join('-');
+    }
+    ngAfterViewChecked() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+    }
     runAutoCompleteOnSelects(curthis) {
-        debugger;
         let hasFoundSelectsOnPage = false;
-        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
-            let selects = jQuery('div#subcworkSubCategories-wrapper select');
+        if (!curthis.hasPopulatedPage) {
+            let selects = jQuery('div#fundiClientContract-wrapper select');
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
             }
@@ -2787,7 +2821,7 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
             }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('select').each((ind, sel) => {
+            jQuery('div#fundiClientContract-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
                 let vals = [];
                 jQuery(options).each((id, el) => {
@@ -2806,14 +2840,6 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
             curthis.hasPopulatedPage = true;
             clearTimeout(curthis.setTo);
         }
-    }
-    formatDate(date) {
-        var d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-        return [year, month, day].join('-');
     }
 };
 ClientFundiContractComponent.ctorParameters = () => [
@@ -2865,6 +2891,7 @@ let ClientSubscriptionComponent = class ClientSubscriptionComponent {
         this.router = router;
         this.subscriptionFee = 2000;
         this.clientLoginDetails = {};
+        this.hasPopulatedPage = false;
         this.userDetails = {};
     }
     decoderUrl(url) {
@@ -2990,8 +3017,8 @@ let ClientSubscriptionComponent = class ClientSubscriptionComponent {
     runAutoCompleteOnSelects(curthis) {
         debugger;
         let hasFoundSelectsOnPage = false;
-        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
-            let selects = jQuery('div#subcworkSubCategories-wrapper select');
+        if (!curthis.hasPopulatedPage) {
+            let selects = jQuery('div#clientSubscription-wrapper select');
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
             }
@@ -3006,7 +3033,7 @@ let ClientSubscriptionComponent = class ClientSubscriptionComponent {
             }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('select').each((ind, sel) => {
+            jQuery('div#clientSubscription-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
                 let vals = [];
                 jQuery(options).each((id, el) => {
@@ -3025,6 +3052,10 @@ let ClientSubscriptionComponent = class ClientSubscriptionComponent {
             curthis.hasPopulatedPage = true;
             clearTimeout(curthis.setTo);
         }
+    }
+    ngAfterViewChecked() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
     }
 };
 ClientSubscriptionComponent.ctorParameters = () => [
@@ -3100,7 +3131,7 @@ let ContactUsComponent = class ContactUsComponent {
             formData.append('emailTo', this.email.emailTo);
             formData.append('emailFrom', this.email.emailFrom);
             formData.append('emailSubject', this.email.emailSubject);
-            formData.append('attachment', this.email.attachment);
+            formData.append('fileUpload', this.email.attachment);
             let result = this.myFundiService.SendEmail(formData);
             result.subscribe((value) => {
                 alert(value.message);
@@ -3109,7 +3140,7 @@ let ContactUsComponent = class ContactUsComponent {
         $event.preventDefault();
     }
     getFiles(event) {
-        this.email.attachment = event.target.files;
+        this.email.attachment = event.target.files.item(0);
     }
     ngOnInit() {
         this.email = {
@@ -3474,6 +3505,11 @@ let CertificationComponent = class CertificationComponent {
     }
     ngOnInit() {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails)
+            this.userDetails = {};
+        if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
+        }
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let certificationsObs = this.myFundiService.GetAllFundiCertificates();
         this.selectCertificate = document.querySelector('select#slcertificationId');
@@ -3995,6 +4031,11 @@ let CoursesComponent = class CoursesComponent {
     }
     ngOnInit() {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails)
+            this.userDetails = {};
+        if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
+        }
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let courseObs = this.myFundiService.GetAllFundiCourses();
         this.selectCourse = document.querySelector('select#slcourseId');
@@ -5961,6 +6002,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FundiSubscriptionComponent", function() { return FundiSubscriptionComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5975,29 +6017,20 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 };
 
 
+
 let FundiSubscriptionComponent = class FundiSubscriptionComponent {
-    constructor(myFundiService) {
+    constructor(myFundiService, router) {
         this.myFundiService = myFundiService;
-        this.subscriptionFee = 2500;
+        this.router = router;
+        this.subscriptionFee = 25000;
         this.fundi = {};
+        this.hasPopulatedPage = false;
         this.userDetails = {};
     }
     decoderUrl(url) {
         return decodeURIComponent(url);
     }
     ngOnInit() {
-        this.subscription = this.subscriptionFeeExpense = {
-            monthlySubscriptionId: 0,
-            userId: this.fundi.userId,
-            fundiProfileId: this.fundi.fundiProfileId,
-            startDate: new Date(),
-            username: this.userDetails.username,
-            subscriptionFee: this.fundi.subscriptionFee,
-            hasPaid: false,
-            subscriptionName: this.fundi.subscriptionName,
-            subscriptionDescription: this.fundi.subscriptionDescription,
-            workCategoryAndSubCategoryIds: []
-        };
         this.workCategory = { workCategoryId: 0 };
         this.workCategories = [];
         this.workSubCategory = {
@@ -6036,49 +6069,73 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             }).subscribe();
         }).subscribe();
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails)
+            this.userDetails = {};
+        if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
+        }
+        this.subscription = this.subscriptionFeeExpense = {
+            monthlySubscriptionId: 0,
+            userId: this.fundi.userId,
+            fundiProfileId: this.fundi.fundiProfileId,
+            startDate: new Date(),
+            username: this.userDetails.username,
+            subscriptionFee: this.fundi.subscriptionFee,
+            hasPaid: false,
+            subscriptionName: this.fundi.subscriptionName,
+            subscriptionDescription: this.fundi.subscriptionDescription,
+            workCategoryAndSubCategoryIds: []
+        };
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
         resObs.map((fundiProf) => {
-            this.fundi = fundiProf;
-            this.fundi.subscriptionFee = this.subscriptionFee;
-            this.fundi.subscriptionName = `Fundi User ${this.userDetails.firstName} ${this.userDetails.lastName} Subscription for 31 days`;
-            this.fundi.subscriptionDescription = "Attempting Monthly Payment!";
-            let userIdObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
-            userIdObs.map((q) => {
-                this.fundi.userId = q;
-                let subscrObs = this.myFundiService.GetAllFundiSubscriptions(this.fundi.fundiProfileId);
-                subscrObs.map((subs) => {
-                    let opt = document.createElement('option');
-                    opt.value = "0";
-                    opt.text = "Select Month Subscription";
-                    let subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
-                    subscrSelect.appendChild(opt);
-                    if (subs.length > 0) {
-                        this.subscriptionFeeExpense = this.subscription = subs[0];
-                        this.startingDate = this.formatDate(subs[0].startDate);
-                        this.appendCategoriesAndSubCategoriesToUi();
-                    }
-                    else {
-                        let dateNow = new Date();
-                        this.startingDate = this.formatDate(dateNow);
-                        this.subscription = this.subscriptionFeeExpense;
-                        this.subscription.monthlySubscriptionId = 0;
-                    }
-                    subs.forEach((sub, ind) => {
-                        let opt1 = document.createElement('option');
-                        opt1.value = sub.monthlySubscriptionId.toString();
-                        opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
-                        subscrSelect.appendChild(opt1);
-                    });
-                    let lastMonthlySubsObs = this.myFundiService.GetFundiLastSubscriptionFees(this.subscription.userId);
-                    lastMonthlySubsObs.map((q) => {
-                        debugger;
-                        if (q.result) {
-                            this.fundi.subscriptionFee = q.subscriptionFee;
+            if (!fundiProf) {
+                alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
+                this.router.navigateByUrl('/manage-profile');
+                return;
+            }
+            else {
+                this.fundi = fundiProf;
+                this.fundi.subscriptionFee = this.subscriptionFee;
+                this.fundi.subscriptionName = `Fundi User ${this.userDetails.firstName} ${this.userDetails.lastName} Subscription for 31 days`;
+                this.fundi.subscriptionDescription = "Attempting Monthly Payment!";
+                let userIdObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
+                userIdObs.map((q) => {
+                    this.fundi.userId = q;
+                    let subscrObs = this.myFundiService.GetAllFundiSubscriptions(this.fundi.fundiProfileId);
+                    subscrObs.map((subs) => {
+                        let opt = document.createElement('option');
+                        opt.value = "0";
+                        opt.text = "Select Month Subscription";
+                        let subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
+                        subscrSelect.appendChild(opt);
+                        if (subs.length > 0) {
+                            this.subscriptionFeeExpense = this.subscription = subs[0];
+                            this.startingDate = this.formatDate(subs[0].startDate);
+                            this.appendCategoriesAndSubCategoriesToUi();
                         }
+                        else {
+                            let dateNow = new Date();
+                            this.startingDate = this.formatDate(dateNow);
+                            this.subscription = this.subscriptionFeeExpense;
+                            this.subscription.monthlySubscriptionId = 0;
+                        }
+                        subs.forEach((sub, ind) => {
+                            let opt1 = document.createElement('option');
+                            opt1.value = sub.monthlySubscriptionId.toString();
+                            opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
+                            subscrSelect.appendChild(opt1);
+                        });
+                        let lastMonthlySubsObs = this.myFundiService.GetFundiLastSubscriptionFees(this.subscription.userId);
+                        lastMonthlySubsObs.map((q) => {
+                            debugger;
+                            if (q.result) {
+                                this.fundi.subscriptionFee = q.subscriptionFee;
+                            }
+                        }).subscribe();
                     }).subscribe();
                 }).subscribe();
-            }).subscribe();
+            }
         }).subscribe();
     }
     getWorkSubCategoriesByWorkCategoryId() {
@@ -6220,7 +6277,18 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         }).subscribe();
         $event.preventDefault();
     }
+    checkFundiProfileExists() {
+        if (!this.fundi.fundiProfileId) {
+            alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
+            return false;
+        }
+        return true;
+    }
     paySubscriptionMonthlyFeeWithPaypal($event) {
+        if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+        }
         let subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
@@ -6248,6 +6316,10 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         $event.preventDefault();
     }
     paySubscriptionMonthlyFeeWithAirTel($event) {
+        if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+        }
         let subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
@@ -6290,6 +6362,10 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         $event.preventDefault();
     }
     paySubscriptionMonthlyFeeWithMtn($event) {
+        if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+        }
         let subscriptionFeeExpenseToBePaid = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
@@ -6339,11 +6415,14 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             day = '0' + day;
         return [year, month, day].join('-');
     }
+    ngAfterViewChecked() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+    }
     runAutoCompleteOnSelects(curthis) {
-        debugger;
         let hasFoundSelectsOnPage = false;
-        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
-            let selects = jQuery('div#subcworkSubCategories-wrapper select');
+        if (!curthis.hasPopulatedPage) {
+            let selects = jQuery('div#fundiSubscription-wrapper select');
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
             }
@@ -6358,7 +6437,7 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('select').each((ind, sel) => {
+            jQuery('div#fundiSubscription-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
                 let vals = [];
                 jQuery(options).each((id, el) => {
@@ -6380,14 +6459,15 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
     }
 };
 FundiSubscriptionComponent.ctorParameters = () => [
-    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] }
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
 ];
 FundiSubscriptionComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'fundisubscription',
         template: __importDefault(__webpack_require__(/*! raw-loader!./fundisubscription.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/fundisubscription/fundisubscription.component.html")).default
     }),
-    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
 ], FundiSubscriptionComponent);
 
 
@@ -6527,7 +6607,7 @@ let LoginComponent = class LoginComponent {
                 this.router.navigateByUrl('/client-subscription');
                 return;
             }
-            else if (q.isLoggedIn == true) {
+            if (q.isLoggedIn == true) {
                 if (q.message) {
                     alert(q.message);
                 }
@@ -6573,6 +6653,7 @@ let LoginComponent = class LoginComponent {
             this.userRoles = JSON.parse(userRolesStr);
             _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles = this.userRoles;
             localStorage.setItem("userRoles", JSON.stringify(this.userRoles));
+            this.router.navigateByUrl("/manage-profile");
         }
         if (this.userRoles == null || this.userRoles.length < 1) {
             this.myFundiService.GetAllUserRoles(_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].clientEmailAddress).
@@ -6580,11 +6661,8 @@ let LoginComponent = class LoginComponent {
                 localStorage.setItem("userRoles", JSON.stringify(userroles));
                 this.userRoles = userroles;
                 _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles = userroles;
-                this.router.navigateByUrl("/scanqrcode");
+                this.router.navigateByUrl("/manage-profile");
             }).subscribe();
-        }
-        else {
-            this.router.navigateByUrl("/scanqrcode");
         }
     }
 };
@@ -7107,35 +7185,40 @@ let ProfileCreateComponent = class ProfileCreateComponent {
         jQuery('input#locationUpdateLocationId').css('display', 'none');
         jQuery('input#locationDeleteLocationId').css('display', 'none');
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails)
+            this.userDetails = {};
+        if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].clientEmailAddress;
+        }
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
-        let workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
-        let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
-        resObs.map((fundiProf) => {
-            if (fundiProf) {
-                this.profile = fundiProf;
-                let curAddObs = this.myFundiService.GetLocationById(fundiProf.locationId);
-                curAddObs.map((q) => {
-                    this.location = q;
-                }).subscribe();
-            }
-            else {
-                this.profile = {
-                    fundiProfileId: 0,
-                    user: null,
-                    userId: "",
-                    profileSummary: "",
-                    profileImageUrl: "",
-                    skills: "",
-                    usedPowerTools: "",
-                    fundiProfileCvUrl: "",
-                    locationId: 0
-                };
-            }
-        }).subscribe();
         userGuidObs.map((q) => {
             this.userGuidId = q;
+            let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
+            resObs.map((fundiProf) => {
+                if (fundiProf) {
+                    this.profile = fundiProf;
+                    let curAddObs = this.myFundiService.GetLocationById(fundiProf.locationId);
+                    curAddObs.map((q) => {
+                        this.location = q;
+                    }).subscribe();
+                }
+                else {
+                    this.profile = {
+                        fundiProfileId: 0,
+                        user: null,
+                        userId: "",
+                        profileSummary: "",
+                        profileImageUrl: "",
+                        skills: "",
+                        usedPowerTools: "",
+                        fundiProfileCvUrl: "",
+                        locationId: 0
+                    };
+                }
+            }).subscribe();
         }).subscribe();
+        let workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
         workCatObs.map((workCats) => {
             this.workCategories = workCats;
             //Dynamic check boxes for Categories To Search for:
@@ -7154,19 +7237,19 @@ let ProfileCreateComponent = class ProfileCreateComponent {
                 option.value = `${cat.workCategoryId.toString()},${cat.workSubCategoryId.toString()}`;
                 selectWorkCategories.appendChild(option);
             });
-        }).subscribe();
-        let listWorkCatObs = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
-        listWorkCatObs.map((q) => {
-            debugger;
-            if (q && q.length > 0) {
-                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
-                q.forEach((wkcCatSubCat, index, q) => {
-                    let li = document.createElement("li");
-                    li.setAttribute('id', `${wkcCatSubCat.workCategoryId.toString()},${wkcCatSubCat.workSubCategoryId.toString()}`);
-                    li.textContent = wkcCatSubCat.workCategory.workCategoryType + ` :[${wkcCatSubCat.workSubCategory.workSubCategoryType}]`;
-                    ulSelectedCategories.appendChild(li);
-                });
-            }
+            let listWorkCatObs = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
+            listWorkCatObs.map((q) => {
+                debugger;
+                if (q && q.length > 0) {
+                    let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                    q.forEach((wkcCatSubCat, index, q) => {
+                        let li = document.createElement("li");
+                        li.setAttribute('id', `${wkcCatSubCat.workCategoryId.toString()},${wkcCatSubCat.workSubCategoryId.toString()}`);
+                        li.textContent = wkcCatSubCat.workCategory.workCategoryType + ` :[${wkcCatSubCat.workSubCategory.workSubCategoryType}]`;
+                        ulSelectedCategories.appendChild(li);
+                    });
+                }
+            }).subscribe();
         }).subscribe();
     }
     handleProfileCV(files) {
@@ -7203,6 +7286,10 @@ let ProfileCreateComponent = class ProfileCreateComponent {
         let profileObs = this.myFundiService.SaveProfile(this.profile);
         profileObs.map((res) => {
             alert(res.message);
+            if (!res.result) {
+                alert("Falied to Save Profile, please contact site administrator");
+                sessionStorage.setItem("ProfileExists", '0');
+            }
         }).subscribe();
     }
     addWorkCategory($event) {
@@ -7317,26 +7404,31 @@ let ProfileComponent = class ProfileComponent {
     }
     ngOnInit() {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails)
+            this.userDetails = {};
+        if (!this.userDetails.username) {
+            this.userDetails.username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
+        }
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
-        let certsObs = this.myFundiService.GetFundiCertifications(this.userDetails.username);
-        let workCatObs = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
-        let coursesObs = this.myFundiService.GetFundiCourses(this.userDetails.username);
-        let ratingsObs = this.myFundiService.GetFundiRatings(this.userDetails.username);
         resObs.map((prof) => {
             this.profile = prof;
-        }).subscribe();
-        ratingsObs.map((ratings) => {
-            this.fundiRatings = ratings;
-        }).subscribe();
-        coursesObs.map((courses) => {
-            this.courses = courses;
-        }).subscribe();
-        workCatObs.map((workCats) => {
-            this.workCategories = workCats;
-        }).subscribe();
-        certsObs.map((certs) => {
-            this.certifications = certs;
+            let workCatObs = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
+            workCatObs.map((workCats) => {
+                this.workCategories = workCats;
+                let coursesObs = this.myFundiService.GetFundiCourses(this.userDetails.username);
+                coursesObs.map((courses) => {
+                    this.courses = courses;
+                    let certsObs = this.myFundiService.GetFundiCertifications(this.userDetails.username);
+                    certsObs.map((certs) => {
+                        this.certifications = certs;
+                        let ratingsObs = this.myFundiService.GetFundiRatings(this.userDetails.username);
+                        ratingsObs.map((ratings) => {
+                            this.fundiRatings = ratings;
+                        }).subscribe();
+                    }).subscribe();
+                }).subscribe();
+            }).subscribe();
         }).subscribe();
     }
 };
@@ -7485,7 +7577,7 @@ let myRecaptchaComponent = class myRecaptchaComponent {
         this.router = router;
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
+        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr"; */
         this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
     }
     ngAfterViewInit() {
@@ -8237,6 +8329,7 @@ let VehicleMonitorComponent = class VehicleMonitorComponent {
     constructor(myFundiService) {
         this.fundiLocations = [];
         this.markers = [];
+        this.hasPopulatedPage = false;
         this.myFundiService = myFundiService;
         let defaultVehMonitor = {
             latitude: 0,
@@ -8404,6 +8497,48 @@ let VehicleMonitorComponent = class VehicleMonitorComponent {
                 alert(res.message);
             }
         }).subscribe();
+    }
+    ngAfterViewChecked() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+    }
+    runAutoCompleteOnSelects(curthis) {
+        let hasFoundSelectsOnPage = false;
+        if (!curthis.hasPopulatedPage) {
+            let selects = jQuery('div#vehiclemonitor-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('div#vehiclemonitor-wrapper select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
     }
 };
 VehicleMonitorComponent.ctorParameters = () => [
@@ -12183,12 +12318,12 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         });
     }
     SendEmail(body) {
-        //const headers = new HttpHeaders({ 'Content-Type': undefined});
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'Content-Type': "multipart/form-data" });
         let requestOptions = {
             url: this.postSendEmail /*,
             headers: headers*/
         };
-        return this.httpClient.post(requestOptions.url, body /*, { 'headers': requestOptions.headers }*/).map((res) => {
+        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res) => {
             return res;
         });
     }

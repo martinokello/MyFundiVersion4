@@ -1,18 +1,19 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewChecked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IMtnAirTelModel, IWorkSubCategory, IWorkAndSubWorkCategory, ISubscription } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 declare var jQuery: any;
 
 @Component({
     selector: 'fundisubscription',
     templateUrl: './fundisubscription.component.html'
 })
-export class FundiSubscriptionComponent implements OnInit {
+export class FundiSubscriptionComponent implements OnInit, AfterViewChecked {
     userDetails: any;
     userRoles: string[];
     location: ILocation;
-    subscriptionFee: number = 2500;
+    subscriptionFee: number = 25000;
     subscriptionDescription: string;
     subscriptionName: string;
     startingDate: string;
@@ -23,8 +24,10 @@ export class FundiSubscriptionComponent implements OnInit {
     public workSubCategories: IWorkSubCategory[];
     subscriptionFeeExpense: ISubscription;
     subscription: ISubscription;
+    setTo: NodeJS.Timeout;
+    hasPopulatedPage: boolean = false;
 
-    constructor(private myFundiService: MyFundiService) {
+    constructor(private myFundiService: MyFundiService, private router:Router) {
         this.userDetails = {};
     }
 
@@ -32,18 +35,7 @@ export class FundiSubscriptionComponent implements OnInit {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
-        this.subscription = this.subscriptionFeeExpense = {
-            monthlySubscriptionId: 0,
-            userId: this.fundi.userId,
-            fundiProfileId: this.fundi.fundiProfileId,
-            startDate: new Date(),
-            username: this.userDetails.username,
-            subscriptionFee: this.fundi.subscriptionFee,
-            hasPaid: false,
-            subscriptionName: this.fundi.subscriptionName,
-            subscriptionDescription: this.fundi.subscriptionDescription,
-            workCategoryAndSubCategoryIds: []
-        }
+
         this.workCategory = { workCategoryId: 0 };
         this.workCategories = [];
 
@@ -87,55 +79,79 @@ export class FundiSubscriptionComponent implements OnInit {
             }).subscribe();
         }).subscribe();
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails) this.userDetails = {};
+        if (!this.userDetails.username) {
+            this.userDetails.username = MyFundiService.clientEmailAddress;
+        }
+        this.subscription = this.subscriptionFeeExpense = {
+            monthlySubscriptionId: 0,
+            userId: this.fundi.userId,
+            fundiProfileId: this.fundi.fundiProfileId,
+            startDate: new Date(),
+            username: this.userDetails.username,
+            subscriptionFee: this.fundi.subscriptionFee,
+            hasPaid: false,
+            subscriptionName: this.fundi.subscriptionName,
+            subscriptionDescription: this.fundi.subscriptionDescription,
+            workCategoryAndSubCategoryIds: []
+        }
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
 
         resObs.map((fundiProf: IProfile) => {
-            this.fundi = fundiProf;
-            this.fundi.subscriptionFee = this.subscriptionFee;
-            this.fundi.subscriptionName = `Fundi User ${this.userDetails.firstName} ${this.userDetails.lastName} Subscription for 31 days`;
-            this.fundi.subscriptionDescription = "Attempting Monthly Payment!";
+            if (!fundiProf) {
+                alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
+                this.router.navigateByUrl('/manage-profile');
+                return;
+            }
+            else {
+
+                this.fundi = fundiProf;
+                this.fundi.subscriptionFee = this.subscriptionFee;
+                this.fundi.subscriptionName = `Fundi User ${this.userDetails.firstName} ${this.userDetails.lastName} Subscription for 31 days`;
+                this.fundi.subscriptionDescription = "Attempting Monthly Payment!";
 
 
-            let userIdObs: Observable<string> = this.myFundiService.GetUserGuidId(this.userDetails.username);
-            userIdObs.map((q: string) => {
-                this.fundi.userId = q;
-                let subscrObs: Observable<ISubscription[]> = this.myFundiService.GetAllFundiSubscriptions(this.fundi.fundiProfileId);
-                subscrObs.map((subs: ISubscription[]) => {
-                    let opt: HTMLOptionElement = document.createElement('option');
-                    opt.value = "0";
-                    opt.text = "Select Month Subscription";
-                    let subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
-                    subscrSelect.appendChild(opt);
-                    if (subs.length > 0) {
-                        this.subscriptionFeeExpense = this.subscription = subs[0];
-                        this.startingDate = this.formatDate(subs[0].startDate);
-                        this.appendCategoriesAndSubCategoriesToUi();
-                    }
-                    else {
-                        let dateNow = new Date();
-                        this.startingDate = this.formatDate(dateNow);
-                        this.subscription = this.subscriptionFeeExpense;
-                        this.subscription.monthlySubscriptionId = 0;
-                    }
-                    subs.forEach((sub: ISubscription, ind: number) => {
-
-                        let opt1: HTMLOptionElement = document.createElement('option');
-                        opt1.value = sub.monthlySubscriptionId.toString();
-                        opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
-                        subscrSelect.appendChild(opt1);
-                    });
-                    let lastMonthlySubsObs: Observable<any> = this.myFundiService.GetFundiLastSubscriptionFees(this.subscription.userId);
-                   
-                    lastMonthlySubsObs.map((q: any) => {
-                        debugger;
-                        if (q.result) {
-                            this.fundi.subscriptionFee = q.subscriptionFee;
+                let userIdObs: Observable<string> = this.myFundiService.GetUserGuidId(this.userDetails.username);
+                userIdObs.map((q: string) => {
+                    this.fundi.userId = q;
+                    let subscrObs: Observable<ISubscription[]> = this.myFundiService.GetAllFundiSubscriptions(this.fundi.fundiProfileId);
+                    subscrObs.map((subs: ISubscription[]) => {
+                        let opt: HTMLOptionElement = document.createElement('option');
+                        opt.value = "0";
+                        opt.text = "Select Month Subscription";
+                        let subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
+                        subscrSelect.appendChild(opt);
+                        if (subs.length > 0) {
+                            this.subscriptionFeeExpense = this.subscription = subs[0];
+                            this.startingDate = this.formatDate(subs[0].startDate);
+                            this.appendCategoriesAndSubCategoriesToUi();
                         }
+                        else {
+                            let dateNow = new Date();
+                            this.startingDate = this.formatDate(dateNow);
+                            this.subscription = this.subscriptionFeeExpense;
+                            this.subscription.monthlySubscriptionId = 0;
+                        }
+                        subs.forEach((sub: ISubscription, ind: number) => {
 
+                            let opt1: HTMLOptionElement = document.createElement('option');
+                            opt1.value = sub.monthlySubscriptionId.toString();
+                            opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
+                            subscrSelect.appendChild(opt1);
+                        });
+                        let lastMonthlySubsObs: Observable<any> = this.myFundiService.GetFundiLastSubscriptionFees(this.subscription.userId);
+
+                        lastMonthlySubsObs.map((q: any) => {
+                            debugger;
+                            if (q.result) {
+                                this.fundi.subscriptionFee = q.subscriptionFee;
+                            }
+
+                        }).subscribe();
                     }).subscribe();
                 }).subscribe();
-            }).subscribe();
+            }
         }).subscribe();
     }
     public getWorkSubCategoriesByWorkCategoryId() {
@@ -303,8 +319,18 @@ export class FundiSubscriptionComponent implements OnInit {
         }).subscribe();
         $event.preventDefault();
     }
+    public checkFundiProfileExists():boolean {
+        if (!this.fundi.fundiProfileId) {
+            alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
+            return false;
+        }
+        return true;
+    }
     public paySubscriptionMonthlyFeeWithPaypal($event) {
-
+        if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+        }
         let subscriptionFeeExpenseToBePaid: ISubscription = {
             monthlySubscriptionId: 0,
             userId: this.fundi.userId,
@@ -334,6 +360,11 @@ export class FundiSubscriptionComponent implements OnInit {
         $event.preventDefault();
     }
     paySubscriptionMonthlyFeeWithAirTel($event) {
+
+        if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+        }
 
         let subscriptionFeeExpenseToBePaid: ISubscription = {
             monthlySubscriptionId: 0,
@@ -381,6 +412,11 @@ export class FundiSubscriptionComponent implements OnInit {
         $event.preventDefault();
     }
     paySubscriptionMonthlyFeeWithMtn($event) {
+
+        if (!this.checkFundiProfileExists()) {
+            this.router.navigateByUrl('/manage-profile');
+            return;
+        }
 
         let subscriptionFeeExpenseToBePaid: any = {
             monthlySubscriptionId: 0,
@@ -441,13 +477,18 @@ export class FundiSubscriptionComponent implements OnInit {
     return [year, month, day].join('-');
 }
 
+    ngAfterViewChecked() {
+        let curthis = this;
+
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+    }
     runAutoCompleteOnSelects(curthis: any) {
-        debugger;
         let hasFoundSelectsOnPage = false;
 
-        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
+        if (!curthis.hasPopulatedPage) {
 
-            let selects = jQuery('div#subcworkSubCategories-wrapper select');
+            let selects = jQuery('div#fundiSubscription-wrapper select');
 
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
@@ -463,11 +504,11 @@ export class FundiSubscriptionComponent implements OnInit {
 
                 }));
                 hasFoundSelectsOnPage = false;
-            }
 
+            }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('select').each((ind, sel) => {
+            jQuery('div#fundiSubscription-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
 
                 let vals = [];
@@ -489,6 +530,5 @@ export class FundiSubscriptionComponent implements OnInit {
             clearTimeout(curthis.setTo);
         }
     }
-
 }
 

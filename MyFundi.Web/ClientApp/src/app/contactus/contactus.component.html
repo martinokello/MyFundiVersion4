@@ -39,7 +39,7 @@
                                                 </div>
                                                 <input name="emailSubject" type="text" required #emailSubject="ngModel" [(ngModel)]="email.emailSubject" placeholder="subject" style="font-weight: bold; width: 100%;color: #000040;" /><br />
 
-                                                <input type="file" name="attachment" (change)="getFiles($event)" value="Attach file" ngModel #attachment="ngModel" id="attachment" /><br />
+                                                <input type="file" name="attachment" (change)="getFiles($event)" value="Attach file" [(ngModel)]="email.attachment" #attachment="ngModel" id="attachment" /><br />
                                             </div>
                                             <div style="width: 98%; margin:5px 0px !important;">
                                                 <div style="margin:5px 0px !important;" *ngIf="emailForm.submitted && emailBody.invalid" class="text-danger">

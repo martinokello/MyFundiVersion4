@@ -38,6 +38,9 @@ namespace MyFundi.UnitOfWork.Concretes
         public FundiSubscriptionRepository _fundiSubscriptionRepository;
         public ClientSubscriptionRepository _clientSubscriptionRepository;
         public FundiLocationRepository _fundiLocationRepository;
+        public FundiSubscriptionQueueRepository _fundiSubscriptionQueueRepository;
+        public MonthlySubscriptionQueueRepository _monthlySubscriptionQueueRepository; 
+
         public MyFundiDBContext MyFundiDBContext { get; set; }
         public MyFundiUnitOfWork(
             AbstractRepository<Address> addressRepository,
@@ -65,6 +68,8 @@ namespace MyFundi.UnitOfWork.Concretes
             AbstractRepository<FundiSubscription> fundiSubscriptionRepository,
             AbstractRepository<FundiLocation> fundiLocationRepository,
             AbstractRepository<ClientSubscription> clientSubscriptionRepository,
+            AbstractRepository<FundiSubscriptionQueue> fundiSubscriptionQueueRepository, 
+            AbstractRepository<MonthlySubscriptionQueue> monthlySubscriptionQueueRepository,
             MyFundiDBContext myFundiDbContext)
         {
             this.MyFundiDBContext = myFundiDbContext;
@@ -118,6 +123,10 @@ namespace MyFundi.UnitOfWork.Concretes
             _clientSubscriptionRepository.MyFundiDBContext = myFundiDbContext;
             _fundiLocationRepository = fundiLocationRepository as FundiLocationRepository;
             _fundiLocationRepository.MyFundiDBContext = myFundiDbContext;
+            _fundiSubscriptionQueueRepository = fundiSubscriptionQueueRepository as FundiSubscriptionQueueRepository;
+            _fundiSubscriptionQueueRepository.MyFundiDBContext = myFundiDbContext;
+            _monthlySubscriptionQueueRepository = monthlySubscriptionQueueRepository as MonthlySubscriptionQueueRepository;
+            _monthlySubscriptionQueueRepository.MyFundiDBContext = myFundiDbContext; 
         }
         public void SaveChanges()
         {

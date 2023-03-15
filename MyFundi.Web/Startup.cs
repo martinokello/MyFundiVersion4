@@ -314,6 +314,10 @@ namespace MyFundi.Web
                 conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscription>().ReverseMap();
                 conf.CreateMap<ClientSubscriptionViewModel, ClientSubscription>();
                 conf.CreateMap<ClientSubscriptionViewModel, ClientSubscription>().ReverseMap();
+                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscriptionQueue>();
+                conf.CreateMap<MonthlySubscriptionViewModel, FundiSubscriptionQueue>().ReverseMap();
+                conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscriptionQueue>();
+                conf.CreateMap<MonthlySubscriptionViewModel, MonthlySubscriptionQueue>().ReverseMap(); 
 
             });
             services.AddScoped<DiscountCalculator>(ds => new DiscountCalculator(Decimal.Parse(Configuration.GetSection("MTNApiConfig").GetSection("FundiMonthlySubscritpion").Value)));
@@ -379,6 +383,8 @@ namespace MyFundi.Web
             services.AddScoped<AbstractRepository<MonthlySubscription>, MonthlySubscriptionRepository>();
             services.AddScoped<AbstractRepository<FundiSubscription>, FundiSubscriptionRepository>();
             services.AddScoped<AbstractRepository<ClientSubscription>, ClientSubscriptionRepository>();
+            services.AddScoped<AbstractRepository<FundiSubscriptionQueue>, FundiSubscriptionQueueRepository>();
+            services.AddScoped<AbstractRepository<MonthlySubscriptionQueue>, MonthlySubscriptionQueueRepository>(); 
             services.AddScoped<SimbaToursEastAfrica.Caching.Interfaces.ICaching, SimbaToursEastAfrica.Caching.Concretes.SimbaToursEastAfricaCahing>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();

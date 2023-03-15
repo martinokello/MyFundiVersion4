@@ -15,6 +15,7 @@ export class ClientFundiContractComponent implements OnInit {
     clientContracts: IClientFundiContract[];
     fundi: any = {};
     client: any = {}
+    setTo: NodeJS.Timeout;
 
     constructor(private myFundiService: MyFundiService) {
     }
@@ -104,13 +105,32 @@ export class ClientFundiContractComponent implements OnInit {
         }).subscribe();
     }
 
+
+    formatDate(date): string {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+    ngAfterViewChecked() {
+        let curthis = this;
+
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+    }
     runAutoCompleteOnSelects(curthis: any) {
-        debugger;
         let hasFoundSelectsOnPage = false;
 
-        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
+        if (!curthis.hasPopulatedPage) {
 
-            let selects = jQuery('div#subcworkSubCategories-wrapper select');
+            let selects = jQuery('div#fundiClientContract-wrapper select');
 
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
@@ -126,11 +146,11 @@ export class ClientFundiContractComponent implements OnInit {
 
                 }));
                 hasFoundSelectsOnPage = false;
-            }
 
+            }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('select').each((ind, sel) => {
+            jQuery('div#fundiClientContract-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
 
                 let vals = [];
@@ -152,20 +172,5 @@ export class ClientFundiContractComponent implements OnInit {
             clearTimeout(curthis.setTo);
         }
     }
-
-    formatDate(date): string {
-        var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-
-        return [year, month, day].join('-');
-    }
-
 }
 

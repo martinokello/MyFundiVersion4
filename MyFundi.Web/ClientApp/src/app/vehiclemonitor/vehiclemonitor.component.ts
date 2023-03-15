@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef, Injectable, AfterViewInit, Inject } from '@angular/core';
 import { MyFundiService, IFundiLocationMonitor, IProfile } from '../../services/myFundiService';
 import 'rxjs/Rx';
-import * as $ from "jquery";
 import { saveAs } from 'file-saver';
 import { Observable } from 'rxjs/Observable';
 import * as google from '../../assets/google/googleMaps.js';
+import { AfterViewChecked } from '@angular/core';
 declare const google: any;
+declare var jQuery: any;
 
 @Component({
     selector: 'vehicle-monitor',
@@ -14,12 +15,14 @@ declare const google: any;
     providers: [MyFundiService]
 })
 @Injectable()
-export class VehicleMonitorComponent implements OnInit, AfterViewInit {
+export class VehicleMonitorComponent implements OnInit, AfterViewInit, AfterViewChecked {
     public fundiLocations: IFundiLocationMonitor[] = [];
     public currentFundi: IFundiLocationMonitor;
     private myFundiService: MyFundiService;
     public markers: any = [];
     public myMap: google.maps.Map;
+    setTo: NodeJS.Timeout;
+    hasPopulatedPage: boolean = false;
 
     public constructor(myFundiService: MyFundiService) {
 
@@ -213,5 +216,57 @@ export class VehicleMonitorComponent implements OnInit, AfterViewInit {
         }).subscribe();
 
     }
+    ngAfterViewChecked() {
+        let curthis = this;
 
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+    }
+    runAutoCompleteOnSelects(curthis: any) {
+        let hasFoundSelectsOnPage = false;
+
+        if (!curthis.hasPopulatedPage) {
+
+            let selects = jQuery('div#vehiclemonitor-wrapper select');
+
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+                }));
+                hasFoundSelectsOnPage = false;
+
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('div#vehiclemonitor-wrapper select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
+    }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyFundi.Web.Migrations
 {
-    public partial class databaseInit : Migration
+    public partial class newDbInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -305,6 +305,39 @@ namespace MyFundi.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClientSubscriptions",
+                columns: table => new
+                {
+                    SubscriptionId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
+                    SubscriptionName = table.Column<string>(nullable: true),
+                    SubscriptionDescription = table.Column<string>(nullable: true),
+                    ClientProfileId = table.Column<int>(nullable: true),
+                    HasPaid = table.Column<bool>(nullable: false),
+                    SubscriptionFee = table.Column<decimal>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    DateUpdated = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientSubscriptions", x => x.SubscriptionId);
+                    table.ForeignKey(
+                        name: "FK_ClientSubscriptions_ClientProfiles_ClientProfileId",
+                        column: x => x.ClientProfileId,
+                        principalTable: "ClientProfiles",
+                        principalColumn: "ClientProfileId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ClientSubscriptions_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ClientFundiContracts",
                 columns: table => new
                 {
@@ -312,6 +345,12 @@ namespace MyFundi.Web.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientProfileId = table.Column<int>(nullable: false),
                     FundiProfileId = table.Column<int>(nullable: false),
+                    ClientUsername = table.Column<string>(nullable: true),
+                    ClientFirstName = table.Column<string>(nullable: true),
+                    ClientLastName = table.Column<string>(nullable: true),
+                    FundiUsername = table.Column<string>(nullable: true),
+                    FundiFirstName = table.Column<string>(nullable: true),
+                    FundiLastName = table.Column<string>(nullable: true),
                     NumberOfDaysToComplete = table.Column<decimal>(nullable: false),
                     ContractualDescription = table.Column<string>(nullable: true),
                     AgreedStartDate = table.Column<DateTime>(nullable: false),
@@ -544,6 +583,41 @@ namespace MyFundi.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MonthlySubscriptionQueues",
+                columns: table => new
+                {
+                    MonthlySubscriptionQueueId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
+                    SubscriptionName = table.Column<string>(nullable: true),
+                    SubscriptionDescription = table.Column<string>(nullable: true),
+                    FundiProfileId = table.Column<int>(nullable: true),
+                    HasPaid = table.Column<bool>(nullable: false),
+                    HasExpired = table.Column<bool>(nullable: false),
+                    SubscriptionFee = table.Column<decimal>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    DateUpdated = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MonthlySubscriptionQueues", x => x.MonthlySubscriptionQueueId);
+                    table.ForeignKey(
+                        name: "FK_MonthlySubscriptionQueues_FundiProfiles_FundiProfileId",
+                        column: x => x.FundiProfileId,
+                        principalTable: "FundiProfiles",
+                        principalColumn: "FundiProfileId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MonthlySubscriptionQueues_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MonthlySubscriptions",
                 columns: table => new
                 {
@@ -638,6 +712,42 @@ namespace MyFundi.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FundiSubscriptionQueues",
+                columns: table => new
+                {
+                    FundiSubscriptionQueueId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HasPaid = table.Column<bool>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateUpdated = table.Column<DateTime>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    SubscriptionName = table.Column<string>(nullable: true),
+                    SubscriptionFee = table.Column<decimal>(nullable: false),
+                    SubscriptionDescription = table.Column<string>(nullable: true),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    MonthlySubscriptionQueueId = table.Column<int>(nullable: false),
+                    MonthlySubscriptionId = table.Column<int>(nullable: true),
+                    FundiWorkCategoryId = table.Column<int>(nullable: false),
+                    FundiWorkSubCategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FundiSubscriptionQueues", x => x.FundiSubscriptionQueueId);
+                    table.ForeignKey(
+                        name: "FK_FundiSubscriptionQueues_WorkSubCategories_FundiWorkSubCategoryId",
+                        column: x => x.FundiWorkSubCategoryId,
+                        principalTable: "WorkSubCategories",
+                        principalColumn: "WorkSubCategoryId",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_FundiSubscriptionQueues_MonthlySubscriptions_MonthlySubscriptionId",
+                        column: x => x.MonthlySubscriptionId,
+                        principalTable: "MonthlySubscriptions",
+                        principalColumn: "MonthlySubscriptionId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FundiSubscriptions",
                 columns: table => new
                 {
@@ -692,6 +802,16 @@ namespace MyFundi.Web.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClientSubscriptions_ClientProfileId",
+                table: "ClientSubscriptions",
+                column: "ClientProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientSubscriptions_UserId",
+                table: "ClientSubscriptions",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Companies_LocationId",
                 table: "Companies",
                 column: "LocationId");
@@ -740,6 +860,16 @@ namespace MyFundi.Web.Migrations
                 name: "IX_FundiProfiles_UserId",
                 table: "FundiProfiles",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FundiSubscriptionQueues_FundiWorkSubCategoryId",
+                table: "FundiSubscriptionQueues",
+                column: "FundiWorkSubCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FundiSubscriptionQueues_MonthlySubscriptionId",
+                table: "FundiSubscriptionQueues",
+                column: "MonthlySubscriptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FundiSubscriptions_FundiWorkSubCategoryId",
@@ -822,6 +952,16 @@ namespace MyFundi.Web.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MonthlySubscriptionQueues_FundiProfileId",
+                table: "MonthlySubscriptionQueues",
+                column: "FundiProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MonthlySubscriptionQueues_UserId",
+                table: "MonthlySubscriptionQueues",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MonthlySubscriptions_FundiProfileId",
                 table: "MonthlySubscriptions",
                 column: "FundiProfileId");
@@ -873,6 +1013,9 @@ namespace MyFundi.Web.Migrations
                 name: "ClientFundiContracts");
 
             migrationBuilder.DropTable(
+                name: "ClientSubscriptions");
+
+            migrationBuilder.DropTable(
                 name: "FundiLocations");
 
             migrationBuilder.DropTable(
@@ -885,6 +1028,9 @@ namespace MyFundi.Web.Migrations
                 name: "FundiProfileCourses");
 
             migrationBuilder.DropTable(
+                name: "FundiSubscriptionQueues");
+
+            migrationBuilder.DropTable(
                 name: "FundiSubscriptions");
 
             migrationBuilder.DropTable(
@@ -895,6 +1041,9 @@ namespace MyFundi.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "JobWorkCategories");
+
+            migrationBuilder.DropTable(
+                name: "MonthlySubscriptionQueues");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");

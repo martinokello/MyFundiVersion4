@@ -42,44 +42,53 @@ export class ProfileCreateComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        
+
         jQuery('input#locationAddLocationId').css('display', 'none');
         jQuery('input#locationUpdateLocationId').css('display', 'none');
         jQuery('input#locationDeleteLocationId').css('display', 'none');
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails) this.userDetails = {};
+        if (!this.userDetails.username) {
+            this.userDetails.username = MyFundiService.clientEmailAddress;
+        }
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+
+
         let userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
-        let workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
-        let resObs: Observable<any> = this.myFundiService.GetFundiProfile(this.userDetails.username);
-
-        resObs.map((fundiProf: IProfile) => {
-            if (fundiProf) {
-                this.profile = fundiProf;
-
-                let curAddObs = this.myFundiService.GetLocationById(fundiProf.locationId);
-                curAddObs.map((q: ILocation) => {
-                    this.location = q;
-                }).subscribe();
-            }
-            else {
-                this.profile = {
-                    fundiProfileId: 0,
-                    user: null,
-                    userId: "",
-                    profileSummary: "",
-                    profileImageUrl: "",
-                    skills: "",
-                    usedPowerTools: "",
-                    fundiProfileCvUrl: "",
-                    locationId: 0
-                }
-            }
-        }).subscribe();
         userGuidObs.map((q: string) => {
             this.userGuidId = q;
+
+            let resObs: Observable<any> = this.myFundiService.GetFundiProfile(this.userDetails.username);
+            resObs.map((fundiProf: IProfile) => {
+
+                if (fundiProf) {
+                    this.profile = fundiProf;
+
+                    let curAddObs = this.myFundiService.GetLocationById(fundiProf.locationId);
+                    curAddObs.map((q: ILocation) => {
+                        this.location = q;
+                    }).subscribe();
+
+                }
+                else {
+
+                    this.profile = {
+                        fundiProfileId: 0,
+                        user: null,
+                        userId: "",
+                        profileSummary: "",
+                        profileImageUrl: "",
+                        skills: "",
+                        usedPowerTools: "",
+                        fundiProfileCvUrl: "",
+                        locationId: 0
+                    }
+
+                }
+            }).subscribe();
         }).subscribe();
 
-
+        let workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
         workCatObs.map((workCats: IWorkAndSubWorkCategory[]) => {
 
             this.workCategories = workCats;
@@ -102,23 +111,23 @@ export class ProfileCreateComponent implements OnInit {
                 option.value = `${cat.workCategoryId.toString()},${cat.workSubCategoryId.toString()}`;
                 selectWorkCategories.appendChild(option);
             });
-        }).subscribe();
-        let listWorkCatObs: Observable<IWorkAndSubWorkCategory[]> = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
+            let listWorkCatObs: Observable<IWorkAndSubWorkCategory[]> = this.myFundiService.GetFundiWorkCategories(this.userDetails.username);
 
-        listWorkCatObs.map((q: IWorkAndSubWorkCategory[]) => {
-            debugger;
-            if (q && q.length > 0) {
-                let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
-                q.forEach((wkcCatSubCat, index, q) => {
-                    let li = document.createElement("li");
-                    li.setAttribute('id', `${wkcCatSubCat.workCategoryId.toString()},${wkcCatSubCat.workSubCategoryId.toString()}`);
-                    li.textContent = wkcCatSubCat.workCategory.workCategoryType + ` :[${wkcCatSubCat.workSubCategory.workSubCategoryType}]`;
+            listWorkCatObs.map((q: IWorkAndSubWorkCategory[]) => {
+                debugger;
+                if (q && q.length > 0) {
+                    let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
+                    q.forEach((wkcCatSubCat, index, q) => {
+                        let li = document.createElement("li");
+                        li.setAttribute('id', `${wkcCatSubCat.workCategoryId.toString()},${wkcCatSubCat.workSubCategoryId.toString()}`);
+                        li.textContent = wkcCatSubCat.workCategory.workCategoryType + ` :[${wkcCatSubCat.workSubCategory.workSubCategoryType}]`;
 
-                    ulSelectedCategories.appendChild(li);
-                });
-            }
+                        ulSelectedCategories.appendChild(li);
+                    });
+                }
+            }).subscribe();
         }).subscribe();
-   }
+    }
 
     handleProfileCV(files: FileList) {
         this.profileCV = files.item(0);
@@ -161,6 +170,10 @@ export class ProfileCreateComponent implements OnInit {
 
         profileObs.map((res: any) => {
             alert(res.message);
+            if (!res.result) {
+                alert("Falied to Save Profile, please contact site administrator")
+                sessionStorage.setItem("ProfileExists", '0');
+            }
         }).subscribe();
     }
     addWorkCategory($event) {
@@ -169,13 +182,13 @@ export class ProfileCreateComponent implements OnInit {
             return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
 
         });
-        let addWkCatObs:Observable<boolean> = this.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
+        let addWkCatObs: Observable<boolean> = this.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
         //this.chosenWorkCategories.push(selectedWorkCategory);
         addWkCatObs.map((q: boolean) => {
             if (q) {
                 let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
                 let li = document.createElement("li");
-                li.setAttribute('id',`${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}`);
+                li.setAttribute('id', `${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}`);
 
                 li.textContent = selectedWorkCategory.workCategory.workCategoryType + ` :[${selectedWorkCategory.workSubCategory.workSubCategoryType}]`;
                 ulSelectedCategories.appendChild(li);
@@ -189,6 +202,7 @@ export class ProfileCreateComponent implements OnInit {
             }
         }).subscribe();
 
+
         $event.preventDefault();
     }
     removeWorkCategory($event) {
@@ -200,7 +214,7 @@ export class ProfileCreateComponent implements OnInit {
         let curThis = this;
         debugger;
         let ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
-        let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}`+ '"]');
+        let li = document.querySelector('ul#ulistWorkCategories > li[id="' + `${selectedWorkCategory.workCategoryId.toString()},${selectedWorkCategory.workSubCategoryId.toString()}` + '"]');
         ulSelectedCategories.removeChild(li);
 
         let resObs: Observable<any> = this.myFundiService.RemoveFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);

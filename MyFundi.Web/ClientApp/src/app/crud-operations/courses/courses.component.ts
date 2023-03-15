@@ -20,6 +20,11 @@ export class CoursesComponent implements OnInit, AfterContentInit, AfterViewInit
     count: number = 0;
     ngOnInit(): void {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails) this.userDetails = {};
+
+        if (!this.userDetails.username) {
+            this.userDetails.username = MyFundiService.clientEmailAddress;
+        }
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let courseObs = this.myFundiService.GetAllFundiCourses();
 

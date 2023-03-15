@@ -33,7 +33,7 @@ export class ContactUsComponent implements OnInit {
             formData.append('emailTo', this.email.emailTo);
             formData.append('emailFrom', this.email.emailFrom);
             formData.append('emailSubject', this.email.emailSubject);
-            formData.append('attachment', this.email.attachment);
+            formData.append('fileUpload', this.email.attachment);
             let result: Observable<boolean> = this.myFundiService.SendEmail(formData);
             result.subscribe((value: any) => {
                 alert(value.message);
@@ -42,7 +42,7 @@ export class ContactUsComponent implements OnInit {
         $event.preventDefault();
     }
     getFiles(event) {
-        this.email.attachment = event.target.files;
+        this.email.attachment = event.target.files.item(0);
     } 
     ngOnInit() {
         this.email = {

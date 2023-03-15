@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
         this.userDetail.authToken = localStorage.getItem('authToken');
         this.userDetail.username = this.userDetail.emailAddress;
-
+ 
         let loginResults: Observable<any> = this.myFundiService.LoginByPost(this.userDetail);
         loginResults.map((q: any) => {
             console.log(JSON.stringify(q));
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigateByUrl('/client-subscription');
                 return;
             }
-            else if (q.isLoggedIn == true) {
+            if (q.isLoggedIn == true) {
                 if (q.message) {
                     alert(q.message);
                 }
@@ -85,7 +85,9 @@ export class LoginComponent implements OnInit {
                 $('span#loginName').text("logged in as: " + this.userDetail.emailAddress);
                 MyFundiService.isLoginPage = false;
                 MyFundiService.SetUserEmail(this.userDetail.emailAddress);
+
                 this.ensureUserRolesGot();
+
             }
             else {
                 if (q.message) {
@@ -111,6 +113,7 @@ export class LoginComponent implements OnInit {
             this.userRoles = JSON.parse(userRolesStr);
             MyFundiService.userRoles = this.userRoles;
             localStorage.setItem("userRoles", JSON.stringify(this.userRoles));
+            this.router.navigateByUrl("/manage-profile");
         }
         if (this.userRoles == null || this.userRoles.length < 1) {
             this.myFundiService.GetAllUserRoles(MyFundiService.clientEmailAddress).
@@ -118,11 +121,8 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem("userRoles", JSON.stringify(userroles));
                     this.userRoles = userroles;
                     MyFundiService.userRoles = userroles;
-                    this.router.navigateByUrl("/scanqrcode");
+                    this.router.navigateByUrl("/manage-profile");
                 }).subscribe();
-        }
-        else {
-            this.router.navigateByUrl("/scanqrcode");
         }
     }
 }

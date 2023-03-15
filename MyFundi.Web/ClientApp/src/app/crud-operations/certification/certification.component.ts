@@ -19,6 +19,10 @@ export class CertificationComponent implements OnInit, AfterViewInit, AfterConte
     setTo: NodeJS.Timeout;
     ngOnInit(): void {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        if (!this.userDetails) this.userDetails = {};
+        if (!this.userDetails.username) {
+            this.userDetails.username = MyFundiService.clientEmailAddress;
+        }
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let certificationsObs = this.myFundiService.GetAllFundiCertificates();
 

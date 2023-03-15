@@ -310,7 +310,7 @@ namespace MyFundi.Web.Controllers
                     return await Task.FromResult(Ok(_mapper.Map<FundiProfileViewModel>(fundiProfile)));
                 }
             }
-            return await Task.FromResult(NotFound(null));
+            return await Task.FromResult(Ok(null));
         }
         [Route("~/FundiProfile/GetFundiProfileByProfileId/{profileId}")]
         public async Task<IActionResult> GetFundiProfileByProfileId(int profileId)
@@ -378,7 +378,7 @@ namespace MyFundi.Web.Controllers
 
             if (user == null || fundiProfile == null)
             {
-                return await Task.FromResult(NotFound(new { Message = "User not found" }));
+                return await Task.FromResult(NotFound(new { Message = "User not found", Result=false}));
             }
             return await Task.FromResult(Ok(_mapper.Map<FundiProfileViewModel>(fundiProfile)));
         }
@@ -748,7 +748,7 @@ namespace MyFundi.Web.Controllers
             try
             {
                 var totalSubScriptionFee = (decimal)0;
-                var subscription = _mapper.Map<MonthlySubscription>(subscriptionViewModel);
+                var subscription = _mapper.Map<MonthlySubscriptionQueue>(subscriptionViewModel);
                 subscription.SubscriptionFee = (decimal)0.00;
                 var paymentsManager = this.PaymentsManager;
                 var subCatQuantity = 0;
@@ -757,15 +757,15 @@ namespace MyFundi.Web.Controllers
                     subCatQuantity += workCatId.WorkSubCategoryIds.Length;
                 }
 
-                _unitOfWork._monthlySubscriptionRepository.Insert(subscription);
+                _unitOfWork._monthlySubscriptionQueueRepository.Insert(subscription);
                 _unitOfWork.SaveChanges();
-                var list = new List<FundiSubscription>();
+                var list = new List<FundiSubscriptionQueue>();
                 foreach (var wcId in subscriptionViewModel.WorkCategoryAndSubCategoryIds)
                 {
                     foreach (var wscId in wcId.WorkSubCategoryIds)
                     {
-                        var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
-                        fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
+                        var fundiSubscription = _mapper.Map<FundiSubscriptionQueue>(subscriptionViewModel);
+                        fundiSubscription.MonthlySubscriptionQueueId = subscription.MonthlySubscriptionQueueId;
                         fundiSubscription.FundiWorkCategoryId = wcId.WorkCategoryId;
                         fundiSubscription.FundiWorkSubCategoryId = wscId;
                         fundiSubscription.SubscriptionName = _unitOfWork._workSubCategoryRepository.GetById(wscId).WorkSubCategoryType;
@@ -778,7 +778,7 @@ namespace MyFundi.Web.Controllers
                 {
                     fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId);
                     totalSubScriptionFee += fsub.SubscriptionFee;
-                    _unitOfWork._fundiSubscriptionRepository.Insert(fsub);
+                    _unitOfWork._fundiSubscriptionQueueRepository.Insert(fsub);
                     _unitOfWork.SaveChanges();
                 }
 
@@ -795,7 +795,7 @@ namespace MyFundi.Web.Controllers
 
                     });
                 subscription.SubscriptionFee = totalSubScriptionFee;
-                _unitOfWork._monthlySubscriptionRepository.Update(subscription);
+                _unitOfWork._monthlySubscriptionQueueRepository.Update(subscription);
                 _unitOfWork.SaveChanges();
 
                 return await Task.FromResult(Ok(new { Message = "Inserted Subscription", PayPalRedirectUrl = paypalRequestUrl }));
@@ -831,7 +831,7 @@ namespace MyFundi.Web.Controllers
             try
             {
                 var totalSubScriptionFee = (decimal)0;
-                var subscription = _mapper.Map<MonthlySubscription>(subscriptionViewModel);
+                var subscription = _mapper.Map<MonthlySubscriptionQueue>(subscriptionViewModel);
                 subscription.SubscriptionFee = (decimal)0.00;
                 var paymentsManager = this.PaymentsManager;
                 var subCatQuantity = 0;
@@ -840,16 +840,15 @@ namespace MyFundi.Web.Controllers
                     subCatQuantity += workCatId.WorkSubCategoryIds.Length;
                 }
 
-
-                _unitOfWork._monthlySubscriptionRepository.Insert(subscription);
+                _unitOfWork._monthlySubscriptionQueueRepository.Insert(subscription);
                 _unitOfWork.SaveChanges();
-                var list = new List<FundiSubscription>();
+                var list = new List<FundiSubscriptionQueue>();
                 foreach (var wcId in subscriptionViewModel.WorkCategoryAndSubCategoryIds)
                 {
                     foreach (var wscId in wcId.WorkSubCategoryIds)
                     {
-                        var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
-                        fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
+                        var fundiSubscription = _mapper.Map<FundiSubscriptionQueue>(subscriptionViewModel);
+                        fundiSubscription.MonthlySubscriptionQueueId = subscription.MonthlySubscriptionQueueId;
                         fundiSubscription.FundiWorkCategoryId = wcId.WorkCategoryId;
                         fundiSubscription.FundiWorkSubCategoryId = wscId;
                         fundiSubscription.SubscriptionName = _unitOfWork._workSubCategoryRepository.GetById(wscId).WorkSubCategoryType;
@@ -862,12 +861,12 @@ namespace MyFundi.Web.Controllers
                 {
                     fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId);
                     totalSubScriptionFee += fsub.SubscriptionFee;
-                    _unitOfWork._fundiSubscriptionRepository.Insert(fsub);
+                    _unitOfWork._fundiSubscriptionQueueRepository.Insert(fsub);
                     _unitOfWork.SaveChanges();
                 }
 
                 subscription.SubscriptionFee = totalSubScriptionFee;
-                _unitOfWork._monthlySubscriptionRepository.Update(subscription);
+                _unitOfWork._monthlySubscriptionQueueRepository.Update(subscription);
                 _unitOfWork.SaveChanges();
 
                 var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
@@ -898,7 +897,7 @@ namespace MyFundi.Web.Controllers
             try
             {
                 var totalSubScriptionFee = (decimal)0;
-                var subscription = _mapper.Map<MonthlySubscription>(subscriptionViewModel);
+                var subscription = _mapper.Map<MonthlySubscriptionQueue>(subscriptionViewModel);
                 subscription.SubscriptionFee = (decimal)0.00;
                 var paymentsManager = this.PaymentsManager;
                 var subCatQuantity = 0;
@@ -908,15 +907,15 @@ namespace MyFundi.Web.Controllers
                 }
 
 
-                _unitOfWork._monthlySubscriptionRepository.Insert(subscription);
+                _unitOfWork._monthlySubscriptionQueueRepository.Insert(subscription);
                 _unitOfWork.SaveChanges();
-                var list = new List<FundiSubscription>();
+                var list = new List<FundiSubscriptionQueue>();
                 foreach (var wcId in subscriptionViewModel.WorkCategoryAndSubCategoryIds)
                 {
                     foreach (var wscId in wcId.WorkSubCategoryIds)
                     {
-                        var fundiSubscription = _mapper.Map<FundiSubscription>(subscriptionViewModel);
-                        fundiSubscription.MonthlySubscriptionId = subscription.MonthlySubscriptionId;
+                        var fundiSubscription = _mapper.Map<FundiSubscriptionQueue>(subscriptionViewModel);
+                        fundiSubscription.MonthlySubscriptionQueueId = subscription.MonthlySubscriptionQueueId;
                         fundiSubscription.FundiWorkCategoryId = wcId.WorkCategoryId;
                         fundiSubscription.FundiWorkSubCategoryId = wscId;
                         fundiSubscription.SubscriptionName = _unitOfWork._workSubCategoryRepository.GetById(wscId).WorkSubCategoryType;
@@ -930,11 +929,11 @@ namespace MyFundi.Web.Controllers
                 {
                     fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId);
                     totalSubScriptionFee += fsub.SubscriptionFee;
-                    _unitOfWork._fundiSubscriptionRepository.Insert(fsub);
+                    _unitOfWork._fundiSubscriptionQueueRepository.Insert(fsub);
                     _unitOfWork.SaveChanges();
                 }
                 subscription.SubscriptionFee = totalSubScriptionFee;
-                _unitOfWork._monthlySubscriptionRepository.Update(subscription);
+                _unitOfWork._monthlySubscriptionQueueRepository.Update(subscription);
                 _unitOfWork.SaveChanges();
 
                 var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
@@ -1612,16 +1611,16 @@ namespace MyFundi.Web.Controllers
                 {
                     _unitOfWork._fundiProfileRepository.Insert(fundiProfile);
                     _unitOfWork.SaveChanges();
-                    return await Task.FromResult(Ok(new { Message = "Succefully Inserted Fundi Profile" }));
+                    return await Task.FromResult(Ok(new { Message = "Succefully Inserted Fundi Profile", Result = true }));
                 }
                 else
                 {
                     _unitOfWork._fundiProfileRepository.Update(fundiProfile);
                     _unitOfWork.SaveChanges();
-                    return await Task.FromResult(Ok(new { Message = "Succefully Updated Fundi Profile" }));
+                    return await Task.FromResult(Ok(new { Message = "Succefully Updated Fundi Profile", Result = true }));
                 }
             }
-            return await Task.FromResult(BadRequest(new { Message = "Fundi Profile not Updated, therefore operation failed!" }));
+            return await Task.FromResult(Ok(new { Message = "Fundi Profile not Updated, therefore operation failed!", Result = false }));
         }
         [AuthorizeIdentity]
         [HttpPost]

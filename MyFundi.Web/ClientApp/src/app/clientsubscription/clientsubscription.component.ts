@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IMtnAirTelModel, IWorkSubCategory, IWorkAndSubWorkCategory, ISubscription, IClientSubscription, IClientProfile } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AfterViewChecked } from '@angular/core';
 declare var jQuery: any;
 
 @Component({
     selector: 'clientsubscription',
     templateUrl: './clientsubscription.component.html'
 })
-export class ClientSubscriptionComponent implements OnInit {
+export class ClientSubscriptionComponent implements OnInit, AfterViewChecked {
     userDetails: any;
     userRoles: string[];
     subscriptionFee: number = 2000;
@@ -17,6 +18,8 @@ export class ClientSubscriptionComponent implements OnInit {
     subscriptionName: string;
     clientLoginDetails: any = {};
     subscription: any;
+    setTo: NodeJS.Timeout;
+    hasPopulatedPage: boolean = false;
 
     constructor(private myFundiService: MyFundiService, private router:Router) {
         this.userDetails = {};
@@ -171,9 +174,9 @@ export class ClientSubscriptionComponent implements OnInit {
         debugger;
         let hasFoundSelectsOnPage = false;
 
-        if (curthis.workCategories && curthis.workCategories.length > 1 && !curthis.hasPopulatedPage) {
+        if (!curthis.hasPopulatedPage) {
 
-            let selects = jQuery('div#subcworkSubCategories-wrapper select');
+            let selects = jQuery('div#clientSubscription-wrapper select');
 
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
@@ -193,7 +196,7 @@ export class ClientSubscriptionComponent implements OnInit {
 
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('select').each((ind, sel) => {
+            jQuery('div#clientSubscription-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
 
                 let vals = [];
@@ -215,6 +218,11 @@ export class ClientSubscriptionComponent implements OnInit {
             clearTimeout(curthis.setTo);
         }
     }
+    ngAfterViewChecked() {
+        let curthis = this;
 
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+
+    }
 }
 
