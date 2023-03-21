@@ -124,6 +124,7 @@ export class FundiSubscriptionComponent implements OnInit, AfterViewChecked {
                         subscrSelect.appendChild(opt);
                         if (subs.length > 0) {
                             this.subscriptionFeeExpense = this.subscription = subs[0];
+                            this.fundi.subscriptionFee = this.subscription.subscriptionFee;
                             this.startingDate = this.formatDate(subs[0].startDate);
                             this.appendCategoriesAndSubCategoriesToUi();
                         }

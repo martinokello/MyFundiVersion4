@@ -179,7 +179,8 @@ export class ProfileCreateComponent implements OnInit {
     addWorkCategory($event) {
 
         let selectedWorkCategory: IWorkAndSubWorkCategory = this.workCategories.find((workCat: IWorkAndSubWorkCategory) => {
-            return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
+            let workCatsSubCatsAry = this.workCategoryAndSubCatId.split(',');
+            return workCat.workCategoryId == parseInt(workCatsSubCatsAry[0]) && workCat.workSubCategoryId == parseInt(workCatsSubCatsAry[1]);
 
         });
         let addWkCatObs: Observable<boolean> = this.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username);
@@ -208,7 +209,8 @@ export class ProfileCreateComponent implements OnInit {
     removeWorkCategory($event) {
 
         let selectedWorkCategory: IWorkAndSubWorkCategory = this.workCategories.find((workCat: IWorkAndSubWorkCategory) => {
-            return workCat.workCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(this.workCategoryAndSubCatId.split(',')[1]);
+            let workCatsSubCatsAry = this.workCategoryAndSubCatId.split(',');
+            return workCat.workCategoryId == parseInt(workCatsSubCatsAry[0]) && workCat.workSubCategoryId == parseInt(workCatsSubCatsAry[1]);
 
         });
         let curThis = this;

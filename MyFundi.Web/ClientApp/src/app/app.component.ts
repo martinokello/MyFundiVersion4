@@ -29,7 +29,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
 
     }
-
     ngOnInit() {
 
         this.actUserStatus = MyFundiService.actUserStatus;

@@ -11,13 +11,13 @@
                     <label>Job Name</label>
                     <select id="jobId" name="jobId" [(ngModel)]="jobId"></select>
                 </div><br />
-                <input type="button" value="More Search Results Fundi By Categories" class="but-primary" (click)="searchFundiByCategories($event)" />
+                <input type="button" value="More Results Fundi By Categories" class="but-primary" (click)="searchFundiByCategories($event)" />
                 <br />
             </form>
         </section>
         <section style="text-align:center !important;">
             <em style="font-weight:bolder !important;">View Fundis In your current locality travel zone.</em><br />
-            <input type="button" value="More Search Results Fundi within locality" class="but-primary" (click)="searchFundiByCurrentGeoLocation($event)" />
+            <input type="button" value="More Results Fundi within locality" class="but-primary" (click)="searchFundiByCurrentGeoLocation($event)" />
         </section>
         <div>
             <paging [pagingContentModel]="pagingContentModel" (searchEventEmitter)="searchCommand($event)"></paging><br />

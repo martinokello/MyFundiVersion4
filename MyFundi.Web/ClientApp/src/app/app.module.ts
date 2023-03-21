@@ -63,6 +63,8 @@ import { ClientFundiContractComponent } from './clientfundi-contract/clientfundi
 import { TermsAndConditionsComponent } from './terms-conditions-service/termAndConditions.component'; 
 import { ClientSubscriptionComponent } from './clientsubscription/clientsubscription.component';
 import { AuthenticatedUserOveridesComponent } from './roles/authenticateduser/authenticateduser.component';
+import { AdvertComponent } from './advert/advert.component';
+import { BlogsComponent } from './blogs/blogs.component';
 
 @NgModule({
     declarations: [
@@ -116,7 +118,9 @@ import { AuthenticatedUserOveridesComponent } from './roles/authenticateduser/au
         PagingComponent,
         ChatComponent,
         TermsAndConditionsComponent,
-        ClientFundiContractComponent
+        ClientFundiContractComponent,
+        AdvertComponent,
+        BlogsComponent
 
     ],
     imports: [
@@ -156,7 +160,8 @@ import { AuthenticatedUserOveridesComponent } from './roles/authenticateduser/au
             { path: 'client-subscription', component: ClientSubscriptionComponent},
             { path: 'fundi-search-job', component: FundiJobSearchComponent, canActivate: [AuthFundiGuard] },
             { path: 'client-fundi-contract', component: ClientFundiContractComponent, canActivate: [AuthFundiClientAdminGuard] },
-            { path: 'terms-and-conditions', component: TermsAndConditionsComponent}
+            { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
+            { path: 'blogs', component: BlogsComponent }
         ])
     ],
     providers: [

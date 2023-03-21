@@ -22,19 +22,24 @@
     </div>
   </section>
   <section>
-    <div class="container" id="mainbodycontent">
-      <router-outlet></router-outlet>
-      <ng-container *ngIf="presentLearnMore" ngModel="presentLearnMore" ngDefaultControl>
-        <div style="margin: 20px 0px;">
-          <a [routerLink]="['/aboutus']" class="button">
-            About Us
-          </a>
-        </div>
-      </ng-container>
-      <div id="linkToMainMenu" style="text-align:center !important;margin: 20px 0px;">
-        <input id="mobilemenu" class="button" type="button" value="mobile menu" style="background-color:slateblue !important; color:white !important;" />
+      <div class="container" id="mainbodycontent">
+          <div id="advertArea">
+              <hr />
+              <advert></advert>
+              <hr />
+          </div>
+          <router-outlet></router-outlet>
+          <ng-container *ngIf="presentLearnMore" ngModel="presentLearnMore" ngDefaultControl>
+              <div style="margin: 20px 0px;">
+                  <a [routerLink]="['/aboutus']" class="button">
+                      About Us
+                  </a>
+              </div>
+          </ng-container>
+          <div id="linkToMainMenu" style="text-align:center !important;margin: 20px 0px;">
+              <input id="mobilemenu" class="button" type="button" value="mobile menu" style="background-color:slateblue !important; color:white !important;" />
+          </div>
       </div>
-    </div>
   </section>
   <div id="twitterProfileFeeds">
     <twitter-profile-feeds></twitter-profile-feeds>

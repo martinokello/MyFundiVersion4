@@ -228,7 +228,7 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
                                 this.showFirstPage();
                             } else {
                                 this.numberOfResultSetToSkip = 0;
-                                alert("There are currently no jobs that match your\ncriteria within your chosen location!");
+                                alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                             }
 
                             this.isSearchingOnLocality = false;
@@ -237,7 +237,7 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
                     else {
 
                         this.numberOfResultSetToSkip = 0;
-                        alert("You are current location not being monitored on map!!\nPlease use android app to start monitoring.");
+                        alert("Your current location is not being monitored on map!!\nPlease use android app to start monitoring.");
                     }
                 }).subscribe();
             }
@@ -287,7 +287,7 @@ export class FundiJobSearchComponent implements OnInit, AfterViewInit {
                         this.showFirstPage();
                     } else {
                         this.numberOfResultSetToSkip = 0;
-                        alert("There are currently no jobs that match your\ncriteria within your chosen location!")
+                        alert("There are currently no more jobs that match your\ncriteria within your chosen location!")
                     }
 
                 }).subscribe();

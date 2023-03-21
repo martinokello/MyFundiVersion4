@@ -61,6 +61,17 @@ namespace MyFundi.Web.Controllers
             return View();
         }
 
+        public async Task<IActionResult> GetAllBlogs()
+        {
+            try
+            {
+                return await Task.FromResult(Ok(_unitOfWork._blogsRepository.GetAll().ToArray()));
+            }
+            catch (Exception ex) {
+                return await Task.FromResult(BadRequest(null));
+            }
+        }
+
         [AuthorizeIdentity]
         [HttpPost]
         [Consumes("multipart/form-data")]

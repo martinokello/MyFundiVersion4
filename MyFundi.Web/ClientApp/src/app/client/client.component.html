@@ -16,7 +16,7 @@
                                 <input type="hidden" [(ngModel)]="clientProfileId" id="clientProfileId" name="clientProfileId" /><br />
                                 <input type="hidden" [(ngModel)]="clientUserGuidId" id="clientUserGuidId" name="clientUserGuidId" /><br />
                                 <input type="file" id="profileImageId" name="profileImage" (change)="handleProfileImage($event.target.files)" /><br />
-                                <input type="button" value="Upload Profile Image" class="but-primary" (click)="uploadProfileImage()" /><br />
+                                <input type="button" value="Upload Profile Image" class="but-primary" (click)="uploadProfileImage($event)" /><br />
                                 <hr />
                             </div>
                         </div>

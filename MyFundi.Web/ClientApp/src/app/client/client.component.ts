@@ -251,7 +251,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
         this.profileImage = files.item(0);
     }
 
-    uploadProfileImage(): void {
+    uploadProfileImage($event): void {
 
         //let busyGif: HTMLDivElement = document.querySelector("div#loadingProfileImage");
         //busyGif.style.display = 'block';
@@ -263,7 +263,8 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
 
         this.httpClient.post(url, formData).map((res: any) => {
             alert(res.message);
-        }).subscribe();;
+        }).subscribe();
+        $event.preventDefault();
     }
 
     saveOrUpdateClientProfile($event) {

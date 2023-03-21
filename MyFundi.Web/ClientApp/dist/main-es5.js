@@ -46,6 +46,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/advert/advert.component.html":
+  /*!************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/advert/advert.component.html ***!
+    \************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppAdvertAdvertComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"padding:3px !important;text-align:center !important;\">\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-12\">\r\n            <div style=\"text-align:center !important;\">\r\n               <a href=\"{{advertLinkUrl}}\">\r\n                   <img id=\"imageBanner\" src=\"https://myfundiv2.martinlayooinc.com/images/currentAdvert.gif\" style=\"padding:3px !important; height:14vh !important; width:auto !important;\" alt=\"[[Advert Image]]\" />\r\n                   </a> \r\n            </div>\r\n            <ng-container *ngIf=\"userRoles && userRoles.indexOf('Administrator') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n                <div class=\"form-group\">\r\n                    <input type=\"file\" id=\"advertBanner\" class=\"form-control-file\" name=\"advertGifFile\" (change)=\"updateUploadAdvert($event)\"/><br />\r\n                    <input type=\"button\" class=\"btn-primary\" name=\"submitAdvert\" (click)=\"submitAdvert($event)\" value=\"Upload Advert Image\" /><br />\r\n                </div>\r\n            </ng-container>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html":
   /*!**************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html ***!
@@ -61,7 +81,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div id=\"page-wrapper\">\r\n  <!-- Header -->\r\n  <div id=\"header\">\r\n    <!-- Logo -->\r\n    <h1 style=\"padding-bottom:5px !important;\"><a href=\"index.html\" style=\"padding-bottom:5px !important;\" id=\"logo\"><em>MartinLayooInc's &copy;</em> Handy Man</a></h1>\r\n  </div>\r\n  <!-- Banner -->\r\n  <div id=\"mainmenucontent\">\r\n    <app-nav-menu [(ngModel)]=\"actUserStatus\" ngDefaultControl></app-nav-menu>\r\n  </div>\r\n  <!-- Highlights -->\r\n  <section>\r\n    <div style=\"margin-top:15px !important; text-align:center !important;\" class=\"container\">\r\n      <ul class=\"icons\">\r\n        <li><a href=\"#\" class=\"icon brands fa-twitter addthis_button_twitter\" style=\"color:deepskyblue !important;\"><span class=\"label\">Twitter</span></a></li>\r\n        <li><a href=\"#\" class=\"icon brands fa-facebook-f addthis_button_facebook\" style=\"color:deepskyblue !important;\"><span class=\"label\">Facebook</span></a></li>\r\n        <li><a href=\"https://pdfcrowd.com/url_to_pdf/\" class=\"fa fa-print\" aria-hidden=\"true\" style=\"color:deepskyblue !important;\"></a></li>\r\n        <li><a href=\"#\" class=\"icon brands fa-linkedin-in addthis_button_linkedin\" style=\"color:deepskyblue !important;\"><span class=\"label\">LinkedIn</span></a></li>\r\n        <!--<a href=\"#\" class=\"icon brands fa-google-plus-g addthis_button_g-plusone g-plusone\" style=\"color:deepskyblue !important;\"><span class=\"label\">Google+</span></a></li>-->\r\n        <li>\r\n      </ul>\r\n    </div>\r\n  </section>\r\n  <section>\r\n    <div class=\"container\" id=\"mainbodycontent\">\r\n      <router-outlet></router-outlet>\r\n      <ng-container *ngIf=\"presentLearnMore\" ngModel=\"presentLearnMore\" ngDefaultControl>\r\n        <div style=\"margin: 20px 0px;\">\r\n          <a [routerLink]=\"['/aboutus']\" class=\"button\">\r\n            About Us\r\n          </a>\r\n        </div>\r\n      </ng-container>\r\n      <div id=\"linkToMainMenu\" style=\"text-align:center !important;margin: 20px 0px;\">\r\n        <input id=\"mobilemenu\" class=\"button\" type=\"button\" value=\"mobile menu\" style=\"background-color:slateblue !important; color:white !important;\" />\r\n      </div>\r\n    </div>\r\n  </section>\r\n  <div id=\"twitterProfileFeeds\">\r\n    <twitter-profile-feeds></twitter-profile-feeds>\r\n  </div>\r\n  <!-- Gigantic Heading -->\r\n  <section class=\"wrapper style2\">\r\n    <div class=\"container\">\r\n      <header class=\"major\">\r\n        <h2>MartinLayooInc Innovation</h2>\r\n        <p>MartinLayooInc Presents Ground Breaking Consultancy.</p>\r\n      </header>\r\n    </div>\r\n  </section>\r\n\r\n  <!-- Posts -->\r\n  <section class=\"wrapper style1\">\r\n    <div class=\"container\">\r\n      <div class=\"row\">\r\n        <section class=\"col-lg-6\">\r\n          <div class=\"box post\">\r\n            <a href=\"#\" class=\"image left\"><img src=\"images/pic01.jpg\" alt=\"\" /></a>\r\n            <div class=\"inner\">\r\n              <h3><a href=\"https://simbasafaritoursv2.martinlayooinc.com/SimbaSafariToursV2\">Simba Safari Tours</a></h3>\r\n              <p>\r\n                The Nile Source is burried away in East Africa, a huge fresh water source, \"Lake Victoria\", shared by countries, Uganda to the West, Kenya to the East, and Tanzania to the South.\r\n              </p>\r\n            </div>\r\n          </div>\r\n        </section>\r\n        <section class=\"col-lg-6\">\r\n          <div class=\"box post\">\r\n            <a href=\"#\" class=\"image left\"><img src=\"images/pic02.jpg\" alt=\"\" /></a>\r\n            <div class=\"inner\">\r\n              <h3><a href=\"https://www.martinlayooinc.com/TeachersAssistantDeploy\">Online Teacher's Assitant</a></h3>\r\n              <p>\r\n                Having registered, your teacher will be notified, and you will be placed in a role as Student. Thereafter all communication and booking time with the Tutor and managing work will be done via the app. Please do not share your passwords. If you feel your password has been compromised, then we suggest you to reset it, during Login\r\n              </p>\r\n            </div>\r\n          </div>\r\n        </section>\r\n      </div>\r\n      <div class=\"row\">\r\n        <section class=\"col-lg-6\">\r\n          <div class=\"box post\">\r\n            <a href=\"#\" class=\"image left\"><img src=\"images/pic03.jpg\" alt=\"\" /></a>\r\n            <div class=\"inner\">\r\n              <h3><a href=\"https://unisa-weblive.martinlayooinc.com\">UNISA - MOOC ProtoType</a></h3>\r\n              <p>\r\n                UniSA - Mooc Project engages Employers, Governments, Potential Employees, Course Providers, Recruitment Agents, Course Endorsement, as well as Certifications. via Block Chain technology\r\n              </p>\r\n            </div>\r\n          </div>\r\n        </section>\r\n        <section class=\"col-lg-6\">\r\n          <div class=\"box post\">\r\n            <a href=\"#\" class=\"image left\"><img src=\"images/pic04.jpg\" alt=\"\" /></a>\r\n            <div class=\"inner\">\r\n              <h3><a href=\"https://nemisabadgesgenerator.martinlayooinc.com\">NEMISA - Hackathon Badges Generator</a></h3>\r\n              <p>\r\n                Nemisa is the well reknown Hackathon System where Awards by Badges are given to contenders who participate in the solution of various problems, set by NEMISA.\r\n              </p>\r\n            </div>\r\n          </div>\r\n        </section>\r\n      </div>\r\n    </div>\r\n  </section>\r\n\r\n  <!-- CTA -->\r\n  <section id=\"cta\" class=\"wrapper style3\">\r\n    <div class=\"container\">\r\n      <header>\r\n        <h2>Are you ready to Join the Quest with My Fundi Site?</h2>\r\n        <a href=\"/aboutus\" class=\"button\">Learn more</a>\r\n      </header>\r\n    </div>\r\n  </section>\r\n\r\n  <!-- Footer -->\r\n  <div id=\"footer\">\r\n    <div class=\"container\">\r\n      <div class=\"row\">\r\n        <section class=\"col-lg-6\">\r\n          <h3>Links to Stuff</h3>\r\n          <ul class=\"links\">\r\n            <li><a href=\"#\">Mattis et quis rutrum</a></li>\r\n            <li><a href=\"#\">Suspendisse amet varius</a></li>\r\n            <li><a href=\"#\">Sed et dapibus quis</a></li>\r\n            <li><a href=\"#\">Rutrum accumsan dolor</a></li>\r\n            <li><a href=\"#\">Mattis rutrum accumsan</a></li>\r\n            <li><a href=\"#\">Suspendisse varius nibh</a></li>\r\n            <li><a href=\"#\">Sed et dapibus mattis</a></li>\r\n          </ul>\r\n        </section>\r\n        <section class=\"col-lg-6\">\r\n          <h3>More Links to Stuff</h3>\r\n          <ul class=\"links\">\r\n            <li><a href=\"#\">Duis neque nisi dapibus</a></li>\r\n            <li><a href=\"#\">Sed et dapibus quis</a></li>\r\n            <li><a href=\"#\">Rutrum accumsan sed</a></li>\r\n            <li><a href=\"#\">Mattis et sed accumsan</a></li>\r\n            <li><a href=\"#\">Duis neque nisi sed</a></li>\r\n            <li><a href=\"#\">Sed et dapibus quis</a></li>\r\n            <li><a href=\"#\">Rutrum amet varius</a></li>\r\n          </ul>\r\n        </section>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Icons -->\r\n    <ul class=\"icons\">\r\n      <li><a href=\"#\" class=\"icon brands fa-twitter addthis_button_twitter\" style=\"color:deepskyblue !important;\"><span class=\"label\">Twitter</span></a></li>\r\n      <li><a href=\"#\" class=\"icon brands fa-facebook-f addthis_button_facebook\" style=\"color:deepskyblue !important;\"><span class=\"label\">Facebook</span></a></li>\r\n      <li><a href=\"https://pdfcrowd.com/url_to_pdf/\" class=\"fa fa-print\" aria-hidden=\"true\" style=\"color:deepskyblue !important;\"></a></li>\r\n      <li><a href=\"#\" class=\"icon brands fa-linkedin-in addthis_button_linkedin\" style=\"color:deepskyblue !important;\"><span class=\"label\">LinkedIn</span></a></li>\r\n\r\n      <!--<a href=\"#\" class=\"icon brands fa-google-plus-g addthis_button_g-plusone g-plusone\" style=\"color:deepskyblue !important;\"><span class=\"label\">Google+</span></a></li>-->\r\n    </ul>\r\n    <!-- Copyright -->\r\n    <div class=\"copyright\">\r\n      <ul class=\"menu\">\r\n        <li>&copy; MartinLayooInc. All rights reserved</li>\r\n        <li>Design: <a href=\"http://html5up.net\">HTML5 UP</a></li>\r\n      </ul>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n\r\n<script type=\"text/javascript\">\r\n    let jQuery = $;\r\n    jQuery(document).ready(function () {\r\n\r\n\r\n    });\r\n</script>";
+    __webpack_exports__["default"] = "<div id=\"page-wrapper\">\r\n  <!-- Header -->\r\n  <div id=\"header\">\r\n    <!-- Logo -->\r\n    <h1 style=\"padding-bottom:5px !important;\"><a href=\"index.html\" style=\"padding-bottom:5px !important;\" id=\"logo\"><em>MartinLayooInc's &copy;</em> Handy Man</a></h1>\r\n  </div>\r\n  <!-- Banner -->\r\n  <div id=\"mainmenucontent\">\r\n    <app-nav-menu [(ngModel)]=\"actUserStatus\" ngDefaultControl></app-nav-menu>\r\n  </div>\r\n  <!-- Highlights -->\r\n  <section>\r\n    <div style=\"margin-top:15px !important; text-align:center !important;\" class=\"container\">\r\n      <ul class=\"icons\">\r\n        <li><a href=\"#\" class=\"icon brands fa-twitter addthis_button_twitter\" style=\"color:deepskyblue !important;\"><span class=\"label\">Twitter</span></a></li>\r\n        <li><a href=\"#\" class=\"icon brands fa-facebook-f addthis_button_facebook\" style=\"color:deepskyblue !important;\"><span class=\"label\">Facebook</span></a></li>\r\n        <li><a href=\"https://pdfcrowd.com/url_to_pdf/\" class=\"fa fa-print\" aria-hidden=\"true\" style=\"color:deepskyblue !important;\"></a></li>\r\n        <li><a href=\"#\" class=\"icon brands fa-linkedin-in addthis_button_linkedin\" style=\"color:deepskyblue !important;\"><span class=\"label\">LinkedIn</span></a></li>\r\n        <!--<a href=\"#\" class=\"icon brands fa-google-plus-g addthis_button_g-plusone g-plusone\" style=\"color:deepskyblue !important;\"><span class=\"label\">Google+</span></a></li>-->\r\n        <li>\r\n      </ul>\r\n    </div>\r\n  </section>\r\n  <section>\r\n      <div class=\"container\" id=\"mainbodycontent\">\r\n          <div id=\"advertArea\">\r\n              <hr />\r\n              <advert></advert>\r\n              <hr />\r\n          </div>\r\n          <router-outlet></router-outlet>\r\n          <ng-container *ngIf=\"presentLearnMore\" ngModel=\"presentLearnMore\" ngDefaultControl>\r\n              <div style=\"margin: 20px 0px;\">\r\n                  <a [routerLink]=\"['/aboutus']\" class=\"button\">\r\n                      About Us\r\n                  </a>\r\n              </div>\r\n          </ng-container>\r\n          <div id=\"linkToMainMenu\" style=\"text-align:center !important;margin: 20px 0px;\">\r\n              <input id=\"mobilemenu\" class=\"button\" type=\"button\" value=\"mobile menu\" style=\"background-color:slateblue !important; color:white !important;\" />\r\n          </div>\r\n      </div>\r\n  </section>\r\n  <div id=\"twitterProfileFeeds\">\r\n    <twitter-profile-feeds></twitter-profile-feeds>\r\n  </div>\r\n  <!-- Gigantic Heading -->\r\n  <section class=\"wrapper style2\">\r\n    <div class=\"container\">\r\n      <header class=\"major\">\r\n        <h2>MartinLayooInc Innovation</h2>\r\n        <p>MartinLayooInc Presents Ground Breaking Consultancy.</p>\r\n      </header>\r\n    </div>\r\n  </section>\r\n\r\n  <!-- Posts -->\r\n  <section class=\"wrapper style1\">\r\n    <div class=\"container\">\r\n      <div class=\"row\">\r\n        <section class=\"col-lg-6\">\r\n          <div class=\"box post\">\r\n            <a href=\"#\" class=\"image left\"><img src=\"images/pic01.jpg\" alt=\"\" /></a>\r\n            <div class=\"inner\">\r\n              <h3><a href=\"https://simbasafaritoursv2.martinlayooinc.com/SimbaSafariToursV2\">Simba Safari Tours</a></h3>\r\n              <p>\r\n                The Nile Source is burried away in East Africa, a huge fresh water source, \"Lake Victoria\", shared by countries, Uganda to the West, Kenya to the East, and Tanzania to the South.\r\n              </p>\r\n            </div>\r\n          </div>\r\n        </section>\r\n        <section class=\"col-lg-6\">\r\n          <div class=\"box post\">\r\n            <a href=\"#\" class=\"image left\"><img src=\"images/pic02.jpg\" alt=\"\" /></a>\r\n            <div class=\"inner\">\r\n              <h3><a href=\"https://www.martinlayooinc.com/TeachersAssistantDeploy\">Online Teacher's Assitant</a></h3>\r\n              <p>\r\n                Having registered, your teacher will be notified, and you will be placed in a role as Student. Thereafter all communication and booking time with the Tutor and managing work will be done via the app. Please do not share your passwords. If you feel your password has been compromised, then we suggest you to reset it, during Login\r\n              </p>\r\n            </div>\r\n          </div>\r\n        </section>\r\n      </div>\r\n      <div class=\"row\">\r\n        <section class=\"col-lg-6\">\r\n          <div class=\"box post\">\r\n            <a href=\"#\" class=\"image left\"><img src=\"images/pic03.jpg\" alt=\"\" /></a>\r\n            <div class=\"inner\">\r\n              <h3><a href=\"https://unisa-weblive.martinlayooinc.com\">UNISA - MOOC ProtoType</a></h3>\r\n              <p>\r\n                UniSA - Mooc Project engages Employers, Governments, Potential Employees, Course Providers, Recruitment Agents, Course Endorsement, as well as Certifications. via Block Chain technology\r\n              </p>\r\n            </div>\r\n          </div>\r\n        </section>\r\n        <section class=\"col-lg-6\">\r\n          <div class=\"box post\">\r\n            <a href=\"#\" class=\"image left\"><img src=\"images/pic04.jpg\" alt=\"\" /></a>\r\n            <div class=\"inner\">\r\n              <h3><a href=\"https://nemisabadgesgenerator.martinlayooinc.com\">NEMISA - Hackathon Badges Generator</a></h3>\r\n              <p>\r\n                Nemisa is the well reknown Hackathon System where Awards by Badges are given to contenders who participate in the solution of various problems, set by NEMISA.\r\n              </p>\r\n            </div>\r\n          </div>\r\n        </section>\r\n      </div>\r\n    </div>\r\n  </section>\r\n\r\n  <!-- CTA -->\r\n  <section id=\"cta\" class=\"wrapper style3\">\r\n    <div class=\"container\">\r\n      <header>\r\n        <h2>Are you ready to Join the Quest with My Fundi Site?</h2>\r\n        <a href=\"/aboutus\" class=\"button\">Learn more</a>\r\n      </header>\r\n    </div>\r\n  </section>\r\n\r\n  <!-- Footer -->\r\n  <div id=\"footer\">\r\n    <div class=\"container\">\r\n      <div class=\"row\">\r\n        <section class=\"col-lg-6\">\r\n          <h3>Links to Stuff</h3>\r\n          <ul class=\"links\">\r\n            <li><a href=\"#\">Mattis et quis rutrum</a></li>\r\n            <li><a href=\"#\">Suspendisse amet varius</a></li>\r\n            <li><a href=\"#\">Sed et dapibus quis</a></li>\r\n            <li><a href=\"#\">Rutrum accumsan dolor</a></li>\r\n            <li><a href=\"#\">Mattis rutrum accumsan</a></li>\r\n            <li><a href=\"#\">Suspendisse varius nibh</a></li>\r\n            <li><a href=\"#\">Sed et dapibus mattis</a></li>\r\n          </ul>\r\n        </section>\r\n        <section class=\"col-lg-6\">\r\n          <h3>More Links to Stuff</h3>\r\n          <ul class=\"links\">\r\n            <li><a href=\"#\">Duis neque nisi dapibus</a></li>\r\n            <li><a href=\"#\">Sed et dapibus quis</a></li>\r\n            <li><a href=\"#\">Rutrum accumsan sed</a></li>\r\n            <li><a href=\"#\">Mattis et sed accumsan</a></li>\r\n            <li><a href=\"#\">Duis neque nisi sed</a></li>\r\n            <li><a href=\"#\">Sed et dapibus quis</a></li>\r\n            <li><a href=\"#\">Rutrum amet varius</a></li>\r\n          </ul>\r\n        </section>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Icons -->\r\n    <ul class=\"icons\">\r\n      <li><a href=\"#\" class=\"icon brands fa-twitter addthis_button_twitter\" style=\"color:deepskyblue !important;\"><span class=\"label\">Twitter</span></a></li>\r\n      <li><a href=\"#\" class=\"icon brands fa-facebook-f addthis_button_facebook\" style=\"color:deepskyblue !important;\"><span class=\"label\">Facebook</span></a></li>\r\n      <li><a href=\"https://pdfcrowd.com/url_to_pdf/\" class=\"fa fa-print\" aria-hidden=\"true\" style=\"color:deepskyblue !important;\"></a></li>\r\n      <li><a href=\"#\" class=\"icon brands fa-linkedin-in addthis_button_linkedin\" style=\"color:deepskyblue !important;\"><span class=\"label\">LinkedIn</span></a></li>\r\n\r\n      <!--<a href=\"#\" class=\"icon brands fa-google-plus-g addthis_button_g-plusone g-plusone\" style=\"color:deepskyblue !important;\"><span class=\"label\">Google+</span></a></li>-->\r\n    </ul>\r\n    <!-- Copyright -->\r\n    <div class=\"copyright\">\r\n      <ul class=\"menu\">\r\n        <li>&copy; MartinLayooInc. All rights reserved</li>\r\n        <li>Design: <a href=\"http://html5up.net\">HTML5 UP</a></li>\r\n      </ul>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n\r\n<script type=\"text/javascript\">\r\n    let jQuery = $;\r\n    jQuery(document).ready(function () {\r\n\r\n\r\n    });\r\n</script>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/blogs/blogs.component.html":
+  /*!**********************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/blogs/blogs.component.html ***!
+    \**********************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppBlogsBlogsComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"padding:3px !important;text-align:center !important;\">\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-12\">\r\n            <div style=\"text-align:center !important;\">\r\n                <img id=\"imageBanner\" src=\"https://myfundiv2.martinlayooinc.com/images/blogs.jpg\" style=\"padding:3px !important; width:95% !important; height:auto !important;\" alt=\"[[Blog Image]]\" />\r\n            </div>\r\n            <div id=\"blogs\">\r\n                <div *ngFor=\"let blog of blogs\">\r\n                    <h2>{{blog.blogName}}</h2>\r\n                    <div *ngIf=\"blgo.blogImageUrl\">\r\n                        <img src=\"https://martinlayooinc.com/images{{blog.blogName}}.jpg\" id=\"sharedImage\" />\r\n                    </div>\r\n                    <div>\r\n                        {{blog.blogContent.replace('\\n','<br/>')}}\r\n                    </div>\r\n                    <br />\r\n                    <span>Dated: {{blog.dateCreated.toUTCString()}}</span><br/>\r\n                    <hr/>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group\" id=\"createBlog\">\r\n                <input type=\"file\" id=\"blogImage\" class=\"form-control-file\" name=\"blogImage\" (change)=\"uploadBlogFile($event)\" /><br />\r\n                <input type=\"text\" id=\"blogName\" class=\"form-control-file\" name=\"blogName\" [(ngModel)]=\"blog.blogName\" /><br />\r\n                <textarea id=\"blogContent\" name=\"blogContent\" [(ngModel)]=\"blog.blogContent\" style=\"width:100% !important;height:85vh !important;\"></textarea>\r\n                <input type=\"button\" class=\"btn-primary\" (click)=\"submitBlog($event)\" value=\"Upload Blog\" /><br />\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
     /***/
   },
 
@@ -121,7 +161,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"client-wrapper\">\r\n        <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>\r\n        <section id=\"Profile\">\r\n            <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <img id=\"profileImage\" src=\"/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n                </div>\r\n            </div>\r\n            <form id=profileImageForm enctype=\"multipart/form-data\" method=\"post\">\r\n                <div>\r\n                    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                        <div class=\"col-lg-12\">\r\n                            <a href=\"#\" (click)=\"showClientProfileEditable($event)\">Create Or Update Client Profile Summary</a>\r\n                            <div id=\"editProfileSummary\">\r\n                                <input type=\"hidden\" [(ngModel)]=\"clientProfileId\" id=\"clientProfileId\" name=\"clientProfileId\" /><br />\r\n                                <input type=\"hidden\" [(ngModel)]=\"clientUserGuidId\" id=\"clientUserGuidId\" name=\"clientUserGuidId\" /><br />\r\n                                <input type=\"file\" id=\"profileImageId\" name=\"profileImage\" (change)=\"handleProfileImage($event.target.files)\" /><br />\r\n                                <input type=\"button\" value=\"Upload Profile Image\" class=\"but-primary\" (click)=\"uploadProfileImage()\" /><br />\r\n                                <hr />\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\" id=\"editableClientDetails\">\r\n                        <div class=\"col-lg-12\">\r\n                            <div style=\"margin: 2px 0px !important;\">\r\n                                <h5>Client Address</h5>\r\n                                <select id=\"clientAddressId\" name=\"clientAddressId\" [(ngModel)]=\"clientAddressId\"></select><br /><br />\r\n                            </div>\r\n                            <div style=\"margin: 2px 0px !important;\">\r\n                                <textarea rows=\"5\" cols=\"10\" name=\"profileSummary\" [(ngModel)]=\"profileSummary\" placeholder=\"Edit Client Profile\"></textarea><br />\r\n                                <input type=\"button\" class=\"btn-primary\" id=\"updateProfile\" value=\"Create Client Profile\" (click)=\"saveOrUpdateClientProfile($event)\" /><br />\r\n                            </div>\r\n                            <div id=\"viewProfileSummary\" style=\"margin: 2px 0px !important;\">\r\n                                <h5>Client Profile Summary</h5>\r\n                                {{profileSummary}}\r\n                            </div>\r\n                            <hr />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n            <form id=\"jobForm\">\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Select, Create, Or Update Job</h5>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Select Job</h5>\r\n                        <select id=\"jobId\" name=\"jobId\" [(ngModel)]=\"job.jobId\"></select><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Or Create New Job Name</h5>\r\n                        <input type=\"text\" id=\"jobName\" name=\"jobName\" [(ngModel)]=\"job.jobName\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Job Location</h5>\r\n                        <select id=\"locationId\" name=\"locationId\" [(ngModel)]=\"job.locationId\"></select>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Job Description</h5>\r\n                        <textarea id=\"jobDescription\" name=\"jobDescription\" [(ngModel)]=\"job.jobDescription\" placeholder=\"Job Description\" cols=\"10\" rows=\"6\"></textarea><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Work Categories</h5>\r\n                        <select id=\"workCategoryAndSubCatId\" name=\"workCategoryId\" [(ngModel)]=\"workCategoryAndSubCatId\"></select><br />\r\n                        <input type=\"button\" value=\"Add Work Category\" (click)=\"addWorkCategory($event)\" /><br />\r\n                        <input type=\"button\" value=\"Remove Work Category\" (click)=\"removeWorkCategory($event)\" /><br />\r\n                        <ul id=\"ulistWorkCategories\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Assigned Fundi</h5>\r\n                        <select id=\"assignedFundiProfileId\" name=\"assignedFundiProfileId\" [(ngModel)]=\"fundiProfile.fundiProfileId\"></select><br />\r\n                        <input type=\"button\" class=\"btn-primary\" value=\"Draft Contract\" style=\"margin-top:10px;\" (click)=\"draftContract($event)\" /><br />\r\n                        <hr />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Client Fundi Contract Id</h5>\r\n                        <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"job.clientFundiContractId\"></select><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Estimate Of Days To Complete</h5>\r\n                        <input type=\"number\" id=\"numberOfDaysToComplete\" name=\"numberOfDaysToComplete\" [(ngModel)]=\"job.numberOfDaysToComplete\" placeholder=\"Number Of Days To Complete\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Add Images Of Job Requirements</h5>\r\n                        <div class=\"col-lg-12\" id=\"images\">\r\n                            <input type=\"file\" name=\"JobImage\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasBeenAssignedFundi\" [(ngModel)]=\"job.hasBeenAssignedFundi\" id=\"hasBeenAssignedFundi\" />\r\n                            <label class=\"custom-control-label\" for=\"hasBeenAssignedFundi\">Has Been Assigned Fundi</label>\r\n                        </div>\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasCompleted\" [(ngModel)]=\"job.hasCompleted\" id=\"hasCompleted\" />\r\n                            <label class=\"custom-control-label\" for=\"hasCompleted\">Has Completed</label>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <input type=\"button\" class=\"btn-primary\" value=\"Select Job\" style=\"margin-top:10px;\" (click)=\"selectJob($event)\" />\r\n                        <input type=\"button\" class=\"btn-primary\" value=\"Create Job\" style=\"margin-top:10px;\" (click)=\"createJob($event)\" />\r\n                        <input type=\"button\" class=\"btn-primary\" value=\"Update Job\" style=\"margin-top:10px;\" (click)=\"updateJob($event)\" />\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </section>\r\n    </div>\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"client-wrapper\">\r\n        <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>\r\n        <section id=\"Profile\">\r\n            <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <img id=\"profileImage\" src=\"/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n                </div>\r\n            </div>\r\n            <form id=profileImageForm enctype=\"multipart/form-data\" method=\"post\">\r\n                <div>\r\n                    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                        <div class=\"col-lg-12\">\r\n                            <a href=\"#\" (click)=\"showClientProfileEditable($event)\">Create Or Update Client Profile Summary</a>\r\n                            <div id=\"editProfileSummary\">\r\n                                <input type=\"hidden\" [(ngModel)]=\"clientProfileId\" id=\"clientProfileId\" name=\"clientProfileId\" /><br />\r\n                                <input type=\"hidden\" [(ngModel)]=\"clientUserGuidId\" id=\"clientUserGuidId\" name=\"clientUserGuidId\" /><br />\r\n                                <input type=\"file\" id=\"profileImageId\" name=\"profileImage\" (change)=\"handleProfileImage($event.target.files)\" /><br />\r\n                                <input type=\"button\" value=\"Upload Profile Image\" class=\"but-primary\" (click)=\"uploadProfileImage($event)\" /><br />\r\n                                <hr />\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\" id=\"editableClientDetails\">\r\n                        <div class=\"col-lg-12\">\r\n                            <div style=\"margin: 2px 0px !important;\">\r\n                                <h5>Client Address</h5>\r\n                                <select id=\"clientAddressId\" name=\"clientAddressId\" [(ngModel)]=\"clientAddressId\"></select><br /><br />\r\n                            </div>\r\n                            <div style=\"margin: 2px 0px !important;\">\r\n                                <textarea rows=\"5\" cols=\"10\" name=\"profileSummary\" [(ngModel)]=\"profileSummary\" placeholder=\"Edit Client Profile\"></textarea><br />\r\n                                <input type=\"button\" class=\"btn-primary\" id=\"updateProfile\" value=\"Create Client Profile\" (click)=\"saveOrUpdateClientProfile($event)\" /><br />\r\n                            </div>\r\n                            <div id=\"viewProfileSummary\" style=\"margin: 2px 0px !important;\">\r\n                                <h5>Client Profile Summary</h5>\r\n                                {{profileSummary}}\r\n                            </div>\r\n                            <hr />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n            <form id=\"jobForm\">\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Select, Create, Or Update Job</h5>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Select Job</h5>\r\n                        <select id=\"jobId\" name=\"jobId\" [(ngModel)]=\"job.jobId\"></select><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Or Create New Job Name</h5>\r\n                        <input type=\"text\" id=\"jobName\" name=\"jobName\" [(ngModel)]=\"job.jobName\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Job Location</h5>\r\n                        <select id=\"locationId\" name=\"locationId\" [(ngModel)]=\"job.locationId\"></select>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Job Description</h5>\r\n                        <textarea id=\"jobDescription\" name=\"jobDescription\" [(ngModel)]=\"job.jobDescription\" placeholder=\"Job Description\" cols=\"10\" rows=\"6\"></textarea><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Work Categories</h5>\r\n                        <select id=\"workCategoryAndSubCatId\" name=\"workCategoryId\" [(ngModel)]=\"workCategoryAndSubCatId\"></select><br />\r\n                        <input type=\"button\" value=\"Add Work Category\" (click)=\"addWorkCategory($event)\" /><br />\r\n                        <input type=\"button\" value=\"Remove Work Category\" (click)=\"removeWorkCategory($event)\" /><br />\r\n                        <ul id=\"ulistWorkCategories\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Assigned Fundi</h5>\r\n                        <select id=\"assignedFundiProfileId\" name=\"assignedFundiProfileId\" [(ngModel)]=\"fundiProfile.fundiProfileId\"></select><br />\r\n                        <input type=\"button\" class=\"btn-primary\" value=\"Draft Contract\" style=\"margin-top:10px;\" (click)=\"draftContract($event)\" /><br />\r\n                        <hr />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Client Fundi Contract Id</h5>\r\n                        <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"job.clientFundiContractId\"></select><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Estimate Of Days To Complete</h5>\r\n                        <input type=\"number\" id=\"numberOfDaysToComplete\" name=\"numberOfDaysToComplete\" [(ngModel)]=\"job.numberOfDaysToComplete\" placeholder=\"Number Of Days To Complete\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Add Images Of Job Requirements</h5>\r\n                        <div class=\"col-lg-12\" id=\"images\">\r\n                            <input type=\"file\" name=\"JobImage\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasBeenAssignedFundi\" [(ngModel)]=\"job.hasBeenAssignedFundi\" id=\"hasBeenAssignedFundi\" />\r\n                            <label class=\"custom-control-label\" for=\"hasBeenAssignedFundi\">Has Been Assigned Fundi</label>\r\n                        </div>\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasCompleted\" [(ngModel)]=\"job.hasCompleted\" id=\"hasCompleted\" />\r\n                            <label class=\"custom-control-label\" for=\"hasCompleted\">Has Completed</label>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <input type=\"button\" class=\"btn-primary\" value=\"Select Job\" style=\"margin-top:10px;\" (click)=\"selectJob($event)\" />\r\n                        <input type=\"button\" class=\"btn-primary\" value=\"Create Job\" style=\"margin-top:10px;\" (click)=\"createJob($event)\" />\r\n                        <input type=\"button\" class=\"btn-primary\" value=\"Update Job\" style=\"margin-top:10px;\" (click)=\"updateJob($event)\" />\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </section>\r\n    </div>\r\n</div>";
     /***/
   },
 
@@ -141,7 +181,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"clientfundisearch-wrapper\">\r\n        <section id=\"searchFundi\">\r\n            <form id=\"fundiSearchForm\" ngForm>\r\n                <div class=\"form-group\">\r\n                    <label>Search By Fundi Categories</label>\r\n                    <div id=\"fundiCategories\">\r\n                    </div>\r\n                </div><br />\r\n                <div class=\"form-group\">\r\n                    <label>Job Name</label>\r\n                    <select id=\"jobId\" name=\"jobId\" [(ngModel)]=\"jobId\"></select>\r\n                </div><br />\r\n                <input type=\"button\" value=\"More Search Results Fundi By Categories\" class=\"but-primary\" (click)=\"searchFundiByCategories($event)\" />\r\n                <br />\r\n            </form>\r\n        </section>\r\n        <section style=\"text-align:center !important;\">\r\n            <em style=\"font-weight:bolder !important;\">View Fundis In your current locality travel zone.</em><br />\r\n            <input type=\"button\" value=\"More Search Results Fundi within locality\" class=\"but-primary\" (click)=\"searchFundiByCurrentGeoLocation($event)\" />\r\n        </section>\r\n        <div>\r\n            <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging><br />\r\n        </div>\r\n        <div id=\"results\" *ngIf=\"fundiSatisfyingJobList.length > 0\">\r\n            <section id=\"Profile\" *ngFor=\"let profile of fundiSatisfyingJobList\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-12\">\r\n                        <div style=\" width: 30% !important; margin-left: 5px !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                            <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto; align-content:center !important;\" /><br />\r\n                            <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />\r\n                            <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />\r\n                            <span id=\"averageFundiRating-{{profile.fundiProfileId}}\" class=\"profileRatingSpan rateit\" data-rateit-mode=\"font\" style=\"text-align:left;font-size: 40px; max-width: 10%;\"></span><br />\r\n                        </div>\r\n                        <div style=\"width: 70% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                            <fundi-engagement id=\"clientSearchEngagement-{{profile.fundiProfileId}}\" [profileId]=\"profile.fundiProfileId\"></fundi-engagement>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important;\">\r\n                    <div class=\"col-lg-12\">\r\n                        <a href=\"#\" (click)=\"populateFundiUserDetails($event,profile.fundiProfileId)\" style=\"width:250px; height:auto; align-content:center !important;\">View Fundi Profile</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Profile Summary</h5>\r\n                        <ul>\r\n                            <li>\r\n                                {{profile.fundiProfileSummary}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Profile Rating &amp; Reviews</h5>\r\n                        <ul>\r\n                            <li *ngFor=\"let rating of profile.fundiRatingsAndReviews\">\r\n                                <div>\r\n                                    Rated By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{rating.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Rating: <span style=\"color:brown !important;\">{{rating.fundiRating?rating.fundiRating:\"No Rating Yet\"}} out of 5</span><br />\r\n                                </div>\r\n                                <div>\r\n                                    Review By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{profile.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Review: {{rating.clientReview}}<br />\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                        <h5>Rate This Fundi</h5>\r\n                        <form id=\"ratingForm-{{profile.fundiProfileId}}\">\r\n                            <div id=\"fundiRating-{{profile.fundiProfileId}}\" class=\"rateit\" data-rateit-mode=\"font\" style=\"text-align: left; font-size: 40px; max-width: 10% !important;\"></div><br />\r\n                            <span>Choose Work Category:</span><br />\r\n                            <h5>Fundi Work Category Types</h5>\r\n                            <div *ngFor=\"let wcdata of profile.jobWorkCategoryDetails\">\r\n                                <h6>{{wcdata.workCategoryType}}</h6>\r\n                                <h5>Work Sub Category Type</h5>\r\n                                <select id=\"workCategory-{{profile.fundiProfileId}}\" name=\"workCategory\" class=\"form-control\">\r\n                                    <option value=\"{{wcdata.workSubCategoryId}}\">{{wcdata.workSubCategoryType}}</option>\r\n                                </select>\r\n                            </div>\r\n                            <br />\r\n                            <textarea id=\"review-{{profileId}}\" placeholder=\"Write review\" rows=\"5\" cols=\"20\"></textarea><br />\r\n                            <input type=\"button\" id=\"{{profileId}}\" class=\"but-primary\" value=\"Rate Fundi\" (click)=\"rateFundi($event)\" />\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"skills\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Skills</h5>\r\n                        <ul id=\"{{profile.fundiProfileId}}-skills\">\r\n                            <li>{{profile.fundiSkills}}</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <hr /><br />\r\n            </section>\r\n        </div>\r\n        <div>\r\n            <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging>\r\n        </div>\r\n    </div>\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"clientfundisearch-wrapper\">\r\n        <section id=\"searchFundi\">\r\n            <form id=\"fundiSearchForm\" ngForm>\r\n                <div class=\"form-group\">\r\n                    <label>Search By Fundi Categories</label>\r\n                    <div id=\"fundiCategories\">\r\n                    </div>\r\n                </div><br />\r\n                <div class=\"form-group\">\r\n                    <label>Job Name</label>\r\n                    <select id=\"jobId\" name=\"jobId\" [(ngModel)]=\"jobId\"></select>\r\n                </div><br />\r\n                <input type=\"button\" value=\"More Results Fundi By Categories\" class=\"but-primary\" (click)=\"searchFundiByCategories($event)\" />\r\n                <br />\r\n            </form>\r\n        </section>\r\n        <section style=\"text-align:center !important;\">\r\n            <em style=\"font-weight:bolder !important;\">View Fundis In your current locality travel zone.</em><br />\r\n            <input type=\"button\" value=\"More Results Fundi within locality\" class=\"but-primary\" (click)=\"searchFundiByCurrentGeoLocation($event)\" />\r\n        </section>\r\n        <div>\r\n            <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging><br />\r\n        </div>\r\n        <div id=\"results\" *ngIf=\"fundiSatisfyingJobList.length > 0\">\r\n            <section id=\"Profile\" *ngFor=\"let profile of fundiSatisfyingJobList\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-12\">\r\n                        <div style=\" width: 30% !important; margin-left: 5px !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                            <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto; align-content:center !important;\" /><br />\r\n                            <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />\r\n                            <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />\r\n                            <span id=\"averageFundiRating-{{profile.fundiProfileId}}\" class=\"profileRatingSpan rateit\" data-rateit-mode=\"font\" style=\"text-align:left;font-size: 40px; max-width: 10%;\"></span><br />\r\n                        </div>\r\n                        <div style=\"width: 70% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                            <fundi-engagement id=\"clientSearchEngagement-{{profile.fundiProfileId}}\" [profileId]=\"profile.fundiProfileId\"></fundi-engagement>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important;\">\r\n                    <div class=\"col-lg-12\">\r\n                        <a href=\"#\" (click)=\"populateFundiUserDetails($event,profile.fundiProfileId)\" style=\"width:250px; height:auto; align-content:center !important;\">View Fundi Profile</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Profile Summary</h5>\r\n                        <ul>\r\n                            <li>\r\n                                {{profile.fundiProfileSummary}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                        <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Profile Rating &amp; Reviews</h5>\r\n                        <ul>\r\n                            <li *ngFor=\"let rating of profile.fundiRatingsAndReviews\">\r\n                                <div>\r\n                                    Rated By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{rating.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Rating: <span style=\"color:brown !important;\">{{rating.fundiRating?rating.fundiRating:\"No Rating Yet\"}} out of 5</span><br />\r\n                                </div>\r\n                                <div>\r\n                                    Review By: <em style=\"color:brown !important;\">{{rating.clientFirstName?rating.clientFirstName:\"\"}} {{profile.clientLastName?profile.clientLastName:\"\"}}</em><br />\r\n                                    Review: {{rating.clientReview}}<br />\r\n                                </div>\r\n                            </li>\r\n                        </ul>\r\n                        <h5>Rate This Fundi</h5>\r\n                        <form id=\"ratingForm-{{profile.fundiProfileId}}\">\r\n                            <div id=\"fundiRating-{{profile.fundiProfileId}}\" class=\"rateit\" data-rateit-mode=\"font\" style=\"text-align: left; font-size: 40px; max-width: 10% !important;\"></div><br />\r\n                            <span>Choose Work Category:</span><br />\r\n                            <h5>Fundi Work Category Types</h5>\r\n                            <div *ngFor=\"let wcdata of profile.jobWorkCategoryDetails\">\r\n                                <h6>{{wcdata.workCategoryType}}</h6>\r\n                                <h5>Work Sub Category Type</h5>\r\n                                <select id=\"workCategory-{{profile.fundiProfileId}}\" name=\"workCategory\" class=\"form-control\">\r\n                                    <option value=\"{{wcdata.workSubCategoryId}}\">{{wcdata.workSubCategoryType}}</option>\r\n                                </select>\r\n                            </div>\r\n                            <br />\r\n                            <textarea id=\"review-{{profileId}}\" placeholder=\"Write review\" rows=\"5\" cols=\"20\"></textarea><br />\r\n                            <input type=\"button\" id=\"{{profileId}}\" class=\"but-primary\" value=\"Rate Fundi\" (click)=\"rateFundi($event)\" />\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                    <div class=\"col-lg-12\" id=\"skills\" style=\"margin: 2px 0px !important;\">\r\n                        <h5>Fundi Skills</h5>\r\n                        <ul id=\"{{profile.fundiProfileId}}-skills\">\r\n                            <li>{{profile.fundiSkills}}</li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n                <hr /><br />\r\n            </section>\r\n        </div>\r\n        <div>\r\n            <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging>\r\n        </div>\r\n    </div>\r\n</div>";
     /***/
   },
 
@@ -501,7 +541,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section id=\"searchFundi\">\r\n        <form id=\"fundiSearchForm\" ngForm>\r\n            <div class=\"form-group\">\r\n                <label>Search By Categories</label>\r\n                <div id=\"fundiCategories\">\r\n                </div>\r\n            </div><br />\r\n            <input type=\"button\" value=\"More Search Results Jobs By Categories\" class=\"but-primary\" (click)=\"searchJobsByCategories($event)\" />\r\n            <br />\r\n        </form> \r\n    </section>\r\n    <section style=\"text-align:center !important;\">\r\n        <em style=\"font-weight:bolder !important;\">View Jobs In your current locality travel zone.</em><br/>\r\n        <input type=\"button\" value=\"More Search Results Jobs within locality\" class=\"but-primary\" (click)=\"seachJobsByCurrentGeoLocation($event)\" />\r\n    </section>\r\n    <div>\r\n        <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging><br/>\r\n    </div>\r\n    <div id=\"results\" *ngIf=\"fundiJobList.length > 0\">\r\n        <section id=\"Profile\" *ngFor=\"let clientJob of fundiJobList\">\r\n            <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <span>Client Name: {{clientJob.clientFirstName}} {{clientJob.clientLastName}}</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=`jobName-${clientJob.JobId}` style=\"margin: 2px 0px !important;\">\r\n                    <h5>Job Name</h5>\r\n                    <div>\r\n                        <div>{{clientJob.jobName}} - #{{clientJob.jobId}}<br /></div>\r\n                        <div>\r\n                            <input type=\"button\" class=\"btn-primary\" routerLink='#' id=\"{{clientJob.jobId}}\" (click)=\"getJobPage($event)\" value=\"Job Details\" />\r\n                            <br />\r\n                        </div>\r\n                        <div>\r\n                            Distance from current Fundi's registered Location: {{clientJob.distanceApart}} Km.\r\n                            <br />\r\n                        </div>\r\n                        <div>Location: {{clientJob.jobLocationName}}</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategory\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Job Description:</h5>\r\n                    {{clientJob.jobDescription}}\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategory\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Work Category Types</h5>\r\n                    <div>\r\n                        <ul id=\"{{clientJob.jobId}}-workCategory\">\r\n                            <li *ngFor=\"let wsc of clientJob.jobWorkCategoryDetails\">\r\n                                <h5>Work Categories</h5>\r\n                                <em>{{wsc.workCategoryType}}</em><br />\r\n                                {{wsc.workSubCategoryType}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <hr /><br />\r\n        </section>\r\n    </div>\r\n    <div>\r\n        <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging>\r\n    </div>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section id=\"searchFundi\">\r\n        <form id=\"fundiSearchForm\" ngForm>\r\n            <div class=\"form-group\">\r\n                <label>Search By Categories</label>\r\n                <div id=\"fundiCategories\">\r\n                </div>\r\n            </div><br />\r\n            <input type=\"button\" value=\"More Results Jobs By Categories\" class=\"but-primary\" (click)=\"searchJobsByCategories($event)\" />\r\n            <br />\r\n        </form> \r\n    </section>\r\n    <section style=\"text-align:center !important;\">\r\n        <em style=\"font-weight:bolder !important;\">View Jobs In your current locality travel zone.</em><br/>\r\n        <input type=\"button\" value=\"More Results Jobs within locality\" class=\"but-primary\" (click)=\"seachJobsByCurrentGeoLocation($event)\" />\r\n    </section>\r\n    <div>\r\n        <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging><br/>\r\n    </div>\r\n    <div id=\"results\" *ngIf=\"fundiJobList.length > 0\">\r\n        <section id=\"Profile\" *ngFor=\"let clientJob of fundiJobList\">\r\n            <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <span>Client Name: {{clientJob.clientFirstName}} {{clientJob.clientLastName}}</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=`jobName-${clientJob.JobId}` style=\"margin: 2px 0px !important;\">\r\n                    <h5>Job Name</h5>\r\n                    <div>\r\n                        <div>{{clientJob.jobName}} - #{{clientJob.jobId}}<br /></div>\r\n                        <div>\r\n                            <input type=\"button\" class=\"btn-primary\" routerLink='#' id=\"{{clientJob.jobId}}\" (click)=\"getJobPage($event)\" value=\"Job Details\" />\r\n                            <br />\r\n                        </div>\r\n                        <div>\r\n                            Distance from current Fundi's registered Location: {{clientJob.distanceApart}} Km.\r\n                            <br />\r\n                        </div>\r\n                        <div>Location: {{clientJob.jobLocationName}}</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategory\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Job Description:</h5>\r\n                    {{clientJob.jobDescription}}\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategory\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Work Category Types</h5>\r\n                    <div>\r\n                        <ul id=\"{{clientJob.jobId}}-workCategory\">\r\n                            <li *ngFor=\"let wsc of clientJob.jobWorkCategoryDetails\">\r\n                                <h5>Work Categories</h5>\r\n                                <em>{{wsc.workCategoryType}}</em><br />\r\n                                {{wsc.workSubCategoryType}}\r\n                            </li>\r\n                        </ul>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <hr /><br />\r\n        </section>\r\n    </div>\r\n    <div>\r\n        <paging [pagingContentModel]=\"pagingContentModel\" (searchEventEmitter)=\"searchCommand($event)\"></paging>\r\n    </div>\r\n</div>\r\n";
     /***/
   },
 
@@ -601,7 +641,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<section id=\"banner\" style=\"height:auto !important;\">\r\n  <header style=\"margin-top:5px !important;position:relative !important;\">\r\n    <!-- Nav -->\r\n    <nav id=\"nav\">\r\n      <div style=\"position:relative !important;margin-bottom:5px;text-align:left;\">\r\n        <span style=\"color:red;background-color:black;padding:5px;display:none;font-size:small;\" class=\"col-lg-4\" id=\"loginName\"></span><br />\r\n      </div>\r\n      <ul style=\"margin: 6px 0px !important;\">\r\n        <li style=\"margin:10px 0px !important;padding:10px !important;\">\r\n          <a [routerLink]=\"['/']\">Home</a>\r\n        </li>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/authenticated-entities-override'>\r\n                    User Overrides\r\n                </a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/chat'>Live Chat</a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && (userRoles.indexOf('Fundi') > -1 ||  userRoles.indexOf('Guest')) > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-subscription'>Fundi Subscription</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/manage-profile'>Manage Fundi Profile</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/fundi-search-job'>Search For Jobs</a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"userRoles && userRoles.indexOf('Client') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a routerLink='/client-create-job'>Manage Jobs</a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/clientsearch']\">\r\n              Search For Fundi\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-entities'>Manage Entities</a>\r\n            </li>\r\n            <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                <a routerLink='/manage-roles'>\r\n                    Manage Roles\r\n                </a>\r\n            </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/contactus']\">\r\n              Contact Us\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/aboutus']\">\r\n              About Us\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"!actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/login']\">\r\n              login\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/register']\">\r\n              Register\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngModel=\"actUserStatus\" ngDefaultControl>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a [routerLink]=\"['/scanqrcode']\">\r\n              Scan Qr-Code\r\n            </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n            <a (click)=\"setIsLogInPage()\" [routerLink]=\"['/home']\">\r\n              Logout\r\n            </a>\r\n          </li>\r\n        </ng-container>\r\n        <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n          <a [routerLink]=\"['/forgot-password']\">\r\n            Forgot password\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!-- Roles Banner-->\r\n    <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl>\r\n      <!-- Nav -->\r\n      <nav style=\"text-align:left !important;\">\r\n          <ul style=\"margin: 6px 0px !important;\">\r\n              <li style=\"margin:10px 0px !important;padding:10px !important;\" *ngFor=\"let role of userRoles\">\r\n                  <a routerLink=\"/{{role}}\" routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">{{role}}</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">Fundi Locations</a>\r\n              </li>\r\n          </ul>\r\n      </nav>\r\n    </ng-container>\r\n    <hr/>\r\n  </header>\r\n</section>\r\n";
+    __webpack_exports__["default"] = "<section id=\"banner\" style=\"height:auto !important;\">\r\n  <header style=\"margin-top:5px !important;position:relative !important;\">\r\n    <!-- Nav -->\r\n    <nav id=\"nav\">\r\n      <div style=\"position:relative !important;margin-bottom:5px;text-align:left;\">\r\n        <span style=\"color:red;background-color:black;padding:5px;display:none;font-size:small;\" class=\"col-lg-4\" id=\"loginName\"></span><br />\r\n      </div>\r\n      <ul style=\"margin: 6px 0px !important;\">\r\n          <li style=\"margin:10px 0px !important;padding:10px !important;\">\r\n              <a [routerLink]=\"['/']\">Home</a>\r\n          </li>\r\n          <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/authenticated-entities-override'>\r\n                      User Overrides\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/chat'>Live Chat</a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"userRoles && (userRoles.indexOf('Fundi') > -1 ||  userRoles.indexOf('Guest')) > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-subscription'>Fundi Subscription</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-profile'>Manage Fundi Profile</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-search-job'>Search For Jobs</a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"userRoles && userRoles.indexOf('Client') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/client-create-job'>Manage Jobs</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/clientsearch']\">\r\n                      Search For Fundi\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-entities'>Manage Entities</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-roles'>\r\n                      Manage Roles\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"!actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/contactus']\">\r\n                      Contact Us\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/aboutus']\">\r\n                      About Us\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"!actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/login']\">\r\n                      login\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/register']\">\r\n                      Register\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngModel=\"actUserStatus\" ngDefaultControl>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/scanqrcode']\">\r\n                      Scan Qr-Code\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a (click)=\"setIsLogInPage()\" [routerLink]=\"['/home']\">\r\n                      Logout\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n              <a [routerLink]=\"['/blogs']\">\r\n                  Blogs\r\n              </a>\r\n          </li>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n              <a [routerLink]=\"['/forgot-password']\">\r\n                  Forgot password\r\n              </a>\r\n          </li>\r\n      </ul>\r\n    </nav>\r\n    <!-- Roles Banner-->\r\n    <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl>\r\n      <!-- Nav -->\r\n      <nav style=\"text-align:left !important;\">\r\n          <ul style=\"margin: 6px 0px !important;\">\r\n              <li style=\"margin:10px 0px !important;padding:10px !important;\" *ngFor=\"let role of userRoles\">\r\n                  <a routerLink=\"/{{role}}\" routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">{{role}}</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">Fundi Locations</a>\r\n              </li>\r\n          </ul>\r\n      </nav>\r\n    </ng-container>\r\n    <hr/>\r\n  </header>\r\n</section>\r\n";
     /***/
   },
 
@@ -1234,6 +1274,145 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/advert/advert.component.ts":
+  /*!********************************************!*\
+    !*** ./src/app/advert/advert.component.ts ***!
+    \********************************************/
+
+  /*! exports provided: AdvertComponent */
+
+  /***/
+  function srcAppAdvertAdvertComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "AdvertComponent", function () {
+      return AdvertComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../services/myFundiService */
+    "./src/services/myFundiService.ts");
+    /* harmony import */
+
+
+    var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs/add/operator/map */
+    "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var AdvertComponent = /*#__PURE__*/function () {
+      function AdvertComponent(myFundiService, httpClient) {
+        _classCallCheck(this, AdvertComponent);
+
+        this.myFundiService = myFundiService;
+        this.httpClient = httpClient;
+      }
+
+      _createClass(AdvertComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this = this;
+
+          var url = "/Administration/GetAdvertLink";
+          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+            'content-type': 'application/json'
+          });
+          this.httpClient.get(url, {
+            headers: headers
+          }).map(function (q) {
+            debugger;
+
+            if (q) {
+              _this.advertLinkUrl = q.advertLinkUrl;
+            }
+          }).subscribe();
+        }
+      }, {
+        key: "updateUploadAdvert",
+        value: function updateUploadAdvert($event) {
+          this.advertGifFile = $event.target.files[0];
+        }
+      }, {
+        key: "ngAfterViewChecked",
+        value: function ngAfterViewChecked() {
+          this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+        }
+      }, {
+        key: "submitAdvert",
+        value: function submitAdvert($event) {
+          //upload File:
+          var url = "/Administration/UploadAdvertGifImage";
+          var formData = new FormData();
+          formData.append("advertGifFile", this.advertGifFile);
+          this.httpClient.post(url, formData).map(function (res) {
+            alert(res.message);
+
+            if (res.result) {
+              alert("Added Gif Advert!");
+            }
+          }).subscribe();
+          $event.preventDefault();
+        }
+      }]);
+
+      return AdvertComponent;
+    }();
+
+    AdvertComponent.ctorParameters = function () {
+      return [{
+        type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]
+      }, {
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+      }];
+    };
+
+    AdvertComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+      selector: 'advert',
+      template: __importDefault(__webpack_require__(
+      /*! raw-loader!./advert.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/advert/advert.component.html"))["default"]
+    }), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])], AdvertComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/app.component.ts":
   /*!**********************************!*\
     !*** ./src/app/app.component.ts ***!
@@ -1309,7 +1488,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var AppComponent = /*#__PURE__*/function () {
       function AppComponent(router) {
-        var _this = this;
+        var _this2 = this;
 
         _classCallCheck(this, AppComponent);
 
@@ -1319,7 +1498,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"];
         }).subscribe(function (event) {
           // You only receive NavigationEnd events
-          _this.presentLearnMore = _this.isPresentLearnMore(event.url);
+          _this2.presentLearnMore = _this2.isPresentLearnMore(event.url);
         });
         setInterval(this.adaptResizeWindowsMenus, 500);
       }
@@ -1779,6 +1958,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(
     /*! ./roles/authenticateduser/authenticateduser.component */
     "./src/app/roles/authenticateduser/authenticateduser.component.ts");
+    /* harmony import */
+
+
+    var _advert_advert_component__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(
+    /*! ./advert/advert.component */
+    "./src/app/advert/advert.component.ts");
+    /* harmony import */
+
+
+    var _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(
+    /*! ./blogs/blogs.component */
+    "./src/app/blogs/blogs.component.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -1803,7 +1994,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
 
     AppModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_6__["NavMenuComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"], _activecrudoperations_activecrudoperations_component__WEBPACK_IMPORTED_MODULE_8__["ActiveCrudOperationsComponent"], _fetch_data_fetch_data_component__WEBPACK_IMPORTED_MODULE_9__["FetchDataComponent"], _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"], _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"], _register_register_component__WEBPACK_IMPORTED_MODULE_11__["RegisterComponent"], _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"], _userroles_userroles_component__WEBPACK_IMPORTED_MODULE_13__["UserRolesComponent"], _contactus_contactus_component__WEBPACK_IMPORTED_MODULE_14__["ContactUsComponent"], _about_aboutus_component__WEBPACK_IMPORTED_MODULE_15__["AboutUsComponent"], _sectionscontact_sectionscontact_component__WEBPACK_IMPORTED_MODULE_16__["SectionsContactComponent"], _paypalSuccess_paypal_success_component__WEBPACK_IMPORTED_MODULE_17__["PayPalSuccessComponent"], _paypalFailure_paypal_failure_component__WEBPACK_IMPORTED_MODULE_18__["PayPalFailureComponent"], _newroles_newroles_component__WEBPACK_IMPORTED_MODULE_19__["NewRolesComponent"], _qrCodeReader_qrCodeReader_component__WEBPACK_IMPORTED_MODULE_23__["QrCodeComponent"], _crud_operations_address_address_component__WEBPACK_IMPORTED_MODULE_24__["AddressComponent"], _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], _crud_operations_company_company_component__WEBPACK_IMPORTED_MODULE_25__["CompanyComponent"], _success_success_component__WEBPACK_IMPORTED_MODULE_27__["SuccessComponent"], _failure_failure_component__WEBPACK_IMPORTED_MODULE_28__["FailureComponent"], _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__["AuthenticatedUserOveridesComponent"], _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_29__["GuestRoleComponent"], _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_30__["FundiRoleComponent"], _roles_client_client_component__WEBPACK_IMPORTED_MODULE_35__["ClientRoleComponent"], _socialmedia_twitterfeeds_twitterprofilefeeds_component__WEBPACK_IMPORTED_MODULE_34__["TwitterProfileFeedsComponent"], _profile_profile_component__WEBPACK_IMPORTED_MODULE_37__["ProfileComponent"], _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_40__["ProfileCreateComponent"], _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_53__["CoursesComponent"], _crud_operations_certification_certification_component__WEBPACK_IMPORTED_MODULE_38__["CertificationComponent"], _crud_operations_work_category_workcategory_component__WEBPACK_IMPORTED_MODULE_39__["WorkCategoryComponent"], _crud_operations_coursescrud_coursescrud_component__WEBPACK_IMPORTED_MODULE_41__["CourseCrudComponent"], _crud_operations_certificationcrud_certificationcrud_component__WEBPACK_IMPORTED_MODULE_42__["CertificationCrudComponent"], _crud_operations_workcategorycrud_workcategorycrud_component__WEBPACK_IMPORTED_MODULE_43__["WorkCategoryCrudComponent"], _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_44__["ClientFundiSearchComponent"], _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_45__["FundiProfileByIdComponent"], _client_client_component__WEBPACK_IMPORTED_MODULE_46__["ClientProfileComponent"], _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__["FundiJobSearchComponent"], _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_48__["FundiSubscriptionComponent"], _clientsubscription_clientsubscription_component__WEBPACK_IMPORTED_MODULE_61__["ClientSubscriptionComponent"], _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_50__["VehicleMonitorComponent"], _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_51__["myRecaptchaComponent"], _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_52__["ClientJobViewComponent"], _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_54__["WorkSubCategoryCrudComponent"], _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_55__["FundiEngagementComponent"], _paging_paging_component__WEBPACK_IMPORTED_MODULE_56__["PagingComponent"], _chat_chat_component__WEBPACK_IMPORTED_MODULE_57__["ChatComponent"], _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"], _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_6__["NavMenuComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"], _activecrudoperations_activecrudoperations_component__WEBPACK_IMPORTED_MODULE_8__["ActiveCrudOperationsComponent"], _fetch_data_fetch_data_component__WEBPACK_IMPORTED_MODULE_9__["FetchDataComponent"], _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"], _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"], _register_register_component__WEBPACK_IMPORTED_MODULE_11__["RegisterComponent"], _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"], _userroles_userroles_component__WEBPACK_IMPORTED_MODULE_13__["UserRolesComponent"], _contactus_contactus_component__WEBPACK_IMPORTED_MODULE_14__["ContactUsComponent"], _about_aboutus_component__WEBPACK_IMPORTED_MODULE_15__["AboutUsComponent"], _sectionscontact_sectionscontact_component__WEBPACK_IMPORTED_MODULE_16__["SectionsContactComponent"], _paypalSuccess_paypal_success_component__WEBPACK_IMPORTED_MODULE_17__["PayPalSuccessComponent"], _paypalFailure_paypal_failure_component__WEBPACK_IMPORTED_MODULE_18__["PayPalFailureComponent"], _newroles_newroles_component__WEBPACK_IMPORTED_MODULE_19__["NewRolesComponent"], _qrCodeReader_qrCodeReader_component__WEBPACK_IMPORTED_MODULE_23__["QrCodeComponent"], _crud_operations_address_address_component__WEBPACK_IMPORTED_MODULE_24__["AddressComponent"], _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], _crud_operations_company_company_component__WEBPACK_IMPORTED_MODULE_25__["CompanyComponent"], _success_success_component__WEBPACK_IMPORTED_MODULE_27__["SuccessComponent"], _failure_failure_component__WEBPACK_IMPORTED_MODULE_28__["FailureComponent"], _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__["AuthenticatedUserOveridesComponent"], _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_29__["GuestRoleComponent"], _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_30__["FundiRoleComponent"], _roles_client_client_component__WEBPACK_IMPORTED_MODULE_35__["ClientRoleComponent"], _socialmedia_twitterfeeds_twitterprofilefeeds_component__WEBPACK_IMPORTED_MODULE_34__["TwitterProfileFeedsComponent"], _profile_profile_component__WEBPACK_IMPORTED_MODULE_37__["ProfileComponent"], _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_40__["ProfileCreateComponent"], _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_53__["CoursesComponent"], _crud_operations_certification_certification_component__WEBPACK_IMPORTED_MODULE_38__["CertificationComponent"], _crud_operations_work_category_workcategory_component__WEBPACK_IMPORTED_MODULE_39__["WorkCategoryComponent"], _crud_operations_coursescrud_coursescrud_component__WEBPACK_IMPORTED_MODULE_41__["CourseCrudComponent"], _crud_operations_certificationcrud_certificationcrud_component__WEBPACK_IMPORTED_MODULE_42__["CertificationCrudComponent"], _crud_operations_workcategorycrud_workcategorycrud_component__WEBPACK_IMPORTED_MODULE_43__["WorkCategoryCrudComponent"], _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_44__["ClientFundiSearchComponent"], _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_45__["FundiProfileByIdComponent"], _client_client_component__WEBPACK_IMPORTED_MODULE_46__["ClientProfileComponent"], _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__["FundiJobSearchComponent"], _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_48__["FundiSubscriptionComponent"], _clientsubscription_clientsubscription_component__WEBPACK_IMPORTED_MODULE_61__["ClientSubscriptionComponent"], _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_50__["VehicleMonitorComponent"], _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_51__["myRecaptchaComponent"], _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_52__["ClientJobViewComponent"], _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_54__["WorkSubCategoryCrudComponent"], _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_55__["FundiEngagementComponent"], _paging_paging_component__WEBPACK_IMPORTED_MODULE_56__["PagingComponent"], _chat_chat_component__WEBPACK_IMPORTED_MODULE_57__["ChatComponent"], _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"], _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"], _advert_advert_component__WEBPACK_IMPORTED_MODULE_63__["AdvertComponent"], _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"].withServerTransition({
         appId: 'ng-cli-universal'
       }), _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot([{
@@ -1925,6 +2116,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         path: 'terms-and-conditions',
         component: _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"]
+      }, {
+        path: 'blogs',
+        component: _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"]
       }])],
       providers: [{
         provide: _guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"],
@@ -1960,6 +2154,137 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })], AppModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/blogs/blogs.component.ts":
+  /*!******************************************!*\
+    !*** ./src/app/blogs/blogs.component.ts ***!
+    \******************************************/
+
+  /*! exports provided: BlogsComponent */
+
+  /***/
+  function srcAppBlogsBlogsComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "BlogsComponent", function () {
+      return BlogsComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../services/myFundiService */
+    "./src/services/myFundiService.ts");
+    /* harmony import */
+
+
+    var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs/add/operator/map */
+    "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var BlogsComponent = /*#__PURE__*/function () {
+      function BlogsComponent(myFundiService, httpClient) {
+        _classCallCheck(this, BlogsComponent);
+
+        this.myFundiService = myFundiService;
+        this.httpClient = httpClient;
+      }
+
+      _createClass(BlogsComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this3 = this;
+
+          var blogObs = this.myFundiService.GetBlogs();
+          blogObs.map(function (q) {
+            debugger;
+
+            if (q) {
+              _this3.blogs = q;
+            }
+          }).subscribe();
+        }
+      }, {
+        key: "uploadBlogFile",
+        value: function uploadBlogFile($event) {
+          this.blogFile = $event.target.files[0];
+        }
+      }, {
+        key: "submitBlog",
+        value: function submitBlog($event) {
+          //upload File:
+          var url = "/Administration/UploadBlog";
+          var formData = new FormData();
+          formData.append("blogFile", this.blogFile);
+          formData.append("blogName", this.blog.blogName);
+          formData.append("blogContent", this.blog.blogContent);
+          this.httpClient.post(url, formData).map(function (res) {
+            alert(res.message);
+
+            if (res.result) {
+              alert("Added Gif Advert!");
+            }
+          }).subscribe();
+          $event.preventDefault();
+        }
+      }]);
+
+      return BlogsComponent;
+    }();
+
+    BlogsComponent.ctorParameters = function () {
+      return [{
+        type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]
+      }, {
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+      }];
+    };
+
+    BlogsComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+      selector: 'blogs',
+      template: __importDefault(__webpack_require__(
+      /*! raw-loader!./blogs.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/blogs/blogs.component.html"))["default"]
+    }), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])], BlogsComponent);
     /***/
   },
 
@@ -2769,7 +3094,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this2 = this;
+          var _this4 = this;
 
           this.clientProfile = {
             clientProfileId: 0
@@ -2794,14 +3119,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           debugger;
           resObs.map(function (clientProf) {
             if (clientProf) {
-              _this2.clientProfile = clientProf;
-              _this2.profileSummary = clientProf.profileSummary;
-              _this2.clientProfileId = _this2.clientProfile.clientProfileId;
+              _this4.clientProfile = clientProf;
+              _this4.profileSummary = clientProf.profileSummary;
+              _this4.clientProfileId = _this4.clientProfile.clientProfileId;
 
-              var jobCatObs = _this2.myFundiService.GetAllClientJobByClientProfileId(_this2.clientProfile.clientProfileId);
+              var jobCatObs = _this4.myFundiService.GetAllClientJobByClientProfileId(_this4.clientProfile.clientProfileId);
 
               jobCatObs.map(function (jobCats) {
-                _this2.jobs = jobCats; //Dynamic check boxes for Categories To Search for:
+                _this4.jobs = jobCats; //Dynamic check boxes for Categories To Search for:
 
                 var selectjobCategories = document.querySelector('select#jobId');
                 var selectJobIdOptions = document.querySelector('select#jobId option');
@@ -2815,7 +3140,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 option.value = "0";
                 selectjobCategories.appendChild(option);
 
-                _this2.jobs.forEach(function (cat) {
+                _this4.jobs.forEach(function (cat) {
                   var option = document.createElement('option');
                   option.textContent = cat.jobName;
                   option.value = cat.jobId.toString();
@@ -2823,7 +3148,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 });
               }).subscribe();
             } else {
-              _this2.clientProfile = {
+              _this4.clientProfile = {
                 clientProfileId: 0,
                 userId: "",
                 profileSummary: "",
@@ -2834,11 +3159,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }).subscribe();
           var userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
           userGuidObs.map(function (q) {
-            _this2.clientUserGuidId = q;
+            _this4.clientUserGuidId = q;
           }).subscribe();
           var workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
           workCatObs.map(function (workCats) {
-            _this2.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
+            _this4.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
 
             var selectWorkCategories = document.querySelector('select#workCategoryAndSubCatId');
             var selectWorkCategoriesOptions = document.querySelector('select#workCategoryAndSubCatId option');
@@ -2852,17 +3177,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             option.value = "0,0";
             selectWorkCategories.appendChild(option);
 
-            _this2.workCategories.forEach(function (cat) {
+            _this4.workCategories.forEach(function (cat) {
               var option = document.createElement('option');
               option.textContent = "".concat(cat.workCategory.workCategoryType, ": [").concat(cat.workSubCategory.workSubCategoryType, "]");
               option.value = "".concat(cat.workCategoryId.toString(), ",").concat(cat.workSubCategoryId.toString());
               selectWorkCategories.appendChild(option);
             });
 
-            var funidProfilesObs = _this2.myFundiService.GetAllFundiProfiles();
+            var funidProfilesObs = _this4.myFundiService.GetAllFundiProfiles();
 
             funidProfilesObs.map(function (q) {
-              _this2.fundiProfiles = q;
+              _this4.fundiProfiles = q;
               var addSelect = document.querySelector('select#assignedFundiProfileId');
               var opts = addSelect.querySelector('option');
 
@@ -2876,20 +3201,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               optionElem.text = "Select Fundi Profile";
               addSelect.append(optionElem);
 
-              _this2.fundiProfiles.map(function (fundiProf) {
+              _this4.fundiProfiles.map(function (fundiProf) {
                 var optionElem = document.createElement('option');
                 optionElem.value = fundiProf.fundiProfileId.toString();
                 optionElem.text = fundiProf.user.firstName + " " + fundiProf.user.lastName;
                 addSelect.append(optionElem);
               });
 
-              _this2.fundiProfile = {};
-              _this2.fundiProfile.fundiProfileId = 0;
+              _this4.fundiProfile = {};
+              _this4.fundiProfile.fundiProfileId = 0;
 
-              var locatObs = _this2.myFundiService.GetAllLocations();
+              var locatObs = _this4.myFundiService.GetAllLocations();
 
               locatObs.map(function (loc) {
-                _this2.locations = loc;
+                _this4.locations = loc;
                 var addSelect = document.querySelector('select#locationId');
                 var opts = addSelect.querySelector('option');
 
@@ -2903,17 +3228,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 optionElem.text = "Select Location";
                 document.querySelector('select#locationId').append(optionElem);
 
-                _this2.locations.forEach(function (comCat, index, cmdCats) {
+                _this4.locations.forEach(function (comCat, index, cmdCats) {
                   var optionElem = document.createElement('option');
                   optionElem.value = comCat.locationId.toString();
                   optionElem.text = comCat.locationName;
                   document.querySelector('select#locationId').append(optionElem);
                 });
 
-                var clientaddObs = _this2.myFundiService.GetAllAddresses();
+                var clientaddObs = _this4.myFundiService.GetAllAddresses();
 
                 clientaddObs.map(function (q) {
-                  _this2.clientAddresses = q;
+                  _this4.clientAddresses = q;
                   var addresses = q;
                   var addrSelector = document.querySelector('select#clientAddressId');
                   var clopts = addrSelector.querySelector('option');
@@ -2941,28 +3266,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "draftContract",
         value: function draftContract($event) {
-          var _this3 = this;
+          var _this5 = this;
 
           var assigneFundiProfileId = parseInt(jQuery('select#assignedFundiProfileId').val());
           var fundiUserObs = this.myFundiService.GetFundiUserByProfileId(assigneFundiProfileId);
           fundiUserObs.map(function (fundiUser) {
             var draftContractData = {
               fundiProfileId: assigneFundiProfileId,
-              clientProfileId: _this3.clientProfile.clientProfileId,
+              clientProfileId: _this5.clientProfile.clientProfileId,
               fundiFirstName: fundiUser.firstName,
               fundiLastName: fundiUser.lastName,
               fundiUsername: fundiUser.username,
-              clientFirstName: _this3.userDetails.firstName,
-              clientLastName: _this3.userDetails.lastName,
-              clientUsername: _this3.userDetails.username,
-              clientFundiContractId: _this3.clientFundiContractId,
-              numberOfDaysToComplete: _this3.numberOfDaysToComplete,
-              jobName: _this3.job.jobName,
-              contractualDescription: _this3.job.jobDescription
+              clientFirstName: _this5.userDetails.firstName,
+              clientLastName: _this5.userDetails.lastName,
+              clientUsername: _this5.userDetails.username,
+              clientFundiContractId: _this5.clientFundiContractId,
+              numberOfDaysToComplete: _this5.numberOfDaysToComplete,
+              jobName: _this5.job.jobName,
+              contractualDescription: _this5.job.jobDescription
             };
             localStorage.setItem("DraftContractData", JSON.stringify(draftContractData));
 
-            _this3.router.navigateByUrl("/client-fundi-contract");
+            _this5.router.navigateByUrl("/client-fundi-contract");
           }).subscribe();
           $event.preventDefault();
         }
@@ -2973,7 +3298,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "uploadProfileImage",
-        value: function uploadProfileImage() {
+        value: function uploadProfileImage($event) {
           //let busyGif: HTMLDivElement = document.querySelector("div#loadingProfileImage");
           //busyGif.style.display = 'block';
           var url = "/ClientProfile/SaveClientProfileImage";
@@ -2983,12 +3308,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.httpClient.post(url, formData).map(function (res) {
             alert(res.message);
           }).subscribe();
-          ;
+          $event.preventDefault();
         }
       }, {
         key: "saveOrUpdateClientProfile",
         value: function saveOrUpdateClientProfile($event) {
-          var _this4 = this;
+          var _this6 = this;
 
           this.clientProfile.clientProfileId = this.clientProfileId;
           this.clientProfile.userId = this.clientUserGuidId;
@@ -2999,7 +3324,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           profileObs.map(function (res) {
             alert(res.message);
 
-            _this4.router.navigateByUrl('success');
+            _this6.router.navigateByUrl('success');
           }).subscribe();
           $event.preventDefault();
         }
@@ -3036,7 +3361,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectJob",
         value: function selectJob($event) {
-          var _this5 = this;
+          var _this7 = this;
 
           var selectedJobId = jQuery('div#client-wrapper select#jobId').val();
           var job = this.jobs.find(function (j) {
@@ -3047,7 +3372,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var jWCatsObs = this.myFundiService.GetJobWorkCategoriesByJobId(this.job.jobId);
           this.chosenWorkCategories = [];
           jWCatsObs.map(function (jwCats) {
-            _this5.chosenWorkCategories = jwCats; //populate ui with string ls of jobWorkCats:
+            _this7.chosenWorkCategories = jwCats; //populate ui with string ls of jobWorkCats:
 
             var ulWCats = jQuery('ul#ulistWorkCategories');
             jQuery('ul#ulistWorkCategories > li').remove();
@@ -3080,10 +3405,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkCategory",
         value: function addWorkCategory($event) {
-          var _this6 = this;
+          var _this8 = this;
 
           var selectedWorkCategory = this.workCategories.find(function (workCat) {
-            return workCat.workCategoryId == parseInt(_this6.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(_this6.workCategoryAndSubCatId.split(',')[1]);
+            return workCat.workCategoryId == parseInt(_this8.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(_this8.workCategoryAndSubCatId.split(',')[1]);
           });
           this.chosenWorkCategories.push(selectedWorkCategory);
           var ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
@@ -3096,10 +3421,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "removeWorkCategory",
         value: function removeWorkCategory($event) {
-          var _this7 = this;
+          var _this9 = this;
 
           var selectedWorkCategory = this.workCategories.find(function (workCat) {
-            return workCat.workCategoryId == parseInt(_this7.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(_this7.workCategoryAndSubCatId.split(',')[1]);
+            return workCat.workCategoryId == parseInt(_this9.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(_this9.workCategoryAndSubCatId.split(',')[1]);
           });
           var curThis = this;
           var ulSelectedCategories = document.querySelector('ul#ulistWorkCategories');
@@ -3111,7 +3436,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (hasRemoved) {
               alert("Work Category removed!");
 
-              _this7.selectJob(null);
+              _this9.selectJob(null);
             } else {
               alert("Work Category And Sub Category Do Not Exist Or Failed Removal!");
             }
@@ -3278,44 +3603,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return decodeURIComponent(url);
         }
       }, {
-        key: "searchCommand",
-        value: function searchCommand($event) {
-          this.pagingContentModel = $event;
-          this.bindContentToSearchResultsDiv();
-          this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
-          var mod = this.listToShow.length % this.numberOfResultsPerPage;
-          var numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
-          if (mod > 0) numberOfPages += 1;
-          this.fundiSatisfyingJobList = this.pagingContentModel.content;
-
-          if (this.currentPage < numberOfPages) {
-            this.pagingContentModel.isPageNextEnabled = true;
-          } else {
-            this.pagingContentModel.isPageNextEnabled = false;
-          }
-
-          if (this.currentPage <= numberOfPages - this.numberOfPageJumps) {
-            this.pagingContentModel.isPageNext3Enabled = true;
-          } else {
-            this.pagingContentModel.isPageNext3Enabled = false;
-          }
-
-          if (this.currentPage > 1) {
-            this.pagingContentModel.isPagePrevEnabled = true;
-          } else {
-            this.pagingContentModel.isPagePrevEnabled = false;
-          }
-
-          if (this.currentPage > this.numberOfPageJumps) {
-            this.pagingContentModel.isPagePrev3Enabled = true;
-          } else {
-            this.pagingContentModel.isPagePrev3Enabled = false;
-          }
-        }
-      }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this8 = this;
+          var _this10 = this;
 
           this.numberOfResultsPerPage = 2;
           this.currentPage = 1;
@@ -3340,11 +3630,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jQuery('#fundiSearchForm div#fundiCategories').children().remove();
           var workCatObs = this.myFundiService.GetWorkCategories();
           workCatObs.map(function (workCats) {
-            _this8.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
+            _this10.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
 
             var divFundiCategories = document.querySelector('#fundiSearchForm div#fundiCategories');
 
-            _this8.workCategories.forEach(function (cat) {
+            _this10.workCategories.forEach(function (cat) {
               var chBoxLabel = document.createElement('label');
               chBoxLabel.textContent = cat.workCategoryType;
               var chBox = document.createElement('input');
@@ -3380,7 +3670,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               ul.appendChild(li);
               divFundiCategories.appendChild(ul);
 
-              var workSubCatObs = _this8.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
+              var workSubCatObs = _this10.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
 
               workSubCatObs.map(function (workSubCats) {
                 var workSubCategories = workSubCats; //Dynamic check boxes for Categories To Search for:
@@ -3427,12 +3717,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }).subscribe();
           var clientProfileObs = this.myFundiService.GetClientProfile(this.userDetails.username);
           clientProfileObs.map(function (clientProfile) {
-            var jobCatObs = _this8.myFundiService.GetAllClientJobByClientProfileId(clientProfile.clientProfileId);
+            var jobCatObs = _this10.myFundiService.GetAllClientJobByClientProfileId(clientProfile.clientProfileId);
 
             jobCatObs.map(function (jobs) {
-              _this8.jobs = jobs;
-              if (_this8.jobs.length > 0) _this8.job = _this8.jobs[0];else {
-                _this8.job = {
+              _this10.jobs = jobs;
+              if (_this10.jobs.length > 0) _this10.job = _this10.jobs[0];else {
+                _this10.job = {
                   jobId: 0,
                   jobName: "",
                   jobDescription: "",
@@ -3543,7 +3833,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               if (jobs && jobs.length > 0) {
                 var allJobs = jobs;
-                _this8.jobs = allJobs;
+                _this10.jobs = allJobs;
                 allJobs.forEach(function (comCat, index, cmdCats) {
                   var optionElem = document.createElement('option');
                   optionElem.value = comCat.jobId.toString();
@@ -3608,7 +3898,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngAfterViewChecked",
         value: function ngAfterViewChecked() {
-          var _this9 = this;
+          var _this11 = this;
 
           this.fundiSatisfyingJobList.length > 0;
           {
@@ -3622,9 +3912,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
             jQuery('div.rateit, span.rateit').rateit();
             this.fundiSatisfyingJobList.forEach(function (r, ind, q) {
-              _this9.profileId = r.fundiProfileId;
+              _this11.profileId = r.fundiProfileId;
               jQuery('span#averageFundiRating-' + r.fundiProfileId).rateit('value', r.averageFundiRating);
             });
+          }
+        }
+      }, {
+        key: "searchCommand",
+        value: function searchCommand($event) {
+          debugger;
+          this.pagingContentModel = $event;
+          this.bindContentToSearchResultsDiv();
+          this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
+          var mod = this.listToShow.length % this.numberOfResultsPerPage;
+          var numberOfPages = Math.floor(this.listToShow.length / this.numberOfResultsPerPage);
+          if (mod > 0) numberOfPages += 1;
+          this.fundiSatisfyingJobList = this.pagingContentModel.content;
+
+          if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+          } else {
+            this.pagingContentModel.isPageNextEnabled = false;
+          }
+
+          if (this.currentPage <= numberOfPages - this.numberOfPageJumps) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+          } else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+          }
+
+          if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+          } else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+          }
+
+          if (this.currentPage > this.numberOfPageJumps) {
+            this.pagingContentModel.isPagePrev3Enabled = true;
+          } else {
+            this.pagingContentModel.isPagePrev3Enabled = false;
           }
         }
       }, {
@@ -3633,7 +3959,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.pagingContentModel.content = this.listToShow.slice(0, this.currentPage * this.numberOfResultsPerPage);
           this.fundiSatisfyingJobList = this.pagingContentModel.content;
           var mod = this.listToShow.length % this.numberOfResultsPerPage;
-          var numberOfPages = Math.floor(this.listToShow.length / this.numberOfResultsPerPage);
+          var numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
           if (mod > 0) numberOfPages += 1;
 
           if (this.currentPage < numberOfPages) {
@@ -3672,7 +3998,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "searchFundiByCurrentGeoLocation",
         value: function searchFundiByCurrentGeoLocation($event) {
-          var _this10 = this;
+          var _this12 = this;
 
           var curthis = this;
           this.fundiProfileList = [];
@@ -3705,7 +4031,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var fundiLocObs = curthis.myFundiService.GetFundiRealTimeLocations();
               fundiLocObs.map(function (r) {
                 var _loop = function _loop(f) {
-                  var profObs = _this10.myFundiService.GetFundiProfileByUsername(r[f].username);
+                  var profObs = _this12.myFundiService.GetFundiProfileByUsername(r[f].username);
 
                   profObs.map(function (pr) {
                     if (pr) {
@@ -3716,20 +4042,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
                     }
 
-                    var fundiRatingsObs = _this10.myFundiService.GetFundiRatingsAndReviewsGeolocation(viewObjects, q.clientProfileId, j.jobId, _this10.distanceKmLimitApart, _this10.numberOfResultSetToSkip, _this10.numberOfResultsSet);
+                    var fundiRatingsObs = _this12.myFundiService.GetFundiRatingsAndReviewsGeolocation(viewObjects, q.clientProfileId, j.jobId, _this12.distanceKmLimitApart, _this12.numberOfResultSetToSkip, _this12.numberOfResultsSet);
 
-                    _this10.numberOfResultSetToSkip += _this10.numberOfResultsSet + 1;
+                    _this12.numberOfResultSetToSkip += _this12.numberOfResultsSet + 1;
                     fundiRatingsObs.map(function (q) {
-                      if (q && q.length > 0 && _this10.isSearchingOnLocality) {
-                        _this10.listToShow = q;
+                      if (q && q.length > 0 && _this12.isSearchingOnLocality) {
+                        _this12.listToShow = q;
 
-                        _this10.showFirstPage();
+                        _this12.showFirstPage();
                       } else {
-                        _this10.numberOfResultSetToSkip = 0;
-                        alert("There are currently no jobs that match your\ncriteria within your chosen location!");
+                        _this12.numberOfResultSetToSkip = 0;
+                        alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                       }
 
-                      _this10.isSearchingOnLocality = false;
+                      _this12.isSearchingOnLocality = false;
                     }).subscribe();
                   }).subscribe();
                 };
@@ -3744,7 +4070,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "searchFundiByCategories",
         value: function searchFundiByCategories($event) {
-          var _this11 = this;
+          var _this13 = this;
 
           var curthis = this;
           this.fundiProfileList = [];
@@ -3772,27 +4098,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var username = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress;
           var clientProfObjs = curthis.myFundiService.GetClientProfile(username);
           clientProfObjs.map(function (q) {
-            var jobsObj = curthis.myFundiService.GetJobByJobId(_this11.jobId);
+            var jobsObj = curthis.myFundiService.GetJobByJobId(_this13.jobId);
             jobsObj.map(function (r) {
               r.location;
-              _this11.jobLocation = r.location;
+              _this13.jobLocation = r.location;
 
               for (var n = 0; n < viewObjects.length; n++) {
-                viewObjects[n].coordinate.latitude = _this11.jobLocation.latitude;
-                viewObjects[n].coordinate.longitude = _this11.jobLocation.longitude;
+                viewObjects[n].coordinate.latitude = _this13.jobLocation.latitude;
+                viewObjects[n].coordinate.longitude = _this13.jobLocation.longitude;
               }
 
-              var fundiRatingsObs = _this11.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId, r.jobId, _this11.distanceKmLimitApart, _this11.numberOfResultSetToSkip, _this11.numberOfResultsSet);
+              var fundiRatingsObs = _this13.myFundiService.GetFundiRatingsAndReviews(viewObjects, q.clientProfileId, r.jobId, _this13.distanceKmLimitApart, _this13.numberOfResultSetToSkip, _this13.numberOfResultsSet);
 
-              _this11.numberOfResultSetToSkip += _this11.numberOfResultsSet + 1;
+              _this13.numberOfResultSetToSkip += _this13.numberOfResultsSet + 1;
               fundiRatingsObs.map(function (q) {
                 if (q && q.length > 0) {
-                  _this11.listToShow = q;
+                  _this13.listToShow = q;
 
-                  _this11.showFirstPage();
+                  _this13.showFirstPage();
                 } else {
-                  _this11.numberOfResultSetToSkip = 0;
-                  alert("There are currently no jobs that match your\ncriteria within your chosen location!");
+                  _this13.numberOfResultSetToSkip = 0;
+                  alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                 }
               }).subscribe();
             }).subscribe();
@@ -3802,7 +4128,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "rateFundi",
         value: function rateFundi($event) {
-          var _this12 = this;
+          var _this14 = this;
 
           var button = $event.target;
           var review = jQuery(button).parent('form').find('textarea').val();
@@ -3820,7 +4146,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               workCategoryType: workCategory
             };
 
-            var fundiRatedObs = _this12.myFundiService.RateFundiByProfileId(fundiRated);
+            var fundiRatedObs = _this14.myFundiService.RateFundiByProfileId(fundiRated);
 
             fundiRatedObs.map(function (res) {
               alert(res.message);
@@ -3830,7 +4156,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFundiWorkCategoriesByProfileId",
         value: function getFundiWorkCategoriesByProfileId(profileId) {
-          var _this13 = this;
+          var _this15 = this;
 
           var fundiWorkCatObs = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
           fundiWorkCatObs.map(function (res) {
@@ -3844,7 +4170,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               jQuery(ul).append(li);
             }
 
-            _this13.getFundiSkillsByProfileId(profileId);
+            _this15.getFundiSkillsByProfileId(profileId);
           }).subscribe();
         }
       }, {
@@ -3864,14 +4190,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "populateFundiUserDetails",
         value: function populateFundiUserDetails($event, profileId) {
-          var _this14 = this;
+          var _this16 = this;
 
           var userObs = this.myFundiService.GetFundiUserByProfileId(profileId);
           userObs.map(function (res) {
             res.fundiProfileId = profileId;
             localStorage.setItem("profileUserDetails", JSON.stringify(res));
 
-            _this14.router.navigateByUrl('/fundiprofile-by-id');
+            _this16.router.navigateByUrl('/fundiprofile-by-id');
           }).subscribe();
           $event.preventDefault();
         }
@@ -3973,11 +4299,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ClientFundiContractComponent, [{
         key: "selectContract",
         value: function selectContract($event) {
-          var _this15 = this;
+          var _this17 = this;
 
           var crtObs = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
           crtObs.map(function (q) {
-            _this15.clientFundiContract = q;
+            _this17.clientFundiContract = q;
           }).subscribe();
           $event.preventDefault();
         }
@@ -4016,7 +4342,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this16 = this;
+          var _this18 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
@@ -4045,12 +4371,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var resObs = this.myFundiService.GetFundiProfile(this.clientFundiContract.fundiUsername);
           resObs.map(function (fundiProf) {
             debugger;
-            _this16.fundi = fundiProf;
+            _this18.fundi = fundiProf;
 
-            var clientContsObs = _this16.myFundiService.GetClientContractsByUsername(_this16.clientFundiContract.clientUsername);
+            var clientContsObs = _this18.myFundiService.GetClientContractsByUsername(_this18.clientFundiContract.clientUsername);
 
             clientContsObs.map(function (cts) {
-              _this16.clientContracts = cts;
+              _this18.clientContracts = cts;
               jQuery('select#clientFundiContractId option').remove();
               var optionElem = document.createElement('option');
               optionElem.selected = true;
@@ -4228,7 +4554,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this17 = this;
+          var _this19 = this;
 
           this.clientLoginDetails = JSON.parse(localStorage.getItem("ClientLoginDetails"));
           debugger;
@@ -4245,13 +4571,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           };
           var userIdObs = this.myFundiService.GetUserGuidId(this.subscription.username);
           userIdObs.map(function (q) {
-            _this17.subscription.userId = q;
+            _this19.subscription.userId = q;
           }).subscribe();
         }
       }, {
         key: "paySubscriptionMonthlyFeeWithPaypal",
         value: function paySubscriptionMonthlyFeeWithPaypal($event) {
-          var _this18 = this;
+          var _this20 = this;
 
           var subscriptionFeeExpenseToBePaid = this.subscription;
           var resultObs = this.myFundiService.PayClientSubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid);
@@ -4260,7 +4586,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               console.log('Response received');
               alert("Payment made. Currently being processed by paypal service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
 
-              _this18.router.navigateByUrl('/login');
+              _this20.router.navigateByUrl('/login');
             } else {
               alert("Paypal error happened. We are sorry something went bad. Please contact Admin");
             }
@@ -4272,7 +4598,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "payClientSubscriptionFeeWithAirTel",
         value: function payClientSubscriptionFeeWithAirTel($event) {
-          var _this19 = this;
+          var _this21 = this;
 
           var subscriptionFeeExpenseToBePaid = this.subscription;
           var resultObs = this.myFundiService.PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
@@ -4292,7 +4618,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               };
               console.log('Response received: ' + q.mtnAirtelBaseUrl);
 
-              var resObs = _this19.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+              var resObs = _this21.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
 
               resObs.map(function (q) {
                 console.log("Was Successful: " + q.success);
@@ -4301,7 +4627,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (q.success) {
                   alert("Payment made. Currently being processed by Airtel service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
 
-                  _this19.router.navigateByUrl("/login");
+                  _this21.router.navigateByUrl("/login");
                 } else {
                   alert("Payment Failed!!");
                 }
@@ -4315,7 +4641,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "payClientSubscriptionFeeWithMtn",
         value: function payClientSubscriptionFeeWithMtn($event) {
-          var _this20 = this;
+          var _this22 = this;
 
           var subscriptionFeeExpenseToBePaid = this.subscription;
           var resultObs = this.myFundiService.PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
@@ -4335,7 +4661,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               };
               console.log('Response received: ' + q.mtnAirtelBaseUrl);
 
-              var resObs = _this20.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+              var resObs = _this22.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
 
               resObs.map(function (q) {
                 console.log("Was Successful: " + q.success);
@@ -4344,7 +4670,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 if (q.success) {
                   alert("Payment made. Currently being processed by MTN service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
 
-                  _this20.router.navigateByUrl("/login");
+                  _this22.router.navigateByUrl("/login");
                 } else {
                   alert("Payment Failed!!");
                 }
@@ -4807,7 +5133,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AddressComponent, [{
         key: "refreshAddresses",
         value: function refreshAddresses() {
-          var _this21 = this;
+          var _this23 = this;
 
           var addSelect = document.querySelector('select#addressId');
           var opts = addSelect.querySelector('option');
@@ -4823,7 +5149,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#addressId').append(optionElem);
           var addressesObs = this.myFundiService.GetAllAddresses();
           addressesObs.map(function (adds) {
-            _this21.addresses = adds;
+            _this23.addresses = adds;
             adds.forEach(function (add, index, adds) {
               var optionElem = document.createElement('option');
               optionElem.value = add.addressId.toString();
@@ -4835,7 +5161,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addAddress",
         value: function addAddress() {
-          var _this22 = this;
+          var _this24 = this;
 
           var form = document.querySelector('form#f1');
           if (!form.checkValidity()) return;
@@ -4844,9 +5170,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Added: ' + p.result);
 
             if (p.result) {
-              _this22.router.navigateByUrl('success');
+              _this24.router.navigateByUrl('success');
             } else {
-              _this22.router.navigateByUrl('failure');
+              _this24.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -4854,7 +5180,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateAddress",
         value: function updateAddress() {
-          var _this23 = this;
+          var _this25 = this;
 
           var form = document.querySelector('form#f1');
           if (!form.checkValidity()) return;
@@ -4863,9 +5189,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Updated: ' + p.result);
 
             if (p.result) {
-              _this23.router.navigateByUrl('success');
+              _this25.router.navigateByUrl('success');
             } else {
-              _this23.router.navigateByUrl('failure');
+              _this25.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -4873,19 +5199,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectAddress",
         value: function selectAddress() {
-          var _this24 = this;
+          var _this26 = this;
 
           var actualResult = this.myFundiService.GetAddressById(jQuery('div#addresses-wrapper select#addressId').val());
           actualResult.map(function (p) {
             debugger;
-            _this24.address = p;
+            _this26.address = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteAddress",
         value: function deleteAddress() {
-          var _this25 = this;
+          var _this27 = this;
 
           var form = document.querySelector('form#f1');
           if (!form.checkValidity()) return;
@@ -4894,9 +5220,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Deleted: ' + p.result);
 
             if (p.result) {
-              _this25.router.navigateByUrl('success');
+              _this27.router.navigateByUrl('success');
             } else {
-              _this25.router.navigateByUrl('failure');
+              _this27.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5058,7 +5384,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CertificationComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this26 = this;
+          var _this28 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) this.userDetails = {};
@@ -5071,7 +5397,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var certificationsObs = this.myFundiService.GetAllFundiCertificates();
           this.selectCertificate = document.querySelector('select#slcertificationId');
           certificationsObs.map(function (res) {
-            _this26.certifications = res;
+            _this28.certifications = res;
             var opts = document.querySelector('select#slcertificationId').querySelector("option");
 
             if (opts) {
@@ -5273,7 +5599,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CertificationCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this27 = this;
+          var _this29 = this;
 
           this.certification = {};
           this.certificates = [];
@@ -5284,7 +5610,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#certificationcrudId').append(optionElem);
           var certsObs = this.myFundiService.GetAllFundiCertificates();
           certsObs.map(function (wcs) {
-            _this27.certificates = wcs;
+            _this29.certificates = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.certificationId.toString();
@@ -5296,7 +5622,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addCertification",
         value: function addCertification() {
-          var _this28 = this;
+          var _this30 = this;
 
           var form = document.querySelector('form#certificationcrudView');
           if (!form.checkValidity()) return;
@@ -5306,9 +5632,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Certification Added: ' + p);
 
             if (p) {
-              _this28.router.navigateByUrl('success');
+              _this30.router.navigateByUrl('success');
             } else {
-              _this28.router.navigateByUrl('failure');
+              _this30.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5316,7 +5642,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCertification",
         value: function updateCertification() {
-          var _this29 = this;
+          var _this31 = this;
 
           var form = document.querySelector('form');
           if (!form.checkValidity()) return;
@@ -5326,9 +5652,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Certification Updated: ' + p);
 
             if (p) {
-              _this29.router.navigateByUrl('success');
+              _this31.router.navigateByUrl('success');
             } else {
-              _this29.router.navigateByUrl('failure');
+              _this31.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5336,18 +5662,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectCertification",
         value: function selectCertification() {
-          var _this30 = this;
+          var _this32 = this;
 
           var actualResult = this.myFundiService.GetCertificationById(jQuery('div#certificatescrud-wrapper select#certificationcrudId').val());
           actualResult.map(function (p) {
-            _this30.certification = p;
+            _this32.certification = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteCertification",
         value: function deleteCertification() {
-          var _this31 = this;
+          var _this33 = this;
 
           var form = document.querySelector('form#certificationcrudView');
           if (!form.checkValidity()) return;
@@ -5357,9 +5683,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('certification Deleted: ' + p);
 
             if (p) {
-              _this31.router.navigateByUrl('success');
+              _this33.router.navigateByUrl('success');
             } else {
-              _this31.router.navigateByUrl('failure');
+              _this33.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5543,7 +5869,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CompanyComponent, [{
         key: "addCompany",
         value: function addCompany() {
-          var _this32 = this;
+          var _this34 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -5554,9 +5880,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Added: ' + p);
 
             if (p) {
-              _this32.router.navigateByUrl('success');
+              _this34.router.navigateByUrl('success');
             } else {
-              _this32.router.navigateByUrl('failure');
+              _this34.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5564,7 +5890,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCompany",
         value: function updateCompany() {
-          var _this33 = this;
+          var _this35 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -5574,9 +5900,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Updated: ' + p);
 
             if (p) {
-              _this33.router.navigateByUrl('success');
+              _this35.router.navigateByUrl('success');
             } else {
-              _this33.router.navigateByUrl('failure');
+              _this35.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5584,18 +5910,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectCompany",
         value: function selectCompany() {
-          var _this34 = this;
+          var _this36 = this;
 
           var actualResult = this.myFundiService.GetCompanyById(jQuery('div#companies-wrapper select#companyId').val());
           actualResult.map(function (p) {
-            _this34.company = p;
+            _this36.company = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteCompany",
         value: function deleteCompany() {
-          var _this35 = this;
+          var _this37 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -5605,9 +5931,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Deleted: ' + p);
 
             if (p) {
-              _this35.router.navigateByUrl('success');
+              _this37.router.navigateByUrl('success');
             } else {
-              _this35.router.navigateByUrl('failure');
+              _this37.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5622,7 +5948,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngAfterContentInit",
         value: function ngAfterContentInit() {
-          var _this36 = this;
+          var _this38 = this;
 
           var optionElem = document.createElement('option');
           optionElem.selected = true;
@@ -5636,7 +5962,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var companiesObs = this.myFundiService.GetAllCompanies();
           var locatObs = this.myFundiService.GetAllLocations();
           companiesObs.map(function (cmds) {
-            _this36.companies = cmds;
+            _this38.companies = cmds;
             cmds.forEach(function (cmd, index, cmds) {
               var optionElem = document.createElement('option');
               optionElem.value = cmd.companyId.toString();
@@ -5797,7 +6123,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CoursesComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this37 = this;
+          var _this39 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) this.userDetails = {};
@@ -5810,7 +6136,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var courseObs = this.myFundiService.GetAllFundiCourses();
           this.selectCourse = document.querySelector('select#slcourseId');
           courseObs.map(function (res) {
-            _this37.courses = res;
+            _this39.courses = res;
             var opts = document.querySelector('select#slcourseId').querySelector("option");
 
             if (opts) {
@@ -6003,7 +6329,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CourseCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this38 = this;
+          var _this40 = this;
 
           this.course = {
             courseId: 0
@@ -6016,7 +6342,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#coursecrudId').append(optionElem);
           var courseObs = this.myFundiService.GetAllFundiCourses();
           courseObs.map(function (adds) {
-            _this38.courses = adds;
+            _this40.courses = adds;
             adds.forEach(function (add, index, adds) {
               var optionElem = document.createElement('option');
               optionElem.value = add.courseId.toString();
@@ -6028,7 +6354,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addCourse",
         value: function addCourse() {
-          var _this39 = this;
+          var _this41 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -6038,9 +6364,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Added: ' + p);
 
             if (p) {
-              _this39.router.navigateByUrl('success');
+              _this41.router.navigateByUrl('success');
             } else {
-              _this39.router.navigateByUrl('failure');
+              _this41.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6048,7 +6374,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCourse",
         value: function updateCourse() {
-          var _this40 = this;
+          var _this42 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -6058,9 +6384,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Updated: ' + p);
 
             if (p) {
-              _this40.router.navigateByUrl('success');
+              _this42.router.navigateByUrl('success');
             } else {
-              _this40.router.navigateByUrl('failure');
+              _this42.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6068,20 +6394,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectCourse",
         value: function selectCourse() {
-          var _this41 = this;
+          var _this43 = this;
 
           var actualResult = this.myFundiService.GetCourseById(jQuery('div#coursecrud-wrapper select#coursecrudId').val());
           actualResult.map(function (p) {
-            _this41.course = p;
+            _this43.course = p;
 
-            _this41.addressEmitter.emit(_this41.course.courseId);
+            _this43.addressEmitter.emit(_this43.course.courseId);
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteCourse",
         value: function deleteCourse() {
-          var _this42 = this;
+          var _this44 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -6091,9 +6417,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Deleted: ' + p);
 
             if (p) {
-              _this42.router.navigateByUrl('success');
+              _this44.router.navigateByUrl('success');
             } else {
-              _this42.router.navigateByUrl('failure');
+              _this44.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6298,21 +6624,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectLocation",
         value: function selectLocation() {
-          var _this43 = this;
+          var _this45 = this;
 
           var locationId = jQuery('div#locations-wrapper select#locationId').val();
           var actualResult = this.myFundiService.GetLocationById(locationId);
           actualResult.map(function (p) {
-            _this43.location = p;
+            _this45.location = p;
 
-            _this43.locationEventEmitter.emit(_this43.location.locationId);
+            _this45.locationEventEmitter.emit(_this45.location.locationId);
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteLocation",
         value: function deleteLocation() {
-          var _this44 = this;
+          var _this46 = this;
 
           var form = document.querySelector('form#locationView');
           if (!form.checkValidity()) return;
@@ -6321,9 +6647,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Location Deleted: ' + p.result);
 
             if (p.result) {
-              _this44.router.navigateByUrl('success');
+              _this46.router.navigateByUrl('success');
             } else {
-              _this44.router.navigateByUrl('failure');
+              _this46.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6331,7 +6657,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this45 = this;
+          var _this47 = this;
 
           this.location = {
             locationId: 0
@@ -6357,7 +6683,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               document.querySelector('select#locaddressId').append(optionElem);
             });
             locatObs.map(function (cmdCats) {
-              _this45.locations = cmdCats;
+              _this47.locations = cmdCats;
               cmdCats.forEach(function (comCat, index, cmdCats) {
                 var optionElem = document.createElement('option');
                 optionElem.value = comCat.locationId.toString();
@@ -6370,18 +6696,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkLocationGeoCodedAndUpdate",
         value: function checkLocationGeoCodedAndUpdate(operation) {
-          var _this46 = this;
+          var _this48 = this;
 
           if (operation === 'update' || operation === 'create') {
             var addObs = this.myFundiService.GetAddressById(this.location.addressId);
             addObs.map(function (add) {
-              _this46.geoCoder.location = _this46.location;
+              _this48.geoCoder.location = _this48.location;
 
-              _this46.geoCoder.geocodeAddress(add, operation);
+              _this48.geoCoder.geocodeAddress(add, operation);
 
               document.getElementById("locmap").style.display = "block";
 
-              _this46.geoCoder.setCreateUpdateLocation(operation, _this46.location);
+              _this48.geoCoder.setCreateUpdateLocation(operation, _this48.location);
             }).subscribe();
           } else {
             document.getElementById("locmap").style.display = "none";
@@ -6539,14 +6865,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkCategoryComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this47 = this;
+          var _this49 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           this.selectCategory = document.querySelector('select#slworkCategoryId');
           workCategoriesObs.map(function (res) {
-            _this47.workCategories = res;
+            _this49.workCategories = res;
             var opts = document.querySelector('select#slworkCategoryId').querySelector("option");
 
             if (opts) {
@@ -6577,7 +6903,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             opt.text = "Select Sub Work Category";
             opt.value = "0";
             document.querySelector('select#slworkSubCategoryId').append('opt');
-            _this47.workSubCategories = wcs;
+            _this49.workSubCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -6590,7 +6916,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "workCategoryChanged",
         value: function workCategoryChanged($event) {
-          var _this48 = this;
+          var _this50 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
@@ -6604,7 +6930,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             opt.text = "Select Sub Work Category";
             opt.value = "0";
             document.querySelector('select#slworkSubCategoryId').append('opt');
-            _this48.workSubCategories = wcs;
+            _this50.workSubCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -6807,7 +7133,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkCategoryCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this49 = this;
+          var _this51 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -6820,7 +7146,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#workCategoryCrudId').append(optionElem);
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this49.workCategories = wcs;
+            _this51.workCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -6833,7 +7159,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkCategory",
         value: function addWorkCategory() {
-          var _this50 = this;
+          var _this52 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -6843,9 +7169,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workCategory Added: ' + p.message);
 
             if (p) {
-              _this50.router.navigateByUrl('success');
+              _this52.router.navigateByUrl('success');
             } else {
-              _this50.router.navigateByUrl('failure');
+              _this52.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6853,7 +7179,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateworkCategory",
         value: function updateworkCategory() {
-          var _this51 = this;
+          var _this53 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -6863,9 +7189,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Updated: ' + p);
 
             if (p) {
-              _this51.router.navigateByUrl('success');
+              _this53.router.navigateByUrl('success');
             } else {
-              _this51.router.navigateByUrl('failure');
+              _this53.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6873,19 +7199,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkCategory",
         value: function selectworkCategory() {
-          var _this52 = this;
+          var _this54 = this;
 
           var workCatValue = jQuery('div#workCategoriescrud-wrapper select#workCategoryCrudId').val();
           var actualResult = this.myFundiService.GetworkCategoryById(workCatValue);
           actualResult.map(function (p) {
-            _this52.workCategory = p;
+            _this54.workCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteworkCategory",
         value: function deleteworkCategory() {
-          var _this53 = this;
+          var _this55 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -6895,9 +7221,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workCategory Deleted: ' + p);
 
             if (p) {
-              _this53.router.navigateByUrl('success');
+              _this55.router.navigateByUrl('success');
             } else {
-              _this53.router.navigateByUrl('failure');
+              _this55.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7081,7 +7407,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkSubCategoryCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this54 = this;
+          var _this56 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -7111,7 +7437,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#workSubCategoryCrudId').append(optionElem);
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this54.workCategories = wcs;
+            _this56.workCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workCategoryId.toString();
@@ -7119,10 +7445,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               document.querySelector('select#workCategoryCrudForSubCatId').append(optionElem);
             });
 
-            var workSubCategoriesObs = _this54.myFundiService.GetWorkSubCategories();
+            var workSubCategoriesObs = _this56.myFundiService.GetWorkSubCategories();
 
             workSubCategoriesObs.map(function (wcs) {
-              _this54.workSubCategories = wcs;
+              _this56.workSubCategories = wcs;
               ;
               wcs.forEach(function (c, index, wcs) {
                 var optionElem = document.createElement('option');
@@ -7136,19 +7462,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getWorkSubCategoriesByWorkCategoryId",
         value: function getWorkSubCategoriesByWorkCategoryId() {
-          var _this55 = this;
+          var _this57 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workSubCategory.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
             //clear the workCategory options menu and add new options:
             jQuery('select#workSubCategoryCrudId option').remove();
-            _this55.workSubCategories = [];
+            _this57.workSubCategories = [];
             var optionElem = document.createElement('option');
             optionElem.selected = true;
             optionElem.value = 0 .toString();
             optionElem.text = "Select WorkSubCategory";
             document.querySelector('select#workSubCategoryCrudId').append(optionElem);
-            _this55.workSubCategories = wcs;
+            _this57.workSubCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workSubCategoryId.toString();
@@ -7160,7 +7486,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkSubCategory",
         value: function addWorkSubCategory($event) {
-          var _this56 = this;
+          var _this58 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -7170,9 +7496,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workSubCategory Added: ' + p.toString());
 
             if (p == true) {
-              _this56.router.navigateByUrl('success');
+              _this58.router.navigateByUrl('success');
             } else {
-              _this56.router.navigateByUrl('failure');
+              _this58.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7181,7 +7507,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateworkSubCategory",
         value: function updateworkSubCategory($event) {
-          var _this57 = this;
+          var _this59 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -7191,9 +7517,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('WorkSubCategory Updated: ' + p.toString());
 
             if (p) {
-              _this57.router.navigateByUrl('success');
+              _this59.router.navigateByUrl('success');
             } else {
-              _this57.router.navigateByUrl('failure');
+              _this59.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7202,12 +7528,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkSubCategory",
         value: function selectworkSubCategory($event) {
-          var _this58 = this;
+          var _this60 = this;
 
           var workSubCatValue = this.workSubCategory.workSubCategoryId;
           var actualResult = this.myFundiService.GetworkSubCategoryById(workSubCatValue);
           actualResult.map(function (p) {
-            _this58.workSubCategory = p;
+            _this60.workSubCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
           $event.preventDefault();
@@ -7215,7 +7541,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteworkSubCategory",
         value: function deleteworkSubCategory($event) {
-          var _this59 = this;
+          var _this61 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -7225,9 +7551,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workSubCategory Deleted: ' + p);
 
             if (p) {
-              _this59.router.navigateByUrl('success');
+              _this61.router.navigateByUrl('success');
             } else {
-              _this59.router.navigateByUrl('failure');
+              _this61.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7739,7 +8065,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this60 = this;
+          var _this62 = this;
 
           if (isNaN(this.profileId) || this.profileId == 0) {
             var profileUserDetails = JSON.parse(localStorage.getItem("profileUserDetails"));
@@ -7749,12 +8075,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var levelEngObs = this.myFundiService.GetFundiLevelOfEngagement(this.profileId);
               levelEngObs.map(function (fundiEngagements) {
                 var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                _this60.currentFundiNumbOfAssignments = numberOfAssignments;
+                _this62.currentFundiNumbOfAssignments = numberOfAssignments;
                 var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
-                jQuery("fundi-engagement#engagement-" + _this60.profileId + " div#indicator").css('height', '2%');
-                jQuery("fundi-engagement#engagement-" + _this60.profileId + " div#indicator").css('position', 'absolute');
-                jQuery("fundi-engagement#engagement-" + _this60.profileId + " div#indicator").css('top', top);
-                jQuery("fundi-engagement#engagement-" + _this60.profileId + " div#indicator").css('display', 'block');
+                jQuery("fundi-engagement#engagement-" + _this62.profileId + " div#indicator").css('height', '2%');
+                jQuery("fundi-engagement#engagement-" + _this62.profileId + " div#indicator").css('position', 'absolute');
+                jQuery("fundi-engagement#engagement-" + _this62.profileId + " div#indicator").css('top', top);
+                jQuery("fundi-engagement#engagement-" + _this62.profileId + " div#indicator").css('display', 'block');
               }).subscribe();
             } else {
               var userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -7762,11 +8088,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               fundiProfObs.map(function (fprof) {
                 var fundiProfile = fprof;
 
-                var levelEngObs = _this60.myFundiService.GetFundiLevelOfEngagement(fundiProfile.fundiProfileId);
+                var levelEngObs = _this62.myFundiService.GetFundiLevelOfEngagement(fundiProfile.fundiProfileId);
 
                 levelEngObs.map(function (fundiEngagements) {
                   var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                  _this60.currentFundiNumbOfAssignments = numberOfAssignments;
+                  _this62.currentFundiNumbOfAssignments = numberOfAssignments;
                   var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
                   jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('height', '2%');
                   jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('position', 'absolute');
@@ -7779,22 +8105,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var _fundiProfObs = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());
 
             _fundiProfObs.map(function (fprof) {
-              _this60.profile = fprof;
+              _this62.profile = fprof;
 
-              var levelEngObs = _this60.myFundiService.GetFundiLevelOfEngagement(_this60.profileId);
+              var levelEngObs = _this62.myFundiService.GetFundiLevelOfEngagement(_this62.profileId);
 
               levelEngObs.map(function (fundiEngagements) {
                 var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                _this60.currentFundiNumbOfAssignments = numberOfAssignments;
+                _this62.currentFundiNumbOfAssignments = numberOfAssignments;
                 var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this60.profileId + ' div#indicator').css('height', '2%');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this60.profileId + ' div#indicator').css('position', 'absolute');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this60.profileId + ' div#indicator').css('top', top);
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this60.profileId + ' div#indicator').css('display', 'block');
-                jQuery("fundi-engagement#engagement-" + _this60.profileId + " div#indicator").css('height', '2%');
-                jQuery("fundi-engagement#engagement-" + _this60.profileId + " div#indicator").css('position', 'absolute');
-                jQuery("fundi-engagement#engagement-" + _this60.profileId + " div#indicator").css('top', top);
-                jQuery("fundi-engagement#engagement-" + _this60.profileId + " div#indicator").css('display', 'block');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this62.profileId + ' div#indicator').css('height', '2%');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this62.profileId + ' div#indicator').css('position', 'absolute');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this62.profileId + ' div#indicator').css('top', top);
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this62.profileId + ' div#indicator').css('display', 'block');
+                jQuery("fundi-engagement#engagement-" + _this62.profileId + " div#indicator").css('height', '2%');
+                jQuery("fundi-engagement#engagement-" + _this62.profileId + " div#indicator").css('position', 'absolute');
+                jQuery("fundi-engagement#engagement-" + _this62.profileId + " div#indicator").css('top', top);
+                jQuery("fundi-engagement#engagement-" + _this62.profileId + " div#indicator").css('display', 'block');
               }).subscribe();
             }).subscribe();
           }
@@ -7906,7 +8232,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this61 = this;
+          var _this63 = this;
 
           this.numberOfResultsPerPage = 2;
           this.currentPage = 1;
@@ -7927,14 +8253,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jQuery('#fundiSearchForm div#fundiCategories').children().remove();
           var workCatObs = this.myFundiService.GetWorkCategories();
           workCatObs.map(function (workCats) {
-            _this61.workCategories = workCats;
-            _this61.userDetails = JSON.parse(localStorage.getItem("userDetails"));
-            _this61.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+            _this63.workCategories = workCats;
+            _this63.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+            _this63.userRoles = JSON.parse(localStorage.getItem("userRoles"));
 
-            var resObs = _this61.myFundiService.GetFundiProfile(_this61.userDetails.username);
+            var resObs = _this63.myFundiService.GetFundiProfile(_this63.userDetails.username);
 
             resObs.map(function (fundiProf) {
-              var fundiSubsObs = _this61.myFundiService.GetAllFundiSubscriptions(fundiProf.fundiProfileId);
+              var fundiSubsObs = _this63.myFundiService.GetAllFundiSubscriptions(fundiProf.fundiProfileId);
 
               fundiSubsObs.map(function (q) {
                 q.forEach(function (sub, ind) {
@@ -7942,7 +8268,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   var divFundiCategories = document.querySelector('#fundiSearchForm div#fundiCategories');
 
                   var _loop2 = function _loop2(id) {
-                    _this61.workCategories.forEach(function (cat) {
+                    _this63.workCategories.forEach(function (cat) {
                       if (sub.workCategoryAndSubCategoryIds[id].workCategoryId == cat.workCategoryId) {
                         var chBoxLabel = document.createElement('label');
                         chBoxLabel.textContent = cat.workCategoryType;
@@ -7979,7 +8305,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         ul.appendChild(li);
                         divFundiCategories.appendChild(ul);
 
-                        var workSubCatObs = _this61.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
+                        var workSubCatObs = _this63.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
 
                         workSubCatObs.map(function (workSubCats) {
                           var workSubCategories = workSubCats;
@@ -8076,7 +8402,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "seachJobsByCurrentGeoLocation",
         value: function seachJobsByCurrentGeoLocation($event) {
-          var _this62 = this;
+          var _this64 = this;
 
           this.numberOfResultsSet = 20;
           this.numberOfResultSetToSkip = 0;
@@ -8107,7 +8433,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var fundiLocObs = this.myFundiService.GetFundiRealTimeLocationsByUsername(this.userDetails.username.toLowerCase());
           fundiLocObs.map(function (flocMon) {
             if (flocMon) {
-              var profObs = _this62.myFundiService.GetFundiProfileByUsername(flocMon.username);
+              var profObs = _this64.myFundiService.GetFundiProfileByUsername(flocMon.username);
 
               profObs.map(function (pr) {
                 if (pr) {
@@ -8117,24 +8443,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   };
                   viewObjects[0].fundiProfileId = pr.fundiProfileId;
 
-                  var fundiJobsObs = _this62.myFundiService.GetJobsByCategoriesAndFundiUserGeoLocation(viewObjects, pr.fundiProfileId, _this62.distanceKmLimitApart, _this62.numberOfResultSetToSkip, _this62.numberOfResultsSet);
+                  var fundiJobsObs = _this64.myFundiService.GetJobsByCategoriesAndFundiUserGeoLocation(viewObjects, pr.fundiProfileId, _this64.distanceKmLimitApart, _this64.numberOfResultSetToSkip, _this64.numberOfResultsSet);
 
-                  _this62.numberOfResultSetToSkip += _this62.numberOfResultsSet + 1;
+                  _this64.numberOfResultSetToSkip += _this64.numberOfResultsSet + 1;
                   fundiJobsObs.map(function (q) {
-                    if (q && q.length > 0 && _this62.isSearchingOnLocality) {
-                      _this62.listToShow = q;
+                    if (q && q.length > 0 && _this64.isSearchingOnLocality) {
+                      _this64.listToShow = q;
 
-                      _this62.showFirstPage();
+                      _this64.showFirstPage();
                     } else {
-                      _this62.numberOfResultSetToSkip = 0;
-                      alert("There are currently no jobs that match your\ncriteria within your chosen location!");
+                      _this64.numberOfResultSetToSkip = 0;
+                      alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                     }
 
-                    _this62.isSearchingOnLocality = false;
+                    _this64.isSearchingOnLocality = false;
                   }).subscribe();
                 } else {
-                  _this62.numberOfResultSetToSkip = 0;
-                  alert("You are current location not being monitored on map!!\nPlease use android app to start monitoring.");
+                  _this64.numberOfResultSetToSkip = 0;
+                  alert("Your current location is not being monitored on map!!\nPlease use android app to start monitoring.");
                 }
               }).subscribe();
             }
@@ -8144,7 +8470,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "searchJobsByCategories",
         value: function searchJobsByCategories($event) {
-          var _this63 = this;
+          var _this65 = this;
 
           var curthis = this;
           this.fundiJobList = [];
@@ -8173,24 +8499,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           fundiObjs.map(function (q) {
             var locsObj = curthis.myFundiService.GetFundiLocationByFundiProfileId(q.fundiProfileId);
             locsObj.map(function (r) {
-              _this63.fundiLocation = r;
+              _this65.fundiLocation = r;
 
               for (var n = 0; n < viewObjects.length; n++) {
                 viewObjects[n].coordinate.latitude = r.latitude;
                 viewObjects[n].coordinate.longitude = r.longitude;
               }
 
-              var fundiJobsObs = _this63.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, _this63.distanceKmLimitApart, _this63.numberOfResultSetToSkip, _this63.numberOfResultsSet);
+              var fundiJobsObs = _this65.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, _this65.distanceKmLimitApart, _this65.numberOfResultSetToSkip, _this65.numberOfResultsSet);
 
-              _this63.numberOfResultSetToSkip += _this63.numberOfResultsSet + 1;
+              _this65.numberOfResultSetToSkip += _this65.numberOfResultsSet + 1;
               fundiJobsObs.map(function (q) {
                 if (q && q.length > 0) {
-                  _this63.listToShow = q;
+                  _this65.listToShow = q;
 
-                  _this63.showFirstPage();
+                  _this65.showFirstPage();
                 } else {
-                  _this63.numberOfResultSetToSkip = 0;
-                  alert("There are currently no jobs that match your\ncriteria within your chosen location!");
+                  _this65.numberOfResultSetToSkip = 0;
+                  alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                 }
               }).subscribe();
             }).subscribe();
@@ -8278,7 +8604,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getJobPage",
         value: function getJobPage($event) {
-          var _this64 = this;
+          var _this66 = this;
 
           localStorage.removeItem('CurrentJob');
           localStorage.removeItem('CurrentClientUserDetails');
@@ -8289,23 +8615,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jobObs.map(function (job) {
             localStorage.setItem('CurrentJob', JSON.stringify(job));
 
-            var clientObs = _this64.myFundiService.GetClientProfileById(job.clientProfileId);
+            var clientObs = _this66.myFundiService.GetClientProfileById(job.clientProfileId);
 
             clientObs.map(function (clientProfile) {
               localStorage.setItem('CurrentJobClientProfile', JSON.stringify(clientProfile));
 
-              var clientUserObs = _this64.myFundiService.GetClientUserById(clientProfile.userId);
+              var clientUserObs = _this66.myFundiService.GetClientUserById(clientProfile.userId);
 
               clientUserObs.map(function (clientUser) {
                 localStorage.setItem('CurrentClientUserDetails', JSON.stringify(clientUser));
 
-                var currJobWorkCatsObs = _this64.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
+                var currJobWorkCatsObs = _this66.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
 
                 currJobWorkCatsObs.map(function (wCats) {
                   localStorage.setItem('CurrentJobWorkCategories', JSON.stringify(wCats));
 
                   if (clientProfile && job) {
-                    _this64.router.navigateByUrl('job-details');
+                    _this66.router.navigateByUrl('job-details');
                   } else {
                     alert('Job doesn\'t exist!');
                   }
@@ -8318,7 +8644,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFundiWorkCategoriesByProfileId",
         value: function getFundiWorkCategoriesByProfileId(profileId) {
-          var _this65 = this;
+          var _this67 = this;
 
           var fundiWorkCatObs = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
           fundiWorkCatObs.map(function (res) {
@@ -8332,7 +8658,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               jQuery(ul).append(li);
             }
 
-            _this65.getFundiSkillsByProfileId(profileId);
+            _this67.getFundiSkillsByProfileId(profileId);
           }).subscribe();
         }
       }, {
@@ -8352,13 +8678,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "populateFundiUserDetails",
         value: function populateFundiUserDetails($event, profileId) {
-          var _this66 = this;
+          var _this68 = this;
 
           var userObs = this.myFundiService.GetFundiUserByProfileId(profileId);
           userObs.map(function (res) {
             localStorage.setItem("profileUserDetails", JSON.stringify(res));
 
-            _this66.router.navigateByUrl('/fundiprofile-by-id');
+            _this68.router.navigateByUrl('/fundiprofile-by-id');
           }).subscribe();
           $event.preventDefault();
         }
@@ -8464,7 +8790,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this67 = this;
+          var _this69 = this;
 
           this.profileUserDetails = JSON.parse(localStorage.getItem("profileUserDetails"));
           this.profileId = this.profileUserDetails.fundiProfileId;
@@ -8474,19 +8800,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var coursesObs = this.myFundiService.GetFundiCourses(this.profileUserDetails.username);
           var ratingsObs = this.myFundiService.GetFundiRatings(this.profileUserDetails.username);
           resObs.map(function (fundiProf) {
-            _this67.profile = fundiProf;
+            _this69.profile = fundiProf;
             ;
             ratingsObs.map(function (ratings) {
-              _this67.fundiRatings = ratings;
+              _this69.fundiRatings = ratings;
             }).subscribe();
             coursesObs.map(function (courses) {
-              _this67.courses = courses;
+              _this69.courses = courses;
             }).subscribe();
             workCatObs.map(function (workCats) {
-              _this67.workCategories = workCats;
+              _this69.workCategories = workCats;
             }).subscribe();
             certsObs.map(function (certs) {
-              _this67.certifications = certs;
+              _this69.certifications = certs;
             }).subscribe();
             localStorage.removeItem("profileUserDetails");
           }).subscribe();
@@ -8591,7 +8917,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this68 = this;
+          var _this70 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -8611,7 +8937,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.workSubCategories = [];
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this68.workCategories = wcs;
+            _this70.workCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workCategoryId.toString();
@@ -8621,10 +8947,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var selectedWorkCatId = parseInt(jQuery('select#subcworkCategoryId > option:selected').val());
             debugger;
 
-            var workSubCategoriesObs = _this68.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(selectedWorkCatId);
+            var workSubCategoriesObs = _this70.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(selectedWorkCatId);
 
             workSubCategoriesObs.map(function (wcs) {
-              _this68.workSubCategories = wcs;
+              _this70.workSubCategories = wcs;
               ;
               wcs.forEach(function (c, index, wcs) {
                 var optionElem = document.createElement('option');
@@ -8659,21 +8985,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (!fundiProf) {
               alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
 
-              _this68.router.navigateByUrl('/manage-profile');
+              _this70.router.navigateByUrl('/manage-profile');
 
               return;
             } else {
-              _this68.fundi = fundiProf;
-              _this68.fundi.subscriptionFee = _this68.subscriptionFee;
-              _this68.fundi.subscriptionName = "Fundi User ".concat(_this68.userDetails.firstName, " ").concat(_this68.userDetails.lastName, " Subscription for 31 days");
-              _this68.fundi.subscriptionDescription = "Attempting Monthly Payment!";
+              _this70.fundi = fundiProf;
+              _this70.fundi.subscriptionFee = _this70.subscriptionFee;
+              _this70.fundi.subscriptionName = "Fundi User ".concat(_this70.userDetails.firstName, " ").concat(_this70.userDetails.lastName, " Subscription for 31 days");
+              _this70.fundi.subscriptionDescription = "Attempting Monthly Payment!";
 
-              var userIdObs = _this68.myFundiService.GetUserGuidId(_this68.userDetails.username);
+              var userIdObs = _this70.myFundiService.GetUserGuidId(_this70.userDetails.username);
 
               userIdObs.map(function (q) {
-                _this68.fundi.userId = q;
+                _this70.fundi.userId = q;
 
-                var subscrObs = _this68.myFundiService.GetAllFundiSubscriptions(_this68.fundi.fundiProfileId);
+                var subscrObs = _this70.myFundiService.GetAllFundiSubscriptions(_this70.fundi.fundiProfileId);
 
                 subscrObs.map(function (subs) {
                   var opt = document.createElement('option');
@@ -8683,31 +9009,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   subscrSelect.appendChild(opt);
 
                   if (subs.length > 0) {
-                    _this68.subscriptionFeeExpense = _this68.subscription = subs[0];
-                    _this68.startingDate = _this68.formatDate(subs[0].startDate);
+                    _this70.subscriptionFeeExpense = _this70.subscription = subs[0];
+                    _this70.fundi.subscriptionFee = _this70.subscription.subscriptionFee;
+                    _this70.startingDate = _this70.formatDate(subs[0].startDate);
 
-                    _this68.appendCategoriesAndSubCategoriesToUi();
+                    _this70.appendCategoriesAndSubCategoriesToUi();
                   } else {
                     var dateNow = new Date();
-                    _this68.startingDate = _this68.formatDate(dateNow);
-                    _this68.subscription = _this68.subscriptionFeeExpense;
-                    _this68.subscription.monthlySubscriptionId = 0;
+                    _this70.startingDate = _this70.formatDate(dateNow);
+                    _this70.subscription = _this70.subscriptionFeeExpense;
+                    _this70.subscription.monthlySubscriptionId = 0;
                   }
 
                   subs.forEach(function (sub, ind) {
                     var opt1 = document.createElement('option');
                     opt1.value = sub.monthlySubscriptionId.toString();
-                    opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this68.formatDate(sub.startDate);
+                    opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this70.formatDate(sub.startDate);
                     subscrSelect.appendChild(opt1);
                   });
 
-                  var lastMonthlySubsObs = _this68.myFundiService.GetFundiLastSubscriptionFees(_this68.subscription.userId);
+                  var lastMonthlySubsObs = _this70.myFundiService.GetFundiLastSubscriptionFees(_this70.subscription.userId);
 
                   lastMonthlySubsObs.map(function (q) {
                     debugger;
 
                     if (q.result) {
-                      _this68.fundi.subscriptionFee = q.subscriptionFee;
+                      _this70.fundi.subscriptionFee = q.subscriptionFee;
                     }
                   }).subscribe();
                 }).subscribe();
@@ -8718,13 +9045,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getWorkSubCategoriesByWorkCategoryId",
         value: function getWorkSubCategoriesByWorkCategoryId() {
-          var _this69 = this;
+          var _this71 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workCategory.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
             //clear the workCategory options menu and add new options:
             jQuery('select#subcworkSubCategoryId option').remove();
-            _this69.workSubCategories = wcs;
+            _this71.workSubCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workSubCategoryId.toString();
@@ -8736,12 +9063,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkSubCategory",
         value: function selectworkSubCategory($event) {
-          var _this70 = this;
+          var _this72 = this;
 
           var workSubCatValue = this.workSubCategory.workSubCategoryId;
           var actualResult = this.myFundiService.GetworkSubCategoryById(workSubCatValue);
           actualResult.map(function (p) {
-            _this70.workSubCategory = p;
+            _this72.workSubCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
           $event.preventDefault();
@@ -8807,7 +9134,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "appendCategoriesAndSubCategoriesToUi",
         value: function appendCategoriesAndSubCategoriesToUi() {
-          var _this71 = this;
+          var _this73 = this;
 
           var curThis = this;
           var ulSelectedCategories = document.querySelector('div#fundiSubscription-wrapper ul#ulistWorkCategories');
@@ -8817,10 +9144,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             jQuery('select#subcworkCategoryId').val(curThis.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString()).trigger('change');
 
             var _loop4 = function _loop4(s) {
-              res = _this71.myFundiService.GetworkSubCategoryById(parseInt(_this71.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s])).toPromise().then(function (q) {
+              res = _this73.myFundiService.GetworkSubCategoryById(parseInt(_this73.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s])).toPromise().then(function (q) {
                 var li = document.createElement("li");
-                li.setAttribute('id', "".concat(_this71.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString(), ",").concat(_this71.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s].toString()));
-                li.textContent = jQuery('select#subcworkCategoryId > option[value="' + _this71.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId + '"]').text() + " [".concat(q.workSubCategoryType, "]");
+                li.setAttribute('id', "".concat(_this73.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString(), ",").concat(_this73.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s].toString()));
+                li.textContent = jQuery('select#subcworkCategoryId > option[value="' + _this73.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId + '"]').text() + " [".concat(q.workSubCategoryType, "]");
                 ulSelectedCategories.appendChild(li);
               });
             };
@@ -8871,15 +9198,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectSubscription",
         value: function selectSubscription($event) {
-          var _this72 = this;
+          var _this74 = this;
 
           var subObs = this.myFundiService.GetFundiSubscription(this.subscription.monthlySubscriptionId);
           subObs.map(function (q) {
-            _this72.subscription = _this72.subscriptionFeeExpense = q;
-            _this72.fundi.subscriptionFee = _this72.subscription.subscriptionFee;
-            _this72.startingDate = _this72.formatDate(q.startDate);
+            _this74.subscription = _this74.subscriptionFeeExpense = q;
+            _this74.fundi.subscriptionFee = _this74.subscription.subscriptionFee;
+            _this74.startingDate = _this74.formatDate(q.startDate);
 
-            _this72.appendCategoriesAndSubCategoriesToUi();
+            _this74.appendCategoriesAndSubCategoriesToUi();
           }).subscribe();
           $event.preventDefault();
         }
@@ -8951,7 +9278,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "paySubscriptionMonthlyFeeWithAirTel",
         value: function paySubscriptionMonthlyFeeWithAirTel($event) {
-          var _this73 = this;
+          var _this75 = this;
 
           if (!this.checkFundiProfileExists()) {
             this.router.navigateByUrl('/manage-profile');
@@ -8987,7 +9314,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               };
               console.log('Response received: ' + q.mtnAirtelBaseUrl);
 
-              var resObs = _this73.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+              var resObs = _this75.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
 
               resObs.map(function (q) {
                 console.log("Was Successful: " + q.success);
@@ -9003,7 +9330,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "paySubscriptionMonthlyFeeWithMtn",
         value: function paySubscriptionMonthlyFeeWithMtn($event) {
-          var _this74 = this;
+          var _this76 = this;
 
           if (!this.checkFundiProfileExists()) {
             this.router.navigateByUrl('/manage-profile');
@@ -9039,7 +9366,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               };
               console.log('Response received: ' + q.mtnAirtelBaseUrl);
 
-              var resObs = _this74.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+              var resObs = _this76.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
 
               resObs.map(function (q) {
                 console.log("Was Successful: " + q.success);
@@ -9345,7 +9672,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loginUser",
         value: function loginUser() {
-          var _this75 = this;
+          var _this77 = this;
 
           localStorage.setItem("userRoles", '');
           this.userDetail.authToken = localStorage.getItem('authToken');
@@ -9357,7 +9684,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (q.clientDueToPaySubscription) {
               localStorage.setItem("ClientLoginDetails", JSON.stringify(q));
 
-              _this75.router.navigateByUrl('/client-subscription');
+              _this77.router.navigateByUrl('/client-subscription');
 
               return;
             }
@@ -9367,31 +9694,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 alert(q.message);
               }
 
-              _this75.userDetail.firstName = q.firstName;
-              _this75.userDetail.lastName = q.lastName;
-              _this75.userDetail.userId = q.userId;
-              _this75.userDetail.username = q.username;
-              _this75.userDetail.email = q.username;
-              localStorage.setItem("userDetails", JSON.stringify(_this75.userDetail));
+              _this77.userDetail.firstName = q.firstName;
+              _this77.userDetail.lastName = q.lastName;
+              _this77.userDetail.userId = q.userId;
+              _this77.userDetail.username = q.username;
+              _this77.userDetail.email = q.username;
+              localStorage.setItem("userDetails", JSON.stringify(_this77.userDetail));
 
               if (q.authToken) {
                 localStorage.setItem('authToken', q.authToken);
               }
 
-              _this75.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = true;
+              _this77.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = true;
 
               if (q.isAdministrator) {
-                _this75.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = true;
+                _this77.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = true;
               }
 
-              localStorage.setItem("actUserStatus", JSON.stringify(_this75.actUserStatus));
+              localStorage.setItem("actUserStatus", JSON.stringify(_this77.actUserStatus));
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').css('display', 'block');
-              jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("logged in as: " + _this75.userDetail.emailAddress);
+              jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("logged in as: " + _this77.userDetail.emailAddress);
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].isLoginPage = false;
 
-              _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail(_this75.userDetail.emailAddress);
+              _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail(_this77.userDetail.emailAddress);
 
-              _this75.ensureUserRolesGot();
+              _this77.ensureUserRolesGot();
             } else {
               if (q.message) {
                 alert(q.message);
@@ -9400,8 +9727,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').css('display', 'none');
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("");
               alert('Login Failed. Unknown User');
-              _this75.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = false;
-              _this75.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = false;
+              _this77.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = false;
+              _this77.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = false;
 
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail('');
 
@@ -9414,7 +9741,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ensureUserRolesGot",
         value: function ensureUserRolesGot() {
-          var _this76 = this;
+          var _this78 = this;
 
           var userRolesStr = localStorage.getItem("userRoles");
 
@@ -9428,10 +9755,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.userRoles == null || this.userRoles.length < 1) {
             this.myFundiService.GetAllUserRoles(_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].clientEmailAddress).map(function (userroles) {
               localStorage.setItem("userRoles", JSON.stringify(userroles));
-              _this76.userRoles = userroles;
+              _this78.userRoles = userroles;
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles = userroles;
 
-              _this76.router.navigateByUrl("/manage-profile");
+              _this78.router.navigateByUrl("/manage-profile");
             }).subscribe();
           }
         }
@@ -9557,7 +9884,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var NavMenuComponent = /*#__PURE__*/function () {
       function NavMenuComponent(myFundiService, router) {
-        var _this77 = this;
+        var _this79 = this;
 
         _classCallCheck(this, NavMenuComponent);
 
@@ -9570,7 +9897,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router.events.filter(function (event) {
           return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__["NavigationEnd"];
         }).subscribe(function (val) {
-          _this77.myInit();
+          _this79.myInit();
         });
       }
 
@@ -9592,7 +9919,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "verifyLoggedInUser",
         value: function verifyLoggedInUser() {
-          var _this78 = this;
+          var _this80 = this;
 
           this.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn;
           this.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator;
@@ -9606,19 +9933,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].SetUserEmail(p.name);
 
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this78.actUserStatus.isUserLoggedIn = true;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this80.actUserStatus.isUserLoggedIn = true;
 
                 if (p.isAdministrator) {
-                  _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this78.actUserStatus.isUserAdministrator = true;
+                  _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this80.actUserStatus.isUserAdministrator = true;
                 }
 
                 localStorage.removeItem("actUserStatus");
-                localStorage.setItem("actUserStatus", JSON.stringify(_this78.actUserStatus));
+                localStorage.setItem("actUserStatus", JSON.stringify(_this80.actUserStatus));
 
-                _this78.ensureUserRolesGot();
+                _this80.ensureUserRolesGot();
               } else {
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this78.actUserStatus.isUserLoggedIn = false;
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this78.actUserStatus.isUserAdministrator = false;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this80.actUserStatus.isUserLoggedIn = false;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this80.actUserStatus.isUserAdministrator = false;
                 localStorage.removeItem("userRoles");
                 localStorage.removeItem("actUserStatus");
                 localStorage.removeItem('authToken');
@@ -9641,7 +9968,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logOut",
         value: function logOut() {
-          var _this79 = this;
+          var _this81 = this;
 
           localStorage.removeItem('authToken');
           localStorage.removeItem("userDetails");
@@ -9658,15 +9985,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             jquery__WEBPACK_IMPORTED_MODULE_3__('span#loginName').css('display', 'none');
             localStorage.removeItem("userRoles");
             localStorage.removeItem("actUserStatus");
-            _this79.actUserStatus.isUserLoggedIn = false;
-            _this79.actUserStatus.isUserAdministrator = false;
-            _this79.userRoles = [];
+            _this81.actUserStatus.isUserLoggedIn = false;
+            _this81.actUserStatus.isUserAdministrator = false;
+            _this81.userRoles = [];
           }).subscribe();
         }
       }, {
         key: "ensureUserRolesGot",
         value: function ensureUserRolesGot() {
-          var _this80 = this;
+          var _this82 = this;
 
           if (this.actUserStatus.isUserLoggedIn) {
             var userRolesStr = JSON.parse(localStorage.getItem("userRoles"));
@@ -9680,7 +10007,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (this.userRoles == null || this.userRoles.length < 1) {
               this.myFundiService.GetAllUserRoles(_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress).map(function (userroles) {
                 localStorage.setItem("userRoles", JSON.stringify(userroles));
-                _this80.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].userRoles = userroles;
+                _this82.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].userRoles = userroles;
               }).subscribe();
             }
           }
@@ -9803,15 +10130,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "createUserRole",
         value: function createUserRole() {
-          var _this81 = this;
+          var _this83 = this;
 
           var results = this.myFundiService.CreateUserRole(this.newRoleName);
           results.map(function (q) {
             if (q) {
-              alert('Role: ' + _this81.newRoleName + ' Created Successfully!');
+              alert('Role: ' + _this83.newRoleName + ' Created Successfully!');
               return true;
             } else {
-              alert('Failed to Create: ' + _this81.newRoleName + ' Role.');
+              alert('Failed to Create: ' + _this83.newRoleName + ' Role.');
               return false;
             }
           }).subscribe();
@@ -9819,15 +10146,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteUserRole",
         value: function deleteUserRole() {
-          var _this82 = this;
+          var _this84 = this;
 
           var results = this.myFundiService.DeleteUserRole(this.newRoleName);
           results.map(function (q) {
             if (q) {
-              alert('Role: ' + _this82.newRoleName + ' Deleted Successfully!');
+              alert('Role: ' + _this84.newRoleName + ' Deleted Successfully!');
               return true;
             } else {
-              alert('Failed to Delete: ' + _this82.newRoleName + ' Role.');
+              alert('Failed to Delete: ' + _this84.newRoleName + ' Role.');
               return false;
             }
           }).subscribe();
@@ -10211,7 +10538,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProfileCreateComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this83 = this;
+          var _this85 = this;
 
           jQuery('input#locationAddLocationId').css('display', 'none');
           jQuery('input#locationUpdateLocationId').css('display', 'none');
@@ -10226,21 +10553,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
           userGuidObs.map(function (q) {
-            _this83.userGuidId = q;
+            _this85.userGuidId = q;
 
-            var resObs = _this83.myFundiService.GetFundiProfile(_this83.userDetails.username);
+            var resObs = _this85.myFundiService.GetFundiProfile(_this85.userDetails.username);
 
             resObs.map(function (fundiProf) {
               if (fundiProf) {
-                _this83.profile = fundiProf;
+                _this85.profile = fundiProf;
 
-                var curAddObs = _this83.myFundiService.GetLocationById(fundiProf.locationId);
+                var curAddObs = _this85.myFundiService.GetLocationById(fundiProf.locationId);
 
                 curAddObs.map(function (q) {
-                  _this83.location = q;
+                  _this85.location = q;
                 }).subscribe();
               } else {
-                _this83.profile = {
+                _this85.profile = {
                   fundiProfileId: 0,
                   user: null,
                   userId: "",
@@ -10256,7 +10583,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }).subscribe();
           var workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
           workCatObs.map(function (workCats) {
-            _this83.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
+            _this85.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
 
             var selectWorkCategories = document.querySelector('select#workCategoryAndSubCatId');
             var selectWorkCategoriesOptions = document.querySelector('select#workCategoryAndSubCatId option');
@@ -10270,14 +10597,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             option.value = "0,0";
             selectWorkCategories.appendChild(option);
 
-            _this83.workCategories.forEach(function (cat) {
+            _this85.workCategories.forEach(function (cat) {
               var option = document.createElement('option');
               option.textContent = "".concat(cat.workCategory.workCategoryType, ": [").concat(cat.workSubCategory.workSubCategoryType, "]");
               option.value = "".concat(cat.workCategoryId.toString(), ",").concat(cat.workSubCategoryId.toString());
               selectWorkCategories.appendChild(option);
             });
 
-            var listWorkCatObs = _this83.myFundiService.GetFundiWorkCategories(_this83.userDetails.username);
+            var listWorkCatObs = _this85.myFundiService.GetFundiWorkCategories(_this85.userDetails.username);
 
             listWorkCatObs.map(function (q) {
               debugger;
@@ -10348,10 +10675,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkCategory",
         value: function addWorkCategory($event) {
-          var _this84 = this;
+          var _this86 = this;
 
           var selectedWorkCategory = this.workCategories.find(function (workCat) {
-            return workCat.workCategoryId == parseInt(_this84.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(_this84.workCategoryAndSubCatId.split(',')[1]);
+            var workCatsSubCatsAry = _this86.workCategoryAndSubCatId.split(',');
+
+            return workCat.workCategoryId == parseInt(workCatsSubCatsAry[0]) && workCat.workSubCategoryId == parseInt(workCatsSubCatsAry[1]);
           });
           var addWkCatObs = this.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, this.userDetails.username); //this.chosenWorkCategories.push(selectedWorkCategory);
 
@@ -10363,7 +10692,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               li.textContent = selectedWorkCategory.workCategory.workCategoryType + " :[".concat(selectedWorkCategory.workSubCategory.workSubCategoryType, "]");
               ulSelectedCategories.appendChild(li);
 
-              var addWkCatSubCatObs = _this84.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, _this84.userDetails.username);
+              var addWkCatSubCatObs = _this86.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, _this86.userDetails.username);
 
               addWkCatSubCatObs.map(function (q) {
                 if (q) {
@@ -10377,10 +10706,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "removeWorkCategory",
         value: function removeWorkCategory($event) {
-          var _this85 = this;
+          var _this87 = this;
 
           var selectedWorkCategory = this.workCategories.find(function (workCat) {
-            return workCat.workCategoryId == parseInt(_this85.workCategoryAndSubCatId.split(',')[0]) && workCat.workSubCategoryId == parseInt(_this85.workCategoryAndSubCatId.split(',')[1]);
+            var workCatsSubCatsAry = _this87.workCategoryAndSubCatId.split(',');
+
+            return workCat.workCategoryId == parseInt(workCatsSubCatsAry[0]) && workCat.workSubCategoryId == parseInt(workCatsSubCatsAry[1]);
           });
           var curThis = this;
           debugger;
@@ -10398,12 +10729,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getSelectedLocation",
         value: function getSelectedLocation(locationId) {
-          var _this86 = this;
+          var _this88 = this;
 
           this.profile.locationId = locationId;
           var curAddObs = this.myFundiService.GetLocationById(locationId);
           curAddObs.map(function (q) {
-            _this86.location = q;
+            _this88.location = q;
             alert('Location selected!');
           }).subscribe();
         }
@@ -10508,7 +10839,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this87 = this;
+          var _this89 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) this.userDetails = {};
@@ -10520,27 +10851,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           resObs.map(function (prof) {
-            _this87.profile = prof;
+            _this89.profile = prof;
 
-            var workCatObs = _this87.myFundiService.GetFundiWorkCategories(_this87.userDetails.username);
+            var workCatObs = _this89.myFundiService.GetFundiWorkCategories(_this89.userDetails.username);
 
             workCatObs.map(function (workCats) {
-              _this87.workCategories = workCats;
+              _this89.workCategories = workCats;
 
-              var coursesObs = _this87.myFundiService.GetFundiCourses(_this87.userDetails.username);
+              var coursesObs = _this89.myFundiService.GetFundiCourses(_this89.userDetails.username);
 
               coursesObs.map(function (courses) {
-                _this87.courses = courses;
+                _this89.courses = courses;
 
-                var certsObs = _this87.myFundiService.GetFundiCertifications(_this87.userDetails.username);
+                var certsObs = _this89.myFundiService.GetFundiCertifications(_this89.userDetails.username);
 
                 certsObs.map(function (certs) {
-                  _this87.certifications = certs;
+                  _this89.certifications = certs;
 
-                  var ratingsObs = _this87.myFundiService.GetFundiRatings(_this87.userDetails.username);
+                  var ratingsObs = _this89.myFundiService.GetFundiRatings(_this89.userDetails.username);
 
                   ratingsObs.map(function (ratings) {
-                    _this87.fundiRatings = ratings;
+                    _this89.fundiRatings = ratings;
                   }).subscribe();
                 }).subscribe();
               }).subscribe();
@@ -10667,7 +10998,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(QrCodeComponent, [{
         key: "submitScanToVerify",
         value: function submitScanToVerify() {
-          var _this88 = this;
+          var _this90 = this;
 
           var results = this.myFundiService.VerifyQrcodeScan(this.userDetails);
           results.map(function (res) {
@@ -10677,11 +11008,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               alert("Completed Scan & verified Successfully!!");
               QrCodeComponent_1.currentObject.scanEventHandlers.html5QrcodeScanner.clear();
 
-              _this88.router.navigateByUrl('crud');
+              _this90.router.navigateByUrl('crud');
             } else {
               alert("Completed Scan & Failed to Verify!!\rEnsure you use your right registered Mobile Number.");
 
-              _this88.router.navigateByUrl('logout');
+              _this90.router.navigateByUrl('logout');
             }
           }).subscribe();
         }
@@ -10806,10 +11137,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
         this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo";
-        /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr"; */
+        /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
 
         this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB";
-        /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu"; */
+        /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
       }
 
       _createClass(myRecaptchaComponent, [{
@@ -10825,12 +11156,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "CallRecaptureVerify",
         value: function CallRecaptureVerify(dataStr) {
-          var _this89 = this;
+          var _this91 = this;
 
           var promObs = this.myFundiService.PostToRecaptchaVerify(this.googleUrl, dataStr);
           promObs.then(function (q) {
             debugger;
-            _this89.isRecaptchaVerified = true;
+            _this91.isRecaptchaVerified = true;
             jquery__WEBPACK_IMPORTED_MODULE_3__('input[type="submit"]#submit').css('display', 'block');
           })["catch"](function (reason) {
             jquery__WEBPACK_IMPORTED_MODULE_3__('input[type="submit"]#submit').css('display', 'block');
@@ -11028,7 +11359,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "registerUser",
         value: function registerUser() {
-          var _this90 = this;
+          var _this92 = this;
 
           if (localStorage.getItem("HasAcceptedTermsOfService") !== "true") {
             alert("You can't register unless you accept the terms and conditions");
@@ -11048,7 +11379,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 alert('Registration Successfull: ' + q.isRegistered);
                 localStorage.removeItem("HasAcceptedTermsOfService");
 
-                _this90.router.navigateByUrl("/client-subscription");
+                _this92.router.navigateByUrl("/client-subscription");
               } else {
                 alert('Registration Failed: ');
               }
@@ -11809,48 +12140,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addUserToRole",
         value: function addUserToRole() {
-          var _this91 = this;
+          var _this93 = this;
 
           var role = this.getSelectedRole();
           var results = this.myFundiService.AddUserToRole(this.email, role);
           results.map(function (q) {
             if (q) {
-              alert('Added user: ' + _this91.email + ' to role: ' + role);
+              alert('Added user: ' + _this93.email + ' to role: ' + role);
             } else {
-              alert('Failed to add user: ' + _this91.email + ' to role: ' + role);
+              alert('Failed to add user: ' + _this93.email + ' to role: ' + role);
             }
           }).subscribe();
         }
       }, {
         key: "removeUserFromRole",
         value: function removeUserFromRole() {
-          var _this92 = this;
+          var _this94 = this;
 
           var role = this.getSelectedRole();
           var results = this.myFundiService.RemoveUserFromRole(this.email, role);
           results.map(function (q) {
             if (q) {
-              alert('Removed user: ' + _this92.email + ' from role: ' + role);
+              alert('Removed user: ' + _this94.email + ' from role: ' + role);
             } else {
-              alert('Failed to remove user: ' + _this92.email + ' from role: ' + role);
+              alert('Failed to remove user: ' + _this94.email + ' from role: ' + role);
             }
           }).subscribe();
         }
       }, {
         key: "getAllRoles",
         value: function getAllRoles() {
-          var _this93 = this;
+          var _this95 = this;
 
           var results = this.myFundiService.GetAllRoles();
           results.map(function (q) {
-            _this93.userRoles = q;
+            _this95.userRoles = q;
             var select = jquery__WEBPACK_IMPORTED_MODULE_3__("select#roleName");
             console.log(select);
             select.remove('option');
             select.append('<option value="" selected="true">Select A Role</option>');
 
-            for (var i = 0; i < _this93.userRoles.length; i++) {
-              select.append('<option value="' + _this93.userRoles[i].roleName + '">' + _this93.userRoles[i].roleName + '</option>');
+            for (var i = 0; i < _this95.userRoles.length; i++) {
+              select.append('<option value="' + _this95.userRoles[i].roleName + '">' + _this95.userRoles[i].roleName + '</option>');
             }
           }).subscribe();
         }
@@ -12017,13 +12348,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getVehiclesHttp",
         value: function getVehiclesHttp() {
-          var _this94 = this;
+          var _this96 = this;
 
           //$('div#vehicleView').css('display', 'block').slideDown();
           var actualResult = this.myFundiService.GetFundiRealTimeLocations();
           actualResult.map(function (p) {
             if (p && p.length > 0) {
-              _this94.fundiLocations = p;
+              _this96.fundiLocations = p;
               var selector = document.querySelector('select#vhmonitor'); //greater than default node: Select Fundi 1st Option:
 
               if (selector.children.length > 0) {
@@ -12038,16 +12369,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               optionElem.text = "Select Fundi";
               selector.append(optionElem);
 
-              _this94.fundiLocations.forEach(function (vhm, index) {
+              _this96.fundiLocations.forEach(function (vhm, index) {
                 var optionElem1 = document.createElement('option');
                 optionElem1.value = vhm.username;
                 optionElem1.text = vhm.username;
                 selector.append(optionElem1);
               });
 
-              _this94.currentFundi = _this94.fundiLocations[0];
+              _this96.currentFundi = _this96.fundiLocations[0];
             } else {
-              _this94.fundiLocations = [];
+              _this96.fundiLocations = [];
               var defaultVehMonitor = {
                 latitude: 0,
                 longitude: 0,
@@ -12060,16 +12391,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 lastName: "",
                 updatePhoneNumber: false
               };
-              _this94.currentFundi = defaultVehMonitor;
+              _this96.currentFundi = defaultVehMonitor;
             }
 
-            _this94.fundiPlotOnMap();
+            _this96.fundiPlotOnMap();
           }).subscribe();
         }
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this95 = this;
+          var _this97 = this;
 
           this.myMap = new google.maps.Map(document.getElementById('monitormap'), {
             center: new google.maps.LatLng(10.3, 12.5),
@@ -12084,14 +12415,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var _loop5 = function _loop5(n) {
               var vehMonitor = curThis.fundiLocations[n];
 
-              var profObs = _this95.myFundiService.GetFundiProfileByUsername(vehMonitor.username); //Insert FundiMonitor In Database:
+              var profObs = _this97.myFundiService.GetFundiProfileByUsername(vehMonitor.username); //Insert FundiMonitor In Database:
 
 
               profObs.map(function (pr) {
                 if (pr) {
                   vehMonitor.fundiProfileId = pr.fundiProfileId;
 
-                  var vehMonObs = _this95.myFundiService.SaveFundiGeoLocation(vehMonitor);
+                  var vehMonObs = _this97.myFundiService.SaveFundiGeoLocation(vehMonitor);
 
                   vehMonObs.map(function (res) {
                     if (res.result) {
@@ -12167,7 +12498,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "removeFundi",
         value: function removeFundi() {
-          var _this96 = this;
+          var _this98 = this;
 
           var currentUsername = this.currentFundi.username;
           var index = -1;
@@ -12182,7 +12513,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert(res.message);
 
             if (res.success) {
-              _this96.ngOnInit();
+              _this98.ngOnInit();
             } else {
               alert(res.message);
             }
@@ -12752,20 +13083,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthFundiSubscriptionGuard, [{
         key: "canActivate",
         value: function canActivate() {
-          var _this97 = this;
+          var _this99 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) return false;
           var fundiProfileId = 0;
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           return resObs.map(function (fundiProf) {
-            _this97.fundiProfileid = fundiProf.fundiProfileId;
+            _this99.fundiProfileid = fundiProf.fundiProfileId;
 
-            var fundiSubsObj = _this97.myFundiService.GetFundiSubscriptionByProfileId(_this97.fundiProfileid);
+            var fundiSubsObj = _this99.myFundiService.GetFundiSubscriptionByProfileId(_this99.fundiProfileid);
 
             return fundiSubsObj.map(function (q) {
-              _this97.fundiHasSubscription = q.isValid;
-              return _this97.userRoles.indexOf("Fundi") > -1 && _this97.fundiHasSubscription;
+              _this99.fundiHasSubscription = q.isValid;
+              return _this99.userRoles.indexOf("Fundi") > -1 && _this99.fundiHasSubscription;
             }).first();
           }).first();
         }
@@ -13279,7 +13610,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(Html5QrcodeScanner, [{
         key: "render",
         value: function render(qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this98 = this;
+          var _this100 = this;
 
           this.lastMatchFound = undefined; // Add wrapper to success callback.
 
@@ -13287,19 +13618,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (qrCodeSuccessCallback) {
               qrCodeSuccessCallback(decodedText, result);
             } else {
-              if (_this98.lastMatchFound === decodedText) {
+              if (_this100.lastMatchFound === decodedText) {
                 return;
               }
 
-              _this98.lastMatchFound = decodedText;
+              _this100.lastMatchFound = decodedText;
 
-              _this98.setHeaderMessage(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].lastMatch(decodedText), Html5QrcodeScannerStatus.STATUS_SUCCESS);
+              _this100.setHeaderMessage(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].lastMatch(decodedText), Html5QrcodeScannerStatus.STATUS_SUCCESS);
             }
           }; // Add wrapper to failure callback
 
 
           this.qrCodeErrorCallback = function (errorMessage, error) {
-            _this98.setStatus(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].scanningStatus());
+            _this100.setStatus(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].scanningStatus());
 
             if (qrCodeErrorCallback) {
               qrCodeErrorCallback(errorMessage, error);
@@ -13327,38 +13658,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "clear",
         value: function clear() {
-          var _this99 = this;
+          var _this101 = this;
 
           var emptyHtmlContainer = function emptyHtmlContainer() {
-            var mainContainer = document.getElementById(_this99.elementId);
+            var mainContainer = document.getElementById(_this101.elementId);
 
             if (mainContainer) {
               mainContainer.innerHTML = "";
 
-              _this99.resetBasicLayout(mainContainer);
+              _this101.resetBasicLayout(mainContainer);
             }
           };
 
           if (this.html5Qrcode) {
             return new Promise(function (resolve, reject) {
-              if (!_this99.html5Qrcode) {
+              if (!_this101.html5Qrcode) {
                 resolve();
                 return;
               }
 
-              if (_this99.html5Qrcode.isScanning) {
-                _this99.html5Qrcode.stop().then(function (_) {
-                  if (!_this99.html5Qrcode) {
+              if (_this101.html5Qrcode.isScanning) {
+                _this101.html5Qrcode.stop().then(function (_) {
+                  if (!_this101.html5Qrcode) {
                     resolve();
                     return;
                   }
 
-                  _this99.html5Qrcode.clear();
+                  _this101.html5Qrcode.clear();
 
                   emptyHtmlContainer();
                   resolve();
                 })["catch"](function (error) {
-                  if (_this99.verbose) {
+                  if (_this101.verbose) {
                     console.error("Unable to stop qrcode scanner", error);
                   }
 
@@ -14162,7 +14493,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "stop",
         value: function stop() {
-          var _this100 = this;
+          var _this102 = this;
 
           // TODO(mebjas): fail fast if the start() wasn't called.
           this.shouldScan = false;
@@ -14173,50 +14504,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           return new Promise(function (resolve, _) {
             var onAllTracksClosed = function onAllTracksClosed() {
-              _this100.localMediaStream = undefined;
+              _this102.localMediaStream = undefined;
 
-              if (_this100.element) {
-                _this100.element.removeChild(_this100.videoElement);
+              if (_this102.element) {
+                _this102.element.removeChild(_this102.videoElement);
 
-                _this100.element.removeChild(_this100.canvasElement);
+                _this102.element.removeChild(_this102.canvasElement);
               }
 
               removeQrRegion();
-              _this100.isScanning = false;
+              _this102.isScanning = false;
 
-              if (_this100.qrRegion) {
-                _this100.qrRegion = undefined;
+              if (_this102.qrRegion) {
+                _this102.qrRegion = undefined;
               }
 
-              if (_this100.context) {
-                _this100.context = undefined;
+              if (_this102.context) {
+                _this102.context = undefined;
               }
 
               resolve();
             };
 
-            if (!_this100.localMediaStream) {
+            if (!_this102.localMediaStream) {
               onAllTracksClosed();
             }
 
-            var tracksToClose = _this100.localMediaStream.getVideoTracks().length;
+            var tracksToClose = _this102.localMediaStream.getVideoTracks().length;
 
             var tracksClosed = 0; // Removes the shaded region if exists.
 
             var removeQrRegion = function removeQrRegion() {
-              if (!_this100.element) {
+              if (!_this102.element) {
                 return;
               }
 
-              while (_this100.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME).length) {
-                var shadedChild = _this100.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME)[0];
+              while (_this102.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME).length) {
+                var shadedChild = _this102.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME)[0];
 
-                _this100.element.removeChild(shadedChild);
+                _this102.element.removeChild(shadedChild);
               }
             };
 
-            _this100.localMediaStream.getVideoTracks().forEach(function (videoTrack) {
-              _this100.localMediaStream.removeTrack(videoTrack);
+            _this102.localMediaStream.getVideoTracks().forEach(function (videoTrack) {
+              _this102.localMediaStream.removeTrack(videoTrack);
 
               videoTrack.stop();
               ++tracksClosed;
@@ -14249,7 +14580,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function scanFile(imageFile,
         /* default=true */
         showImage) {
-          var _this101 = this;
+          var _this103 = this;
 
           if (!imageFile || !(imageFile instanceof File)) {
             throw "imageFile argument is mandatory and should be instance " + "of File. Use 'event.target.files[0]'.";
@@ -14264,25 +14595,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return new Promise(function (resolve, reject) {
-            _this101.possiblyCloseLastScanImageFile();
+            _this103.possiblyCloseLastScanImageFile();
 
-            _this101.clearElement();
+            _this103.clearElement();
 
-            _this101.lastScanImageFile = URL.createObjectURL(imageFile);
+            _this103.lastScanImageFile = URL.createObjectURL(imageFile);
             var inputImage = new Image();
 
             inputImage.onload = function () {
               var imageWidth = inputImage.width;
               var imageHeight = inputImage.height;
-              var element = document.getElementById(_this101.elementId);
+              var element = document.getElementById(_this103.elementId);
               var containerWidth = element.clientWidth ? element.clientWidth : Constants.DEFAULT_WIDTH; // No default height anymore.
 
               var containerHeight = Math.max(element.clientHeight ? element.clientHeight : imageHeight, Constants.FILE_SCAN_MIN_HEIGHT);
 
-              var config = _this101.computeCanvasDrawConfig(imageWidth, imageHeight, containerWidth, containerHeight);
+              var config = _this103.computeCanvasDrawConfig(imageWidth, imageHeight, containerWidth, containerHeight);
 
               if (showImage) {
-                var visibleCanvas = _this101.createCanvasElement(containerWidth, containerHeight, 'qr-canvas-visible');
+                var visibleCanvas = _this103.createCanvasElement(containerWidth, containerHeight, 'qr-canvas-visible');
 
                 visibleCanvas.style.display = "inline-block";
                 element.appendChild(visibleCanvas);
@@ -14316,7 +14647,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 config.height);
               }
 
-              var hiddenCanvas = _this101.createCanvasElement(config.width, config.height);
+              var hiddenCanvas = _this103.createCanvasElement(config.width, config.height);
 
               element.appendChild(hiddenCanvas);
               var context = hiddenCanvas.getContext('2d');
@@ -14346,7 +14677,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               config.height);
 
               try {
-                var result = _this101.qrcode.decode(hiddenCanvas);
+                var result = _this103.qrcode.decode(hiddenCanvas);
 
                 resolve(result.text);
               } catch (exception) {
@@ -14420,7 +14751,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "applyVideoConstraints",
         value: function applyVideoConstraints(videoConstaints) {
-          var _this102 = this;
+          var _this104 = this;
 
           if (!videoConstaints) {
             throw "videoConstaints is required argument.";
@@ -14442,7 +14773,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               return;
             }
 
-            var videoTrack = _this102.localMediaStream.getVideoTracks()[0]; // TODO(mebjas): This can be simplified to just return the promise
+            var videoTrack = _this104.localMediaStream.getVideoTracks()[0]; // TODO(mebjas): This can be simplified to just return the promise
             // directly.
 
 
@@ -14534,7 +14865,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "foreverScan",
         value: function foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this103 = this;
+          var _this105 = this;
 
           if (!this.shouldScan) {
             // Stop scanning.
@@ -14588,7 +14919,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.foreverScanTimeout = setTimeout(function () {
-            _this103.foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback);
+            _this105.foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback);
           }, this.getTimeoutFps(internalConfig.fps));
         }
         /**
@@ -14598,12 +14929,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onMediaStreamReceived",
         value: function onMediaStreamReceived(mediaStream, internalConfig, areVideoConstraintsEnabled, clientWidth, qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this104 = this;
+          var _this106 = this;
 
           var $this = this;
           return new Promise(function (resolve, reject) {
             var setupVideo = function setupVideo() {
-              var videoElement = _this104.createVideoElement(clientWidth);
+              var videoElement = _this106.createVideoElement(clientWidth);
 
               $this.element.append(videoElement); // Attach listeners to video.
 
@@ -15851,13 +16182,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "setCreateUpdateLocation",
         value: function setCreateUpdateLocation(operation, loc) {
-          var _this105 = this;
+          var _this107 = this;
 
           if (operation.toLowerCase() === "create") {
             var actualResult = this.myFundiService.PostOrCreateLocation(loc);
             actualResult.map(function (p) {
               alert('Location Added: ' + p.result);
-              _this105.successGeocode = true;
+              _this107.successGeocode = true;
               document.getElementById('locmap').scrollIntoView({
                 behavior: "smooth",
                 block: "end",
@@ -15869,7 +16200,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _actualResult.map(function (p) {
               alert('Location Updated: ' + p.result);
-              _this105.successGeocode = true;
+              _this107.successGeocode = true;
               document.getElementById('locmap').scrollIntoView({
                 behavior: "smooth",
                 block: "end",
@@ -15982,6 +16313,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.httpClient = httpClient;
         this.baseServerUrl = "https://myfundiv2.martinlayooinc.com";
         this.getAllRoles = this.baseServerUrl + "/Account/GetAllRoles";
+        this.getAllBlogsUrl = this.baseServerUrl + "/Home/GetAllBlogs";
         this.getTwitterFeedsUrl = this.baseServerUrl + "/SocialMedia/TwitterProfileFeeds";
         this.getCityLocationWeatherFocus = this.baseServerUrl + "/api/LocationWeather/GetLocationWeather";
         this.getUserGuidIdUrl = this.baseServerUrl + "/Account/GetUserGuidId";
@@ -16109,6 +16441,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             'content-type': 'application/json'
           });
           var requestUrl = this.getUserRolesByUsernameUrl + "/" + username;
+          var requestOptions = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+          };
+          return this.httpClient.get(requestOptions.url, {
+            'headers': requestOptions.headers
+          }).map(function (res) {
+            var roles = res;
+            return roles;
+          });
+        }
+      }, {
+        key: "GetBlogs",
+        value: function GetBlogs() {
+          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
+            'content-type': 'application/json'
+          });
+          var requestUrl = this.getAllBlogsUrl;
           var requestOptions = {
             url: requestUrl,
             method: 'GET',

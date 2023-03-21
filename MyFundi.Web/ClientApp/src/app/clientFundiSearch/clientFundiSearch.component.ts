@@ -56,46 +56,6 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         return decodeURIComponent(url);
     }
 
-    searchCommand($event) {
-        this.pagingContentModel = $event;
-        this.bindContentToSearchResultsDiv();
-        this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
-
-        let mod = this.listToShow.length % this.numberOfResultsPerPage
-        let numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
-
-        if (mod > 0) numberOfPages += 1;
-
-        this.fundiSatisfyingJobList = this.pagingContentModel.content;
-
-        if (this.currentPage < numberOfPages) {
-            this.pagingContentModel.isPageNextEnabled = true;
-        }
-        else {
-            this.pagingContentModel.isPageNextEnabled = false;
-        }
-
-        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
-            this.pagingContentModel.isPageNext3Enabled = true;
-        }
-        else {
-            this.pagingContentModel.isPageNext3Enabled = false;
-        }
-
-        if (this.currentPage > 1) {
-            this.pagingContentModel.isPagePrevEnabled = true;
-        }
-        else {
-            this.pagingContentModel.isPagePrevEnabled = false;
-        }
-
-        if (this.currentPage > this.numberOfPageJumps) {
-            this.pagingContentModel.isPagePrev3Enabled = true;
-        }
-        else {
-            this.pagingContentModel.isPagePrev3Enabled = false;
-        }
-    }
     ngOnInit(): void {
         this.numberOfResultsPerPage = 2;
         this.currentPage = 1;
@@ -428,13 +388,57 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
             });
         }
     }
-    showFirstPage() {
-        this.pagingContentModel.content = this.listToShow.slice(0, (this.currentPage * this.numberOfResultsPerPage));
-        this.fundiSatisfyingJobList = this.pagingContentModel.content;
+
+    searchCommand($event) {
+        debugger;
+        this.pagingContentModel = $event;
+        this.bindContentToSearchResultsDiv();
+
+        this.pagingContentModel.content = this.listToShow.slice(this.currentPage * this.numberOfResultsPerPage - this.numberOfResultsPerPage, this.currentPage * this.numberOfResultsPerPage);
 
         let mod = this.listToShow.length % this.numberOfResultsPerPage
 
         let numberOfPages = Math.floor(this.listToShow.length / this.numberOfResultsPerPage);
+
+        if (mod > 0) numberOfPages += 1;
+
+        this.fundiSatisfyingJobList  = this.pagingContentModel.content;
+
+        if (this.currentPage < numberOfPages) {
+            this.pagingContentModel.isPageNextEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNextEnabled = false;
+        }
+
+        if (this.currentPage <= (numberOfPages - this.numberOfPageJumps)) {
+            this.pagingContentModel.isPageNext3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPageNext3Enabled = false;
+        }
+
+        if (this.currentPage > 1) {
+            this.pagingContentModel.isPagePrevEnabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrevEnabled = false;
+        }
+
+        if (this.currentPage > this.numberOfPageJumps) {
+            this.pagingContentModel.isPagePrev3Enabled = true;
+        }
+        else {
+            this.pagingContentModel.isPagePrev3Enabled = false;
+        }
+    }
+
+    showFirstPage() {
+        this.pagingContentModel.content = this.listToShow.slice(0, (this.currentPage * this.numberOfResultsPerPage));
+        this.fundiSatisfyingJobList  = this.pagingContentModel.content;
+
+        let mod = this.listToShow.length % this.numberOfResultsPerPage
+        let numberOfPages = this.listToShow.length / this.numberOfResultsPerPage;
 
         if (mod > 0) numberOfPages += 1;
 
@@ -459,6 +463,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
         }
         this.pagingContentModel.isPagePrev3Enabled = false;
     }
+
     bindContentToSearchResultsDiv() {
 
         if (this.pagingContentModel.pageNextClicked) {
@@ -530,7 +535,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                                         this.showFirstPage();
                                     } else {
                                         this.numberOfResultSetToSkip = 0;
-                                        alert("There are currently no jobs that match your\ncriteria within your chosen location!")
+                                        alert("There are currently no more jobs that match your\ncriteria within your chosen location!")
                                     }
 
                                     this.isSearchingOnLocality = false;
@@ -591,7 +596,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                         this.showFirstPage();
                     } else {
                         this.numberOfResultSetToSkip = 0;
-                        alert("There are currently no jobs that match your\ncriteria within your chosen location!")
+                        alert("There are currently no more jobs that match your\ncriteria within your chosen location!")
                     }
                 }).subscribe();
             }).subscribe();

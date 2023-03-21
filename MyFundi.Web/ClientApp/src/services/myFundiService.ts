@@ -16,6 +16,7 @@ export class MyFundiService {
     public static isLoginPage: boolean = false;
     public actionResult: any;
     public getAllRoles: string = this.baseServerUrl + "/Account/GetAllRoles";
+    public getAllBlogsUrl: string = this.baseServerUrl + "/Home/GetAllBlogs";
     public getTwitterFeedsUrl: string = this.baseServerUrl + "/SocialMedia/TwitterProfileFeeds";
     public getCityLocationWeatherFocus: string = this.baseServerUrl + "/api/LocationWeather/GetLocationWeather";
 
@@ -191,6 +192,22 @@ export class MyFundiService {
         });
     } 
 
+    GetBlogs(): Observable<IBlog[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl: string = this.getAllBlogsUrl;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IBlog[] => {
+            let roles: IBlog[] = res;
+            return roles;
+
+        });
+    }
     GetFundiContractsByUsername(username: string): Observable<any[]> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl: string = this.getFundiContractsByUsernameUrl + "/" + username;
@@ -2319,4 +2336,12 @@ export interface IPagingContent {
     pageNext3Clicked: boolean;
     pagePrevClicked: boolean;
     pagePrev3Clicked: boolean;
+}
+
+export interface IBlog {
+    blogId: number;
+    blogName: string;
+    blogContent: string;
+    blogFile: File;
+    dateCreated: Date;
 }

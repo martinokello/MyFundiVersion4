@@ -13,26 +13,112 @@ using MyFundi.Web.IdentityServices;
 using MyFundi.Web.ViewModels;
 using AutoMapper;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.Extensions.Hosting;
+using MyFundi.AppConfigurations;
 
 namespace MyFundi.Web.ControllersControllers
 {
     [EnableCors(PolicyName = "CorsPolicy")]
     public class AdministrationController : Controller
     {
+        private AppSettingsConfigurations _appSettings;
         private IMailService _emailService;
         private MyFundiUnitOfWork _unitOfWork;
         private ServicesEndPoint _serviceEndPoint;
         private Mapper _mapper;
+        private IHostEnvironment Environment;
 
-        public AdministrationController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper)
+        public AdministrationController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper, IHostEnvironment environment, AppSettingsConfigurations appSettings)
         {
             _emailService = emailService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            this.Environment = environment;
+            this._appSettings = appSettings;
         }
 
+        public async Task<IActionResult> GetAdvertLink()
+        {
+            try
+            {
+                var absoluteAdvertLinkUrl = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl").Value;
+                return await Task.FromResult(Ok(new { AdvertLinkUrl= absoluteAdvertLinkUrl}));
+            }
+            catch
+            {
+                return await Task.FromResult(BadRequest(null));
+            }
+        }
         [HttpPost]
-        [Authorize(Roles = ("Administrator"))]
+        [CustomAuthorize("Administrator")]
+        public async Task<IActionResult> UploadBlog([FromForm] IFormFile blogFile,FormCollection formCollection)
+        {
+            try
+            {
+                _unitOfWork._blogsRepository.Insert(new Blog { BlogContent = formCollection["blogContent"], BlogName = formCollection["blogName"] });
+                _unitOfWork.SaveChanges();
+                if (blogFile != null)
+                {
+                    var dirAdvertImg = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwwroot\\images");
+                    if (!dirAdvertImg.Exists)
+                    {
+                        dirAdvertImg.Create();
+                    }
+                    var fileInfo = new FileInfo($"{this.Environment.ContentRootPath}\\wwwwroot\\images\\{formCollection["blogName"]}.jpg");
+                    using (var fileStream = (fileInfo.Exists ? fileInfo.OpenWrite() : fileInfo.Create()))
+                    {
+                        await blogFile.CopyToAsync(fileStream);
+
+                        return Ok(new { result = true, Message = "Successfully Blog." });
+                    }
+                }
+                else
+                {
+                    return Ok(new { AbsoluteAdvertUrl = "", Result = false, Message = "Flie Does not Exist." });
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return await Task.FromResult(BadRequest(new { Message = ex.Message, Result = false, AbsoluteAdvertUrl = string.Empty }));
+            }
+        }
+        [HttpPost]
+        [CustomAuthorize("Administrator")]
+        public async Task<IActionResult> UploadAdvertGifImage([FromForm] IFormFile advertGifFile)
+        {
+            try
+            {
+                if (advertGifFile != null)
+                {
+                    var absoluteAdvertLinkUrl = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl").Value;
+                    var dirAdvertImg = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwwroot\\images");
+                    if (!dirAdvertImg.Exists)
+                    {
+                        dirAdvertImg.Create();
+                    }
+                    var fileInfo = new FileInfo($"{this.Environment.ContentRootPath}\\wwwwroot\\images\\currentAdvert.gif");
+                    using (var fileStream = (fileInfo.Exists ? fileInfo.OpenWrite() : fileInfo.Create()))
+                    {
+                        await advertGifFile.CopyToAsync(fileStream);
+                        return Ok(new { AbsoluteAdverSrctUrl = "/adverts/images/currentAdvert.gif", AbsoluteAdvertLinkUrl= absoluteAdvertLinkUrl, Result = true, Message = "Successfully Uploaded Advert Gif Image." });
+                    }
+                }
+                else
+                {
+                    return Ok(new { AbsoluteAdvertUrl = "", Result = false, Message = "Flie Does not Exist." });
+                }
+            }
+            catch(Exception ex)
+            {
+
+                return await Task.FromResult(BadRequest(new { Message = ex.Message, Result = false, AbsoluteAdvertUrl=string.Empty }));
+            }
+        }
+        [HttpPost]
+        [CustomAuthorize("Administrator")]
         public async Task<IActionResult> PostLocation([FromBody] Location location)
         {
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);

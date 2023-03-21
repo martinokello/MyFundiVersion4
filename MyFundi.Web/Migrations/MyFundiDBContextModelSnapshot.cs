@@ -55,6 +55,30 @@ namespace MyFundi.Web.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("MyFundi.Domain.Blog", b =>
+                {
+                    b.Property<int>("BlogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BlogContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BlogName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BlogId");
+
+                    b.ToTable("Blogs");
+                });
+
             modelBuilder.Entity("MyFundi.Domain.Certification", b =>
                 {
                     b.Property<int>("CertificationId")
