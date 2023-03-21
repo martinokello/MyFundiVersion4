@@ -203,8 +203,8 @@ export class MyFundiService {
         };
 
         return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IBlog[] => {
-            let roles: IBlog[] = res;
-            return roles;
+            let blogs: IBlog[] = res;
+            return blogs;
 
         });
     }
@@ -2344,4 +2344,5 @@ export interface IBlog {
     blogContent: string;
     blogFile: File;
     dateCreated: Date;
+    dateCreatedUtc: string;
 }

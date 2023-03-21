@@ -60,7 +60,7 @@ namespace MyFundi.Web.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public async Task<IActionResult> GetAllBlogs()
         {
             try

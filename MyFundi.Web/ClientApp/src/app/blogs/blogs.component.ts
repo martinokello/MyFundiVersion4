@@ -17,17 +17,37 @@ export class BlogsComponent implements OnInit {
     private blogFile: File;
     public blogs: IBlog[];
     public blog: IBlog;
+    public isAdiministrator = false;
 
     public constructor(private myFundiService: MyFundiService, private httpClient: HttpClient) {
     }
 
     ngOnInit() {
-
+        this.blog = {
+            blogName:"",
+            blogContent: "",
+            blogFile: null,
+            blogId: 0,
+            dateCreated: new Date(),
+            dateCreatedUtc:""
+        }
+		let roles:string[] = JSON.parse(localStorage.getItem("userRoles"));
+        if (roles && roles.indexOf("Administrator") > -1) {
+            this.isAdiministrator = true;
+        }
+        else {
+            this.isAdiministrator = false;
+        }
         let blogObs:Observable<IBlog[]> = this.myFundiService.GetBlogs();
 
         blogObs.map((q: IBlog[]) => {
             debugger;
-            if (q) {
+            if (q && q.length > 0) {
+                for (let n = 0; n < q.length;n++){
+                    q[n].blogContent = q[n].blogContent.replace('\n', '<br/>');
+                    q[n].dateCreatedUtc = q[n].dateCreated.toString();
+                }
+
                 this.blogs = q;
             }
         }).subscribe();
@@ -38,7 +58,7 @@ export class BlogsComponent implements OnInit {
 
     submitBlog($event) {
         //upload File:
-        let url: string = "/Administration/UploadBlog";
+        let url: string = "https://myfundiv2.martinlayooinc.com/Administration/UploadBlog";
 
         let formData = new FormData();
         formData.append("blogFile", this.blogFile);
@@ -46,9 +66,10 @@ export class BlogsComponent implements OnInit {
         formData.append("blogContent", this.blog.blogContent);
 
         this.httpClient.post(url, formData).map((res: any) => {
+            debugger;
             alert(res.message);
             if (res.result) {
-                alert("Added Gif Advert!")
+                alert("Added Blog!")
             }
         }).subscribe();
         $event.preventDefault();

@@ -41,12 +41,13 @@ export class AdvertComponent implements OnInit, AfterViewChecked {
     }
     submitAdvert($event) {
         //upload File:
-        let url: string = "/Administration/UploadAdvertGifImage";
+        let url: string = "https://myfundiv2.martinlayooinc.com/Administration/UploadAdvertGifImage";
 
         let formData = new FormData();
         formData.append("advertGifFile", this.advertGifFile);
 
         this.httpClient.post(url, formData).map((res: any) => {
+            debugger;
             alert(res.message);
             if (res.result) {
                 alert("Added Gif Advert!")

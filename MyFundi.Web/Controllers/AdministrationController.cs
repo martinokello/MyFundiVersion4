@@ -53,25 +53,25 @@ namespace MyFundi.Web.ControllersControllers
         }
         [HttpPost]
         [CustomAuthorize("Administrator")]
-        public async Task<IActionResult> UploadBlog([FromForm] IFormFile blogFile,FormCollection formCollection)
+        public async Task<IActionResult> UploadBlog([FromForm] IFormFile blogFile)
         {
             try
             {
-                _unitOfWork._blogsRepository.Insert(new Blog { BlogContent = formCollection["blogContent"], BlogName = formCollection["blogName"] });
+                _unitOfWork._blogsRepository.Insert(new Blog { BlogContent = HttpContext.Request.Form["blogContent"], BlogName = HttpContext.Request.Form["blogName"] });
                 _unitOfWork.SaveChanges();
                 if (blogFile != null)
                 {
-                    var dirAdvertImg = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwwroot\\images");
-                    if (!dirAdvertImg.Exists)
+                    var blogDirectory = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images");
+                    if (!blogDirectory.Exists)
                     {
-                        dirAdvertImg.Create();
+                        blogDirectory.Create();
                     }
-                    var fileInfo = new FileInfo($"{this.Environment.ContentRootPath}\\wwwwroot\\images\\{formCollection["blogName"]}.jpg");
+                    var fileInfo = new FileInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images\\{HttpContext.Request.Form["blogName"]}.jpg");
                     using (var fileStream = (fileInfo.Exists ? fileInfo.OpenWrite() : fileInfo.Create()))
                     {
                         await blogFile.CopyToAsync(fileStream);
 
-                        return Ok(new { result = true, Message = "Successfully Blog." });
+                        return Ok(new { result = true, Message = "Successfully Uploaded Blog!" });
                     }
                 }
                 else
@@ -82,7 +82,7 @@ namespace MyFundi.Web.ControllersControllers
             catch (Exception ex)
             {
 
-                return await Task.FromResult(BadRequest(new { Message = ex.Message, Result = false, AbsoluteAdvertUrl = string.Empty }));
+                return await Task.FromResult(Ok(new { Message = ex.Message+"\n"+ex.StackTrace, Result = false, AbsoluteAdvertUrl = string.Empty }));
             }
         }
         [HttpPost]
@@ -94,12 +94,12 @@ namespace MyFundi.Web.ControllersControllers
                 if (advertGifFile != null)
                 {
                     var absoluteAdvertLinkUrl = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl").Value;
-                    var dirAdvertImg = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwwroot\\images");
+                    var dirAdvertImg = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images");
                     if (!dirAdvertImg.Exists)
                     {
                         dirAdvertImg.Create();
                     }
-                    var fileInfo = new FileInfo($"{this.Environment.ContentRootPath}\\wwwwroot\\images\\currentAdvert.gif");
+                    var fileInfo = new FileInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images\\currentAdvert.gif");
                     using (var fileStream = (fileInfo.Exists ? fileInfo.OpenWrite() : fileInfo.Create()))
                     {
                         await advertGifFile.CopyToAsync(fileStream);
@@ -114,7 +114,7 @@ namespace MyFundi.Web.ControllersControllers
             catch(Exception ex)
             {
 
-                return await Task.FromResult(BadRequest(new { Message = ex.Message, Result = false, AbsoluteAdvertUrl=string.Empty }));
+                return await Task.FromResult(BadRequest(new { Message = ex.Message + "\n" + ex.StackTrace, Result = false, AbsoluteAdvertUrl=string.Empty }));
             }
         }
         [HttpPost]
