@@ -65,6 +65,9 @@ import { ClientSubscriptionComponent } from './clientsubscription/clientsubscrip
 import { AuthenticatedUserOveridesComponent } from './roles/authenticateduser/authenticateduser.component';
 import { AdvertComponent } from './advert/advert.component';
 import { BlogsComponent } from './blogs/blogs.component';
+import { ResetPasswordComponent } from './resetpassword/resetpassword.component';
+import { FundiContractComponent } from './fundi-contracts/fundicontract.component';
+import { AuthFundiAdminGuard } from '../guards/AuthFundiAdminGuard';
 
 @NgModule({
     declarations: [
@@ -120,7 +123,9 @@ import { BlogsComponent } from './blogs/blogs.component';
         TermsAndConditionsComponent,
         ClientFundiContractComponent,
         AdvertComponent,
-        BlogsComponent
+        BlogsComponent,
+        ResetPasswordComponent,
+        FundiContractComponent
 
     ],
     imports: [
@@ -139,6 +144,7 @@ import { BlogsComponent } from './blogs/blogs.component';
             { path: 'register', component: RegisterComponent },
             { path: 'scanqrcode', component: QrCodeComponent, canActivate: [AuthGuard] },
             { path: 'forgot-password', component: ForgotPasswordComponent },
+            { path: 'reset-password', component: ResetPasswordComponent },
             { path: 'logout', component: HomeComponent },
             { path: 'manage-roles', component: UserRolesComponent, canActivate: [AdminAuthGuard] },
             { path: 'contactus', component: ContactUsComponent },
@@ -158,8 +164,9 @@ import { BlogsComponent } from './blogs/blogs.component';
             { path: 'job-details', component: ClientJobViewComponent, canActivate: [AuthGuard] },
             { path: 'fundi-subscription', component: FundiSubscriptionComponent, canActivate: [AuthGuard] },
             { path: 'client-subscription', component: ClientSubscriptionComponent},
-            { path: 'fundi-search-job', component: FundiJobSearchComponent, canActivate: [AuthFundiGuard] },
+            { path: 'fundi-search-job', component: FundiJobSearchComponent, canActivate: [AuthFundiAdminGuard] },
             { path: 'client-fundi-contract', component: ClientFundiContractComponent, canActivate: [AuthFundiClientAdminGuard] },
+            { path: 'fundi-contract', component: FundiContractComponent, canActivate: [AuthFundiAdminGuard] },
             { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
             { path: 'blogs', component: BlogsComponent }
         ])
@@ -171,10 +178,11 @@ import { BlogsComponent } from './blogs/blogs.component';
         { provide: AdminAuthGuard, useClass: AdminAuthGuard },
         { provide: AuthFundiGuard, useClass: AuthFundiGuard },
         { provide: AuthClientGuard, useClass: AuthClientGuard },
+        { provide: AuthFundiAdminGuard, useClass: AuthFundiAdminGuard },
         { provide: AuthFundiClientAdminGuard, useClass: AuthFundiClientAdminGuard },
+        { provide: AuthFundiSubscriptionGuard, useClass: AuthFundiSubscriptionGuard },
         { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
         { provide: APP_BASE_HREF, useValue: '/myFundi/' },
-        { provide: AuthFundiSubscriptionGuard, useClass: AuthFundiSubscriptionGuard },
     ],
     bootstrap: [AppComponent]
 })

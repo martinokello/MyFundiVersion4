@@ -27,6 +27,9 @@
                   <a routerLink='/manage-profile'>Manage Fundi Profile</a>
               </li>
               <li style="margin: 10px 0px !important; padding: 10px !important;">
+                  <a routerLink='/fundi-contract'>Fundi Contracts</a>
+              </li>
+              <li style="margin: 10px 0px !important; padding: 10px !important;">
                   <a routerLink='/fundi-search-job'>Search For Jobs</a>
               </li>
           </ng-container>
@@ -38,6 +41,9 @@
                   <a [routerLink]="['/clientsearch']">
                       Search For Fundi
                   </a>
+              </li>
+              <li style="margin: 10px 0px !important; padding: 10px !important;">
+                  <a routerLink='/client-fundi-contract'>Client Contracts</a>
               </li>
           </ng-container>
           <ng-container *ngIf="actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">

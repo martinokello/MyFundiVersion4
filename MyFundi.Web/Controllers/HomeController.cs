@@ -65,29 +65,36 @@ namespace MyFundi.Web.Controllers
         {
             try
             {
-                return await Task.FromResult(Ok(_unitOfWork._blogsRepository.GetAll().ToArray()));
+                return await Task.FromResult(Ok(_unitOfWork._blogsRepository.GetAll().OrderByDescending(q=> q.DateCreated).ToArray()));
             }
             catch (Exception ex) {
                 return await Task.FromResult(BadRequest(null));
             }
         }
 
-        [AuthorizeIdentity]
         [HttpPost]
-        [Consumes("multipart/form-data")]
-        public IActionResult SendEmail()
+        public async Task<IActionResult> SearchBlogs([FromBody] string[] query)
         {
             try
             {
-                _emailService.BusinessEmailDetails = _businessSmtpDetails;
-                //Send Email:
-                _emailService.SendEmail(new EmailDao { Attachment = Request.Form.Files.Any() ? Request.Form.Files[0] : null, EmailBody = Request.Form["emailBody"], EmailFrom = Request.Form["emailFrom"], EmailSubject = Request.Form["emailSubject"], EmailTo = Request.Form["emailTo"] });
-                return View("Index");
+                var allBlogs = _unitOfWork._blogsRepository.GetAll().ToArray();
+                var results = (from res in allBlogs
+                               where res.BlogName.ToLower().Split(new char[] { ' ', '.', ',', '!', '?' }, StringSplitOptions.RemoveEmptyEntries).Intersect(query).Any() || res.BlogContent.ToLower().Split(new char[] { ' ', '.',',','!','?' }, StringSplitOptions.RemoveEmptyEntries).Intersect(query).Any()
+                               orderby res.DateCreated descending
+                               select res);
+                if (results.Any())
+                {
+                    return await Task.FromResult(Ok(results.ToArray()));
+                }
+                else { 
+                    return await Task.FromResult(Ok(new string[] { }));
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return Json(new { Result = false });
+                return await Task.FromResult(BadRequest(new { Message=ex.Message, StackTrace = ex.StackTrace}));
             }
+
         }
 
         [HttpGet]

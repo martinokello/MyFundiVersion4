@@ -129,9 +129,11 @@ C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentsG
 C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentsGateway.dll
 C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentsGateway.pdb
 C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\MyFundi.Domain.dll
+C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentCalculater.dll
 C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaypalFacility.dll
 C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\MyFundi.Domain.pdb
 C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaypalFacility.pdb
+C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentCalculater.pdb
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.csproj.AssemblyReference.cache
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.GeneratedMSBuildEditorConfig.editorconfig
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.AssemblyInfoInputs.cache
@@ -140,5 +142,3 @@ C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsG
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.csproj.CopyComplete
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.dll
 C:\Development\MyFundiCurrent\PaymentGateway\obj\Release\netcoreapp3.1\PaymentsGateway.pdb
-C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentCalculater.dll
-C:\Development\MyFundiCurrent\PaymentGateway\bin\Release\netcoreapp3.1\PaymentCalculater.pdb

@@ -39,16 +39,50 @@ namespace MyFundi.Web.ControllersControllers
             this._appSettings = appSettings;
         }
 
-        public async Task<IActionResult> GetAdvertLink()
+        public async Task<IActionResult> GetAdvertLinks()
         {
             try
             {
-                var absoluteAdvertLinkUrl = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl").Value;
-                return await Task.FromResult(Ok(new { AdvertLinkUrl= absoluteAdvertLinkUrl}));
+                var absoluteAdvertLinkUrl1 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl1").Value;
+                var absoluteAdvertLinkUrl2 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl2").Value;
+                var absoluteAdvertLinkUrl3 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl3").Value;
+                return await Task.FromResult(Ok(new { AdvertLinkUrl1 = absoluteAdvertLinkUrl1, AdvertLinkUrl2 = absoluteAdvertLinkUrl2, AdvertLinkUrl3 = absoluteAdvertLinkUrl3 }));
             }
             catch
             {
                 return await Task.FromResult(BadRequest(null));
+            }
+        }
+        [HttpPost]
+        [CustomAuthorize("Administrator")]
+        public async Task<IActionResult> UploadBlogSingleImages([FromForm] IFormFile blogFile)
+        {
+            try
+            {
+                if (blogFile != null)
+                {
+                    var blogDirectory = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images");
+                    if (!blogDirectory.Exists)
+                    {
+                        blogDirectory.Create();
+                    }
+                    var fileInfo = new FileInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images\\{blogFile.FileName}");
+                    using (var fileStream = (fileInfo.Exists ? fileInfo.OpenWrite() : fileInfo.Create()))
+                    {
+                        await blogFile.CopyToAsync(fileStream);
+
+                        return Ok(new { result = true, Message = "Successfully Uploaded Blog!" });
+                    }
+                }
+                else
+                {
+                    return Ok(new { AbsoluteAdvertUrl = "", Result = false, Message = "Flie Does not Exist." });
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return await Task.FromResult(Ok(new { Message = ex.Message + "\n" + ex.StackTrace, Result = false, AbsoluteAdvertUrl = string.Empty }));
             }
         }
         [HttpPost]
@@ -82,39 +116,114 @@ namespace MyFundi.Web.ControllersControllers
             catch (Exception ex)
             {
 
-                return await Task.FromResult(Ok(new { Message = ex.Message+"\n"+ex.StackTrace, Result = false, AbsoluteAdvertUrl = string.Empty }));
+                return await Task.FromResult(Ok(new { Message = ex.Message + "\n" + ex.StackTrace, Result = false, AbsoluteAdvertUrl = string.Empty }));
             }
         }
         [HttpPost]
         [CustomAuthorize("Administrator")]
-        public async Task<IActionResult> UploadAdvertGifImage([FromForm] IFormFile advertGifFile)
+        public async Task<IActionResult> UploadAdvertGifImage1([FromForm] IFormFile advertGifFiles)
         {
             try
             {
-                if (advertGifFile != null)
+                if (advertGifFiles != null)
                 {
-                    var absoluteAdvertLinkUrl = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl").Value;
+                    var absoluteAdvertLinkUrl1 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl1").Value;
+                    var absoluteAdvertLinkUrl2 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl2").Value;
+                    var absoluteAdvertLinkUrl3 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl3").Value;
                     var dirAdvertImg = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images");
                     if (!dirAdvertImg.Exists)
                     {
                         dirAdvertImg.Create();
                     }
-                    var fileInfo = new FileInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images\\currentAdvert.gif");
-                    using (var fileStream = (fileInfo.Exists ? fileInfo.OpenWrite() : fileInfo.Create()))
+                    var fileInfo1 = new FileInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images\\currentAdvert1.gif");
+                    using (var fileStream = (fileInfo1.Exists ? fileInfo1.OpenWrite() : fileInfo1.Create()))
                     {
-                        await advertGifFile.CopyToAsync(fileStream);
-                        return Ok(new { AbsoluteAdverSrctUrl = "/adverts/images/currentAdvert.gif", AbsoluteAdvertLinkUrl= absoluteAdvertLinkUrl, Result = true, Message = "Successfully Uploaded Advert Gif Image." });
+                        await advertGifFiles.CopyToAsync(fileStream);
                     }
+                    return Ok(new { AbsoluteAdvertLinkUrl1 = absoluteAdvertLinkUrl1, AbsoluteAdvertLinkUrl2 = absoluteAdvertLinkUrl2, AbsoluteAdvertLinkUrl3 = absoluteAdvertLinkUrl3, Result = true, Message = "Successfully Uploaded Advert Gif Image." });
+
                 }
                 else
                 {
-                    return Ok(new { AbsoluteAdvertUrl = "", Result = false, Message = "Flie Does not Exist." });
+                    return Ok(new { AbsoluteAdvertUrl1 = "", AbsoluteAdvertLinkUrl2 = "", AbsoluteAdvertLinkUrl3 = "", Result = false, Message = "Flie Does not Exist." });
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
-                return await Task.FromResult(BadRequest(new { Message = ex.Message + "\n" + ex.StackTrace, Result = false, AbsoluteAdvertUrl=string.Empty }));
+                return await Task.FromResult(BadRequest(new { Message = ex.Message + "\n" + ex.StackTrace, Result = false, AbsoluteAdvertUrl = string.Empty }));
+            }
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Administrator")]
+        public async Task<IActionResult> UploadAdvertGifImage2([FromForm] IFormFile advertGifFiles)
+        {
+            try
+            {
+                if (advertGifFiles != null)
+                {
+                    var absoluteAdvertLinkUrl1 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl1").Value;
+                    var absoluteAdvertLinkUrl2 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl2").Value;
+                    var absoluteAdvertLinkUrl3 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl3").Value;
+                    var dirAdvertImg = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images");
+                    if (!dirAdvertImg.Exists)
+                    {
+                        dirAdvertImg.Create();
+                    }
+                    var fileInfo1 = new FileInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images\\currentAdvert2.gif");
+                    using (var fileStream = (fileInfo1.Exists ? fileInfo1.OpenWrite() : fileInfo1.Create()))
+                    {
+                        await advertGifFiles.CopyToAsync(fileStream);
+                    }
+                    return Ok(new { AbsoluteAdvertLinkUrl1 = absoluteAdvertLinkUrl1, AbsoluteAdvertLinkUrl2 = absoluteAdvertLinkUrl2, AbsoluteAdvertLinkUrl3 = absoluteAdvertLinkUrl3, Result = true, Message = "Successfully Uploaded Advert Gif Image." });
+
+                }
+                else
+                {
+                    return Ok(new { AbsoluteAdvertUrl1 = "", AbsoluteAdvertLinkUrl2 = "", AbsoluteAdvertLinkUrl3 = "", Result = false, Message = "Flie Does not Exist." });
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return await Task.FromResult(BadRequest(new { Message = ex.Message + "\n" + ex.StackTrace, Result = false, AbsoluteAdvertUrl = string.Empty }));
+            }
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Administrator")]
+        public async Task<IActionResult> UploadAdvertGifImage3([FromForm] IFormFile advertGifFiles)
+        {
+            try
+            {
+                if (advertGifFiles != null)
+                {
+                    var absoluteAdvertLinkUrl1 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl1").Value;
+                    var absoluteAdvertLinkUrl2 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl2").Value;
+                    var absoluteAdvertLinkUrl3 = this._appSettings.AppSettings.GetSection("AdvertisingAbsoluteLinkUrl3").Value;
+                    var dirAdvertImg = new DirectoryInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images");
+                    if (!dirAdvertImg.Exists)
+                    {
+                        dirAdvertImg.Create();
+                    }
+                    var fileInfo1 = new FileInfo($"{this.Environment.ContentRootPath}\\wwwroot\\images\\currentAdvert3.gif");
+                    using (var fileStream = (fileInfo1.Exists ? fileInfo1.OpenWrite() : fileInfo1.Create()))
+                    {
+                        await advertGifFiles.CopyToAsync(fileStream);
+                    }
+                    return Ok(new { AbsoluteAdvertLinkUrl1 = absoluteAdvertLinkUrl1, AbsoluteAdvertLinkUrl2 = absoluteAdvertLinkUrl2, AbsoluteAdvertLinkUrl3 = absoluteAdvertLinkUrl3, Result = true, Message = "Successfully Uploaded Advert Gif Image." });
+
+                }
+                else
+                {
+                    return Ok(new { AbsoluteAdvertUrl1 = "", AbsoluteAdvertLinkUrl2 = "", AbsoluteAdvertLinkUrl3 = "", Result = false, Message = "Flie Does not Exist." });
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return await Task.FromResult(BadRequest(new { Message = ex.Message + "\n" + ex.StackTrace, Result = false, AbsoluteAdvertUrl = string.Empty }));
             }
         }
         [HttpPost]
@@ -137,10 +246,10 @@ namespace MyFundi.Web.ControllersControllers
                 _unitOfWork.SaveChanges();
                 if (result) return await Task.FromResult(Ok(result));
             }
-            return await Task.FromResult(BadRequest(false)); 
+            return await Task.FromResult(BadRequest(false));
         }
 
-        
+
         [HttpPost]
         [CustomAuthorize("Administrator")]
         public async Task<IActionResult> UpdateCourse([FromBody] CourseViewModel cvw)
@@ -169,7 +278,7 @@ namespace MyFundi.Web.ControllersControllers
             }
             return await Task.FromResult(BadRequest(false));
         }
-        
+
         [HttpPost]
         [Route("DeleteworkCategory")]
         [CustomAuthorize("Administrator")]
@@ -185,7 +294,7 @@ namespace MyFundi.Web.ControllersControllers
             }
             return await Task.FromResult(BadRequest(false));
         }
-        
+
         [HttpPost]
         [Route("DeleteCourse")]
         [CustomAuthorize("Administrator")]
@@ -229,8 +338,8 @@ namespace MyFundi.Web.ControllersControllers
             }
             return await Task.FromResult(BadRequest(false));
         }
-        
-       [HttpGet]
+
+        [HttpGet]
         public async Task<IActionResult> GetCourseById(int courseId)
         {
             var result = _unitOfWork._courseRepository.GetById(courseId);

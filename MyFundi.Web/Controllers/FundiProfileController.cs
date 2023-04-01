@@ -1399,7 +1399,7 @@ namespace MyFundi.Web.Controllers
             {
                 return await Task.FromResult(NotFound(new { Message = $"user {username} profile not Found!" }));
             }
-            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.FundiProfileId == fundiProfile.FundiProfileId)
+            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.FundiProfileId == fundiProfile.FundiProfileId || q.FundiUsername.ToLower().Equals(username.ToLower())).Include(q => q.ClientProfile).Include(q => q.FundiProfile)
                                  select c;
             return await Task.FromResult(Ok(_mapper.Map<ClientFundiContractViewModel[]>(fundiContracts.ToArray())));
         }
@@ -1415,7 +1415,7 @@ namespace MyFundi.Web.Controllers
             {
                 return await Task.FromResult(NotFound(new { Message = $"user {username} profile not Found!" }));
             }
-            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.ClientProfileId == clientProfile.ClientProfileId).Include(q => q.ClientProfile).Include(q => q.FundiProfile)
+            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.ClientProfileId == clientProfile.ClientProfileId || q.ClientUsername.ToLower().Equals(username.ToLower())).Include(q => q.ClientProfile).Include(q => q.FundiProfile)
                                  select c;
             return await Task.FromResult(Ok(_mapper.Map<ClientFundiContractViewModel[]>(fundiContracts.ToArray())));
         }

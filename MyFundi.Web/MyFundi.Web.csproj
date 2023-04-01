@@ -41,11 +41,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\dist\index.html" />
     <None Remove="ClientApp\src\app\activecrudoperations\chat.component.ts" />
     <None Remove="ClientApp\src\assets\images\CarMechanic.jpg" />
     <None Remove="ClientApp\src\assets\images\carpentryMetalwork.jpg" />
     <None Remove="ClientApp\src\environments\index.html" />
+    <None Remove="ClientApp\src\guards\AuthFundiAdminGuard.ts" />
     <None Remove="ClientApp\src\guards\AuthFundiClientAdminGuard.ts" />
     <None Remove="ClientApp\src\images\CarMechanic.jpg" />
     <None Remove="ClientApp\src\images\carpentryMetalwork.jpg" />
@@ -57,10 +57,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ClientApp\dist\index.html">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="ClientApp\src\assets\images\CarMechanic.jpg">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -273,15 +269,21 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Update="wwwroot\index.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="MyFundiProfile\" />
     <Folder Include="ClientProfile\" />
+    <Folder Include="wwwroot\assets\sceditor-3.2.0\minified\" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\chat\chat.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthFundiAdminGuard.ts" />
     <TypeScriptCompile Include="ClientApp\src\guards\AuthFundiClientAdminGuard.ts" />
   </ItemGroup>
 

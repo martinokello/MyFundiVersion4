@@ -15,6 +15,9 @@ export class RegisterComponent implements OnInit{
     public userDetail: IUserDetail | any;
     private myFundiService: MyFundiService  | any;
     ngOnInit(): void {
+        if (localStorage.getItem("HasAcceptedTermsOfService")) {
+            localStorage.removeItem("HasAcceptedTermsOfService");
+        }
         let userDetail: IUserDetail = {
           password: "",
           role: "",
@@ -51,10 +54,9 @@ export class RegisterComponent implements OnInit{
       this.userDetail.username = this.userDetail.emailAddress;
       let registeResults: Observable<ILogInStatus> = this.myFundiService.registerByPost(this.userDetail);
 
-      registeResults.map((q: ILogInStatus) => {
-            if (q.isRegistered) {
+        registeResults.map((q: ILogInStatus) => {
+          if (q.isRegistered) {
                 alert('Registration Successfull: ' + q.isRegistered);
-                localStorage.removeItem("HasAcceptedTermsOfService");
                 this.router.navigateByUrl("/client-subscription");
             }
             else {

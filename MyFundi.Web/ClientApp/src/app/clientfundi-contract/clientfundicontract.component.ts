@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IMtnAirTelModel, IWorkSubCategory, IWorkAndSubWorkCategory, ISubscription, IClientFundiContract } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IMtnAirTelModel, IWorkSubCategory, IWorkAndSubWorkCategory, ISubscription, IClientFundiContract, IClientProfile } from '../../services/myFundiService';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
 
@@ -57,33 +57,58 @@ export class ClientFundiContractComponent implements OnInit {
         let curDate: Date = new Date();
         let draftContractData: any =JSON.parse(localStorage.getItem("DraftContractData"));
 
-        this.clientFundiContract = {
-            clientFundiContractId: draftContractData.clientFundiContractId,
-            clientProfileId: draftContractData.clientProfileId,
-            clientUsername: draftContractData.clientUsername,
-            clientFirstName: draftContractData.clientFirstName,
-            clientLastName: draftContractData.clientLastName,
-            fundiProfileId: draftContractData.fundiProfileId,
-            fundiUsername: draftContractData.fundiUsername,
-            fundiFirstName: draftContractData.fundiFirstName,
-            fundiLastName: draftContractData.fundiLastName,
-            agreedStartDate: this.formatDate(curDate),
-            agreedEndDate: this.formatDate(curDate),
-            agreedCost: draftContractData.agreedFees,
-            contractualDescription: draftContractData.contractualDescription,
-            isSignedByClient: true,
-            isSignedByFundi: false,
-            isCompleted: false,
-            isSignedOffByClient: false,
-            notesForNotice: draftContractData.notesForNotice
-        };
+        if (draftContractData) {
+            this.clientFundiContract = {
+                clientFundiContractId: draftContractData.clientFundiContractId,
+                clientProfileId: draftContractData.clientProfileId,
+                clientUsername: draftContractData.clientUsername,
+                clientFirstName: draftContractData.clientFirstName,
+                clientLastName: draftContractData.clientLastName,
+                fundiProfileId: draftContractData.fundiProfileId,
+                fundiUsername: draftContractData.fundiUsername,
+                fundiFirstName: draftContractData.fundiFirstName,
+                fundiLastName: draftContractData.fundiLastName,
+                agreedStartDate: this.formatDate(curDate),
+                agreedEndDate: this.formatDate(curDate),
+                agreedCost: draftContractData.agreedFees,
+                contractualDescription: draftContractData.contractualDescription,
+                isSignedByClient: true,
+                isSignedByFundi: false,
+                isCompleted: false,
+                isSignedOffByClient: false,
+                notesForNotice: draftContractData.notesForNotice
+            };
+        }
+        else {
 
-        let resObs = this.myFundiService.GetFundiProfile(this.clientFundiContract.fundiUsername);
+            this.clientFundiContract = {
+                clientFundiContractId: -1,
+                clientProfileId: -1,
+                clientUsername: this.userDetails.username,
+                clientFirstName: "",
+                clientLastName: "",
+                fundiProfileId: -1,
+                fundiUsername: "",
+                fundiFirstName: "",
+                fundiLastName: "",
+                agreedStartDate: this.formatDate(curDate),
+                agreedEndDate: this.formatDate(curDate),
+                agreedCost: 0,
+                contractualDescription: "",
+                isSignedByClient: true,
+                isSignedByFundi: false,
+                isCompleted: false,
+                isSignedOffByClient: false,
+                notesForNotice: "",
+            };
+        }
 
-        resObs.map((fundiProf: IProfile) => {
+        let resObs = this.myFundiService.GetClientProfile(this.userDetails.username);
+
+        resObs.map((fundiProf: IClientProfile) => {
             debugger;
             this.fundi = fundiProf;
-            let clientContsObs: Observable<any[]> = this.myFundiService.GetClientContractsByUsername(this.clientFundiContract.clientUsername);
+            let clientContsObs: Observable<any[]> = this.myFundiService.GetClientContractsByUsername(this.userDetails.username);
             clientContsObs.map((cts: any[])=> {
                 this.clientContracts = cts;
 

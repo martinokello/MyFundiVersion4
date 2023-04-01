@@ -1,17 +1,37 @@
 <div class="container-fluid" style="padding:3px !important;text-align:center !important;">
     <div class="row">
-        <div class="col-lg-12">
-            <div style="text-align:center !important;">
-               <a href="{{advertLinkUrl}}">
-                   <img id="imageBanner" src="https://myfundiv2.martinlayooinc.com/images/currentAdvert.gif" style="padding:3px !important; height:14vh !important; width:auto !important;" alt="[[Advert Image]]" />
-                   </a> 
-            </div>
+        <div style="text-align:center !important;" class="col-lg-4">
+            <a href="{{advertLinkUrl1}}" target="_blank">
+                <img id="imageBanner" src="{{baseUrl}}/images/currentAdvert1.gif" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+            </a><br />
             <ng-container *ngIf="userRoles && userRoles.indexOf('Administrator') > -1" ngDefaultControl ngModel="userRoles">
                 <div class="form-group">
-                    <input type="file" id="advertBanner" class="form-control-file" name="advertGifFile" (change)="updateUploadAdvert($event)"/><br />
-                    <input type="button" class="btn-primary" name="submitAdvert" (click)="submitAdvert($event)" value="Upload Advert Image" /><br />
+                    <input type="file" id="advertBanner1" class="form-control-file" (change)="updateUploadAdvert1($event)" /><br />
+                </div>
+            </ng-container>
+        </div>
+        <div style="text-align:center !important;" class="col-lg-4">
+            <a href="{{advertLinkUrl2}}" target="_blank">
+                <img id="imageBanner" src="{{baseUrl}}/images/currentAdvert2.gif" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+            </a><br />
+            <ng-container *ngIf="userRoles && userRoles.indexOf('Administrator') > -1" ngDefaultControl ngModel="userRoles">
+                <div class="form-group">
+                    <input type="file" id="advertBanner2" class="form-control-file" (change)="updateUploadAdvert2($event)" /><br />
+                </div>
+            </ng-container>
+        </div><br />
+        <div style="text-align:center !important;" class="col-lg-4">
+            <a href="{{advertLinkUrl3}}" target="_blank">
+                <img id="imageBanner" src="{{baseUrl}}/images/currentAdvert3.gif" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+            </a><br />
+            <ng-container *ngIf="userRoles && userRoles.indexOf('Administrator') > -1" ngDefaultControl ngModel="userRoles">
+                <div class="form-group">
+                    <input type="file" id="advertBanner3" class="form-control-file" (change)="updateUploadAdvert3($event)" /><br />
                 </div>
             </ng-container>
         </div>
     </div>
+    <ng-container *ngIf="userRoles && userRoles.indexOf('Administrator') > -1" ngDefaultControl ngModel="userRoles">
+        <input type="button" class="btn-primary" name="submitAdvert" (click)="submitAdvert($event)" value="Upload Advert Image" /><br />
+    </ng-container>
 </div>

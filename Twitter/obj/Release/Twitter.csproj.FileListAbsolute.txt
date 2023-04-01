@@ -137,8 +137,8 @@ C:\Development\MyFundiv2\Twitter\obj\Release\Twitter.csproj.AssemblyReference.ca
 C:\Development\MyFundiCurrent\Twitter\bin\Release\Twitter.dll
 C:\Development\MyFundiCurrent\Twitter\bin\Release\Twitter.pdb
 C:\Development\MyFundiCurrent\Twitter\bin\Release\Newtonsoft.Json.dll
+C:\Development\MyFundiCurrent\Twitter\obj\Release\Twitter.csproj.AssemblyReference.cache
 C:\Development\MyFundiCurrent\Twitter\obj\Release\Twitter.csproj.CoreCompileInputs.cache
 C:\Development\MyFundiCurrent\Twitter\obj\Release\Twitter.csproj.CopyComplete
 C:\Development\MyFundiCurrent\Twitter\obj\Release\Twitter.dll
 C:\Development\MyFundiCurrent\Twitter\obj\Release\Twitter.pdb
-C:\Development\MyFundiCurrent\Twitter\obj\Release\Twitter.csproj.AssemblyReference.cache

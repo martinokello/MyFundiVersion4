@@ -2,13 +2,17 @@
     <div class="row">
         <div class="col-lg-12">
             <div style="text-align:center !important;">
-                <img id="imageBanner" src="https://myfundiv2.martinlayooinc.com/images/blogs.jpg" style="padding:3px !important; width:30% !important; height:auto !important;" alt="[[Blog Image]]" />
+                <img id="imageBanner" src="{{this.baseUrl}}/images/blogs.jpg" style="padding:3px !important; width:30% !important; height:auto !important;" alt="[[Blog Image]]" />
             </div>
             <div id="blogs">
+                <div class="form-group">
+                    <input type="text" placeholder="Search Blogs..." class="form-control" [(ngModel)]="searchQuery" /><span><input type="button" class="fa-search" value="Go!" (click)="searchBlogs($event)" /></span>
+                    <br />
+                </div>
                 <div *ngFor="let blog of blogs">
                     <h2>{{blog.blogName}}</h2>
                     <div style="text-align:center !important;">
-                        <img src="{{'https://myfundiv2.martinlayooinc.com/images/'+ blog.blogName +'.jpg'}}" style="padding:3px !important; width:73% !important; height:auto !important;" id="sharedImage" />
+                        <img src="{{this.baseUrl}}/images/{{blog.blogName}}.jpg" style="padding:3px !important; width:73% !important; height:auto !important;" id="sharedImage" />
                     </div>
                     <div style="text-align:left !important;">
                         <div innerHTML="{{blog.blogContent}}">
@@ -20,10 +24,17 @@
                 </div>
             </div>
             <div class="form-group" id="createBlog" *ngIf="isAdiministrator">
+                <h4>Blog Header Image</h4>
                 <input type="file" id="blogImage" class="form-control-file" name="blogImage" (change)="uploadBlogFile($event)" /><br />
                 <input type="text" id="blogName" class="form-control-file" name="blogName" [(ngModel)]="blog.blogName" placeholder="Enter Blog Name" /><br />
                 <textarea placeholder="Enter Blog Content" id="blogContent" name="blogContent" [(ngModel)]="blog.blogContent" style="width:100% !important;height:85vh !important;"></textarea>
-                <input type="button" class="btn-primary" (click)="submitBlog($event)" value="Upload Blog" /><br />
+                <input type="button" class="btn btn-primary" (click)="submitBlog($event)" value="Upload Blog" /><br />
+            </div>
+            <hr />
+            <div class="form-group" id="createBlog" *ngIf="isAdiministrator">
+                <h4>Images used in Blog</h4>
+                <input type="file" id="blogImage" class="form-control-file" name="blogContentImage" (change)="uploadBlogSingleImages($event)" /><br />
+                <input type="button" class="btn btn-primary" (click)="submitBlogSingleImage($event)" value="Add Single Images" /><br />
             </div>
         </div>
     </div>

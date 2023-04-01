@@ -78,12 +78,15 @@ Many thanks
 MartinLayooInc Team.";
                 case EmailTemplate.PasswordResetMessage:
                     return @"Dear [[FirstName]],
-                    
+Please copy this token:
+
+[[PasswordToken]] 
+
+as it is and paste onto the Token Field of Page your've been directed to, then type new password and submit the form.
+
 We would like to let you know that you have requested your password to be reset.
 
-Use this link to reset your password [[PasswordResetLink]].
-
-Please not that you will get an email to reset password. Follow the instructions and reset your password.
+Follow the instructions and reset your password.
 
 We take security concerns very highly. If you didn't request password reset, then do please contact us immediately.
 

@@ -14,45 +14,61 @@ declare var jQuery: any;
     templateUrl: './advert.component.html',
 })
 export class AdvertComponent implements OnInit, AfterViewChecked {
-    private advertGifFile: File;
+    private advertGifFiles: File[];
     public userRoles: string[];
-    public advertLinkUrl: string;
+    public advertLinkUrl1: string;
+    public advertLinkUrl2: string;
+    public advertLinkUrl3: string;
+    public baseUrl: string = this.myFundiService.BaseServerUrl;
 
     public constructor(private myFundiService: MyFundiService, private httpClient: HttpClient) {
     }
 
     ngOnInit() {
-        let url: string = "/Administration/GetAdvertLink";
+		this.advertGifFiles = [];
+        let url: string = `${this.baseUrl}/Administration/GetAdvertLinks`;
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
 
         this.httpClient.get(url, { headers: headers }).map((q: any) => {
             debugger;
             if (q) {
-                this.advertLinkUrl = q.advertLinkUrl;
+                this.advertLinkUrl1 = q.advertLinkUrl1;
+                this.advertLinkUrl2 = q.advertLinkUrl2;
+                this.advertLinkUrl3 = q.advertLinkUrl3;
             }
         }).subscribe();
     }
-    updateUploadAdvert($event) {
-        this.advertGifFile = $event.target.files[0];
+    updateUploadAdvert1($event) {
+        this.advertGifFiles.push($event.target.files[0]);
+    }
+
+    updateUploadAdvert2($event) {
+        this.advertGifFiles.push($event.target.files[0]); 
+    }
+
+    updateUploadAdvert3($event) {
+        this.advertGifFiles.push($event.target.files[0]);
     }
 
     ngAfterViewChecked(): void {
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
     }
+
     submitAdvert($event) {
-        //upload File:
-        let url: string = "https://myfundiv2.martinlayooinc.com/Administration/UploadAdvertGifImage";
+        let url: string = `${this.baseUrl}/Administration/UploadAdvertGifImage`;
+        for (let n = 0; n < this.advertGifFiles.length; n++) {
 
-        let formData = new FormData();
-        formData.append("advertGifFile", this.advertGifFile);
+            let formData = new FormData();
+            formData.append('advertGifFiles', this.advertGifFiles[n])
 
-        this.httpClient.post(url, formData).map((res: any) => {
-            debugger;
-            alert(res.message);
-            if (res.result) {
-                alert("Added Gif Advert!")
-            }
-        }).subscribe();
+            this.httpClient.post(url+(n+1), formData).map((res: any) => {
+                debugger;
+                alert(res.message);
+                if (res.result) {
+                    alert('Uploaded Advert file: advertGifFiles' + (n + 1));
+                }
+            }).subscribe();
+        }
         $event.preventDefault();
     }
 }

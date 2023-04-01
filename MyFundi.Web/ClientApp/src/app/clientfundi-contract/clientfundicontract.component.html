@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="isSignedByFundi" name="isSignedByFundi" [(ngModel)]="clientFundiContract.isSignedByFundi" /><label class="custom-control-label">Is Fundi Signed</label>
+                        <input class="custom-control-input" type="checkbox" id="isSignedByFundi" name="isSignedByFundi" [(ngModel)]="clientFundiContract.isSignedByFundi"  [disabled]="true"/><label class="custom-control-label">Is Fundi Signed</label>
                         <br />
                         <hr />
                     </div>
@@ -64,7 +64,7 @@
                         <label>
                             Client Profile ID
                         </label><br />
-                        <input type="text" class="form-control" name="clientProfileId" #fundiProfileId="ngModel" readonly [(ngModel)]="clientFundiContract.clientProfileId" placeholder="clientProfileId" /><br />
+                        <input type="text" class="form-control" name="clientProfileId" #fundiProfileId="ngModel"  readonly [(ngModel)]="clientFundiContract.clientProfileId" placeholder="clientProfileId" /><br />
                         <input type="text" class="form-control" name="clientUsername" #clientUsername="ngModel" readonly [(ngModel)]="clientFundiContract.clientUsername" placeholder="Client Username" /><br />
                         <input type="text" class="form-control" name="clientFirstName" #clientFirstName="ngModel" readonly [(ngModel)]="clientFundiContract.clientFirstName" placeholder="Client First Name" /><br />
                         <input type="text" class="form-control" name="clientLastName" #clientLastNamefundiProfileId="ngModel" readonly [(ngModel)]="clientFundiContract.clientLastName" placeholder="Client Last Name" /><br />

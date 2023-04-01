@@ -123,14 +123,14 @@ namespace MyFundi.Web.Controllers
                         {
                             await _roleService.AddToRoleAsync(newUser, "Guest");
                         }
-                        _emailService.SendEmail(new EmailDao
+                        /*_emailService.SendEmail(new EmailDao
                         {
                             EmailTo = userDetails.emailAddress,
                             EmailSubject = "Welcome to MyFundi Web App",
                             DateCreated = DateTime.Now,
                             DateUpdated = DateTime.Now,
                             EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.WelcomeMessage).Replace("[[FirstName]]", userDetails.firstName)
-                        });
+                        });*/
 
                     }
                 }
@@ -448,25 +448,34 @@ namespace MyFundi.Web.Controllers
 
             return new LoginResult { IsLoggedIn = false, IsAdministrator = false, Message = "Failed to Login!" };
         }
-        [HttpPost]
-        public async Task<IActionResult> ForgotPassword(string emailAddress)
-        {
-            var user = await _userService.FindByEmailAsync(emailAddress);
-            if (user == null)
-                return BadRequest(new { ErrorMessage = "Reset your password through email link" });
 
-            string passwordResetToken = _userService.GeneratePasswordResetTokenAsync(user).ConfigureAwait(true).GetAwaiter().GetResult();
-            var passwordResetUrl = Url.Action("ResetPassword", "Account", new ResetPassword { Id = user.UserId.ToString(), Token = passwordResetToken }, Request.Scheme);
-            var emailDao = new EmailDao
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword([FromBody] UserDetails userDetails)
+        {
+            try
             {
-                EmailTo = user.Email,
-                EmailSubject = "You Requested Password Reset for your My Fundi Site.",
-                DateCreated = DateTime.Now,
-                DateUpdated = DateTime.Now,
-                EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.PasswordResetMessage).Replace("[[FirstName]]", user.FirstName).Replace("[[PasswordResetLink]]", $"Click <a href=\"" + passwordResetUrl + "\">here</a> to reset your password")
-            };
-            _emailService.SendEmail(emailDao);
-            return Ok(new { PasswordResetUrl = passwordResetUrl, passwordResetToken = passwordResetToken, Message = "Reset your password through email link" });
+                var emailAddress = userDetails.emailAddress;
+                var user = await _userService.FindByEmailAsync(emailAddress);
+                if (user == null)
+                    return BadRequest(new { ErrorMessage = "User does not exist!!" });
+
+                string passwordResetToken = await _userService.GeneratePasswordResetTokenAsync(user);
+                var passwordResetUrl = Url.Action("ResetPassword", "Account", new ResetPassword { Id = user.UserId.ToString(), Token = passwordResetToken }, Request.Scheme);
+                var emailDao = new EmailDao
+                {
+                    EmailTo = user.Email,
+                    EmailSubject = "You Requested Password Reset for your My Fundi Site.",
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.PasswordResetMessage).Replace("[[FirstName]]", user.FirstName).Replace("[[PasswordResetLink]]", $"Click <a href=\"https://myfundiv2.martinlayooinc.com/reset-password\"> here</a> to reset your password").Replace("[[PasswordToken]]", passwordResetToken)
+                };
+                _emailService.SendEmail(emailDao);
+                return await Task.FromResult(Ok(new { PasswordResetUrl = passwordResetUrl, passwordResetToken = passwordResetToken, Message = "Reset your password through email link sent!", UserId= user.UserId }));
+            }
+            catch(Exception ex)
+            {
+                return await Task.FromResult(Ok(new { ErrorMessage = ex.Message, Error = ex.StackTrace,  }));
+            }
         }
 
         [HttpPost]
@@ -484,21 +493,24 @@ namespace MyFundi.Web.Controllers
             }
 
             User userResetPassword = await _userService.ResetPasswordAsync(user, resetPassword.Token, resetPassword.Password);
-            if (string.IsNullOrEmpty(userResetPassword.Username))
-            {
-                ModelState.AddModelError(UserInteractionResults.Failed.ToString(), UserInteractionResults.Failed.ToString());
-                return BadRequest(new { ErrorMessage = "Failed to reset Password" });
-            }
 
-            _emailService.SendEmail(new EmailDao
+            if (userResetPassword.Username != null)
             {
-                EmailTo = user.Email,
-                EmailSubject = "You Requested Password Reset for your My Fundi Site.",
-                DateCreated = DateTime.Now,
-                DateUpdated = DateTime.Now,
-                EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.PasswordResetMessage).Replace("[[FirstName]]", user.FirstName)
-            });
-            return Ok(new { Message = "Password reset successfully" });
+                _emailService.SendEmail(new EmailDao
+                {
+                    EmailTo = user.Email,
+                    EmailSubject = "Password for Myfundi Site Reset Successfully!",
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    EmailBody = new EmailTemplating().GetEmailTemplate(EmailTemplate.PasswordResetMessage).Replace("[[FirstName]]", user.FirstName)
+                });
+                return Ok(new { Message = "Password reset successfully", ErrorMessage = "" });
+            }
+            else
+            {
+
+                return Ok(new { Message = "Failed to Reset Password.\nContact Site Administrator!", ErrorMessage = "" });
+            }
         }
 
         [HttpGet]

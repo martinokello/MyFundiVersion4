@@ -9,18 +9,25 @@ declare const google: any;
 
 @Injectable()
 export class MyFundiService {
-    private baseServerUrl: string = /*"https://localhost:44343";*/ "https://myfundiv2.martinlayooinc.com";
+
+    private baseServerUrl: string = "https://myfundiv2.martinlayooinc.com";
+    public BaseServerUrl: string = "https://myfundiv2.martinlayooinc.com";
+
+    //private baseServerUrl: string = "https://localhost:44343";
+    //public  BaseServerUrl: string = "https://localhost:44343";
 
     public constructor(private httpClient: HttpClient) {
     }
     public static isLoginPage: boolean = false;
     public actionResult: any;
-    public getAllRoles: string = this.baseServerUrl + "/Account/GetAllRoles";
+    public getAllRoles: string = this.baseServerUrl + "/Account/GetAllRoles"; 
     public getAllBlogsUrl: string = this.baseServerUrl + "/Home/GetAllBlogs";
+    public searchBlogsUrl: string = this.baseServerUrl + "/Home/SearchBlogs";
     public getTwitterFeedsUrl: string = this.baseServerUrl + "/SocialMedia/TwitterProfileFeeds";
     public getCityLocationWeatherFocus: string = this.baseServerUrl + "/api/LocationWeather/GetLocationWeather";
 
     public getUserGuidIdUrl: string = this.baseServerUrl + "/Account/GetUserGuidId";
+    public resetPasswordUrl: string = this.baseServerUrl + "/Account/ResetPassword";
     public getAllUserRoles: string = this.baseServerUrl + "/Account/GetAllUserRoles";
     public postOrCreateCourseUrl: string = this.baseServerUrl + "/Administration/PostOrCreateCourse";
     public updateworkCategoryUrl: string = this.baseServerUrl + "/FundiProfile/UpdateworkCategory";
@@ -347,6 +354,37 @@ export class MyFundiService {
 
         return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
+        });
+    }
+    resetPasswordByPost(passwordReset: IResetPassword) {
+        var body = JSON.stringify(passwordReset);
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.resetPasswordUrl,
+            headers: headers,
+            body: body
+        }; headers.append('Content-Type', 'application/json');
+
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
+    SearchForKeyWords(keywords: string[]): Observable<IBlog[]> {
+        var body = keywords;
+
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+
+        let requestOptions: any = {
+            url: this.searchBlogsUrl,
+            headers: headers,
+            body: body
+        }; headers.append('Content-Type', 'application/json');
+
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res: any) => {
+            let q: IBlog[] = res;
+            return q;
         });
     }
     CreateContract(clientFundiContract: IClientFundiContract): Observable<any> {
@@ -1354,7 +1392,7 @@ export class MyFundiService {
             return res;
         });
     }
-    public forgotPasswordByPost(userDetail: IUserDetail): Observable<any> {
+    public ForgotPasswordByPost(userDetail: IUserDetail): Observable<any> {
         let body = JSON.stringify(userDetail);
         var actionResult: any;
 
@@ -2108,6 +2146,14 @@ export interface IUserDetail {
     client: boolean,
     message:string
 }
+
+export interface IResetPassword {
+    id: string;
+    password: string;
+    repassword:string;
+    token: string;
+}
+
 export interface IEmailMessage {
     emailFrom: string;
     emailTo: string;

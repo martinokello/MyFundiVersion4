@@ -223,48 +223,24 @@ namespace MyFundi.IdentityServices
         }
         public async Task<string> GeneratePasswordResetTokenAsync(User user)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.GetConfigSetting("ClaimsResetPasswordKeyBytes"));
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            tokenDescriptor.Claims.Add(ClaimTypes.Email, user.Username);
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return await Task.FromResult<string>(tokenHandler.WriteToken(token));
+            var tokenHandle = new { Id = user.UserId, DateCreated = DateTime.Now };
+            var token = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(tokenHandle)));
+            var encToken = _passwordEncryptor.EncryptPassword(token, _passwordEncryptor.KeyBytes);
+            return await Task.FromResult<string>(Convert.ToBase64String(encToken));
         }
         public async Task<User> ResetPasswordAsync(User user, string authToken, string password)
         {
-            // authentication successful so generate jwt token
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.GetConfigSetting("ClaimsResetPasswordKeyBytes"));
+            var decryptedToken = Encoding.UTF8.GetString(_passwordEncryptor.DecryptPassword(authToken, _passwordEncryptor.KeyBytes));
+            var tokenObject = JsonConvert.DeserializeObject<dynamic>(decryptedToken);
 
-            var tokenDescriptor = new SecurityTokenDescriptor
+
+            if (tokenObject.DateCreated <= DateTime.Now.AddMinutes(30))
             {
-                Subject = new ClaimsIdentity(),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            var token = tokenHandler.ReadJwtToken(authToken);
-
-            var emailClaim = token.Claims.FirstOrDefault(q => q.Type == "email");
-
-            if (emailClaim == null) return await Task.FromResult(new User());
-
-            if (token.ValidTo > DateTime.Now && token.ValidFrom < DateTime.Now)
-            {
-                if (emailClaim.Value.ToLower().Equals(user.Username.ToLower()))
-                {
-                    //Reset User Password:
-                    var encryptedPassword = Convert.ToBase64String(_passwordEncryptor.EncryptPassword(password, _passwordEncryptor.KeyBytes));
-                    var userPasswordChange = _unitOfWork._userRepository.GetAll().FirstOrDefault(q => q.Username.ToLower().Equals(user.Username));
-                    userPasswordChange.Password = encryptedPassword;
-                    _unitOfWork.SaveChanges();
-                    return await Task.FromResult(new User { Username = emailClaim.Value });
-                }
+                //Reset User Password:
+                var encryptedPassword = Convert.ToBase64String(_passwordEncryptor.EncryptPassword(password, _passwordEncryptor.KeyBytes));
+                user.Password = encryptedPassword;
+                _unitOfWork.SaveChanges();
+                return await Task.FromResult(new User { Username = user.Username });
             }
             return await Task.FromResult(new User());
         }

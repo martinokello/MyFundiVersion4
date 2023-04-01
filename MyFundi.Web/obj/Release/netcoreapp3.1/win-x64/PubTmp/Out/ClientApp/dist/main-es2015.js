@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"padding:3px !important;text-align:center !important;\">\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-12\">\r\n            <div style=\"text-align:center !important;\">\r\n               <a href=\"{{advertLinkUrl}}\">\r\n                   <img id=\"imageBanner\" src=\"https://myfundiv2.martinlayooinc.com/images/currentAdvert.gif\" style=\"padding:3px !important; height:14vh !important; width:auto !important;\" alt=\"[[Advert Image]]\" />\r\n                   </a> \r\n            </div>\r\n            <ng-container *ngIf=\"userRoles && userRoles.indexOf('Administrator') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n                <div class=\"form-group\">\r\n                    <input type=\"file\" id=\"advertBanner\" class=\"form-control-file\" name=\"advertGifFile\" (change)=\"updateUploadAdvert($event)\"/><br />\r\n                    <input type=\"button\" class=\"btn-primary\" name=\"submitAdvert\" (click)=\"submitAdvert($event)\" value=\"Upload Advert Image\" /><br />\r\n                </div>\r\n            </ng-container>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"padding:3px !important;text-align:center !important;\">\r\n    <div class=\"row\">\r\n        <div style=\"text-align:center !important;\" class=\"col-lg-4\">\r\n            <a href=\"{{advertLinkUrl1}}\" target=\"_blank\">\r\n                <img id=\"imageBanner\" src=\"{{baseUrl}}/images/currentAdvert1.gif\" style=\"padding: 3px !important; height: auto !important; width: 100% !important; \" alt=\"[[Advert Image]]\" />\r\n            </a><br />\r\n            <ng-container *ngIf=\"userRoles && userRoles.indexOf('Administrator') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n                <div class=\"form-group\">\r\n                    <input type=\"file\" id=\"advertBanner1\" class=\"form-control-file\" (change)=\"updateUploadAdvert1($event)\" /><br />\r\n                </div>\r\n            </ng-container>\r\n        </div>\r\n        <div style=\"text-align:center !important;\" class=\"col-lg-4\">\r\n            <a href=\"{{advertLinkUrl2}}\" target=\"_blank\">\r\n                <img id=\"imageBanner\" src=\"{{baseUrl}}/images/currentAdvert2.gif\" style=\"padding: 3px !important; height: auto !important; width: 100% !important; \" alt=\"[[Advert Image]]\" />\r\n            </a><br />\r\n            <ng-container *ngIf=\"userRoles && userRoles.indexOf('Administrator') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n                <div class=\"form-group\">\r\n                    <input type=\"file\" id=\"advertBanner2\" class=\"form-control-file\" (change)=\"updateUploadAdvert2($event)\" /><br />\r\n                </div>\r\n            </ng-container>\r\n        </div><br />\r\n        <div style=\"text-align:center !important;\" class=\"col-lg-4\">\r\n            <a href=\"{{advertLinkUrl3}}\" target=\"_blank\">\r\n                <img id=\"imageBanner\" src=\"{{baseUrl}}/images/currentAdvert3.gif\" style=\"padding: 3px !important; height: auto !important; width: 100% !important; \" alt=\"[[Advert Image]]\" />\r\n            </a><br />\r\n            <ng-container *ngIf=\"userRoles && userRoles.indexOf('Administrator') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n                <div class=\"form-group\">\r\n                    <input type=\"file\" id=\"advertBanner3\" class=\"form-control-file\" (change)=\"updateUploadAdvert3($event)\" /><br />\r\n                </div>\r\n            </ng-container>\r\n        </div>\r\n    </div>\r\n    <ng-container *ngIf=\"userRoles && userRoles.indexOf('Administrator') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n        <input type=\"button\" class=\"btn-primary\" name=\"submitAdvert\" (click)=\"submitAdvert($event)\" value=\"Upload Advert Image\" /><br />\r\n    </ng-container>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"padding:3px !important;text-align:center !important;\">\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-12\">\r\n            <div style=\"text-align:center !important;\">\r\n                <img id=\"imageBanner\" src=\"https://myfundiv2.martinlayooinc.com/images/blogs.jpg\" style=\"padding:3px !important; width:30% !important; height:auto !important;\" alt=\"[[Blog Image]]\" />\r\n            </div>\r\n            <div id=\"blogs\">\r\n                <div *ngFor=\"let blog of blogs\">\r\n                    <h2>{{blog.blogName}}</h2>\r\n                    <div style=\"text-align:center !important;\">\r\n                        <img src=\"{{'https://myfundiv2.martinlayooinc.com/images/'+ blog.blogName +'.jpg'}}\" style=\"padding:3px !important; width:73% !important; height:auto !important;\" id=\"sharedImage\" />\r\n                    </div>\r\n                    <div style=\"text-align:left !important;\">\r\n                        <div innerHTML=\"{{blog.blogContent}}\">\r\n                        </div>\r\n                        <br />\r\n                    </div>\r\n                    <span>Dated: {{blog.dateCreatedUtc}}</span><br />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group\" id=\"createBlog\" *ngIf=\"isAdiministrator\">\r\n                <input type=\"file\" id=\"blogImage\" class=\"form-control-file\" name=\"blogImage\" (change)=\"uploadBlogFile($event)\" /><br />\r\n                <input type=\"text\" id=\"blogName\" class=\"form-control-file\" name=\"blogName\" [(ngModel)]=\"blog.blogName\" placeholder=\"Enter Blog Name\" /><br />\r\n                <textarea placeholder=\"Enter Blog Content\" id=\"blogContent\" name=\"blogContent\" [(ngModel)]=\"blog.blogContent\" style=\"width:100% !important;height:85vh !important;\"></textarea>\r\n                <input type=\"button\" class=\"btn-primary\" (click)=\"submitBlog($event)\" value=\"Upload Blog\" /><br />\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"padding:3px !important;text-align:center !important;\">\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-12\">\r\n            <div style=\"text-align:center !important;\">\r\n                <img id=\"imageBanner\" src=\"{{this.baseUrl}}/images/blogs.jpg\" style=\"padding:3px !important; width:30% !important; height:auto !important;\" alt=\"[[Blog Image]]\" />\r\n            </div>\r\n            <div id=\"blogs\">\r\n                <div class=\"form-group\">\r\n                    <input type=\"text\" placeholder=\"Search Blogs...\" class=\"form-control\" [(ngModel)]=\"searchQuery\" /><span><input type=\"button\" class=\"fa-search\" value=\"Go!\" (click)=\"searchBlogs($event)\" /></span>\r\n                    <br />\r\n                </div>\r\n                <div *ngFor=\"let blog of blogs\">\r\n                    <h2>{{blog.blogName}}</h2>\r\n                    <div style=\"text-align:center !important;\">\r\n                        <img src=\"{{this.baseUrl}}/images/{{blog.blogName}}.jpg\" style=\"padding:3px !important; width:73% !important; height:auto !important;\" id=\"sharedImage\" />\r\n                    </div>\r\n                    <div style=\"text-align:left !important;\">\r\n                        <div innerHTML=\"{{blog.blogContent}}\">\r\n                        </div>\r\n                        <br />\r\n                    </div>\r\n                    <span>Dated: {{blog.dateCreatedUtc}}</span><br />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group\" id=\"createBlog\" *ngIf=\"isAdiministrator\">\r\n                <h4>Blog Header Image</h4>\r\n                <input type=\"file\" id=\"blogImage\" class=\"form-control-file\" name=\"blogImage\" (change)=\"uploadBlogFile($event)\" /><br />\r\n                <input type=\"text\" id=\"blogName\" class=\"form-control-file\" name=\"blogName\" [(ngModel)]=\"blog.blogName\" placeholder=\"Enter Blog Name\" /><br />\r\n                <textarea placeholder=\"Enter Blog Content\" id=\"blogContent\" name=\"blogContent\" [(ngModel)]=\"blog.blogContent\" style=\"width:100% !important;height:85vh !important;\"></textarea>\r\n                <input type=\"button\" class=\"btn btn-primary\" (click)=\"submitBlog($event)\" value=\"Upload Blog\" /><br />\r\n            </div>\r\n            <hr />\r\n            <div class=\"form-group\" id=\"createBlog\" *ngIf=\"isAdiministrator\">\r\n                <h4>Images used in Blog</h4>\r\n                <input type=\"file\" id=\"blogImage\" class=\"form-control-file\" name=\"blogContentImage\" (change)=\"uploadBlogSingleImages($event)\" /><br />\r\n                <input type=\"button\" class=\"btn btn-primary\" (click)=\"submitBlogSingleImage($event)\" value=\"Add Single Images\" /><br />\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiClientContract-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{clientFundiContract.contractualDescription}}<br />\r\n                </div>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Client Fundi Contract Id - optional</label><br />\r\n                    <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Agreed Costs</h6>\r\n                    <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Fundi Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\"  placeholder=\"Fundi Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Fundi Profile ID Required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Client Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Client Profile ID required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" /><label class=\"custom-control-label\">Is Client Signed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" /><label class=\"custom-control-label\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" /><label class=\"custom-control-label\">Has Job Been Signed Off</label>\r\n                        <br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiClientContract-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{clientFundiContract.contractualDescription}}<br />\r\n                </div>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Client Fundi Contract Id - optional</label><br />\r\n                    <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Agreed Costs</h6>\r\n                    <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Fundi Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\"  placeholder=\"Fundi Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Fundi Profile ID Required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\"  [disabled]=\"true\"/><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Client Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\"  readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Client Profile ID required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" /><label class=\"custom-control-label\">Is Client Signed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" /><label class=\"custom-control-label\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" /><label class=\"custom-control-label\">Has Job Been Signed Off</label>\r\n                        <br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"clientSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" readonly/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                            <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                                Subscription Description Required\r\n                            </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"clientSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\"  [disabled]=\"true\"/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                            <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                                Subscription Description Required\r\n                            </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -321,7 +321,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div #vehicleView class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <h4>Forgot Password</h4>\r\n    <form #f3=\"ngForm\" (ngSubmit)=\"f3.form.valid && forgotPassword()\">\r\n        <div class=\"form-group\">\r\n            <label>Email</label>\r\n            <input type=\"email\" name=\"email\" [(ngModel)]=\"userDetail.emailAddress\" required #emailAddress=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && emailAddress.invalid\" class=\"text-danger\">\r\n                Email required\r\n            </div>\r\n            <input type=\"submit\" (click)=\"forgotPassword()\" class=\"but-primary\" value=\"Reset Password\"  style=\"margin-top:10px;\"/>\r\n        </div>\r\n    </form>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div #vehicleView class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <h4>Forgot Password</h4>\r\n    <form #f3=\"ngForm\" (ngSubmit)=\"f3.form.valid && forgotPassword($event)\">\r\n\r\n        <div class=\"form-group\">\r\n            <label>Email</label>\r\n            <input type=\"email\" name=\"email\" [(ngModel)]=\"userDetail.emailAddress\" required #emailAddress=\"ngModel\" /><br />\r\n            <div *ngIf=\"f3.submitted && emailAddress.invalid\" class=\"text-danger\">\r\n                Email required\r\n            </div>\r\n            <input type=\"submit\" (click)=\"forgotPassword($event)\" class=\"but-primary\" value=\"Reset Password\" style=\"margin-top:10px;\" />\r\n        </div>\r\n    </form>\r\n</div>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-contracts/fundicontract.component.html":
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-contracts/fundicontract.component.html ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiContract-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{clientFundiContract.contractualDescription}}<br />\r\n                </div>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Client Fundi Contract Id - optional</label><br />\r\n                    <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Agreed Costs</h6>\r\n                    <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Fundi Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\"  placeholder=\"Fundi Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Fundi Profile ID Required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Client Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Client Profile ID required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" [disabled]=\"true\"/>\r\n                        <label class=\"custom-control-label\" for=\"isSignedByClient\">Is Client Signed</label>\r\n                        <br />\r\n                    </div><div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" />\r\n                    <label class=\"custom-control-label\" for=\"isCompleted\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" />\r\n                        <label class=\"custom-control-label\" for=\"isSignedOffByClient\">>Has Job Been Signed Off</label>\r\n                        <br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -373,7 +386,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Subscription Id - optional</label>\r\n                      <select id=\"subscriptionId\" name=\"subscriptionId\" [(ngModel)]=\"subscription.monthlySubscriptionId\"></select><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"startingDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" readonly/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <input type=\"button\" value=\"Select Subscription\" class=\"but-primary\" (click)=\"selectSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Update Subscription\" class=\"but-primary\" (click)=\"updateSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Delete Subscription\" class=\"but-primary\" (click)=\"deleteSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <hr />\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Fundi Profile ID\r\n                          </label><br />\r\n                          <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                          <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                              Fundi ID Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Category Id</label>\r\n                          <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Sub Category Id</label>\r\n                          <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                          <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                          <input type=\"button\" value=\"Remove SubCategory\" (click)=\"removeWorkSubCategory($event)\" /><br />\r\n                          <br />\r\n                          <ul id=\"ulistWorkCategories\"></ul>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" readonly #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Subscription Id - optional</label>\r\n                      <select id=\"subscriptionId\" name=\"subscriptionId\" [(ngModel)]=\"subscription.monthlySubscriptionId\"></select><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"startingDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" [disabled]=\"true\"/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <input type=\"button\" value=\"Select Subscription\" class=\"but-primary\" (click)=\"selectSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Update Subscription\" class=\"but-primary\" (click)=\"updateSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Delete Subscription\" class=\"but-primary\" (click)=\"deleteSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <hr />\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Fundi Profile ID\r\n                          </label><br />\r\n                          <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                          <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                              Fundi ID Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Category Id</label>\r\n                          <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Sub Category Id</label>\r\n                          <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                          <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                          <input type=\"button\" value=\"Remove SubCategory\" (click)=\"removeWorkSubCategory($event)\" /><br />\r\n                          <br />\r\n                          <ul id=\"ulistWorkCategories\"></ul>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" readonly #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -412,7 +425,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section id=\"banner\" style=\"height:auto !important;\">\r\n  <header style=\"margin-top:5px !important;position:relative !important;\">\r\n    <!-- Nav -->\r\n    <nav id=\"nav\">\r\n      <div style=\"position:relative !important;margin-bottom:5px;text-align:left;\">\r\n        <span style=\"color:red;background-color:black;padding:5px;display:none;font-size:small;\" class=\"col-lg-4\" id=\"loginName\"></span><br />\r\n      </div>\r\n      <ul style=\"margin: 6px 0px !important;\">\r\n          <li style=\"margin:10px 0px !important;padding:10px !important;\">\r\n              <a [routerLink]=\"['/']\">Home</a>\r\n          </li>\r\n          <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/authenticated-entities-override'>\r\n                      User Overrides\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/chat'>Live Chat</a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"userRoles && (userRoles.indexOf('Fundi') > -1 ||  userRoles.indexOf('Guest')) > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-subscription'>Fundi Subscription</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-profile'>Manage Fundi Profile</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-search-job'>Search For Jobs</a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"userRoles && userRoles.indexOf('Client') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/client-create-job'>Manage Jobs</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/clientsearch']\">\r\n                      Search For Fundi\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-entities'>Manage Entities</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-roles'>\r\n                      Manage Roles\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"!actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/contactus']\">\r\n                      Contact Us\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/aboutus']\">\r\n                      About Us\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n              <a [routerLink]=\"['/blogs']\">\r\n                  Blogs\r\n              </a>\r\n          </li>\r\n          <ng-container *ngIf=\"!actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/login']\">\r\n                      login\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/register']\">\r\n                      Register\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngModel=\"actUserStatus\" ngDefaultControl>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/scanqrcode']\">\r\n                      Scan Qr-Code\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a (click)=\"setIsLogInPage()\" [routerLink]=\"['/home']\">\r\n                      Logout\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n              <a [routerLink]=\"['/forgot-password']\">\r\n                  Forgot password\r\n              </a>\r\n          </li>\r\n      </ul>\r\n    </nav>\r\n    <!-- Roles Banner-->\r\n    <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl>\r\n      <!-- Nav -->\r\n      <nav style=\"text-align:left !important;\">\r\n          <ul style=\"margin: 6px 0px !important;\">\r\n              <li style=\"margin:10px 0px !important;padding:10px !important;\" *ngFor=\"let role of userRoles\">\r\n                  <a routerLink=\"/{{role}}\" routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">{{role}}</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">Fundi Locations</a>\r\n              </li>\r\n          </ul>\r\n      </nav>\r\n    </ng-container>\r\n    <hr/>\r\n  </header>\r\n</section>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section id=\"banner\" style=\"height:auto !important;\">\r\n  <header style=\"margin-top:5px !important;position:relative !important;\">\r\n    <!-- Nav -->\r\n    <nav id=\"nav\">\r\n      <div style=\"position:relative !important;margin-bottom:5px;text-align:left;\">\r\n        <span style=\"color:red;background-color:black;padding:5px;display:none;font-size:small;\" class=\"col-lg-4\" id=\"loginName\"></span><br />\r\n      </div>\r\n      <ul style=\"margin: 6px 0px !important;\">\r\n          <li style=\"margin:10px 0px !important;padding:10px !important;\">\r\n              <a [routerLink]=\"['/']\">Home</a>\r\n          </li>\r\n          <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/authenticated-entities-override'>\r\n                      User Overrides\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/chat'>Live Chat</a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"userRoles && (userRoles.indexOf('Fundi') > -1 ||  userRoles.indexOf('Guest')) > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-subscription'>Fundi Subscription</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-profile'>Manage Fundi Profile</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-contract'>Fundi Contracts</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-search-job'>Search For Jobs</a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"userRoles && userRoles.indexOf('Client') > -1\" ngDefaultControl ngModel=\"userRoles\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/client-create-job'>Manage Jobs</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/clientsearch']\">\r\n                      Search For Fundi\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/client-fundi-contract'>Client Contracts</a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-entities'>Manage Entities</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/manage-roles'>\r\n                      Manage Roles\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"!actUserStatus.isUserAdministrator\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/contactus']\">\r\n                      Contact Us\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/aboutus']\">\r\n                      About Us\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n              <a [routerLink]=\"['/blogs']\">\r\n                  Blogs\r\n              </a>\r\n          </li>\r\n          <ng-container *ngIf=\"!actUserStatus.isUserLoggedIn\" ngDefaultControl ngModel=\"actUserStatus\">\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/login']\">\r\n                      login\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/register']\">\r\n                      Register\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngModel=\"actUserStatus\" ngDefaultControl>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a [routerLink]=\"['/scanqrcode']\">\r\n                      Scan Qr-Code\r\n                  </a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a (click)=\"setIsLogInPage()\" [routerLink]=\"['/home']\">\r\n                      Logout\r\n                  </a>\r\n              </li>\r\n          </ng-container>\r\n          <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n              <a [routerLink]=\"['/forgot-password']\">\r\n                  Forgot password\r\n              </a>\r\n          </li>\r\n      </ul>\r\n    </nav>\r\n    <!-- Roles Banner-->\r\n    <ng-container *ngIf=\"actUserStatus.isUserLoggedIn\" ngDefaultControl>\r\n      <!-- Nav -->\r\n      <nav style=\"text-align:left !important;\">\r\n          <ul style=\"margin: 6px 0px !important;\">\r\n              <li style=\"margin:10px 0px !important;padding:10px !important;\" *ngFor=\"let role of userRoles\">\r\n                  <a routerLink=\"/{{role}}\" routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">{{role}}</a>\r\n              </li>\r\n              <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                  <a routerLink='/fundi-locations' routerLinkActive='link-active' style=\"text-align: left !important; color: white !important;\">Fundi Locations</a>\r\n              </li>\r\n          </ul>\r\n      </nav>\r\n    </ng-container>\r\n    <hr/>\r\n  </header>\r\n</section>\r\n");
 
 /***/ }),
 
@@ -530,6 +543,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div #vehicleView class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <h4>Register</h4>\r\n    <form #f3=\"ngForm\" (ngSubmit)=\"f3.form.valid && registerUser()\">\r\n        <div>\r\n            <label>First Name</label>\r\n            <input type=\"text\" name=\"firstName\" [(ngModel)]=\"userDetail.firstName\" required #firstName=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && firstName.invalid\" class=\"text-danger\">\r\n                First Name required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Last Name</label>\r\n            <input type=\"text\" name=\"lastName\" [(ngModel)]=\"userDetail.lastName\" required #lastName=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && lastName.invalid\" class=\"text-danger\">\r\n                Last Name required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Email</label>\r\n            <input type=\"email\" name=\"email\" [(ngModel)]=\"userDetail.emailAddress\" required #emailAddress=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && emailAddress.invalid\" class=\"text-danger\">\r\n                Email required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Mobile Phone Number</label>\r\n            <input type=\"text\" name=\"mobileNumber\" [(ngModel)]=\"userDetail.mobileNumber\" required #mobileNumber=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && mobileNumber.invalid\" class=\"text-danger\">\r\n                Mobile Number required\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <label>Password</label>\r\n            <input type=\"password\" name=\"password\" [(ngModel)]=\"userDetail.password\" required #password=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && password.invalid\" class=\"text-danger\">\r\n                Password required<br />\r\n            </div>\r\n        </div>\r\n\r\n        <div>\r\n            <label>Retype password</label>\r\n            <input type=\"password\" name=\"repassword\" [(ngModel)]=\"userDetail.repassword\" required #confirmPassword=\"ngModel\" />\r\n            <div *ngIf=\"f3.submitted && confirmPassword.invalid\" class=\"text-danger\">\r\n                Retype password required<br />\r\n            </div><br /><br />\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"form-group\">\r\n                <span>\r\n                    <label style=\"text-align:left; display:inline !important;\" class=\"label col-lg-5\" id=\"client\">I am a Fundi</label>\r\n                </span>\r\n                <span>\r\n                    <input type=\"checkbox\" style=\"display: inline !important;\" class=\"col-lg-1\" name=\"fundi\" [(ngModel)]=\"userDetail.fundi\" />\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <span>\r\n                    <label style=\"text-align:left; display:inline !important;\" class=\"label col-lg-5\" id=\"client\">I am a Client</label>\r\n                </span>\r\n                <span>\r\n                    <input type=\"checkbox\" style=\"display: inline !important;\" class=\"col-lg-1\" name=\"client\" [(ngModel)]=\"userDetail.client\" />\r\n                </span>\r\n                <br />\r\n            </div>\r\n            <myrecaptcha></myrecaptcha>\r\n            <br />\r\n            <a href=\"\" data-toggle=\"modal\" data-target=\"#myModalAgreement\">Accept Terms &amp; Conditions</a>\r\n            <br />\r\n            <input type=\"submit\" id=\"submit\" (click)=\"registerUser()\" class=\"but-primary\" value=\"register user\" style=\"margin-top:10px;display:none !important;\" />\r\n        </div>\r\n    </form>\r\n\r\n    <div class=\"modal fade\" id=\"myModalAgreement\" role=\"dialog\">\r\n        <div class=\"modal-dialog\">\r\n            <!-- Modal content-->\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n                    <h4 class=\"modal-title\">Accept Terms &amp; Conditions</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <terms-and-conditions></terms-and-conditions>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/resetpassword/resetpassword.component.html":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/resetpassword/resetpassword.component.html ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div #vehicleView class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <h4>Forgot Password</h4>\r\n    <form #f3n=\"ngForm\" (ngSubmit)=\"f3n.form.valid && resetPassword($event)\">\r\n\r\n        <div class=\"form-group\">\r\n            <label>UserId</label>\r\n            <input type=\"text\" name=\"userId\" [(ngModel)]=\"passwordReset.id\" required #userId=\"ngModel\" readonly/><br />\r\n            <div *ngIf=\"f3n.submitted && userId.invalid\" class=\"text-danger\">\r\n                UserId required\r\n            </div>\r\n            <textarea name=\"passwordResetToken\" [(ngModel)]=\"passwordReset.token\" required #token=\"ngModel\"  placeholder=\"Paste Token!\" style=\"width:100% !important; height:20vh !important;\"></textarea><br />\r\n            <div *ngIf=\"f3n.submitted && token.invalid\" class=\"text-danger\">\r\n                Token required\r\n            </div>\r\n            <input type=\"password\" name=\"password\" [(ngModel)]=\"passwordReset.password\" required #myPassword=\"ngModel\" placeholder=\"Password!\" /><br />\r\n            <div *ngIf=\"f3n.submitted && myPassword.invalid\" class=\"text-danger\">\r\n                Password required\r\n            </div>\r\n            <input type=\"password\" name=\"repassword\" [(ngModel)]=\"passwordReset.repassword\" required #repassword=\"ngModel\" placeholder=\"Retype Password!\" /><br />\r\n            <div *ngIf=\"f3n.submitted && repassword.invalid\" class=\"text-danger\">\r\n                Retype Password required\r\n            </div>\r\n            <input type=\"submit\" (click)=\"resetPassword($event)\" class=\"but-primary\" value=\"Reset Password\" style=\"margin-top:10px;\" />\r\n        </div>\r\n    </form>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -866,35 +892,46 @@ let AdvertComponent = class AdvertComponent {
     constructor(myFundiService, httpClient) {
         this.myFundiService = myFundiService;
         this.httpClient = httpClient;
+        this.baseUrl = this.myFundiService.BaseServerUrl;
     }
     ngOnInit() {
-        let url = "/Administration/GetAdvertLink";
+        this.advertGifFiles = [];
+        let url = `${this.baseUrl}/Administration/GetAdvertLinks`;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({ 'content-type': 'application/json' });
         this.httpClient.get(url, { headers: headers }).map((q) => {
             debugger;
             if (q) {
-                this.advertLinkUrl = q.advertLinkUrl;
+                this.advertLinkUrl1 = q.advertLinkUrl1;
+                this.advertLinkUrl2 = q.advertLinkUrl2;
+                this.advertLinkUrl3 = q.advertLinkUrl3;
             }
         }).subscribe();
     }
-    updateUploadAdvert($event) {
-        this.advertGifFile = $event.target.files[0];
+    updateUploadAdvert1($event) {
+        this.advertGifFiles.push($event.target.files[0]);
+    }
+    updateUploadAdvert2($event) {
+        this.advertGifFiles.push($event.target.files[0]);
+    }
+    updateUploadAdvert3($event) {
+        this.advertGifFiles.push($event.target.files[0]);
     }
     ngAfterViewChecked() {
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
     }
     submitAdvert($event) {
-        //upload File:
-        let url = "https://myfundiv2.martinlayooinc.com/Administration/UploadAdvertGifImage";
-        let formData = new FormData();
-        formData.append("advertGifFile", this.advertGifFile);
-        this.httpClient.post(url, formData).map((res) => {
-            debugger;
-            alert(res.message);
-            if (res.result) {
-                alert("Added Gif Advert!");
-            }
-        }).subscribe();
+        let url = `${this.baseUrl}/Administration/UploadAdvertGifImage`;
+        for (let n = 0; n < this.advertGifFiles.length; n++) {
+            let formData = new FormData();
+            formData.append('advertGifFiles', this.advertGifFiles[n]);
+            this.httpClient.post(url + (n + 1), formData).map((res) => {
+                debugger;
+                alert(res.message);
+                if (res.result) {
+                    alert('Uploaded Advert file: advertGifFiles' + (n + 1));
+                }
+            }).subscribe();
+        }
         $event.preventDefault();
     }
 };
@@ -1084,6 +1121,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ./roles/authenticateduser/authenticateduser.component */ "./src/app/roles/authenticateduser/authenticateduser.component.ts");
 /* harmony import */ var _advert_advert_component__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./advert/advert.component */ "./src/app/advert/advert.component.ts");
 /* harmony import */ var _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./blogs/blogs.component */ "./src/app/blogs/blogs.component.ts");
+/* harmony import */ var _resetpassword_resetpassword_component__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./resetpassword/resetpassword.component */ "./src/app/resetpassword/resetpassword.component.ts");
+/* harmony import */ var _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ./fundi-contracts/fundicontract.component */ "./src/app/fundi-contracts/fundicontract.component.ts");
+/* harmony import */ var _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ../guards/AuthFundiAdminGuard */ "./src/guards/AuthFundiAdminGuard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1128,6 +1168,9 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 ;
+
+
+
 
 
 
@@ -1216,7 +1259,9 @@ AppModule = __decorate([
             _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"],
             _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"],
             _advert_advert_component__WEBPACK_IMPORTED_MODULE_63__["AdvertComponent"],
-            _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"]
+            _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"],
+            _resetpassword_resetpassword_component__WEBPACK_IMPORTED_MODULE_65__["ResetPasswordComponent"],
+            _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__["FundiContractComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"].withServerTransition({ appId: 'ng-cli-universal' }),
@@ -1234,6 +1279,7 @@ AppModule = __decorate([
                 { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_11__["RegisterComponent"] },
                 { path: 'scanqrcode', component: _qrCodeReader_qrCodeReader_component__WEBPACK_IMPORTED_MODULE_23__["QrCodeComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
                 { path: 'forgot-password', component: _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"] },
+                { path: 'reset-password', component: _resetpassword_resetpassword_component__WEBPACK_IMPORTED_MODULE_65__["ResetPasswordComponent"] },
                 { path: 'logout', component: _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"] },
                 { path: 'manage-roles', component: _userroles_userroles_component__WEBPACK_IMPORTED_MODULE_13__["UserRolesComponent"], canActivate: [_guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__["AdminAuthGuard"]] },
                 { path: 'contactus', component: _contactus_contactus_component__WEBPACK_IMPORTED_MODULE_14__["ContactUsComponent"] },
@@ -1253,8 +1299,9 @@ AppModule = __decorate([
                 { path: 'job-details', component: _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_52__["ClientJobViewComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
                 { path: 'fundi-subscription', component: _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_48__["FundiSubscriptionComponent"], canActivate: [_guards_AuthGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"]] },
                 { path: 'client-subscription', component: _clientsubscription_clientsubscription_component__WEBPACK_IMPORTED_MODULE_61__["ClientSubscriptionComponent"] },
-                { path: 'fundi-search-job', component: _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__["FundiJobSearchComponent"], canActivate: [_guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__["AuthFundiGuard"]] },
+                { path: 'fundi-search-job', component: _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__["FundiJobSearchComponent"], canActivate: [_guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"]] },
                 { path: 'client-fundi-contract', component: _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"], canActivate: [_guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"]] },
+                { path: 'fundi-contract', component: _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__["FundiContractComponent"], canActivate: [_guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"]] },
                 { path: 'terms-and-conditions', component: _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"] },
                 { path: 'blogs', component: _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"] }
             ])
@@ -1266,10 +1313,11 @@ AppModule = __decorate([
             { provide: _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__["AdminAuthGuard"], useClass: _guards_AdminAuthGuard__WEBPACK_IMPORTED_MODULE_33__["AdminAuthGuard"] },
             { provide: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__["AuthFundiGuard"], useClass: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__["AuthFundiGuard"] },
             { provide: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__["AuthClientGuard"], useClass: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__["AuthClientGuard"] },
+            { provide: _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"], useClass: _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"] },
             { provide: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"], useClass: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"] },
+            { provide: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__["AuthFundiSubscriptionGuard"], useClass: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__["AuthFundiSubscriptionGuard"] },
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _interceptors_app_interceptor__WEBPACK_IMPORTED_MODULE_22__["AppInterceptor"], multi: true },
             { provide: _angular_common__WEBPACK_IMPORTED_MODULE_20__["APP_BASE_HREF"], useValue: '/myFundi/' },
-            { provide: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__["AuthFundiSubscriptionGuard"], useClass: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__["AuthFundiSubscriptionGuard"] },
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
@@ -1314,6 +1362,16 @@ let BlogsComponent = class BlogsComponent {
         this.myFundiService = myFundiService;
         this.httpClient = httpClient;
         this.isAdiministrator = false;
+        this.baseUrl = this.myFundiService.BaseServerUrl;
+    }
+    ngAfterViewInit() {
+        var textarea = document.getElementById('blogContent');
+        sceditor.create(textarea, {
+            format: 'bbcode',
+            width: '100%',
+            icons: 'monocons',
+            style: 'minified/themes/content/default.min.css'
+        });
     }
     ngOnInit() {
         this.blog = {
@@ -1346,18 +1404,58 @@ let BlogsComponent = class BlogsComponent {
     uploadBlogFile($event) {
         this.blogFile = $event.target.files[0];
     }
+    uploadBlogSingleImages($event) {
+        this.blogSingleImage = $event.target.files[0];
+    }
+    submitBlogSingleImage($event) {
+        //upload File:
+        let url = `${this.baseUrl}/Administration/UploadBlogSingleImages`;
+        let formData = new FormData();
+        formData.append("blogFile", this.blogSingleImage);
+        this.httpClient.post(url, formData).map((res) => {
+            debugger;
+            alert(res.message);
+            if (res.result) {
+                alert("Added Blog Single Image!");
+            }
+        }).subscribe();
+        $event.preventDefault();
+    }
     submitBlog($event) {
         //upload File:
-        let url = "https://myfundiv2.martinlayooinc.com/Administration/UploadBlog";
+        let url = `${this.baseUrl}/Administration/UploadBlog`;
         let formData = new FormData();
         formData.append("blogFile", this.blogFile);
         formData.append("blogName", this.blog.blogName);
-        formData.append("blogContent", this.blog.blogContent);
+        let textarea = document.getElementById('blogContent');
+        let value = sceditor.instance(textarea).getBody().innerHTML;
+        formData.append("blogContent", value);
         this.httpClient.post(url, formData).map((res) => {
             debugger;
             alert(res.message);
             if (res.result) {
                 alert("Added Blog!");
+            }
+        }).subscribe();
+        $event.preventDefault();
+    }
+    searchBlogs($event) {
+        let query = this.searchQuery.toLowerCase();
+        let keywords = query.replace(".", "").replace("the", "").replace(" it ", "").replace(" a ", "").replace(" there ", "").replace(" why ", "").replace(" and ", "").replace("you", "").replace(" we ", "")
+            .replace(" their ", "").replace(" this ", "").replace(" where ", "").replace(" her ", "").replace(" him ", "").replace(" he ", "").replace(" she ", "").split(" ");
+        let serchObs = this.myFundiService.SearchForKeyWords(keywords);
+        serchObs.map((q) => {
+            debugger;
+            if (q && q.length > 0) {
+                for (let n = 0; n < q.length; n++) {
+                    q[n].blogContent = q[n].blogContent.replace('\n', '<br/>');
+                    q[n].dateCreatedUtc = q[n].dateCreated.toString();
+                }
+                this.blogs = q;
+            }
+            else {
+                this.blogs = [];
+                alert('No Blogs matching your search Criteria!!');
             }
         }).subscribe();
         $event.preventDefault();
@@ -2964,31 +3062,55 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let curDate = new Date();
         let draftContractData = JSON.parse(localStorage.getItem("DraftContractData"));
-        this.clientFundiContract = {
-            clientFundiContractId: draftContractData.clientFundiContractId,
-            clientProfileId: draftContractData.clientProfileId,
-            clientUsername: draftContractData.clientUsername,
-            clientFirstName: draftContractData.clientFirstName,
-            clientLastName: draftContractData.clientLastName,
-            fundiProfileId: draftContractData.fundiProfileId,
-            fundiUsername: draftContractData.fundiUsername,
-            fundiFirstName: draftContractData.fundiFirstName,
-            fundiLastName: draftContractData.fundiLastName,
-            agreedStartDate: this.formatDate(curDate),
-            agreedEndDate: this.formatDate(curDate),
-            agreedCost: draftContractData.agreedFees,
-            contractualDescription: draftContractData.contractualDescription,
-            isSignedByClient: true,
-            isSignedByFundi: false,
-            isCompleted: false,
-            isSignedOffByClient: false,
-            notesForNotice: draftContractData.notesForNotice
-        };
-        let resObs = this.myFundiService.GetFundiProfile(this.clientFundiContract.fundiUsername);
+        if (draftContractData) {
+            this.clientFundiContract = {
+                clientFundiContractId: draftContractData.clientFundiContractId,
+                clientProfileId: draftContractData.clientProfileId,
+                clientUsername: draftContractData.clientUsername,
+                clientFirstName: draftContractData.clientFirstName,
+                clientLastName: draftContractData.clientLastName,
+                fundiProfileId: draftContractData.fundiProfileId,
+                fundiUsername: draftContractData.fundiUsername,
+                fundiFirstName: draftContractData.fundiFirstName,
+                fundiLastName: draftContractData.fundiLastName,
+                agreedStartDate: this.formatDate(curDate),
+                agreedEndDate: this.formatDate(curDate),
+                agreedCost: draftContractData.agreedFees,
+                contractualDescription: draftContractData.contractualDescription,
+                isSignedByClient: true,
+                isSignedByFundi: false,
+                isCompleted: false,
+                isSignedOffByClient: false,
+                notesForNotice: draftContractData.notesForNotice
+            };
+        }
+        else {
+            this.clientFundiContract = {
+                clientFundiContractId: -1,
+                clientProfileId: -1,
+                clientUsername: this.userDetails.username,
+                clientFirstName: "",
+                clientLastName: "",
+                fundiProfileId: -1,
+                fundiUsername: "",
+                fundiFirstName: "",
+                fundiLastName: "",
+                agreedStartDate: this.formatDate(curDate),
+                agreedEndDate: this.formatDate(curDate),
+                agreedCost: 0,
+                contractualDescription: "",
+                isSignedByClient: true,
+                isSignedByFundi: false,
+                isCompleted: false,
+                isSignedOffByClient: false,
+                notesForNotice: "",
+            };
+        }
+        let resObs = this.myFundiService.GetClientProfile(this.userDetails.username);
         resObs.map((fundiProf) => {
             debugger;
             this.fundi = fundiProf;
-            let clientContsObs = this.myFundiService.GetClientContractsByUsername(this.clientFundiContract.clientUsername);
+            let clientContsObs = this.myFundiService.GetClientContractsByUsername(this.userDetails.username);
             clientContsObs.map((cts) => {
                 this.clientContracts = cts;
                 jQuery('select#clientFundiContractId option').remove();
@@ -5531,6 +5653,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5546,8 +5669,10 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
 let ForgotPasswordComponent = class ForgotPasswordComponent {
-    constructor(myFundiService) {
+    constructor(myFundiService, router) {
+        this.router = router;
         this.myFundiService = myFundiService;
     }
     ngOnInit() {
@@ -5568,13 +5693,28 @@ let ForgotPasswordComponent = class ForgotPasswordComponent {
         };
         this.userDetail = userDetail;
     }
-    forgotPassword() {
-        this.userDetail.username = this.userDetail.emailAddress;
-        this.myFundiService.forgotPasswordByPost(this.userDetail);
+    forgotPassword($event) {
+        let passwordResObs = this.myFundiService.ForgotPasswordByPost(this.userDetail);
+        passwordResObs.map((q) => {
+            if (q.errorMessage) {
+                alert(q.errorMessage);
+            }
+            else if (q.message) {
+                localStorage.setItem("UserIdResetPassword", q.userId);
+                localStorage.setItem('PasswordResetToken', q.passwordResetToken);
+                alert("You have been sent an email to reset your password!!");
+                this.router.navigateByUrl('reset-password');
+            }
+            else {
+                alert(q.errorMessage);
+            }
+        }).subscribe();
+        $event.preventDefault();
     }
 };
 ForgotPasswordComponent.ctorParameters = () => [
-    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] }
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 ForgotPasswordComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5584,8 +5724,184 @@ ForgotPasswordComponent = __decorate([
         styles: [__importDefault(__webpack_require__(/*! ./forgotPassword.component.css */ "./src/app/forgotPassword/forgotPassword.component.css")).default]
     }),
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], ForgotPasswordComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/fundi-contracts/fundicontract.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/fundi-contracts/fundicontract.component.ts ***!
+  \************************************************************/
+/*! exports provided: FundiContractComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FundiContractComponent", function() { return FundiContractComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+let FundiContractComponent = class FundiContractComponent {
+    constructor(myFundiService) {
+        this.myFundiService = myFundiService;
+        this.fundi = {};
+        this.client = {};
+    }
+    selectContract($event) {
+        let crtObs = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
+        crtObs.map((q) => {
+            this.clientFundiContract = q;
+        }).subscribe();
+        $event.preventDefault();
+    }
+    createContract($event) {
+        let crtObs = this.myFundiService.CreateContract(this.clientFundiContract);
+        crtObs.map((q) => {
+            alert(q.message);
+        }).subscribe();
+        $event.preventDefault();
+    }
+    updateContract($event) {
+        let crtObs = this.myFundiService.UpdateContract(this.clientFundiContract);
+        crtObs.map((q) => {
+            alert(q.message);
+        }).subscribe();
+        $event.preventDefault();
+    }
+    deleteContract($event) {
+        let crtObs = this.myFundiService.DeleteContract(this.clientFundiContract.clientFundiContractId);
+        crtObs.map((q) => {
+            alert(q.message);
+        }).subscribe();
+        $event.preventDefault();
+    }
+    decoderUrl(url) {
+        return decodeURIComponent(url);
+    }
+    ngOnInit() {
+        this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+        let curDate = new Date();
+        this.clientFundiContract = {
+            clientFundiContractId: -1,
+            clientProfileId: -1,
+            clientUsername: "",
+            clientFirstName: "",
+            clientLastName: "",
+            fundiProfileId: -1,
+            fundiUsername: this.userDetails.username,
+            fundiFirstName: "",
+            fundiLastName: "",
+            agreedStartDate: this.formatDate(curDate),
+            agreedEndDate: this.formatDate(curDate),
+            agreedCost: 0,
+            contractualDescription: "",
+            isSignedByClient: true,
+            isSignedByFundi: false,
+            isCompleted: false,
+            isSignedOffByClient: false,
+            notesForNotice: "",
+        };
+        let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
+        resObs.map((fundiProf) => {
+            debugger;
+            this.fundi = fundiProf;
+            let clientContsObs = this.myFundiService.GetFundiContractsByUsername(this.userDetails.username);
+            clientContsObs.map((cts) => {
+                this.clientContracts = cts;
+                jQuery('div#fundiContract-wrapper select#clientFundiContractId option').remove();
+                let optionElem = document.createElement('option');
+                optionElem.selected = true;
+                optionElem.value = (0).toString();
+                optionElem.text = "Select Client Fundi Contract";
+                document.querySelector('div#fundiContract-wrapper select#clientFundiContractId').append(optionElem);
+                ;
+                cts.forEach((c, index) => {
+                    let optionElem = document.createElement('option');
+                    optionElem.value = c.clientFundiContractId.toString();
+                    optionElem.text = c.clientFirstName + " " + c.clientLastName + " : " + c.fundiFirstName + " " + c.fundiLastName + " , " + c.agreedStartDate + " , #" + c.clientFundiContractId;
+                    document.querySelector('div#fundiContract-wrapper select#clientFundiContractId').append(optionElem);
+                });
+            }).subscribe();
+        }).subscribe();
+    }
+    formatDate(date) {
+        var d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        return [year, month, day].join('-');
+    }
+    ngAfterViewChecked() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+    }
+    runAutoCompleteOnSelects(curthis) {
+        let hasFoundSelectsOnPage = false;
+        if (!curthis.hasPopulatedPage) {
+            let selects = jQuery('div#fundiContract-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('div#fundiContract-wrapper select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
+    }
+};
+FundiContractComponent.ctorParameters = () => [
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] }
+];
+FundiContractComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'fundi-contract',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./fundicontract.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-contracts/fundicontract.component.html")).default
+    }),
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
+], FundiContractComponent);
 
 
 
@@ -7796,8 +8112,10 @@ let myRecaptchaComponent = class myRecaptchaComponent {
         this.router = router;
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo"; /*localhost "6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";*/
-        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB"; /*localhost: "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";*/
+        // private recaptchaSecretKey ="6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";
+        //private siteKey = "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";
+        this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo";
+        this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB";
     }
     ngAfterViewInit() {
         this.isRecaptchaVerified = false;
@@ -7921,6 +8239,9 @@ let RegisterComponent = class RegisterComponent {
         this.myFundiService = myFundiService;
     }
     ngOnInit() {
+        if (localStorage.getItem("HasAcceptedTermsOfService")) {
+            localStorage.removeItem("HasAcceptedTermsOfService");
+        }
         let userDetail = {
             password: "",
             role: "",
@@ -7954,7 +8275,6 @@ let RegisterComponent = class RegisterComponent {
             registeResults.map((q) => {
                 if (q.isRegistered) {
                     alert('Registration Successfull: ' + q.isRegistered);
-                    localStorage.removeItem("HasAcceptedTermsOfService");
                     this.router.navigateByUrl("/client-subscription");
                 }
                 else {
@@ -7980,6 +8300,99 @@ RegisterComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
     __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_3__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
 ], RegisterComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/resetpassword/resetpassword.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/resetpassword/resetpassword.component.css ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("body {\r\n}\r\nlabel {\r\n    color: gray !important;\r\n}\r\ninput[type=checkbox] {\r\n    display: inline-block;\r\n    -webkit-appearance: checkbox;\r\n}\r\ninput[type=radio] {\r\n    display: inline-block;\r\n    -webkit-appearance: radio;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVzZXRwYXNzd29yZC9yZXNldHBhc3N3b3JkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0lBQ0ksc0JBQXNCO0FBQzFCO0FBRUE7SUFDSSxxQkFBcUI7SUFDckIsNEJBQTRCO0FBQ2hDO0FBRUE7SUFDSSxxQkFBcUI7SUFDckIseUJBQXlCO0FBQzdCIiwiZmlsZSI6InNyYy9hcHAvcmVzZXRwYXNzd29yZC9yZXNldHBhc3N3b3JkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcclxufVxyXG5sYWJlbCB7XHJcbiAgICBjb2xvcjogZ3JheSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPWNoZWNrYm94XSB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICAtd2Via2l0LWFwcGVhcmFuY2U6IGNoZWNrYm94O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPXJhZGlvXSB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICAtd2Via2l0LWFwcGVhcmFuY2U6IHJhZGlvO1xyXG59Il19 */");
+
+/***/ }),
+
+/***/ "./src/app/resetpassword/resetpassword.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/resetpassword/resetpassword.component.ts ***!
+  \**********************************************************/
+/*! exports provided: ResetPasswordComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPasswordComponent", function() { return ResetPasswordComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+let ResetPasswordComponent = class ResetPasswordComponent {
+    constructor(myFundiService) {
+        this.myFundiService = myFundiService;
+    }
+    ngOnInit() {
+        this.passwordReset = {
+            id: localStorage.getItem("UserIdResetPassword"),
+            password: "",
+            repassword: "",
+            token: ""
+        };
+    }
+    resetPassword($event) {
+        if (localStorage.getItem('PasswordResetToken') !== this.passwordReset.token) {
+            alert('Sorry your token is Invalid.\nPlease check your email and paste the right token!');
+            return;
+        }
+        let resetPasswordResObs = this.myFundiService.resetPasswordByPost(this.passwordReset);
+        resetPasswordResObs.map((q) => {
+            if (q.errorMessage) {
+                alert("The user doesn't exist Or Bad Request!\nPlease check the email address.");
+            }
+            else if (q.message) {
+                alert(q.message);
+                localStorage.removeItem('UserIdResetPassword');
+            }
+            else {
+                alert("Bad Request, something wrong happened.\nPlease contact the site administrator.");
+            }
+            localStorage.removeItem('PasswordResetToken');
+        }).subscribe();
+        $event.preventDefault();
+    }
+};
+ResetPasswordComponent.ctorParameters = () => [
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] }
+];
+ResetPasswordComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'resetpassword',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./resetpassword.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/resetpassword/resetpassword.component.html")).default,
+        providers: [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]],
+        styles: [__importDefault(__webpack_require__(/*! ./resetpassword.component.css */ "./src/app/resetpassword/resetpassword.component.css")).default]
+    }),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
+], ResetPasswordComponent);
 
 
 
@@ -8913,6 +9326,61 @@ AuthClientGuard = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
     __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]])
 ], AuthClientGuard);
+
+
+
+/***/ }),
+
+/***/ "./src/guards/AuthFundiAdminGuard.ts":
+/*!*******************************************!*\
+  !*** ./src/guards/AuthFundiAdminGuard.ts ***!
+  \*******************************************/
+/*! exports provided: AuthFundiAdminGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthFundiAdminGuard", function() { return AuthFundiAdminGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/myFundiService */ "./src/services/myFundiService.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+let AuthFundiAdminGuard = class AuthFundiAdminGuard {
+    // Inject Router so we can hand off the user to the Login Page 
+    constructor(router, myFundiService) {
+        this.router = router;
+        this.myFundiService = myFundiService;
+    }
+    canActivate() {
+        if (_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles != null && _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles.length > 0) {
+            this.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles;
+            return (this.userRoles.indexOf("Administrator") > -1 || this.userRoles.indexOf('Fundi') > -1);
+        }
+        return false;
+    }
+};
+AuthFundiAdminGuard.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"] }
+];
+AuthFundiAdminGuard = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]])
+], AuthFundiAdminGuard);
 
 
 
@@ -11468,14 +11936,19 @@ var MyFundiService_1;
 
 
 let MyFundiService = MyFundiService_1 = class MyFundiService {
+    //private baseServerUrl: string = "https://localhost:44343";
+    //public  BaseServerUrl: string = "https://localhost:44343";
     constructor(httpClient) {
         this.httpClient = httpClient;
         this.baseServerUrl = "https://myfundiv2.martinlayooinc.com";
+        this.BaseServerUrl = "https://myfundiv2.martinlayooinc.com";
         this.getAllRoles = this.baseServerUrl + "/Account/GetAllRoles";
         this.getAllBlogsUrl = this.baseServerUrl + "/Home/GetAllBlogs";
+        this.searchBlogsUrl = this.baseServerUrl + "/Home/SearchBlogs";
         this.getTwitterFeedsUrl = this.baseServerUrl + "/SocialMedia/TwitterProfileFeeds";
         this.getCityLocationWeatherFocus = this.baseServerUrl + "/api/LocationWeather/GetLocationWeather";
         this.getUserGuidIdUrl = this.baseServerUrl + "/Account/GetUserGuidId";
+        this.resetPasswordUrl = this.baseServerUrl + "/Account/ResetPassword";
         this.getAllUserRoles = this.baseServerUrl + "/Account/GetAllUserRoles";
         this.postOrCreateCourseUrl = this.baseServerUrl + "/Administration/PostOrCreateCourse";
         this.updateworkCategoryUrl = this.baseServerUrl + "/FundiProfile/UpdateworkCategory";
@@ -11743,6 +12216,33 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         headers.append('Content-Type', 'application/json');
         return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res) => {
             return res;
+        });
+    }
+    resetPasswordByPost(passwordReset) {
+        var body = JSON.stringify(passwordReset);
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestOptions = {
+            url: this.resetPasswordUrl,
+            headers: headers,
+            body: body
+        };
+        headers.append('Content-Type', 'application/json');
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res) => {
+            return res;
+        });
+    }
+    SearchForKeyWords(keywords) {
+        var body = keywords;
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestOptions = {
+            url: this.searchBlogsUrl,
+            headers: headers,
+            body: body
+        };
+        headers.append('Content-Type', 'application/json');
+        return this.httpClient.post(requestOptions.url, requestOptions.body, { 'headers': requestOptions.headers }).map((res) => {
+            let q = res;
+            return q;
         });
     }
     CreateContract(clientFundiContract) {
@@ -12618,7 +13118,7 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
             return res;
         });
     }
-    forgotPasswordByPost(userDetail) {
+    ForgotPasswordByPost(userDetail) {
         let body = JSON.stringify(userDetail);
         var actionResult;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
