@@ -93,19 +93,19 @@
                         <div class="col-lg-6" style="background-color: silver !important;"><h4>Payment Amount</h4></div>
                     </div>
                     <div class="row" style="border:solid thin white !important;">
-                        <div class="col-lg-6" style="border-right: solid thin white !important;"><input type="text" id="inpPayment1Date" name="payment1Date" placeholder="1st payment date" [(ngModel)]="clientFundiContract.date1stPayment" /></div>
+                        <div class="col-lg-6" style="border-right: solid thin white !important;"><input type="text" id="inpPayment1Date" name="payment1Date" [(ngModel)]="clientFundiContract.date1stPayment" /></div>
                         <div class="col-lg-6"><input type="number" name="payment1" [(ngModel)]="clientFundiContract.firstPaymentAmount" /></div>
                     </div>
                     <div class="row" style="border:solid thin white !important;">
-                        <div class="col-lg-6" style="border-right: solid thin white !important;"><input type="text" id="inpPayment2Date" name="payment2Date" placeholder="2nd payment date" [(ngModel)]="clientFundiContract.date2ndPayment" /></div>
+                        <div class="col-lg-6" style="border-right: solid thin white !important;"><input type="text" id="inpPayment2Date" name="payment2Date" [(ngModel)]="clientFundiContract.date2ndPayment" /></div>
                         <div class="col-lg-6"><input type="number" name="payment2" [(ngModel)]="clientFundiContract.secondPaymentAmount" /></div>
                     </div>
                     <div class="row" style="border:solid thin white !important;">
-                        <div class="col-lg-6" style="border-right: solid thin white !important;"><input type="text" id="inpPayment3Date" name="payment3Date" placeholder="3rd payment date" [(ngModel)]="clientFundiContract.date3rdPayment" /></div>
+                        <div class="col-lg-6" style="border-right: solid thin white !important;"><input type="text" id="inpPayment3Date" name="payment3Date" [(ngModel)]="clientFundiContract.date3rdPayment" /></div>
                         <div class="col-lg-6"><input type="number" name="payment3" [(ngModel)]="clientFundiContract.thirdPaymentAmount" /></div>
                     </div>
                     <div class="row" style="border:solid thin white !important;">
-                        <div class="col-lg-6" style="border-right: solid thin white !important;"><input type="text" id="inpPayment4Date" name="payment4Date" placeholder="4th payment date" [(ngModel)]="clientFundiContract.date4thPayment" /></div>
+                        <div class="col-lg-6" style="border-right: solid thin white !important;"><input type="text" id="inpPayment4Date" name="payment4Date" [(ngModel)]="clientFundiContract.date4thPayment" /></div>
                         <div class="col-lg-6"><input type="number" name="payment4" [(ngModel)]="clientFundiContract.forthPaymentAmount" /></div>
                     </div>
                     <br />
@@ -276,9 +276,8 @@
                         <input class="custom-control-input" type="checkbox" id="isSignedOffByClient" name="isSignedOffByClient" [(ngModel)]="clientFundiContract.IsSignedOffByClient" />
                         <label class="custom-control-label" for="isSignedOffByClient">Has Job Been Signed Off</label><br />
                         <div id="rateFundiAfterContract">
-                            <a class="btn btn-primary" (click)="rateFundiAfterContract($event)">Rate Fundi!</a>
-                            <br />
-                        </div>
+                            <input type="button" value="Rate Fundi!" class="btn btn-primary" (click)="rateFundiAfterContract($event)">  
+                        </div><br />
                         <hr />
                     </div>
                     <input type="button" value="Create Contract" class="but-primary" (click)="createContract($event)" style="margin-top:10px;" />
