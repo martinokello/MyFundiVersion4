@@ -9,6 +9,11 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\guards\AuthClientAdminGuard.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
     <TypeScriptCompile Update="ClientApp\src\guards\AuthFundiAdminGuard.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

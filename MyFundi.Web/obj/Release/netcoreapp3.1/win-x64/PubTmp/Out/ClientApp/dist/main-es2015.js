@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiClientContract-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{clientFundiContract.contractualDescription}}<br />\r\n                </div>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Client Fundi Contract Id - optional</label><br />\r\n                    <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Agreed Costs</h6>\r\n                    <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Fundi Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\"  placeholder=\"Fundi Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Fundi Profile ID Required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\"  [disabled]=\"true\"/><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Client Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\"  readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Client Profile ID required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" /><label class=\"custom-control-label\">Is Client Signed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" /><label class=\"custom-control-label\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" /><label class=\"custom-control-label\">Has Job Been Signed Off</label>\r\n                        <br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <h5>This document is a legally binding contract  between the fundi  and client listed below.</h5>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row fundiClientContract-wrapper\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"form-group col-lg-12\">\r\n                <label>Client Fundi Contract Id - optional</label><br />\r\n                <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                <br/>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 0px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                    <h6>\r\n                        Client Name:\r\n                    </h6>\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                </div>\r\n                <h4>Client Address</h4>\r\n                <client-address [addressId]=\"clientFundiContract.clientAddressId\" (clientAddressChanged)=\"updateClientAddress($event)\"></client-address>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 0px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                    <h6>Fundi Name:</h6>\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\" placeholder=\"Fundi Last Name\" /><br />\r\n                </div>\r\n                <h4>Fundi Address</h4>\r\n                <fundi-address [addressId]=\"clientFundiContract.fundiAddressId\" (fundiAddressChanged)=\"updateFundiAddress($event)\"></fundi-address>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h6>Project Costs</h6>\r\n                <p>The pricing table below details the client's projected costs for this project.</p>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Name</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important;\"><h4>Price</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Quantity</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important;\"><h4>Sub Total</h4></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Construction Materials</div>\r\n            <div class=\"col-lg-3\"><input name=\"materialCost\" type=\"number\" [(ngModel)]=\"unitMaterialCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"materialQuantity\" type=\"number\" [(ngModel)]=\"unitMaterialQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitMaterialCost * unitMaterialQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Labour</div>\r\n            <div class=\"col-lg-3\"><input name=\"labourCost\" type=\"number\" [(ngModel)]=\"unitLabourCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"labourQuantity\" type=\"number\" [(ngModel)]=\"unitLabourQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitLabourCost * unitLabourQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Permit &amp; Inspection</div>\r\n            <div class=\"col-lg-3\"><input name=\"permitInspectionCost\" type=\"number\" [(ngModel)]=\"unitPermitInspectionCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"permitInspectionQuantity\" type=\"number\" [(ngModel)]=\"unitPermitInspectionQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitPermitInspectionCost * unitPermitInspectionQuantity}}</label></div>\r\n        </div>\r\n        <section>\r\n            <h5>Payment Schedule</h5>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Payment Dates</h4></div>\r\n                        <div class=\"col-lg-6\" style=\"background-color: silver !important;\"><h4>Payment Amount</h4></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment1Date\" name=\"payment1Date\" placeholder=\"1st payment date\" [(ngModel)]=\"clientFundiContract.date1stPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment1\" [(ngModel)]=\"clientFundiContract.firstPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment2Date\" name=\"payment2Date\" placeholder=\"2nd payment date\" [(ngModel)]=\"clientFundiContract.date2ndPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment2\" [(ngModel)]=\"clientFundiContract.secondPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment3Date\" name=\"payment3Date\" placeholder=\"3rd payment date\" [(ngModel)]=\"clientFundiContract.date3rdPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment3\" [(ngModel)]=\"clientFundiContract.thirdPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment4Date\" name=\"payment4Date\" placeholder=\"4th payment date\" [(ngModel)]=\"clientFundiContract.date4thPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment4\" [(ngModel)]=\"clientFundiContract.forthPaymentAmount\" /></div>\r\n                    </div>\r\n                    <br />\r\n                </div>\r\n            </div>\r\n        </section>\r\n        <div class=\"row\">\r\n            <div class=\"form-group col-lg-12\">\r\n                <h6>Agreed Costs</h6>\r\n                <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" readonly /><br />\r\n                <input type=\"button\" value=\"Calculate Cost\" (click)=\"calculateCost($event)\" class=\"btn btn-primary\" /><br />\r\n            </div>\r\n        </div>\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row fundiClientContract-wrapper\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div>\r\n                        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                                <h5>Terms And Conditions Of Service</h5>\r\n                                <div>\r\n                                    <h5>Scope of Work</h5>\r\n\r\n                                    <p>Fundi will perform services at the Client's address listed above in accordance with the detailed scope of work attached to this contract.</p>\r\n\r\n                                    <h5>Change Orders</h5>\r\n                                    <p>\r\n                                        Fundi will perform only those services approved in writing by the Client. If the Clientshall, at any time, require services not listed in the scope of work attached to this services contract, a written change order shall be created and signed by both parties prior to the performance of such work.\r\n                                        Permits, Licensing, & Approvals\r\n                                    </p>\r\n\r\n                                    <p>\r\n                                        Client is responsible for procuring any permits or approvals required for the completion of the projects listed in the scope of work . This includes any zoning changes or changes to applicable covenants or local building guidelines.\r\n                                    </p>\r\n\r\n                                    <p>\r\n                                        The Fundi shall be responsible for any professional licensing required for the execution of the work outlined in the scope of work.\r\n                                    </p>\r\n\r\n                                    <h5>\r\n                                        Insurance & Loss Coverage\r\n                                    </h5>\r\n\r\n                                    <p>\r\n                                        Client agrees to maintain adequate property insurance to protect against loss or damage due to theft, fire, vandalism, etc.\r\n                                    </p>\r\n\r\n                                    <p>\r\n                                        Fundi agrees to maintain reasonable liability insurance to protect against personal injury or loss.\r\n                                    </p>\r\n\r\n\r\n                                    <p>\r\n                                        Both parties agree to provide copies of the insurance certificates for their respective policies to one another.\r\n                                    </p>\r\n                                    <h5>\r\n                                        Property Access\r\n                                    </h5>\r\n                                    <p>\r\n                                        Client agrees to be present at the scheduled work time to ensure that Fundi has reasonable access to the working area, including parking space.\r\n                                    </p>\r\n                                    <p>\r\n                                        The Fundi agrees to contact Client 48 hours prior to arrival to schedule an appropriate arrival time, and agrees to make a reasonable effort not to disturb or damage the Homeowner's property outside of any demolition required for the project listed in the scope of work.\r\n                                    </p>\r\n\r\n                                    <h5>\r\n                                        Site Conditions\r\n                                    </h5>\r\n                                    <p>\r\n                                        The scope of work and pricing for this contract are based on conversations and any walkthroughs completed by the Fundi and Client. The fundi has taken reasonable measures to ensure that the scope of work and pricing represent the entire project requirements, but cannot guarantee a final price due to the possibility of unforeseen complication.\r\n                                    </p>\r\n                                    <p>\r\n                                        In the event that unforeseen complications, including (but not limited to) mold, termites, structural damage, or building code violations are discovered after the project begins, the Fundi will cease work on the project and draft a change order listing any additionally required materials or labor. Client agrees that any unforeseen complications may increase the final price of the project.\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                            <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                                <h5>Additional Notes Of Liabilities</h5>\r\n                                <div>\r\n                                    <p>\r\n                                        Client agrees to make payments in accordance with the following payment schedule:\r\n                                        <br />\r\n                                    </p>\r\n                                    <p>\r\n                                        Client agrees to make payments via cash, check, or Mobile money on the dates listed above. The Client/Fundi will place a lien on the Fundi/Client  time upon commencement of this project, and will fully release the lien upon completion of project.\r\n                                    </p>\r\n\r\n                                    <h5>Final Inspection</h5>\r\n\r\n                                    <p>\r\n                                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                                        Warranty.\r\n                                    </p>\r\n\r\n                                    <p>\r\n                                        MyFundi does not offer or imply any warranty for materials used for the project. Any defect or failure of parts or materials used in the project shall be the sole responsibility of the Client.\r\n                                    </p>\r\n                                    <p>\r\n                                        The fundi shall extend a warranty for all labor for a period of warranty months. This warranty covers installation and workmanship. Should the Client discover any incomplete, incorrect, faulty, or failed workmanship during the warranty period, The Fundi shall correct such issues at their sole cost and expense.\r\n                                    </p>\r\n                                    <p>\r\n                                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                                        Warranty.\r\n                                    </p>\r\n\r\n                                    <h5>Dispute Resolution</h5>\r\n                                    <p>\r\n                                        Client and Fundi agree to make reasonable efforts to resolve any disagreements related to this contract between themselves. In the event that the two parties cannot agree on an issue, both parties agree to resolve the issue through a civil court located in [Sender.City], [Sender.State]. The decision of that court shall be considered final.\r\n                                    </p>\r\n\r\n                                    <h5>\r\n                                        Governing Law\r\n                                    </h5>\r\n                                    <p>\r\n                                        This fundi services contract shall be governed by the laws of Uganda.\r\n                                    </p>\r\n\r\n                                    <h5>\r\n                                        Acceptance\r\n                                    </h5>\r\n                                    <p>\r\n                                        The undersigned parties agree that, having read and understood the entirety of this fundi contract and it's attachments, this contract shall commence as of contract date with the full intent that all parties involved uphold and enforce the full terms of this contract at all times.\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Extra Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" [disabled]=\"true\" />\r\n                        <label class=\"custom-control-label\" for=\"isSignedByClient\">Is Client Signed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" />\r\n                        <label class=\"custom-control-label\" for=\"isCompleted\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" />\r\n                        <label class=\"custom-control-label\" for=\"isSignedOffByClient\">Has Job Been Signed Off</label><br />\r\n                        <div id=\"rateFundiAfterContract\">\r\n                            <a class=\"btn btn-primary\" (click)=\"rateFundiAfterContract($event)\">Rate Fundi!</a>\r\n                            <br />\r\n                        </div>\r\n                        <hr />\r\n                    </div>\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -195,6 +195,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/client-address/client-address.component.html":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/client-address/client-address.component.html ***!
+  \********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\" id=\"client-addresses-wrapper\">\r\n  <div class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <form #clientAddForm=\"ngForm\" (ngSubmit)=\"clientAddForm.form.valid\" id=\"clientAddForm\">\r\n      <h4> Address</h4>\r\n      <div #Address>\r\n        <div class=\"form-group\">\r\n          <label>AddressId - optional</label>\r\n          <select id=\"clientAddressId\" name=\"clientAddressId\" [(ngModel)]=\"clientAddress.addressId\" (change)=\"onClientAddressChanged()\"></select>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Address Line 1</label>\r\n            <input type=\"text\" name=\"AddressLine1\" [(ngModel)]=\"clientAddress.addressLine1\" required #clientAddressLine1=\"ngModel\" />\r\n            <div *ngIf=\"clientAddForm.submitted && clientAddressLine1.invalid\" class=\"text-danger\">\r\n                AddressLine1  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Address Line 2</label>\r\n            <input type=\"text\" name=\"addressLine2\" [(ngModel)]=\"clientAddress.addressLine2\" required #clientAddressLine2=\"ngModel\"/>\r\n            <div *ngIf=\"clientAddForm.submitted && clientAddressLine2.invalid\" class=\"text-danger\">\r\n                AddressLine2  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Town</label>\r\n            <input type=\"text\" name=\"town\" [(ngModel)]=\"clientAddress.town\" required #town=\"ngModel\"/>\r\n            <div *ngIf=\"clientAddForm.submitted && town.invalid\" class=\"text-danger\">\r\n                Town  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Post Code</label>\r\n            <input type=\"text\" name=\"postCode\" [(ngModel)]=\"clientAddress.postCode\" required #postCode=\"ngModel\" />\r\n            <div *ngIf=\"clientAddForm.submitted && postCode.invalid\" class=\"text-danger\">\r\n                Post Code  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Country</label>\r\n            <input type=\"text\" name=\"country\" [(ngModel)]=\"clientAddress.country\" required #country=\"ngModel\"/>            \r\n            <div *ngIf=\"clientAddForm.submitted && country.invalid\" class=\"text-danger\">\r\n                Country  required\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <input type=\"submit\" value=\"Select Address\" class=\"but-primary\" (click)=\"selectAddress()\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Add Address\" class=\"but-primary\" (click)=\"addAddress()\" [disabled]=\"clientAddForm.invalid\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Update Address\" class=\"but-primary\" (click)=\"updateAddress()\" [disabled]=\"clientAddForm.invalid\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Delete Address\" class=\"but-primary\" (click)=\"deleteAddress()\" [disabled]=\"clientAddForm.invalid\" style=\"margin-top:10px;\" />\r\n    </form>\r\n  </div>\r\n</div>\r\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/company/company.component.html":
 /*!******************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/company/company.component.html ***!
@@ -231,6 +244,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\" id=\"coursecrud-wrapper\">\r\n    <div class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n        <form #coursecrudView=\"ngForm\" (ngSubmit)=\"coursecrudView.form.valid\" id=\"coursecrudView\">\r\n            <h4> Courses</h4>\r\n            <div #coursecrud>\r\n                <div class=\"form-group\">\r\n                    <label>CourseId - optional</label>\r\n                    <select id=\"coursecrudId\" name=\"courseId\" [(ngModel)]=\"course.courseId\"></select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label>Course Name</label>\r\n                    <input type=\"text\" name=\"courseName\" required [(ngModel)]=\"course.courseName\" #courseName=\"ngModel\" />\r\n                    <div *ngIf=\"coursecrudView.submitted && courseName.invalid\" class=\"text-danger\">\r\n                        Course Name  required\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label>Course Description</label>\r\n                    <textarea cols=\"10\" rows=\"5\" name=\"courseDescription\" required [(ngModel)]=\"course.courseDescription\" #courseDescription=\"ngModel\"></textarea>\r\n                    <div *ngIf=\"coursecrudView.submitted && courseDescription.invalid\" class=\"text-danger\">\r\n                        Course Description  required\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <input type=\"button\" value=\"Select Course\" class=\"but-primary\" (click)=\"selectCourse()\" style=\"margin-top:10px;\" />\r\n            <input type=\"button\" value=\"Add Course\" class=\"but-primary\" [disabled]=\"coursecrudView.invalid\" (click)=\"addCourse()\" style=\"margin-top:10px;\" />\r\n            <input type=\"button\" value=\"Update Course\" class=\"but-primary\" [disabled]=\"coursecrudView.invalid\" (click)=\"updateCourse()\" style=\"margin-top:10px;\" />\r\n            <input type=\"button\" value=\"Delete Course\" class=\"but-primary\" [disabled]=\"coursecrudView.invalid\" (click)=\"deleteCourse()\" style=\"margin-top:10px;\" />\r\n        </form>\r\n    </div>\r\n</div> ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/fundi-address/fundi-address.component.html":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/fundi-address/fundi-address.component.html ***!
+  \******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\" id=\"fundi-addresses-wrapper\">\r\n  <div class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <form #fundiAddForm=\"ngForm\" (ngSubmit)=\"fundiAddForm.form.valid\" id=\"fundiAddForm\">\r\n      <h4> Address</h4>\r\n      <div #Address>\r\n        <div class=\"form-group\">\r\n          <label>AddressId - optional</label>\r\n          <select id=\"fundiAddressId\" name=\"fundiAddressId\" [(ngModel)]=\"fundiAddress.addressId\" (change)=\"onFundiAddressChanged()\"></select>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Address Line 1</label>\r\n            <input type=\"text\" name=\"addressLine1\" [(ngModel)]=\"fundiAddress.addressLine1\" required #fundiAddressLine1=\"ngModel\" />\r\n            <div *ngIf=\"fundiAddForm.submitted && fundiAddressLine1.invalid\" class=\"text-danger\">\r\n                AddressLine1  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Address Line 2</label>\r\n            <input type=\"text\" name=\"addressLine2\" [(ngModel)]=\"fundiAddress.addressLine2\" required #fundiAddressLine2=\"ngModel\"/>\r\n            <div *ngIf=\"fundiAddForm.submitted && fundiAddressLine2.invalid\" class=\"text-danger\">\r\n                AddressLine2  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Town</label>\r\n            <input type=\"text\" name=\"town\" [(ngModel)]=\"fundiAddress.town\" required #town=\"ngModel\"/>\r\n            <div *ngIf=\"fundiAddForm.submitted && town.invalid\" class=\"text-danger\">\r\n                Town  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Post Code</label>\r\n            <input type=\"text\" name=\"postCode\" [(ngModel)]=\"fundiAddress.postCode\" required #postCode=\"ngModel\" />\r\n            <div *ngIf=\"fundiAddForm.submitted && postCode.invalid\" class=\"text-danger\">\r\n                Post Code  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Country</label>\r\n            <input type=\"text\" name=\"country\" [(ngModel)]=\"fundiAddress.country\" required #country=\"ngModel\"/>            \r\n            <div *ngIf=\"fundiAddForm.submitted && country.invalid\" class=\"text-danger\">\r\n                Country  required\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <input type=\"submit\" value=\"Select Address\" class=\"but-primary\" (click)=\"selectAddress()\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Add Address\" class=\"but-primary\" (click)=\"addAddress()\" [disabled]=\"fundiAddForm.invalid\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Update Address\" class=\"but-primary\" (click)=\"updateAddress()\" [disabled]=\"fundiAddForm.invalid\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Delete Address\" class=\"but-primary\" (click)=\"deleteAddress()\" [disabled]=\"fundiAddForm.invalid\" style=\"margin-top:10px;\" />\r\n    </form>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -334,7 +360,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiContract-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{clientFundiContract.contractualDescription}}<br />\r\n                </div>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Client Fundi Contract Id - optional</label><br />\r\n                    <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Agreed Costs</h6>\r\n                    <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Fundi Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\"  placeholder=\"Fundi Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Fundi Profile ID Required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Client Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Client Profile ID required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" [disabled]=\"true\"/>\r\n                        <label class=\"custom-control-label\" for=\"isSignedByClient\">Is Client Signed</label>\r\n                        <br />\r\n                    </div><div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" />\r\n                    <label class=\"custom-control-label\" for=\"isCompleted\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" />\r\n                        <label class=\"custom-control-label\" for=\"isSignedOffByClient\">>Has Job Been Signed Off</label>\r\n                        <br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <h5>This document is a legally binding contract  between the fundi  and client listed below.</h5>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row fundiContract-wrapper\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"form-group col-lg-12\">\r\n                <label>Client Fundi Contract Id - optional</label><br />\r\n                <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" /><br/>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 0px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                    <h6>Fundi Name:</h6>\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\" placeholder=\"Fundi Last Name\" /><br />\r\n                </div>\r\n                <h6>Fundi Address</h6>\r\n                <fundi-address [addressId]=\"clientFundiContract.fundiAddressId\" (fundiAddressChanged)=\"updateFundiAddress($event)\"></fundi-address>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 0px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                    <h6>\r\n                        Client Name:\r\n                    </h6>\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                </div>\r\n                <h6>Client Address</h6>\r\n                <client-address [addressId]=\"clientFundiContract.clientAddressId\" (clientAddressChanged)=\"updateClientAddress($event)\"></client-address>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h6>Project Costs</h6>\r\n                <p>The pricing table below details the client's projected costs for this project.</p>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Name</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important;\"><h4>Price</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Quantity</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important;\"><h4>Sub Total</h4></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Construction Materials</div>\r\n            <div class=\"col-lg-3\"><input name=\"materialCost\" type=\"number\" [(ngModel)]=\"unitMaterialCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"materialQuantity\" type=\"number\" [(ngModel)]=\"unitMaterialQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitMaterialCost * unitMaterialQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Labour</div>\r\n            <div class=\"col-lg-3\"><input name=\"labourCost\" type=\"number\" [(ngModel)]=\"unitLabourCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"labourQuantity\" type=\"number\" [(ngModel)]=\"unitLabourQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitLabourCost * unitLabourQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Permit &amp; Inspection</div>\r\n            <div class=\"col-lg-3\"><input name=\"permitInspectionCost\" type=\"number\" [(ngModel)]=\"unitPermitInspectionCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"permitInspectionQuantity\" type=\"number\" [(ngModel)]=\"unitPermitInspectionQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitPermitInspectionCost * unitPermitInspectionQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"form-group col-lg-12\">\r\n                <h6>Agreed Costs</h6>\r\n                <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" readonly /><br />\r\n                <input type=\"button\" value=\"Calculate Cost\" (click)=\"calculateCost($event)\" class=\"btn btn-primary\" /><br />\r\n            </div>\r\n        </div>\r\n        <section>\r\n            <h5>Payment Schedule</h5>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Payment Dates</h4></div>\r\n                        <div class=\"col-lg-6\" style=\"background-color: silver !important;\"><h4>Payment Amount</h4></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment1Date\" name=\"date1stPayment\" [(ngModel)]=\"clientFundiContract.date1stPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment1\" [(ngModel)]=\"clientFundiContract.firstPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment2Date\" name=\"date2ndPayment\" [(ngModel)]=\"clientFundiContract.date2ndPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment2\" [(ngModel)]=\"clientFundiContract.secondPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment3Date\" name=\"date3rdPayment\" [(ngModel)]=\"clientFundiContract.date3rdPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment3\" [(ngModel)]=\"clientFundiContract.thirdPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment4Date\" name=\"date4thPayment\" [(ngModel)]=\"clientFundiContract.date4thPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment4\" [(ngModel)]=\"clientFundiContract.forthPaymentAmount\" /></div>\r\n                    </div>\r\n                    <br />\r\n                </div>\r\n            </div>\r\n        </section>\r\n        <div class=\"fundiContract-wrapper\">\r\n            <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n                <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <div>\r\n                            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                                <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                                    <h5>Terms And Conditions Of Service</h5>\r\n                                    <div>\r\n                                        <h5>Scope of Work</h5>\r\n\r\n                                        <p>Fundi will perform services at the Client's address listed above in accordance with the detailed scope of work attached to this contract.</p>\r\n\r\n                                        <h5>Change Orders</h5>\r\n                                        <p>\r\n                                            Fundi will perform only those services approved in writing by the Client. If the Clientshall, at any time, require services not listed in the scope of work attached to this services contract, a written change order shall be created and signed by both parties prior to the performance of such work.\r\n                                            Permits, Licensing, & Approvals\r\n                                        </p>\r\n\r\n                                        <p>\r\n                                            Client is responsible for procuring any permits or approvals required for the completion of the projects listed in the scope of work . This includes any zoning changes or changes to applicable covenants or local building guidelines.\r\n                                        </p>\r\n\r\n                                        <p>\r\n                                            The Fundi shall be responsible for any professional licensing required for the execution of the work outlined in the scope of work.\r\n                                        </p>\r\n\r\n                                        <h5>\r\n                                            Insurance & Loss Coverage\r\n                                        </h5>\r\n\r\n                                        <p>\r\n                                            Client agrees to maintain adequate property insurance to protect against loss or damage due to theft, fire, vandalism, etc.\r\n                                        </p>\r\n\r\n                                        <p>\r\n                                            Fundi agrees to maintain reasonable liability insurance to protect against personal injury or loss.\r\n                                        </p>\r\n\r\n\r\n                                        <p>\r\n                                            Both parties agree to provide copies of the insurance certificates for their respective policies to one another.\r\n                                        </p>\r\n                                        <h5>\r\n                                            Property Access\r\n                                        </h5>\r\n                                        <p>\r\n                                            Client agrees to be present at the scheduled work time to ensure that Fundi has reasonable access to the working area, including parking space.\r\n                                        </p>\r\n                                        <p>\r\n                                            The Fundi agrees to contact Client 48 hours prior to arrival to schedule an appropriate arrival time, and agrees to make a reasonable effort not to disturb or damage the Homeowner's property outside of any demolition required for the project listed in the scope of work.\r\n                                        </p>\r\n\r\n                                        <h5>\r\n                                            Site Conditions\r\n                                        </h5>\r\n                                        <p>\r\n                                            The scope of work and pricing for this contract are based on conversations and any walkthroughs completed by the Fundi and Client. The fundi has taken reasonable measures to ensure that the scope of work and pricing represent the entire project requirements, but cannot guarantee a final price due to the possibility of unforeseen complication.\r\n                                        </p>\r\n                                        <p>\r\n                                            In the event that unforeseen complications, including (but not limited to) mold, termites, structural damage, or building code violations are discovered after the project begins, the Fundi will cease work on the project and draft a change order listing any additionally required materials or labor. Client agrees that any unforeseen complications may increase the final price of the project.\r\n                                        </p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                                <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                                    <h5>Additional Notes Of Liabilities</h5>\r\n                                    <div>\r\n                                        <h5>Payment Schedule</h5>\r\n                                        <p>\r\n                                            Client agrees to make payments in accordance with the following payment schedule:\r\n                                            <br />\r\n                                        </p>\r\n                                        <p>\r\n                                            Client agrees to make payments via cash, check, or Mobile money on the dates listed above. The Client/Fundi will place a lien on the Fundi/Client  time upon commencement of this project, and will fully release the lien upon completion of project.\r\n                                        </p>\r\n\r\n                                        <h5>Final Inspection</h5>\r\n\r\n                                        <p>\r\n                                            Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                                            Warranty.\r\n                                        </p>\r\n\r\n                                        <p>\r\n                                            MyFundi does not offer or imply any warranty for materials used for the project. Any defect or failure of parts or materials used in the project shall be the sole responsibility of the Client.\r\n                                        </p>\r\n                                        <p>\r\n                                            The fundi shall extend a warranty for all labor for a period of warranty months. This warranty covers installation and workmanship. Should the Client discover any incomplete, incorrect, faulty, or failed workmanship during the warranty period, The Fundi shall correct such issues at their sole cost and expense.\r\n                                        </p>\r\n                                        <p>\r\n                                            Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                                            Warranty.\r\n                                        </p>\r\n\r\n                                        <h5>Dispute Resolution</h5>\r\n                                        <p>\r\n                                            Client and Fundi agree to make reasonable efforts to resolve any disagreements related to this contract between themselves. In the event that the two parties cannot agree on an issue, both parties agree to resolve the issue through a civil court located in [Sender.City], [Sender.State]. The decision of that court shall be considered final.\r\n                                        </p>\r\n\r\n                                        <h5>\r\n                                            Governing Law\r\n                                        </h5>\r\n                                        <p>\r\n                                            This fundi services contract shall be governed by the laws of Uganda.\r\n                                        </p>\r\n\r\n                                        <h5>\r\n                                            Acceptance\r\n                                        </h5>\r\n                                        <p>\r\n                                            The undersigned parties agree that, having read and understood the entirety of this fundi contract and it's attachments, this contract shall commence as of contract date with the full intent that all parties involved uphold and enforce the full terms of this contract at all times.\r\n                                        </p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <h6>Extra Notes Of Contract</h6>\r\n                        <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <label>Agreed Start Date </label>\r\n                        <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <label>Agreed End Date </label>\r\n                        <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                            <br />\r\n                            <hr />\r\n                        </div>\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" [disabled]=\"true\" />\r\n                            <label class=\"custom-control-label\" for=\"isSignedByClient\">Is Client Signed</label>\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" />\r\n                            <label class=\"custom-control-label\" for=\"isCompleted\">Has Job Been Completed</label>\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" />\r\n                            <label class=\"custom-control-label\" for=\"isSignedOffByClient\">Has Job Been Signed Off</label><br />\r\n                            <hr />\r\n                        </div>\r\n                        <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                        <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                        <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                        <hr />\r\n                    </div>\r\n                </div>\r\n                <input type=\"hidden\" name=\"jobId\" [(ngModel)]=\"clientFundiContract.jobId\" id=\"jobId\" />\r\n            </form>\r\n        </div>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -348,6 +374,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div style=\"background-color: #EEEEEE;\">\r\n    <div style=\"top: 0px !important; right: 74px !important; width: 200px !important; text-align: right !important; position: absolute;\">\r\n        <span style=\"width:auto;font-weight:bolder !important;\">Fundi<br/>Engagements</span><br/><span style=\"font-style:italic;\">Number Of<br />Assignments: {{currentFundiNumbOfAssignments}}</span><br />\r\n    </div>\r\n    <div style=\"top: 0px !important; right: 10px !important; position: absolute !important; width: 60px !important; text-align:center !important;\">\r\n        <div class=\"levelOfEngagement\" style=\"width: 40px !important; line-height: 60px !important; border: gray solid thin !important; position: absolute !important; text-align: left !important; border-radius: 20px !important;\">\r\n            <div id=\"indicator\" style=\"background-color:gray !important;display:none;margin-left:-4px !important;width:48px !important;z-index:200;position:absolute !important;height:2% !important;\">.</div>\r\n            <div id=\"fundiRed\" style=\"background-color: #FF0000 !important; height: 24% !important; border: gray solid thin !important; border-radius: 20px 20px 0px 0px !important; position: relative !important;\">.</div>\r\n            <div id=\"fundiOrange\" style=\"background-color: #FF8040 !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; position: relative !important; \">.</div>\r\n            <div id=\"fundiYellow\" style=\"background-color: #EAF50A !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; position: relative !important; \">.</div>\r\n            <div id=\"fundiGreen\" style=\"background-color: #99FF00 !important; height: 24% !important; border: gray thin medium !important; border-radius: 0px 0px 20px 20px !important; position: relative !important; \">.</div>\r\n        </div>\r\n        <br />\r\n    </div>\r\n    <br />\r\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-rating/fundirating.component.html":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-rating/fundirating.component.html ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"fundirating-wrapper\">\r\n        <section>\r\n            <div class=\"row\">\r\n                <div class=\"col-lg-12\">\r\n                    <div style=\" width: 30% !important; margin-left: 5px !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto; align-content:center !important;\" /><br />\r\n                        <span>Fundi Name: {{fundiUser.firstName}} {{fundiUser.lastName}}</span><br />\r\n                        <span id=\"averageFundiRating-{{profile.fundiProfileId}}\" class=\"profileRatingSpan rateit\" data-rateit-mode=\"font\" style=\"text-align:left;font-size: 40px; max-width: 10%;\"></span><br />\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Fundi Profile Summary</h5>\r\n                    <ul>\r\n                        <li>\r\n                            {{profile.profileSummary}}\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Profile Rating &amp; Reviews</h5>\r\n                    <ul>\r\n                        <li *ngFor=\"let rating of fundiRatings\">\r\n                            <div>\r\n                                Rated By UserID: <em style=\"color:brown !important;\">{{rating.rating?rating.userId:\"\"}}</em><br />\r\n                                Rating: <span style=\"color:brown !important;\">{{rating.rating?rating.rating.toString():\"No Rating Yet\"}} out of 5</span><br />\r\n                            </div>\r\n                            <div>\r\n                                Reviewed By UserID: <em style=\"color:brown !important;\">{{rating.rating?rating.userId:\"\"}}</em><br />\r\n                                Review: {{rating.review}}<br />\r\n                            </div>\r\n                        </li>\r\n                    </ul>\r\n                    <h5>Rate This Fundi</h5>\r\n                    <form id=\"ratingForm-{{profile.fundiProfileId}}\">\r\n                        <div id=\"fundiRating-{{profile.fundiProfileId}}\" class=\"rateit\" data-rateit-mode=\"font\" style=\"text-align: left; font-size: 40px; max-width: 10% !important;\"></div><br />\r\n                        <span>Choose Work Category:</span><br />\r\n                        <h5>Fundi Work Category Types</h5>\r\n                        <div *ngFor=\"let wcdata of jobWorkCategoryDetails\">\r\n                            <h6>{{wcdata.workCategoryType}}</h6>\r\n                            <h5>Work Sub Category Type</h5>\r\n                            <select id=\"workCategory-{{profile.fundiProfileId}}\" name=\"workCategory\" class=\"form-control\">\r\n                                <option value=\"{{wcdata.workSubCategoryId}}\">{{wcdata.workSubCategoryType}}</option>\r\n                            </select>\r\n                        </div>\r\n                        <br />\r\n                        <textarea id=\"review-{{profileId}}\" placeholder=\"Write review\" rows=\"5\" cols=\"20\"></textarea><br />\r\n                        <input type=\"button\" id=\"{{profileId}}\" class=\"but-primary\" value=\"Rate Fundi\" (click)=\"rateFundi($event)\" />\r\n                    </form>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"skills\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Fundi Skills</h5>\r\n                    <ul id=\"{{profile.fundiProfileId}}-skills\">\r\n                        <li>{{profile.fundiSkills}}</li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <hr /><br />\r\n        </section>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -646,7 +685,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"termsAndConditionsOfService-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">Agreement &amp; Conditions Of Service To Observe</h2>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{currentDate}} &copy; MartinLayooInc.</h2>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Terms And Conditions Of Service</h5>\r\n                <div>\r\n                    {{termsAndConditionsOfServiceHtml}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Additional Notes Of Liabilities</h5>\r\n                <div>\r\n                    {{liabilityNotesHtml}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <form #fxs=\"ngForm\" (ngSubmit)=\"acceptTermsAndConditions($event)\">\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" style=\"z-index: 1000 !important;\" type=\"checkbox\" name=\"termsAndConditionOfService\" [(ngModel)]=\"termsAndConditionOfService\" id=\"termsOfService\" />\r\n                        <label class=\"custom-control-label\" for=\"termsAndConditionOfService\">\r\n                            Please accept the terms and conditions of service\r\n                        </label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <input type=\"submit\" class=\"btn-primary\" value=\"Accept\" style=\"margin-top:10px;\" />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"termsAndConditionsOfService-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">Agreement &amp; Conditions Of Service To Observe</h2>\r\n        <h4 style=\"text-align:center !important;padding:10px 0px !important;\">This document is a legally binding contract  between a fundi  and client listed below.</h4>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Terms And Conditions Of Service</h5>\r\n                <div>\r\n                    <h5>Scope of Work</h5>\r\n\r\n                    <p>Fundi will perform services at the Client's address listed above in accordance with the detailed scope of work attached to this contract.</p>\r\n\r\n                    <h5>Change Orders</h5>\r\n                    <p>\r\n                        Fundi will perform only those services approved in writing by the Client. If the Clientshall, at any time, require services not listed in the scope of work attached to this services contract, a written change order shall be created and signed by both parties prior to the performance of such work.\r\n                        Permits, Licensing, & Approvals\r\n                    </p>\r\n\r\n                    <p>\r\n                        Client is responsible for procuring any permits or approvals required for the completion of the projects listed in the scope of work . This includes any zoning changes or changes to applicable covenants or local building guidelines.\r\n                    </p>\r\n\r\n                    <p>\r\n                        The Fundi shall be responsible for any professional licensing required for the execution of the work outlined in the scope of work.\r\n                    </p>\r\n\r\n                    <h5>\r\n                        Insurance & Loss Coverage\r\n                    </h5>\r\n\r\n                    <p>\r\n                        Client agrees to maintain adequate property insurance to protect against loss or damage due to theft, fire, vandalism, etc.\r\n                    </p>\r\n\r\n                    <p>\r\n                        Fundi agrees to maintain reasonable liability insurance to protect against personal injury or loss.\r\n                    </p>\r\n\r\n\r\n                    <p>\r\n                        Both parties agree to provide copies of the insurance certificates for their respective policies to one another.\r\n                    </p>\r\n                    <h5>\r\n                        Property Access\r\n                    </h5>\r\n                    <p>\r\n                        Client agrees to be present at the scheduled work time to ensure that Fundi has reasonable access to the working area, including parking space.\r\n                    </p>\r\n                    <p>\r\n                        The Fundi agrees to contact Client 48 hours prior to arrival to schedule an appropriate arrival time, and agrees to make a reasonable effort not to disturb or damage the Homeowner's property outside of any demolition required for the project listed in the scope of work.\r\n                    </p>\r\n\r\n                    <h5>\r\n                        Site Conditions\r\n                    </h5>\r\n                    <p>\r\n                        The scope of work and pricing for this contract are based on conversations and any walkthroughs completed by the Fundi and Client. The fundi has taken reasonable measures to ensure that the scope of work and pricing represent the entire project requirements, but cannot guarantee a final price due to the possibility of unforeseen complication.\r\n                    </p>\r\n                    <p>\r\n                        In the event that unforeseen complications, including (but not limited to) mold, termites, structural damage, or building code violations are discovered after the project begins, the Fundi will cease work on the project and draft a change order listing any additionally required materials or labor. Client agrees that any unforeseen complications may increase the final price of the project.\r\n                    </p>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Additional Notes Of Liabilities</h5>\r\n                <div>\r\n                    <h5>Payment Schedule</h5>\r\n                    <p>\r\n                        Client agrees to make payments in accordance with the following payment schedule:\r\n                        <br />\r\n                    </p>\r\n                    <section>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Payment Date</h4></div>\r\n                            <div class=\"col-lg-6\" style=\"background-color: silver !important;\"><h4>Payment Amount</h4></div>\r\n                        </div>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\">Payment 1 date<br /></div>\r\n                            <div class=\"col-lg-6\">Payment 1 amount<br /></div><br />\r\n                        </div>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\">Payment 2 date<br /></div>\r\n                            <div class=\"col-lg-6\">Payment 2 amount<br /></div><br />\r\n                        </div>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\">Payment 3 date<br /></div>\r\n                            <div class=\"col-lg-6\">Payment 3 amount<br /></div><br />\r\n                        </div>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"> Project Completion<br /></div>\r\n                            <div class=\"col-lg-6\">Payment 4 amount<br /></div><br />\r\n                        </div>\r\n                        <br />\r\n                    </section>\r\n                    <p>\r\n                        Client agrees to make payments via cash, check, or Mobile money on the dates listed above. The Client/Fundi will place a lien on the Fundi/Client  time upon commencement of this project, and will fully release the lien upon completion of project.\r\n                    </p>\r\n\r\n                    <h5>Final Inspection</h5>\r\n\r\n                    <p>\r\n                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                        Warranty.\r\n                    </p>\r\n\r\n                    <p>\r\n                        MyFundi does not offer or imply any warranty for materials used for the project. Any defect or failure of parts or materials used in the project shall be the sole responsibility of the Client.\r\n                    </p>\r\n                    <p>\r\n                        The fundi shall extend a warranty for all labor for a period of warranty months. This warranty covers installation and workmanship. Should the Client discover any incomplete, incorrect, faulty, or failed workmanship during the warranty period, The Fundi shall correct such issues at their sole cost and expense.\r\n                    </p>\r\n                    <p>\r\n                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                        Warranty.\r\n                    </p>\r\n\r\n                    <h5>Dispute Resolution</h5>\r\n                    <p>\r\n                        Client and Fundi agree to make reasonable efforts to resolve any disagreements related to this contract between themselves. In the event that the two parties cannot agree on an issue, both parties agree to resolve the issue through a civil court located in [Sender.City], [Sender.State]. The decision of that court shall be considered final.\r\n                    </p>\r\n\r\n                    <h5>\r\n                        Governing Law\r\n                    </h5>\r\n                    <p>\r\n                        This fundi services contract shall be governed by the laws of Uganda.\r\n                    </p>\r\n\r\n                    <h5>\r\n                        Acceptance\r\n                    </h5>\r\n                    <p>\r\n                        The undersigned parties agree that, having read and understood the entirety of this fundi contract and it's attachments, this contract shall commence as of contract date with the full intent that all parties involved uphold and enforce the full terms of this contract at all times.\r\n                    </p>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <form #fxs=\"ngForm\" (ngSubmit)=\"acceptTermsAndConditions($event)\">\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" style=\"z-index: 1000 !important;\" type=\"checkbox\" name=\"termsAndConditionOfService\" [(ngModel)]=\"termsAndConditionOfService\" id=\"termsOfService\" />\r\n                        <label class=\"custom-control-label\" for=\"termsAndConditionOfService\">\r\n                            Please accept the terms and conditions of service\r\n                        </label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <input type=\"submit\" class=\"btn-primary\" value=\"Accept\" style=\"margin-top:10px;\" />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -1124,6 +1163,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _resetpassword_resetpassword_component__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./resetpassword/resetpassword.component */ "./src/app/resetpassword/resetpassword.component.ts");
 /* harmony import */ var _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ./fundi-contracts/fundicontract.component */ "./src/app/fundi-contracts/fundicontract.component.ts");
 /* harmony import */ var _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ../guards/AuthFundiAdminGuard */ "./src/guards/AuthFundiAdminGuard.ts");
+/* harmony import */ var _crud_operations_client_address_client_address_component__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ./crud-operations/client-address/client-address.component */ "./src/app/crud-operations/client-address/client-address.component.ts");
+/* harmony import */ var _crud_operations_fundi_address_fundi_address_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./crud-operations/fundi-address/fundi-address.component */ "./src/app/crud-operations/fundi-address/fundi-address.component.ts");
+/* harmony import */ var _fundi_rating_fundirating_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ./fundi-rating/fundirating.component */ "./src/app/fundi-rating/fundirating.component.ts");
+/* harmony import */ var _guards_AuthClientAdminGuard__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ../guards/AuthClientAdminGuard */ "./src/guards/AuthClientAdminGuard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1168,6 +1211,10 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 ;
+
+
+
+
 
 
 
@@ -1261,7 +1308,10 @@ AppModule = __decorate([
             _advert_advert_component__WEBPACK_IMPORTED_MODULE_63__["AdvertComponent"],
             _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"],
             _resetpassword_resetpassword_component__WEBPACK_IMPORTED_MODULE_65__["ResetPasswordComponent"],
-            _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__["FundiContractComponent"]
+            _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__["FundiContractComponent"],
+            _crud_operations_fundi_address_fundi_address_component__WEBPACK_IMPORTED_MODULE_69__["FundiAddressComponent"],
+            _crud_operations_client_address_client_address_component__WEBPACK_IMPORTED_MODULE_68__["ClientAddressComponent"],
+            _fundi_rating_fundirating_component__WEBPACK_IMPORTED_MODULE_70__["FundiRatingComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"].withServerTransition({ appId: 'ng-cli-universal' }),
@@ -1303,6 +1353,7 @@ AppModule = __decorate([
                 { path: 'client-fundi-contract', component: _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"], canActivate: [_guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"]] },
                 { path: 'fundi-contract', component: _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__["FundiContractComponent"], canActivate: [_guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"]] },
                 { path: 'terms-and-conditions', component: _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"] },
+                { path: 'rate-fundiprofile-by-id', component: _fundi_rating_fundirating_component__WEBPACK_IMPORTED_MODULE_70__["FundiRatingComponent"], canActivate: [_guards_AuthClientAdminGuard__WEBPACK_IMPORTED_MODULE_71__["AuthClientAdminGuard"]] },
                 { path: 'blogs', component: _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"] }
             ])
         ],
@@ -1314,6 +1365,7 @@ AppModule = __decorate([
             { provide: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__["AuthFundiGuard"], useClass: _guards_AuthFundiGuard__WEBPACK_IMPORTED_MODULE_32__["AuthFundiGuard"] },
             { provide: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__["AuthClientGuard"], useClass: _guards_AuthClientGuard__WEBPACK_IMPORTED_MODULE_36__["AuthClientGuard"] },
             { provide: _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"], useClass: _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"] },
+            { provide: _guards_AuthClientAdminGuard__WEBPACK_IMPORTED_MODULE_71__["AuthClientAdminGuard"], useClass: _guards_AuthClientAdminGuard__WEBPACK_IMPORTED_MODULE_71__["AuthClientAdminGuard"] },
             { provide: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"], useClass: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"] },
             { provide: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__["AuthFundiSubscriptionGuard"], useClass: _guards_AuthFundiSubscriptionGuard__WEBPACK_IMPORTED_MODULE_49__["AuthFundiSubscriptionGuard"] },
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _interceptors_app_interceptor__WEBPACK_IMPORTED_MODULE_22__["AppInterceptor"], multi: true },
@@ -2198,6 +2250,7 @@ let ClientProfileComponent = class ClientProfileComponent {
         let assigneFundiProfileId = parseInt(jQuery('select#assignedFundiProfileId').val());
         let fundiUserObs = this.myFundiService.GetFundiUserByProfileId(assigneFundiProfileId);
         fundiUserObs.map((fundiUser) => {
+            debugger;
             let draftContractData = {
                 fundiProfileId: assigneFundiProfileId,
                 clientProfileId: this.clientProfile.clientProfileId,
@@ -2210,7 +2263,8 @@ let ClientProfileComponent = class ClientProfileComponent {
                 clientFundiContractId: this.clientFundiContractId,
                 numberOfDaysToComplete: this.numberOfDaysToComplete,
                 jobName: this.job.jobName,
-                contractualDescription: this.job.jobDescription
+                contractualDescription: this.job.jobDescription,
+                jobId: this.job.jobId
             };
             localStorage.setItem("DraftContractData", JSON.stringify(draftContractData));
             this.router.navigateByUrl("/client-fundi-contract");
@@ -3006,6 +3060,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientFundiContractComponent", function() { return ClientFundiContractComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3020,11 +3075,33 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 };
 
 
+
 let ClientFundiContractComponent = class ClientFundiContractComponent {
-    constructor(myFundiService) {
+    constructor(myFundiService, router) {
         this.myFundiService = myFundiService;
+        this.router = router;
         this.fundi = {};
         this.client = {};
+        this.unitMaterialCost = 0;
+        this.unitMaterialQuantity = 0;
+        this.unitLabourCost = 0;
+        this.unitLabourQuantity = 0;
+        this.unitPermitInspectionCost = 0;
+        this.unitPermitInspectionQuantity = 0;
+    }
+    rateFundiAfterContract($event) {
+        debugger;
+        localStorage.setItem('RatingProfileId', this.clientFundiContract.fundiProfileId.toString());
+        localStorage.setItem('ContractJobId', this.currentJobId.toString());
+        localStorage.setItem('FundiUserTo', JSON.stringify({ firstName: this.clientFundiContract.fundiFirstName, lastName: this.clientFundiContract.fundiLastName, username: this.clientFundiContract.fundiUsername }));
+        this.router.navigateByUrl("/rate-fundiprofile-by-id");
+        $event.preventDefault();
+    }
+    updateClientAddress($event) {
+        this.clientFundiContract.clientAddressId = $event;
+    }
+    updateFundiAddress($event) {
+        this.clientFundiContract.fundiAddressId = $event;
     }
     selectContract($event) {
         let crtObs = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
@@ -3058,73 +3135,67 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
         return decodeURIComponent(url);
     }
     ngOnInit() {
+        this.unitMaterialCost = 0;
+        this.unitMaterialQuantity = 0;
+        this.unitLabourCost = 0;
+        this.unitLabourQuantity = 0;
+        this.unitPermitInspectionCost = 0;
+        this.unitPermitInspectionQuantity = 0;
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
-        let curDate = new Date();
         let draftContractData = JSON.parse(localStorage.getItem("DraftContractData"));
-        if (draftContractData) {
-            this.clientFundiContract = {
-                clientFundiContractId: draftContractData.clientFundiContractId,
-                clientProfileId: draftContractData.clientProfileId,
-                clientUsername: draftContractData.clientUsername,
-                clientFirstName: draftContractData.clientFirstName,
-                clientLastName: draftContractData.clientLastName,
-                fundiProfileId: draftContractData.fundiProfileId,
-                fundiUsername: draftContractData.fundiUsername,
-                fundiFirstName: draftContractData.fundiFirstName,
-                fundiLastName: draftContractData.fundiLastName,
-                agreedStartDate: this.formatDate(curDate),
-                agreedEndDate: this.formatDate(curDate),
-                agreedCost: draftContractData.agreedFees,
-                contractualDescription: draftContractData.contractualDescription,
-                isSignedByClient: true,
-                isSignedByFundi: false,
-                isCompleted: false,
-                isSignedOffByClient: false,
-                notesForNotice: draftContractData.notesForNotice
-            };
-        }
-        else {
-            this.clientFundiContract = {
-                clientFundiContractId: -1,
-                clientProfileId: -1,
-                clientUsername: this.userDetails.username,
-                clientFirstName: "",
-                clientLastName: "",
-                fundiProfileId: -1,
-                fundiUsername: "",
-                fundiFirstName: "",
-                fundiLastName: "",
-                agreedStartDate: this.formatDate(curDate),
-                agreedEndDate: this.formatDate(curDate),
-                agreedCost: 0,
-                contractualDescription: "",
-                isSignedByClient: true,
-                isSignedByFundi: false,
-                isCompleted: false,
-                isSignedOffByClient: false,
-                notesForNotice: "",
-            };
-        }
-        let resObs = this.myFundiService.GetClientProfile(this.userDetails.username);
+        let curDate = new Date();
+        this.currentJobId = draftContractData.jobId;
+        this.clientFundiContract = {
+            clientFundiContractId: 0,
+            jobId: draftContractData.jobId,
+            clientProfileId: draftContractData.clientProfileId,
+            clientUsername: draftContractData.clientUsername,
+            clientFirstName: draftContractData.clientFirstName,
+            clientLastName: draftContractData.clientLastName,
+            fundiProfileId: draftContractData.fundiProfileId,
+            fundiUsername: draftContractData.fundiUsername,
+            fundiFirstName: draftContractData.fundiFirstName,
+            fundiLastName: draftContractData.fundiLastName,
+            fundiAddressId: 0,
+            clientAddressId: 0,
+            agreedStartDate: this.formatDate(curDate),
+            agreedEndDate: this.formatDate(curDate),
+            agreedCost: 0,
+            contractualDescription: "",
+            isSignedByClient: true,
+            isSignedByFundi: false,
+            isCompleted: false,
+            isSignedOffByClient: false,
+            notesForNotice: "",
+            date1stPayment: this.formatDate(curDate),
+            date2ndPayment: this.formatDate(curDate),
+            date3rdPayment: this.formatDate(curDate),
+            date4thPayment: this.formatDate(curDate),
+            firstPaymentAmount: 0,
+            secondPaymentAmount: 0,
+            thirdPaymentAmount: 0,
+            forthPaymentAmount: 0,
+        };
+        let resObs = this.myFundiService.GetFundiProfile(this.clientFundiContract.fundiUsername);
         resObs.map((fundiProf) => {
             debugger;
             this.fundi = fundiProf;
-            let clientContsObs = this.myFundiService.GetClientContractsByUsername(this.userDetails.username);
+            let clientContsObs = this.myFundiService.GetClientContractsByUsername(this.clientFundiContract.clientUsername);
             clientContsObs.map((cts) => {
                 this.clientContracts = cts;
-                jQuery('select#clientFundiContractId option').remove();
+                jQuery('div.fundiClientContract-wrapper select#clientFundiContractId option').remove();
                 let optionElem = document.createElement('option');
                 optionElem.selected = true;
                 optionElem.value = (0).toString();
                 optionElem.text = "Select Client Fundi Contract";
-                document.querySelector('select#clientFundiContractId').append(optionElem);
+                document.querySelector('div.fundiClientContract-wrapper select#clientFundiContractId').append(optionElem);
                 ;
                 cts.forEach((c, index) => {
                     let optionElem = document.createElement('option');
                     optionElem.value = c.clientFundiContractId.toString();
                     optionElem.text = c.clientFirstName + " " + c.clientLastName + " : " + c.fundiFirstName + " " + c.fundiLastName + " , " + c.agreedStartDate + " , #" + c.clientFundiContractId;
-                    document.querySelector('select#clientFundiContractId').append(optionElem);
+                    document.querySelector('div.fundiClientContract-wrapper select#clientFundiContractId').append(optionElem);
                 });
             }).subscribe();
         }).subscribe();
@@ -3137,6 +3208,12 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
             day = '0' + day;
         return [year, month, day].join('-');
     }
+    calculateCost($event) {
+        this.clientFundiContract.agreedCost = this.unitMaterialCost * this.unitMaterialQuantity +
+            this.unitLabourCost * this.unitLabourQuantity +
+            this.unitPermitInspectionCost * this.unitPermitInspectionQuantity;
+        $event.preventDefault();
+    }
     ngAfterViewChecked() {
         let curthis = this;
         this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
@@ -3144,7 +3221,7 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
     runAutoCompleteOnSelects(curthis) {
         let hasFoundSelectsOnPage = false;
         if (!curthis.hasPopulatedPage) {
-            let selects = jQuery('div#fundiClientContract-wrapper select');
+            let selects = jQuery('div.fundiClientContract-wrapper select');
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
             }
@@ -3159,7 +3236,7 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
             }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('div#fundiClientContract-wrapper select').each((ind, sel) => {
+            jQuery('div.fundiClientContract-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
                 let vals = [];
                 jQuery(options).each((id, el) => {
@@ -3181,14 +3258,15 @@ let ClientFundiContractComponent = class ClientFundiContractComponent {
     }
 };
 ClientFundiContractComponent.ctorParameters = () => [
-    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] }
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
 ];
 ClientFundiContractComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'client-fundi-contract',
         template: __importDefault(__webpack_require__(/*! raw-loader!./clientfundicontract.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/clientfundi-contract/clientfundicontract.component.html")).default
     }),
-    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
 ], ClientFundiContractComponent);
 
 
@@ -4129,6 +4207,224 @@ CertificationCrudComponent = __decorate([
 
 /***/ }),
 
+/***/ "./src/app/crud-operations/client-address/client-address.component.css":
+/*!*****************************************************************************!*\
+  !*** ./src/app/crud-operations/client-address/client-address.component.css ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("body {\r\n}\r\nlabel {\r\n    color: gray !important;\r\n}\r\ninput[type=checkbox] {\r\n    display: inline-block;\r\n    -webkit-appearance: checkbox;\r\n}\r\ninput[type=radio] {\r\n    display: inline-block;\r\n    -webkit-appearance: radio;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3J1ZC1vcGVyYXRpb25zL2NsaWVudC1hZGRyZXNzL2NsaWVudC1hZGRyZXNzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0lBQ0ksc0JBQXNCO0FBQzFCO0FBRUE7SUFDSSxxQkFBcUI7SUFDckIsNEJBQTRCO0FBQ2hDO0FBRUE7SUFDSSxxQkFBcUI7SUFDckIseUJBQXlCO0FBQzdCIiwiZmlsZSI6InNyYy9hcHAvY3J1ZC1vcGVyYXRpb25zL2NsaWVudC1hZGRyZXNzL2NsaWVudC1hZGRyZXNzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcclxufVxyXG5sYWJlbCB7XHJcbiAgICBjb2xvcjogZ3JheSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPWNoZWNrYm94XSB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICAtd2Via2l0LWFwcGVhcmFuY2U6IGNoZWNrYm94O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPXJhZGlvXSB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICAtd2Via2l0LWFwcGVhcmFuY2U6IHJhZGlvO1xyXG59Il19 */");
+
+/***/ }),
+
+/***/ "./src/app/crud-operations/client-address/client-address.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/crud-operations/client-address/client-address.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: ClientAddressComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientAddressComponent", function() { return ClientAddressComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/myFundiService */ "./src/services/myFundiService.ts");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+let ClientAddressComponent = class ClientAddressComponent {
+    constructor(myFundiService, router) {
+        this.router = router;
+        this.hasPopulatedPage = false;
+        this.clientAddressChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.count = 0;
+        this.myFundiService = myFundiService;
+    }
+    ngAfterViewInit() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+    }
+    onClientAddressChanged() {
+        this.clientAddressChanged.emit(this.clientAddress.addressId);
+    }
+    refreshAddresses() {
+        let addSelect = document.querySelector('select#clientAddressId');
+        let opts = addSelect.querySelector('option');
+        if (opts) {
+            opts.remove();
+        }
+        let optionElem = document.createElement('option');
+        optionElem.selected = true;
+        optionElem.value = (0).toString();
+        optionElem.text = "Select Address";
+        document.querySelector('select#clientAddressId').append(optionElem);
+        let addressesObs = this.myFundiService.GetAllAddresses();
+        addressesObs.map((adds) => {
+            this.addresses = adds;
+            adds.forEach((add, index, adds) => {
+                let optionElem = document.createElement('option');
+                optionElem.value = add.addressId.toString();
+                optionElem.text = add.addressLine1 + ", " + add.town + ", " + add.postCode + ", " + add.country;
+                document.querySelector('select#clientAddressId').append(optionElem);
+            });
+        }).subscribe();
+    }
+    addAddress() {
+        let form = document.querySelector('form#clientAddForm1');
+        if (!form.checkValidity())
+            return;
+        let actualResult = this.myFundiService.PostOrCreateAddress(this.clientAddress);
+        actualResult.map((p) => {
+            alert('Address Added: ' + p.result);
+            if (p.result) {
+                this.router.navigateByUrl('success');
+            }
+            else {
+                this.router.navigateByUrl('failure');
+            }
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+    }
+    updateAddress() {
+        let form = document.querySelector('form#clientAddForm1');
+        if (!form.checkValidity())
+            return;
+        let actualResult = this.myFundiService.UpdateAddress(this.clientAddress);
+        actualResult.map((p) => {
+            alert('Address Updated: ' + p.result);
+            if (p.result) {
+                this.router.navigateByUrl('success');
+            }
+            else {
+                this.router.navigateByUrl('failure');
+            }
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+    }
+    selectAddress() {
+        let actualResult = this.myFundiService.GetAddressById(jQuery('div#client-addresses-wrapper select#clientAddressId').val());
+        actualResult.map((p) => {
+            debugger;
+            this.clientAddress = p;
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+    }
+    deleteAddress() {
+        let form = document.querySelector('form#clientAddForm1');
+        if (!form.checkValidity())
+            return;
+        let actualResult = this.myFundiService.DeleteAddress(this.clientAddress);
+        actualResult.map((p) => {
+            alert('Address Deleted: ' + p.result);
+            if (p.result) {
+                this.router.navigateByUrl('success');
+            }
+            else {
+                this.router.navigateByUrl('failure');
+            }
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+    }
+    ngOnInit() {
+        this.clientAddress = {
+            addressId: 0,
+            addressLine1: "",
+            addressLine2: "",
+            town: "",
+            postCode: "",
+            country: ""
+        };
+        this.addresses = [];
+        this.refreshAddresses();
+        let curthis = this;
+    }
+    ngAfterContentInit() {
+    }
+    runAutoCompleteOnSelects(curthis) {
+        let hasFoundSelectsOnPage = false;
+        if (curthis.addresses && curthis.addresses.length > 1 && !curthis.hasPopulatedPage) {
+            let selects = jQuery('div#client-addresses-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
+    }
+};
+ClientAddressComponent.ctorParameters = () => [
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("addressId"),
+    __metadata("design:type", Number)
+], ClientAddressComponent.prototype, "addressId", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+], ClientAddressComponent.prototype, "clientAddressChanged", void 0);
+ClientAddressComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'client-address',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./client-address.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/client-address/client-address.component.html")).default,
+        providers: [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]],
+        styles: [__importDefault(__webpack_require__(/*! ./client-address.component.css */ "./src/app/crud-operations/client-address/client-address.component.css")).default]
+    }),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+], ClientAddressComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/crud-operations/company/company.component.css":
 /*!***************************************************************!*\
   !*** ./src/app/crud-operations/company/company.component.css ***!
@@ -4646,6 +4942,225 @@ CourseCrudComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
     __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], CourseCrudComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/crud-operations/fundi-address/fundi-address.component.css":
+/*!***************************************************************************!*\
+  !*** ./src/app/crud-operations/fundi-address/fundi-address.component.css ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("body {\r\n}\r\nlabel {\r\n    color: gray !important;\r\n}\r\ninput[type=checkbox] {\r\n    display: inline-block;\r\n    -webkit-appearance: checkbox;\r\n}\r\ninput[type=radio] {\r\n    display: inline-block;\r\n    -webkit-appearance: radio;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3J1ZC1vcGVyYXRpb25zL2Z1bmRpLWFkZHJlc3MvZnVuZGktYWRkcmVzcy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtJQUNJLHNCQUFzQjtBQUMxQjtBQUVBO0lBQ0kscUJBQXFCO0lBQ3JCLDRCQUE0QjtBQUNoQztBQUVBO0lBQ0kscUJBQXFCO0lBQ3JCLHlCQUF5QjtBQUM3QiIsImZpbGUiOiJzcmMvYXBwL2NydWQtb3BlcmF0aW9ucy9mdW5kaS1hZGRyZXNzL2Z1bmRpLWFkZHJlc3MuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG59XHJcbmxhYmVsIHtcclxuICAgIGNvbG9yOiBncmF5ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbmlucHV0W3R5cGU9Y2hlY2tib3hdIHtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIC13ZWJraXQtYXBwZWFyYW5jZTogY2hlY2tib3g7XHJcbn1cclxuXHJcbmlucHV0W3R5cGU9cmFkaW9dIHtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIC13ZWJraXQtYXBwZWFyYW5jZTogcmFkaW87XHJcbn0iXX0= */");
+
+/***/ }),
+
+/***/ "./src/app/crud-operations/fundi-address/fundi-address.component.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/crud-operations/fundi-address/fundi-address.component.ts ***!
+  \**************************************************************************/
+/*! exports provided: FundiAddressComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FundiAddressComponent", function() { return FundiAddressComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/myFundiService */ "./src/services/myFundiService.ts");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+let FundiAddressComponent = class FundiAddressComponent {
+    constructor(myFundiService, router) {
+        this.router = router;
+        this.hasPopulatedPage = false;
+        this.fundiAddressChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.count = 0;
+        this.myFundiService = myFundiService;
+    }
+    onFundiAddressChanged() {
+        this.fundiAddressChanged.emit(this.fundiAddress.addressId);
+    }
+    refreshAddresses() {
+        let addSelect = document.querySelector('select#fundiAddressId');
+        let opts = addSelect.querySelector('option');
+        if (opts) {
+            opts.remove();
+        }
+        let optionElem = document.createElement('option');
+        optionElem.selected = true;
+        optionElem.value = (0).toString();
+        optionElem.text = "Select Address";
+        document.querySelector('select#fundiAddressId').append(optionElem);
+        let addressesObs = this.myFundiService.GetAllAddresses();
+        addressesObs.map((adds) => {
+            this.addresses = adds;
+            adds.forEach((add, index, adds) => {
+                let optionElem = document.createElement('option');
+                optionElem.value = add.addressId.toString();
+                optionElem.text = add.addressLine1 + ", " + add.town + ", " + add.postCode + ", " + add.country;
+                document.querySelector('select#fundiAddressId').append(optionElem);
+            });
+        }).subscribe();
+    }
+    addAddress() {
+        let form = document.querySelector('form#fundiAddForm1');
+        if (!form.checkValidity())
+            return;
+        let actualResult = this.myFundiService.PostOrCreateAddress(this.fundiAddress);
+        actualResult.map((p) => {
+            alert('Address Added: ' + p.result);
+            if (p.result) {
+                this.router.navigateByUrl('success');
+            }
+            else {
+                this.router.navigateByUrl('failure');
+            }
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+    }
+    updateAddress() {
+        let form = document.querySelector('form#fundiAddForm1');
+        if (!form.checkValidity())
+            return;
+        let actualResult = this.myFundiService.UpdateAddress(this.fundiAddress);
+        actualResult.map((p) => {
+            alert('Address Updated: ' + p.result);
+            if (p.result) {
+                this.router.navigateByUrl('success');
+            }
+            else {
+                this.router.navigateByUrl('failure');
+            }
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+    }
+    selectAddress() {
+        let actualResult = this.myFundiService.GetAddressById(jQuery('div#fundi-addresses-wrapper select#fundiAddressId').val());
+        actualResult.map((p) => {
+            debugger;
+            this.fundiAddress = p;
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+    }
+    deleteAddress() {
+        let form = document.querySelector('form#fundiAddForm1');
+        if (!form.checkValidity())
+            return;
+        let actualResult = this.myFundiService.DeleteAddress(this.fundiAddress);
+        actualResult.map((p) => {
+            alert('Address Deleted: ' + p.result);
+            if (p.result) {
+                this.router.navigateByUrl('success');
+            }
+            else {
+                this.router.navigateByUrl('failure');
+            }
+        }).subscribe();
+        jQuery('form#locationView').css('display', 'block').slideDown();
+    }
+    ngOnInit() {
+        this.fundiAddress = {
+            addressId: 0,
+            addressLine1: "",
+            addressLine2: "",
+            town: "",
+            postCode: "",
+            country: ""
+        };
+        this.addresses = [];
+        this.refreshAddresses();
+        let curthis = this;
+    }
+    ngAfterContentInit() {
+    }
+    ngAfterViewInit() {
+        let curthis = this;
+        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+    }
+    runAutoCompleteOnSelects(curthis) {
+        debugger;
+        let hasFoundSelectsOnPage = false;
+        if (curthis.addresses && curthis.addresses.length > 1 && !curthis.hasPopulatedPage) {
+            let selects = jQuery('div#fundi-addresses-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            debugger;
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
+    }
+};
+FundiAddressComponent.ctorParameters = () => [
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+], FundiAddressComponent.prototype, "fundiAddressChanged", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("addressId"),
+    __metadata("design:type", Number)
+], FundiAddressComponent.prototype, "addressId", void 0);
+FundiAddressComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'fundi-address',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./fundi-address.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/fundi-address/fundi-address.component.html")).default,
+        providers: [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]],
+        styles: [__importDefault(__webpack_require__(/*! ./fundi-address.component.css */ "./src/app/crud-operations/fundi-address/fundi-address.component.css")).default]
+    }),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+], FundiAddressComponent);
 
 
 
@@ -5762,12 +6277,30 @@ let FundiContractComponent = class FundiContractComponent {
         this.myFundiService = myFundiService;
         this.fundi = {};
         this.client = {};
+        this.unitMaterialCost = 0;
+        this.unitMaterialQuantity = 0;
+        this.unitLabourCost = 0;
+        this.unitLabourQuantity = 0;
+        this.unitPermitInspectionCost = 0;
+        this.unitPermitInspectionQuantity = 0;
+    }
+    updateClientAddress($event) {
+        this.clientFundiContract.clientAddressId = $event;
+    }
+    updateFundiAddress($event) {
+        this.clientFundiContract.fundiAddressId = $event;
     }
     selectContract($event) {
         let crtObs = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
         crtObs.map((q) => {
             this.clientFundiContract = q;
         }).subscribe();
+        $event.preventDefault();
+    }
+    calculateCost($event) {
+        this.clientFundiContract.agreedCost = this.unitMaterialCost * this.unitMaterialQuantity +
+            this.unitLabourCost * this.unitLabourQuantity +
+            this.unitPermitInspectionCost * this.unitPermitInspectionQuantity;
         $event.preventDefault();
     }
     createContract($event) {
@@ -5795,12 +6328,20 @@ let FundiContractComponent = class FundiContractComponent {
         return decodeURIComponent(url);
     }
     ngOnInit() {
+        this.unitMaterialCost = 0;
+        this.unitMaterialQuantity = 0;
+        this.unitLabourCost = 0;
+        this.unitLabourQuantity = 0;
+        this.unitPermitInspectionCost = 0;
+        this.unitPermitInspectionQuantity = 0;
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         let curDate = new Date();
         this.clientFundiContract = {
             clientFundiContractId: -1,
             clientProfileId: -1,
+            fundiAddressId: 0,
+            clientAddressId: 0,
             clientUsername: "",
             clientFirstName: "",
             clientLastName: "",
@@ -5811,12 +6352,21 @@ let FundiContractComponent = class FundiContractComponent {
             agreedStartDate: this.formatDate(curDate),
             agreedEndDate: this.formatDate(curDate),
             agreedCost: 0,
+            jobId: 0,
             contractualDescription: "",
             isSignedByClient: true,
             isSignedByFundi: false,
             isCompleted: false,
             isSignedOffByClient: false,
             notesForNotice: "",
+            date1stPayment: this.formatDate(curDate),
+            date2ndPayment: this.formatDate(curDate),
+            date3rdPayment: this.formatDate(curDate),
+            date4thPayment: this.formatDate(curDate),
+            firstPaymentAmount: 0,
+            secondPaymentAmount: 0,
+            thirdPaymentAmount: 0,
+            forthPaymentAmount: 0,
         };
         let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
         resObs.map((fundiProf) => {
@@ -5825,18 +6375,18 @@ let FundiContractComponent = class FundiContractComponent {
             let clientContsObs = this.myFundiService.GetFundiContractsByUsername(this.userDetails.username);
             clientContsObs.map((cts) => {
                 this.clientContracts = cts;
-                jQuery('div#fundiContract-wrapper select#clientFundiContractId option').remove();
+                jQuery('div.fundiContract-wrapper select#clientFundiContractId option').remove();
                 let optionElem = document.createElement('option');
                 optionElem.selected = true;
                 optionElem.value = (0).toString();
                 optionElem.text = "Select Client Fundi Contract";
-                document.querySelector('div#fundiContract-wrapper select#clientFundiContractId').append(optionElem);
+                document.querySelector('div.fundiContract-wrapper select#clientFundiContractId').append(optionElem);
                 ;
                 cts.forEach((c, index) => {
                     let optionElem = document.createElement('option');
                     optionElem.value = c.clientFundiContractId.toString();
                     optionElem.text = c.clientFirstName + " " + c.clientLastName + " : " + c.fundiFirstName + " " + c.fundiLastName + " , " + c.agreedStartDate + " , #" + c.clientFundiContractId;
-                    document.querySelector('div#fundiContract-wrapper select#clientFundiContractId').append(optionElem);
+                    document.querySelector('div.fundiContract-wrapper select#clientFundiContractId').append(optionElem);
                 });
             }).subscribe();
         }).subscribe();
@@ -5856,7 +6406,7 @@ let FundiContractComponent = class FundiContractComponent {
     runAutoCompleteOnSelects(curthis) {
         let hasFoundSelectsOnPage = false;
         if (!curthis.hasPopulatedPage) {
-            let selects = jQuery('div#fundiContract-wrapper select');
+            let selects = jQuery('div.fundiContract-wrapper select');
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
             }
@@ -5871,7 +6421,7 @@ let FundiContractComponent = class FundiContractComponent {
             }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('div#fundiContract-wrapper select').each((ind, sel) => {
+            jQuery('div.fundiContract-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
                 let vals = [];
                 jQuery(options).each((id, el) => {
@@ -6013,6 +6563,208 @@ FundiEngagementComponent = __decorate([
     }),
     __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])
 ], FundiEngagementComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/fundi-rating/fundirating.component.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/fundi-rating/fundirating.component.ts ***!
+  \*******************************************************/
+/*! exports provided: FundiRatingComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FundiRatingComponent", function() { return FundiRatingComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/myFundiService */ "./src/services/myFundiService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/AddressLocationGeoCodeService */ "./src/services/AddressLocationGeoCodeService.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+let FundiRatingComponent = class FundiRatingComponent {
+    constructor(myFundiService, addressLocationService, router) {
+        this.myFundiService = myFundiService;
+        this.addressLocationService = addressLocationService;
+        this.router = router;
+        this.hasGotRating = false;
+        this.hasAddedAutoComplete = false;
+        this.averageFundiRating = 0;
+        this.userDetails = {};
+    }
+    decoderUrl(url) {
+        return decodeURIComponent(url);
+    }
+    ngOnInit() {
+        debugger;
+        this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        this.fundiUser = JSON.parse(localStorage.getItem("FundiUserTo"));
+        this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+        this.profileId = parseInt(JSON.parse(localStorage.getItem("RatingProfileId")));
+        this.jobId = parseInt(JSON.parse(localStorage.getItem("ContractJobId")));
+        if (this.profileId > 0) {
+            let prfObs = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());
+            prfObs.map((q) => {
+                this.profile = q;
+                this.profileId = this.profile.fundiProfileId;
+                this.getFundiWorkCategoriesByProfileId(this.profileId);
+                this.generateFundiRatings();
+            }).subscribe();
+        }
+    }
+    runAutoCompleteOnSelects(curthis) {
+        if (curthis.jobs && curthis.jobs.length > 0) {
+            //Check For Dom Change and Add auto complete to select elements
+            let hasFoundSelectsOnPage = false;
+            let selects = jQuery('div#clientfundisearch-wrapper select');
+            if (selects && selects.length > 0) {
+                hasFoundSelectsOnPage = true;
+            }
+            if (hasFoundSelectsOnPage) {
+                jQuery(selects.each((ind, elem) => {
+                    jQuery(elem).parent('ul').css('background', 'white');
+                    jQuery(elem).parent('ul').css('z-index', '100');
+                    let id = 'autoComplete' + jQuery(elem).attr('id');
+                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+                }));
+                hasFoundSelectsOnPage = false;
+            }
+            //Check For Dom Change and Add auto complete to select elements
+            jQuery('select').each((ind, sel) => {
+                let options = jQuery(sel).children('option');
+                let vals = [];
+                jQuery(options).each((id, el) => {
+                    let optionText = jQuery(el).html();
+                    vals.push(optionText);
+                });
+                //options is source of auto complete:
+                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+                jQueryinpId.autocomplete({ source: vals });
+                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                        return jQuery(event.target).text() == jQuery(this).html();
+                    }).attr("selected", true);
+                });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+        }
+    }
+    ngAfterViewChecked() {
+        if (this.profile) {
+            jQuery('div.rate,span.rate').rateit({
+                min: 0,
+                max: 5,
+                step: 1,
+                starwidth: 16,
+                starheight: 16,
+                resetable: true
+            });
+            jQuery('div.rateit, span.rateit').rateit();
+            this.profileId = this.profile.fundiProfileId;
+            jQuery('span#averageFundiRating-' + this.profileId).rateit('value', this.averageFundiRating);
+        }
+    }
+    generateFundiRatings() {
+        let curthis = this;
+        let wCatsSubCatsObs = this.myFundiService.GetFundiWorkCategoriesAndSubCategoriesByJobId(this.jobId);
+        if (this.profile) {
+            let fundiRatingsObs = this.myFundiService.GetFundiRatings(this.fundiUser.username);
+            wCatsSubCatsObs.map((q) => {
+                this.jobWorkCategoryDetails = q;
+                fundiRatingsObs.map((r) => {
+                    this.fundiRatings = r;
+                    this.fundiRatings.forEach(q => {
+                        this.averageFundiRating += q.rating;
+                        jQuery('span#averageFundiRating-' + this.profile.fundiProfileId).rateit('value', this.averageFundiRatings);
+                    });
+                    this.averageFundiRating = parseInt((this.averageFundiRating / r.length).toString());
+                }).subscribe();
+            }).subscribe();
+        }
+        else {
+            alert("Fundi has no Profile");
+        }
+    }
+    rateFundi($event) {
+        let button = $event.target;
+        let review = jQuery(button).parent('form').find('textarea').val();
+        let profileId = jQuery(button).parent('form').attr('id').split('-')[1];
+        let rating = jQuery('div#fundiRating-' + profileId).rateit('value');
+        let workCategory = jQuery(button).parent('form').find('select').val();
+        alert('rated: ' + rating);
+        let userIdObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
+        userIdObs.map((userId) => {
+            let fundiRated = {
+                fundiProfileId: profileId,
+                rating: rating,
+                review: review,
+                userId: userId,
+                workCategoryType: workCategory
+            };
+            let fundiRatedObs = this.myFundiService.RateFundiByProfileId(fundiRated);
+            fundiRatedObs.map((res) => {
+                alert(res.message);
+            }).subscribe();
+        }).subscribe();
+    }
+    getFundiWorkCategoriesByProfileId(profileId) {
+        let fundiWorkCatObs = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
+        fundiWorkCatObs.map((res) => {
+            let fundiWorkCategories = res;
+            let ul = jQuery(document).find(`ul#${profileId}-workCategory`);
+            let ulskillsChildren = jQuery(document).find(`ul#${profileId}-workCategory li`);
+            //ulWorkCatChildren.remove();
+            for (let workCat in fundiWorkCategories) {
+                let li = document.createElement('li');
+                li.innerHTML = fundiWorkCategories[workCat];
+                jQuery(ul).append(li);
+            }
+            this.getFundiSkillsByProfileId(profileId);
+        }).subscribe();
+    }
+    getFundiSkillsByProfileId(profileId) {
+        let fundiSkillsObs = this.myFundiService.GetFundiSkillsByProfileId(profileId);
+        fundiSkillsObs.map((res) => {
+            let fundiSkills = res;
+            let ul = jQuery(document).find(`ul#${profileId}-skills`);
+            let ulskillsChildren = jQuery(document).find(`ul#${profileId}-skills li`);
+            //ulskillsChildren.remove();
+            let li = document.createElement('li');
+            li.innerHTML = fundiSkills[0];
+            jQuery(ul).append(li);
+        }).subscribe();
+    }
+};
+FundiRatingComponent.ctorParameters = () => [
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"] },
+    { type: _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_3__["AddressLocationGeoCodeService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+];
+FundiRatingComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'fundi-rating',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./fundirating.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-rating/fundirating.component.html")).default,
+        providers: [_services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_3__["AddressLocationGeoCodeService"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]]
+    }),
+    __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_3__["AddressLocationGeoCodeService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+], FundiRatingComponent);
 
 
 
@@ -8112,7 +8864,7 @@ let myRecaptchaComponent = class myRecaptchaComponent {
         this.router = router;
         this.httpClient = httpClient;
         this.googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-        // private recaptchaSecretKey ="6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";
+        //private recaptchaSecretKey ="6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";
         //private siteKey = "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";
         this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo";
         this.siteKey = "6LdDVJ4iAAAAAFHVELvYKNjAf_MTm4vVgBzDdlFB";
@@ -9271,6 +10023,61 @@ AdminAuthGuard = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
     __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]])
 ], AdminAuthGuard);
+
+
+
+/***/ }),
+
+/***/ "./src/guards/AuthClientAdminGuard.ts":
+/*!********************************************!*\
+  !*** ./src/guards/AuthClientAdminGuard.ts ***!
+  \********************************************/
+/*! exports provided: AuthClientAdminGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthClientAdminGuard", function() { return AuthClientAdminGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/myFundiService */ "./src/services/myFundiService.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+let AuthClientAdminGuard = class AuthClientAdminGuard {
+    // Inject Router so we can hand off the user to the Login Page 
+    constructor(router, myFundiService) {
+        this.router = router;
+        this.myFundiService = myFundiService;
+    }
+    canActivate() {
+        if (_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles != null && _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles.length > 0) {
+            this.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles;
+            return (this.userRoles.indexOf("Administrator") > -1 || this.userRoles.indexOf('Client') > -1);
+        }
+        return false;
+    }
+};
+AuthClientAdminGuard.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+    { type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"] }
+];
+AuthClientAdminGuard = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]])
+], AuthClientAdminGuard);
 
 
 
@@ -11982,6 +12789,8 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         this.payMonthlySubscriptionFeeWithMtnUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithMtn";
         this.payClientSubscriptionFeeWithAirTelUrl = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithAirTel";
         this.payMonthlySubscriptionFeeWithAirTelUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithAirTel";
+        this.getFundiWorkCategoriesAndSubCategoriesByJobIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesAndSubCategoriesByJobId";
+        this.getFundiRatingsByFundiProfileIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiRatingsByFundiProfileId";
         this.getFundiSkillsByProfileIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
         this.getFundiWorkCategoriesByFundiProfileIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId";
         this.getFundiWorkCategoriesUrl = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategories";
@@ -12031,7 +12840,7 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         this.updateContractUrl = this.baseServerUrl + "/FundiProfile/UpdateContract";
         this.deleteContractUrl = this.baseServerUrl + "/FundiProfile/DeleteContract";
         this.getFundiProfileByUsernameUrl = this.baseServerUrl + "/FundiProfile/GetFundiProfileByUsername";
-        this.getClientContractsByUsernameUrl = this.baseServerUrl + "/FundiProfile/GetClientContracts";
+        this.getClientContractsByUsernameUrl = this.baseServerUrl + "/ClientProfile/GetClientContracts";
         this.getFundiContractsByUsernameUrl = this.baseServerUrl + "/FundiProfile/GetFundiContracts";
         this.getClientUserByIdUrl = this.baseServerUrl + "/ClientProfile/GetClientUserById";
         this.getAllClientJobByClientProfileIdUrl = this.baseServerUrl + "/ClientProfile/GetAllClientJobByClientProfileId";
@@ -12091,6 +12900,34 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res) => {
             let blogs = res;
             return blogs;
+        });
+    }
+    GetFundiRatingsByFundiProfileId(profileId) {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiRatingsByFundiProfileIdUrl + "/" + profileId.toString();
+        let requestOptions = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res) => {
+            let ratings = res;
+            return ratings;
+        });
+    }
+    GetFundiWorkCategoriesAndSubCategoriesByJobId(jobId) {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestUrl = this.getFundiWorkCategoriesAndSubCategoriesByJobIdUrl + "/" + jobId.toString();
+        let requestOptions = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res) => {
+            let ratings = res;
+            return ratings;
         });
     }
     GetFundiContractsByUsername(username) {

@@ -16,6 +16,15 @@ namespace MyFundi.Domain
         [ForeignKey("FundiProfile")]
         public int FundiProfileId { get; set; }
         public FundiProfile FundiProfile { get; set; }
+        [ForeignKey("Job")]
+        public int? JobId { get; set; }
+        public Job Job { get; set; }
+        [ForeignKey("FundiAddress")]
+        public int? FundiAddressId { get; set; }
+        public Address FundiAddress { get; set; }
+        [ForeignKey("ClientAddress")]
+        public int? ClientAddressId { get; set; }
+        public Address ClientAddress { get; set; }
         public string ClientUsername { get; set; }
         public string ClientFirstName { get; set; }
         public string ClientLastName { get; set; }
@@ -32,7 +41,16 @@ namespace MyFundi.Domain
         public bool IsSignedOffByClient { get; set; }
         public string NotesForNotice { get; set; }
         public Decimal AgreedCost { get; set; }
+        public DateTime Date1stPayment { get; set; } = DateTime.Now;
+        public decimal FirstPaymentAmount { get; set; }
+        public DateTime Date2ndPayment { get; set; } = DateTime.Now;
+        public decimal SecondPaymentAmount { get; set; }
+        public DateTime Date3rdPayment { get; set; } = DateTime.Now;
+        public decimal ThirdPaymentAmount { get; set; }
+        public DateTime Date4thPayment { get; set; } = DateTime.Now;
+        public decimal ForthPaymentAmount { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
+
     }
 }

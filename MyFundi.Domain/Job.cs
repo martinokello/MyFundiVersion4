@@ -33,7 +33,6 @@ namespace MyFundi.Domain
         public FundiProfile AssignedFundiProfile { get; set; }
         public bool HasBeenAssignedFundi { get; set; }
         public bool HasCompleted { get; set; }
-        public int? ClientFundiContractId { get; set; }
         public int NumberOfDaysToComplete { get; set; }
         //public ICollection<WorkCategory> WorkCategories { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;

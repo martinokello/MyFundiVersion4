@@ -45,6 +45,7 @@
     <None Remove="ClientApp\src\assets\images\CarMechanic.jpg" />
     <None Remove="ClientApp\src\assets\images\carpentryMetalwork.jpg" />
     <None Remove="ClientApp\src\environments\index.html" />
+    <None Remove="ClientApp\src\guards\AuthClientAdminGuard.ts" />
     <None Remove="ClientApp\src\guards\AuthFundiAdminGuard.ts" />
     <None Remove="ClientApp\src\guards\AuthFundiClientAdminGuard.ts" />
     <None Remove="ClientApp\src\images\CarMechanic.jpg" />
@@ -283,6 +284,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\chat\chat.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthClientAdminGuard.ts" />
     <TypeScriptCompile Include="ClientApp\src\guards\AuthFundiAdminGuard.ts" />
     <TypeScriptCompile Include="ClientApp\src\guards\AuthFundiClientAdminGuard.ts" />
   </ItemGroup>

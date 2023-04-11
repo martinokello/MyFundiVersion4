@@ -1,0 +1,64 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Development\MyFundiCurrent\MyFundi.Web
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'AgreedCost' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NumberOfDaysToComplete' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'ClientSubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'FundiSubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'FundiSubscriptionQueue'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'GrossCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NetCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'PercentTaxAppliable' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ItemCost' on entity type 'Item'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscriptionQueue'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+fail: Microsoft.AspNetCore.SpaServices[0]
+      ERROR in ./src/app/crud-operations/address-reuse/address-reuse.component.css
+Module build failed (from ./node_modules/postcss-loader/src/index.js):
+Error: ENOENT: no such file or directory, open 'C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\src\app\crud-operations\address-reuse\address-reuse.component.css'
+    at Object.openSync (fs.js:448:3)
+    at Object.readFileSync (fs.js:350:35)
+    at Storage.provideSync (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\enhanced-resolve\lib\CachedInputFileSystem.js:98:13)
+    at CachedInputFileSystem.readFileSync (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\enhanced-resolve\lib\CachedInputFileSystem.js:259:32)
+    at Observable._subscribe (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@ngtools\webpack\src\webpack-input-host.js:35:51)
+    at Observable._trySubscribe (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@ngtools\webpack\node_modules\rxjs\internal\Observable.js:44:25)
+    at Observable.subscribe (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@ngtools\webpack\node_modules\rxjs\internal\Observable.js:30:22)
+    at SyncDelegateHost._doSyncCall (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@angular-devkit\core\src\virtual-fs\host\sync.js:22:20)
+    at SyncDelegateHost.read (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@angular-devkit\core\src\virtual-fs\host\sync.js:49:21)
+    at WebpackCompilerHost.readFileBuffer (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@ngtools\webpack\src\compiler_host.js:161:44)
+    at VirtualFileSystemDecorator.readFile (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@ngtools\webpack\src\virtual_file_system_decorator.js:42:54)
+    at processResource (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\loader-runner\lib\LoaderRunner.js:202:11)
+    at iteratePitchingLoaders (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\loader-runner\lib\LoaderRunner.js:158:10)
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+          at iteratePitchingLoaders (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\loader-runner\lib\LoaderRunner.js:176:18
+    at loadLoader (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\loader-runner\lib\loadLoader.js:47:3)
+
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+      ERROR in ./src/app/crud-operations/address-reuse/address-reuse.component.ts
+Module build failed (from ./node_modules/@ngtools/webpack/src/index.js):
+Error: ENOENT: no such file or directory, open 'C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\src\app\crud-operations\address-reuse\address-reuse.component.ts'
+    at Object.openSync (fs.js:448:3)
+    at Object.readFileSync (fs.js:350:35)
+    at Storage.provideSync (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\enhanced-resolve\lib\CachedInputFileSystem.js:98:13)
+    at CachedInputFileSystem.readFileSync (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\enhanced-resolve\lib\CachedInputFileSystem.js:259:32)
+    at Observable._subscribe (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@ngtools\webpack\src\webpack-input-host.js:35:51)
+    at Observable._trySubscribe (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@ngtools\webpack\node_modules\rxjs\internal\Observable.js:44:25)
+    at Observable.subscribe (C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\@ngtools\webpack\node_modules\rxjs\internal\Observable.js:30:22)
+    at SyncDelegateHost._doSyncCall (C:\Devel

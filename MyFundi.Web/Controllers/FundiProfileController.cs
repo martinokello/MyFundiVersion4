@@ -378,7 +378,7 @@ namespace MyFundi.Web.Controllers
 
             if (user == null || fundiProfile == null)
             {
-                return await Task.FromResult(NotFound(new { Message = "User not found", Result=false}));
+                return await Task.FromResult(NotFound(new { Message = "User not found", Result = false }));
             }
             return await Task.FromResult(Ok(_mapper.Map<FundiProfileViewModel>(fundiProfile)));
         }
@@ -1362,6 +1362,61 @@ namespace MyFundi.Web.Controllers
 
         [HttpGet]
         [AuthorizeIdentity]
+        [Route("~/FundiProfile/GetFundiWorkCategoriesAndSubCategoriesByJobId/{jobId}")]
+        public async Task<IActionResult> GetFundiWorkCategoriesAndSubCategoriesByJobId(int jobId)
+        {
+            try
+            {
+                var jobWorkCategories = (from j in _unitOfWork._jobRepository.GetAll().Where(q => q.JobId == jobId)
+                                        join jwc in _unitOfWork._jobWorkCategoryRepository.GetAll().Include(q => q.WorkCategory).Include(q => q.WorkSubCategory)
+                                        on j.JobId equals jwc.JobId
+                                        join fwc in _unitOfWork._fundiWorkCategoryRepository.GetAll().Include(q => q.WorkCategory).Include(q => q.WorkSubCategory) on
+                                        jwc.WorkCategoryId equals fwc.WorkCategoryId
+                                        where jwc.WorkSubCategoryId == fwc.WorkSubCategoryId &&
+                                        jwc.WorkCategoryId == fwc.WorkCategoryId
+                                        select new WorkCategoryViewModel
+                                        {
+                                            WorkCategoryId = fwc.WorkCategoryId,
+                                            WorkSubCategoryId = fwc.WorkSubCategoryId,
+                                            WorkCategoryType = fwc.WorkCategory.WorkCategoryType,
+                                            WorkSubCategoryType = fwc.WorkSubCategory.WorkSubCategoryType
+                                        }).ToArray<WorkCategoryViewModel>();
+
+                if (jobWorkCategories.Any())
+                {
+                    return await Task.FromResult(Ok(jobWorkCategories.Union(new WorkCategoryViewModel[] { })));
+                }
+                return await Task.FromResult(NotFound(new { Message = "Job has no categories nor sub categories!" }));
+
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Bad Request! " + ex.Message }));
+            }
+        }
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/FundiProfile/GetFundiRatingsByFundiProfileId/{fundiProfileId}")]
+        public async Task<IActionResult> GetFundiRatingsByFundiProfileId(int fundiProfileId)
+        {
+            try
+            {
+                var ratings = _unitOfWork._fundiRatingsAndReviewRepository.GetAll().Where(q => q.FundiProfileId == fundiProfileId);
+
+                if (ratings.Any())
+                {
+                    return await Task.FromResult(Ok(_mapper.Map<FundiRatingAndReviewViewModel[]>(ratings.ToArray())));
+                }
+                return await Task.FromResult(NotFound(new { Message = "No Fundi Ratings Found!" }));
+
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = "Bad Request! " + ex.Message }));
+            }
+        }
+        [HttpGet]
+        [AuthorizeIdentity]
         [Route("~/FundiProfile/GetAllFundiWorkSubCategoriesByWorkCategoryId/{workCategoryId}")]
         public async Task<IActionResult> GetAllFundiWorkSubCategoriesByWorkCategoryId(int workCategoryId)
         {
@@ -1403,22 +1458,7 @@ namespace MyFundi.Web.Controllers
                                  select c;
             return await Task.FromResult(Ok(_mapper.Map<ClientFundiContractViewModel[]>(fundiContracts.ToArray())));
         }
-        [HttpGet]
-        [AuthorizeIdentity]
-        [Route("~/FundiProfile/GetClientContracts/{username}")]
-        public async Task<IActionResult> GetClientContracts(string username)
-        {
-            User user = _serviceEndPoint.GetUserByEmailAddress(username);
-            var clientProfile = _unitOfWork._clientProfileRepository.GetAll().FirstOrDefault(q => q.UserId.ToString().ToLower().Equals(user.UserId.ToString().ToLower()));
 
-            if (user == null || clientProfile == null)
-            {
-                return await Task.FromResult(NotFound(new { Message = $"user {username} profile not Found!" }));
-            }
-            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.ClientProfileId == clientProfile.ClientProfileId || q.ClientUsername.ToLower().Equals(username.ToLower())).Include(q => q.ClientProfile).Include(q => q.FundiProfile)
-                                 select c;
-            return await Task.FromResult(Ok(_mapper.Map<ClientFundiContractViewModel[]>(fundiContracts.ToArray())));
-        }
         [HttpPost]
         [AuthorizeIdentity]
         public async Task<IActionResult> SaveFundiProfileImage(string username, [FromForm] IFormFile profileImage)

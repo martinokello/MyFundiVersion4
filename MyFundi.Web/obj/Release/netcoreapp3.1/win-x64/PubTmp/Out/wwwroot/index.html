@@ -81,6 +81,40 @@
                     dateFormat: 'yyyy/MM/ddThh:mm:ss'
                 });
             });
+
+            $(document).on('focus', 'input#inpPayment1Date', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#inpPayment1Date').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#inpPayment2Date', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#inpPayment2Date').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#inpPayment3Date', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#inpPayment3Date').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#inpPayment4Date', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#inpPayment4Date').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+
             $('nav#nav ul li a').css('background-color', 'transparent');
             $('nav#nav ul li:first').addClass('current');
             $('nav#nav ul li:first').css('background-color', 'deepskyblue');

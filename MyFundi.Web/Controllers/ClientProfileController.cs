@@ -145,7 +145,6 @@ namespace MyFundi.Web.Controllers
             {
                 job.AssignedFundiProfileId = null;
                 job.AssignedFundiUserId = null;
-                job.ClientFundiContractId = null;
 
                 var hasDeleted = _unitOfWork._jobRepository.Delete(job);
                 return await Task.FromResult(Ok(new { Message = "Job Deleted", Result = hasDeleted }));
@@ -564,7 +563,28 @@ namespace MyFundi.Web.Controllers
                 return await Task.FromResult(Ok(new { Message = e.Message + " error: Failed To Pay. Please Contact Admin on Site" }));
             }
         }
+        [HttpGet]
+        [AuthorizeIdentity]
+        [Route("~/ClientProfile/GetClientContracts/{username}")]
+        public async Task<IActionResult> GetClientContracts(string username)
+        {
+            try { 
+            User user = _serviceEndPoint.GetUserByEmailAddress(username);
+            var clientProfile = _unitOfWork._clientProfileRepository.GetAll().FirstOrDefault(q => q.UserId.ToString().ToLower().Equals(user.UserId.ToString().ToLower()));
 
+            if (user == null || clientProfile == null)
+            {
+                return await Task.FromResult(NotFound(new { Message = $"user {username} profile not Found!" }));
+            }
+            var fundiContracts = from c in _unitOfWork._clientFundiContractRepository.GetAll().Where(q => q.ClientProfileId == clientProfile.ClientProfileId || q.ClientUsername.ToLower().Equals(username.ToLower())).Include(q => q.ClientProfile).Include(q => q.FundiProfile)
+                                 select c;
+            return await Task.FromResult(Ok(_mapper.Map<ClientFundiContractViewModel[]>(fundiContracts.ToArray())));
+            }
+            catch (Exception ex)
+            {
+                return await Task.FromResult(BadRequest(new { Message = ex.Message, StackTrace = ex.StackTrace }));
+            }
+        }
         [HttpPost]
         [Route("~/ClientProfile/PayClientSubscriptionFeeWithAirTel")]
         public async Task<IActionResult> PayClientSubscriptionFeeWithAirTel([FromBody] ClientSubscriptionViewModel subscriptionViewModel)
@@ -651,7 +671,6 @@ namespace MyFundi.Web.Controllers
                     }
                     result.AssignedFundiProfileId = job.AssignedFundiProfileId;
                     result.AssignedFundiUserId = job.AssignedFundiUserId;
-                    result.ClientFundiContractId = job.ClientFundiContractId;
                     result.ClientProfileId = job.ClientProfileId;
                     result.ClientUserId = job.ClientUserId;
                     result.DateUpdated = job.DateUpdated;

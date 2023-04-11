@@ -17,6 +17,10 @@ namespace MyFundi.Web.ViewModels
         public string FundiFirstName { get; set; }
         public string FundiLastName { get; set; }
         public int FundiProfileId { get; set; }
+        public int? FundiAddressId { get; set; }
+        public AddressViewModel FundiAddress { get; set; }
+        public int? ClientAddressId { get; set; }
+        public AddressViewModel ClientAddress { get; set; }
         public string ContractualDescription { get; set; }
         public bool IsSignedByClient { get; set; }
         public Decimal AgreedCost { get; set; }
@@ -26,6 +30,14 @@ namespace MyFundi.Web.ViewModels
         public string NotesForNotice { get; set; }
         public DateTime AgreedStartDate { get; set; }
         public DateTime AgreedEndDate { get; set; }
+        public DateTime Date1stPayment { get; set; } = DateTime.Now;
+        public decimal FirstPaymentAmount { get; set; }
+        public DateTime Date2ndPayment { get; set; } = DateTime.Now;
+        public decimal SecondPaymentAmount { get; set; }
+        public DateTime Date3rdPayment { get; set; } = DateTime.Now;
+        public decimal ThirdPaymentAmount { get; set; }
+        public DateTime Date4thPayment { get; set; } = DateTime.Now;
+        public decimal ForthPaymentAmount { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
     }

@@ -16,7 +16,7 @@ import * as Recaptcha  from 'ng-recaptcha';
 export class myRecaptchaComponent implements OnInit, AfterViewInit {
 
     private googleUrl = "https://www.google.com/recaptcha/api/siteverify";
-   // private recaptchaSecretKey ="6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";
+    //private recaptchaSecretKey ="6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";
     //private siteKey = "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";
 
 

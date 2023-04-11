@@ -13,11 +13,25 @@ export class FundiContractComponent implements OnInit {
     userRoles: string[];
     clientFundiContract: IClientFundiContract;
     clientContracts: IClientFundiContract[];
+
     fundi: any = {};
     client: any = {}
     setTo: NodeJS.Timeout;
+    unitMaterialCost: number = 0;
+    unitMaterialQuantity: number=0;
+    unitLabourCost: number=0;
+    unitLabourQuantity: number = 0;
+    unitPermitInspectionCost: number=0;
+    unitPermitInspectionQuantity: number = 0;
 
     constructor(private myFundiService: MyFundiService) {
+    }
+
+    updateClientAddress($event) {
+        this.clientFundiContract.clientAddressId = $event;
+    }
+    updateFundiAddress($event) {
+        this.clientFundiContract.fundiAddressId = $event;
     }
     selectContract($event) {
         let crtObs: Observable<any> = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
@@ -26,6 +40,14 @@ export class FundiContractComponent implements OnInit {
         }).subscribe();
         $event.preventDefault();
     }
+    calculateCost($event) {
+
+        this.clientFundiContract.agreedCost = this.unitMaterialCost * this.unitMaterialQuantity +
+            this.unitLabourCost * this.unitLabourQuantity +
+            this.unitPermitInspectionCost * this.unitPermitInspectionQuantity;
+        $event.preventDefault();
+    }
+
     createContract($event) {
         let crtObs: Observable<any> = this.myFundiService.CreateContract(this.clientFundiContract);
         crtObs.map((q: any) => {
@@ -51,6 +73,13 @@ export class FundiContractComponent implements OnInit {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
+        this.unitMaterialCost = 0;
+        this. unitMaterialQuantity = 0;
+        this.unitLabourCost = 0;
+        this.unitLabourQuantity = 0;
+        this.unitPermitInspectionCost = 0;
+        this.unitPermitInspectionQuantity = 0;
+
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
 
@@ -59,6 +88,8 @@ export class FundiContractComponent implements OnInit {
         this.clientFundiContract = {
             clientFundiContractId: -1,
             clientProfileId: -1,
+            fundiAddressId: 0,
+            clientAddressId:0,
             clientUsername: "",
             clientFirstName: "",
             clientLastName: "",
@@ -69,12 +100,21 @@ export class FundiContractComponent implements OnInit {
             agreedStartDate: this.formatDate(curDate),
             agreedEndDate: this.formatDate(curDate),
             agreedCost: 0,
+            jobId:0,
             contractualDescription: "",
             isSignedByClient: true,
             isSignedByFundi: false,
             isCompleted: false,
             isSignedOffByClient: false,
             notesForNotice: "",
+            date1stPayment: this.formatDate(curDate),
+            date2ndPayment: this.formatDate(curDate),
+            date3rdPayment: this.formatDate(curDate),
+            date4thPayment: this.formatDate(curDate),
+            firstPaymentAmount: 0,
+            secondPaymentAmount: 0,
+            thirdPaymentAmount: 0,
+            forthPaymentAmount: 0,
         };
 
         let resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
@@ -86,19 +126,19 @@ export class FundiContractComponent implements OnInit {
             clientContsObs.map((cts: any[])=> {
                 this.clientContracts = cts;
 
-                jQuery('div#fundiContract-wrapper select#clientFundiContractId option').remove();
+                jQuery('div.fundiContract-wrapper select#clientFundiContractId option').remove();
 
                 let optionElem = document.createElement('option');
                 optionElem.selected = true;
                 optionElem.value = (0).toString();
                 optionElem.text = "Select Client Fundi Contract";
-                document.querySelector('div#fundiContract-wrapper select#clientFundiContractId').append(optionElem);
+                document.querySelector('div.fundiContract-wrapper select#clientFundiContractId').append(optionElem);
 ;
                 cts.forEach((c: any, index: number) => {
                     let optionElem: HTMLOptionElement = document.createElement('option');
                     optionElem.value = c.clientFundiContractId.toString();
                     optionElem.text = c.clientFirstName + " " + c.clientLastName + " : " + c.fundiFirstName + " " + c.fundiLastName + " , " + c.agreedStartDate + " , #" + c.clientFundiContractId;
-                    document.querySelector('div#fundiContract-wrapper select#clientFundiContractId').append(optionElem);
+                    document.querySelector('div.fundiContract-wrapper select#clientFundiContractId').append(optionElem);
                 });
             }).subscribe();
         }).subscribe();
@@ -120,7 +160,6 @@ export class FundiContractComponent implements OnInit {
     }
     ngAfterViewChecked() {
         let curthis = this;
-
         this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
 
     }
@@ -129,7 +168,7 @@ export class FundiContractComponent implements OnInit {
 
         if (!curthis.hasPopulatedPage) {
 
-            let selects = jQuery('div#fundiContract-wrapper select');
+            let selects = jQuery('div.fundiContract-wrapper select');
 
             if (selects && selects.length > 0) {
                 hasFoundSelectsOnPage = true;
@@ -149,7 +188,7 @@ export class FundiContractComponent implements OnInit {
             }
             //Check For Dom Change and Add auto complete to select elements
             debugger;
-            jQuery('div#fundiContract-wrapper select').each((ind, sel) => {
+            jQuery('div.fundiContract-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
 
                 let vals = [];

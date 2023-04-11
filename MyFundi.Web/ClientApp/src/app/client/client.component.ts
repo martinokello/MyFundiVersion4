@@ -226,7 +226,7 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
         let assigneFundiProfileId =parseInt(jQuery('select#assignedFundiProfileId').val());
         let fundiUserObs: Observable<any> = this.myFundiService.GetFundiUserByProfileId(assigneFundiProfileId);
         fundiUserObs.map((fundiUser: any) => {
-
+            debugger;
             let draftContractData: any = {
                 fundiProfileId: assigneFundiProfileId,
                 clientProfileId: this.clientProfile.clientProfileId,
@@ -239,8 +239,10 @@ export class ClientProfileComponent implements OnInit, AfterViewChecked, AfterVi
                 clientFundiContractId: this.clientFundiContractId,
                 numberOfDaysToComplete: this.numberOfDaysToComplete,
                 jobName: this.job.jobName,
-                contractualDescription: this.job.jobDescription
+                contractualDescription: this.job.jobDescription,
+                jobId: this.job.jobId
             }
+            
             localStorage.setItem("DraftContractData", JSON.stringify(draftContractData));
             this.router.navigateByUrl("/client-fundi-contract");
         }).subscribe();

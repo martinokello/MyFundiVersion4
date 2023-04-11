@@ -201,7 +201,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"fundiClientContract-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{clientFundiContract.contractualDescription}}<br />\r\n                </div>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Client Fundi Contract Id - optional</label><br />\r\n                    <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Agreed Costs</h6>\r\n                    <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Fundi Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\"  placeholder=\"Fundi Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Fundi Profile ID Required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\"  [disabled]=\"true\"/><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Client Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\"  readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Client Profile ID required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" /><label class=\"custom-control-label\">Is Client Signed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" /><label class=\"custom-control-label\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" /><label class=\"custom-control-label\">Has Job Been Signed Off</label>\r\n                        <br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <h5>This document is a legally binding contract  between the fundi  and client listed below.</h5>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row fundiClientContract-wrapper\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"form-group col-lg-12\">\r\n                <label>Client Fundi Contract Id - optional</label><br />\r\n                <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                <br/>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 0px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                    <h6>\r\n                        Client Name:\r\n                    </h6>\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                </div>\r\n                <h4>Client Address</h4>\r\n                <client-address [addressId]=\"clientFundiContract.clientAddressId\" (clientAddressChanged)=\"updateClientAddress($event)\"></client-address>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 0px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                    <h6>Fundi Name:</h6>\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\" placeholder=\"Fundi Last Name\" /><br />\r\n                </div>\r\n                <h4>Fundi Address</h4>\r\n                <fundi-address [addressId]=\"clientFundiContract.fundiAddressId\" (fundiAddressChanged)=\"updateFundiAddress($event)\"></fundi-address>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h6>Project Costs</h6>\r\n                <p>The pricing table below details the client's projected costs for this project.</p>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Name</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important;\"><h4>Price</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Quantity</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important;\"><h4>Sub Total</h4></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Construction Materials</div>\r\n            <div class=\"col-lg-3\"><input name=\"materialCost\" type=\"number\" [(ngModel)]=\"unitMaterialCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"materialQuantity\" type=\"number\" [(ngModel)]=\"unitMaterialQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitMaterialCost * unitMaterialQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Labour</div>\r\n            <div class=\"col-lg-3\"><input name=\"labourCost\" type=\"number\" [(ngModel)]=\"unitLabourCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"labourQuantity\" type=\"number\" [(ngModel)]=\"unitLabourQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitLabourCost * unitLabourQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Permit &amp; Inspection</div>\r\n            <div class=\"col-lg-3\"><input name=\"permitInspectionCost\" type=\"number\" [(ngModel)]=\"unitPermitInspectionCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"permitInspectionQuantity\" type=\"number\" [(ngModel)]=\"unitPermitInspectionQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitPermitInspectionCost * unitPermitInspectionQuantity}}</label></div>\r\n        </div>\r\n        <section>\r\n            <h5>Payment Schedule</h5>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Payment Dates</h4></div>\r\n                        <div class=\"col-lg-6\" style=\"background-color: silver !important;\"><h4>Payment Amount</h4></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment1Date\" name=\"payment1Date\" placeholder=\"1st payment date\" [(ngModel)]=\"clientFundiContract.date1stPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment1\" [(ngModel)]=\"clientFundiContract.firstPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment2Date\" name=\"payment2Date\" placeholder=\"2nd payment date\" [(ngModel)]=\"clientFundiContract.date2ndPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment2\" [(ngModel)]=\"clientFundiContract.secondPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment3Date\" name=\"payment3Date\" placeholder=\"3rd payment date\" [(ngModel)]=\"clientFundiContract.date3rdPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment3\" [(ngModel)]=\"clientFundiContract.thirdPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment4Date\" name=\"payment4Date\" placeholder=\"4th payment date\" [(ngModel)]=\"clientFundiContract.date4thPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment4\" [(ngModel)]=\"clientFundiContract.forthPaymentAmount\" /></div>\r\n                    </div>\r\n                    <br />\r\n                </div>\r\n            </div>\r\n        </section>\r\n        <div class=\"row\">\r\n            <div class=\"form-group col-lg-12\">\r\n                <h6>Agreed Costs</h6>\r\n                <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" readonly /><br />\r\n                <input type=\"button\" value=\"Calculate Cost\" (click)=\"calculateCost($event)\" class=\"btn btn-primary\" /><br />\r\n            </div>\r\n        </div>\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row fundiClientContract-wrapper\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div>\r\n                        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                                <h5>Terms And Conditions Of Service</h5>\r\n                                <div>\r\n                                    <h5>Scope of Work</h5>\r\n\r\n                                    <p>Fundi will perform services at the Client's address listed above in accordance with the detailed scope of work attached to this contract.</p>\r\n\r\n                                    <h5>Change Orders</h5>\r\n                                    <p>\r\n                                        Fundi will perform only those services approved in writing by the Client. If the Clientshall, at any time, require services not listed in the scope of work attached to this services contract, a written change order shall be created and signed by both parties prior to the performance of such work.\r\n                                        Permits, Licensing, & Approvals\r\n                                    </p>\r\n\r\n                                    <p>\r\n                                        Client is responsible for procuring any permits or approvals required for the completion of the projects listed in the scope of work . This includes any zoning changes or changes to applicable covenants or local building guidelines.\r\n                                    </p>\r\n\r\n                                    <p>\r\n                                        The Fundi shall be responsible for any professional licensing required for the execution of the work outlined in the scope of work.\r\n                                    </p>\r\n\r\n                                    <h5>\r\n                                        Insurance & Loss Coverage\r\n                                    </h5>\r\n\r\n                                    <p>\r\n                                        Client agrees to maintain adequate property insurance to protect against loss or damage due to theft, fire, vandalism, etc.\r\n                                    </p>\r\n\r\n                                    <p>\r\n                                        Fundi agrees to maintain reasonable liability insurance to protect against personal injury or loss.\r\n                                    </p>\r\n\r\n\r\n                                    <p>\r\n                                        Both parties agree to provide copies of the insurance certificates for their respective policies to one another.\r\n                                    </p>\r\n                                    <h5>\r\n                                        Property Access\r\n                                    </h5>\r\n                                    <p>\r\n                                        Client agrees to be present at the scheduled work time to ensure that Fundi has reasonable access to the working area, including parking space.\r\n                                    </p>\r\n                                    <p>\r\n                                        The Fundi agrees to contact Client 48 hours prior to arrival to schedule an appropriate arrival time, and agrees to make a reasonable effort not to disturb or damage the Homeowner's property outside of any demolition required for the project listed in the scope of work.\r\n                                    </p>\r\n\r\n                                    <h5>\r\n                                        Site Conditions\r\n                                    </h5>\r\n                                    <p>\r\n                                        The scope of work and pricing for this contract are based on conversations and any walkthroughs completed by the Fundi and Client. The fundi has taken reasonable measures to ensure that the scope of work and pricing represent the entire project requirements, but cannot guarantee a final price due to the possibility of unforeseen complication.\r\n                                    </p>\r\n                                    <p>\r\n                                        In the event that unforeseen complications, including (but not limited to) mold, termites, structural damage, or building code violations are discovered after the project begins, the Fundi will cease work on the project and draft a change order listing any additionally required materials or labor. Client agrees that any unforeseen complications may increase the final price of the project.\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                            <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                                <h5>Additional Notes Of Liabilities</h5>\r\n                                <div>\r\n                                    <p>\r\n                                        Client agrees to make payments in accordance with the following payment schedule:\r\n                                        <br />\r\n                                    </p>\r\n                                    <p>\r\n                                        Client agrees to make payments via cash, check, or Mobile money on the dates listed above. The Client/Fundi will place a lien on the Fundi/Client  time upon commencement of this project, and will fully release the lien upon completion of project.\r\n                                    </p>\r\n\r\n                                    <h5>Final Inspection</h5>\r\n\r\n                                    <p>\r\n                                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                                        Warranty.\r\n                                    </p>\r\n\r\n                                    <p>\r\n                                        MyFundi does not offer or imply any warranty for materials used for the project. Any defect or failure of parts or materials used in the project shall be the sole responsibility of the Client.\r\n                                    </p>\r\n                                    <p>\r\n                                        The fundi shall extend a warranty for all labor for a period of warranty months. This warranty covers installation and workmanship. Should the Client discover any incomplete, incorrect, faulty, or failed workmanship during the warranty period, The Fundi shall correct such issues at their sole cost and expense.\r\n                                    </p>\r\n                                    <p>\r\n                                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                                        Warranty.\r\n                                    </p>\r\n\r\n                                    <h5>Dispute Resolution</h5>\r\n                                    <p>\r\n                                        Client and Fundi agree to make reasonable efforts to resolve any disagreements related to this contract between themselves. In the event that the two parties cannot agree on an issue, both parties agree to resolve the issue through a civil court located in [Sender.City], [Sender.State]. The decision of that court shall be considered final.\r\n                                    </p>\r\n\r\n                                    <h5>\r\n                                        Governing Law\r\n                                    </h5>\r\n                                    <p>\r\n                                        This fundi services contract shall be governed by the laws of Uganda.\r\n                                    </p>\r\n\r\n                                    <h5>\r\n                                        Acceptance\r\n                                    </h5>\r\n                                    <p>\r\n                                        The undersigned parties agree that, having read and understood the entirety of this fundi contract and it's attachments, this contract shall commence as of contract date with the full intent that all parties involved uphold and enforce the full terms of this contract at all times.\r\n                                    </p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Extra Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" [disabled]=\"true\" />\r\n                        <label class=\"custom-control-label\" for=\"isSignedByClient\">Is Client Signed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" />\r\n                        <label class=\"custom-control-label\" for=\"isCompleted\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" />\r\n                        <label class=\"custom-control-label\" for=\"isSignedOffByClient\">Has Job Been Signed Off</label><br />\r\n                        <div id=\"rateFundiAfterContract\">\r\n                            <a class=\"btn btn-primary\" (click)=\"rateFundiAfterContract($event)\">Rate Fundi!</a>\r\n                            <br />\r\n                        </div>\r\n                        <hr />\r\n                    </div>\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n";
     /***/
   },
 
@@ -306,6 +306,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/client-address/client-address.component.html":
+  /*!********************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/client-address/client-address.component.html ***!
+    \********************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppCrudOperationsClientAddressClientAddressComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"row\" id=\"client-addresses-wrapper\">\r\n  <div class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <form #clientAddForm=\"ngForm\" (ngSubmit)=\"clientAddForm.form.valid\" id=\"clientAddForm\">\r\n      <h4> Address</h4>\r\n      <div #Address>\r\n        <div class=\"form-group\">\r\n          <label>AddressId - optional</label>\r\n          <select id=\"clientAddressId\" name=\"clientAddressId\" [(ngModel)]=\"clientAddress.addressId\" (change)=\"onClientAddressChanged()\"></select>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Address Line 1</label>\r\n            <input type=\"text\" name=\"AddressLine1\" [(ngModel)]=\"clientAddress.addressLine1\" required #clientAddressLine1=\"ngModel\" />\r\n            <div *ngIf=\"clientAddForm.submitted && clientAddressLine1.invalid\" class=\"text-danger\">\r\n                AddressLine1  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Address Line 2</label>\r\n            <input type=\"text\" name=\"addressLine2\" [(ngModel)]=\"clientAddress.addressLine2\" required #clientAddressLine2=\"ngModel\"/>\r\n            <div *ngIf=\"clientAddForm.submitted && clientAddressLine2.invalid\" class=\"text-danger\">\r\n                AddressLine2  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Town</label>\r\n            <input type=\"text\" name=\"town\" [(ngModel)]=\"clientAddress.town\" required #town=\"ngModel\"/>\r\n            <div *ngIf=\"clientAddForm.submitted && town.invalid\" class=\"text-danger\">\r\n                Town  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Post Code</label>\r\n            <input type=\"text\" name=\"postCode\" [(ngModel)]=\"clientAddress.postCode\" required #postCode=\"ngModel\" />\r\n            <div *ngIf=\"clientAddForm.submitted && postCode.invalid\" class=\"text-danger\">\r\n                Post Code  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Country</label>\r\n            <input type=\"text\" name=\"country\" [(ngModel)]=\"clientAddress.country\" required #country=\"ngModel\"/>            \r\n            <div *ngIf=\"clientAddForm.submitted && country.invalid\" class=\"text-danger\">\r\n                Country  required\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <input type=\"submit\" value=\"Select Address\" class=\"but-primary\" (click)=\"selectAddress()\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Add Address\" class=\"but-primary\" (click)=\"addAddress()\" [disabled]=\"clientAddForm.invalid\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Update Address\" class=\"but-primary\" (click)=\"updateAddress()\" [disabled]=\"clientAddForm.invalid\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Delete Address\" class=\"but-primary\" (click)=\"deleteAddress()\" [disabled]=\"clientAddForm.invalid\" style=\"margin-top:10px;\" />\r\n    </form>\r\n  </div>\r\n</div>\r\n";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/company/company.component.html":
   /*!******************************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/company/company.component.html ***!
@@ -362,6 +382,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     __webpack_exports__["default"] = "<div class=\"row\" id=\"coursecrud-wrapper\">\r\n    <div class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n        <form #coursecrudView=\"ngForm\" (ngSubmit)=\"coursecrudView.form.valid\" id=\"coursecrudView\">\r\n            <h4> Courses</h4>\r\n            <div #coursecrud>\r\n                <div class=\"form-group\">\r\n                    <label>CourseId - optional</label>\r\n                    <select id=\"coursecrudId\" name=\"courseId\" [(ngModel)]=\"course.courseId\"></select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label>Course Name</label>\r\n                    <input type=\"text\" name=\"courseName\" required [(ngModel)]=\"course.courseName\" #courseName=\"ngModel\" />\r\n                    <div *ngIf=\"coursecrudView.submitted && courseName.invalid\" class=\"text-danger\">\r\n                        Course Name  required\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label>Course Description</label>\r\n                    <textarea cols=\"10\" rows=\"5\" name=\"courseDescription\" required [(ngModel)]=\"course.courseDescription\" #courseDescription=\"ngModel\"></textarea>\r\n                    <div *ngIf=\"coursecrudView.submitted && courseDescription.invalid\" class=\"text-danger\">\r\n                        Course Description  required\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <input type=\"button\" value=\"Select Course\" class=\"but-primary\" (click)=\"selectCourse()\" style=\"margin-top:10px;\" />\r\n            <input type=\"button\" value=\"Add Course\" class=\"but-primary\" [disabled]=\"coursecrudView.invalid\" (click)=\"addCourse()\" style=\"margin-top:10px;\" />\r\n            <input type=\"button\" value=\"Update Course\" class=\"but-primary\" [disabled]=\"coursecrudView.invalid\" (click)=\"updateCourse()\" style=\"margin-top:10px;\" />\r\n            <input type=\"button\" value=\"Delete Course\" class=\"but-primary\" [disabled]=\"coursecrudView.invalid\" (click)=\"deleteCourse()\" style=\"margin-top:10px;\" />\r\n        </form>\r\n    </div>\r\n</div> ";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/fundi-address/fundi-address.component.html":
+  /*!******************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/fundi-address/fundi-address.component.html ***!
+    \******************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppCrudOperationsFundiAddressFundiAddressComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"row\" id=\"fundi-addresses-wrapper\">\r\n  <div class=\"col-lg-12\" style=\"text-align:left !important; color:black !important;\">\r\n    <form #fundiAddForm=\"ngForm\" (ngSubmit)=\"fundiAddForm.form.valid\" id=\"fundiAddForm\">\r\n      <h4> Address</h4>\r\n      <div #Address>\r\n        <div class=\"form-group\">\r\n          <label>AddressId - optional</label>\r\n          <select id=\"fundiAddressId\" name=\"fundiAddressId\" [(ngModel)]=\"fundiAddress.addressId\" (change)=\"onFundiAddressChanged()\"></select>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Address Line 1</label>\r\n            <input type=\"text\" name=\"addressLine1\" [(ngModel)]=\"fundiAddress.addressLine1\" required #fundiAddressLine1=\"ngModel\" />\r\n            <div *ngIf=\"fundiAddForm.submitted && fundiAddressLine1.invalid\" class=\"text-danger\">\r\n                AddressLine1  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Address Line 2</label>\r\n            <input type=\"text\" name=\"addressLine2\" [(ngModel)]=\"fundiAddress.addressLine2\" required #fundiAddressLine2=\"ngModel\"/>\r\n            <div *ngIf=\"fundiAddForm.submitted && fundiAddressLine2.invalid\" class=\"text-danger\">\r\n                AddressLine2  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Town</label>\r\n            <input type=\"text\" name=\"town\" [(ngModel)]=\"fundiAddress.town\" required #town=\"ngModel\"/>\r\n            <div *ngIf=\"fundiAddForm.submitted && town.invalid\" class=\"text-danger\">\r\n                Town  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Post Code</label>\r\n            <input type=\"text\" name=\"postCode\" [(ngModel)]=\"fundiAddress.postCode\" required #postCode=\"ngModel\" />\r\n            <div *ngIf=\"fundiAddForm.submitted && postCode.invalid\" class=\"text-danger\">\r\n                Post Code  required\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label>Country</label>\r\n            <input type=\"text\" name=\"country\" [(ngModel)]=\"fundiAddress.country\" required #country=\"ngModel\"/>            \r\n            <div *ngIf=\"fundiAddForm.submitted && country.invalid\" class=\"text-danger\">\r\n                Country  required\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <input type=\"submit\" value=\"Select Address\" class=\"but-primary\" (click)=\"selectAddress()\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Add Address\" class=\"but-primary\" (click)=\"addAddress()\" [disabled]=\"fundiAddForm.invalid\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Update Address\" class=\"but-primary\" (click)=\"updateAddress()\" [disabled]=\"fundiAddForm.invalid\" style=\"margin-top:10px;\" />\r\n      <input type=\"submit\" value=\"Delete Address\" class=\"but-primary\" (click)=\"deleteAddress()\" [disabled]=\"fundiAddForm.invalid\" style=\"margin-top:10px;\" />\r\n    </form>\r\n  </div>\r\n</div>\r\n";
     /***/
   },
 
@@ -521,7 +561,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"fundiContract-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <div class=\"col-lg-12\" id=\"profileSummary\">\r\n                    {{clientFundiContract.contractualDescription}}<br />\r\n                </div>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n            <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Client Fundi Contract Id - optional</label><br />\r\n                    <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Agreed Costs</h6>\r\n                    <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <h6>Notes Of Contract</h6>\r\n                    <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed Start Date </label>\r\n                    <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <label>Agreed End Date </label>\r\n                    <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Fundi Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\"  placeholder=\"Fundi Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Fundi Profile ID Required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                        <br />\r\n                        <hr />\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label>\r\n                            Client Profile ID\r\n                        </label><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                        <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                        <div *ngIf=\"cfcForm.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                            Client Profile ID required!\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" [disabled]=\"true\"/>\r\n                        <label class=\"custom-control-label\" for=\"isSignedByClient\">Is Client Signed</label>\r\n                        <br />\r\n                    </div><div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" />\r\n                    <label class=\"custom-control-label\" for=\"isCompleted\">Has Job Been Completed</label>\r\n                        <br />\r\n                    </div>\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" />\r\n                        <label class=\"custom-control-label\" for=\"isSignedOffByClient\">>Has Job Been Signed Off</label>\r\n                        <br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group col-lg-12\">\r\n                    <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                    <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                    <hr />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Client/Fundi Contract</h2>\r\n    <section id=\"Contract\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 2px 0px !important;\">\r\n                <h5>My Fundi Contract Documentation</h5>\r\n                <h5>This document is a legally binding contract  between the fundi  and client listed below.</h5>\r\n                <div>\r\n                    <li style=\"margin: 10px 0px !important; padding: 10px !important;\">\r\n                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>\r\n                    </li>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row fundiContract-wrapper\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"form-group col-lg-12\">\r\n                <label>Client Fundi Contract Id - optional</label><br />\r\n                <select id=\"clientFundiContractId\" name=\"clientFundiContractId\" [(ngModel)]=\"clientFundiContract.clientFundiContractId\"></select><br />\r\n                <input type=\"button\" value=\"Select Contract\" class=\"but-primary\" (click)=\"selectContract($event)\" style=\"margin-top:10px;\" /><br/>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 0px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                    <h6>Fundi Name:</h6>\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiProfileId\" placeholder=\"fundiProfileId\" /><br />\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"fundiUsername\" #fundiUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiUsername\" placeholder=\"Fundi Username\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"fundiFirstName\" #fundiFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiFirstName\" placeholder=\"Fundi First Name\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"fundiLastName\" #fundiLastName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.fundiLastName\" placeholder=\"Fundi Last Name\" /><br />\r\n                </div>\r\n                <h6>Fundi Address</h6>\r\n                <fundi-address [addressId]=\"clientFundiContract.fundiAddressId\" (fundiAddressChanged)=\"updateFundiAddress($event)\"></fundi-address>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"contractHeader\" style=\"margin: 0px 0px !important;\">\r\n                <div class=\"form-group\">\r\n                    <h6>\r\n                        Client Name:\r\n                    </h6>\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"clientProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientProfileId\" placeholder=\"clientProfileId\" /><br />\r\n                    <input type=\"hidden\" class=\"form-control\" name=\"clientUsername\" #clientUsername=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientUsername\" placeholder=\"Client Username\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"clientFirstName\" #clientFirstName=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientFirstName\" placeholder=\"Client First Name\" /><br />\r\n                    <input type=\"text\" class=\"form-control\" name=\"clientLastName\" #clientLastNamefundiProfileId=\"ngModel\" readonly [(ngModel)]=\"clientFundiContract.clientLastName\" placeholder=\"Client Last Name\" /><br />\r\n                </div>\r\n                <h6>Client Address</h6>\r\n                <client-address [addressId]=\"clientFundiContract.clientAddressId\" (clientAddressChanged)=\"updateClientAddress($event)\"></client-address>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <h6>Project Costs</h6>\r\n                <p>The pricing table below details the client's projected costs for this project.</p>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Name</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important;\"><h4>Price</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Quantity</h4></div>\r\n            <div class=\"col-lg-3\" style=\"background-color: silver !important;\"><h4>Sub Total</h4></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Construction Materials</div>\r\n            <div class=\"col-lg-3\"><input name=\"materialCost\" type=\"number\" [(ngModel)]=\"unitMaterialCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"materialQuantity\" type=\"number\" [(ngModel)]=\"unitMaterialQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitMaterialCost * unitMaterialQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Labour</div>\r\n            <div class=\"col-lg-3\"><input name=\"labourCost\" type=\"number\" [(ngModel)]=\"unitLabourCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"labourQuantity\" type=\"number\" [(ngModel)]=\"unitLabourQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitLabourCost * unitLabourQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n            <div class=\"col-lg-3\" style=\"border-right: solid thin white !important;\">Permit &amp; Inspection</div>\r\n            <div class=\"col-lg-3\"><input name=\"permitInspectionCost\" type=\"number\" [(ngModel)]=\"unitPermitInspectionCost\" /></div>\r\n            <div class=\"col-lg-3\"><input name=\"permitInspectionQuantity\" type=\"number\" [(ngModel)]=\"unitPermitInspectionQuantity\" /></div>\r\n            <div class=\"col-lg-3\"><label>{{unitPermitInspectionCost * unitPermitInspectionQuantity}}</label></div>\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"form-group col-lg-12\">\r\n                <h6>Agreed Costs</h6>\r\n                <input type=\"number\" id=\"agreedCost\" name=\"agreedCost\" [(ngModel)]=\"clientFundiContract.agreedCost\" readonly /><br />\r\n                <input type=\"button\" value=\"Calculate Cost\" (click)=\"calculateCost($event)\" class=\"btn btn-primary\" /><br />\r\n            </div>\r\n        </div>\r\n        <section>\r\n            <h5>Payment Schedule</h5>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\">\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Payment Dates</h4></div>\r\n                        <div class=\"col-lg-6\" style=\"background-color: silver !important;\"><h4>Payment Amount</h4></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment1Date\" name=\"date1stPayment\" [(ngModel)]=\"clientFundiContract.date1stPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment1\" [(ngModel)]=\"clientFundiContract.firstPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment2Date\" name=\"date2ndPayment\" [(ngModel)]=\"clientFundiContract.date2ndPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment2\" [(ngModel)]=\"clientFundiContract.secondPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment3Date\" name=\"date3rdPayment\" [(ngModel)]=\"clientFundiContract.date3rdPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment3\" [(ngModel)]=\"clientFundiContract.thirdPaymentAmount\" /></div>\r\n                    </div>\r\n                    <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                        <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"><input type=\"text\" id=\"inpPayment4Date\" name=\"date4thPayment\" [(ngModel)]=\"clientFundiContract.date4thPayment\" /></div>\r\n                        <div class=\"col-lg-6\"><input type=\"number\" name=\"payment4\" [(ngModel)]=\"clientFundiContract.forthPaymentAmount\" /></div>\r\n                    </div>\r\n                    <br />\r\n                </div>\r\n            </div>\r\n        </section>\r\n        <div class=\"fundiContract-wrapper\">\r\n            <form #cfcForm=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && docuemntContract($event)\">\r\n                <div class=\"row\" id=\"contractdiv\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <div>\r\n                            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                                <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                                    <h5>Terms And Conditions Of Service</h5>\r\n                                    <div>\r\n                                        <h5>Scope of Work</h5>\r\n\r\n                                        <p>Fundi will perform services at the Client's address listed above in accordance with the detailed scope of work attached to this contract.</p>\r\n\r\n                                        <h5>Change Orders</h5>\r\n                                        <p>\r\n                                            Fundi will perform only those services approved in writing by the Client. If the Clientshall, at any time, require services not listed in the scope of work attached to this services contract, a written change order shall be created and signed by both parties prior to the performance of such work.\r\n                                            Permits, Licensing, & Approvals\r\n                                        </p>\r\n\r\n                                        <p>\r\n                                            Client is responsible for procuring any permits or approvals required for the completion of the projects listed in the scope of work . This includes any zoning changes or changes to applicable covenants or local building guidelines.\r\n                                        </p>\r\n\r\n                                        <p>\r\n                                            The Fundi shall be responsible for any professional licensing required for the execution of the work outlined in the scope of work.\r\n                                        </p>\r\n\r\n                                        <h5>\r\n                                            Insurance & Loss Coverage\r\n                                        </h5>\r\n\r\n                                        <p>\r\n                                            Client agrees to maintain adequate property insurance to protect against loss or damage due to theft, fire, vandalism, etc.\r\n                                        </p>\r\n\r\n                                        <p>\r\n                                            Fundi agrees to maintain reasonable liability insurance to protect against personal injury or loss.\r\n                                        </p>\r\n\r\n\r\n                                        <p>\r\n                                            Both parties agree to provide copies of the insurance certificates for their respective policies to one another.\r\n                                        </p>\r\n                                        <h5>\r\n                                            Property Access\r\n                                        </h5>\r\n                                        <p>\r\n                                            Client agrees to be present at the scheduled work time to ensure that Fundi has reasonable access to the working area, including parking space.\r\n                                        </p>\r\n                                        <p>\r\n                                            The Fundi agrees to contact Client 48 hours prior to arrival to schedule an appropriate arrival time, and agrees to make a reasonable effort not to disturb or damage the Homeowner's property outside of any demolition required for the project listed in the scope of work.\r\n                                        </p>\r\n\r\n                                        <h5>\r\n                                            Site Conditions\r\n                                        </h5>\r\n                                        <p>\r\n                                            The scope of work and pricing for this contract are based on conversations and any walkthroughs completed by the Fundi and Client. The fundi has taken reasonable measures to ensure that the scope of work and pricing represent the entire project requirements, but cannot guarantee a final price due to the possibility of unforeseen complication.\r\n                                        </p>\r\n                                        <p>\r\n                                            In the event that unforeseen complications, including (but not limited to) mold, termites, structural damage, or building code violations are discovered after the project begins, the Fundi will cease work on the project and draft a change order listing any additionally required materials or labor. Client agrees that any unforeseen complications may increase the final price of the project.\r\n                                        </p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                                <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                                    <h5>Additional Notes Of Liabilities</h5>\r\n                                    <div>\r\n                                        <h5>Payment Schedule</h5>\r\n                                        <p>\r\n                                            Client agrees to make payments in accordance with the following payment schedule:\r\n                                            <br />\r\n                                        </p>\r\n                                        <p>\r\n                                            Client agrees to make payments via cash, check, or Mobile money on the dates listed above. The Client/Fundi will place a lien on the Fundi/Client  time upon commencement of this project, and will fully release the lien upon completion of project.\r\n                                        </p>\r\n\r\n                                        <h5>Final Inspection</h5>\r\n\r\n                                        <p>\r\n                                            Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                                            Warranty.\r\n                                        </p>\r\n\r\n                                        <p>\r\n                                            MyFundi does not offer or imply any warranty for materials used for the project. Any defect or failure of parts or materials used in the project shall be the sole responsibility of the Client.\r\n                                        </p>\r\n                                        <p>\r\n                                            The fundi shall extend a warranty for all labor for a period of warranty months. This warranty covers installation and workmanship. Should the Client discover any incomplete, incorrect, faulty, or failed workmanship during the warranty period, The Fundi shall correct such issues at their sole cost and expense.\r\n                                        </p>\r\n                                        <p>\r\n                                            Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                                            Warranty.\r\n                                        </p>\r\n\r\n                                        <h5>Dispute Resolution</h5>\r\n                                        <p>\r\n                                            Client and Fundi agree to make reasonable efforts to resolve any disagreements related to this contract between themselves. In the event that the two parties cannot agree on an issue, both parties agree to resolve the issue through a civil court located in [Sender.City], [Sender.State]. The decision of that court shall be considered final.\r\n                                        </p>\r\n\r\n                                        <h5>\r\n                                            Governing Law\r\n                                        </h5>\r\n                                        <p>\r\n                                            This fundi services contract shall be governed by the laws of Uganda.\r\n                                        </p>\r\n\r\n                                        <h5>\r\n                                            Acceptance\r\n                                        </h5>\r\n                                        <p>\r\n                                            The undersigned parties agree that, having read and understood the entirety of this fundi contract and it's attachments, this contract shall commence as of contract date with the full intent that all parties involved uphold and enforce the full terms of this contract at all times.\r\n                                        </p>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <h6>Extra Notes Of Contract</h6>\r\n                        <textarea rows=\"5\" cols=\"10\" name=\"notesForNotice\" [(ngModel)]=\"clientFundiContract.notesForNotice\" placeholder=\"Enter Notes Of Contract\"></textarea><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <label>Agreed Start Date </label>\r\n                        <input type=\"text\" id=\"agreedStartDate\" name=\"agreedStartDate\" [(ngModel)]=\"clientFundiContract.agreedStartDate\" /><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <label>Agreed End Date </label>\r\n                        <input type=\"text\" id=\"startDate\" name=\"agreedEndDate\" [(ngModel)]=\"clientFundiContract.agreedEndDate\" /><br />\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"form-group col-lg-12\">\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByFundi\" name=\"isSignedByFundi\" [(ngModel)]=\"clientFundiContract.isSignedByFundi\" /><label class=\"custom-control-label\">Is Fundi Signed</label>\r\n                            <br />\r\n                            <hr />\r\n                        </div>\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedByClient\" name=\"isSignedByClient\" [(ngModel)]=\"clientFundiContract.isSignedByClient\" [disabled]=\"true\" />\r\n                            <label class=\"custom-control-label\" for=\"isSignedByClient\">Is Client Signed</label>\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" id=\"isCompleted\" name=\"isCompleted\" [(ngModel)]=\"clientFundiContract.isCompleted\" />\r\n                            <label class=\"custom-control-label\" for=\"isCompleted\">Has Job Been Completed</label>\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"custom-control custom-checkbox\">\r\n                            <input class=\"custom-control-input\" type=\"checkbox\" id=\"isSignedOffByClient\" name=\"isSignedOffByClient\" [(ngModel)]=\"clientFundiContract.IsSignedOffByClient\" />\r\n                            <label class=\"custom-control-label\" for=\"isSignedOffByClient\">Has Job Been Signed Off</label><br />\r\n                            <hr />\r\n                        </div>\r\n                        <input type=\"button\" value=\"Create Contract\" class=\"but-primary\" (click)=\"createContract($event)\" style=\"margin-top:10px;\" />\r\n                        <input type=\"button\" value=\"Update Contract\" class=\"but-primary\" (click)=\"updateContract($event)\" style=\"margin-top:10px;\" />\r\n                        <input type=\"button\" value=\"Delete Contract\" class=\"but-primary\" (click)=\"deleteContract($event)\" style=\"margin-top:10px;\" />\r\n                        <hr />\r\n                    </div>\r\n                </div>\r\n                <input type=\"hidden\" name=\"jobId\" [(ngModel)]=\"clientFundiContract.jobId\" id=\"jobId\" />\r\n            </form>\r\n        </div>\r\n    </section>\r\n</div>\r\n";
     /***/
   },
 
@@ -542,6 +582,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     __webpack_exports__["default"] = "<div style=\"background-color: #EEEEEE;\">\r\n    <div style=\"top: 0px !important; right: 74px !important; width: 200px !important; text-align: right !important; position: absolute;\">\r\n        <span style=\"width:auto;font-weight:bolder !important;\">Fundi<br/>Engagements</span><br/><span style=\"font-style:italic;\">Number Of<br />Assignments: {{currentFundiNumbOfAssignments}}</span><br />\r\n    </div>\r\n    <div style=\"top: 0px !important; right: 10px !important; position: absolute !important; width: 60px !important; text-align:center !important;\">\r\n        <div class=\"levelOfEngagement\" style=\"width: 40px !important; line-height: 60px !important; border: gray solid thin !important; position: absolute !important; text-align: left !important; border-radius: 20px !important;\">\r\n            <div id=\"indicator\" style=\"background-color:gray !important;display:none;margin-left:-4px !important;width:48px !important;z-index:200;position:absolute !important;height:2% !important;\">.</div>\r\n            <div id=\"fundiRed\" style=\"background-color: #FF0000 !important; height: 24% !important; border: gray solid thin !important; border-radius: 20px 20px 0px 0px !important; position: relative !important;\">.</div>\r\n            <div id=\"fundiOrange\" style=\"background-color: #FF8040 !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; position: relative !important; \">.</div>\r\n            <div id=\"fundiYellow\" style=\"background-color: #EAF50A !important; height: 25% !important; border: gray thin medium !important; border-radius: 0px !important; position: relative !important; \">.</div>\r\n            <div id=\"fundiGreen\" style=\"background-color: #99FF00 !important; height: 24% !important; border: gray thin medium !important; border-radius: 0px 0px 20px 20px !important; position: relative !important; \">.</div>\r\n        </div>\r\n        <br />\r\n    </div>\r\n    <br />\r\n</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-rating/fundirating.component.html":
+  /*!***********************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-rating/fundirating.component.html ***!
+    \***********************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppFundiRatingFundiratingComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <div id=\"fundirating-wrapper\">\r\n        <section>\r\n            <div class=\"row\">\r\n                <div class=\"col-lg-12\">\r\n                    <div style=\" width: 30% !important; margin-left: 5px !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;\">\r\n                        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}\" alt=\"profileImage\" style=\"width:150px !important; height:auto; align-content:center !important;\" /><br />\r\n                        <span>Fundi Name: {{fundiUser.firstName}} {{fundiUser.lastName}}</span><br />\r\n                        <span id=\"averageFundiRating-{{profile.fundiProfileId}}\" class=\"profileRatingSpan rateit\" data-rateit-mode=\"font\" style=\"text-align:left;font-size: 40px; max-width: 10%;\"></span><br />\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Fundi Profile Summary</h5>\r\n                    <ul>\r\n                        <li>\r\n                            {{profile.profileSummary}}\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <a style=\"line-height: 17px 0px !important;\" id=\"downloadCV\" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"profileRating\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Profile Rating &amp; Reviews</h5>\r\n                    <ul>\r\n                        <li *ngFor=\"let rating of fundiRatings\">\r\n                            <div>\r\n                                Rated By UserID: <em style=\"color:brown !important;\">{{rating.rating?rating.userId:\"\"}}</em><br />\r\n                                Rating: <span style=\"color:brown !important;\">{{rating.rating?rating.rating.toString():\"No Rating Yet\"}} out of 5</span><br />\r\n                            </div>\r\n                            <div>\r\n                                Reviewed By UserID: <em style=\"color:brown !important;\">{{rating.rating?rating.userId:\"\"}}</em><br />\r\n                                Review: {{rating.review}}<br />\r\n                            </div>\r\n                        </li>\r\n                    </ul>\r\n                    <h5>Rate This Fundi</h5>\r\n                    <form id=\"ratingForm-{{profile.fundiProfileId}}\">\r\n                        <div id=\"fundiRating-{{profile.fundiProfileId}}\" class=\"rateit\" data-rateit-mode=\"font\" style=\"text-align: left; font-size: 40px; max-width: 10% !important;\"></div><br />\r\n                        <span>Choose Work Category:</span><br />\r\n                        <h5>Fundi Work Category Types</h5>\r\n                        <div *ngFor=\"let wcdata of jobWorkCategoryDetails\">\r\n                            <h6>{{wcdata.workCategoryType}}</h6>\r\n                            <h5>Work Sub Category Type</h5>\r\n                            <select id=\"workCategory-{{profile.fundiProfileId}}\" name=\"workCategory\" class=\"form-control\">\r\n                                <option value=\"{{wcdata.workSubCategoryId}}\">{{wcdata.workSubCategoryType}}</option>\r\n                            </select>\r\n                        </div>\r\n                        <br />\r\n                        <textarea id=\"review-{{profileId}}\" placeholder=\"Write review\" rows=\"5\" cols=\"20\"></textarea><br />\r\n                        <input type=\"button\" id=\"{{profileId}}\" class=\"but-primary\" value=\"Rate Fundi\" (click)=\"rateFundi($event)\" />\r\n                    </form>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"position: relative !important; margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" id=\"skills\" style=\"margin: 2px 0px !important;\">\r\n                    <h5>Fundi Skills</h5>\r\n                    <ul id=\"{{profile.fundiProfileId}}-skills\">\r\n                        <li>{{profile.fundiSkills}}</li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <hr /><br />\r\n        </section>\r\n    </div>\r\n</div>";
     /***/
   },
 
@@ -1001,7 +1061,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"termsAndConditionsOfService-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">Agreement &amp; Conditions Of Service To Observe</h2>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{currentDate}} &copy; MartinLayooInc.</h2>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Terms And Conditions Of Service</h5>\r\n                <div>\r\n                    {{termsAndConditionsOfServiceHtml}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Additional Notes Of Liabilities</h5>\r\n                <div>\r\n                    {{liabilityNotesHtml}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <form #fxs=\"ngForm\" (ngSubmit)=\"acceptTermsAndConditions($event)\">\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" style=\"z-index: 1000 !important;\" type=\"checkbox\" name=\"termsAndConditionOfService\" [(ngModel)]=\"termsAndConditionOfService\" id=\"termsOfService\" />\r\n                        <label class=\"custom-control-label\" for=\"termsAndConditionOfService\">\r\n                            Please accept the terms and conditions of service\r\n                        </label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <input type=\"submit\" class=\"btn-primary\" value=\"Accept\" style=\"margin-top:10px;\" />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" id=\"termsAndConditionsOfService-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <section>\r\n        <h2 style=\"text-align:center !important;padding:10px 0px !important;\">Agreement &amp; Conditions Of Service To Observe</h2>\r\n        <h4 style=\"text-align:center !important;padding:10px 0px !important;\">This document is a legally binding contract  between a fundi  and client listed below.</h4>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Terms And Conditions Of Service</h5>\r\n                <div>\r\n                    <h5>Scope of Work</h5>\r\n\r\n                    <p>Fundi will perform services at the Client's address listed above in accordance with the detailed scope of work attached to this contract.</p>\r\n\r\n                    <h5>Change Orders</h5>\r\n                    <p>\r\n                        Fundi will perform only those services approved in writing by the Client. If the Clientshall, at any time, require services not listed in the scope of work attached to this services contract, a written change order shall be created and signed by both parties prior to the performance of such work.\r\n                        Permits, Licensing, & Approvals\r\n                    </p>\r\n\r\n                    <p>\r\n                        Client is responsible for procuring any permits or approvals required for the completion of the projects listed in the scope of work . This includes any zoning changes or changes to applicable covenants or local building guidelines.\r\n                    </p>\r\n\r\n                    <p>\r\n                        The Fundi shall be responsible for any professional licensing required for the execution of the work outlined in the scope of work.\r\n                    </p>\r\n\r\n                    <h5>\r\n                        Insurance & Loss Coverage\r\n                    </h5>\r\n\r\n                    <p>\r\n                        Client agrees to maintain adequate property insurance to protect against loss or damage due to theft, fire, vandalism, etc.\r\n                    </p>\r\n\r\n                    <p>\r\n                        Fundi agrees to maintain reasonable liability insurance to protect against personal injury or loss.\r\n                    </p>\r\n\r\n\r\n                    <p>\r\n                        Both parties agree to provide copies of the insurance certificates for their respective policies to one another.\r\n                    </p>\r\n                    <h5>\r\n                        Property Access\r\n                    </h5>\r\n                    <p>\r\n                        Client agrees to be present at the scheduled work time to ensure that Fundi has reasonable access to the working area, including parking space.\r\n                    </p>\r\n                    <p>\r\n                        The Fundi agrees to contact Client 48 hours prior to arrival to schedule an appropriate arrival time, and agrees to make a reasonable effort not to disturb or damage the Homeowner's property outside of any demolition required for the project listed in the scope of work.\r\n                    </p>\r\n\r\n                    <h5>\r\n                        Site Conditions\r\n                    </h5>\r\n                    <p>\r\n                        The scope of work and pricing for this contract are based on conversations and any walkthroughs completed by the Fundi and Client. The fundi has taken reasonable measures to ensure that the scope of work and pricing represent the entire project requirements, but cannot guarantee a final price due to the possibility of unforeseen complication.\r\n                    </p>\r\n                    <p>\r\n                        In the event that unforeseen complications, including (but not limited to) mold, termites, structural damage, or building code violations are discovered after the project begins, the Fundi will cease work on the project and draft a change order listing any additionally required materials or labor. Client agrees that any unforeseen complications may increase the final price of the project.\r\n                    </p>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"terms\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Additional Notes Of Liabilities</h5>\r\n                <div>\r\n                    <h5>Payment Schedule</h5>\r\n                    <p>\r\n                        Client agrees to make payments in accordance with the following payment schedule:\r\n                        <br />\r\n                    </p>\r\n                    <section>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"background-color: silver !important; border-right: solid thin white !important;\"><h4>Payment Date</h4></div>\r\n                            <div class=\"col-lg-6\" style=\"background-color: silver !important;\"><h4>Payment Amount</h4></div>\r\n                        </div>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\">Payment 1 date<br /></div>\r\n                            <div class=\"col-lg-6\">Payment 1 amount<br /></div><br />\r\n                        </div>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\">Payment 2 date<br /></div>\r\n                            <div class=\"col-lg-6\">Payment 2 amount<br /></div><br />\r\n                        </div>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\">Payment 3 date<br /></div>\r\n                            <div class=\"col-lg-6\">Payment 3 amount<br /></div><br />\r\n                        </div>\r\n                        <div class=\"row\" style=\"border:solid thin white !important;\">\r\n                            <div class=\"col-lg-6\" style=\"border-right: solid thin white !important;\"> Project Completion<br /></div>\r\n                            <div class=\"col-lg-6\">Payment 4 amount<br /></div><br />\r\n                        </div>\r\n                        <br />\r\n                    </section>\r\n                    <p>\r\n                        Client agrees to make payments via cash, check, or Mobile money on the dates listed above. The Client/Fundi will place a lien on the Fundi/Client  time upon commencement of this project, and will fully release the lien upon completion of project.\r\n                    </p>\r\n\r\n                    <h5>Final Inspection</h5>\r\n\r\n                    <p>\r\n                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                        Warranty.\r\n                    </p>\r\n\r\n                    <p>\r\n                        MyFundi does not offer or imply any warranty for materials used for the project. Any defect or failure of parts or materials used in the project shall be the sole responsibility of the Client.\r\n                    </p>\r\n                    <p>\r\n                        The fundi shall extend a warranty for all labor for a period of warranty months. This warranty covers installation and workmanship. Should the Client discover any incomplete, incorrect, faulty, or failed workmanship during the warranty period, The Fundi shall correct such issues at their sole cost and expense.\r\n                    </p>\r\n                    <p>\r\n                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.\r\n                        Warranty.\r\n                    </p>\r\n\r\n                    <h5>Dispute Resolution</h5>\r\n                    <p>\r\n                        Client and Fundi agree to make reasonable efforts to resolve any disagreements related to this contract between themselves. In the event that the two parties cannot agree on an issue, both parties agree to resolve the issue through a civil court located in [Sender.City], [Sender.State]. The decision of that court shall be considered final.\r\n                    </p>\r\n\r\n                    <h5>\r\n                        Governing Law\r\n                    </h5>\r\n                    <p>\r\n                        This fundi services contract shall be governed by the laws of Uganda.\r\n                    </p>\r\n\r\n                    <h5>\r\n                        Acceptance\r\n                    </h5>\r\n                    <p>\r\n                        The undersigned parties agree that, having read and understood the entirety of this fundi contract and it's attachments, this contract shall commence as of contract date with the full intent that all parties involved uphold and enforce the full terms of this contract at all times.\r\n                    </p>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <form #fxs=\"ngForm\" (ngSubmit)=\"acceptTermsAndConditions($event)\">\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <div class=\"custom-control custom-checkbox\">\r\n                        <input class=\"custom-control-input\" style=\"z-index: 1000 !important;\" type=\"checkbox\" name=\"termsAndConditionOfService\" [(ngModel)]=\"termsAndConditionOfService\" id=\"termsOfService\" />\r\n                        <label class=\"custom-control-label\" for=\"termsAndConditionOfService\">\r\n                            Please accept the terms and conditions of service\r\n                        </label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                    <input type=\"submit\" class=\"btn-primary\" value=\"Accept\" style=\"margin-top:10px;\" />\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>\r\n";
     /***/
   },
 
@@ -2053,6 +2113,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(
     /*! ../guards/AuthFundiAdminGuard */
     "./src/guards/AuthFundiAdminGuard.ts");
+    /* harmony import */
+
+
+    var _crud_operations_client_address_client_address_component__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(
+    /*! ./crud-operations/client-address/client-address.component */
+    "./src/app/crud-operations/client-address/client-address.component.ts");
+    /* harmony import */
+
+
+    var _crud_operations_fundi_address_fundi_address_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(
+    /*! ./crud-operations/fundi-address/fundi-address.component */
+    "./src/app/crud-operations/fundi-address/fundi-address.component.ts");
+    /* harmony import */
+
+
+    var _fundi_rating_fundirating_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(
+    /*! ./fundi-rating/fundirating.component */
+    "./src/app/fundi-rating/fundirating.component.ts");
+    /* harmony import */
+
+
+    var _guards_AuthClientAdminGuard__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(
+    /*! ../guards/AuthClientAdminGuard */
+    "./src/guards/AuthClientAdminGuard.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -2077,7 +2161,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
 
     AppModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_6__["NavMenuComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"], _activecrudoperations_activecrudoperations_component__WEBPACK_IMPORTED_MODULE_8__["ActiveCrudOperationsComponent"], _fetch_data_fetch_data_component__WEBPACK_IMPORTED_MODULE_9__["FetchDataComponent"], _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"], _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"], _register_register_component__WEBPACK_IMPORTED_MODULE_11__["RegisterComponent"], _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"], _userroles_userroles_component__WEBPACK_IMPORTED_MODULE_13__["UserRolesComponent"], _contactus_contactus_component__WEBPACK_IMPORTED_MODULE_14__["ContactUsComponent"], _about_aboutus_component__WEBPACK_IMPORTED_MODULE_15__["AboutUsComponent"], _sectionscontact_sectionscontact_component__WEBPACK_IMPORTED_MODULE_16__["SectionsContactComponent"], _paypalSuccess_paypal_success_component__WEBPACK_IMPORTED_MODULE_17__["PayPalSuccessComponent"], _paypalFailure_paypal_failure_component__WEBPACK_IMPORTED_MODULE_18__["PayPalFailureComponent"], _newroles_newroles_component__WEBPACK_IMPORTED_MODULE_19__["NewRolesComponent"], _qrCodeReader_qrCodeReader_component__WEBPACK_IMPORTED_MODULE_23__["QrCodeComponent"], _crud_operations_address_address_component__WEBPACK_IMPORTED_MODULE_24__["AddressComponent"], _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], _crud_operations_company_company_component__WEBPACK_IMPORTED_MODULE_25__["CompanyComponent"], _success_success_component__WEBPACK_IMPORTED_MODULE_27__["SuccessComponent"], _failure_failure_component__WEBPACK_IMPORTED_MODULE_28__["FailureComponent"], _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__["AuthenticatedUserOveridesComponent"], _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_29__["GuestRoleComponent"], _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_30__["FundiRoleComponent"], _roles_client_client_component__WEBPACK_IMPORTED_MODULE_35__["ClientRoleComponent"], _socialmedia_twitterfeeds_twitterprofilefeeds_component__WEBPACK_IMPORTED_MODULE_34__["TwitterProfileFeedsComponent"], _profile_profile_component__WEBPACK_IMPORTED_MODULE_37__["ProfileComponent"], _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_40__["ProfileCreateComponent"], _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_53__["CoursesComponent"], _crud_operations_certification_certification_component__WEBPACK_IMPORTED_MODULE_38__["CertificationComponent"], _crud_operations_work_category_workcategory_component__WEBPACK_IMPORTED_MODULE_39__["WorkCategoryComponent"], _crud_operations_coursescrud_coursescrud_component__WEBPACK_IMPORTED_MODULE_41__["CourseCrudComponent"], _crud_operations_certificationcrud_certificationcrud_component__WEBPACK_IMPORTED_MODULE_42__["CertificationCrudComponent"], _crud_operations_workcategorycrud_workcategorycrud_component__WEBPACK_IMPORTED_MODULE_43__["WorkCategoryCrudComponent"], _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_44__["ClientFundiSearchComponent"], _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_45__["FundiProfileByIdComponent"], _client_client_component__WEBPACK_IMPORTED_MODULE_46__["ClientProfileComponent"], _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__["FundiJobSearchComponent"], _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_48__["FundiSubscriptionComponent"], _clientsubscription_clientsubscription_component__WEBPACK_IMPORTED_MODULE_61__["ClientSubscriptionComponent"], _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_50__["VehicleMonitorComponent"], _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_51__["myRecaptchaComponent"], _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_52__["ClientJobViewComponent"], _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_54__["WorkSubCategoryCrudComponent"], _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_55__["FundiEngagementComponent"], _paging_paging_component__WEBPACK_IMPORTED_MODULE_56__["PagingComponent"], _chat_chat_component__WEBPACK_IMPORTED_MODULE_57__["ChatComponent"], _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"], _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"], _advert_advert_component__WEBPACK_IMPORTED_MODULE_63__["AdvertComponent"], _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"], _resetpassword_resetpassword_component__WEBPACK_IMPORTED_MODULE_65__["ResetPasswordComponent"], _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__["FundiContractComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_6__["NavMenuComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"], _activecrudoperations_activecrudoperations_component__WEBPACK_IMPORTED_MODULE_8__["ActiveCrudOperationsComponent"], _fetch_data_fetch_data_component__WEBPACK_IMPORTED_MODULE_9__["FetchDataComponent"], _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"], _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"], _register_register_component__WEBPACK_IMPORTED_MODULE_11__["RegisterComponent"], _forgotPassword_forgotPassword_component__WEBPACK_IMPORTED_MODULE_12__["ForgotPasswordComponent"], _userroles_userroles_component__WEBPACK_IMPORTED_MODULE_13__["UserRolesComponent"], _contactus_contactus_component__WEBPACK_IMPORTED_MODULE_14__["ContactUsComponent"], _about_aboutus_component__WEBPACK_IMPORTED_MODULE_15__["AboutUsComponent"], _sectionscontact_sectionscontact_component__WEBPACK_IMPORTED_MODULE_16__["SectionsContactComponent"], _paypalSuccess_paypal_success_component__WEBPACK_IMPORTED_MODULE_17__["PayPalSuccessComponent"], _paypalFailure_paypal_failure_component__WEBPACK_IMPORTED_MODULE_18__["PayPalFailureComponent"], _newroles_newroles_component__WEBPACK_IMPORTED_MODULE_19__["NewRolesComponent"], _qrCodeReader_qrCodeReader_component__WEBPACK_IMPORTED_MODULE_23__["QrCodeComponent"], _crud_operations_address_address_component__WEBPACK_IMPORTED_MODULE_24__["AddressComponent"], _crud_operations_location_location_component__WEBPACK_IMPORTED_MODULE_26__["LocationComponent"], _crud_operations_company_company_component__WEBPACK_IMPORTED_MODULE_25__["CompanyComponent"], _success_success_component__WEBPACK_IMPORTED_MODULE_27__["SuccessComponent"], _failure_failure_component__WEBPACK_IMPORTED_MODULE_28__["FailureComponent"], _roles_authenticateduser_authenticateduser_component__WEBPACK_IMPORTED_MODULE_62__["AuthenticatedUserOveridesComponent"], _roles_guest_guest_component__WEBPACK_IMPORTED_MODULE_29__["GuestRoleComponent"], _roles_fundi_fundi_component__WEBPACK_IMPORTED_MODULE_30__["FundiRoleComponent"], _roles_client_client_component__WEBPACK_IMPORTED_MODULE_35__["ClientRoleComponent"], _socialmedia_twitterfeeds_twitterprofilefeeds_component__WEBPACK_IMPORTED_MODULE_34__["TwitterProfileFeedsComponent"], _profile_profile_component__WEBPACK_IMPORTED_MODULE_37__["ProfileComponent"], _profile_create_profilecreate_component__WEBPACK_IMPORTED_MODULE_40__["ProfileCreateComponent"], _crud_operations_courses_courses_component__WEBPACK_IMPORTED_MODULE_53__["CoursesComponent"], _crud_operations_certification_certification_component__WEBPACK_IMPORTED_MODULE_38__["CertificationComponent"], _crud_operations_work_category_workcategory_component__WEBPACK_IMPORTED_MODULE_39__["WorkCategoryComponent"], _crud_operations_coursescrud_coursescrud_component__WEBPACK_IMPORTED_MODULE_41__["CourseCrudComponent"], _crud_operations_certificationcrud_certificationcrud_component__WEBPACK_IMPORTED_MODULE_42__["CertificationCrudComponent"], _crud_operations_workcategorycrud_workcategorycrud_component__WEBPACK_IMPORTED_MODULE_43__["WorkCategoryCrudComponent"], _clientFundiSearch_clientFundiSearch_component__WEBPACK_IMPORTED_MODULE_44__["ClientFundiSearchComponent"], _fundiProfile_by_id_fundiProfileById_component__WEBPACK_IMPORTED_MODULE_45__["FundiProfileByIdComponent"], _client_client_component__WEBPACK_IMPORTED_MODULE_46__["ClientProfileComponent"], _fundiJobSearch_fundiJobSearch_component__WEBPACK_IMPORTED_MODULE_47__["FundiJobSearchComponent"], _fundisubscription_fundisubscription_component__WEBPACK_IMPORTED_MODULE_48__["FundiSubscriptionComponent"], _clientsubscription_clientsubscription_component__WEBPACK_IMPORTED_MODULE_61__["ClientSubscriptionComponent"], _vehiclemonitor_vehiclemonitor_component__WEBPACK_IMPORTED_MODULE_50__["VehicleMonitorComponent"], _recaptcha_myrecaptcha_component__WEBPACK_IMPORTED_MODULE_51__["myRecaptchaComponent"], _client_job_view_clientjobview_component__WEBPACK_IMPORTED_MODULE_52__["ClientJobViewComponent"], _crud_operations_worksubcategorycrud_worksubcategorycrud_component__WEBPACK_IMPORTED_MODULE_54__["WorkSubCategoryCrudComponent"], _fundi_engagement_fundiengagement_component__WEBPACK_IMPORTED_MODULE_55__["FundiEngagementComponent"], _paging_paging_component__WEBPACK_IMPORTED_MODULE_56__["PagingComponent"], _chat_chat_component__WEBPACK_IMPORTED_MODULE_57__["ChatComponent"], _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"], _clientfundi_contract_clientfundicontract_component__WEBPACK_IMPORTED_MODULE_59__["ClientFundiContractComponent"], _advert_advert_component__WEBPACK_IMPORTED_MODULE_63__["AdvertComponent"], _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"], _resetpassword_resetpassword_component__WEBPACK_IMPORTED_MODULE_65__["ResetPasswordComponent"], _fundi_contracts_fundicontract_component__WEBPACK_IMPORTED_MODULE_66__["FundiContractComponent"], _crud_operations_fundi_address_fundi_address_component__WEBPACK_IMPORTED_MODULE_69__["FundiAddressComponent"], _crud_operations_client_address_client_address_component__WEBPACK_IMPORTED_MODULE_68__["ClientAddressComponent"], _fundi_rating_fundirating_component__WEBPACK_IMPORTED_MODULE_70__["FundiRatingComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"].withServerTransition({
         appId: 'ng-cli-universal'
       }), _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot([{
@@ -2207,6 +2291,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         path: 'terms-and-conditions',
         component: _terms_conditions_service_termAndConditions_component__WEBPACK_IMPORTED_MODULE_60__["TermsAndConditionsComponent"]
       }, {
+        path: 'rate-fundiprofile-by-id',
+        component: _fundi_rating_fundirating_component__WEBPACK_IMPORTED_MODULE_70__["FundiRatingComponent"],
+        canActivate: [_guards_AuthClientAdminGuard__WEBPACK_IMPORTED_MODULE_71__["AuthClientAdminGuard"]]
+      }, {
         path: 'blogs',
         component: _blogs_blogs_component__WEBPACK_IMPORTED_MODULE_64__["BlogsComponent"]
       }])],
@@ -2231,6 +2319,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         provide: _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"],
         useClass: _guards_AuthFundiAdminGuard__WEBPACK_IMPORTED_MODULE_67__["AuthFundiAdminGuard"]
+      }, {
+        provide: _guards_AuthClientAdminGuard__WEBPACK_IMPORTED_MODULE_71__["AuthClientAdminGuard"],
+        useClass: _guards_AuthClientAdminGuard__WEBPACK_IMPORTED_MODULE_71__["AuthClientAdminGuard"]
       }, {
         provide: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"],
         useClass: _guards_AuthFundiClientAdminGuard__WEBPACK_IMPORTED_MODULE_58__["AuthFundiClientAdminGuard"]
@@ -3448,6 +3539,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var assigneFundiProfileId = parseInt(jQuery('select#assignedFundiProfileId').val());
           var fundiUserObs = this.myFundiService.GetFundiUserByProfileId(assigneFundiProfileId);
           fundiUserObs.map(function (fundiUser) {
+            debugger;
             var draftContractData = {
               fundiProfileId: assigneFundiProfileId,
               clientProfileId: _this7.clientProfile.clientProfileId,
@@ -3460,7 +3552,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               clientFundiContractId: _this7.clientFundiContractId,
               numberOfDaysToComplete: _this7.numberOfDaysToComplete,
               jobName: _this7.job.jobName,
-              contractualDescription: _this7.job.jobDescription
+              contractualDescription: _this7.job.jobDescription,
+              jobId: _this7.job.jobId
             };
             localStorage.setItem("DraftContractData", JSON.stringify(draftContractData));
 
@@ -4443,6 +4536,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! ../../services/myFundiService */
     "./src/services/myFundiService.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -4465,15 +4564,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     var ClientFundiContractComponent = /*#__PURE__*/function () {
-      function ClientFundiContractComponent(myFundiService) {
+      function ClientFundiContractComponent(myFundiService, router) {
         _classCallCheck(this, ClientFundiContractComponent);
 
         this.myFundiService = myFundiService;
+        this.router = router;
         this.fundi = {};
         this.client = {};
+        this.unitMaterialCost = 0;
+        this.unitMaterialQuantity = 0;
+        this.unitLabourCost = 0;
+        this.unitLabourQuantity = 0;
+        this.unitPermitInspectionCost = 0;
+        this.unitPermitInspectionQuantity = 0;
       }
 
       _createClass(ClientFundiContractComponent, [{
+        key: "rateFundiAfterContract",
+        value: function rateFundiAfterContract($event) {
+          debugger;
+          localStorage.setItem('RatingProfileId', this.clientFundiContract.fundiProfileId.toString());
+          localStorage.setItem('ContractJobId', this.currentJobId.toString());
+          localStorage.setItem('FundiUserTo', JSON.stringify({
+            firstName: this.clientFundiContract.fundiFirstName,
+            lastName: this.clientFundiContract.fundiLastName,
+            username: this.clientFundiContract.fundiUsername
+          }));
+          this.router.navigateByUrl("/rate-fundiprofile-by-id");
+          $event.preventDefault();
+        }
+      }, {
+        key: "updateClientAddress",
+        value: function updateClientAddress($event) {
+          this.clientFundiContract.clientAddressId = $event;
+        }
+      }, {
+        key: "updateFundiAddress",
+        value: function updateFundiAddress($event) {
+          this.clientFundiContract.fundiAddressId = $event;
+        }
+      }, {
         key: "selectContract",
         value: function selectContract($event) {
           var _this19 = this;
@@ -4521,76 +4651,69 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           var _this20 = this;
 
+          this.unitMaterialCost = 0;
+          this.unitMaterialQuantity = 0;
+          this.unitLabourCost = 0;
+          this.unitLabourQuantity = 0;
+          this.unitPermitInspectionCost = 0;
+          this.unitPermitInspectionQuantity = 0;
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
-          var curDate = new Date();
           var draftContractData = JSON.parse(localStorage.getItem("DraftContractData"));
-
-          if (draftContractData) {
-            this.clientFundiContract = {
-              clientFundiContractId: draftContractData.clientFundiContractId,
-              clientProfileId: draftContractData.clientProfileId,
-              clientUsername: draftContractData.clientUsername,
-              clientFirstName: draftContractData.clientFirstName,
-              clientLastName: draftContractData.clientLastName,
-              fundiProfileId: draftContractData.fundiProfileId,
-              fundiUsername: draftContractData.fundiUsername,
-              fundiFirstName: draftContractData.fundiFirstName,
-              fundiLastName: draftContractData.fundiLastName,
-              agreedStartDate: this.formatDate(curDate),
-              agreedEndDate: this.formatDate(curDate),
-              agreedCost: draftContractData.agreedFees,
-              contractualDescription: draftContractData.contractualDescription,
-              isSignedByClient: true,
-              isSignedByFundi: false,
-              isCompleted: false,
-              isSignedOffByClient: false,
-              notesForNotice: draftContractData.notesForNotice
-            };
-          } else {
-            this.clientFundiContract = {
-              clientFundiContractId: -1,
-              clientProfileId: -1,
-              clientUsername: this.userDetails.username,
-              clientFirstName: "",
-              clientLastName: "",
-              fundiProfileId: -1,
-              fundiUsername: "",
-              fundiFirstName: "",
-              fundiLastName: "",
-              agreedStartDate: this.formatDate(curDate),
-              agreedEndDate: this.formatDate(curDate),
-              agreedCost: 0,
-              contractualDescription: "",
-              isSignedByClient: true,
-              isSignedByFundi: false,
-              isCompleted: false,
-              isSignedOffByClient: false,
-              notesForNotice: ""
-            };
-          }
-
-          var resObs = this.myFundiService.GetClientProfile(this.userDetails.username);
+          var curDate = new Date();
+          this.currentJobId = draftContractData.jobId;
+          this.clientFundiContract = {
+            clientFundiContractId: 0,
+            jobId: draftContractData.jobId,
+            clientProfileId: draftContractData.clientProfileId,
+            clientUsername: draftContractData.clientUsername,
+            clientFirstName: draftContractData.clientFirstName,
+            clientLastName: draftContractData.clientLastName,
+            fundiProfileId: draftContractData.fundiProfileId,
+            fundiUsername: draftContractData.fundiUsername,
+            fundiFirstName: draftContractData.fundiFirstName,
+            fundiLastName: draftContractData.fundiLastName,
+            fundiAddressId: 0,
+            clientAddressId: 0,
+            agreedStartDate: this.formatDate(curDate),
+            agreedEndDate: this.formatDate(curDate),
+            agreedCost: 0,
+            contractualDescription: "",
+            isSignedByClient: true,
+            isSignedByFundi: false,
+            isCompleted: false,
+            isSignedOffByClient: false,
+            notesForNotice: "",
+            date1stPayment: this.formatDate(curDate),
+            date2ndPayment: this.formatDate(curDate),
+            date3rdPayment: this.formatDate(curDate),
+            date4thPayment: this.formatDate(curDate),
+            firstPaymentAmount: 0,
+            secondPaymentAmount: 0,
+            thirdPaymentAmount: 0,
+            forthPaymentAmount: 0
+          };
+          var resObs = this.myFundiService.GetFundiProfile(this.clientFundiContract.fundiUsername);
           resObs.map(function (fundiProf) {
             debugger;
             _this20.fundi = fundiProf;
 
-            var clientContsObs = _this20.myFundiService.GetClientContractsByUsername(_this20.userDetails.username);
+            var clientContsObs = _this20.myFundiService.GetClientContractsByUsername(_this20.clientFundiContract.clientUsername);
 
             clientContsObs.map(function (cts) {
               _this20.clientContracts = cts;
-              jQuery('select#clientFundiContractId option').remove();
+              jQuery('div.fundiClientContract-wrapper select#clientFundiContractId option').remove();
               var optionElem = document.createElement('option');
               optionElem.selected = true;
               optionElem.value = 0 .toString();
               optionElem.text = "Select Client Fundi Contract";
-              document.querySelector('select#clientFundiContractId').append(optionElem);
+              document.querySelector('div.fundiClientContract-wrapper select#clientFundiContractId').append(optionElem);
               ;
               cts.forEach(function (c, index) {
                 var optionElem = document.createElement('option');
                 optionElem.value = c.clientFundiContractId.toString();
                 optionElem.text = c.clientFirstName + " " + c.clientLastName + " : " + c.fundiFirstName + " " + c.fundiLastName + " , " + c.agreedStartDate + " , #" + c.clientFundiContractId;
-                document.querySelector('select#clientFundiContractId').append(optionElem);
+                document.querySelector('div.fundiClientContract-wrapper select#clientFundiContractId').append(optionElem);
               });
             }).subscribe();
           }).subscribe();
@@ -4607,6 +4730,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return [year, month, day].join('-');
         }
       }, {
+        key: "calculateCost",
+        value: function calculateCost($event) {
+          this.clientFundiContract.agreedCost = this.unitMaterialCost * this.unitMaterialQuantity + this.unitLabourCost * this.unitLabourQuantity + this.unitPermitInspectionCost * this.unitPermitInspectionQuantity;
+          $event.preventDefault();
+        }
+      }, {
         key: "ngAfterViewChecked",
         value: function ngAfterViewChecked() {
           var curthis = this;
@@ -4618,7 +4747,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var hasFoundSelectsOnPage = false;
 
           if (!curthis.hasPopulatedPage) {
-            var selects = jQuery('div#fundiClientContract-wrapper select');
+            var selects = jQuery('div.fundiClientContract-wrapper select');
 
             if (selects && selects.length > 0) {
               hasFoundSelectsOnPage = true;
@@ -4636,7 +4765,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
             debugger;
-            jQuery('div#fundiClientContract-wrapper select').each(function (ind, sel) {
+            jQuery('div.fundiClientContract-wrapper select').each(function (ind, sel) {
               var options = jQuery(sel).children('option');
               var vals = [];
               jQuery(options).each(function (id, el) {
@@ -4666,6 +4795,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     ClientFundiContractComponent.ctorParameters = function () {
       return [{
         type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
       }];
     };
 
@@ -4674,7 +4805,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       template: __importDefault(__webpack_require__(
       /*! raw-loader!./clientfundicontract.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/clientfundi-contract/clientfundicontract.component.html"))["default"]
-    }), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])], ClientFundiContractComponent);
+    }), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])], ClientFundiContractComponent);
     /***/
   },
 
@@ -5975,6 +6106,303 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/crud-operations/client-address/client-address.component.css":
+  /*!*****************************************************************************!*\
+    !*** ./src/app/crud-operations/client-address/client-address.component.css ***!
+    \*****************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppCrudOperationsClientAddressClientAddressComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "body {\r\n}\r\nlabel {\r\n    color: gray !important;\r\n}\r\ninput[type=checkbox] {\r\n    display: inline-block;\r\n    -webkit-appearance: checkbox;\r\n}\r\ninput[type=radio] {\r\n    display: inline-block;\r\n    -webkit-appearance: radio;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3J1ZC1vcGVyYXRpb25zL2NsaWVudC1hZGRyZXNzL2NsaWVudC1hZGRyZXNzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0lBQ0ksc0JBQXNCO0FBQzFCO0FBRUE7SUFDSSxxQkFBcUI7SUFDckIsNEJBQTRCO0FBQ2hDO0FBRUE7SUFDSSxxQkFBcUI7SUFDckIseUJBQXlCO0FBQzdCIiwiZmlsZSI6InNyYy9hcHAvY3J1ZC1vcGVyYXRpb25zL2NsaWVudC1hZGRyZXNzL2NsaWVudC1hZGRyZXNzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcclxufVxyXG5sYWJlbCB7XHJcbiAgICBjb2xvcjogZ3JheSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPWNoZWNrYm94XSB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICAtd2Via2l0LWFwcGVhcmFuY2U6IGNoZWNrYm94O1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPXJhZGlvXSB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICAtd2Via2l0LWFwcGVhcmFuY2U6IHJhZGlvO1xyXG59Il19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/crud-operations/client-address/client-address.component.ts":
+  /*!****************************************************************************!*\
+    !*** ./src/app/crud-operations/client-address/client-address.component.ts ***!
+    \****************************************************************************/
+
+  /*! exports provided: ClientAddressComponent */
+
+  /***/
+  function srcAppCrudOperationsClientAddressClientAddressComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ClientAddressComponent", function () {
+      return ClientAddressComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../../services/myFundiService */
+    "./src/services/myFundiService.ts");
+    /* harmony import */
+
+
+    var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs/add/operator/map */
+    "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var ClientAddressComponent = /*#__PURE__*/function () {
+      function ClientAddressComponent(myFundiService, router) {
+        _classCallCheck(this, ClientAddressComponent);
+
+        this.router = router;
+        this.hasPopulatedPage = false;
+        this.clientAddressChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.count = 0;
+        this.myFundiService = myFundiService;
+      }
+
+      _createClass(ClientAddressComponent, [{
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {
+          var curthis = this;
+          this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+        }
+      }, {
+        key: "onClientAddressChanged",
+        value: function onClientAddressChanged() {
+          this.clientAddressChanged.emit(this.clientAddress.addressId);
+        }
+      }, {
+        key: "refreshAddresses",
+        value: function refreshAddresses() {
+          var _this36 = this;
+
+          var addSelect = document.querySelector('select#clientAddressId');
+          var opts = addSelect.querySelector('option');
+
+          if (opts) {
+            opts.remove();
+          }
+
+          var optionElem = document.createElement('option');
+          optionElem.selected = true;
+          optionElem.value = 0 .toString();
+          optionElem.text = "Select Address";
+          document.querySelector('select#clientAddressId').append(optionElem);
+          var addressesObs = this.myFundiService.GetAllAddresses();
+          addressesObs.map(function (adds) {
+            _this36.addresses = adds;
+            adds.forEach(function (add, index, adds) {
+              var optionElem = document.createElement('option');
+              optionElem.value = add.addressId.toString();
+              optionElem.text = add.addressLine1 + ", " + add.town + ", " + add.postCode + ", " + add.country;
+              document.querySelector('select#clientAddressId').append(optionElem);
+            });
+          }).subscribe();
+        }
+      }, {
+        key: "addAddress",
+        value: function addAddress() {
+          var _this37 = this;
+
+          var form = document.querySelector('form#clientAddForm1');
+          if (!form.checkValidity()) return;
+          var actualResult = this.myFundiService.PostOrCreateAddress(this.clientAddress);
+          actualResult.map(function (p) {
+            alert('Address Added: ' + p.result);
+
+            if (p.result) {
+              _this37.router.navigateByUrl('success');
+            } else {
+              _this37.router.navigateByUrl('failure');
+            }
+          }).subscribe();
+          jQuery('form#locationView').css('display', 'block').slideDown();
+        }
+      }, {
+        key: "updateAddress",
+        value: function updateAddress() {
+          var _this38 = this;
+
+          var form = document.querySelector('form#clientAddForm1');
+          if (!form.checkValidity()) return;
+          var actualResult = this.myFundiService.UpdateAddress(this.clientAddress);
+          actualResult.map(function (p) {
+            alert('Address Updated: ' + p.result);
+
+            if (p.result) {
+              _this38.router.navigateByUrl('success');
+            } else {
+              _this38.router.navigateByUrl('failure');
+            }
+          }).subscribe();
+          jQuery('form#locationView').css('display', 'block').slideDown();
+        }
+      }, {
+        key: "selectAddress",
+        value: function selectAddress() {
+          var _this39 = this;
+
+          var actualResult = this.myFundiService.GetAddressById(jQuery('div#client-addresses-wrapper select#clientAddressId').val());
+          actualResult.map(function (p) {
+            debugger;
+            _this39.clientAddress = p;
+          }).subscribe();
+          jQuery('form#locationView').css('display', 'block').slideDown();
+        }
+      }, {
+        key: "deleteAddress",
+        value: function deleteAddress() {
+          var _this40 = this;
+
+          var form = document.querySelector('form#clientAddForm1');
+          if (!form.checkValidity()) return;
+          var actualResult = this.myFundiService.DeleteAddress(this.clientAddress);
+          actualResult.map(function (p) {
+            alert('Address Deleted: ' + p.result);
+
+            if (p.result) {
+              _this40.router.navigateByUrl('success');
+            } else {
+              _this40.router.navigateByUrl('failure');
+            }
+          }).subscribe();
+          jQuery('form#locationView').css('display', 'block').slideDown();
+        }
+      }, {
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.clientAddress = {
+            addressId: 0,
+            addressLine1: "",
+            addressLine2: "",
+            town: "",
+            postCode: "",
+            country: ""
+          };
+          this.addresses = [];
+          this.refreshAddresses();
+          var curthis = this;
+        }
+      }, {
+        key: "ngAfterContentInit",
+        value: function ngAfterContentInit() {}
+      }, {
+        key: "runAutoCompleteOnSelects",
+        value: function runAutoCompleteOnSelects(curthis) {
+          var hasFoundSelectsOnPage = false;
+
+          if (curthis.addresses && curthis.addresses.length > 1 && !curthis.hasPopulatedPage) {
+            var selects = jQuery('div#client-addresses-wrapper select');
+
+            if (selects && selects.length > 0) {
+              hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+              jQuery(selects.each(function (ind, elem) {
+                jQuery(elem).parent('ul').css('background', 'white');
+                jQuery(elem).parent('ul').css('z-index', '100');
+                var id = 'autoComplete' + jQuery(elem).attr('id');
+                jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + "".concat(id) + " /><br/>");
+              }));
+              hasFoundSelectsOnPage = false;
+            } //Check For Dom Change and Add auto complete to select elements
+
+
+            debugger;
+            jQuery('select').each(function (ind, sel) {
+              var options = jQuery(sel).children('option');
+              var vals = [];
+              jQuery(options).each(function (id, el) {
+                var optionText = jQuery(el).html();
+                vals.push(optionText);
+              }); //options is source of auto complete:
+
+              var jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+              jQueryinpId.autocomplete({
+                source: vals
+              });
+              jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                  return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+              });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+          }
+        }
+      }]);
+
+      return ClientAddressComponent;
+    }();
+
+    ClientAddressComponent.ctorParameters = function () {
+      return [{
+        type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }];
+    };
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("addressId"), __metadata("design:type", Number)], ClientAddressComponent.prototype, "addressId", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], ClientAddressComponent.prototype, "clientAddressChanged", void 0);
+
+    ClientAddressComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+      selector: 'client-address',
+      template: __importDefault(__webpack_require__(
+      /*! raw-loader!./client-address.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/client-address/client-address.component.html"))["default"],
+      providers: [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]],
+      styles: [__importDefault(__webpack_require__(
+      /*! ./client-address.component.css */
+      "./src/app/crud-operations/client-address/client-address.component.css"))["default"]]
+    }), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], ClientAddressComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/crud-operations/company/company.component.css":
   /*!***************************************************************!*\
     !*** ./src/app/crud-operations/company/company.component.css ***!
@@ -6071,7 +6499,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CompanyComponent, [{
         key: "addCompany",
         value: function addCompany() {
-          var _this36 = this;
+          var _this41 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -6082,9 +6510,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Added: ' + p);
 
             if (p) {
-              _this36.router.navigateByUrl('success');
+              _this41.router.navigateByUrl('success');
             } else {
-              _this36.router.navigateByUrl('failure');
+              _this41.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6092,7 +6520,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCompany",
         value: function updateCompany() {
-          var _this37 = this;
+          var _this42 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -6102,9 +6530,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Updated: ' + p);
 
             if (p) {
-              _this37.router.navigateByUrl('success');
+              _this42.router.navigateByUrl('success');
             } else {
-              _this37.router.navigateByUrl('failure');
+              _this42.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6112,18 +6540,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectCompany",
         value: function selectCompany() {
-          var _this38 = this;
+          var _this43 = this;
 
           var actualResult = this.myFundiService.GetCompanyById(jQuery('div#companies-wrapper select#companyId').val());
           actualResult.map(function (p) {
-            _this38.company = p;
+            _this43.company = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteCompany",
         value: function deleteCompany() {
-          var _this39 = this;
+          var _this44 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -6133,9 +6561,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Deleted: ' + p);
 
             if (p) {
-              _this39.router.navigateByUrl('success');
+              _this44.router.navigateByUrl('success');
             } else {
-              _this39.router.navigateByUrl('failure');
+              _this44.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6150,7 +6578,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngAfterContentInit",
         value: function ngAfterContentInit() {
-          var _this40 = this;
+          var _this45 = this;
 
           var optionElem = document.createElement('option');
           optionElem.selected = true;
@@ -6164,7 +6592,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var companiesObs = this.myFundiService.GetAllCompanies();
           var locatObs = this.myFundiService.GetAllLocations();
           companiesObs.map(function (cmds) {
-            _this40.companies = cmds;
+            _this45.companies = cmds;
             cmds.forEach(function (cmd, index, cmds) {
               var optionElem = document.createElement('option');
               optionElem.value = cmd.companyId.toString();
@@ -6325,7 +6753,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CoursesComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this41 = this;
+          var _this46 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) this.userDetails = {};
@@ -6338,7 +6766,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var courseObs = this.myFundiService.GetAllFundiCourses();
           this.selectCourse = document.querySelector('select#slcourseId');
           courseObs.map(function (res) {
-            _this41.courses = res;
+            _this46.courses = res;
             var opts = document.querySelector('select#slcourseId').querySelector("option");
 
             if (opts) {
@@ -6531,7 +6959,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CourseCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this42 = this;
+          var _this47 = this;
 
           this.course = {
             courseId: 0
@@ -6544,7 +6972,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#coursecrudId').append(optionElem);
           var courseObs = this.myFundiService.GetAllFundiCourses();
           courseObs.map(function (adds) {
-            _this42.courses = adds;
+            _this47.courses = adds;
             adds.forEach(function (add, index, adds) {
               var optionElem = document.createElement('option');
               optionElem.value = add.courseId.toString();
@@ -6556,7 +6984,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addCourse",
         value: function addCourse() {
-          var _this43 = this;
+          var _this48 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -6566,9 +6994,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Added: ' + p);
 
             if (p) {
-              _this43.router.navigateByUrl('success');
+              _this48.router.navigateByUrl('success');
             } else {
-              _this43.router.navigateByUrl('failure');
+              _this48.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6576,7 +7004,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCourse",
         value: function updateCourse() {
-          var _this44 = this;
+          var _this49 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -6586,9 +7014,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Updated: ' + p);
 
             if (p) {
-              _this44.router.navigateByUrl('success');
+              _this49.router.navigateByUrl('success');
             } else {
-              _this44.router.navigateByUrl('failure');
+              _this49.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6596,20 +7024,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectCourse",
         value: function selectCourse() {
-          var _this45 = this;
+          var _this50 = this;
 
           var actualResult = this.myFundiService.GetCourseById(jQuery('div#coursecrud-wrapper select#coursecrudId').val());
           actualResult.map(function (p) {
-            _this45.course = p;
+            _this50.course = p;
 
-            _this45.addressEmitter.emit(_this45.course.courseId);
+            _this50.addressEmitter.emit(_this50.course.courseId);
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteCourse",
         value: function deleteCourse() {
-          var _this46 = this;
+          var _this51 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -6619,9 +7047,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Deleted: ' + p);
 
             if (p) {
-              _this46.router.navigateByUrl('success');
+              _this51.router.navigateByUrl('success');
             } else {
-              _this46.router.navigateByUrl('failure');
+              _this51.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6704,6 +7132,304 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/coursescrud/coursescrud.component.html"))["default"],
       providers: [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]]
     }), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], CourseCrudComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/crud-operations/fundi-address/fundi-address.component.css":
+  /*!***************************************************************************!*\
+    !*** ./src/app/crud-operations/fundi-address/fundi-address.component.css ***!
+    \***************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppCrudOperationsFundiAddressFundiAddressComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "body {\r\n}\r\nlabel {\r\n    color: gray !important;\r\n}\r\ninput[type=checkbox] {\r\n    display: inline-block;\r\n    -webkit-appearance: checkbox;\r\n}\r\ninput[type=radio] {\r\n    display: inline-block;\r\n    -webkit-appearance: radio;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3J1ZC1vcGVyYXRpb25zL2Z1bmRpLWFkZHJlc3MvZnVuZGktYWRkcmVzcy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtJQUNJLHNCQUFzQjtBQUMxQjtBQUVBO0lBQ0kscUJBQXFCO0lBQ3JCLDRCQUE0QjtBQUNoQztBQUVBO0lBQ0kscUJBQXFCO0lBQ3JCLHlCQUF5QjtBQUM3QiIsImZpbGUiOiJzcmMvYXBwL2NydWQtb3BlcmF0aW9ucy9mdW5kaS1hZGRyZXNzL2Z1bmRpLWFkZHJlc3MuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG59XHJcbmxhYmVsIHtcclxuICAgIGNvbG9yOiBncmF5ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbmlucHV0W3R5cGU9Y2hlY2tib3hdIHtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIC13ZWJraXQtYXBwZWFyYW5jZTogY2hlY2tib3g7XHJcbn1cclxuXHJcbmlucHV0W3R5cGU9cmFkaW9dIHtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIC13ZWJraXQtYXBwZWFyYW5jZTogcmFkaW87XHJcbn0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/crud-operations/fundi-address/fundi-address.component.ts":
+  /*!**************************************************************************!*\
+    !*** ./src/app/crud-operations/fundi-address/fundi-address.component.ts ***!
+    \**************************************************************************/
+
+  /*! exports provided: FundiAddressComponent */
+
+  /***/
+  function srcAppCrudOperationsFundiAddressFundiAddressComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FundiAddressComponent", function () {
+      return FundiAddressComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../../services/myFundiService */
+    "./src/services/myFundiService.ts");
+    /* harmony import */
+
+
+    var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs/add/operator/map */
+    "./node_modules/rxjs-compat/_esm2015/add/operator/map.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var FundiAddressComponent = /*#__PURE__*/function () {
+      function FundiAddressComponent(myFundiService, router) {
+        _classCallCheck(this, FundiAddressComponent);
+
+        this.router = router;
+        this.hasPopulatedPage = false;
+        this.fundiAddressChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.count = 0;
+        this.myFundiService = myFundiService;
+      }
+
+      _createClass(FundiAddressComponent, [{
+        key: "onFundiAddressChanged",
+        value: function onFundiAddressChanged() {
+          this.fundiAddressChanged.emit(this.fundiAddress.addressId);
+        }
+      }, {
+        key: "refreshAddresses",
+        value: function refreshAddresses() {
+          var _this52 = this;
+
+          var addSelect = document.querySelector('select#fundiAddressId');
+          var opts = addSelect.querySelector('option');
+
+          if (opts) {
+            opts.remove();
+          }
+
+          var optionElem = document.createElement('option');
+          optionElem.selected = true;
+          optionElem.value = 0 .toString();
+          optionElem.text = "Select Address";
+          document.querySelector('select#fundiAddressId').append(optionElem);
+          var addressesObs = this.myFundiService.GetAllAddresses();
+          addressesObs.map(function (adds) {
+            _this52.addresses = adds;
+            adds.forEach(function (add, index, adds) {
+              var optionElem = document.createElement('option');
+              optionElem.value = add.addressId.toString();
+              optionElem.text = add.addressLine1 + ", " + add.town + ", " + add.postCode + ", " + add.country;
+              document.querySelector('select#fundiAddressId').append(optionElem);
+            });
+          }).subscribe();
+        }
+      }, {
+        key: "addAddress",
+        value: function addAddress() {
+          var _this53 = this;
+
+          var form = document.querySelector('form#fundiAddForm1');
+          if (!form.checkValidity()) return;
+          var actualResult = this.myFundiService.PostOrCreateAddress(this.fundiAddress);
+          actualResult.map(function (p) {
+            alert('Address Added: ' + p.result);
+
+            if (p.result) {
+              _this53.router.navigateByUrl('success');
+            } else {
+              _this53.router.navigateByUrl('failure');
+            }
+          }).subscribe();
+          jQuery('form#locationView').css('display', 'block').slideDown();
+        }
+      }, {
+        key: "updateAddress",
+        value: function updateAddress() {
+          var _this54 = this;
+
+          var form = document.querySelector('form#fundiAddForm1');
+          if (!form.checkValidity()) return;
+          var actualResult = this.myFundiService.UpdateAddress(this.fundiAddress);
+          actualResult.map(function (p) {
+            alert('Address Updated: ' + p.result);
+
+            if (p.result) {
+              _this54.router.navigateByUrl('success');
+            } else {
+              _this54.router.navigateByUrl('failure');
+            }
+          }).subscribe();
+          jQuery('form#locationView').css('display', 'block').slideDown();
+        }
+      }, {
+        key: "selectAddress",
+        value: function selectAddress() {
+          var _this55 = this;
+
+          var actualResult = this.myFundiService.GetAddressById(jQuery('div#fundi-addresses-wrapper select#fundiAddressId').val());
+          actualResult.map(function (p) {
+            debugger;
+            _this55.fundiAddress = p;
+          }).subscribe();
+          jQuery('form#locationView').css('display', 'block').slideDown();
+        }
+      }, {
+        key: "deleteAddress",
+        value: function deleteAddress() {
+          var _this56 = this;
+
+          var form = document.querySelector('form#fundiAddForm1');
+          if (!form.checkValidity()) return;
+          var actualResult = this.myFundiService.DeleteAddress(this.fundiAddress);
+          actualResult.map(function (p) {
+            alert('Address Deleted: ' + p.result);
+
+            if (p.result) {
+              _this56.router.navigateByUrl('success');
+            } else {
+              _this56.router.navigateByUrl('failure');
+            }
+          }).subscribe();
+          jQuery('form#locationView').css('display', 'block').slideDown();
+        }
+      }, {
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.fundiAddress = {
+            addressId: 0,
+            addressLine1: "",
+            addressLine2: "",
+            town: "",
+            postCode: "",
+            country: ""
+          };
+          this.addresses = [];
+          this.refreshAddresses();
+          var curthis = this;
+        }
+      }, {
+        key: "ngAfterContentInit",
+        value: function ngAfterContentInit() {}
+      }, {
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {
+          var curthis = this;
+          this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+        }
+      }, {
+        key: "runAutoCompleteOnSelects",
+        value: function runAutoCompleteOnSelects(curthis) {
+          debugger;
+          var hasFoundSelectsOnPage = false;
+
+          if (curthis.addresses && curthis.addresses.length > 1 && !curthis.hasPopulatedPage) {
+            var selects = jQuery('div#fundi-addresses-wrapper select');
+
+            if (selects && selects.length > 0) {
+              hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+              jQuery(selects.each(function (ind, elem) {
+                jQuery(elem).parent('ul').css('background', 'white');
+                jQuery(elem).parent('ul').css('z-index', '100');
+                var id = 'autoComplete' + jQuery(elem).attr('id');
+                jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + "".concat(id) + " /><br/>");
+              }));
+              hasFoundSelectsOnPage = false;
+            } //Check For Dom Change and Add auto complete to select elements
+
+
+            debugger;
+            jQuery('select').each(function (ind, sel) {
+              var options = jQuery(sel).children('option');
+              var vals = [];
+              jQuery(options).each(function (id, el) {
+                var optionText = jQuery(el).html();
+                vals.push(optionText);
+              }); //options is source of auto complete:
+
+              var jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+              jQueryinpId.autocomplete({
+                source: vals
+              });
+              jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                  return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+              });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+          }
+        }
+      }]);
+
+      return FundiAddressComponent;
+    }();
+
+    FundiAddressComponent.ctorParameters = function () {
+      return [{
+        type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }];
+    };
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], FundiAddressComponent.prototype, "fundiAddressChanged", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("addressId"), __metadata("design:type", Number)], FundiAddressComponent.prototype, "addressId", void 0);
+
+    FundiAddressComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+      selector: 'fundi-address',
+      template: __importDefault(__webpack_require__(
+      /*! raw-loader!./fundi-address.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/crud-operations/fundi-address/fundi-address.component.html"))["default"],
+      providers: [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]],
+      styles: [__importDefault(__webpack_require__(
+      /*! ./fundi-address.component.css */
+      "./src/app/crud-operations/fundi-address/fundi-address.component.css"))["default"]]
+    }), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], FundiAddressComponent);
     /***/
   },
 
@@ -6826,21 +7552,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectLocation",
         value: function selectLocation() {
-          var _this47 = this;
+          var _this57 = this;
 
           var locationId = jQuery('div#locations-wrapper select#locationId').val();
           var actualResult = this.myFundiService.GetLocationById(locationId);
           actualResult.map(function (p) {
-            _this47.location = p;
+            _this57.location = p;
 
-            _this47.locationEventEmitter.emit(_this47.location.locationId);
+            _this57.locationEventEmitter.emit(_this57.location.locationId);
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteLocation",
         value: function deleteLocation() {
-          var _this48 = this;
+          var _this58 = this;
 
           var form = document.querySelector('form#locationView');
           if (!form.checkValidity()) return;
@@ -6849,9 +7575,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Location Deleted: ' + p.result);
 
             if (p.result) {
-              _this48.router.navigateByUrl('success');
+              _this58.router.navigateByUrl('success');
             } else {
-              _this48.router.navigateByUrl('failure');
+              _this58.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6859,7 +7585,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this49 = this;
+          var _this59 = this;
 
           this.location = {
             locationId: 0
@@ -6885,7 +7611,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               document.querySelector('select#locaddressId').append(optionElem);
             });
             locatObs.map(function (cmdCats) {
-              _this49.locations = cmdCats;
+              _this59.locations = cmdCats;
               cmdCats.forEach(function (comCat, index, cmdCats) {
                 var optionElem = document.createElement('option');
                 optionElem.value = comCat.locationId.toString();
@@ -6898,18 +7624,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkLocationGeoCodedAndUpdate",
         value: function checkLocationGeoCodedAndUpdate(operation) {
-          var _this50 = this;
+          var _this60 = this;
 
           if (operation === 'update' || operation === 'create') {
             var addObs = this.myFundiService.GetAddressById(this.location.addressId);
             addObs.map(function (add) {
-              _this50.geoCoder.location = _this50.location;
+              _this60.geoCoder.location = _this60.location;
 
-              _this50.geoCoder.geocodeAddress(add, operation);
+              _this60.geoCoder.geocodeAddress(add, operation);
 
               document.getElementById("locmap").style.display = "block";
 
-              _this50.geoCoder.setCreateUpdateLocation(operation, _this50.location);
+              _this60.geoCoder.setCreateUpdateLocation(operation, _this60.location);
             }).subscribe();
           } else {
             document.getElementById("locmap").style.display = "none";
@@ -7067,14 +7793,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkCategoryComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this51 = this;
+          var _this61 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           this.selectCategory = document.querySelector('select#slworkCategoryId');
           workCategoriesObs.map(function (res) {
-            _this51.workCategories = res;
+            _this61.workCategories = res;
             var opts = document.querySelector('select#slworkCategoryId').querySelector("option");
 
             if (opts) {
@@ -7105,7 +7831,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             opt.text = "Select Sub Work Category";
             opt.value = "0";
             document.querySelector('select#slworkSubCategoryId').append('opt');
-            _this51.workSubCategories = wcs;
+            _this61.workSubCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -7118,7 +7844,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "workCategoryChanged",
         value: function workCategoryChanged($event) {
-          var _this52 = this;
+          var _this62 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
@@ -7132,7 +7858,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             opt.text = "Select Sub Work Category";
             opt.value = "0";
             document.querySelector('select#slworkSubCategoryId').append('opt');
-            _this52.workSubCategories = wcs;
+            _this62.workSubCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -7335,7 +8061,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkCategoryCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this53 = this;
+          var _this63 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -7348,7 +8074,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#workCategoryCrudId').append(optionElem);
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this53.workCategories = wcs;
+            _this63.workCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -7361,7 +8087,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkCategory",
         value: function addWorkCategory() {
-          var _this54 = this;
+          var _this64 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -7371,9 +8097,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workCategory Added: ' + p.message);
 
             if (p) {
-              _this54.router.navigateByUrl('success');
+              _this64.router.navigateByUrl('success');
             } else {
-              _this54.router.navigateByUrl('failure');
+              _this64.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7381,7 +8107,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateworkCategory",
         value: function updateworkCategory() {
-          var _this55 = this;
+          var _this65 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -7391,9 +8117,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Updated: ' + p);
 
             if (p) {
-              _this55.router.navigateByUrl('success');
+              _this65.router.navigateByUrl('success');
             } else {
-              _this55.router.navigateByUrl('failure');
+              _this65.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7401,19 +8127,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkCategory",
         value: function selectworkCategory() {
-          var _this56 = this;
+          var _this66 = this;
 
           var workCatValue = jQuery('div#workCategoriescrud-wrapper select#workCategoryCrudId').val();
           var actualResult = this.myFundiService.GetworkCategoryById(workCatValue);
           actualResult.map(function (p) {
-            _this56.workCategory = p;
+            _this66.workCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteworkCategory",
         value: function deleteworkCategory() {
-          var _this57 = this;
+          var _this67 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -7423,9 +8149,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workCategory Deleted: ' + p);
 
             if (p) {
-              _this57.router.navigateByUrl('success');
+              _this67.router.navigateByUrl('success');
             } else {
-              _this57.router.navigateByUrl('failure');
+              _this67.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7609,7 +8335,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkSubCategoryCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this58 = this;
+          var _this68 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -7639,7 +8365,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#workSubCategoryCrudId').append(optionElem);
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this58.workCategories = wcs;
+            _this68.workCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workCategoryId.toString();
@@ -7647,10 +8373,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               document.querySelector('select#workCategoryCrudForSubCatId').append(optionElem);
             });
 
-            var workSubCategoriesObs = _this58.myFundiService.GetWorkSubCategories();
+            var workSubCategoriesObs = _this68.myFundiService.GetWorkSubCategories();
 
             workSubCategoriesObs.map(function (wcs) {
-              _this58.workSubCategories = wcs;
+              _this68.workSubCategories = wcs;
               ;
               wcs.forEach(function (c, index, wcs) {
                 var optionElem = document.createElement('option');
@@ -7664,19 +8390,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getWorkSubCategoriesByWorkCategoryId",
         value: function getWorkSubCategoriesByWorkCategoryId() {
-          var _this59 = this;
+          var _this69 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workSubCategory.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
             //clear the workCategory options menu and add new options:
             jQuery('select#workSubCategoryCrudId option').remove();
-            _this59.workSubCategories = [];
+            _this69.workSubCategories = [];
             var optionElem = document.createElement('option');
             optionElem.selected = true;
             optionElem.value = 0 .toString();
             optionElem.text = "Select WorkSubCategory";
             document.querySelector('select#workSubCategoryCrudId').append(optionElem);
-            _this59.workSubCategories = wcs;
+            _this69.workSubCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workSubCategoryId.toString();
@@ -7688,7 +8414,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkSubCategory",
         value: function addWorkSubCategory($event) {
-          var _this60 = this;
+          var _this70 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -7698,9 +8424,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workSubCategory Added: ' + p.toString());
 
             if (p == true) {
-              _this60.router.navigateByUrl('success');
+              _this70.router.navigateByUrl('success');
             } else {
-              _this60.router.navigateByUrl('failure');
+              _this70.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7709,7 +8435,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateworkSubCategory",
         value: function updateworkSubCategory($event) {
-          var _this61 = this;
+          var _this71 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -7719,9 +8445,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('WorkSubCategory Updated: ' + p.toString());
 
             if (p) {
-              _this61.router.navigateByUrl('success');
+              _this71.router.navigateByUrl('success');
             } else {
-              _this61.router.navigateByUrl('failure');
+              _this71.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7730,12 +8456,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkSubCategory",
         value: function selectworkSubCategory($event) {
-          var _this62 = this;
+          var _this72 = this;
 
           var workSubCatValue = this.workSubCategory.workSubCategoryId;
           var actualResult = this.myFundiService.GetworkSubCategoryById(workSubCatValue);
           actualResult.map(function (p) {
-            _this62.workSubCategory = p;
+            _this72.workSubCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
           $event.preventDefault();
@@ -7743,7 +8469,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteworkSubCategory",
         value: function deleteworkSubCategory($event) {
-          var _this63 = this;
+          var _this73 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -7753,9 +8479,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workSubCategory Deleted: ' + p);
 
             if (p) {
-              _this63.router.navigateByUrl('success');
+              _this73.router.navigateByUrl('success');
             } else {
-              _this63.router.navigateByUrl('failure');
+              _this73.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -8179,7 +8905,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "forgotPassword",
         value: function forgotPassword($event) {
-          var _this64 = this;
+          var _this74 = this;
 
           var passwordResObs = this.myFundiService.ForgotPasswordByPost(this.userDetail);
           passwordResObs.map(function (q) {
@@ -8190,7 +8916,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               localStorage.setItem('PasswordResetToken', q.passwordResetToken);
               alert("You have been sent an email to reset your password!!");
 
-              _this64.router.navigateByUrl('reset-password');
+              _this74.router.navigateByUrl('reset-password');
             } else {
               alert(q.errorMessage);
             }
@@ -8282,17 +9008,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.myFundiService = myFundiService;
         this.fundi = {};
         this.client = {};
+        this.unitMaterialCost = 0;
+        this.unitMaterialQuantity = 0;
+        this.unitLabourCost = 0;
+        this.unitLabourQuantity = 0;
+        this.unitPermitInspectionCost = 0;
+        this.unitPermitInspectionQuantity = 0;
       }
 
       _createClass(FundiContractComponent, [{
+        key: "updateClientAddress",
+        value: function updateClientAddress($event) {
+          this.clientFundiContract.clientAddressId = $event;
+        }
+      }, {
+        key: "updateFundiAddress",
+        value: function updateFundiAddress($event) {
+          this.clientFundiContract.fundiAddressId = $event;
+        }
+      }, {
         key: "selectContract",
         value: function selectContract($event) {
-          var _this65 = this;
+          var _this75 = this;
 
           var crtObs = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
           crtObs.map(function (q) {
-            _this65.clientFundiContract = q;
+            _this75.clientFundiContract = q;
           }).subscribe();
+          $event.preventDefault();
+        }
+      }, {
+        key: "calculateCost",
+        value: function calculateCost($event) {
+          this.clientFundiContract.agreedCost = this.unitMaterialCost * this.unitMaterialQuantity + this.unitLabourCost * this.unitLabourQuantity + this.unitPermitInspectionCost * this.unitPermitInspectionQuantity;
           $event.preventDefault();
         }
       }, {
@@ -8330,14 +9078,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this66 = this;
+          var _this76 = this;
 
+          this.unitMaterialCost = 0;
+          this.unitMaterialQuantity = 0;
+          this.unitLabourCost = 0;
+          this.unitLabourQuantity = 0;
+          this.unitPermitInspectionCost = 0;
+          this.unitPermitInspectionQuantity = 0;
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var curDate = new Date();
           this.clientFundiContract = {
             clientFundiContractId: -1,
             clientProfileId: -1,
+            fundiAddressId: 0,
+            clientAddressId: 0,
             clientUsername: "",
             clientFirstName: "",
             clientLastName: "",
@@ -8348,34 +9104,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             agreedStartDate: this.formatDate(curDate),
             agreedEndDate: this.formatDate(curDate),
             agreedCost: 0,
+            jobId: 0,
             contractualDescription: "",
             isSignedByClient: true,
             isSignedByFundi: false,
             isCompleted: false,
             isSignedOffByClient: false,
-            notesForNotice: ""
+            notesForNotice: "",
+            date1stPayment: this.formatDate(curDate),
+            date2ndPayment: this.formatDate(curDate),
+            date3rdPayment: this.formatDate(curDate),
+            date4thPayment: this.formatDate(curDate),
+            firstPaymentAmount: 0,
+            secondPaymentAmount: 0,
+            thirdPaymentAmount: 0,
+            forthPaymentAmount: 0
           };
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           resObs.map(function (fundiProf) {
             debugger;
-            _this66.fundi = fundiProf;
+            _this76.fundi = fundiProf;
 
-            var clientContsObs = _this66.myFundiService.GetFundiContractsByUsername(_this66.userDetails.username);
+            var clientContsObs = _this76.myFundiService.GetFundiContractsByUsername(_this76.userDetails.username);
 
             clientContsObs.map(function (cts) {
-              _this66.clientContracts = cts;
-              jQuery('div#fundiContract-wrapper select#clientFundiContractId option').remove();
+              _this76.clientContracts = cts;
+              jQuery('div.fundiContract-wrapper select#clientFundiContractId option').remove();
               var optionElem = document.createElement('option');
               optionElem.selected = true;
               optionElem.value = 0 .toString();
               optionElem.text = "Select Client Fundi Contract";
-              document.querySelector('div#fundiContract-wrapper select#clientFundiContractId').append(optionElem);
+              document.querySelector('div.fundiContract-wrapper select#clientFundiContractId').append(optionElem);
               ;
               cts.forEach(function (c, index) {
                 var optionElem = document.createElement('option');
                 optionElem.value = c.clientFundiContractId.toString();
                 optionElem.text = c.clientFirstName + " " + c.clientLastName + " : " + c.fundiFirstName + " " + c.fundiLastName + " , " + c.agreedStartDate + " , #" + c.clientFundiContractId;
-                document.querySelector('div#fundiContract-wrapper select#clientFundiContractId').append(optionElem);
+                document.querySelector('div.fundiContract-wrapper select#clientFundiContractId').append(optionElem);
               });
             }).subscribe();
           }).subscribe();
@@ -8403,7 +9168,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var hasFoundSelectsOnPage = false;
 
           if (!curthis.hasPopulatedPage) {
-            var selects = jQuery('div#fundiContract-wrapper select');
+            var selects = jQuery('div.fundiContract-wrapper select');
 
             if (selects && selects.length > 0) {
               hasFoundSelectsOnPage = true;
@@ -8421,7 +9186,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
             debugger;
-            jQuery('div#fundiContract-wrapper select').each(function (ind, sel) {
+            jQuery('div.fundiContract-wrapper select').each(function (ind, sel) {
               var options = jQuery(sel).children('option');
               var vals = [];
               jQuery(options).each(function (id, el) {
@@ -8531,7 +9296,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this67 = this;
+          var _this77 = this;
 
           if (isNaN(this.profileId) || this.profileId == 0) {
             var profileUserDetails = JSON.parse(localStorage.getItem("profileUserDetails"));
@@ -8541,12 +9306,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var levelEngObs = this.myFundiService.GetFundiLevelOfEngagement(this.profileId);
               levelEngObs.map(function (fundiEngagements) {
                 var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                _this67.currentFundiNumbOfAssignments = numberOfAssignments;
+                _this77.currentFundiNumbOfAssignments = numberOfAssignments;
                 var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
-                jQuery("fundi-engagement#engagement-" + _this67.profileId + " div#indicator").css('height', '2%');
-                jQuery("fundi-engagement#engagement-" + _this67.profileId + " div#indicator").css('position', 'absolute');
-                jQuery("fundi-engagement#engagement-" + _this67.profileId + " div#indicator").css('top', top);
-                jQuery("fundi-engagement#engagement-" + _this67.profileId + " div#indicator").css('display', 'block');
+                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('height', '2%');
+                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('position', 'absolute');
+                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('top', top);
+                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('display', 'block');
               }).subscribe();
             } else {
               var userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -8554,11 +9319,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               fundiProfObs.map(function (fprof) {
                 var fundiProfile = fprof;
 
-                var levelEngObs = _this67.myFundiService.GetFundiLevelOfEngagement(fundiProfile.fundiProfileId);
+                var levelEngObs = _this77.myFundiService.GetFundiLevelOfEngagement(fundiProfile.fundiProfileId);
 
                 levelEngObs.map(function (fundiEngagements) {
                   var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                  _this67.currentFundiNumbOfAssignments = numberOfAssignments;
+                  _this77.currentFundiNumbOfAssignments = numberOfAssignments;
                   var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
                   jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('height', '2%');
                   jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('position', 'absolute');
@@ -8571,22 +9336,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var _fundiProfObs = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());
 
             _fundiProfObs.map(function (fprof) {
-              _this67.profile = fprof;
+              _this77.profile = fprof;
 
-              var levelEngObs = _this67.myFundiService.GetFundiLevelOfEngagement(_this67.profileId);
+              var levelEngObs = _this77.myFundiService.GetFundiLevelOfEngagement(_this77.profileId);
 
               levelEngObs.map(function (fundiEngagements) {
                 var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                _this67.currentFundiNumbOfAssignments = numberOfAssignments;
+                _this77.currentFundiNumbOfAssignments = numberOfAssignments;
                 var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this67.profileId + ' div#indicator').css('height', '2%');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this67.profileId + ' div#indicator').css('position', 'absolute');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this67.profileId + ' div#indicator').css('top', top);
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this67.profileId + ' div#indicator').css('display', 'block');
-                jQuery("fundi-engagement#engagement-" + _this67.profileId + " div#indicator").css('height', '2%');
-                jQuery("fundi-engagement#engagement-" + _this67.profileId + " div#indicator").css('position', 'absolute');
-                jQuery("fundi-engagement#engagement-" + _this67.profileId + " div#indicator").css('top', top);
-                jQuery("fundi-engagement#engagement-" + _this67.profileId + " div#indicator").css('display', 'block');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this77.profileId + ' div#indicator').css('height', '2%');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this77.profileId + ' div#indicator').css('position', 'absolute');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this77.profileId + ' div#indicator').css('top', top);
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this77.profileId + ' div#indicator').css('display', 'block');
+                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('height', '2%');
+                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('position', 'absolute');
+                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('top', top);
+                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('display', 'block');
               }).subscribe();
             }).subscribe();
           }
@@ -8613,6 +9378,288 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! raw-loader!./fundiengagement.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-engagement/fundiengagement.component.html"))["default"]
     }), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]])], FundiEngagementComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/fundi-rating/fundirating.component.ts":
+  /*!*******************************************************!*\
+    !*** ./src/app/fundi-rating/fundirating.component.ts ***!
+    \*******************************************************/
+
+  /*! exports provided: FundiRatingComponent */
+
+  /***/
+  function srcAppFundiRatingFundiratingComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FundiRatingComponent", function () {
+      return FundiRatingComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../services/myFundiService */
+    "./src/services/myFundiService.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../services/AddressLocationGeoCodeService */
+    "./src/services/AddressLocationGeoCodeService.ts");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var FundiRatingComponent = /*#__PURE__*/function () {
+      function FundiRatingComponent(myFundiService, addressLocationService, router) {
+        _classCallCheck(this, FundiRatingComponent);
+
+        this.myFundiService = myFundiService;
+        this.addressLocationService = addressLocationService;
+        this.router = router;
+        this.hasGotRating = false;
+        this.hasAddedAutoComplete = false;
+        this.averageFundiRating = 0;
+        this.userDetails = {};
+      }
+
+      _createClass(FundiRatingComponent, [{
+        key: "decoderUrl",
+        value: function decoderUrl(url) {
+          return decodeURIComponent(url);
+        }
+      }, {
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this78 = this;
+
+          debugger;
+          this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+          this.fundiUser = JSON.parse(localStorage.getItem("FundiUserTo"));
+          this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+          this.profileId = parseInt(JSON.parse(localStorage.getItem("RatingProfileId")));
+          this.jobId = parseInt(JSON.parse(localStorage.getItem("ContractJobId")));
+
+          if (this.profileId > 0) {
+            var prfObs = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());
+            prfObs.map(function (q) {
+              _this78.profile = q;
+              _this78.profileId = _this78.profile.fundiProfileId;
+
+              _this78.getFundiWorkCategoriesByProfileId(_this78.profileId);
+
+              _this78.generateFundiRatings();
+            }).subscribe();
+          }
+        }
+      }, {
+        key: "runAutoCompleteOnSelects",
+        value: function runAutoCompleteOnSelects(curthis) {
+          if (curthis.jobs && curthis.jobs.length > 0) {
+            //Check For Dom Change and Add auto complete to select elements
+            var hasFoundSelectsOnPage = false;
+            var selects = jQuery('div#clientfundisearch-wrapper select');
+
+            if (selects && selects.length > 0) {
+              hasFoundSelectsOnPage = true;
+            }
+
+            if (hasFoundSelectsOnPage) {
+              jQuery(selects.each(function (ind, elem) {
+                jQuery(elem).parent('ul').css('background', 'white');
+                jQuery(elem).parent('ul').css('z-index', '100');
+                var id = 'autoComplete' + jQuery(elem).attr('id');
+                jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + "".concat(id) + " /><br/>");
+              }));
+              hasFoundSelectsOnPage = false;
+            } //Check For Dom Change and Add auto complete to select elements
+
+
+            jQuery('select').each(function (ind, sel) {
+              var options = jQuery(sel).children('option');
+              var vals = [];
+              jQuery(options).each(function (id, el) {
+                var optionText = jQuery(el).html();
+                vals.push(optionText);
+              }); //options is source of auto complete:
+
+              var jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+              jQueryinpId.autocomplete({
+                source: vals
+              });
+              jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                  return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+              });
+            });
+            curthis.hasPopulatedPage = true;
+            clearTimeout(curthis.setTo);
+          }
+        }
+      }, {
+        key: "ngAfterViewChecked",
+        value: function ngAfterViewChecked() {
+          if (this.profile) {
+            jQuery('div.rate,span.rate').rateit({
+              min: 0,
+              max: 5,
+              step: 1,
+              starwidth: 16,
+              starheight: 16,
+              resetable: true
+            });
+            jQuery('div.rateit, span.rateit').rateit();
+            this.profileId = this.profile.fundiProfileId;
+            jQuery('span#averageFundiRating-' + this.profileId).rateit('value', this.averageFundiRating);
+          }
+        }
+      }, {
+        key: "generateFundiRatings",
+        value: function generateFundiRatings() {
+          var _this79 = this;
+
+          var curthis = this;
+          var wCatsSubCatsObs = this.myFundiService.GetFundiWorkCategoriesAndSubCategoriesByJobId(this.jobId);
+
+          if (this.profile) {
+            var fundiRatingsObs = this.myFundiService.GetFundiRatings(this.fundiUser.username);
+            wCatsSubCatsObs.map(function (q) {
+              _this79.jobWorkCategoryDetails = q;
+              fundiRatingsObs.map(function (r) {
+                _this79.fundiRatings = r;
+
+                _this79.fundiRatings.forEach(function (q) {
+                  _this79.averageFundiRating += q.rating;
+                  jQuery('span#averageFundiRating-' + _this79.profile.fundiProfileId).rateit('value', _this79.averageFundiRatings);
+                });
+
+                _this79.averageFundiRating = parseInt((_this79.averageFundiRating / r.length).toString());
+              }).subscribe();
+            }).subscribe();
+          } else {
+            alert("Fundi has no Profile");
+          }
+        }
+      }, {
+        key: "rateFundi",
+        value: function rateFundi($event) {
+          var _this80 = this;
+
+          var button = $event.target;
+          var review = jQuery(button).parent('form').find('textarea').val();
+          var profileId = jQuery(button).parent('form').attr('id').split('-')[1];
+          var rating = jQuery('div#fundiRating-' + profileId).rateit('value');
+          var workCategory = jQuery(button).parent('form').find('select').val();
+          alert('rated: ' + rating);
+          var userIdObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
+          userIdObs.map(function (userId) {
+            var fundiRated = {
+              fundiProfileId: profileId,
+              rating: rating,
+              review: review,
+              userId: userId,
+              workCategoryType: workCategory
+            };
+
+            var fundiRatedObs = _this80.myFundiService.RateFundiByProfileId(fundiRated);
+
+            fundiRatedObs.map(function (res) {
+              alert(res.message);
+            }).subscribe();
+          }).subscribe();
+        }
+      }, {
+        key: "getFundiWorkCategoriesByProfileId",
+        value: function getFundiWorkCategoriesByProfileId(profileId) {
+          var _this81 = this;
+
+          var fundiWorkCatObs = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
+          fundiWorkCatObs.map(function (res) {
+            var fundiWorkCategories = res;
+            var ul = jQuery(document).find("ul#".concat(profileId, "-workCategory"));
+            var ulskillsChildren = jQuery(document).find("ul#".concat(profileId, "-workCategory li")); //ulWorkCatChildren.remove();
+
+            for (var workCat in fundiWorkCategories) {
+              var li = document.createElement('li');
+              li.innerHTML = fundiWorkCategories[workCat];
+              jQuery(ul).append(li);
+            }
+
+            _this81.getFundiSkillsByProfileId(profileId);
+          }).subscribe();
+        }
+      }, {
+        key: "getFundiSkillsByProfileId",
+        value: function getFundiSkillsByProfileId(profileId) {
+          var fundiSkillsObs = this.myFundiService.GetFundiSkillsByProfileId(profileId);
+          fundiSkillsObs.map(function (res) {
+            var fundiSkills = res;
+            var ul = jQuery(document).find("ul#".concat(profileId, "-skills"));
+            var ulskillsChildren = jQuery(document).find("ul#".concat(profileId, "-skills li")); //ulskillsChildren.remove();
+
+            var li = document.createElement('li');
+            li.innerHTML = fundiSkills[0];
+            jQuery(ul).append(li);
+          }).subscribe();
+        }
+      }]);
+
+      return FundiRatingComponent;
+    }();
+
+    FundiRatingComponent.ctorParameters = function () {
+      return [{
+        type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]
+      }, {
+        type: _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_3__["AddressLocationGeoCodeService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }];
+    };
+
+    FundiRatingComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+      selector: 'fundi-rating',
+      template: __importDefault(__webpack_require__(
+      /*! raw-loader!./fundirating.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/fundi-rating/fundirating.component.html"))["default"],
+      providers: [_services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_3__["AddressLocationGeoCodeService"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"]]
+    }), __metadata("design:paramtypes", [_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"], _services_AddressLocationGeoCodeService__WEBPACK_IMPORTED_MODULE_3__["AddressLocationGeoCodeService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])], FundiRatingComponent);
     /***/
   },
 
@@ -8698,7 +9745,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this68 = this;
+          var _this82 = this;
 
           this.numberOfResultsPerPage = 2;
           this.currentPage = 1;
@@ -8719,14 +9766,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jQuery('#fundiSearchForm div#fundiCategories').children().remove();
           var workCatObs = this.myFundiService.GetWorkCategories();
           workCatObs.map(function (workCats) {
-            _this68.workCategories = workCats;
-            _this68.userDetails = JSON.parse(localStorage.getItem("userDetails"));
-            _this68.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+            _this82.workCategories = workCats;
+            _this82.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+            _this82.userRoles = JSON.parse(localStorage.getItem("userRoles"));
 
-            var resObs = _this68.myFundiService.GetFundiProfile(_this68.userDetails.username);
+            var resObs = _this82.myFundiService.GetFundiProfile(_this82.userDetails.username);
 
             resObs.map(function (fundiProf) {
-              var fundiSubsObs = _this68.myFundiService.GetAllFundiSubscriptions(fundiProf.fundiProfileId);
+              var fundiSubsObs = _this82.myFundiService.GetAllFundiSubscriptions(fundiProf.fundiProfileId);
 
               fundiSubsObs.map(function (q) {
                 q.forEach(function (sub, ind) {
@@ -8734,7 +9781,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   var divFundiCategories = document.querySelector('#fundiSearchForm div#fundiCategories');
 
                   var _loop3 = function _loop3(id) {
-                    _this68.workCategories.forEach(function (cat) {
+                    _this82.workCategories.forEach(function (cat) {
                       if (sub.workCategoryAndSubCategoryIds[id].workCategoryId == cat.workCategoryId) {
                         var chBoxLabel = document.createElement('label');
                         chBoxLabel.textContent = cat.workCategoryType;
@@ -8771,7 +9818,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         ul.appendChild(li);
                         divFundiCategories.appendChild(ul);
 
-                        var workSubCatObs = _this68.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
+                        var workSubCatObs = _this82.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
 
                         workSubCatObs.map(function (workSubCats) {
                           var workSubCategories = workSubCats;
@@ -8868,7 +9915,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "seachJobsByCurrentGeoLocation",
         value: function seachJobsByCurrentGeoLocation($event) {
-          var _this69 = this;
+          var _this83 = this;
 
           this.numberOfResultsSet = 20;
           this.numberOfResultSetToSkip = 0;
@@ -8899,7 +9946,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var fundiLocObs = this.myFundiService.GetFundiRealTimeLocationsByUsername(this.userDetails.username.toLowerCase());
           fundiLocObs.map(function (flocMon) {
             if (flocMon) {
-              var profObs = _this69.myFundiService.GetFundiProfileByUsername(flocMon.username);
+              var profObs = _this83.myFundiService.GetFundiProfileByUsername(flocMon.username);
 
               profObs.map(function (pr) {
                 if (pr) {
@@ -8909,23 +9956,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   };
                   viewObjects[0].fundiProfileId = pr.fundiProfileId;
 
-                  var fundiJobsObs = _this69.myFundiService.GetJobsByCategoriesAndFundiUserGeoLocation(viewObjects, pr.fundiProfileId, _this69.distanceKmLimitApart, _this69.numberOfResultSetToSkip, _this69.numberOfResultsSet);
+                  var fundiJobsObs = _this83.myFundiService.GetJobsByCategoriesAndFundiUserGeoLocation(viewObjects, pr.fundiProfileId, _this83.distanceKmLimitApart, _this83.numberOfResultSetToSkip, _this83.numberOfResultsSet);
 
-                  _this69.numberOfResultSetToSkip += _this69.numberOfResultsSet + 1;
+                  _this83.numberOfResultSetToSkip += _this83.numberOfResultsSet + 1;
                   fundiJobsObs.map(function (q) {
-                    if (q && q.length > 0 && _this69.isSearchingOnLocality) {
-                      _this69.listToShow = q;
+                    if (q && q.length > 0 && _this83.isSearchingOnLocality) {
+                      _this83.listToShow = q;
 
-                      _this69.showFirstPage();
+                      _this83.showFirstPage();
                     } else {
-                      _this69.numberOfResultSetToSkip = 0;
+                      _this83.numberOfResultSetToSkip = 0;
                       alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                     }
 
-                    _this69.isSearchingOnLocality = false;
+                    _this83.isSearchingOnLocality = false;
                   }).subscribe();
                 } else {
-                  _this69.numberOfResultSetToSkip = 0;
+                  _this83.numberOfResultSetToSkip = 0;
                   alert("Your current location is not being monitored on map!!\nPlease use android app to start monitoring.");
                 }
               }).subscribe();
@@ -8936,7 +9983,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "searchJobsByCategories",
         value: function searchJobsByCategories($event) {
-          var _this70 = this;
+          var _this84 = this;
 
           var curthis = this;
           this.fundiJobList = [];
@@ -8965,23 +10012,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           fundiObjs.map(function (q) {
             var locsObj = curthis.myFundiService.GetFundiLocationByFundiProfileId(q.fundiProfileId);
             locsObj.map(function (r) {
-              _this70.fundiLocation = r;
+              _this84.fundiLocation = r;
 
               for (var n = 0; n < viewObjects.length; n++) {
                 viewObjects[n].coordinate.latitude = r.latitude;
                 viewObjects[n].coordinate.longitude = r.longitude;
               }
 
-              var fundiJobsObs = _this70.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, _this70.distanceKmLimitApart, _this70.numberOfResultSetToSkip, _this70.numberOfResultsSet);
+              var fundiJobsObs = _this84.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, _this84.distanceKmLimitApart, _this84.numberOfResultSetToSkip, _this84.numberOfResultsSet);
 
-              _this70.numberOfResultSetToSkip += _this70.numberOfResultsSet + 1;
+              _this84.numberOfResultSetToSkip += _this84.numberOfResultsSet + 1;
               fundiJobsObs.map(function (q) {
                 if (q && q.length > 0) {
-                  _this70.listToShow = q;
+                  _this84.listToShow = q;
 
-                  _this70.showFirstPage();
+                  _this84.showFirstPage();
                 } else {
-                  _this70.numberOfResultSetToSkip = 0;
+                  _this84.numberOfResultSetToSkip = 0;
                   alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                 }
               }).subscribe();
@@ -9070,7 +10117,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getJobPage",
         value: function getJobPage($event) {
-          var _this71 = this;
+          var _this85 = this;
 
           localStorage.removeItem('CurrentJob');
           localStorage.removeItem('CurrentClientUserDetails');
@@ -9081,23 +10128,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jobObs.map(function (job) {
             localStorage.setItem('CurrentJob', JSON.stringify(job));
 
-            var clientObs = _this71.myFundiService.GetClientProfileById(job.clientProfileId);
+            var clientObs = _this85.myFundiService.GetClientProfileById(job.clientProfileId);
 
             clientObs.map(function (clientProfile) {
               localStorage.setItem('CurrentJobClientProfile', JSON.stringify(clientProfile));
 
-              var clientUserObs = _this71.myFundiService.GetClientUserById(clientProfile.userId);
+              var clientUserObs = _this85.myFundiService.GetClientUserById(clientProfile.userId);
 
               clientUserObs.map(function (clientUser) {
                 localStorage.setItem('CurrentClientUserDetails', JSON.stringify(clientUser));
 
-                var currJobWorkCatsObs = _this71.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
+                var currJobWorkCatsObs = _this85.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
 
                 currJobWorkCatsObs.map(function (wCats) {
                   localStorage.setItem('CurrentJobWorkCategories', JSON.stringify(wCats));
 
                   if (clientProfile && job) {
-                    _this71.router.navigateByUrl('job-details');
+                    _this85.router.navigateByUrl('job-details');
                   } else {
                     alert('Job doesn\'t exist!');
                   }
@@ -9110,7 +10157,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFundiWorkCategoriesByProfileId",
         value: function getFundiWorkCategoriesByProfileId(profileId) {
-          var _this72 = this;
+          var _this86 = this;
 
           var fundiWorkCatObs = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
           fundiWorkCatObs.map(function (res) {
@@ -9124,7 +10171,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               jQuery(ul).append(li);
             }
 
-            _this72.getFundiSkillsByProfileId(profileId);
+            _this86.getFundiSkillsByProfileId(profileId);
           }).subscribe();
         }
       }, {
@@ -9144,13 +10191,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "populateFundiUserDetails",
         value: function populateFundiUserDetails($event, profileId) {
-          var _this73 = this;
+          var _this87 = this;
 
           var userObs = this.myFundiService.GetFundiUserByProfileId(profileId);
           userObs.map(function (res) {
             localStorage.setItem("profileUserDetails", JSON.stringify(res));
 
-            _this73.router.navigateByUrl('/fundiprofile-by-id');
+            _this87.router.navigateByUrl('/fundiprofile-by-id');
           }).subscribe();
           $event.preventDefault();
         }
@@ -9256,7 +10303,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this74 = this;
+          var _this88 = this;
 
           this.profileUserDetails = JSON.parse(localStorage.getItem("profileUserDetails"));
           this.profileId = this.profileUserDetails.fundiProfileId;
@@ -9266,19 +10313,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var coursesObs = this.myFundiService.GetFundiCourses(this.profileUserDetails.username);
           var ratingsObs = this.myFundiService.GetFundiRatings(this.profileUserDetails.username);
           resObs.map(function (fundiProf) {
-            _this74.profile = fundiProf;
+            _this88.profile = fundiProf;
             ;
             ratingsObs.map(function (ratings) {
-              _this74.fundiRatings = ratings;
+              _this88.fundiRatings = ratings;
             }).subscribe();
             coursesObs.map(function (courses) {
-              _this74.courses = courses;
+              _this88.courses = courses;
             }).subscribe();
             workCatObs.map(function (workCats) {
-              _this74.workCategories = workCats;
+              _this88.workCategories = workCats;
             }).subscribe();
             certsObs.map(function (certs) {
-              _this74.certifications = certs;
+              _this88.certifications = certs;
             }).subscribe();
             localStorage.removeItem("profileUserDetails");
           }).subscribe();
@@ -9383,7 +10430,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this75 = this;
+          var _this89 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -9403,7 +10450,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.workSubCategories = [];
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this75.workCategories = wcs;
+            _this89.workCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workCategoryId.toString();
@@ -9413,10 +10460,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var selectedWorkCatId = parseInt(jQuery('select#subcworkCategoryId > option:selected').val());
             debugger;
 
-            var workSubCategoriesObs = _this75.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(selectedWorkCatId);
+            var workSubCategoriesObs = _this89.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(selectedWorkCatId);
 
             workSubCategoriesObs.map(function (wcs) {
-              _this75.workSubCategories = wcs;
+              _this89.workSubCategories = wcs;
               ;
               wcs.forEach(function (c, index, wcs) {
                 var optionElem = document.createElement('option');
@@ -9451,21 +10498,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (!fundiProf) {
               alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
 
-              _this75.router.navigateByUrl('/manage-profile');
+              _this89.router.navigateByUrl('/manage-profile');
 
               return;
             } else {
-              _this75.fundi = fundiProf;
-              _this75.fundi.subscriptionFee = _this75.subscriptionFee;
-              _this75.fundi.subscriptionName = "Fundi User ".concat(_this75.userDetails.firstName, " ").concat(_this75.userDetails.lastName, " Subscription for 31 days");
-              _this75.fundi.subscriptionDescription = "Attempting Monthly Payment!";
+              _this89.fundi = fundiProf;
+              _this89.fundi.subscriptionFee = _this89.subscriptionFee;
+              _this89.fundi.subscriptionName = "Fundi User ".concat(_this89.userDetails.firstName, " ").concat(_this89.userDetails.lastName, " Subscription for 31 days");
+              _this89.fundi.subscriptionDescription = "Attempting Monthly Payment!";
 
-              var userIdObs = _this75.myFundiService.GetUserGuidId(_this75.userDetails.username);
+              var userIdObs = _this89.myFundiService.GetUserGuidId(_this89.userDetails.username);
 
               userIdObs.map(function (q) {
-                _this75.fundi.userId = q;
+                _this89.fundi.userId = q;
 
-                var subscrObs = _this75.myFundiService.GetAllFundiSubscriptions(_this75.fundi.fundiProfileId);
+                var subscrObs = _this89.myFundiService.GetAllFundiSubscriptions(_this89.fundi.fundiProfileId);
 
                 subscrObs.map(function (subs) {
                   var opt = document.createElement('option');
@@ -9475,32 +10522,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   subscrSelect.appendChild(opt);
 
                   if (subs.length > 0) {
-                    _this75.subscriptionFeeExpense = _this75.subscription = subs[0];
-                    _this75.fundi.subscriptionFee = _this75.subscription.subscriptionFee;
-                    _this75.startingDate = _this75.formatDate(subs[0].startDate);
+                    _this89.subscriptionFeeExpense = _this89.subscription = subs[0];
+                    _this89.fundi.subscriptionFee = _this89.subscription.subscriptionFee;
+                    _this89.startingDate = _this89.formatDate(subs[0].startDate);
 
-                    _this75.appendCategoriesAndSubCategoriesToUi();
+                    _this89.appendCategoriesAndSubCategoriesToUi();
                   } else {
                     var dateNow = new Date();
-                    _this75.startingDate = _this75.formatDate(dateNow);
-                    _this75.subscription = _this75.subscriptionFeeExpense;
-                    _this75.subscription.monthlySubscriptionId = 0;
+                    _this89.startingDate = _this89.formatDate(dateNow);
+                    _this89.subscription = _this89.subscriptionFeeExpense;
+                    _this89.subscription.monthlySubscriptionId = 0;
                   }
 
                   subs.forEach(function (sub, ind) {
                     var opt1 = document.createElement('option');
                     opt1.value = sub.monthlySubscriptionId.toString();
-                    opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this75.formatDate(sub.startDate);
+                    opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this89.formatDate(sub.startDate);
                     subscrSelect.appendChild(opt1);
                   });
 
-                  var lastMonthlySubsObs = _this75.myFundiService.GetFundiLastSubscriptionFees(_this75.subscription.userId);
+                  var lastMonthlySubsObs = _this89.myFundiService.GetFundiLastSubscriptionFees(_this89.subscription.userId);
 
                   lastMonthlySubsObs.map(function (q) {
                     debugger;
 
                     if (q.result) {
-                      _this75.fundi.subscriptionFee = q.subscriptionFee;
+                      _this89.fundi.subscriptionFee = q.subscriptionFee;
                     }
                   }).subscribe();
                 }).subscribe();
@@ -9511,13 +10558,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getWorkSubCategoriesByWorkCategoryId",
         value: function getWorkSubCategoriesByWorkCategoryId() {
-          var _this76 = this;
+          var _this90 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workCategory.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
             //clear the workCategory options menu and add new options:
             jQuery('select#subcworkSubCategoryId option').remove();
-            _this76.workSubCategories = wcs;
+            _this90.workSubCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workSubCategoryId.toString();
@@ -9529,12 +10576,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkSubCategory",
         value: function selectworkSubCategory($event) {
-          var _this77 = this;
+          var _this91 = this;
 
           var workSubCatValue = this.workSubCategory.workSubCategoryId;
           var actualResult = this.myFundiService.GetworkSubCategoryById(workSubCatValue);
           actualResult.map(function (p) {
-            _this77.workSubCategory = p;
+            _this91.workSubCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
           $event.preventDefault();
@@ -9600,7 +10647,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "appendCategoriesAndSubCategoriesToUi",
         value: function appendCategoriesAndSubCategoriesToUi() {
-          var _this78 = this;
+          var _this92 = this;
 
           var curThis = this;
           var ulSelectedCategories = document.querySelector('div#fundiSubscription-wrapper ul#ulistWorkCategories');
@@ -9610,10 +10657,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             jQuery('select#subcworkCategoryId').val(curThis.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString()).trigger('change');
 
             var _loop5 = function _loop5(s) {
-              res = _this78.myFundiService.GetworkSubCategoryById(parseInt(_this78.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s])).toPromise().then(function (q) {
+              res = _this92.myFundiService.GetworkSubCategoryById(parseInt(_this92.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s])).toPromise().then(function (q) {
                 var li = document.createElement("li");
-                li.setAttribute('id', "".concat(_this78.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString(), ",").concat(_this78.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s].toString()));
-                li.textContent = jQuery('select#subcworkCategoryId > option[value="' + _this78.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId + '"]').text() + " [".concat(q.workSubCategoryType, "]");
+                li.setAttribute('id', "".concat(_this92.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString(), ",").concat(_this92.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s].toString()));
+                li.textContent = jQuery('select#subcworkCategoryId > option[value="' + _this92.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId + '"]').text() + " [".concat(q.workSubCategoryType, "]");
                 ulSelectedCategories.appendChild(li);
               });
             };
@@ -9664,15 +10711,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectSubscription",
         value: function selectSubscription($event) {
-          var _this79 = this;
+          var _this93 = this;
 
           var subObs = this.myFundiService.GetFundiSubscription(this.subscription.monthlySubscriptionId);
           subObs.map(function (q) {
-            _this79.subscription = _this79.subscriptionFeeExpense = q;
-            _this79.fundi.subscriptionFee = _this79.subscription.subscriptionFee;
-            _this79.startingDate = _this79.formatDate(q.startDate);
+            _this93.subscription = _this93.subscriptionFeeExpense = q;
+            _this93.fundi.subscriptionFee = _this93.subscription.subscriptionFee;
+            _this93.startingDate = _this93.formatDate(q.startDate);
 
-            _this79.appendCategoriesAndSubCategoriesToUi();
+            _this93.appendCategoriesAndSubCategoriesToUi();
           }).subscribe();
           $event.preventDefault();
         }
@@ -9744,7 +10791,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "paySubscriptionMonthlyFeeWithAirTel",
         value: function paySubscriptionMonthlyFeeWithAirTel($event) {
-          var _this80 = this;
+          var _this94 = this;
 
           if (!this.checkFundiProfileExists()) {
             this.router.navigateByUrl('/manage-profile');
@@ -9780,7 +10827,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               };
               console.log('Response received: ' + q.mtnAirtelBaseUrl);
 
-              var resObs = _this80.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+              var resObs = _this94.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
 
               resObs.map(function (q) {
                 console.log("Was Successful: " + q.success);
@@ -9796,7 +10843,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "paySubscriptionMonthlyFeeWithMtn",
         value: function paySubscriptionMonthlyFeeWithMtn($event) {
-          var _this81 = this;
+          var _this95 = this;
 
           if (!this.checkFundiProfileExists()) {
             this.router.navigateByUrl('/manage-profile');
@@ -9832,7 +10879,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               };
               console.log('Response received: ' + q.mtnAirtelBaseUrl);
 
-              var resObs = _this81.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+              var resObs = _this95.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
 
               resObs.map(function (q) {
                 console.log("Was Successful: " + q.success);
@@ -10138,7 +11185,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loginUser",
         value: function loginUser() {
-          var _this82 = this;
+          var _this96 = this;
 
           localStorage.setItem("userRoles", '');
           this.userDetail.authToken = localStorage.getItem('authToken');
@@ -10150,7 +11197,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (q.clientDueToPaySubscription) {
               localStorage.setItem("ClientLoginDetails", JSON.stringify(q));
 
-              _this82.router.navigateByUrl('/client-subscription');
+              _this96.router.navigateByUrl('/client-subscription');
 
               return;
             }
@@ -10160,31 +11207,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 alert(q.message);
               }
 
-              _this82.userDetail.firstName = q.firstName;
-              _this82.userDetail.lastName = q.lastName;
-              _this82.userDetail.userId = q.userId;
-              _this82.userDetail.username = q.username;
-              _this82.userDetail.email = q.username;
-              localStorage.setItem("userDetails", JSON.stringify(_this82.userDetail));
+              _this96.userDetail.firstName = q.firstName;
+              _this96.userDetail.lastName = q.lastName;
+              _this96.userDetail.userId = q.userId;
+              _this96.userDetail.username = q.username;
+              _this96.userDetail.email = q.username;
+              localStorage.setItem("userDetails", JSON.stringify(_this96.userDetail));
 
               if (q.authToken) {
                 localStorage.setItem('authToken', q.authToken);
               }
 
-              _this82.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = true;
+              _this96.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = true;
 
               if (q.isAdministrator) {
-                _this82.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = true;
+                _this96.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = true;
               }
 
-              localStorage.setItem("actUserStatus", JSON.stringify(_this82.actUserStatus));
+              localStorage.setItem("actUserStatus", JSON.stringify(_this96.actUserStatus));
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').css('display', 'block');
-              jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("logged in as: " + _this82.userDetail.emailAddress);
+              jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("logged in as: " + _this96.userDetail.emailAddress);
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].isLoginPage = false;
 
-              _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail(_this82.userDetail.emailAddress);
+              _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail(_this96.userDetail.emailAddress);
 
-              _this82.ensureUserRolesGot();
+              _this96.ensureUserRolesGot();
             } else {
               if (q.message) {
                 alert(q.message);
@@ -10193,8 +11240,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').css('display', 'none');
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("");
               alert('Login Failed. Unknown User');
-              _this82.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = false;
-              _this82.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = false;
+              _this96.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = false;
+              _this96.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = false;
 
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail('');
 
@@ -10207,7 +11254,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ensureUserRolesGot",
         value: function ensureUserRolesGot() {
-          var _this83 = this;
+          var _this97 = this;
 
           var userRolesStr = localStorage.getItem("userRoles");
 
@@ -10221,10 +11268,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.userRoles == null || this.userRoles.length < 1) {
             this.myFundiService.GetAllUserRoles(_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].clientEmailAddress).map(function (userroles) {
               localStorage.setItem("userRoles", JSON.stringify(userroles));
-              _this83.userRoles = userroles;
+              _this97.userRoles = userroles;
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles = userroles;
 
-              _this83.router.navigateByUrl("/manage-profile");
+              _this97.router.navigateByUrl("/manage-profile");
             }).subscribe();
           }
         }
@@ -10350,7 +11397,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var NavMenuComponent = /*#__PURE__*/function () {
       function NavMenuComponent(myFundiService, router) {
-        var _this84 = this;
+        var _this98 = this;
 
         _classCallCheck(this, NavMenuComponent);
 
@@ -10363,7 +11410,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router.events.filter(function (event) {
           return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__["NavigationEnd"];
         }).subscribe(function (val) {
-          _this84.myInit();
+          _this98.myInit();
         });
       }
 
@@ -10385,7 +11432,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "verifyLoggedInUser",
         value: function verifyLoggedInUser() {
-          var _this85 = this;
+          var _this99 = this;
 
           this.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn;
           this.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator;
@@ -10399,19 +11446,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].SetUserEmail(p.name);
 
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this85.actUserStatus.isUserLoggedIn = true;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this99.actUserStatus.isUserLoggedIn = true;
 
                 if (p.isAdministrator) {
-                  _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this85.actUserStatus.isUserAdministrator = true;
+                  _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this99.actUserStatus.isUserAdministrator = true;
                 }
 
                 localStorage.removeItem("actUserStatus");
-                localStorage.setItem("actUserStatus", JSON.stringify(_this85.actUserStatus));
+                localStorage.setItem("actUserStatus", JSON.stringify(_this99.actUserStatus));
 
-                _this85.ensureUserRolesGot();
+                _this99.ensureUserRolesGot();
               } else {
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this85.actUserStatus.isUserLoggedIn = false;
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this85.actUserStatus.isUserAdministrator = false;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this99.actUserStatus.isUserLoggedIn = false;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this99.actUserStatus.isUserAdministrator = false;
                 localStorage.removeItem("userRoles");
                 localStorage.removeItem("actUserStatus");
                 localStorage.removeItem('authToken');
@@ -10434,7 +11481,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logOut",
         value: function logOut() {
-          var _this86 = this;
+          var _this100 = this;
 
           localStorage.removeItem('authToken');
           localStorage.removeItem("userDetails");
@@ -10451,15 +11498,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             jquery__WEBPACK_IMPORTED_MODULE_3__('span#loginName').css('display', 'none');
             localStorage.removeItem("userRoles");
             localStorage.removeItem("actUserStatus");
-            _this86.actUserStatus.isUserLoggedIn = false;
-            _this86.actUserStatus.isUserAdministrator = false;
-            _this86.userRoles = [];
+            _this100.actUserStatus.isUserLoggedIn = false;
+            _this100.actUserStatus.isUserAdministrator = false;
+            _this100.userRoles = [];
           }).subscribe();
         }
       }, {
         key: "ensureUserRolesGot",
         value: function ensureUserRolesGot() {
-          var _this87 = this;
+          var _this101 = this;
 
           if (this.actUserStatus.isUserLoggedIn) {
             var userRolesStr = JSON.parse(localStorage.getItem("userRoles"));
@@ -10473,7 +11520,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (this.userRoles == null || this.userRoles.length < 1) {
               this.myFundiService.GetAllUserRoles(_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress).map(function (userroles) {
                 localStorage.setItem("userRoles", JSON.stringify(userroles));
-                _this87.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].userRoles = userroles;
+                _this101.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].userRoles = userroles;
               }).subscribe();
             }
           }
@@ -10596,15 +11643,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "createUserRole",
         value: function createUserRole() {
-          var _this88 = this;
+          var _this102 = this;
 
           var results = this.myFundiService.CreateUserRole(this.newRoleName);
           results.map(function (q) {
             if (q) {
-              alert('Role: ' + _this88.newRoleName + ' Created Successfully!');
+              alert('Role: ' + _this102.newRoleName + ' Created Successfully!');
               return true;
             } else {
-              alert('Failed to Create: ' + _this88.newRoleName + ' Role.');
+              alert('Failed to Create: ' + _this102.newRoleName + ' Role.');
               return false;
             }
           }).subscribe();
@@ -10612,15 +11659,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteUserRole",
         value: function deleteUserRole() {
-          var _this89 = this;
+          var _this103 = this;
 
           var results = this.myFundiService.DeleteUserRole(this.newRoleName);
           results.map(function (q) {
             if (q) {
-              alert('Role: ' + _this89.newRoleName + ' Deleted Successfully!');
+              alert('Role: ' + _this103.newRoleName + ' Deleted Successfully!');
               return true;
             } else {
-              alert('Failed to Delete: ' + _this89.newRoleName + ' Role.');
+              alert('Failed to Delete: ' + _this103.newRoleName + ' Role.');
               return false;
             }
           }).subscribe();
@@ -11004,7 +12051,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProfileCreateComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this90 = this;
+          var _this104 = this;
 
           jQuery('input#locationAddLocationId').css('display', 'none');
           jQuery('input#locationUpdateLocationId').css('display', 'none');
@@ -11019,21 +12066,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
           userGuidObs.map(function (q) {
-            _this90.userGuidId = q;
+            _this104.userGuidId = q;
 
-            var resObs = _this90.myFundiService.GetFundiProfile(_this90.userDetails.username);
+            var resObs = _this104.myFundiService.GetFundiProfile(_this104.userDetails.username);
 
             resObs.map(function (fundiProf) {
               if (fundiProf) {
-                _this90.profile = fundiProf;
+                _this104.profile = fundiProf;
 
-                var curAddObs = _this90.myFundiService.GetLocationById(fundiProf.locationId);
+                var curAddObs = _this104.myFundiService.GetLocationById(fundiProf.locationId);
 
                 curAddObs.map(function (q) {
-                  _this90.location = q;
+                  _this104.location = q;
                 }).subscribe();
               } else {
-                _this90.profile = {
+                _this104.profile = {
                   fundiProfileId: 0,
                   user: null,
                   userId: "",
@@ -11049,7 +12096,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }).subscribe();
           var workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
           workCatObs.map(function (workCats) {
-            _this90.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
+            _this104.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
 
             var selectWorkCategories = document.querySelector('select#workCategoryAndSubCatId');
             var selectWorkCategoriesOptions = document.querySelector('select#workCategoryAndSubCatId option');
@@ -11063,14 +12110,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             option.value = "0,0";
             selectWorkCategories.appendChild(option);
 
-            _this90.workCategories.forEach(function (cat) {
+            _this104.workCategories.forEach(function (cat) {
               var option = document.createElement('option');
               option.textContent = "".concat(cat.workCategory.workCategoryType, ": [").concat(cat.workSubCategory.workSubCategoryType, "]");
               option.value = "".concat(cat.workCategoryId.toString(), ",").concat(cat.workSubCategoryId.toString());
               selectWorkCategories.appendChild(option);
             });
 
-            var listWorkCatObs = _this90.myFundiService.GetFundiWorkCategories(_this90.userDetails.username);
+            var listWorkCatObs = _this104.myFundiService.GetFundiWorkCategories(_this104.userDetails.username);
 
             listWorkCatObs.map(function (q) {
               debugger;
@@ -11141,10 +12188,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkCategory",
         value: function addWorkCategory($event) {
-          var _this91 = this;
+          var _this105 = this;
 
           var selectedWorkCategory = this.workCategories.find(function (workCat) {
-            var workCatsSubCatsAry = _this91.workCategoryAndSubCatId.split(',');
+            var workCatsSubCatsAry = _this105.workCategoryAndSubCatId.split(',');
 
             return workCat.workCategoryId == parseInt(workCatsSubCatsAry[0]) && workCat.workSubCategoryId == parseInt(workCatsSubCatsAry[1]);
           });
@@ -11158,7 +12205,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               li.textContent = selectedWorkCategory.workCategory.workCategoryType + " :[".concat(selectedWorkCategory.workSubCategory.workSubCategoryType, "]");
               ulSelectedCategories.appendChild(li);
 
-              var addWkCatSubCatObs = _this91.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, _this91.userDetails.username);
+              var addWkCatSubCatObs = _this105.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, _this105.userDetails.username);
 
               addWkCatSubCatObs.map(function (q) {
                 if (q) {
@@ -11172,10 +12219,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "removeWorkCategory",
         value: function removeWorkCategory($event) {
-          var _this92 = this;
+          var _this106 = this;
 
           var selectedWorkCategory = this.workCategories.find(function (workCat) {
-            var workCatsSubCatsAry = _this92.workCategoryAndSubCatId.split(',');
+            var workCatsSubCatsAry = _this106.workCategoryAndSubCatId.split(',');
 
             return workCat.workCategoryId == parseInt(workCatsSubCatsAry[0]) && workCat.workSubCategoryId == parseInt(workCatsSubCatsAry[1]);
           });
@@ -11195,12 +12242,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getSelectedLocation",
         value: function getSelectedLocation(locationId) {
-          var _this93 = this;
+          var _this107 = this;
 
           this.profile.locationId = locationId;
           var curAddObs = this.myFundiService.GetLocationById(locationId);
           curAddObs.map(function (q) {
-            _this93.location = q;
+            _this107.location = q;
             alert('Location selected!');
           }).subscribe();
         }
@@ -11305,7 +12352,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this94 = this;
+          var _this108 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) this.userDetails = {};
@@ -11317,27 +12364,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           resObs.map(function (prof) {
-            _this94.profile = prof;
+            _this108.profile = prof;
 
-            var workCatObs = _this94.myFundiService.GetFundiWorkCategories(_this94.userDetails.username);
+            var workCatObs = _this108.myFundiService.GetFundiWorkCategories(_this108.userDetails.username);
 
             workCatObs.map(function (workCats) {
-              _this94.workCategories = workCats;
+              _this108.workCategories = workCats;
 
-              var coursesObs = _this94.myFundiService.GetFundiCourses(_this94.userDetails.username);
+              var coursesObs = _this108.myFundiService.GetFundiCourses(_this108.userDetails.username);
 
               coursesObs.map(function (courses) {
-                _this94.courses = courses;
+                _this108.courses = courses;
 
-                var certsObs = _this94.myFundiService.GetFundiCertifications(_this94.userDetails.username);
+                var certsObs = _this108.myFundiService.GetFundiCertifications(_this108.userDetails.username);
 
                 certsObs.map(function (certs) {
-                  _this94.certifications = certs;
+                  _this108.certifications = certs;
 
-                  var ratingsObs = _this94.myFundiService.GetFundiRatings(_this94.userDetails.username);
+                  var ratingsObs = _this108.myFundiService.GetFundiRatings(_this108.userDetails.username);
 
                   ratingsObs.map(function (ratings) {
-                    _this94.fundiRatings = ratings;
+                    _this108.fundiRatings = ratings;
                   }).subscribe();
                 }).subscribe();
               }).subscribe();
@@ -11464,7 +12511,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(QrCodeComponent, [{
         key: "submitScanToVerify",
         value: function submitScanToVerify() {
-          var _this95 = this;
+          var _this109 = this;
 
           var results = this.myFundiService.VerifyQrcodeScan(this.userDetails);
           results.map(function (res) {
@@ -11474,11 +12521,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               alert("Completed Scan & verified Successfully!!");
               QrCodeComponent_1.currentObject.scanEventHandlers.html5QrcodeScanner.clear();
 
-              _this95.router.navigateByUrl('crud');
+              _this109.router.navigateByUrl('crud');
             } else {
               alert("Completed Scan & Failed to Verify!!\rEnsure you use your right registered Mobile Number.");
 
-              _this95.router.navigateByUrl('logout');
+              _this109.router.navigateByUrl('logout');
             }
           }).subscribe();
         }
@@ -11601,7 +12648,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.myFundiService = myFundiService;
         this.router = router;
         this.httpClient = httpClient;
-        this.googleUrl = "https://www.google.com/recaptcha/api/siteverify"; // private recaptchaSecretKey ="6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";
+        this.googleUrl = "https://www.google.com/recaptcha/api/siteverify"; //private recaptchaSecretKey ="6Lf2450iAAAAAHfNolJ4SwXMy4i91dStnQNRyEKr";
         //private siteKey = "6Lf2450iAAAAAEviEkx3ED-JWZgMU7hfSyZ_RZFu";
 
         this.recaptchaSecretKey = "6LdDVJ4iAAAAAFJU48v9Ip8YGw--mTL6uCUnZXeo";
@@ -11621,12 +12668,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "CallRecaptureVerify",
         value: function CallRecaptureVerify(dataStr) {
-          var _this96 = this;
+          var _this110 = this;
 
           var promObs = this.myFundiService.PostToRecaptchaVerify(this.googleUrl, dataStr);
           promObs.then(function (q) {
             debugger;
-            _this96.isRecaptchaVerified = true;
+            _this110.isRecaptchaVerified = true;
             jquery__WEBPACK_IMPORTED_MODULE_3__('input[type="submit"]#submit').css('display', 'block');
           })["catch"](function (reason) {
             jquery__WEBPACK_IMPORTED_MODULE_3__('input[type="submit"]#submit').css('display', 'block');
@@ -11828,7 +12875,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "registerUser",
         value: function registerUser() {
-          var _this97 = this;
+          var _this111 = this;
 
           if (localStorage.getItem("HasAcceptedTermsOfService") !== "true") {
             alert("You can't register unless you accept the terms and conditions");
@@ -11847,7 +12894,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               if (q.isRegistered) {
                 alert('Registration Successfull: ' + q.isRegistered);
 
-                _this97.router.navigateByUrl("/client-subscription");
+                _this111.router.navigateByUrl("/client-subscription");
               } else {
                 alert('Registration Failed: ');
               }
@@ -12750,48 +13797,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addUserToRole",
         value: function addUserToRole() {
-          var _this98 = this;
+          var _this112 = this;
 
           var role = this.getSelectedRole();
           var results = this.myFundiService.AddUserToRole(this.email, role);
           results.map(function (q) {
             if (q) {
-              alert('Added user: ' + _this98.email + ' to role: ' + role);
+              alert('Added user: ' + _this112.email + ' to role: ' + role);
             } else {
-              alert('Failed to add user: ' + _this98.email + ' to role: ' + role);
+              alert('Failed to add user: ' + _this112.email + ' to role: ' + role);
             }
           }).subscribe();
         }
       }, {
         key: "removeUserFromRole",
         value: function removeUserFromRole() {
-          var _this99 = this;
+          var _this113 = this;
 
           var role = this.getSelectedRole();
           var results = this.myFundiService.RemoveUserFromRole(this.email, role);
           results.map(function (q) {
             if (q) {
-              alert('Removed user: ' + _this99.email + ' from role: ' + role);
+              alert('Removed user: ' + _this113.email + ' from role: ' + role);
             } else {
-              alert('Failed to remove user: ' + _this99.email + ' from role: ' + role);
+              alert('Failed to remove user: ' + _this113.email + ' from role: ' + role);
             }
           }).subscribe();
         }
       }, {
         key: "getAllRoles",
         value: function getAllRoles() {
-          var _this100 = this;
+          var _this114 = this;
 
           var results = this.myFundiService.GetAllRoles();
           results.map(function (q) {
-            _this100.userRoles = q;
+            _this114.userRoles = q;
             var select = jquery__WEBPACK_IMPORTED_MODULE_3__("select#roleName");
             console.log(select);
             select.remove('option');
             select.append('<option value="" selected="true">Select A Role</option>');
 
-            for (var i = 0; i < _this100.userRoles.length; i++) {
-              select.append('<option value="' + _this100.userRoles[i].roleName + '">' + _this100.userRoles[i].roleName + '</option>');
+            for (var i = 0; i < _this114.userRoles.length; i++) {
+              select.append('<option value="' + _this114.userRoles[i].roleName + '">' + _this114.userRoles[i].roleName + '</option>');
             }
           }).subscribe();
         }
@@ -12958,13 +14005,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getVehiclesHttp",
         value: function getVehiclesHttp() {
-          var _this101 = this;
+          var _this115 = this;
 
           //$('div#vehicleView').css('display', 'block').slideDown();
           var actualResult = this.myFundiService.GetFundiRealTimeLocations();
           actualResult.map(function (p) {
             if (p && p.length > 0) {
-              _this101.fundiLocations = p;
+              _this115.fundiLocations = p;
               var selector = document.querySelector('select#vhmonitor'); //greater than default node: Select Fundi 1st Option:
 
               if (selector.children.length > 0) {
@@ -12979,16 +14026,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               optionElem.text = "Select Fundi";
               selector.append(optionElem);
 
-              _this101.fundiLocations.forEach(function (vhm, index) {
+              _this115.fundiLocations.forEach(function (vhm, index) {
                 var optionElem1 = document.createElement('option');
                 optionElem1.value = vhm.username;
                 optionElem1.text = vhm.username;
                 selector.append(optionElem1);
               });
 
-              _this101.currentFundi = _this101.fundiLocations[0];
+              _this115.currentFundi = _this115.fundiLocations[0];
             } else {
-              _this101.fundiLocations = [];
+              _this115.fundiLocations = [];
               var defaultVehMonitor = {
                 latitude: 0,
                 longitude: 0,
@@ -13001,16 +14048,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 lastName: "",
                 updatePhoneNumber: false
               };
-              _this101.currentFundi = defaultVehMonitor;
+              _this115.currentFundi = defaultVehMonitor;
             }
 
-            _this101.fundiPlotOnMap();
+            _this115.fundiPlotOnMap();
           }).subscribe();
         }
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this102 = this;
+          var _this116 = this;
 
           this.myMap = new google.maps.Map(document.getElementById('monitormap'), {
             center: new google.maps.LatLng(10.3, 12.5),
@@ -13025,14 +14072,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var _loop6 = function _loop6(n) {
               var vehMonitor = curThis.fundiLocations[n];
 
-              var profObs = _this102.myFundiService.GetFundiProfileByUsername(vehMonitor.username); //Insert FundiMonitor In Database:
+              var profObs = _this116.myFundiService.GetFundiProfileByUsername(vehMonitor.username); //Insert FundiMonitor In Database:
 
 
               profObs.map(function (pr) {
                 if (pr) {
                   vehMonitor.fundiProfileId = pr.fundiProfileId;
 
-                  var vehMonObs = _this102.myFundiService.SaveFundiGeoLocation(vehMonitor);
+                  var vehMonObs = _this116.myFundiService.SaveFundiGeoLocation(vehMonitor);
 
                   vehMonObs.map(function (res) {
                     if (res.result) {
@@ -13108,7 +14155,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "removeFundi",
         value: function removeFundi() {
-          var _this103 = this;
+          var _this117 = this;
 
           var currentUsername = this.currentFundi.username;
           var index = -1;
@@ -13123,7 +14170,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert(res.message);
 
             if (res.success) {
-              _this103.ngOnInit();
+              _this117.ngOnInit();
             } else {
               alert(res.message);
             }
@@ -13339,6 +14386,100 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     AdminAuthGuard = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(), __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]])], AdminAuthGuard);
+    /***/
+  },
+
+  /***/
+  "./src/guards/AuthClientAdminGuard.ts":
+  /*!********************************************!*\
+    !*** ./src/guards/AuthClientAdminGuard.ts ***!
+    \********************************************/
+
+  /*! exports provided: AuthClientAdminGuard */
+
+  /***/
+  function srcGuardsAuthClientAdminGuardTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "AuthClientAdminGuard", function () {
+      return AuthClientAdminGuard;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../services/myFundiService */
+    "./src/services/myFundiService.ts");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var AuthClientAdminGuard = /*#__PURE__*/function () {
+      // Inject Router so we can hand off the user to the Login Page 
+      function AuthClientAdminGuard(router, myFundiService) {
+        _classCallCheck(this, AuthClientAdminGuard);
+
+        this.router = router;
+        this.myFundiService = myFundiService;
+      }
+
+      _createClass(AuthClientAdminGuard, [{
+        key: "canActivate",
+        value: function canActivate() {
+          if (_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles != null && _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles.length > 0) {
+            this.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles;
+            return this.userRoles.indexOf("Administrator") > -1 || this.userRoles.indexOf('Client') > -1;
+          }
+
+          return false;
+        }
+      }]);
+
+      return AuthClientAdminGuard;
+    }();
+
+    AuthClientAdminGuard.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]
+      }, {
+        type: _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]
+      }];
+    };
+
+    AuthClientAdminGuard = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(), __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"]])], AuthClientAdminGuard);
     /***/
   },
 
@@ -13787,20 +14928,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthFundiSubscriptionGuard, [{
         key: "canActivate",
         value: function canActivate() {
-          var _this104 = this;
+          var _this118 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) return false;
           var fundiProfileId = 0;
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           return resObs.map(function (fundiProf) {
-            _this104.fundiProfileid = fundiProf.fundiProfileId;
+            _this118.fundiProfileid = fundiProf.fundiProfileId;
 
-            var fundiSubsObj = _this104.myFundiService.GetFundiSubscriptionByProfileId(_this104.fundiProfileid);
+            var fundiSubsObj = _this118.myFundiService.GetFundiSubscriptionByProfileId(_this118.fundiProfileid);
 
             return fundiSubsObj.map(function (q) {
-              _this104.fundiHasSubscription = q.isValid;
-              return _this104.userRoles.indexOf("Fundi") > -1 && _this104.fundiHasSubscription;
+              _this118.fundiHasSubscription = q.isValid;
+              return _this118.userRoles.indexOf("Fundi") > -1 && _this118.fundiHasSubscription;
             }).first();
           }).first();
         }
@@ -14314,7 +15455,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(Html5QrcodeScanner, [{
         key: "render",
         value: function render(qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this105 = this;
+          var _this119 = this;
 
           this.lastMatchFound = undefined; // Add wrapper to success callback.
 
@@ -14322,19 +15463,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (qrCodeSuccessCallback) {
               qrCodeSuccessCallback(decodedText, result);
             } else {
-              if (_this105.lastMatchFound === decodedText) {
+              if (_this119.lastMatchFound === decodedText) {
                 return;
               }
 
-              _this105.lastMatchFound = decodedText;
+              _this119.lastMatchFound = decodedText;
 
-              _this105.setHeaderMessage(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].lastMatch(decodedText), Html5QrcodeScannerStatus.STATUS_SUCCESS);
+              _this119.setHeaderMessage(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].lastMatch(decodedText), Html5QrcodeScannerStatus.STATUS_SUCCESS);
             }
           }; // Add wrapper to failure callback
 
 
           this.qrCodeErrorCallback = function (errorMessage, error) {
-            _this105.setStatus(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].scanningStatus());
+            _this119.setStatus(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].scanningStatus());
 
             if (qrCodeErrorCallback) {
               qrCodeErrorCallback(errorMessage, error);
@@ -14362,38 +15503,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "clear",
         value: function clear() {
-          var _this106 = this;
+          var _this120 = this;
 
           var emptyHtmlContainer = function emptyHtmlContainer() {
-            var mainContainer = document.getElementById(_this106.elementId);
+            var mainContainer = document.getElementById(_this120.elementId);
 
             if (mainContainer) {
               mainContainer.innerHTML = "";
 
-              _this106.resetBasicLayout(mainContainer);
+              _this120.resetBasicLayout(mainContainer);
             }
           };
 
           if (this.html5Qrcode) {
             return new Promise(function (resolve, reject) {
-              if (!_this106.html5Qrcode) {
+              if (!_this120.html5Qrcode) {
                 resolve();
                 return;
               }
 
-              if (_this106.html5Qrcode.isScanning) {
-                _this106.html5Qrcode.stop().then(function (_) {
-                  if (!_this106.html5Qrcode) {
+              if (_this120.html5Qrcode.isScanning) {
+                _this120.html5Qrcode.stop().then(function (_) {
+                  if (!_this120.html5Qrcode) {
                     resolve();
                     return;
                   }
 
-                  _this106.html5Qrcode.clear();
+                  _this120.html5Qrcode.clear();
 
                   emptyHtmlContainer();
                   resolve();
                 })["catch"](function (error) {
-                  if (_this106.verbose) {
+                  if (_this120.verbose) {
                     console.error("Unable to stop qrcode scanner", error);
                   }
 
@@ -15197,7 +16338,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "stop",
         value: function stop() {
-          var _this107 = this;
+          var _this121 = this;
 
           // TODO(mebjas): fail fast if the start() wasn't called.
           this.shouldScan = false;
@@ -15208,50 +16349,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           return new Promise(function (resolve, _) {
             var onAllTracksClosed = function onAllTracksClosed() {
-              _this107.localMediaStream = undefined;
+              _this121.localMediaStream = undefined;
 
-              if (_this107.element) {
-                _this107.element.removeChild(_this107.videoElement);
+              if (_this121.element) {
+                _this121.element.removeChild(_this121.videoElement);
 
-                _this107.element.removeChild(_this107.canvasElement);
+                _this121.element.removeChild(_this121.canvasElement);
               }
 
               removeQrRegion();
-              _this107.isScanning = false;
+              _this121.isScanning = false;
 
-              if (_this107.qrRegion) {
-                _this107.qrRegion = undefined;
+              if (_this121.qrRegion) {
+                _this121.qrRegion = undefined;
               }
 
-              if (_this107.context) {
-                _this107.context = undefined;
+              if (_this121.context) {
+                _this121.context = undefined;
               }
 
               resolve();
             };
 
-            if (!_this107.localMediaStream) {
+            if (!_this121.localMediaStream) {
               onAllTracksClosed();
             }
 
-            var tracksToClose = _this107.localMediaStream.getVideoTracks().length;
+            var tracksToClose = _this121.localMediaStream.getVideoTracks().length;
 
             var tracksClosed = 0; // Removes the shaded region if exists.
 
             var removeQrRegion = function removeQrRegion() {
-              if (!_this107.element) {
+              if (!_this121.element) {
                 return;
               }
 
-              while (_this107.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME).length) {
-                var shadedChild = _this107.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME)[0];
+              while (_this121.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME).length) {
+                var shadedChild = _this121.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME)[0];
 
-                _this107.element.removeChild(shadedChild);
+                _this121.element.removeChild(shadedChild);
               }
             };
 
-            _this107.localMediaStream.getVideoTracks().forEach(function (videoTrack) {
-              _this107.localMediaStream.removeTrack(videoTrack);
+            _this121.localMediaStream.getVideoTracks().forEach(function (videoTrack) {
+              _this121.localMediaStream.removeTrack(videoTrack);
 
               videoTrack.stop();
               ++tracksClosed;
@@ -15284,7 +16425,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function scanFile(imageFile,
         /* default=true */
         showImage) {
-          var _this108 = this;
+          var _this122 = this;
 
           if (!imageFile || !(imageFile instanceof File)) {
             throw "imageFile argument is mandatory and should be instance " + "of File. Use 'event.target.files[0]'.";
@@ -15299,25 +16440,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return new Promise(function (resolve, reject) {
-            _this108.possiblyCloseLastScanImageFile();
+            _this122.possiblyCloseLastScanImageFile();
 
-            _this108.clearElement();
+            _this122.clearElement();
 
-            _this108.lastScanImageFile = URL.createObjectURL(imageFile);
+            _this122.lastScanImageFile = URL.createObjectURL(imageFile);
             var inputImage = new Image();
 
             inputImage.onload = function () {
               var imageWidth = inputImage.width;
               var imageHeight = inputImage.height;
-              var element = document.getElementById(_this108.elementId);
+              var element = document.getElementById(_this122.elementId);
               var containerWidth = element.clientWidth ? element.clientWidth : Constants.DEFAULT_WIDTH; // No default height anymore.
 
               var containerHeight = Math.max(element.clientHeight ? element.clientHeight : imageHeight, Constants.FILE_SCAN_MIN_HEIGHT);
 
-              var config = _this108.computeCanvasDrawConfig(imageWidth, imageHeight, containerWidth, containerHeight);
+              var config = _this122.computeCanvasDrawConfig(imageWidth, imageHeight, containerWidth, containerHeight);
 
               if (showImage) {
-                var visibleCanvas = _this108.createCanvasElement(containerWidth, containerHeight, 'qr-canvas-visible');
+                var visibleCanvas = _this122.createCanvasElement(containerWidth, containerHeight, 'qr-canvas-visible');
 
                 visibleCanvas.style.display = "inline-block";
                 element.appendChild(visibleCanvas);
@@ -15351,7 +16492,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 config.height);
               }
 
-              var hiddenCanvas = _this108.createCanvasElement(config.width, config.height);
+              var hiddenCanvas = _this122.createCanvasElement(config.width, config.height);
 
               element.appendChild(hiddenCanvas);
               var context = hiddenCanvas.getContext('2d');
@@ -15381,7 +16522,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               config.height);
 
               try {
-                var result = _this108.qrcode.decode(hiddenCanvas);
+                var result = _this122.qrcode.decode(hiddenCanvas);
 
                 resolve(result.text);
               } catch (exception) {
@@ -15455,7 +16596,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "applyVideoConstraints",
         value: function applyVideoConstraints(videoConstaints) {
-          var _this109 = this;
+          var _this123 = this;
 
           if (!videoConstaints) {
             throw "videoConstaints is required argument.";
@@ -15477,7 +16618,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               return;
             }
 
-            var videoTrack = _this109.localMediaStream.getVideoTracks()[0]; // TODO(mebjas): This can be simplified to just return the promise
+            var videoTrack = _this123.localMediaStream.getVideoTracks()[0]; // TODO(mebjas): This can be simplified to just return the promise
             // directly.
 
 
@@ -15569,7 +16710,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "foreverScan",
         value: function foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this110 = this;
+          var _this124 = this;
 
           if (!this.shouldScan) {
             // Stop scanning.
@@ -15623,7 +16764,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.foreverScanTimeout = setTimeout(function () {
-            _this110.foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback);
+            _this124.foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback);
           }, this.getTimeoutFps(internalConfig.fps));
         }
         /**
@@ -15633,12 +16774,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onMediaStreamReceived",
         value: function onMediaStreamReceived(mediaStream, internalConfig, areVideoConstraintsEnabled, clientWidth, qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this111 = this;
+          var _this125 = this;
 
           var $this = this;
           return new Promise(function (resolve, reject) {
             var setupVideo = function setupVideo() {
-              var videoElement = _this111.createVideoElement(clientWidth);
+              var videoElement = _this125.createVideoElement(clientWidth);
 
               $this.element.append(videoElement); // Attach listeners to video.
 
@@ -16886,13 +18027,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "setCreateUpdateLocation",
         value: function setCreateUpdateLocation(operation, loc) {
-          var _this112 = this;
+          var _this126 = this;
 
           if (operation.toLowerCase() === "create") {
             var actualResult = this.myFundiService.PostOrCreateLocation(loc);
             actualResult.map(function (p) {
               alert('Location Added: ' + p.result);
-              _this112.successGeocode = true;
+              _this126.successGeocode = true;
               document.getElementById('locmap').scrollIntoView({
                 behavior: "smooth",
                 block: "end",
@@ -16904,7 +18045,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _actualResult.map(function (p) {
               alert('Location Updated: ' + p.result);
-              _this112.successGeocode = true;
+              _this126.successGeocode = true;
               document.getElementById('locmap').scrollIntoView({
                 behavior: "smooth",
                 block: "end",
@@ -17059,6 +18200,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.payMonthlySubscriptionFeeWithMtnUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithMtn";
         this.payClientSubscriptionFeeWithAirTelUrl = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithAirTel";
         this.payMonthlySubscriptionFeeWithAirTelUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithAirTel";
+        this.getFundiWorkCategoriesAndSubCategoriesByJobIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesAndSubCategoriesByJobId";
+        this.getFundiRatingsByFundiProfileIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiRatingsByFundiProfileId";
         this.getFundiSkillsByProfileIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
         this.getFundiWorkCategoriesByFundiProfileIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId";
         this.getFundiWorkCategoriesUrl = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategories";
@@ -17108,7 +18251,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.updateContractUrl = this.baseServerUrl + "/FundiProfile/UpdateContract";
         this.deleteContractUrl = this.baseServerUrl + "/FundiProfile/DeleteContract";
         this.getFundiProfileByUsernameUrl = this.baseServerUrl + "/FundiProfile/GetFundiProfileByUsername";
-        this.getClientContractsByUsernameUrl = this.baseServerUrl + "/FundiProfile/GetClientContracts";
+        this.getClientContractsByUsernameUrl = this.baseServerUrl + "/ClientProfile/GetClientContracts";
         this.getFundiContractsByUsernameUrl = this.baseServerUrl + "/FundiProfile/GetFundiContracts";
         this.getClientUserByIdUrl = this.baseServerUrl + "/ClientProfile/GetClientUserById";
         this.getAllClientJobByClientProfileIdUrl = this.baseServerUrl + "/ClientProfile/GetAllClientJobByClientProfileId";
@@ -17181,6 +18324,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }).map(function (res) {
             var blogs = res;
             return blogs;
+          });
+        }
+      }, {
+        key: "GetFundiRatingsByFundiProfileId",
+        value: function GetFundiRatingsByFundiProfileId(profileId) {
+          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
+            'content-type': 'application/json'
+          });
+          var requestUrl = this.getFundiRatingsByFundiProfileIdUrl + "/" + profileId.toString();
+          var requestOptions = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+          };
+          return this.httpClient.get(requestOptions.url, {
+            'headers': requestOptions.headers
+          }).map(function (res) {
+            var ratings = res;
+            return ratings;
+          });
+        }
+      }, {
+        key: "GetFundiWorkCategoriesAndSubCategoriesByJobId",
+        value: function GetFundiWorkCategoriesAndSubCategoriesByJobId(jobId) {
+          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
+            'content-type': 'application/json'
+          });
+          var requestUrl = this.getFundiWorkCategoriesAndSubCategoriesByJobIdUrl + "/" + jobId.toString();
+          var requestOptions = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+          };
+          return this.httpClient.get(requestOptions.url, {
+            'headers': requestOptions.headers
+          }).map(function (res) {
+            var ratings = res;
+            return ratings;
           });
         }
       }, {

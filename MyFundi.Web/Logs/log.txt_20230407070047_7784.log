@@ -1,0 +1,54 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Development\MyFundiCurrent\MyFundi.Web
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'AgreedCost' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'FirstPaymentAmount' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ForthPaymentAmount' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NumberOfDaysToComplete' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SecondPaymentAmount' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ThirdPaymentAmount' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'ClientSubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'FundiSubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'FundiSubscriptionQueue'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'GrossCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NetCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'PercentTaxAppliable' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ItemCost' on entity type 'Item'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscriptionQueue'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+fail: Microsoft.AspNetCore.SpaServices[0]
+      ERROR in app/clientfundi-contract/clientfundicontract.component.ts:61:13 - error TS2740: Type '{ clientFundiContractId: any; clientProfileId: any; clientUsername: any; clientFirstName: any; clientLastName: any; fundiProfileId: any; fundiUsername: any; fundiFirstName: any; fundiLastName: any; ... 8 more ...; notesForNotice: any; }' is missing the following properties from type 'IClientFundiContract': date1stPayment, date2ndPayment, date3rdPayment, date4thPayment, and 4 more.
+
+61             this.clientFundiContract = {
+               ~~~~~~~~~~~~~~~~~~~~~~~~
+app/clientfundi-contract/clientfundicontract.component.ts:84:13 - error TS2740: Type '{ clientFundiContractId: number; clientProfileId: number; clientUsername: string; clientFirstName: string; clientLastName: string; fundiProfileId: number; fundiUsername: string; fundiFirstName: string; ... 9 more ...; notesForNotice: string; }' is missing the following properties from type 'IClientFundiContract': date1stPayment, date2ndPayment, date3rdPayment, date4thPayment, and 4 more.
+
+84             this.clientFundiContract = {
+               ~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+          ERROR in src/app/clientfundi-contract/clientfundicontract.component.ts(61,13): error TS2740: Type '{ clientFundiContractId: any; clientProfileId: any; clientUsername: any; clientFirstName: any; clientLastName: any; fundiProfileId: any; fundiUsername: any; fundiFirstName: any; fundiLastName: any; ... 8 more ...; notesForNotice: any; }' is missing the following properties from type 'IClientFundiContract': date1stPayment, date2ndPayment, date3rdPayment, date4thPayment, and 4 more.
+          src/app/clientfundi-contract/clientfundicontract.component.ts(84,13): error TS2740: Type '{ clientFundiContractId: number; clientProfileId: number; clientUsername: string; clientFirstName: string; clientLastName: string; fundiProfileId: number; fundiUsername: string; fundiFirstName: string; ... 9 more ...; notesForNotice: string; }' is missing the following properties from type 'IClientFundiContract': date1stPayment, date2ndPayment, date3rdPayment, date4thPayment, and 4 more.
+          
+
+fail: Microsoft.AspNetCore.SpaServices[0]
+          ERROR in

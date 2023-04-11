@@ -119,6 +119,9 @@ namespace MyFundi.Web.Migrations
                     b.Property<DateTime>("AgreedStartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ClientAddressId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ClientFirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -134,11 +137,32 @@ namespace MyFundi.Web.Migrations
                     b.Property<string>("ContractualDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Date1stPayment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date2ndPayment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date3rdPayment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date4thPayment")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal>("FirstPaymentAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ForthPaymentAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("FundiAddressId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FundiFirstName")
                         .HasColumnType("nvarchar(max)");
@@ -164,17 +188,32 @@ namespace MyFundi.Web.Migrations
                     b.Property<bool>("IsSignedOffByClient")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("JobId")
+                        .HasColumnType("int");
+
                     b.Property<string>("NotesForNotice")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("NumberOfDaysToComplete")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("SecondPaymentAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ThirdPaymentAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("ClientFundiContractId");
+
+                    b.HasIndex("ClientAddressId");
 
                     b.HasIndex("ClientProfileId");
 
+                    b.HasIndex("FundiAddressId");
+
                     b.HasIndex("FundiProfileId");
+
+                    b.HasIndex("JobId");
 
                     b.ToTable("ClientFundiContracts");
                 });
@@ -691,9 +730,6 @@ namespace MyFundi.Web.Migrations
                     b.Property<Guid?>("AssignedFundiUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("ClientFundiContractId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ClientProfileId")
                         .HasColumnType("int");
 
@@ -1061,17 +1097,29 @@ namespace MyFundi.Web.Migrations
 
             modelBuilder.Entity("MyFundi.Domain.ClientFundiContract", b =>
                 {
+                    b.HasOne("MyFundi.Domain.Address", "ClientAddress")
+                        .WithMany()
+                        .HasForeignKey("ClientAddressId");
+
                     b.HasOne("MyFundi.Domain.ClientProfile", "ClientProfile")
                         .WithMany()
                         .HasForeignKey("ClientProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MyFundi.Domain.Address", "FundiAddress")
+                        .WithMany()
+                        .HasForeignKey("FundiAddressId");
+
                     b.HasOne("MyFundi.Domain.FundiProfile", "FundiProfile")
                         .WithMany()
                         .HasForeignKey("FundiProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MyFundi.Domain.Job", "Job")
+                        .WithMany()
+                        .HasForeignKey("JobId");
                 });
 
             modelBuilder.Entity("MyFundi.Domain.ClientProfile", b =>

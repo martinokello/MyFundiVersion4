@@ -15,5 +15,21 @@ namespace MyFundi.Web.ViewModels
         public string WorkSubCategoryDescription { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; } = DateTime.Now;
+
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null)
+            {
+                return (this.WorkCategoryId == ((WorkCategoryViewModel)obj).WorkCategoryId &&
+                    this.WorkSubCategoryId == ((WorkCategoryViewModel)obj).WorkSubCategoryId);
+            }
+            return false;
+        }
+        public override int GetHashCode()
+        {
+
+            return 3;
+        }
     }
 }

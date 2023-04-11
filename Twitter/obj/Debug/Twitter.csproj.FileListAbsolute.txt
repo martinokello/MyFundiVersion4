@@ -136,4 +136,3 @@ C:\Development\MyFundiCurrent\Twitter\obj\Debug\Twitter.csproj.CoreCompileInputs
 C:\Development\MyFundiCurrent\Twitter\obj\Debug\Twitter.csproj.CopyComplete
 C:\Development\MyFundiCurrent\Twitter\obj\Debug\Twitter.dll
 C:\Development\MyFundiCurrent\Twitter\obj\Debug\Twitter.pdb
-C:\Development\MyFundiCurrent\Twitter\obj\Debug\Twitter.csproj.AssemblyReference.cache

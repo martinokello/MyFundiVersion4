@@ -68,6 +68,10 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { ResetPasswordComponent } from './resetpassword/resetpassword.component';
 import { FundiContractComponent } from './fundi-contracts/fundicontract.component';
 import { AuthFundiAdminGuard } from '../guards/AuthFundiAdminGuard';
+import { ClientAddressComponent } from './crud-operations/client-address/client-address.component';
+import { FundiAddressComponent } from './crud-operations/fundi-address/fundi-address.component';
+import { FundiRatingComponent } from './fundi-rating/fundirating.component';
+import { AuthClientAdminGuard } from '../guards/AuthClientAdminGuard';
 
 @NgModule({
     declarations: [
@@ -125,7 +129,10 @@ import { AuthFundiAdminGuard } from '../guards/AuthFundiAdminGuard';
         AdvertComponent,
         BlogsComponent,
         ResetPasswordComponent,
-        FundiContractComponent
+        FundiContractComponent,
+        FundiAddressComponent,
+        ClientAddressComponent,
+        FundiRatingComponent
 
     ],
     imports: [
@@ -168,6 +175,7 @@ import { AuthFundiAdminGuard } from '../guards/AuthFundiAdminGuard';
             { path: 'client-fundi-contract', component: ClientFundiContractComponent, canActivate: [AuthFundiClientAdminGuard] },
             { path: 'fundi-contract', component: FundiContractComponent, canActivate: [AuthFundiAdminGuard] },
             { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
+            { path: 'rate-fundiprofile-by-id', component: FundiRatingComponent, canActivate: [AuthClientAdminGuard] },
             { path: 'blogs', component: BlogsComponent }
         ])
     ],
@@ -179,6 +187,7 @@ import { AuthFundiAdminGuard } from '../guards/AuthFundiAdminGuard';
         { provide: AuthFundiGuard, useClass: AuthFundiGuard },
         { provide: AuthClientGuard, useClass: AuthClientGuard },
         { provide: AuthFundiAdminGuard, useClass: AuthFundiAdminGuard },
+        { provide: AuthClientAdminGuard, useClass: AuthClientAdminGuard },
         { provide: AuthFundiClientAdminGuard, useClass: AuthFundiClientAdminGuard },
         { provide: AuthFundiSubscriptionGuard, useClass: AuthFundiSubscriptionGuard },
         { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },

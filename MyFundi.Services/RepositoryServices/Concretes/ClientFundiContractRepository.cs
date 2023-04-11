@@ -40,6 +40,7 @@ namespace MyFundi.Services.RepositoryServices.Concretes
             {
                 var cert = GetById(toUpdate.ClientFundiContractId);
                 cert.ContractualDescription = toUpdate.ContractualDescription;
+                cert.JobId = toUpdate.JobId;
                 cert.ClientProfileId = toUpdate.ClientProfileId;
                 cert.DateUpdated = toUpdate.DateUpdated;
                 cert.FundiProfileId = toUpdate.FundiProfileId;
@@ -51,6 +52,16 @@ namespace MyFundi.Services.RepositoryServices.Concretes
                 cert.NumberOfDaysToComplete = toUpdate.NumberOfDaysToComplete;
                 cert.AgreedCost = toUpdate.AgreedCost;
                 cert.AgreedStartDate = toUpdate.AgreedStartDate;
+                cert.ClientAddressId = toUpdate.ClientAddressId;
+                cert.FundiAddressId = toUpdate.FundiAddressId;
+                cert.FirstPaymentAmount = toUpdate.FirstPaymentAmount;
+                cert.SecondPaymentAmount = toUpdate.SecondPaymentAmount;
+                cert.ThirdPaymentAmount = toUpdate.ThirdPaymentAmount;
+                cert.ForthPaymentAmount = toUpdate.ForthPaymentAmount;
+                cert.Date1stPayment = toUpdate.Date1stPayment;
+                cert.Date2ndPayment = toUpdate.Date2ndPayment;
+                cert.Date3rdPayment = toUpdate.Date3rdPayment;
+                cert.Date4thPayment = toUpdate.Date4thPayment;
                 cert.AgreedEndDate = toUpdate.AgreedEndDate;
                 cert.DateUpdated = toUpdate.DateUpdated;
                 return true;

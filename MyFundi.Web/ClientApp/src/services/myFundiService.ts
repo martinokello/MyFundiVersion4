@@ -9,7 +9,6 @@ declare const google: any;
 
 @Injectable()
 export class MyFundiService {
-
     private baseServerUrl: string = "https://myfundiv2.martinlayooinc.com";
     public BaseServerUrl: string = "https://myfundiv2.martinlayooinc.com";
 
@@ -66,7 +65,9 @@ export class MyFundiService {
 
     public payClientSubscriptionFeeWithAirTelUrl: string = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithAirTel";
     public payMonthlySubscriptionFeeWithAirTelUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithAirTel";
-
+    
+    public getFundiWorkCategoriesAndSubCategoriesByJobIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesAndSubCategoriesByJobId";
+    public getFundiRatingsByFundiProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatingsByFundiProfileId";
     public getFundiSkillsByProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiSkillsByFundiProfileId";
     public getFundiWorkCategoriesByFundiProfileIdUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategoriesByFundiProfileId"; 
     public getFundiWorkCategoriesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiWorkCategories"; 
@@ -120,7 +121,7 @@ export class MyFundiService {
     public updateContractUrl: string = this.baseServerUrl + "/FundiProfile/UpdateContract";
     public deleteContractUrl: string = this.baseServerUrl + "/FundiProfile/DeleteContract";
     public getFundiProfileByUsernameUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiProfileByUsername";  
-    public getClientContractsByUsernameUrl: string = this.baseServerUrl + "/FundiProfile/GetClientContracts";
+    public getClientContractsByUsernameUrl: string = this.baseServerUrl + "/ClientProfile/GetClientContracts";
     public getFundiContractsByUsernameUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiContracts";
     public getClientUserByIdUrl: string = this.baseServerUrl + "/ClientProfile/GetClientUserById";
     public getAllClientJobByClientProfileIdUrl: string = this.baseServerUrl + "/ClientProfile/GetAllClientJobByClientProfileId";
@@ -212,6 +213,40 @@ export class MyFundiService {
         return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IBlog[] => {
             let blogs: IBlog[] = res;
             return blogs;
+
+        });
+    }
+
+    GetFundiRatingsByFundiProfileId(profileId: number): Observable<IFundiRating[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl: string = this.getFundiRatingsByFundiProfileIdUrl + "/" + profileId.toString();
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IFundiRating[] => {
+            let ratings: IFundiRating[] = res;
+            return ratings;
+
+        });
+    }
+
+    GetFundiWorkCategoriesAndSubCategoriesByJobId(jobId: number): Observable<IBareIWorkAndSubWorkCategory[]> {
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl: string = this.getFundiWorkCategoriesAndSubCategoriesByJobIdUrl + "/" + jobId.toString();
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IBareIWorkAndSubWorkCategory[] => {
+            let ratings: IBareIWorkAndSubWorkCategory[] = res;
+            return ratings;
 
         });
     }
@@ -892,7 +927,7 @@ export class MyFundiService {
         });
     }
 
-    public GetFundiRatings(username: string): Observable<IFundiRating[]> {
+    public GetFundiRatings(username: string): Observable<any[]> {
 
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getFundiRatingsUrl + "?username=" + username;
@@ -903,8 +938,8 @@ export class MyFundiService {
             responseType: 'application/json'
         };
 
-        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): IFundiRating[] => {
-            let certs: IFundiRating[] = res;
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any[] => {
+            let certs: any[] = res;
             return certs;
         });
     }
@@ -2273,6 +2308,13 @@ export interface IWorkSubCategory {
     workCategoryDescription: string
     workSubCategoryDescription: string
 }
+export interface IBareIWorkAndSubWorkCategory {
+
+    workCategoryId: number;
+    workCategoryType: string;
+    workSubCategoryId: number;
+    workSubCategoryType: string;
+}
 export interface ICertification {
     certificationId: number;
     certificationName: string;
@@ -2357,10 +2399,13 @@ export interface IClientFundiContract {
     clientFirstName: string;
     clientLastName: string;
     clientProfileId: number;
+    jobId: number;
     fundiProfileId: number;
     fundiUsername: string;
     fundiFirstName: string;
     fundiLastName: string;
+    fundiAddressId: number;
+    clientAddressId: number;
     contractualDescription: string;
     isSignedByClient: boolean;
     isSignedByFundi: boolean;
@@ -2370,6 +2415,15 @@ export interface IClientFundiContract {
     agreedStartDate: string;
     agreedEndDate: string;
     agreedCost: number;
+    date1stPayment: string;
+    date2ndPayment: string;
+    date3rdPayment: string;
+    date4thPayment: string;
+    firstPaymentAmount: number;
+    secondPaymentAmount: number;
+    thirdPaymentAmount: number;
+    forthPaymentAmount: number;
+
 }
 
 export interface IPagingContent {
