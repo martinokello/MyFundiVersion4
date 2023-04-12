@@ -42,9 +42,11 @@ export class ClientFundiContractComponent implements OnInit {
         this.clientFundiContract.fundiAddressId = $event;
     }
     selectContract($event) {
+        
         let crtObs: Observable<any> = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
         crtObs.map((q: any) => {
             this.clientFundiContract = q;
+            debugger;
         }).subscribe();
         $event.preventDefault();
     }

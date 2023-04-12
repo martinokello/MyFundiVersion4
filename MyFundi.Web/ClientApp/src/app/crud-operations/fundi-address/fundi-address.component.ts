@@ -31,6 +31,8 @@ export class FundiAddressComponent implements OnInit, AfterViewInit, AfterConten
     }
 
     onFundiAddressChanged() {
+        this.fundiAddress.addressId = this.addressId;
+        this.selectAddress();
         this.fundiAddressChanged.emit(this.fundiAddress.addressId);
     }
     refreshAddresses() {
@@ -91,9 +93,8 @@ export class FundiAddressComponent implements OnInit, AfterViewInit, AfterConten
     }
     public selectAddress(): void {
 
-        let actualResult: Observable<any> = this.myFundiService.GetAddressById(jQuery('div#fundi-addresses-wrapper select#fundiAddressId').val());
+        let actualResult: Observable<any> = this.myFundiService.GetAddressById(this.addressId)
         actualResult.map((p: any) => {
-            debugger;
             this.fundiAddress = p;
         }).subscribe();
         jQuery('form#locationView').css('display', 'block').slideDown();

@@ -35,6 +35,8 @@ export class ClientAddressComponent implements OnInit, AfterViewInit, AfterConte
 
     }
     onClientAddressChanged() {
+        this.clientAddress.addressId = this.addressId;
+        this.selectAddress();
         this.clientAddressChanged.emit(this.clientAddress.addressId);
     }
 
@@ -96,7 +98,7 @@ export class ClientAddressComponent implements OnInit, AfterViewInit, AfterConte
     }
     public selectAddress(): void {
 
-        let actualResult: Observable<any> = this.myFundiService.GetAddressById(jQuery('div#client-addresses-wrapper select#clientAddressId').val());
+        let actualResult: Observable<any> = this.myFundiService.GetAddressById(this.addressId);
         actualResult.map((p: any) => {
             debugger;
             this.clientAddress = p;
