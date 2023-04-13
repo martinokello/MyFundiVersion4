@@ -28,12 +28,12 @@ export class ClientFundiContractComponent implements OnInit {
     constructor(private myFundiService: MyFundiService,private router:Router) {
     }
     rateFundiAfterContract($event) {
-        debugger;
         localStorage.setItem('RatingProfileId', this.clientFundiContract.fundiProfileId.toString());
         localStorage.setItem('ContractJobId', this.currentJobId.toString());
         localStorage.setItem('FundiUserTo', JSON.stringify({ firstName: this.clientFundiContract.fundiFirstName, lastName: this.clientFundiContract.fundiLastName, username: this.clientFundiContract.fundiUsername }));
-        this.router.navigateByUrl("/rate-fundiprofile-by-id");
+        
         $event.preventDefault();
+		this.router.navigateByUrl("/rate-fundiprofile-by-id");
     }
     updateClientAddress($event) {
         this.clientFundiContract.clientAddressId = $event;
@@ -46,7 +46,6 @@ export class ClientFundiContractComponent implements OnInit {
         let crtObs: Observable<any> = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
         crtObs.map((q: any) => {
             this.clientFundiContract = q;
-            debugger;
         }).subscribe();
         $event.preventDefault();
     }
@@ -200,7 +199,6 @@ export class ClientFundiContractComponent implements OnInit {
 
             }
             //Check For Dom Change and Add auto complete to select elements
-            debugger;
             jQuery('div.fundiClientContract-wrapper select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
 

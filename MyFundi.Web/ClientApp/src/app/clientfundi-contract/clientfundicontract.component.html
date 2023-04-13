@@ -23,7 +23,7 @@
                 <label>Client Fundi Contract Id - optional</label><br />
                 <select id="clientFundiContractId" name="clientFundiContractId" [(ngModel)]="clientFundiContract.clientFundiContractId"></select><br />
                 <input type="button" value="Select Contract" class="but-primary" (click)="selectContract($event)" style="margin-top:10px;" />
-                <br/>
+                <br />
             </div>
         </div>
         <div class="row" style="margin: 2px 0px !important;">
@@ -275,11 +275,10 @@
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" type="checkbox" id="isSignedOffByClient" name="isSignedOffByClient" [(ngModel)]="clientFundiContract.IsSignedOffByClient" />
                         <label class="custom-control-label" for="isSignedOffByClient">Has Job Been Signed Off</label><br />
-                        <div id="rateFundiAfterContract">
-                            <input type="button" value="Rate Fundi!" class="btn btn-primary" (click)="rateFundiAfterContract($event)">  
-                        </div><br />
-                        <hr />
                     </div>
+                    <input type="button" value="Rate Fundi!" class="btn btn-primary" (click)="rateFundiAfterContract($event)" style="margin-top:10px;">
+                    <hr />
+                    <br />
                     <input type="button" value="Create Contract" class="but-primary" (click)="createContract($event)" style="margin-top:10px;" />
                     <input type="button" value="Update Contract" class="but-primary" (click)="updateContract($event)" style="margin-top:10px;" />
                     <input type="button" value="Delete Contract" class="but-primary" (click)="deleteContract($event)" style="margin-top:10px;" />

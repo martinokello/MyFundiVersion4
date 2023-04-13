@@ -159,7 +159,6 @@ export class ClientAddressComponent implements OnInit, AfterViewInit, AfterConte
                 hasFoundSelectsOnPage = false;
             }
             //Check For Dom Change and Add auto complete to select elements
-            debugger;
             jQuery('select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
 

@@ -137,7 +137,6 @@ export class FundiAddressComponent implements OnInit, AfterViewInit, AfterConten
 
     }
     runAutoCompleteOnSelects(curthis: any) {
-        debugger;
         let hasFoundSelectsOnPage = false;
 
         if (curthis.addresses && curthis.addresses.length > 1 && !curthis.hasPopulatedPage) {
@@ -159,7 +158,6 @@ export class FundiAddressComponent implements OnInit, AfterViewInit, AfterConten
                 hasFoundSelectsOnPage = false;
             }
             //Check For Dom Change and Add auto complete to select elements
-            debugger;
             jQuery('select').each((ind, sel) => {
                 let options = jQuery(sel).children('option');
 

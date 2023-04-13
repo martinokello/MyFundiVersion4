@@ -43,7 +43,6 @@ export class myRecaptchaComponent implements OnInit, AfterViewInit {
 
         let promObs: Promise<any> = this.myFundiService.PostToRecaptchaVerify(this.googleUrl, dataStr);
         promObs.then((q: any) => {
-            debugger;
             this.isRecaptchaVerified = true;
             $('input[type="submit"]#submit').css('display', 'block');
         }).catch((reason: any) => {
@@ -80,7 +79,6 @@ export class myRecaptchaComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        debugger;
         grecaptcha.render(document.querySelector('div#layooRecaptcha') as HTMLElement, {
             sitekey: this.siteKey,
             callback: this.validateResponse,
