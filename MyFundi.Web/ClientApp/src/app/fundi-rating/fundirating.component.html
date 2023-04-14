@@ -31,11 +31,11 @@
                     <ul>
                         <li *ngFor="let rating of fundiRatings">
                             <div>
-                                Rated By UserID: <em style="color:brown !important;">{{rating.rating?rating.userId:""}}</em><br />
+                                Rated By User: <em style="color:brown !important;">{{rating.rating?rating.user.firstName:""}} {{rating.rating?rating.user.lastName:""}}</em><br />
                                 Rating: <span style="color:brown !important;">{{rating.rating?rating.rating.toString():"No Rating Yet"}} out of 5</span><br />
                             </div>
                             <div>
-                                Reviewed By UserID: <em style="color:brown !important;">{{rating.rating?rating.userId:""}}</em><br />
+                                Reviewed By User: <em style="color:brown !important;">{{rating.rating?rating.user.firstName:""}} {{rating.rating?rating.user.lastName:""}}</em><br />
                                 Review: {{rating.review}}<br />
                             </div>
                         </li>

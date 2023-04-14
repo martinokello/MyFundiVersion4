@@ -133,8 +133,6 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.RazorAssemblyInfo.cache
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.RazorAssemblyInfo.cs
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\MyFundi.Web.StaticWebAssets.Manifest.cache
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\MyFundi.Web.StaticWebAssets.xml
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\scopedcss\bundle\MyFundi.Web.styles.css
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.TagHelpers.input.cache
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.TagHelpers.output.cache
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.RazorCoreGenerate.cache
@@ -147,3 +145,8 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.pdb
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\MyFundi.Web.genruntimeconfig.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\MyFundi.Web.StaticWebAssets.Pack.cache
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\msbuild.MyFundi.Web.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\msbuild.build.MyFundi.Web.props
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.MyFundi.Web.props
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.MyFundi.Web.props

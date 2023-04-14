@@ -33,7 +33,13 @@ export class ClientFundiContractComponent implements OnInit {
         localStorage.setItem('FundiUserTo', JSON.stringify({ firstName: this.clientFundiContract.fundiFirstName, lastName: this.clientFundiContract.fundiLastName, username: this.clientFundiContract.fundiUsername }));
         
         $event.preventDefault();
-		this.router.navigateByUrl("/rate-fundiprofile-by-id");
+        this.router.navigateByUrl("/rate-fundiprofile-by-id").then(e => {
+            if (e) {
+                console.log("Navigation is successful!"+e);
+            } else {
+                console.log("Navigation has failed!");
+            }
+        });
     }
     updateClientAddress($event) {
         this.clientFundiContract.clientAddressId = $event;
@@ -124,7 +130,6 @@ export class ClientFundiContractComponent implements OnInit {
         let resObs = this.myFundiService.GetFundiProfile(this.clientFundiContract.fundiUsername);
 
         resObs.map((fundiProf: IProfile) => {
-            debugger;
             this.fundi = fundiProf;
             let clientContsObs: Observable<any[]> = this.myFundiService.GetClientContractsByUsername(this.clientFundiContract.clientUsername);
             clientContsObs.map((cts: any[])=> {

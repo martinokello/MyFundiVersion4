@@ -2,6 +2,7 @@
 using MyFundi.Domain;
 using MyFundi.Services.EmailServices.Interfaces;
 using MyFundi.UnitOfWork.Concretes;
+using MyFundi.UnitOfWork.Interfaces;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -326,7 +327,13 @@ namespace MyFundiProfile.ServiceEndPoint.GeneralSevices
             }
         }
 
+        public FundiRatingAndReview[] GetFundiRatings(int fundiProfileId)
+        {
 
+            var fundiProfileRatings = _myFundiProfileUnitOfWork._fundiRatingsAndReviewRepository.GetAll().Include(q=> q.User).Where(q => q.FundiProfileId == fundiProfileId);
+
+            return fundiProfileRatings.ToArray();
+        }
     }
 
 }

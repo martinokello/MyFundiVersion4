@@ -38,13 +38,23 @@ export class FundiRatingComponent implements OnInit, AfterViewChecked {
 
     ngOnInit(): void {
 
-        debugger;
         this.userDetails = JSON.parse(localStorage.getItem("userDetails")); 
         this.fundiUser = JSON.parse(localStorage.getItem("FundiUserTo"));
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
         this.profileId = parseInt(JSON.parse(localStorage.getItem("RatingProfileId"))); 
         this.jobId = parseInt(JSON.parse(localStorage.getItem("ContractJobId")));
-
+        this.profile = {
+            fundiProfileId: this.profileId,
+            userId: "",
+            profileSummary: "",
+            profileImageUrl: "",
+            skills: "",
+            usedPowerTools: "",
+            fundiProfileCvUrl: "",
+            locationId: 0,
+            user: null
+            
+        }
 
         if (this.profileId > 0) {
             let prfObs: Observable<IProfile> = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());

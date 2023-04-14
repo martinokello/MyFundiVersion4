@@ -418,8 +418,7 @@ namespace MyFundi.Web.Controllers
         {
             var fundiUser = _serviceEndPoint.GetUserByEmailAddress(username);
             var fundiProfile = _unitOfWork._fundiProfileRepository.GetAll().FirstOrDefault(q => q.UserId == fundiUser.UserId);
-            var fundiProfileRatings = _unitOfWork._fundiRatingsAndReviewRepository.GetAll().Where(q => q.FundiProfileId == fundiProfile.FundiProfileId);
-
+            var fundiProfileRatings = _serviceEndPoint.GetFundiRatings(fundiProfile.FundiProfileId);
             if (fundiUser == null || fundiProfile == null || !fundiProfileRatings.Any())
             {
                 return await Task.FromResult(NotFound(new { Message = $"user {username} profile not Found!" }));

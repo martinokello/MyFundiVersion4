@@ -10,6 +10,7 @@ namespace MyFundi.Web.ViewModels
     {
         public int FundiProfileId { get; set; }
         public Guid UserId { get; set; }
+        public UserViewModel User { get; set; }
         public string ProfileSummary { get; set; }
         public string ProfileImageUrl { get; set; }
         public string Skills { get; set; }
