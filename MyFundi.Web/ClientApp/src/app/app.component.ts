@@ -32,7 +32,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     ngOnInit() {
 
         this.actUserStatus = MyFundiService.actUserStatus;
-
         $('input#mobilemenu').click(function () {
             document.getElementById('mainmenucontent').scrollIntoView({
                 behavior: "smooth"

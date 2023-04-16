@@ -34,6 +34,7 @@
     <script src="/myfundi/assets/sceditor-3.2.0/formats/bbcode.js"></script>
 
     <script type="text/javascript">
+        $('div#titleBar span.title').html("loading...");
         $(document).ready(function () {
 
             $('div#titleBar span.title').html("MartinLayooInc Software");
@@ -125,6 +126,7 @@
                 $('nav#nav ul li').removeClass('current');
                 $(this).addClass('current');
                 $(this).css('background-color', 'deepskyblue');
+                $('body').scrollTo('mainbodycontent');
             });
 
         });
@@ -148,11 +150,29 @@
             .ui-menu {
                 max-width: 57% !important;
             }
+            div#mainmenucontent ul > li{border: thin solid white !important}
+            div#linkToMainMenu {
+                top: 0px;
+                left: 0px;
+                padding-top: 15px !important;
+                width: 100% !important;
+                position: fixed !important;
+            }
         }
 
         @media screen and (max-width: 550px) {
             .ui-menu {
                 max-width: 86% !important;
+            }
+            div#mainmenucontent ul > li {
+                border: thin solid white !important
+            }
+            div#linkToMainMenu {
+                top: 0px;
+                left: 0px;
+                padding-top: 15px !important;
+                width: 100% !important;
+                position: fixed !important;
             }
         }
 
