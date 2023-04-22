@@ -554,14 +554,17 @@ namespace MyFundi.DataAccess
             }
         }
 
-        public decimal GetFundiExpectedSubscriptionFee(Guid? userId)
+        public decimal GetFundiExpectedSubscriptionFee(Guid? userId,decimal baseFundiSubsFee, decimal secondFundiSubsFee, decimal thirdFundiSubsFee)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
 
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.Parameters.Add(new SqlParameter("@fundiUserId", userId.ToString()));
+                cmd.Parameters.Add(new SqlParameter("@fundiUserId", userId.ToString())); 
+                cmd.Parameters.Add(new SqlParameter("@baseFundiSubsFee", baseFundiSubsFee));
+                cmd.Parameters.Add(new SqlParameter("@secondFundiSubsFee", secondFundiSubsFee));
+                cmd.Parameters.Add(new SqlParameter("@thirdFundiSubsFee", thirdFundiSubsFee));
 
                 cmd.CommandText = "[dbo].[GetAbsoluteFundiFee]";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;

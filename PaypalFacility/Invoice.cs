@@ -18,12 +18,13 @@ namespace PaypalFacility
             this.products = products;
             this.amount = amount;
             this.buyerEmail = buyerEmail;
+            this.invoiceNo = GenerateUniqueInvoiceNo();
         }
 
-        public long GenerateUniqueInvoiceNo()
+        public int GenerateUniqueInvoiceNo()
         {
             invoiceNo = randomGenerator.Next(beginGenerate);
-            return (long)invoiceNo;
+            return (int)invoiceNo;
         }
 
         public int InvoiceNo

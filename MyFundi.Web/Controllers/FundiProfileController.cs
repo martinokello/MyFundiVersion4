@@ -46,6 +46,11 @@ namespace MyFundi.Web.Controllers
         private IHostingEnvironment Environment;
         private DiscountCalculator _discountCalculator;
         private SimbaToursEastAfricaCahing _caching;
+        private decimal _firstFundiPayment;
+        private decimal _secondFundiPayment;
+        private decimal _thirdFundiPayment;
+        private string _payMtnAirTelRedirectUrl;
+
         public FundiProfileController(IMailService emailService, MyFundiUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, PaymentsManager paymentsManager, Mapper mapper, IHostingEnvironment _environment, ICaching caching, DiscountCalculator discountCalculator)
         {
             _appSettings = appSettings;
@@ -60,6 +65,11 @@ namespace MyFundi.Web.Controllers
             _caching = caching as SimbaToursEastAfricaCahing;
             Environment = _environment;
             _discountCalculator = discountCalculator;
+            var mtnSection = this._appSettings.AppSettings.GetSection("MTNApiConfig");
+            _firstFundiPayment = mtnSection.GetValue<decimal>("FundiMonthlySubscritpion");
+            _secondFundiPayment = mtnSection.GetValue<decimal>("FundiMonthlySubscritpionNextTrade");
+            _thirdFundiPayment = mtnSection.GetValue<decimal>("FundiMonthlySubscritpionNext2Trade");
+            _payMtnAirTelRedirectUrl = mtnSection.GetValue<string>("MTNBaseUrl");
         }
         [Route("~/FundiProfile/GetFundiProfileRatingById/{fundiProfileId}")]
         public async Task<IActionResult> GetFundiProfileRatingById(int fundiProfileId)
@@ -713,7 +723,7 @@ namespace MyFundi.Web.Controllers
 
                         foreach (var fsub in list)
                         {
-                            fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(monthlySubscriptionViewModel.UserId);
+                            fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(monthlySubscriptionViewModel.UserId,_firstFundiPayment,_secondFundiPayment,_thirdFundiPayment);
                             totalSubScriptionFee += fsub.SubscriptionFee;
                             _unitOfWork._fundiSubscriptionRepository.Insert(fsub);
                             _unitOfWork.SaveChanges();
@@ -775,7 +785,7 @@ namespace MyFundi.Web.Controllers
 
                 foreach (var fsub in list)
                 {
-                    fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId);
+                    fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId,_firstFundiPayment, _secondFundiPayment, _thirdFundiPayment);
                     totalSubScriptionFee += fsub.SubscriptionFee;
                     _unitOfWork._fundiSubscriptionQueueRepository.Insert(fsub);
                     _unitOfWork.SaveChanges();
@@ -858,7 +868,7 @@ namespace MyFundi.Web.Controllers
 
                 foreach (var fsub in list)
                 {
-                    fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId);
+                    fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId, _firstFundiPayment, _secondFundiPayment, _thirdFundiPayment);
                     totalSubScriptionFee += fsub.SubscriptionFee;
                     _unitOfWork._fundiSubscriptionQueueRepository.Insert(fsub);
                     _unitOfWork.SaveChanges();
@@ -867,9 +877,7 @@ namespace MyFundi.Web.Controllers
                 subscription.SubscriptionFee = totalSubScriptionFee;
                 _unitOfWork._monthlySubscriptionQueueRepository.Update(subscription);
                 _unitOfWork.SaveChanges();
-
-                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
-                    {
+                var products = new List<Product>{
                         new Product{
                             Amount = totalSubScriptionFee,
                             HasPaidInfull = true,
@@ -877,10 +885,10 @@ namespace MyFundi.Web.Controllers
                             VATAmmount=(decimal) 0,
                             ProductName = subscriptionViewModel.SubscriptionName,
                             ProductDescription = subscriptionViewModel.SubscriptionDescription
-                    }
-
-                    });
-
+                        }
+                };
+                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, products, new PaypalFacility.Invoice (products, totalSubScriptionFee, subscriptionViewModel.Username));
+                mtnAirtelObject.MtnAirtelBaseUrl = _payMtnAirTelRedirectUrl;
                 return await Task.FromResult(Ok(mtnAirtelObject));
             }
             catch (Exception e)
@@ -926,7 +934,7 @@ namespace MyFundi.Web.Controllers
 
                 foreach (var fsub in list)
                 {
-                    fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId);
+                    fsub.SubscriptionFee = _unitOfWork.MyFundiDBContext.GetFundiExpectedSubscriptionFee(subscriptionViewModel.UserId, _firstFundiPayment, _secondFundiPayment, _thirdFundiPayment);
                     totalSubScriptionFee += fsub.SubscriptionFee;
                     _unitOfWork._fundiSubscriptionQueueRepository.Insert(fsub);
                     _unitOfWork.SaveChanges();
@@ -935,8 +943,7 @@ namespace MyFundi.Web.Controllers
                 _unitOfWork._monthlySubscriptionQueueRepository.Update(subscription);
                 _unitOfWork.SaveChanges();
 
-                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
-                    {
+                var products = new List<Product>{
                         new Product{
                             Amount = totalSubScriptionFee,
                             HasPaidInfull = true,
@@ -944,10 +951,10 @@ namespace MyFundi.Web.Controllers
                             VATAmmount=(decimal) 0,
                             ProductName = subscriptionViewModel.SubscriptionName,
                             ProductDescription = subscriptionViewModel.SubscriptionDescription
-                    }
-
-                    });
-
+                        }
+                };
+                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, products, new PaypalFacility.Invoice(products, totalSubScriptionFee, subscriptionViewModel.Username));
+                mtnAirtelObject.MtnAirtelBaseUrl = _payMtnAirTelRedirectUrl;
                 return await Task.FromResult(Ok(mtnAirtelObject));
             }
             catch (Exception e)

@@ -4874,7 +4874,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.myFundiService = myFundiService;
         this.router = router;
-        this.subscriptionFee = 2000;
+        this.subscriptionFee = 1;
         this.clientLoginDetails = {};
         this.hasPopulatedPage = false;
         this.userDetails = {};
@@ -4917,7 +4917,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var resultObs = this.myFundiService.PayClientSubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid);
           resultObs.map(function (q) {
             if (q.success) {
-              console.log('Response received');
+              console.log('Response received: ' + q.mtnAirtelBaseUrl);
+              window.open(q.mtnAirtelBaseUrl);
               alert("Payment made. Currently being processed by paypal service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
 
               _this22.router.navigateByUrl('/login');
@@ -4932,8 +4933,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "payClientSubscriptionFeeWithAirTel",
         value: function payClientSubscriptionFeeWithAirTel($event) {
-          var _this23 = this;
-
           var subscriptionFeeExpenseToBePaid = this.subscription;
           var resultObs = this.myFundiService.PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
           resultObs.map(function (q) {
@@ -4950,22 +4949,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 reference: q.reference,
                 phone: q.phone
               };
-              console.log('Response received: ' + q.mtnAirtelBaseUrl);
+              console.log('Response received: ' + q.mtnAirtelBaseUrl + "".concat(q));
+              var easyPayWindow = null;
 
-              var resObs = _this23.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
-
-              resObs.map(function (q) {
-                console.log("Was Successful: " + q.success);
-                console.log("Result Data: " + q.data);
-
-                if (q.success) {
-                  alert("Payment made. Currently being processed by Airtel service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
-
-                  _this23.router.navigateByUrl("/login");
+              try {
+                if (!easyPayWindow || easyPayWindow.closed) {
+                  easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
                 } else {
-                  alert("Payment Failed!!");
+                  easyPayWindow.focus();
+                  easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
                 }
-              }).subscribe();
+
+                console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
+              } catch (ex) {
+                console.log(ex);
+              } finally {
+                if (easyPayWindow && !easyPayWindow.closed) easyPayWindow.close();
+              }
             } else {
               alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
             }
@@ -4975,8 +4975,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "payClientSubscriptionFeeWithMtn",
         value: function payClientSubscriptionFeeWithMtn($event) {
-          var _this24 = this;
-
           var subscriptionFeeExpenseToBePaid = this.subscription;
           var resultObs = this.myFundiService.PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
           resultObs.map(function (q) {
@@ -4993,22 +4991,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 reference: q.reference,
                 phone: q.phone
               };
-              console.log('Response received: ' + q.mtnAirtelBaseUrl);
+              console.log('Response received: ' + q.mtnAirtelBaseUrl + "".concat(q));
+              var easyPayWindow = null;
 
-              var resObs = _this24.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
-
-              resObs.map(function (q) {
-                console.log("Was Successful: " + q.success);
-                console.log("Result Data: " + q.data);
-
-                if (q.success) {
-                  alert("Payment made. Currently being processed by MTN service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
-
-                  _this24.router.navigateByUrl("/login");
+              try {
+                if (!easyPayWindow || easyPayWindow.closed) {
+                  easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
                 } else {
-                  alert("Payment Failed!!");
+                  easyPayWindow.focus();
+                  easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
                 }
-              }).subscribe();
+
+                console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
+              } catch (ex) {
+                console.log(ex);
+              } finally {
+                if (easyPayWindow && !easyPayWindow.closed) easyPayWindow.close();
+              }
             } else {
               alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
             }
@@ -5467,7 +5466,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AddressComponent, [{
         key: "refreshAddresses",
         value: function refreshAddresses() {
-          var _this25 = this;
+          var _this23 = this;
 
           var addSelect = document.querySelector('select#addressId');
           var opts = addSelect.querySelector('option');
@@ -5483,7 +5482,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#addressId').append(optionElem);
           var addressesObs = this.myFundiService.GetAllAddresses();
           addressesObs.map(function (adds) {
-            _this25.addresses = adds;
+            _this23.addresses = adds;
             adds.forEach(function (add, index, adds) {
               var optionElem = document.createElement('option');
               optionElem.value = add.addressId.toString();
@@ -5495,7 +5494,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addAddress",
         value: function addAddress() {
-          var _this26 = this;
+          var _this24 = this;
 
           var form = document.querySelector('form#f1');
           if (!form.checkValidity()) return;
@@ -5504,9 +5503,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Added: ' + p.result);
 
             if (p.result) {
-              _this26.router.navigateByUrl('success');
+              _this24.router.navigateByUrl('success');
             } else {
-              _this26.router.navigateByUrl('failure');
+              _this24.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5514,7 +5513,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateAddress",
         value: function updateAddress() {
-          var _this27 = this;
+          var _this25 = this;
 
           var form = document.querySelector('form#f1');
           if (!form.checkValidity()) return;
@@ -5523,9 +5522,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Updated: ' + p.result);
 
             if (p.result) {
-              _this27.router.navigateByUrl('success');
+              _this25.router.navigateByUrl('success');
             } else {
-              _this27.router.navigateByUrl('failure');
+              _this25.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5533,19 +5532,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectAddress",
         value: function selectAddress() {
-          var _this28 = this;
+          var _this26 = this;
 
           var actualResult = this.myFundiService.GetAddressById(jQuery('div#addresses-wrapper select#addressId').val());
           actualResult.map(function (p) {
             debugger;
-            _this28.address = p;
+            _this26.address = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteAddress",
         value: function deleteAddress() {
-          var _this29 = this;
+          var _this27 = this;
 
           var form = document.querySelector('form#f1');
           if (!form.checkValidity()) return;
@@ -5554,9 +5553,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Deleted: ' + p.result);
 
             if (p.result) {
-              _this29.router.navigateByUrl('success');
+              _this27.router.navigateByUrl('success');
             } else {
-              _this29.router.navigateByUrl('failure');
+              _this27.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5718,7 +5717,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CertificationComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this30 = this;
+          var _this28 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) this.userDetails = {};
@@ -5731,7 +5730,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var certificationsObs = this.myFundiService.GetAllFundiCertificates();
           this.selectCertificate = document.querySelector('select#slcertificationId');
           certificationsObs.map(function (res) {
-            _this30.certifications = res;
+            _this28.certifications = res;
             var opts = document.querySelector('select#slcertificationId').querySelector("option");
 
             if (opts) {
@@ -5933,7 +5932,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CertificationCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this31 = this;
+          var _this29 = this;
 
           this.certification = {};
           this.certificates = [];
@@ -5944,7 +5943,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#certificationcrudId').append(optionElem);
           var certsObs = this.myFundiService.GetAllFundiCertificates();
           certsObs.map(function (wcs) {
-            _this31.certificates = wcs;
+            _this29.certificates = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.certificationId.toString();
@@ -5956,7 +5955,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addCertification",
         value: function addCertification() {
-          var _this32 = this;
+          var _this30 = this;
 
           var form = document.querySelector('form#certificationcrudView');
           if (!form.checkValidity()) return;
@@ -5966,9 +5965,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Certification Added: ' + p);
 
             if (p) {
-              _this32.router.navigateByUrl('success');
+              _this30.router.navigateByUrl('success');
             } else {
-              _this32.router.navigateByUrl('failure');
+              _this30.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5976,7 +5975,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCertification",
         value: function updateCertification() {
-          var _this33 = this;
+          var _this31 = this;
 
           var form = document.querySelector('form');
           if (!form.checkValidity()) return;
@@ -5986,9 +5985,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Certification Updated: ' + p);
 
             if (p) {
-              _this33.router.navigateByUrl('success');
+              _this31.router.navigateByUrl('success');
             } else {
-              _this33.router.navigateByUrl('failure');
+              _this31.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -5996,18 +5995,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectCertification",
         value: function selectCertification() {
-          var _this34 = this;
+          var _this32 = this;
 
           var actualResult = this.myFundiService.GetCertificationById(jQuery('div#certificatescrud-wrapper select#certificationcrudId').val());
           actualResult.map(function (p) {
-            _this34.certification = p;
+            _this32.certification = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteCertification",
         value: function deleteCertification() {
-          var _this35 = this;
+          var _this33 = this;
 
           var form = document.querySelector('form#certificationcrudView');
           if (!form.checkValidity()) return;
@@ -6017,9 +6016,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('certification Deleted: ' + p);
 
             if (p) {
-              _this35.router.navigateByUrl('success');
+              _this33.router.navigateByUrl('success');
             } else {
-              _this35.router.navigateByUrl('failure');
+              _this33.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6217,7 +6216,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "refreshAddresses",
         value: function refreshAddresses() {
-          var _this36 = this;
+          var _this34 = this;
 
           var addSelect = document.querySelector('select#clientAddressId');
           var opts = addSelect.querySelector('option');
@@ -6233,7 +6232,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#clientAddressId').append(optionElem);
           var addressesObs = this.myFundiService.GetAllAddresses();
           addressesObs.map(function (adds) {
-            _this36.addresses = adds;
+            _this34.addresses = adds;
             adds.forEach(function (add, index, adds) {
               var optionElem = document.createElement('option');
               optionElem.value = add.addressId.toString();
@@ -6245,7 +6244,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addAddress",
         value: function addAddress() {
-          var _this37 = this;
+          var _this35 = this;
 
           var form = document.querySelector('form#clientAddForm1');
           if (!form.checkValidity()) return;
@@ -6254,9 +6253,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Added: ' + p.result);
 
             if (p.result) {
-              _this37.router.navigateByUrl('success');
+              _this35.router.navigateByUrl('success');
             } else {
-              _this37.router.navigateByUrl('failure');
+              _this35.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6264,7 +6263,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateAddress",
         value: function updateAddress() {
-          var _this38 = this;
+          var _this36 = this;
 
           var form = document.querySelector('form#clientAddForm1');
           if (!form.checkValidity()) return;
@@ -6273,9 +6272,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Updated: ' + p.result);
 
             if (p.result) {
-              _this38.router.navigateByUrl('success');
+              _this36.router.navigateByUrl('success');
             } else {
-              _this38.router.navigateByUrl('failure');
+              _this36.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6283,19 +6282,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectAddress",
         value: function selectAddress() {
-          var _this39 = this;
+          var _this37 = this;
 
           var actualResult = this.myFundiService.GetAddressById(this.addressId);
           actualResult.map(function (p) {
             debugger;
-            _this39.clientAddress = p;
+            _this37.clientAddress = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteAddress",
         value: function deleteAddress() {
-          var _this40 = this;
+          var _this38 = this;
 
           var form = document.querySelector('form#clientAddForm1');
           if (!form.checkValidity()) return;
@@ -6304,9 +6303,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Deleted: ' + p.result);
 
             if (p.result) {
-              _this40.router.navigateByUrl('success');
+              _this38.router.navigateByUrl('success');
             } else {
-              _this40.router.navigateByUrl('failure');
+              _this38.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6501,7 +6500,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CompanyComponent, [{
         key: "addCompany",
         value: function addCompany() {
-          var _this41 = this;
+          var _this39 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -6512,9 +6511,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Added: ' + p);
 
             if (p) {
-              _this41.router.navigateByUrl('success');
+              _this39.router.navigateByUrl('success');
             } else {
-              _this41.router.navigateByUrl('failure');
+              _this39.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6522,7 +6521,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCompany",
         value: function updateCompany() {
-          var _this42 = this;
+          var _this40 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -6532,9 +6531,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Updated: ' + p);
 
             if (p) {
-              _this42.router.navigateByUrl('success');
+              _this40.router.navigateByUrl('success');
             } else {
-              _this42.router.navigateByUrl('failure');
+              _this40.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6542,18 +6541,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectCompany",
         value: function selectCompany() {
-          var _this43 = this;
+          var _this41 = this;
 
           var actualResult = this.myFundiService.GetCompanyById(jQuery('div#companies-wrapper select#companyId').val());
           actualResult.map(function (p) {
-            _this43.company = p;
+            _this41.company = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteCompany",
         value: function deleteCompany() {
-          var _this44 = this;
+          var _this42 = this;
 
           var form = document.querySelector('form#f2');
           if (!form.checkValidity()) return;
@@ -6563,9 +6562,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Company Deleted: ' + p);
 
             if (p) {
-              _this44.router.navigateByUrl('success');
+              _this42.router.navigateByUrl('success');
             } else {
-              _this44.router.navigateByUrl('failure');
+              _this42.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -6580,7 +6579,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngAfterContentInit",
         value: function ngAfterContentInit() {
-          var _this45 = this;
+          var _this43 = this;
 
           var optionElem = document.createElement('option');
           optionElem.selected = true;
@@ -6594,7 +6593,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var companiesObs = this.myFundiService.GetAllCompanies();
           var locatObs = this.myFundiService.GetAllLocations();
           companiesObs.map(function (cmds) {
-            _this45.companies = cmds;
+            _this43.companies = cmds;
             cmds.forEach(function (cmd, index, cmds) {
               var optionElem = document.createElement('option');
               optionElem.value = cmd.companyId.toString();
@@ -6755,7 +6754,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CoursesComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this46 = this;
+          var _this44 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) this.userDetails = {};
@@ -6768,7 +6767,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var courseObs = this.myFundiService.GetAllFundiCourses();
           this.selectCourse = document.querySelector('select#slcourseId');
           courseObs.map(function (res) {
-            _this46.courses = res;
+            _this44.courses = res;
             var opts = document.querySelector('select#slcourseId').querySelector("option");
 
             if (opts) {
@@ -6961,7 +6960,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(CourseCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this47 = this;
+          var _this45 = this;
 
           this.course = {
             courseId: 0
@@ -6974,7 +6973,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#coursecrudId').append(optionElem);
           var courseObs = this.myFundiService.GetAllFundiCourses();
           courseObs.map(function (adds) {
-            _this47.courses = adds;
+            _this45.courses = adds;
             adds.forEach(function (add, index, adds) {
               var optionElem = document.createElement('option');
               optionElem.value = add.courseId.toString();
@@ -6986,7 +6985,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addCourse",
         value: function addCourse() {
-          var _this48 = this;
+          var _this46 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -6996,9 +6995,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Added: ' + p);
 
             if (p) {
-              _this48.router.navigateByUrl('success');
+              _this46.router.navigateByUrl('success');
             } else {
-              _this48.router.navigateByUrl('failure');
+              _this46.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7006,7 +7005,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateCourse",
         value: function updateCourse() {
-          var _this49 = this;
+          var _this47 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -7016,9 +7015,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Updated: ' + p);
 
             if (p) {
-              _this49.router.navigateByUrl('success');
+              _this47.router.navigateByUrl('success');
             } else {
-              _this49.router.navigateByUrl('failure');
+              _this47.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7026,20 +7025,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectCourse",
         value: function selectCourse() {
-          var _this50 = this;
+          var _this48 = this;
 
           var actualResult = this.myFundiService.GetCourseById(jQuery('div#coursecrud-wrapper select#coursecrudId').val());
           actualResult.map(function (p) {
-            _this50.course = p;
+            _this48.course = p;
 
-            _this50.addressEmitter.emit(_this50.course.courseId);
+            _this48.addressEmitter.emit(_this48.course.courseId);
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteCourse",
         value: function deleteCourse() {
-          var _this51 = this;
+          var _this49 = this;
 
           var form = document.querySelector('form#coursecrudView');
           if (!form.checkValidity()) return;
@@ -7049,9 +7048,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Course Deleted: ' + p);
 
             if (p) {
-              _this51.router.navigateByUrl('success');
+              _this49.router.navigateByUrl('success');
             } else {
-              _this51.router.navigateByUrl('failure');
+              _this49.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7242,7 +7241,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "refreshAddresses",
         value: function refreshAddresses() {
-          var _this52 = this;
+          var _this50 = this;
 
           var addSelect = document.querySelector('select#fundiAddressId');
           var opts = addSelect.querySelector('option');
@@ -7258,7 +7257,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#fundiAddressId').append(optionElem);
           var addressesObs = this.myFundiService.GetAllAddresses();
           addressesObs.map(function (adds) {
-            _this52.addresses = adds;
+            _this50.addresses = adds;
             adds.forEach(function (add, index, adds) {
               var optionElem = document.createElement('option');
               optionElem.value = add.addressId.toString();
@@ -7270,7 +7269,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addAddress",
         value: function addAddress() {
-          var _this53 = this;
+          var _this51 = this;
 
           var form = document.querySelector('form#fundiAddForm1');
           if (!form.checkValidity()) return;
@@ -7279,9 +7278,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Added: ' + p.result);
 
             if (p.result) {
-              _this53.router.navigateByUrl('success');
+              _this51.router.navigateByUrl('success');
             } else {
-              _this53.router.navigateByUrl('failure');
+              _this51.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7289,7 +7288,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateAddress",
         value: function updateAddress() {
-          var _this54 = this;
+          var _this52 = this;
 
           var form = document.querySelector('form#fundiAddForm1');
           if (!form.checkValidity()) return;
@@ -7298,9 +7297,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Updated: ' + p.result);
 
             if (p.result) {
-              _this54.router.navigateByUrl('success');
+              _this52.router.navigateByUrl('success');
             } else {
-              _this54.router.navigateByUrl('failure');
+              _this52.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7308,18 +7307,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectAddress",
         value: function selectAddress() {
-          var _this55 = this;
+          var _this53 = this;
 
           var actualResult = this.myFundiService.GetAddressById(this.addressId);
           actualResult.map(function (p) {
-            _this55.fundiAddress = p;
+            _this53.fundiAddress = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteAddress",
         value: function deleteAddress() {
-          var _this56 = this;
+          var _this54 = this;
 
           var form = document.querySelector('form#fundiAddForm1');
           if (!form.checkValidity()) return;
@@ -7328,9 +7327,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Deleted: ' + p.result);
 
             if (p.result) {
-              _this56.router.navigateByUrl('success');
+              _this54.router.navigateByUrl('success');
             } else {
-              _this56.router.navigateByUrl('failure');
+              _this54.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7553,21 +7552,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectLocation",
         value: function selectLocation() {
-          var _this57 = this;
+          var _this55 = this;
 
           var locationId = jQuery('div#locations-wrapper select#locationId').val();
           var actualResult = this.myFundiService.GetLocationById(locationId);
           actualResult.map(function (p) {
-            _this57.location = p;
+            _this55.location = p;
 
-            _this57.locationEventEmitter.emit(_this57.location.locationId);
+            _this55.locationEventEmitter.emit(_this55.location.locationId);
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteLocation",
         value: function deleteLocation() {
-          var _this58 = this;
+          var _this56 = this;
 
           var form = document.querySelector('form#locationView');
           if (!form.checkValidity()) return;
@@ -7576,9 +7575,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Location Deleted: ' + p.result);
 
             if (p.result) {
-              _this58.router.navigateByUrl('success');
+              _this56.router.navigateByUrl('success');
             } else {
-              _this58.router.navigateByUrl('failure');
+              _this56.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -7586,7 +7585,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this59 = this;
+          var _this57 = this;
 
           this.location = {
             locationId: 0
@@ -7612,7 +7611,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               document.querySelector('select#locaddressId').append(optionElem);
             });
             locatObs.map(function (cmdCats) {
-              _this59.locations = cmdCats;
+              _this57.locations = cmdCats;
               cmdCats.forEach(function (comCat, index, cmdCats) {
                 var optionElem = document.createElement('option');
                 optionElem.value = comCat.locationId.toString();
@@ -7625,18 +7624,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkLocationGeoCodedAndUpdate",
         value: function checkLocationGeoCodedAndUpdate(operation) {
-          var _this60 = this;
+          var _this58 = this;
 
           if (operation === 'update' || operation === 'create') {
             var addObs = this.myFundiService.GetAddressById(this.location.addressId);
             addObs.map(function (add) {
-              _this60.geoCoder.location = _this60.location;
+              _this58.geoCoder.location = _this58.location;
 
-              _this60.geoCoder.geocodeAddress(add, operation);
+              _this58.geoCoder.geocodeAddress(add, operation);
 
               document.getElementById("locmap").style.display = "block";
 
-              _this60.geoCoder.setCreateUpdateLocation(operation, _this60.location);
+              _this58.geoCoder.setCreateUpdateLocation(operation, _this58.location);
             }).subscribe();
           } else {
             document.getElementById("locmap").style.display = "none";
@@ -7794,14 +7793,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkCategoryComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this61 = this;
+          var _this59 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           this.selectCategory = document.querySelector('select#slworkCategoryId');
           workCategoriesObs.map(function (res) {
-            _this61.workCategories = res;
+            _this59.workCategories = res;
             var opts = document.querySelector('select#slworkCategoryId').querySelector("option");
 
             if (opts) {
@@ -7832,7 +7831,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             opt.text = "Select Sub Work Category";
             opt.value = "0";
             document.querySelector('select#slworkSubCategoryId').append('opt');
-            _this61.workSubCategories = wcs;
+            _this59.workSubCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -7845,7 +7844,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "workCategoryChanged",
         value: function workCategoryChanged($event) {
-          var _this62 = this;
+          var _this60 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
@@ -7859,7 +7858,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             opt.text = "Select Sub Work Category";
             opt.value = "0";
             document.querySelector('select#slworkSubCategoryId').append('opt');
-            _this62.workSubCategories = wcs;
+            _this60.workSubCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -8062,7 +8061,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkCategoryCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this63 = this;
+          var _this61 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -8075,7 +8074,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#workCategoryCrudId').append(optionElem);
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this63.workCategories = wcs;
+            _this61.workCategories = wcs;
             ;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
@@ -8088,7 +8087,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkCategory",
         value: function addWorkCategory() {
-          var _this64 = this;
+          var _this62 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -8098,9 +8097,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workCategory Added: ' + p.message);
 
             if (p) {
-              _this64.router.navigateByUrl('success');
+              _this62.router.navigateByUrl('success');
             } else {
-              _this64.router.navigateByUrl('failure');
+              _this62.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -8108,7 +8107,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateworkCategory",
         value: function updateworkCategory() {
-          var _this65 = this;
+          var _this63 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -8118,9 +8117,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('Address Updated: ' + p);
 
             if (p) {
-              _this65.router.navigateByUrl('success');
+              _this63.router.navigateByUrl('success');
             } else {
-              _this65.router.navigateByUrl('failure');
+              _this63.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -8128,19 +8127,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkCategory",
         value: function selectworkCategory() {
-          var _this66 = this;
+          var _this64 = this;
 
           var workCatValue = jQuery('div#workCategoriescrud-wrapper select#workCategoryCrudId').val();
           var actualResult = this.myFundiService.GetworkCategoryById(workCatValue);
           actualResult.map(function (p) {
-            _this66.workCategory = p;
+            _this64.workCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
         }
       }, {
         key: "deleteworkCategory",
         value: function deleteworkCategory() {
-          var _this67 = this;
+          var _this65 = this;
 
           var form = document.querySelector('form#f4');
           if (!form.checkValidity()) return;
@@ -8150,9 +8149,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workCategory Deleted: ' + p);
 
             if (p) {
-              _this67.router.navigateByUrl('success');
+              _this65.router.navigateByUrl('success');
             } else {
-              _this67.router.navigateByUrl('failure');
+              _this65.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -8336,7 +8335,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WorkSubCategoryCrudComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this68 = this;
+          var _this66 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -8366,7 +8365,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.querySelector('select#workSubCategoryCrudId').append(optionElem);
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this68.workCategories = wcs;
+            _this66.workCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workCategoryId.toString();
@@ -8374,10 +8373,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               document.querySelector('select#workCategoryCrudForSubCatId').append(optionElem);
             });
 
-            var workSubCategoriesObs = _this68.myFundiService.GetWorkSubCategories();
+            var workSubCategoriesObs = _this66.myFundiService.GetWorkSubCategories();
 
             workSubCategoriesObs.map(function (wcs) {
-              _this68.workSubCategories = wcs;
+              _this66.workSubCategories = wcs;
               ;
               wcs.forEach(function (c, index, wcs) {
                 var optionElem = document.createElement('option');
@@ -8391,19 +8390,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getWorkSubCategoriesByWorkCategoryId",
         value: function getWorkSubCategoriesByWorkCategoryId() {
-          var _this69 = this;
+          var _this67 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workSubCategory.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
             //clear the workCategory options menu and add new options:
             jQuery('select#workSubCategoryCrudId option').remove();
-            _this69.workSubCategories = [];
+            _this67.workSubCategories = [];
             var optionElem = document.createElement('option');
             optionElem.selected = true;
             optionElem.value = 0 .toString();
             optionElem.text = "Select WorkSubCategory";
             document.querySelector('select#workSubCategoryCrudId').append(optionElem);
-            _this69.workSubCategories = wcs;
+            _this67.workSubCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workSubCategoryId.toString();
@@ -8415,7 +8414,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkSubCategory",
         value: function addWorkSubCategory($event) {
-          var _this70 = this;
+          var _this68 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -8425,9 +8424,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workSubCategory Added: ' + p.toString());
 
             if (p == true) {
-              _this70.router.navigateByUrl('success');
+              _this68.router.navigateByUrl('success');
             } else {
-              _this70.router.navigateByUrl('failure');
+              _this68.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -8436,7 +8435,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateworkSubCategory",
         value: function updateworkSubCategory($event) {
-          var _this71 = this;
+          var _this69 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -8446,9 +8445,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('WorkSubCategory Updated: ' + p.toString());
 
             if (p) {
-              _this71.router.navigateByUrl('success');
+              _this69.router.navigateByUrl('success');
             } else {
-              _this71.router.navigateByUrl('failure');
+              _this69.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -8457,12 +8456,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkSubCategory",
         value: function selectworkSubCategory($event) {
-          var _this72 = this;
+          var _this70 = this;
 
           var workSubCatValue = this.workSubCategory.workSubCategoryId;
           var actualResult = this.myFundiService.GetworkSubCategoryById(workSubCatValue);
           actualResult.map(function (p) {
-            _this72.workSubCategory = p;
+            _this70.workSubCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
           $event.preventDefault();
@@ -8470,7 +8469,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteworkSubCategory",
         value: function deleteworkSubCategory($event) {
-          var _this73 = this;
+          var _this71 = this;
 
           var form = document.querySelector('form#f');
           if (!form.checkValidity()) return;
@@ -8480,9 +8479,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert('workSubCategory Deleted: ' + p);
 
             if (p) {
-              _this73.router.navigateByUrl('success');
+              _this71.router.navigateByUrl('success');
             } else {
-              _this73.router.navigateByUrl('failure');
+              _this71.router.navigateByUrl('failure');
             }
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
@@ -8906,7 +8905,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "forgotPassword",
         value: function forgotPassword($event) {
-          var _this74 = this;
+          var _this72 = this;
 
           var passwordResObs = this.myFundiService.ForgotPasswordByPost(this.userDetail);
           passwordResObs.map(function (q) {
@@ -8917,7 +8916,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               localStorage.setItem('PasswordResetToken', q.passwordResetToken);
               alert("You have been sent an email to reset your password!!");
 
-              _this74.router.navigateByUrl('reset-password');
+              _this72.router.navigateByUrl('reset-password');
             } else {
               alert(q.errorMessage);
             }
@@ -9030,11 +9029,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectContract",
         value: function selectContract($event) {
-          var _this75 = this;
+          var _this73 = this;
 
           var crtObs = this.myFundiService.SelectContract(this.clientFundiContract.clientFundiContractId);
           crtObs.map(function (q) {
-            _this75.clientFundiContract = q;
+            _this73.clientFundiContract = q;
           }).subscribe();
           $event.preventDefault();
         }
@@ -9079,7 +9078,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this76 = this;
+          var _this74 = this;
 
           this.unitMaterialCost = 0;
           this.unitMaterialQuantity = 0;
@@ -9124,12 +9123,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           resObs.map(function (fundiProf) {
             debugger;
-            _this76.fundi = fundiProf;
+            _this74.fundi = fundiProf;
 
-            var clientContsObs = _this76.myFundiService.GetFundiContractsByUsername(_this76.userDetails.username);
+            var clientContsObs = _this74.myFundiService.GetFundiContractsByUsername(_this74.userDetails.username);
 
             clientContsObs.map(function (cts) {
-              _this76.clientContracts = cts;
+              _this74.clientContracts = cts;
               jQuery('div.fundiContract-wrapper select#clientFundiContractId option').remove();
               var optionElem = document.createElement('option');
               optionElem.selected = true;
@@ -9297,7 +9296,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this77 = this;
+          var _this75 = this;
 
           if (isNaN(this.profileId) || this.profileId == 0) {
             var profileUserDetails = JSON.parse(localStorage.getItem("profileUserDetails"));
@@ -9307,12 +9306,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var levelEngObs = this.myFundiService.GetFundiLevelOfEngagement(this.profileId);
               levelEngObs.map(function (fundiEngagements) {
                 var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                _this77.currentFundiNumbOfAssignments = numberOfAssignments;
+                _this75.currentFundiNumbOfAssignments = numberOfAssignments;
                 var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
-                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('height', '2%');
-                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('position', 'absolute');
-                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('top', top);
-                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('display', 'block');
+                jQuery("fundi-engagement#engagement-" + _this75.profileId + " div#indicator").css('height', '2%');
+                jQuery("fundi-engagement#engagement-" + _this75.profileId + " div#indicator").css('position', 'absolute');
+                jQuery("fundi-engagement#engagement-" + _this75.profileId + " div#indicator").css('top', top);
+                jQuery("fundi-engagement#engagement-" + _this75.profileId + " div#indicator").css('display', 'block');
               }).subscribe();
             } else {
               var userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -9320,11 +9319,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               fundiProfObs.map(function (fprof) {
                 var fundiProfile = fprof;
 
-                var levelEngObs = _this77.myFundiService.GetFundiLevelOfEngagement(fundiProfile.fundiProfileId);
+                var levelEngObs = _this75.myFundiService.GetFundiLevelOfEngagement(fundiProfile.fundiProfileId);
 
                 levelEngObs.map(function (fundiEngagements) {
                   var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                  _this77.currentFundiNumbOfAssignments = numberOfAssignments;
+                  _this75.currentFundiNumbOfAssignments = numberOfAssignments;
                   var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
                   jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('height', '2%');
                   jQuery('fundi-engagement#profile-engagement-' + fundiProfile.fundiProfileId + ' div#indicator').css('position', 'absolute');
@@ -9337,22 +9336,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var _fundiProfObs = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());
 
             _fundiProfObs.map(function (fprof) {
-              _this77.profile = fprof;
+              _this75.profile = fprof;
 
-              var levelEngObs = _this77.myFundiService.GetFundiLevelOfEngagement(_this77.profileId);
+              var levelEngObs = _this75.myFundiService.GetFundiLevelOfEngagement(_this75.profileId);
 
               levelEngObs.map(function (fundiEngagements) {
                 var numberOfAssignments = fundiEngagements[0].numberOfAssignments;
-                _this77.currentFundiNumbOfAssignments = numberOfAssignments;
+                _this75.currentFundiNumbOfAssignments = numberOfAssignments;
                 var top = "".concat(numberOfAssignments <= 1 ? '87%' : numberOfAssignments == 2 ? '62%' : numberOfAssignments == 3 ? '37%' : '12%');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this77.profileId + ' div#indicator').css('height', '2%');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this77.profileId + ' div#indicator').css('position', 'absolute');
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this77.profileId + ' div#indicator').css('top', top);
-                jQuery('fundi-engagement#clientSearchEngagement-' + _this77.profileId + ' div#indicator').css('display', 'block');
-                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('height', '2%');
-                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('position', 'absolute');
-                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('top', top);
-                jQuery("fundi-engagement#engagement-" + _this77.profileId + " div#indicator").css('display', 'block');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this75.profileId + ' div#indicator').css('height', '2%');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this75.profileId + ' div#indicator').css('position', 'absolute');
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this75.profileId + ' div#indicator').css('top', top);
+                jQuery('fundi-engagement#clientSearchEngagement-' + _this75.profileId + ' div#indicator').css('display', 'block');
+                jQuery("fundi-engagement#engagement-" + _this75.profileId + " div#indicator").css('height', '2%');
+                jQuery("fundi-engagement#engagement-" + _this75.profileId + " div#indicator").css('position', 'absolute');
+                jQuery("fundi-engagement#engagement-" + _this75.profileId + " div#indicator").css('top', top);
+                jQuery("fundi-engagement#engagement-" + _this75.profileId + " div#indicator").css('display', 'block');
               }).subscribe();
             }).subscribe();
           }
@@ -9467,7 +9466,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this78 = this;
+          var _this76 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           this.fundiUser = JSON.parse(localStorage.getItem("FundiUserTo"));
@@ -9489,12 +9488,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.profileId > 0) {
             var prfObs = this.myFundiService.GetFundiProfileByProfileId(this.profileId.toString());
             prfObs.map(function (q) {
-              _this78.profile = q;
-              _this78.profileId = _this78.profile.fundiProfileId;
+              _this76.profile = q;
+              _this76.profileId = _this76.profile.fundiProfileId;
 
-              _this78.getFundiWorkCategoriesByProfileId(_this78.profileId);
+              _this76.getFundiWorkCategoriesByProfileId(_this76.profileId);
 
-              _this78.generateFundiRatings();
+              _this76.generateFundiRatings();
             }).subscribe();
           }
         }
@@ -9563,7 +9562,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "generateFundiRatings",
         value: function generateFundiRatings() {
-          var _this79 = this;
+          var _this77 = this;
 
           var curthis = this;
           var wCatsSubCatsObs = this.myFundiService.GetFundiWorkCategoriesAndSubCategoriesByJobId(this.jobId);
@@ -9571,16 +9570,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.profile) {
             var fundiRatingsObs = this.myFundiService.GetFundiRatings(this.fundiUser.username);
             wCatsSubCatsObs.map(function (q) {
-              _this79.jobWorkCategoryDetails = q;
+              _this77.jobWorkCategoryDetails = q;
               fundiRatingsObs.map(function (r) {
-                _this79.fundiRatings = r;
+                _this77.fundiRatings = r;
 
-                _this79.fundiRatings.forEach(function (q) {
-                  _this79.averageFundiRating += q.rating;
-                  jQuery('span#averageFundiRating-' + _this79.profile.fundiProfileId).rateit('value', _this79.averageFundiRatings);
+                _this77.fundiRatings.forEach(function (q) {
+                  _this77.averageFundiRating += q.rating;
+                  jQuery('span#averageFundiRating-' + _this77.profile.fundiProfileId).rateit('value', _this77.averageFundiRatings);
                 });
 
-                _this79.averageFundiRating = parseInt((_this79.averageFundiRating / r.length).toString());
+                _this77.averageFundiRating = parseInt((_this77.averageFundiRating / r.length).toString());
               }).subscribe();
             }).subscribe();
           } else {
@@ -9590,7 +9589,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "rateFundi",
         value: function rateFundi($event) {
-          var _this80 = this;
+          var _this78 = this;
 
           var button = $event.target;
           var review = jQuery(button).parent('form').find('textarea').val();
@@ -9608,7 +9607,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               workCategoryType: workCategory
             };
 
-            var fundiRatedObs = _this80.myFundiService.RateFundiByProfileId(fundiRated);
+            var fundiRatedObs = _this78.myFundiService.RateFundiByProfileId(fundiRated);
 
             fundiRatedObs.map(function (res) {
               alert(res.message);
@@ -9618,7 +9617,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFundiWorkCategoriesByProfileId",
         value: function getFundiWorkCategoriesByProfileId(profileId) {
-          var _this81 = this;
+          var _this79 = this;
 
           var fundiWorkCatObs = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
           fundiWorkCatObs.map(function (res) {
@@ -9632,7 +9631,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               jQuery(ul).append(li);
             }
 
-            _this81.getFundiSkillsByProfileId(profileId);
+            _this79.getFundiSkillsByProfileId(profileId);
           }).subscribe();
         }
       }, {
@@ -9756,7 +9755,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this82 = this;
+          var _this80 = this;
 
           this.numberOfResultsPerPage = 2;
           this.currentPage = 1;
@@ -9777,14 +9776,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jQuery('#fundiSearchForm div#fundiCategories').children().remove();
           var workCatObs = this.myFundiService.GetWorkCategories();
           workCatObs.map(function (workCats) {
-            _this82.workCategories = workCats;
-            _this82.userDetails = JSON.parse(localStorage.getItem("userDetails"));
-            _this82.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+            _this80.workCategories = workCats;
+            _this80.userDetails = JSON.parse(localStorage.getItem("userDetails"));
+            _this80.userRoles = JSON.parse(localStorage.getItem("userRoles"));
 
-            var resObs = _this82.myFundiService.GetFundiProfile(_this82.userDetails.username);
+            var resObs = _this80.myFundiService.GetFundiProfile(_this80.userDetails.username);
 
             resObs.map(function (fundiProf) {
-              var fundiSubsObs = _this82.myFundiService.GetAllFundiSubscriptions(fundiProf.fundiProfileId);
+              var fundiSubsObs = _this80.myFundiService.GetAllFundiSubscriptions(fundiProf.fundiProfileId);
 
               fundiSubsObs.map(function (q) {
                 q.forEach(function (sub, ind) {
@@ -9792,7 +9791,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   var divFundiCategories = document.querySelector('#fundiSearchForm div#fundiCategories');
 
                   var _loop3 = function _loop3(id) {
-                    _this82.workCategories.forEach(function (cat) {
+                    _this80.workCategories.forEach(function (cat) {
                       if (sub.workCategoryAndSubCategoryIds[id].workCategoryId == cat.workCategoryId) {
                         var chBoxLabel = document.createElement('label');
                         chBoxLabel.textContent = cat.workCategoryType;
@@ -9829,7 +9828,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         ul.appendChild(li);
                         divFundiCategories.appendChild(ul);
 
-                        var workSubCatObs = _this82.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
+                        var workSubCatObs = _this80.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(cat.workCategoryId);
 
                         workSubCatObs.map(function (workSubCats) {
                           var workSubCategories = workSubCats;
@@ -9926,7 +9925,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "seachJobsByCurrentGeoLocation",
         value: function seachJobsByCurrentGeoLocation($event) {
-          var _this83 = this;
+          var _this81 = this;
 
           this.numberOfResultsSet = 20;
           this.numberOfResultSetToSkip = 0;
@@ -9957,7 +9956,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var fundiLocObs = this.myFundiService.GetFundiRealTimeLocationsByUsername(this.userDetails.username.toLowerCase());
           fundiLocObs.map(function (flocMon) {
             if (flocMon) {
-              var profObs = _this83.myFundiService.GetFundiProfileByUsername(flocMon.username);
+              var profObs = _this81.myFundiService.GetFundiProfileByUsername(flocMon.username);
 
               profObs.map(function (pr) {
                 if (pr) {
@@ -9967,23 +9966,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   };
                   viewObjects[0].fundiProfileId = pr.fundiProfileId;
 
-                  var fundiJobsObs = _this83.myFundiService.GetJobsByCategoriesAndFundiUserGeoLocation(viewObjects, pr.fundiProfileId, _this83.distanceKmLimitApart, _this83.numberOfResultSetToSkip, _this83.numberOfResultsSet);
+                  var fundiJobsObs = _this81.myFundiService.GetJobsByCategoriesAndFundiUserGeoLocation(viewObjects, pr.fundiProfileId, _this81.distanceKmLimitApart, _this81.numberOfResultSetToSkip, _this81.numberOfResultsSet);
 
-                  _this83.numberOfResultSetToSkip += _this83.numberOfResultsSet + 1;
+                  _this81.numberOfResultSetToSkip += _this81.numberOfResultsSet + 1;
                   fundiJobsObs.map(function (q) {
-                    if (q && q.length > 0 && _this83.isSearchingOnLocality) {
-                      _this83.listToShow = q;
+                    if (q && q.length > 0 && _this81.isSearchingOnLocality) {
+                      _this81.listToShow = q;
 
-                      _this83.showFirstPage();
+                      _this81.showFirstPage();
                     } else {
-                      _this83.numberOfResultSetToSkip = 0;
+                      _this81.numberOfResultSetToSkip = 0;
                       alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                     }
 
-                    _this83.isSearchingOnLocality = false;
+                    _this81.isSearchingOnLocality = false;
                   }).subscribe();
                 } else {
-                  _this83.numberOfResultSetToSkip = 0;
+                  _this81.numberOfResultSetToSkip = 0;
                   alert("Your current location is not being monitored on map!!\nPlease use android app to start monitoring.");
                 }
               }).subscribe();
@@ -9994,7 +9993,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "searchJobsByCategories",
         value: function searchJobsByCategories($event) {
-          var _this84 = this;
+          var _this82 = this;
 
           var curthis = this;
           this.fundiJobList = [];
@@ -10023,23 +10022,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           fundiObjs.map(function (q) {
             var locsObj = curthis.myFundiService.GetFundiLocationByFundiProfileId(q.fundiProfileId);
             locsObj.map(function (r) {
-              _this84.fundiLocation = r;
+              _this82.fundiLocation = r;
 
               for (var n = 0; n < viewObjects.length; n++) {
                 viewObjects[n].coordinate.latitude = r.latitude;
                 viewObjects[n].coordinate.longitude = r.longitude;
               }
 
-              var fundiJobsObs = _this84.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, _this84.distanceKmLimitApart, _this84.numberOfResultSetToSkip, _this84.numberOfResultsSet);
+              var fundiJobsObs = _this82.myFundiService.GetJobsByCategoriesAndFundiUser(viewObjects, q.fundiProfileId, _this82.distanceKmLimitApart, _this82.numberOfResultSetToSkip, _this82.numberOfResultsSet);
 
-              _this84.numberOfResultSetToSkip += _this84.numberOfResultsSet + 1;
+              _this82.numberOfResultSetToSkip += _this82.numberOfResultsSet + 1;
               fundiJobsObs.map(function (q) {
                 if (q && q.length > 0) {
-                  _this84.listToShow = q;
+                  _this82.listToShow = q;
 
-                  _this84.showFirstPage();
+                  _this82.showFirstPage();
                 } else {
-                  _this84.numberOfResultSetToSkip = 0;
+                  _this82.numberOfResultSetToSkip = 0;
                   alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
                 }
               }).subscribe();
@@ -10128,7 +10127,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getJobPage",
         value: function getJobPage($event) {
-          var _this85 = this;
+          var _this83 = this;
 
           localStorage.removeItem('CurrentJob');
           localStorage.removeItem('CurrentClientUserDetails');
@@ -10139,23 +10138,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jobObs.map(function (job) {
             localStorage.setItem('CurrentJob', JSON.stringify(job));
 
-            var clientObs = _this85.myFundiService.GetClientProfileById(job.clientProfileId);
+            var clientObs = _this83.myFundiService.GetClientProfileById(job.clientProfileId);
 
             clientObs.map(function (clientProfile) {
               localStorage.setItem('CurrentJobClientProfile', JSON.stringify(clientProfile));
 
-              var clientUserObs = _this85.myFundiService.GetClientUserById(clientProfile.userId);
+              var clientUserObs = _this83.myFundiService.GetClientUserById(clientProfile.userId);
 
               clientUserObs.map(function (clientUser) {
                 localStorage.setItem('CurrentClientUserDetails', JSON.stringify(clientUser));
 
-                var currJobWorkCatsObs = _this85.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
+                var currJobWorkCatsObs = _this83.myFundiService.GetJobWorkCategoriesByJobId(job.jobId);
 
                 currJobWorkCatsObs.map(function (wCats) {
                   localStorage.setItem('CurrentJobWorkCategories', JSON.stringify(wCats));
 
                   if (clientProfile && job) {
-                    _this85.router.navigateByUrl('job-details');
+                    _this83.router.navigateByUrl('job-details');
                   } else {
                     alert('Job doesn\'t exist!');
                   }
@@ -10168,7 +10167,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFundiWorkCategoriesByProfileId",
         value: function getFundiWorkCategoriesByProfileId(profileId) {
-          var _this86 = this;
+          var _this84 = this;
 
           var fundiWorkCatObs = this.myFundiService.GetFundiWorkCategoriesByProfileId(profileId);
           fundiWorkCatObs.map(function (res) {
@@ -10182,7 +10181,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               jQuery(ul).append(li);
             }
 
-            _this86.getFundiSkillsByProfileId(profileId);
+            _this84.getFundiSkillsByProfileId(profileId);
           }).subscribe();
         }
       }, {
@@ -10202,13 +10201,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "populateFundiUserDetails",
         value: function populateFundiUserDetails($event, profileId) {
-          var _this87 = this;
+          var _this85 = this;
 
           var userObs = this.myFundiService.GetFundiUserByProfileId(profileId);
           userObs.map(function (res) {
             localStorage.setItem("profileUserDetails", JSON.stringify(res));
 
-            _this87.router.navigateByUrl('/fundiprofile-by-id');
+            _this85.router.navigateByUrl('/fundiprofile-by-id');
           }).subscribe();
           $event.preventDefault();
         }
@@ -10314,7 +10313,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this88 = this;
+          var _this86 = this;
 
           this.profileUserDetails = JSON.parse(localStorage.getItem("profileUserDetails"));
           this.profileId = this.profileUserDetails.fundiProfileId;
@@ -10324,19 +10323,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var coursesObs = this.myFundiService.GetFundiCourses(this.profileUserDetails.username);
           var ratingsObs = this.myFundiService.GetFundiRatings(this.profileUserDetails.username);
           resObs.map(function (fundiProf) {
-            _this88.profile = fundiProf;
+            _this86.profile = fundiProf;
             ;
             ratingsObs.map(function (ratings) {
-              _this88.fundiRatings = ratings;
+              _this86.fundiRatings = ratings;
             }).subscribe();
             coursesObs.map(function (courses) {
-              _this88.courses = courses;
+              _this86.courses = courses;
             }).subscribe();
             workCatObs.map(function (workCats) {
-              _this88.workCategories = workCats;
+              _this86.workCategories = workCats;
             }).subscribe();
             certsObs.map(function (certs) {
-              _this88.certifications = certs;
+              _this86.certifications = certs;
             }).subscribe();
             localStorage.removeItem("profileUserDetails");
           }).subscribe();
@@ -10427,7 +10426,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.myFundiService = myFundiService;
         this.router = router;
-        this.subscriptionFee = 25000;
+        this.subscriptionFee = 5;
         this.fundi = {};
         this.hasPopulatedPage = false;
         this.userDetails = {};
@@ -10441,7 +10440,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this89 = this;
+          var _this87 = this;
 
           this.workCategory = {
             workCategoryId: 0
@@ -10461,7 +10460,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.workSubCategories = [];
           var workCategoriesObs = this.myFundiService.GetWorkCategories();
           workCategoriesObs.map(function (wcs) {
-            _this89.workCategories = wcs;
+            _this87.workCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workCategoryId.toString();
@@ -10471,10 +10470,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var selectedWorkCatId = parseInt(jQuery('select#subcworkCategoryId > option:selected').val());
             debugger;
 
-            var workSubCategoriesObs = _this89.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(selectedWorkCatId);
+            var workSubCategoriesObs = _this87.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(selectedWorkCatId);
 
             workSubCategoriesObs.map(function (wcs) {
-              _this89.workSubCategories = wcs;
+              _this87.workSubCategories = wcs;
               ;
               wcs.forEach(function (c, index, wcs) {
                 var optionElem = document.createElement('option');
@@ -10509,21 +10508,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (!fundiProf) {
               alert('Fundi need mandatory Profiles. \nPlease create and Save your Fundi Profile!!');
 
-              _this89.router.navigateByUrl('/manage-profile');
+              _this87.router.navigateByUrl('/manage-profile');
 
               return;
             } else {
-              _this89.fundi = fundiProf;
-              _this89.fundi.subscriptionFee = _this89.subscriptionFee;
-              _this89.fundi.subscriptionName = "Fundi User ".concat(_this89.userDetails.firstName, " ").concat(_this89.userDetails.lastName, " Subscription for 31 days");
-              _this89.fundi.subscriptionDescription = "Attempting Monthly Payment!";
+              _this87.fundi = fundiProf;
+              _this87.fundi.subscriptionFee = _this87.subscriptionFee;
+              _this87.fundi.subscriptionName = "Fundi User ".concat(_this87.userDetails.firstName, " ").concat(_this87.userDetails.lastName, " Subscription for 31 days");
+              _this87.fundi.subscriptionDescription = "Attempting Monthly Payment!";
 
-              var userIdObs = _this89.myFundiService.GetUserGuidId(_this89.userDetails.username);
+              var userIdObs = _this87.myFundiService.GetUserGuidId(_this87.userDetails.username);
 
               userIdObs.map(function (q) {
-                _this89.fundi.userId = q;
+                _this87.fundi.userId = q;
 
-                var subscrObs = _this89.myFundiService.GetAllFundiSubscriptions(_this89.fundi.fundiProfileId);
+                var subscrObs = _this87.myFundiService.GetAllFundiSubscriptions(_this87.fundi.fundiProfileId);
 
                 subscrObs.map(function (subs) {
                   var opt = document.createElement('option');
@@ -10533,32 +10532,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   subscrSelect.appendChild(opt);
 
                   if (subs.length > 0) {
-                    _this89.subscriptionFeeExpense = _this89.subscription = subs[0];
-                    _this89.fundi.subscriptionFee = _this89.subscription.subscriptionFee;
-                    _this89.startingDate = _this89.formatDate(subs[0].startDate);
+                    _this87.subscriptionFeeExpense = _this87.subscription = subs[0];
+                    _this87.fundi.subscriptionFee = _this87.subscription.subscriptionFee;
+                    _this87.startingDate = _this87.formatDate(subs[0].startDate);
 
-                    _this89.appendCategoriesAndSubCategoriesToUi();
+                    _this87.appendCategoriesAndSubCategoriesToUi();
                   } else {
                     var dateNow = new Date();
-                    _this89.startingDate = _this89.formatDate(dateNow);
-                    _this89.subscription = _this89.subscriptionFeeExpense;
-                    _this89.subscription.monthlySubscriptionId = 0;
+                    _this87.startingDate = _this87.formatDate(dateNow);
+                    _this87.subscription = _this87.subscriptionFeeExpense;
+                    _this87.subscription.monthlySubscriptionId = 0;
                   }
 
                   subs.forEach(function (sub, ind) {
                     var opt1 = document.createElement('option');
                     opt1.value = sub.monthlySubscriptionId.toString();
-                    opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this89.formatDate(sub.startDate);
+                    opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this87.formatDate(sub.startDate);
                     subscrSelect.appendChild(opt1);
                   });
 
-                  var lastMonthlySubsObs = _this89.myFundiService.GetFundiLastSubscriptionFees(_this89.subscription.userId);
+                  var lastMonthlySubsObs = _this87.myFundiService.GetFundiLastSubscriptionFees(_this87.subscription.userId);
 
                   lastMonthlySubsObs.map(function (q) {
                     debugger;
 
                     if (q.result) {
-                      _this89.fundi.subscriptionFee = q.subscriptionFee;
+                      _this87.fundi.subscriptionFee = q.subscriptionFee;
                     }
                   }).subscribe();
                 }).subscribe();
@@ -10569,13 +10568,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getWorkSubCategoriesByWorkCategoryId",
         value: function getWorkSubCategoriesByWorkCategoryId() {
-          var _this90 = this;
+          var _this88 = this;
 
           var workSubCategoriesObs = this.myFundiService.GetAllFundiWorkSubCategoriesByWorkCategoryId(this.workCategory.workCategoryId);
           workSubCategoriesObs.map(function (wcs) {
             //clear the workCategory options menu and add new options:
             jQuery('select#subcworkSubCategoryId option').remove();
-            _this90.workSubCategories = wcs;
+            _this88.workSubCategories = wcs;
             wcs.forEach(function (c, index, wcs) {
               var optionElem = document.createElement('option');
               optionElem.value = c.workSubCategoryId.toString();
@@ -10587,12 +10586,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectworkSubCategory",
         value: function selectworkSubCategory($event) {
-          var _this91 = this;
+          var _this89 = this;
 
           var workSubCatValue = this.workSubCategory.workSubCategoryId;
           var actualResult = this.myFundiService.GetworkSubCategoryById(workSubCatValue);
           actualResult.map(function (p) {
-            _this91.workSubCategory = p;
+            _this89.workSubCategory = p;
           }).subscribe();
           jQuery('form#locationView').css('display', 'block').slideDown();
           $event.preventDefault();
@@ -10658,7 +10657,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "appendCategoriesAndSubCategoriesToUi",
         value: function appendCategoriesAndSubCategoriesToUi() {
-          var _this92 = this;
+          var _this90 = this;
 
           var curThis = this;
           var ulSelectedCategories = document.querySelector('div#fundiSubscription-wrapper ul#ulistWorkCategories');
@@ -10668,10 +10667,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             jQuery('select#subcworkCategoryId').val(curThis.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString()).trigger('change');
 
             var _loop5 = function _loop5(s) {
-              res = _this92.myFundiService.GetworkSubCategoryById(parseInt(_this92.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s])).toPromise().then(function (q) {
+              res = _this90.myFundiService.GetworkSubCategoryById(parseInt(_this90.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s])).toPromise().then(function (q) {
                 var li = document.createElement("li");
-                li.setAttribute('id', "".concat(_this92.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString(), ",").concat(_this92.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s].toString()));
-                li.textContent = jQuery('select#subcworkCategoryId > option[value="' + _this92.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId + '"]').text() + " [".concat(q.workSubCategoryType, "]");
+                li.setAttribute('id', "".concat(_this90.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId.toString(), ",").concat(_this90.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workSubCategoryIds[s].toString()));
+                li.textContent = jQuery('select#subcworkCategoryId > option[value="' + _this90.subscriptionFeeExpense.workCategoryAndSubCategoryIds[n].workCategoryId + '"]').text() + " [".concat(q.workSubCategoryType, "]");
                 ulSelectedCategories.appendChild(li);
               });
             };
@@ -10722,15 +10721,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectSubscription",
         value: function selectSubscription($event) {
-          var _this93 = this;
+          var _this91 = this;
 
           var subObs = this.myFundiService.GetFundiSubscription(this.subscription.monthlySubscriptionId);
           subObs.map(function (q) {
-            _this93.subscription = _this93.subscriptionFeeExpense = q;
-            _this93.fundi.subscriptionFee = _this93.subscription.subscriptionFee;
-            _this93.startingDate = _this93.formatDate(q.startDate);
+            _this91.subscription = _this91.subscriptionFeeExpense = q;
+            _this91.fundi.subscriptionFee = _this91.subscription.subscriptionFee;
+            _this91.startingDate = _this91.formatDate(q.startDate);
 
-            _this93.appendCategoriesAndSubCategoriesToUi();
+            _this91.appendCategoriesAndSubCategoriesToUi();
           }).subscribe();
           $event.preventDefault();
         }
@@ -10788,6 +10787,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           };
           var resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid);
           resultObs.map(function (q) {
+            debugger;
+
             if (q.payPalRedirectUrl) {
               window.open(q.payPalRedirectUrl);
               console.log('Response received');
@@ -10802,8 +10803,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "paySubscriptionMonthlyFeeWithAirTel",
         value: function paySubscriptionMonthlyFeeWithAirTel($event) {
-          var _this94 = this;
-
           if (!this.checkFundiProfileExists()) {
             this.router.navigateByUrl('/manage-profile');
             return;
@@ -10823,6 +10822,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           };
           var resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
           resultObs.map(function (q) {
+            debugger;
+
             if (q.mtnAirtelBaseUrl) {
               //Requires POST Verb.
               //window.open(q.mtnAirTelBaseUrl);
@@ -10836,15 +10837,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 reference: q.reference,
                 phone: q.phone
               };
-              console.log('Response received: ' + q.mtnAirtelBaseUrl);
+              console.log('Response received: ' + q.mtnAirtelBaseUrl + "".concat(q));
+              var easyPayWindow = null;
 
-              var resObs = _this94.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+              try {
+                if (!easyPayWindow || easyPayWindow.closed) {
+                  easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                } else {
+                  easyPayWindow.focus();
+                  easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                }
 
-              resObs.map(function (q) {
-                console.log("Was Successful: " + q.success);
-                console.log("Result Data: " + q.data);
-                alert("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
-              }).subscribe();
+                console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
+              } catch (ex) {
+                console.log(ex);
+              } finally {
+                if (easyPayWindow && !easyPayWindow.closed) easyPayWindow.close();
+              }
             } else {
               alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
             }
@@ -10854,8 +10863,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "paySubscriptionMonthlyFeeWithMtn",
         value: function paySubscriptionMonthlyFeeWithMtn($event) {
-          var _this95 = this;
-
           if (!this.checkFundiProfileExists()) {
             this.router.navigateByUrl('/manage-profile');
             return;
@@ -10873,8 +10880,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             subscriptionDescription: this.fundi.subscriptionDescription,
             workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.workCategoryAndSubCategoryIds
           };
-          var resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
+          var resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithMtn(subscriptionFeeExpenseToBePaid);
           resultObs.map(function (q) {
+            debugger;
+
             if (q.mtnAirtelBaseUrl) {
               //Requires POST Verb.
               //window.open(q.mtnAirTelBaseUrl);
@@ -10888,15 +10897,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 reference: q.reference,
                 phone: q.phone
               };
-              console.log('Response received: ' + q.mtnAirtelBaseUrl);
+              console.log('Response received: ' + q.mtnAirtelBaseUrl + "".concat(q));
+              var easyPayWindow = null;
 
-              var resObs = _this95.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+              try {
+                if (!easyPayWindow || easyPayWindow.closed) {
+                  easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                } else {
+                  easyPayWindow.focus();
+                  easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                }
 
-              resObs.map(function (q) {
-                console.log("Was Successful: " + q.success);
-                console.log("Result Data: " + q.data);
-                alert("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
-              }).subscribe();
+                console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
+              } catch (ex) {
+                console.log(ex);
+              } finally {
+                if (easyPayWindow && !easyPayWindow.closed) easyPayWindow.close();
+              }
             } else {
               alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
             }
@@ -11196,7 +11213,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loginUser",
         value: function loginUser() {
-          var _this96 = this;
+          var _this92 = this;
 
           localStorage.setItem("userRoles", '');
           this.userDetail.authToken = localStorage.getItem('authToken');
@@ -11208,7 +11225,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (q.clientDueToPaySubscription) {
               localStorage.setItem("ClientLoginDetails", JSON.stringify(q));
 
-              _this96.router.navigateByUrl('/client-subscription');
+              _this92.router.navigateByUrl('/client-subscription');
 
               return;
             }
@@ -11218,31 +11235,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 alert(q.message);
               }
 
-              _this96.userDetail.firstName = q.firstName;
-              _this96.userDetail.lastName = q.lastName;
-              _this96.userDetail.userId = q.userId;
-              _this96.userDetail.username = q.username;
-              _this96.userDetail.email = q.username;
-              localStorage.setItem("userDetails", JSON.stringify(_this96.userDetail));
+              _this92.userDetail.firstName = q.firstName;
+              _this92.userDetail.lastName = q.lastName;
+              _this92.userDetail.userId = q.userId;
+              _this92.userDetail.username = q.username;
+              _this92.userDetail.email = q.username;
+              localStorage.setItem("userDetails", JSON.stringify(_this92.userDetail));
 
               if (q.authToken) {
                 localStorage.setItem('authToken', q.authToken);
               }
 
-              _this96.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = true;
+              _this92.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = true;
 
               if (q.isAdministrator) {
-                _this96.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = true;
+                _this92.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = true;
               }
 
-              localStorage.setItem("actUserStatus", JSON.stringify(_this96.actUserStatus));
+              localStorage.setItem("actUserStatus", JSON.stringify(_this92.actUserStatus));
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').css('display', 'block');
-              jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("logged in as: " + _this96.userDetail.emailAddress);
+              jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("logged in as: " + _this92.userDetail.emailAddress);
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].isLoginPage = false;
 
-              _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail(_this96.userDetail.emailAddress);
+              _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail(_this92.userDetail.emailAddress);
 
-              _this96.ensureUserRolesGot();
+              _this92.ensureUserRolesGot();
             } else {
               if (q.message) {
                 alert(q.message);
@@ -11251,8 +11268,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').css('display', 'none');
               jquery__WEBPACK_IMPORTED_MODULE_4__('span#loginName').text("");
               alert('Login Failed. Unknown User');
-              _this96.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = false;
-              _this96.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = false;
+              _this92.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserLoggedIn = false;
+              _this92.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].actUserStatus.isUserAdministrator = false;
 
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].SetUserEmail('');
 
@@ -11265,7 +11282,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ensureUserRolesGot",
         value: function ensureUserRolesGot() {
-          var _this97 = this;
+          var _this93 = this;
 
           var userRolesStr = localStorage.getItem("userRoles");
 
@@ -11279,10 +11296,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.userRoles == null || this.userRoles.length < 1) {
             this.myFundiService.GetAllUserRoles(_services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].clientEmailAddress).map(function (userroles) {
               localStorage.setItem("userRoles", JSON.stringify(userroles));
-              _this97.userRoles = userroles;
+              _this93.userRoles = userroles;
               _services_myFundiService__WEBPACK_IMPORTED_MODULE_2__["MyFundiService"].userRoles = userroles;
 
-              _this97.router.navigateByUrl("/manage-profile");
+              _this93.router.navigateByUrl("/manage-profile");
             }).subscribe();
           }
         }
@@ -11408,7 +11425,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var NavMenuComponent = /*#__PURE__*/function () {
       function NavMenuComponent(myFundiService, router) {
-        var _this98 = this;
+        var _this94 = this;
 
         _classCallCheck(this, NavMenuComponent);
 
@@ -11421,7 +11438,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router.events.filter(function (event) {
           return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__["NavigationEnd"];
         }).subscribe(function (val) {
-          _this98.myInit();
+          _this94.myInit();
         });
       }
 
@@ -11443,7 +11460,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "verifyLoggedInUser",
         value: function verifyLoggedInUser() {
-          var _this99 = this;
+          var _this95 = this;
 
           this.actUserStatus.isUserLoggedIn = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn;
           this.actUserStatus.isUserAdministrator = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator;
@@ -11457,19 +11474,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].SetUserEmail(p.name);
 
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this99.actUserStatus.isUserLoggedIn = true;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this95.actUserStatus.isUserLoggedIn = true;
 
                 if (p.isAdministrator) {
-                  _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this99.actUserStatus.isUserAdministrator = true;
+                  _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this95.actUserStatus.isUserAdministrator = true;
                 }
 
                 localStorage.removeItem("actUserStatus");
-                localStorage.setItem("actUserStatus", JSON.stringify(_this99.actUserStatus));
+                localStorage.setItem("actUserStatus", JSON.stringify(_this95.actUserStatus));
 
-                _this99.ensureUserRolesGot();
+                _this95.ensureUserRolesGot();
               } else {
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this99.actUserStatus.isUserLoggedIn = false;
-                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this99.actUserStatus.isUserAdministrator = false;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserLoggedIn = _this95.actUserStatus.isUserLoggedIn = false;
+                _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].actUserStatus.isUserAdministrator = _this95.actUserStatus.isUserAdministrator = false;
                 localStorage.removeItem("userRoles");
                 localStorage.removeItem("actUserStatus");
                 localStorage.removeItem('authToken');
@@ -11492,7 +11509,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logOut",
         value: function logOut() {
-          var _this100 = this;
+          var _this96 = this;
 
           localStorage.removeItem('authToken');
           localStorage.removeItem("userDetails");
@@ -11509,15 +11526,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             jquery__WEBPACK_IMPORTED_MODULE_3__('span#loginName').css('display', 'none');
             localStorage.removeItem("userRoles");
             localStorage.removeItem("actUserStatus");
-            _this100.actUserStatus.isUserLoggedIn = false;
-            _this100.actUserStatus.isUserAdministrator = false;
-            _this100.userRoles = [];
+            _this96.actUserStatus.isUserLoggedIn = false;
+            _this96.actUserStatus.isUserAdministrator = false;
+            _this96.userRoles = [];
           }).subscribe();
         }
       }, {
         key: "ensureUserRolesGot",
         value: function ensureUserRolesGot() {
-          var _this101 = this;
+          var _this97 = this;
 
           if (this.actUserStatus.isUserLoggedIn) {
             var userRolesStr = JSON.parse(localStorage.getItem("userRoles"));
@@ -11531,7 +11548,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (this.userRoles == null || this.userRoles.length < 1) {
               this.myFundiService.GetAllUserRoles(_services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].clientEmailAddress).map(function (userroles) {
                 localStorage.setItem("userRoles", JSON.stringify(userroles));
-                _this101.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].userRoles = userroles;
+                _this97.userRoles = _services_myFundiService__WEBPACK_IMPORTED_MODULE_1__["MyFundiService"].userRoles = userroles;
               }).subscribe();
             }
           }
@@ -11654,15 +11671,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "createUserRole",
         value: function createUserRole() {
-          var _this102 = this;
+          var _this98 = this;
 
           var results = this.myFundiService.CreateUserRole(this.newRoleName);
           results.map(function (q) {
             if (q) {
-              alert('Role: ' + _this102.newRoleName + ' Created Successfully!');
+              alert('Role: ' + _this98.newRoleName + ' Created Successfully!');
               return true;
             } else {
-              alert('Failed to Create: ' + _this102.newRoleName + ' Role.');
+              alert('Failed to Create: ' + _this98.newRoleName + ' Role.');
               return false;
             }
           }).subscribe();
@@ -11670,15 +11687,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteUserRole",
         value: function deleteUserRole() {
-          var _this103 = this;
+          var _this99 = this;
 
           var results = this.myFundiService.DeleteUserRole(this.newRoleName);
           results.map(function (q) {
             if (q) {
-              alert('Role: ' + _this103.newRoleName + ' Deleted Successfully!');
+              alert('Role: ' + _this99.newRoleName + ' Deleted Successfully!');
               return true;
             } else {
-              alert('Failed to Delete: ' + _this103.newRoleName + ' Role.');
+              alert('Failed to Delete: ' + _this99.newRoleName + ' Role.');
               return false;
             }
           }).subscribe();
@@ -12062,7 +12079,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProfileCreateComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this104 = this;
+          var _this100 = this;
 
           jQuery('input#locationAddLocationId').css('display', 'none');
           jQuery('input#locationUpdateLocationId').css('display', 'none');
@@ -12077,21 +12094,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var userGuidObs = this.myFundiService.GetUserGuidId(this.userDetails.username);
           userGuidObs.map(function (q) {
-            _this104.userGuidId = q;
+            _this100.userGuidId = q;
 
-            var resObs = _this104.myFundiService.GetFundiProfile(_this104.userDetails.username);
+            var resObs = _this100.myFundiService.GetFundiProfile(_this100.userDetails.username);
 
             resObs.map(function (fundiProf) {
               if (fundiProf) {
-                _this104.profile = fundiProf;
+                _this100.profile = fundiProf;
 
-                var curAddObs = _this104.myFundiService.GetLocationById(fundiProf.locationId);
+                var curAddObs = _this100.myFundiService.GetLocationById(fundiProf.locationId);
 
                 curAddObs.map(function (q) {
-                  _this104.location = q;
+                  _this100.location = q;
                 }).subscribe();
               } else {
-                _this104.profile = {
+                _this100.profile = {
                   fundiProfileId: 0,
                   user: null,
                   userId: "",
@@ -12107,7 +12124,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }).subscribe();
           var workCatObs = this.myFundiService.GetWorkCategoriesAndSubCategories();
           workCatObs.map(function (workCats) {
-            _this104.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
+            _this100.workCategories = workCats; //Dynamic check boxes for Categories To Search for:
 
             var selectWorkCategories = document.querySelector('select#workCategoryAndSubCatId');
             var selectWorkCategoriesOptions = document.querySelector('select#workCategoryAndSubCatId option');
@@ -12121,14 +12138,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             option.value = "0,0";
             selectWorkCategories.appendChild(option);
 
-            _this104.workCategories.forEach(function (cat) {
+            _this100.workCategories.forEach(function (cat) {
               var option = document.createElement('option');
               option.textContent = "".concat(cat.workCategory.workCategoryType, ": [").concat(cat.workSubCategory.workSubCategoryType, "]");
               option.value = "".concat(cat.workCategoryId.toString(), ",").concat(cat.workSubCategoryId.toString());
               selectWorkCategories.appendChild(option);
             });
 
-            var listWorkCatObs = _this104.myFundiService.GetFundiWorkCategories(_this104.userDetails.username);
+            var listWorkCatObs = _this100.myFundiService.GetFundiWorkCategories(_this100.userDetails.username);
 
             listWorkCatObs.map(function (q) {
               debugger;
@@ -12199,10 +12216,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addWorkCategory",
         value: function addWorkCategory($event) {
-          var _this105 = this;
+          var _this101 = this;
 
           var selectedWorkCategory = this.workCategories.find(function (workCat) {
-            var workCatsSubCatsAry = _this105.workCategoryAndSubCatId.split(',');
+            var workCatsSubCatsAry = _this101.workCategoryAndSubCatId.split(',');
 
             return workCat.workCategoryId == parseInt(workCatsSubCatsAry[0]) && workCat.workSubCategoryId == parseInt(workCatsSubCatsAry[1]);
           });
@@ -12216,7 +12233,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               li.textContent = selectedWorkCategory.workCategory.workCategoryType + " :[".concat(selectedWorkCategory.workSubCategory.workSubCategoryType, "]");
               ulSelectedCategories.appendChild(li);
 
-              var addWkCatSubCatObs = _this105.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, _this105.userDetails.username);
+              var addWkCatSubCatObs = _this101.myFundiService.AddFundiWorkCategory(selectedWorkCategory.workCategoryId, selectedWorkCategory.workSubCategoryId, _this101.userDetails.username);
 
               addWkCatSubCatObs.map(function (q) {
                 if (q) {
@@ -12230,10 +12247,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "removeWorkCategory",
         value: function removeWorkCategory($event) {
-          var _this106 = this;
+          var _this102 = this;
 
           var selectedWorkCategory = this.workCategories.find(function (workCat) {
-            var workCatsSubCatsAry = _this106.workCategoryAndSubCatId.split(',');
+            var workCatsSubCatsAry = _this102.workCategoryAndSubCatId.split(',');
 
             return workCat.workCategoryId == parseInt(workCatsSubCatsAry[0]) && workCat.workSubCategoryId == parseInt(workCatsSubCatsAry[1]);
           });
@@ -12253,12 +12270,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getSelectedLocation",
         value: function getSelectedLocation(locationId) {
-          var _this107 = this;
+          var _this103 = this;
 
           this.profile.locationId = locationId;
           var curAddObs = this.myFundiService.GetLocationById(locationId);
           curAddObs.map(function (q) {
-            _this107.location = q;
+            _this103.location = q;
             alert('Location selected!');
           }).subscribe();
         }
@@ -12363,7 +12380,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this108 = this;
+          var _this104 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) this.userDetails = {};
@@ -12375,27 +12392,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           resObs.map(function (prof) {
-            _this108.profile = prof;
+            _this104.profile = prof;
 
-            var workCatObs = _this108.myFundiService.GetFundiWorkCategories(_this108.userDetails.username);
+            var workCatObs = _this104.myFundiService.GetFundiWorkCategories(_this104.userDetails.username);
 
             workCatObs.map(function (workCats) {
-              _this108.workCategories = workCats;
+              _this104.workCategories = workCats;
 
-              var coursesObs = _this108.myFundiService.GetFundiCourses(_this108.userDetails.username);
+              var coursesObs = _this104.myFundiService.GetFundiCourses(_this104.userDetails.username);
 
               coursesObs.map(function (courses) {
-                _this108.courses = courses;
+                _this104.courses = courses;
 
-                var certsObs = _this108.myFundiService.GetFundiCertifications(_this108.userDetails.username);
+                var certsObs = _this104.myFundiService.GetFundiCertifications(_this104.userDetails.username);
 
                 certsObs.map(function (certs) {
-                  _this108.certifications = certs;
+                  _this104.certifications = certs;
 
-                  var ratingsObs = _this108.myFundiService.GetFundiRatings(_this108.userDetails.username);
+                  var ratingsObs = _this104.myFundiService.GetFundiRatings(_this104.userDetails.username);
 
                   ratingsObs.map(function (ratings) {
-                    _this108.fundiRatings = ratings;
+                    _this104.fundiRatings = ratings;
                   }).subscribe();
                 }).subscribe();
               }).subscribe();
@@ -12522,7 +12539,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(QrCodeComponent, [{
         key: "submitScanToVerify",
         value: function submitScanToVerify() {
-          var _this109 = this;
+          var _this105 = this;
 
           var results = this.myFundiService.VerifyQrcodeScan(this.userDetails);
           results.map(function (res) {
@@ -12532,11 +12549,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               alert("Completed Scan & verified Successfully!!");
               QrCodeComponent_1.currentObject.scanEventHandlers.html5QrcodeScanner.clear();
 
-              _this109.router.navigateByUrl('crud');
+              _this105.router.navigateByUrl('crud');
             } else {
               alert("Completed Scan & Failed to Verify!!\rEnsure you use your right registered Mobile Number.");
 
-              _this109.router.navigateByUrl('logout');
+              _this105.router.navigateByUrl('logout');
             }
           }).subscribe();
         }
@@ -12679,11 +12696,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "CallRecaptureVerify",
         value: function CallRecaptureVerify(dataStr) {
-          var _this110 = this;
+          var _this106 = this;
 
           var promObs = this.myFundiService.PostToRecaptchaVerify(this.googleUrl, dataStr);
           promObs.then(function (q) {
-            _this110.isRecaptchaVerified = true;
+            _this106.isRecaptchaVerified = true;
             jquery__WEBPACK_IMPORTED_MODULE_3__('input[type="submit"]#submit').css('display', 'block');
           })["catch"](function (reason) {
             jquery__WEBPACK_IMPORTED_MODULE_3__('input[type="submit"]#submit').css('display', 'block');
@@ -12884,7 +12901,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "registerUser",
         value: function registerUser() {
-          var _this111 = this;
+          var _this107 = this;
 
           if (localStorage.getItem("HasAcceptedTermsOfService") !== "true") {
             alert("You can't register unless you accept the terms and conditions");
@@ -12903,7 +12920,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               if (q.isRegistered) {
                 alert('Registration Successfull: ' + q.isRegistered);
 
-                _this111.router.navigateByUrl("/client-subscription");
+                _this107.router.navigateByUrl("/client-subscription");
               } else {
                 alert('Registration Failed: ');
               }
@@ -13806,48 +13823,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addUserToRole",
         value: function addUserToRole() {
-          var _this112 = this;
+          var _this108 = this;
 
           var role = this.getSelectedRole();
           var results = this.myFundiService.AddUserToRole(this.email, role);
           results.map(function (q) {
             if (q) {
-              alert('Added user: ' + _this112.email + ' to role: ' + role);
+              alert('Added user: ' + _this108.email + ' to role: ' + role);
             } else {
-              alert('Failed to add user: ' + _this112.email + ' to role: ' + role);
+              alert('Failed to add user: ' + _this108.email + ' to role: ' + role);
             }
           }).subscribe();
         }
       }, {
         key: "removeUserFromRole",
         value: function removeUserFromRole() {
-          var _this113 = this;
+          var _this109 = this;
 
           var role = this.getSelectedRole();
           var results = this.myFundiService.RemoveUserFromRole(this.email, role);
           results.map(function (q) {
             if (q) {
-              alert('Removed user: ' + _this113.email + ' from role: ' + role);
+              alert('Removed user: ' + _this109.email + ' from role: ' + role);
             } else {
-              alert('Failed to remove user: ' + _this113.email + ' from role: ' + role);
+              alert('Failed to remove user: ' + _this109.email + ' from role: ' + role);
             }
           }).subscribe();
         }
       }, {
         key: "getAllRoles",
         value: function getAllRoles() {
-          var _this114 = this;
+          var _this110 = this;
 
           var results = this.myFundiService.GetAllRoles();
           results.map(function (q) {
-            _this114.userRoles = q;
+            _this110.userRoles = q;
             var select = jquery__WEBPACK_IMPORTED_MODULE_3__("select#roleName");
             console.log(select);
             select.remove('option');
             select.append('<option value="" selected="true">Select A Role</option>');
 
-            for (var i = 0; i < _this114.userRoles.length; i++) {
-              select.append('<option value="' + _this114.userRoles[i].roleName + '">' + _this114.userRoles[i].roleName + '</option>');
+            for (var i = 0; i < _this110.userRoles.length; i++) {
+              select.append('<option value="' + _this110.userRoles[i].roleName + '">' + _this110.userRoles[i].roleName + '</option>');
             }
           }).subscribe();
         }
@@ -14014,13 +14031,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getVehiclesHttp",
         value: function getVehiclesHttp() {
-          var _this115 = this;
+          var _this111 = this;
 
           //$('div#vehicleView').css('display', 'block').slideDown();
           var actualResult = this.myFundiService.GetFundiRealTimeLocations();
           actualResult.map(function (p) {
             if (p && p.length > 0) {
-              _this115.fundiLocations = p;
+              _this111.fundiLocations = p;
               var selector = document.querySelector('select#vhmonitor'); //greater than default node: Select Fundi 1st Option:
 
               if (selector.children.length > 0) {
@@ -14035,16 +14052,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               optionElem.text = "Select Fundi";
               selector.append(optionElem);
 
-              _this115.fundiLocations.forEach(function (vhm, index) {
+              _this111.fundiLocations.forEach(function (vhm, index) {
                 var optionElem1 = document.createElement('option');
                 optionElem1.value = vhm.username;
                 optionElem1.text = vhm.username;
                 selector.append(optionElem1);
               });
 
-              _this115.currentFundi = _this115.fundiLocations[0];
+              _this111.currentFundi = _this111.fundiLocations[0];
             } else {
-              _this115.fundiLocations = [];
+              _this111.fundiLocations = [];
               var defaultVehMonitor = {
                 latitude: 0,
                 longitude: 0,
@@ -14057,16 +14074,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 lastName: "",
                 updatePhoneNumber: false
               };
-              _this115.currentFundi = defaultVehMonitor;
+              _this111.currentFundi = defaultVehMonitor;
             }
 
-            _this115.fundiPlotOnMap();
+            _this111.fundiPlotOnMap();
           }).subscribe();
         }
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this116 = this;
+          var _this112 = this;
 
           this.myMap = new google.maps.Map(document.getElementById('monitormap'), {
             center: new google.maps.LatLng(10.3, 12.5),
@@ -14081,14 +14098,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var _loop6 = function _loop6(n) {
               var vehMonitor = curThis.fundiLocations[n];
 
-              var profObs = _this116.myFundiService.GetFundiProfileByUsername(vehMonitor.username); //Insert FundiMonitor In Database:
+              var profObs = _this112.myFundiService.GetFundiProfileByUsername(vehMonitor.username); //Insert FundiMonitor In Database:
 
 
               profObs.map(function (pr) {
                 if (pr) {
                   vehMonitor.fundiProfileId = pr.fundiProfileId;
 
-                  var vehMonObs = _this116.myFundiService.SaveFundiGeoLocation(vehMonitor);
+                  var vehMonObs = _this112.myFundiService.SaveFundiGeoLocation(vehMonitor);
 
                   vehMonObs.map(function (res) {
                     if (res.result) {
@@ -14164,7 +14181,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "removeFundi",
         value: function removeFundi() {
-          var _this117 = this;
+          var _this113 = this;
 
           var currentUsername = this.currentFundi.username;
           var index = -1;
@@ -14179,7 +14196,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             alert(res.message);
 
             if (res.success) {
-              _this117.ngOnInit();
+              _this113.ngOnInit();
             } else {
               alert(res.message);
             }
@@ -14937,20 +14954,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthFundiSubscriptionGuard, [{
         key: "canActivate",
         value: function canActivate() {
-          var _this118 = this;
+          var _this114 = this;
 
           this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
           if (!this.userDetails) return false;
           var fundiProfileId = 0;
           var resObs = this.myFundiService.GetFundiProfile(this.userDetails.username);
           return resObs.map(function (fundiProf) {
-            _this118.fundiProfileid = fundiProf.fundiProfileId;
+            _this114.fundiProfileid = fundiProf.fundiProfileId;
 
-            var fundiSubsObj = _this118.myFundiService.GetFundiSubscriptionByProfileId(_this118.fundiProfileid);
+            var fundiSubsObj = _this114.myFundiService.GetFundiSubscriptionByProfileId(_this114.fundiProfileid);
 
             return fundiSubsObj.map(function (q) {
-              _this118.fundiHasSubscription = q.isValid;
-              return _this118.userRoles.indexOf("Fundi") > -1 && _this118.fundiHasSubscription;
+              _this114.fundiHasSubscription = q.isValid;
+              return _this114.userRoles.indexOf("Fundi") > -1 && _this114.fundiHasSubscription;
             }).first();
           }).first();
         }
@@ -15464,7 +15481,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(Html5QrcodeScanner, [{
         key: "render",
         value: function render(qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this119 = this;
+          var _this115 = this;
 
           this.lastMatchFound = undefined; // Add wrapper to success callback.
 
@@ -15472,19 +15489,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (qrCodeSuccessCallback) {
               qrCodeSuccessCallback(decodedText, result);
             } else {
-              if (_this119.lastMatchFound === decodedText) {
+              if (_this115.lastMatchFound === decodedText) {
                 return;
               }
 
-              _this119.lastMatchFound = decodedText;
+              _this115.lastMatchFound = decodedText;
 
-              _this119.setHeaderMessage(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].lastMatch(decodedText), Html5QrcodeScannerStatus.STATUS_SUCCESS);
+              _this115.setHeaderMessage(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].lastMatch(decodedText), Html5QrcodeScannerStatus.STATUS_SUCCESS);
             }
           }; // Add wrapper to failure callback
 
 
           this.qrCodeErrorCallback = function (errorMessage, error) {
-            _this119.setStatus(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].scanningStatus());
+            _this115.setStatus(_strings__WEBPACK_IMPORTED_MODULE_2__["Html5QrcodeScannerStrings"].scanningStatus());
 
             if (qrCodeErrorCallback) {
               qrCodeErrorCallback(errorMessage, error);
@@ -15512,38 +15529,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "clear",
         value: function clear() {
-          var _this120 = this;
+          var _this116 = this;
 
           var emptyHtmlContainer = function emptyHtmlContainer() {
-            var mainContainer = document.getElementById(_this120.elementId);
+            var mainContainer = document.getElementById(_this116.elementId);
 
             if (mainContainer) {
               mainContainer.innerHTML = "";
 
-              _this120.resetBasicLayout(mainContainer);
+              _this116.resetBasicLayout(mainContainer);
             }
           };
 
           if (this.html5Qrcode) {
             return new Promise(function (resolve, reject) {
-              if (!_this120.html5Qrcode) {
+              if (!_this116.html5Qrcode) {
                 resolve();
                 return;
               }
 
-              if (_this120.html5Qrcode.isScanning) {
-                _this120.html5Qrcode.stop().then(function (_) {
-                  if (!_this120.html5Qrcode) {
+              if (_this116.html5Qrcode.isScanning) {
+                _this116.html5Qrcode.stop().then(function (_) {
+                  if (!_this116.html5Qrcode) {
                     resolve();
                     return;
                   }
 
-                  _this120.html5Qrcode.clear();
+                  _this116.html5Qrcode.clear();
 
                   emptyHtmlContainer();
                   resolve();
                 })["catch"](function (error) {
-                  if (_this120.verbose) {
+                  if (_this116.verbose) {
                     console.error("Unable to stop qrcode scanner", error);
                   }
 
@@ -16347,7 +16364,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "stop",
         value: function stop() {
-          var _this121 = this;
+          var _this117 = this;
 
           // TODO(mebjas): fail fast if the start() wasn't called.
           this.shouldScan = false;
@@ -16358,50 +16375,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           return new Promise(function (resolve, _) {
             var onAllTracksClosed = function onAllTracksClosed() {
-              _this121.localMediaStream = undefined;
+              _this117.localMediaStream = undefined;
 
-              if (_this121.element) {
-                _this121.element.removeChild(_this121.videoElement);
+              if (_this117.element) {
+                _this117.element.removeChild(_this117.videoElement);
 
-                _this121.element.removeChild(_this121.canvasElement);
+                _this117.element.removeChild(_this117.canvasElement);
               }
 
               removeQrRegion();
-              _this121.isScanning = false;
+              _this117.isScanning = false;
 
-              if (_this121.qrRegion) {
-                _this121.qrRegion = undefined;
+              if (_this117.qrRegion) {
+                _this117.qrRegion = undefined;
               }
 
-              if (_this121.context) {
-                _this121.context = undefined;
+              if (_this117.context) {
+                _this117.context = undefined;
               }
 
               resolve();
             };
 
-            if (!_this121.localMediaStream) {
+            if (!_this117.localMediaStream) {
               onAllTracksClosed();
             }
 
-            var tracksToClose = _this121.localMediaStream.getVideoTracks().length;
+            var tracksToClose = _this117.localMediaStream.getVideoTracks().length;
 
             var tracksClosed = 0; // Removes the shaded region if exists.
 
             var removeQrRegion = function removeQrRegion() {
-              if (!_this121.element) {
+              if (!_this117.element) {
                 return;
               }
 
-              while (_this121.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME).length) {
-                var shadedChild = _this121.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME)[0];
+              while (_this117.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME).length) {
+                var shadedChild = _this117.element.getElementsByClassName(Constants.SHADED_REGION_CLASSNAME)[0];
 
-                _this121.element.removeChild(shadedChild);
+                _this117.element.removeChild(shadedChild);
               }
             };
 
-            _this121.localMediaStream.getVideoTracks().forEach(function (videoTrack) {
-              _this121.localMediaStream.removeTrack(videoTrack);
+            _this117.localMediaStream.getVideoTracks().forEach(function (videoTrack) {
+              _this117.localMediaStream.removeTrack(videoTrack);
 
               videoTrack.stop();
               ++tracksClosed;
@@ -16434,7 +16451,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function scanFile(imageFile,
         /* default=true */
         showImage) {
-          var _this122 = this;
+          var _this118 = this;
 
           if (!imageFile || !(imageFile instanceof File)) {
             throw "imageFile argument is mandatory and should be instance " + "of File. Use 'event.target.files[0]'.";
@@ -16449,25 +16466,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return new Promise(function (resolve, reject) {
-            _this122.possiblyCloseLastScanImageFile();
+            _this118.possiblyCloseLastScanImageFile();
 
-            _this122.clearElement();
+            _this118.clearElement();
 
-            _this122.lastScanImageFile = URL.createObjectURL(imageFile);
+            _this118.lastScanImageFile = URL.createObjectURL(imageFile);
             var inputImage = new Image();
 
             inputImage.onload = function () {
               var imageWidth = inputImage.width;
               var imageHeight = inputImage.height;
-              var element = document.getElementById(_this122.elementId);
+              var element = document.getElementById(_this118.elementId);
               var containerWidth = element.clientWidth ? element.clientWidth : Constants.DEFAULT_WIDTH; // No default height anymore.
 
               var containerHeight = Math.max(element.clientHeight ? element.clientHeight : imageHeight, Constants.FILE_SCAN_MIN_HEIGHT);
 
-              var config = _this122.computeCanvasDrawConfig(imageWidth, imageHeight, containerWidth, containerHeight);
+              var config = _this118.computeCanvasDrawConfig(imageWidth, imageHeight, containerWidth, containerHeight);
 
               if (showImage) {
-                var visibleCanvas = _this122.createCanvasElement(containerWidth, containerHeight, 'qr-canvas-visible');
+                var visibleCanvas = _this118.createCanvasElement(containerWidth, containerHeight, 'qr-canvas-visible');
 
                 visibleCanvas.style.display = "inline-block";
                 element.appendChild(visibleCanvas);
@@ -16501,7 +16518,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 config.height);
               }
 
-              var hiddenCanvas = _this122.createCanvasElement(config.width, config.height);
+              var hiddenCanvas = _this118.createCanvasElement(config.width, config.height);
 
               element.appendChild(hiddenCanvas);
               var context = hiddenCanvas.getContext('2d');
@@ -16531,7 +16548,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               config.height);
 
               try {
-                var result = _this122.qrcode.decode(hiddenCanvas);
+                var result = _this118.qrcode.decode(hiddenCanvas);
 
                 resolve(result.text);
               } catch (exception) {
@@ -16605,7 +16622,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "applyVideoConstraints",
         value: function applyVideoConstraints(videoConstaints) {
-          var _this123 = this;
+          var _this119 = this;
 
           if (!videoConstaints) {
             throw "videoConstaints is required argument.";
@@ -16627,7 +16644,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               return;
             }
 
-            var videoTrack = _this123.localMediaStream.getVideoTracks()[0]; // TODO(mebjas): This can be simplified to just return the promise
+            var videoTrack = _this119.localMediaStream.getVideoTracks()[0]; // TODO(mebjas): This can be simplified to just return the promise
             // directly.
 
 
@@ -16719,7 +16736,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "foreverScan",
         value: function foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this124 = this;
+          var _this120 = this;
 
           if (!this.shouldScan) {
             // Stop scanning.
@@ -16773,7 +16790,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.foreverScanTimeout = setTimeout(function () {
-            _this124.foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback);
+            _this120.foreverScan(internalConfig, qrCodeSuccessCallback, qrCodeErrorCallback);
           }, this.getTimeoutFps(internalConfig.fps));
         }
         /**
@@ -16783,12 +16800,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onMediaStreamReceived",
         value: function onMediaStreamReceived(mediaStream, internalConfig, areVideoConstraintsEnabled, clientWidth, qrCodeSuccessCallback, qrCodeErrorCallback) {
-          var _this125 = this;
+          var _this121 = this;
 
           var $this = this;
           return new Promise(function (resolve, reject) {
             var setupVideo = function setupVideo() {
-              var videoElement = _this125.createVideoElement(clientWidth);
+              var videoElement = _this121.createVideoElement(clientWidth);
 
               $this.element.append(videoElement); // Attach listeners to video.
 
@@ -18036,13 +18053,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "setCreateUpdateLocation",
         value: function setCreateUpdateLocation(operation, loc) {
-          var _this126 = this;
+          var _this122 = this;
 
           if (operation.toLowerCase() === "create") {
             var actualResult = this.myFundiService.PostOrCreateLocation(loc);
             actualResult.map(function (p) {
               alert('Location Added: ' + p.result);
-              _this126.successGeocode = true;
+              _this122.successGeocode = true;
               document.getElementById('locmap').scrollIntoView({
                 behavior: "smooth",
                 block: "end",
@@ -18054,7 +18071,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _actualResult.map(function (p) {
               alert('Location Updated: ' + p.result);
-              _this126.successGeocode = true;
+              _this122.successGeocode = true;
               document.getElementById('locmap').scrollIntoView({
                 behavior: "smooth",
                 block: "end",

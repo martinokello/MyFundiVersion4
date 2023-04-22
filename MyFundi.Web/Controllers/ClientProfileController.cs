@@ -35,6 +35,9 @@ namespace MyFundi.Web.Controllers
         private PaymentsManager PaymentsManager;
         private Mapper _mapper;
         private IHostingEnvironment Environment;
+        private decimal _clientSubscriptionFee;
+        private string _payMtnAirTelRedirectUrl;
+
         public ClientProfileController(IMailService emailService, MyFundiUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, PaymentsManager paymentsManager, Mapper mapper, IHostingEnvironment _environment)
         {
             _emailService = emailService;
@@ -46,6 +49,9 @@ namespace MyFundi.Web.Controllers
             PaymentsManager = paymentsManager;
             _mapper = mapper;
             Environment = _environment;
+            var mtnSection = appSettings.AppSettings.GetSection("MTNApiConfig");
+            _clientSubscriptionFee = mtnSection.GetValue<decimal>("ClientSubscriptionFee");
+            _payMtnAirTelRedirectUrl = mtnSection.GetValue<string>("MTNBaseUrl");
         }
         public async Task<IActionResult> GetClientProfileImageByUsername(string username)
         {
@@ -463,7 +469,7 @@ namespace MyFundi.Web.Controllers
                 var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product>
                     {
                         new Product{
-                            Amount = subscriptionViewModel.SubscriptionFee,
+                            Amount = _clientSubscriptionFee,
                             HasPaidInfull = true,
                             Quantity= subCatQuantity,
                             VATAmmount=(decimal) 0,
@@ -511,11 +517,10 @@ namespace MyFundi.Web.Controllers
                     subscription = registrationSubscription;
                 }
                 var paymentsManager = this.PaymentsManager;
-
-                var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product>
+                var products = new List<Product>
                     {
                         new Product{
-                            Amount = subscriptionViewModel.SubscriptionFee,
+                            Amount = _clientSubscriptionFee,
                             HasPaidInfull = true,
                             Quantity= subCatQuantity,
                             VATAmmount=(decimal) 0,
@@ -523,7 +528,7 @@ namespace MyFundi.Web.Controllers
                             ProductDescription = subscriptionViewModel.SubscriptionDescription
                         }
 
-                    });
+                    };
                 if (registrationSubscription == null)
                 {
                     subscription.DateUpdated = DateTime.Now;
@@ -540,20 +545,9 @@ namespace MyFundi.Web.Controllers
                     subscription.SubscriptionName = "Paid 7 day Subscription";
                     _unitOfWork._clientSubscriptionRepository.Update(subscription);
                 }
-                _unitOfWork.SaveChanges();
 
-                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
-                    {
-                        new Product{
-                            Amount = subscriptionViewModel.SubscriptionFee,
-                            HasPaidInfull = true,
-                            Quantity= subCatQuantity,
-                            VATAmmount=(decimal) 0,
-                            ProductName = subscriptionViewModel.SubscriptionName,
-                            ProductDescription = subscriptionViewModel.SubscriptionDescription
-                    }
-
-                    });
+                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, products, new PaypalFacility.Invoice(products, _clientSubscriptionFee, subscriptionViewModel.Username));
+                mtnAirtelObject.MtnAirtelBaseUrl = _payMtnAirTelRedirectUrl;
 
                 return await Task.FromResult(Ok(mtnAirtelObject));
 
@@ -601,18 +595,6 @@ namespace MyFundi.Web.Controllers
                     }
                     var paymentsManager = this.PaymentsManager;
 
-                    var paypalRequestUrl = await paymentsManager.MakePaymentsPaypal(subscriptionViewModel.Username, new List<Product>
-                    {
-                        new Product{
-                            Amount = subscriptionViewModel.SubscriptionFee,
-                            HasPaidInfull = true,
-                            Quantity= subCatQuantity,
-                            VATAmmount=(decimal) 0,
-                            ProductName = subscriptionViewModel.SubscriptionName,
-                            ProductDescription = subscriptionViewModel.SubscriptionDescription
-                        }
-
-                    });
                     if (registrationSubscription == null)
                     {
                         subscription.DateUpdated = DateTime.Now;
@@ -630,8 +612,7 @@ namespace MyFundi.Web.Controllers
                         _unitOfWork._clientSubscriptionRepository.Update(subscription);
                     }
                     _unitOfWork.SaveChanges();
-
-                    var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, new List<Product>
+                    var products = new List<Product>
                     {
                         new Product{
                             Amount = subscriptionViewModel.SubscriptionFee,
@@ -640,11 +621,13 @@ namespace MyFundi.Web.Controllers
                             VATAmmount=(decimal) 0,
                             ProductName = subscriptionViewModel.SubscriptionName,
                             ProductDescription = subscriptionViewModel.SubscriptionDescription
-                    }
+                    } 
+                };
+                var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, products, new PaypalFacility.Invoice(products, subscriptionViewModel.SubscriptionFee, subscriptionViewModel.Username));
+                mtnAirtelObject.MtnAirtelBaseUrl = _payMtnAirTelRedirectUrl;
 
-                    });
 
-                    return await Task.FromResult(Ok(mtnAirtelObject));
+                return await Task.FromResult(Ok(mtnAirtelObject));
                 }
             catch (Exception e)
             {

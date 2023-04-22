@@ -13,7 +13,7 @@ declare var jQuery: any;
 export class ClientSubscriptionComponent implements OnInit, AfterViewChecked {
     userDetails: any;
     userRoles: string[];
-    subscriptionFee: number = 2000;
+    subscriptionFee: number = 1;
     subscriptionDescription: string;
     subscriptionName: string;
     clientLoginDetails: any = {};
@@ -57,7 +57,8 @@ export class ClientSubscriptionComponent implements OnInit, AfterViewChecked {
 
         resultObs.map((q: any) => {
             if (q.success) {
-                console.log('Response received');
+                console.log('Response received: ' + q.mtnAirtelBaseUrl);
+                window.open(q.mtnAirtelBaseUrl);
                 alert("Payment made. Currently being processed by paypal service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
                 this.router.navigateByUrl('/login');
             }
@@ -89,22 +90,28 @@ export class ClientSubscriptionComponent implements OnInit, AfterViewChecked {
                     phone: q.phone
                 }
 
-                console.log('Response received: ' + q.mtnAirtelBaseUrl);
-                let resObs: Observable<any> = this.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+                console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
 
-                resObs.map((q: any) => {
-                    console.log("Was Successful: " + q.success);
-                    console.log("Result Data: " + q.data);
+                let easyPayWindow = null;
 
-                    if (q.success) {
-                        alert("Payment made. Currently being processed by Airtel service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
-
-                        this.router.navigateByUrl("/login");
+                try {
+                    if (!easyPayWindow || easyPayWindow.closed) {
+                        easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
                     }
                     else {
-                        alert("Payment Failed!!")
+                        easyPayWindow.focus();
+                        easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
                     }
-                }).subscribe();
+                    console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
+
+                }
+                catch (ex) {
+                    console.log(ex);
+                }
+                finally {
+                    if (easyPayWindow && !easyPayWindow.closed)
+                        easyPayWindow.close();
+                }
             }
             else {
                 alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
@@ -134,21 +141,28 @@ export class ClientSubscriptionComponent implements OnInit, AfterViewChecked {
                     phone: q.phone
                 }
 
-                console.log('Response received: ' + q.mtnAirtelBaseUrl);
-                let resObs: Observable<any> = this.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+                console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
 
-                resObs.map((q: any) => {
-                    console.log("Was Successful: " + q.success);
-                    console.log("Result Data: " + q.data);
+                let easyPayWindow = null;
 
-                    if (q.success) {
-                        alert("Payment made. Currently being processed by MTN service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
-
-                        this.router.navigateByUrl("/login");
+                try {
+                    if (!easyPayWindow || easyPayWindow.closed) {
+                        easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
                     }
                     else {
-                        alert("Payment Failed!!")
-                    }                }).subscribe();
+                        easyPayWindow.focus();
+                        easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                    }
+                    console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
+
+                }
+                catch (ex) {
+                    console.log(ex);
+                }
+                finally {
+                    if (easyPayWindow && !easyPayWindow.closed)
+                        easyPayWindow.close();
+                }
             }
             else {
                 alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");

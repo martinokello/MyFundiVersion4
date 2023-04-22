@@ -44,7 +44,7 @@ namespace PaypalFacility
             _discountCalculator = discountCalculator;
         }
 
-        public MtnAirTelModel RedirectToMtnAirTel(List<Product> productArray)
+        public MtnAirTelModel RedirectToMtnAirTel(List<Product> productArray,Invoice invoice)
         {
             //fill In invoice Details
 
@@ -57,7 +57,7 @@ namespace PaypalFacility
             }
 
             hasBeenRedirected = true;
-            URLBuilder urlBuilder = new URLBuilder(businessEmail, successUrl, cancelUrl, notifyUrl, buyerEmail, invoice);
+            URLBuilder urlBuilder = new URLBuilder(businessEmail, successUrl, cancelUrl, notifyUrl, buyerEmail,invoice);
             string requestUrl = baseUrl;
             var mtnAirtelModel = new MtnAirTelModel
             {

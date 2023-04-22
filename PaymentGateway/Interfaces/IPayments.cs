@@ -11,7 +11,7 @@ namespace PaymentsGateway.Interfaces
     public interface IPayments
     {
         Task<string> MakePaymentsPaypal(string username, List<Product> products);
-        Task<MtnAirTelModel> MakePaymentsMtnAirTel(string username, List<Product> products);
-        Task<string> MakePaymentByCreditFacilities(string username, List<Product> products);
+        Task<MtnAirTelModel> MakePaymentsMtnAirTel(string username, List<Product> products,PaypalFacility.Invoice invoice);
+        Task<string> MakePaymentByCreditFacilities(string username, List<Product> products, PaypalFacility.Invoice invoice);
     }
 }

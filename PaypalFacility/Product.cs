@@ -43,5 +43,7 @@ namespace PaypalFacility
             get { return prodDescription; }
             set { prodDescription = value; }
         }
+
+        public string PayMtnAirTelRedirectUrl { get; set; }
     }
 }

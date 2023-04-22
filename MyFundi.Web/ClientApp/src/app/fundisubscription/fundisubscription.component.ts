@@ -13,7 +13,7 @@ export class FundiSubscriptionComponent implements OnInit, AfterViewChecked {
     userDetails: any;
     userRoles: string[];
     location: ILocation;
-    subscriptionFee: number = 25000;
+    subscriptionFee: number = 5;
     subscriptionDescription: string;
     subscriptionName: string;
     startingDate: string;
@@ -348,6 +348,7 @@ export class FundiSubscriptionComponent implements OnInit, AfterViewChecked {
         let resultObs: Observable<any> = this.myFundiService.PayMonthlySubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid);
 
         resultObs.map((q: any) => {
+            debugger;
             if (q.payPalRedirectUrl) {
                 window.open(q.payPalRedirectUrl);
                 console.log('Response received');
@@ -383,6 +384,7 @@ export class FundiSubscriptionComponent implements OnInit, AfterViewChecked {
         let resultObs: Observable<IMtnAirTelModel> = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
 
         resultObs.map((q: IMtnAirTelModel) => {
+            debugger;
             if (q.mtnAirtelBaseUrl) {
                 //Requires POST Verb.
                 //window.open(q.mtnAirTelBaseUrl);
@@ -397,14 +399,28 @@ export class FundiSubscriptionComponent implements OnInit, AfterViewChecked {
                     phone: q.phone
                 }
 
-                console.log('Response received: ' + q.mtnAirtelBaseUrl);
-                let resObs: Observable<any> = this.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+                console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
 
-                resObs.map((q: any) => {
-                    console.log("Was Successful: " + q.success);
-                    console.log("Result Data: " + q.data);
-                    alert("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
-                }).subscribe();
+                let easyPayWindow = null;
+
+                try {
+                    if (!easyPayWindow || easyPayWindow.closed) {
+                        easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                    }
+                    else {
+                        easyPayWindow.focus();
+                        easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                    }
+                    console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
+
+                }
+                catch (ex) {
+                    console.log(ex);
+                }
+                finally {
+                    if (easyPayWindow && !easyPayWindow.closed)
+                        easyPayWindow.close();
+                }
             }
             else {
                 alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
@@ -431,10 +447,11 @@ export class FundiSubscriptionComponent implements OnInit, AfterViewChecked {
             subscriptionDescription: this.fundi.subscriptionDescription,
             workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.workCategoryAndSubCategoryIds
         };
-        let resultObs: Observable<IMtnAirTelModel> = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
+        let resultObs: Observable<IMtnAirTelModel> = this.myFundiService.PayMonthlySubscriptionFeeWithMtn(subscriptionFeeExpenseToBePaid);
 
         resultObs.map((q: IMtnAirTelModel) => {
 
+            debugger;
             if (q.mtnAirtelBaseUrl) {
                 //Requires POST Verb.
                 //window.open(q.mtnAirTelBaseUrl);
@@ -449,14 +466,28 @@ export class FundiSubscriptionComponent implements OnInit, AfterViewChecked {
                     phone: q.phone
                 }
 
-                console.log('Response received: ' + q.mtnAirtelBaseUrl);
-                let resObs: Observable<any> = this.myFundiService.postToMtnAirtelApi(q.mtnAirtelBaseUrl, newMtnAirtelObject);
+                console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
 
-                resObs.map((q: any) => {
-                    console.log("Was Successful: " + q.success);
-                    console.log("Result Data: " + q.data);
-                    alert("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
-                }).subscribe();
+                let easyPayWindow = null;
+
+                try {
+                    if (!easyPayWindow || easyPayWindow.closed) {
+                        easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                    }
+                    else {
+                        easyPayWindow.focus();
+                        easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
+                    }
+                    console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
+
+                }
+                catch (ex) {
+                    console.log(ex);
+                }
+                finally {
+                    if (easyPayWindow && !easyPayWindow.closed)
+                        easyPayWindow.close();
+                }
             }
             else {
                 alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
