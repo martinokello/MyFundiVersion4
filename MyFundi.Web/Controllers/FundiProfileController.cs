@@ -216,7 +216,7 @@ namespace MyFundi.Web.Controllers
             {
                 return await Task.FromResult(NotFound(new { Message = $"user {fundiWorkCategoryTo.Username} profile not Found!" }));
             }
-            var exEntity = _unitOfWork._fundiWorkCategoryRepository.GetAll().Where(q => q.WorkCategoryId == fundiWorkCategoryTo.WorkCategoryId && q.FundiProfileId == fundiProfile.FundiProfileId);
+            var exEntity = _unitOfWork._fundiWorkCategoryRepository.GetAll().Where(q => q.WorkCategoryId == fundiWorkCategoryTo.WorkCategoryId && q.WorkSubCategoryId == fundiWorkCategoryTo.WorkSubCategoryId && q.FundiProfileId == fundiProfile.FundiProfileId);
 
             if (!exEntity.Any())
             {
@@ -1092,7 +1092,7 @@ namespace MyFundi.Web.Controllers
                         JobLocationName = g.Key.JobLocationName,
                         DistanceApart = Math.Round(g.Key.DistanceApart, 3, MidpointRounding.AwayFromZero),
                         FundiRatingsAndReviews = _unitOfWork.MyFundiDBContext.GetAllFundiRatingByProfileId(g.Key.FundiProfileId).ToArray(),
-                        JobWorkCategoryDetails = _unitOfWork.MyFundiDBContext.GetWorkSubCategoriesForFundiByJobId(g.Key.JobId, g.Key.FundiProfileId).Where(q => wkSubCatArry.Contains((string)(q.WorkSubCategoryType))).ToArray(),
+                        JobWorkCategoryDetails = _unitOfWork.MyFundiDBContext.GetFundiWorkSubCategoriesForFundiByJobId(g.Key.JobId, g.Key.FundiProfileId).Where(q => wkSubCatArry.Contains((string)(q.WorkSubCategoryType))).ToArray(),
                         AverageFundiRating = _unitOfWork.MyFundiDBContext.GetFundiProfileAvgRatingById(g.Key.FundiProfileId).ToValueTuple().Item2
                     });
                     resMerged.AddRange(results);
@@ -1234,7 +1234,7 @@ namespace MyFundi.Web.Controllers
                         JobLocationName = g.Key.JobLocationName,
                         DistanceApart = Math.Round(g.Key.DistanceApart, 3, MidpointRounding.AwayFromZero),
                         FundiRatingsAndReviews = _unitOfWork.MyFundiDBContext.GetAllFundiRatingByProfileId(g.Key.FundiProfileId).ToArray(),
-                        JobWorkCategoryDetails = _unitOfWork.MyFundiDBContext.GetWorkSubCategoriesForFundiByJobId(g.Key.JobId, g.Key.FundiProfileId).Where(q => wkSubCatArry.Contains((string)(q.WorkSubCategoryType))).ToArray(),
+                        JobWorkCategoryDetails = _unitOfWork.MyFundiDBContext.GetFundiWorkSubCategoriesForFundiByJobId(g.Key.JobId, g.Key.FundiProfileId).Where(q => wkSubCatArry.Contains((string)(q.WorkSubCategoryType))).ToArray(),
                         AverageFundiRating = _unitOfWork.MyFundiDBContext.GetFundiProfileAvgRatingById(g.Key.FundiProfileId).ToValueTuple().Item2
                     });
                     resMerged.AddRange(results);
@@ -1347,7 +1347,7 @@ namespace MyFundi.Web.Controllers
                                       join fwc in _unitOfWork._fundiWorkCategoryRepository.GetAll()
                                       on w.WorkCategoryId equals fwc.WorkCategoryId
                                       join wsc in _unitOfWork._workSubCategoryRepository.GetAll()
-                                      on w.WorkCategoryId equals wsc.WorkCategoryId
+                                      on fwc.WorkSubCategoryId equals wsc.WorkSubCategoryId
                                       join fp in _unitOfWork._fundiProfileRepository.GetAll().Where(q => q.FundiProfileId == fundiProfile.FundiProfileId)
                                       on fwc.FundiProfileId equals fp.FundiProfileId
                                       select new JobWorkCategoryViewModel { WorkCategoryId = w.WorkCategoryId, WorkSubCategoryId = wsc.WorkSubCategoryId, WorkCategory = w, WorkSubCategory = wsc };
@@ -1376,16 +1376,17 @@ namespace MyFundi.Web.Controllers
                 var jobWorkCategories = (from j in _unitOfWork._jobRepository.GetAll().Where(q => q.JobId == jobId)
                                         join jwc in _unitOfWork._jobWorkCategoryRepository.GetAll().Include(q => q.WorkCategory).Include(q => q.WorkSubCategory)
                                         on j.JobId equals jwc.JobId
-                                        join fwc in _unitOfWork._fundiWorkCategoryRepository.GetAll().Include(q => q.WorkCategory).Include(q => q.WorkSubCategory) on
-                                        jwc.WorkCategoryId equals fwc.WorkCategoryId
-                                        where jwc.WorkSubCategoryId == fwc.WorkSubCategoryId &&
-                                        jwc.WorkCategoryId == fwc.WorkCategoryId
+                                        join wc in _unitOfWork._workCategoryRepository.GetAll()
+                                        on jwc.WorkCategoryId equals wc.WorkCategoryId
+                                        join wsc in _unitOfWork._workSubCategoryRepository.GetAll()
+                                        on jwc.WorkSubCategoryId equals wsc.WorkSubCategoryId
+                                        where j.JobId == jobId
                                         select new WorkCategoryViewModel
                                         {
-                                            WorkCategoryId = fwc.WorkCategoryId,
-                                            WorkSubCategoryId = fwc.WorkSubCategoryId,
-                                            WorkCategoryType = fwc.WorkCategory.WorkCategoryType,
-                                            WorkSubCategoryType = fwc.WorkSubCategory.WorkSubCategoryType
+                                            WorkCategoryId = (int)jwc.WorkCategoryId,
+                                            WorkSubCategoryId = (int)jwc.WorkSubCategoryId,
+                                            WorkCategoryType = wc.WorkCategoryType,
+                                            WorkSubCategoryType = wsc.WorkSubCategoryType
                                         }).ToArray<WorkCategoryViewModel>();
 
                 if (jobWorkCategories.Any())

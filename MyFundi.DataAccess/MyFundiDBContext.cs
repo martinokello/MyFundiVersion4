@@ -137,6 +137,42 @@ namespace MyFundi.DataAccess
             }
 
         }
+        
+
+        public List<WorkCategoryTypesTO> GetFundiWorkSubCategoriesForFundiByJobId(int jobId, int fundiProfileId)
+        {
+            var list = new List<WorkCategoryTypesTO>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Parameters.Add(new SqlParameter("@jobid", jobId));
+                cmd.Parameters.Add(new SqlParameter("@fundiProfileId", fundiProfileId));
+
+                cmd.CommandText = "[dbo].[GetFundiWorkSubCategoriesForFundiByJobId]";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                if (cmd.Connection.State != System.Data.ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new WorkCategoryTypesTO
+                    {
+                        WorkCategoryId = (reader["WorkCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkCategoryId"]),
+                        WorkCategoryType = (reader["WorkCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkCategoryType"]),
+                        WorkSubCategoryId = (reader["WorkSubCategoryId"] == DBNull.Value ? 0 : (int)reader["WorkSubCategoryId"]),
+                        WorkSubCategoryType = (reader["WorkSubCategoryType"] == DBNull.Value ? "Not Found" : (string)reader["WorkSubCategoryType"])
+                    });
+
+                }
+                con.Close();
+                return list;
+
+            }
+        }
         public List<WorkCategoryTypesTO> GetWorkSubCategoriesForFundiByJobId(int jobId, int fundiProfileId)
         {
             var list = new List<WorkCategoryTypesTO>();

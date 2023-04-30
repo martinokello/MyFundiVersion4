@@ -67,27 +67,26 @@
         </div>
         <div class="row" style="border:solid thin white !important;">
             <div class="col-lg-3" style="border-right: solid thin white !important;">Construction Materials</div>
-            <div class="col-lg-3"><input name="materialCost" type="number" [(ngModel)]="unitMaterialCost" /></div>
-            <div class="col-lg-3"><input name="materialQuantity" type="number" [(ngModel)]="unitMaterialQuantity" /></div>
+            <div class="col-lg-3"><input name="materialCost" type="number" [(ngModel)]="unitMaterialCost" (change)="calculateCost($event)"/></div>
+            <div class="col-lg-3"><input name="materialQuantity" type="number" [(ngModel)]="unitMaterialQuantity"  (change)="calculateCost($event)"/></div>
             <div class="col-lg-3"><label>{{unitMaterialCost * unitMaterialQuantity}}</label></div>
         </div>
         <div class="row" style="border:solid thin white !important;">
             <div class="col-lg-3" style="border-right: solid thin white !important;">Labour</div>
-            <div class="col-lg-3"><input name="labourCost" type="number" [(ngModel)]="unitLabourCost" /></div>
-            <div class="col-lg-3"><input name="labourQuantity" type="number" [(ngModel)]="unitLabourQuantity" /></div>
+            <div class="col-lg-3"><input name="labourCost" type="number" [(ngModel)]="unitLabourCost"  (change)="calculateCost($event)"/></div>
+            <div class="col-lg-3"><input name="labourQuantity" type="number" [(ngModel)]="unitLabourQuantity"  (change)="calculateCost($event)"/></div>
             <div class="col-lg-3"><label>{{unitLabourCost * unitLabourQuantity}}</label></div>
         </div>
         <div class="row" style="border:solid thin white !important;">
             <div class="col-lg-3" style="border-right: solid thin white !important;">Permit &amp; Inspection</div>
-            <div class="col-lg-3"><input name="permitInspectionCost" type="number" [(ngModel)]="unitPermitInspectionCost" /></div>
-            <div class="col-lg-3"><input name="permitInspectionQuantity" type="number" [(ngModel)]="unitPermitInspectionQuantity" /></div>
+            <div class="col-lg-3"><input name="permitInspectionCost" type="number" [(ngModel)]="unitPermitInspectionCost"  (change)="calculateCost($event)"/></div>
+            <div class="col-lg-3"><input name="permitInspectionQuantity" type="number" [(ngModel)]="unitPermitInspectionQuantity"  (change)="calculateCost($event)"/></div>
             <div class="col-lg-3"><label>{{unitPermitInspectionCost * unitPermitInspectionQuantity}}</label></div>
         </div>
         <div class="row">
             <div class="form-group col-lg-12">
                 <h6>Agreed Costs</h6>
                 <input type="number" id="agreedCost" name="agreedCost" [(ngModel)]="clientFundiContract.agreedCost" readonly /><br />
-                <input type="button" value="Calculate Cost" (click)="calculateCost($event)" class="btn btn-primary" /><br />
             </div>
         </div>
         <section>
