@@ -60,6 +60,8 @@ namespace MyFundi.DataAccess
         public DbSet<FundiSubscriptionQueue> FundiSubscriptionQueues { get; set; }
         public DbSet<MonthlySubscriptionQueue> MonthlySubscriptionQueues { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
 
         public Tuple<int, int> GetFundiProfileAvgRatingById(int fundiProfileId)
         {

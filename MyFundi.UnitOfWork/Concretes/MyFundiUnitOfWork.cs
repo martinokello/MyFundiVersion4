@@ -41,6 +41,8 @@ namespace MyFundi.UnitOfWork.Concretes
         public FundiSubscriptionQueueRepository _fundiSubscriptionQueueRepository;
         public MonthlySubscriptionQueueRepository _monthlySubscriptionQueueRepository;
         public BlogsRepository _blogsRepository;
+        public QuestionRepository _questionRepository;
+        public AnswerRepository _answerRepository;
         public MyFundiDBContext MyFundiDBContext { get; set; }
         public MyFundiUnitOfWork(
             AbstractRepository<Address> addressRepository,
@@ -71,6 +73,8 @@ namespace MyFundi.UnitOfWork.Concretes
             AbstractRepository<FundiSubscriptionQueue> fundiSubscriptionQueueRepository, 
             AbstractRepository<MonthlySubscriptionQueue> monthlySubscriptionQueueRepository,
             AbstractRepository<Blog> blogsRepository,
+            AbstractRepository<Question> questionRepository,
+            AbstractRepository<Answer> answerRepository,
             MyFundiDBContext myFundiDbContext)
         {
             this.MyFundiDBContext = myFundiDbContext;
@@ -130,6 +134,10 @@ namespace MyFundi.UnitOfWork.Concretes
             _monthlySubscriptionQueueRepository.MyFundiDBContext = myFundiDbContext;
             _blogsRepository = blogsRepository as BlogsRepository;
             _blogsRepository.MyFundiDBContext = myFundiDbContext;
+            _questionRepository = questionRepository as QuestionRepository;
+            _questionRepository.MyFundiDBContext = myFundiDbContext;
+            _answerRepository = answerRepository as AnswerRepository;
+            _answerRepository.MyFundiDBContext = myFundiDbContext;
         }
         public void SaveChanges()
         {
