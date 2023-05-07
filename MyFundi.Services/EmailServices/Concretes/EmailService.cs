@@ -52,6 +52,14 @@ namespace MyFundi.Services.EmailServices.Concretes
                     var attachment = new Attachment(mail.Attachment.OpenReadStream(), mail.Attachment.FileName);
                     mailMessage.Attachments.Add(attachment);
                 }
+                if (mail.Attachments != null && mail.Attachments.Length > 0)
+                { 
+                    foreach(var attachment in mail.Attachments)
+                    {
+                        var attached = new Attachment(mail.Attachment.OpenReadStream(), mail.Attachment.FileName);
+                        mailMessage.Attachments.Add(attached);
+                    }
+                }
                 mail.EmailTo += string.Format(";{0}", _businessSmtpDetails.GetSection("BusinessEmail").Value);
                 Array.ForEach<string>(mail.EmailTo.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries), (p) =>
                 {

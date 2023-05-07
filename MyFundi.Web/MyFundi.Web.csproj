@@ -278,6 +278,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\dist\porthole\" />
     <Folder Include="MyFundiProfile\" />
     <Folder Include="ClientProfile\" />
     <Folder Include="wwwroot\assets\sceditor-3.2.0\minified\" />

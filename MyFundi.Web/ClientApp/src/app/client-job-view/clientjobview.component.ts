@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob, IEmailMessage, IWorkAndSubWorkCategory } from '../../services/myFundiService';
+import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob, IEmailMessage, IWorkAndSubWorkCategory, IJobApplication } from '../../services/myFundiService';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 declare var jQuery: any;
@@ -36,13 +36,28 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked {
     coverNote: string = "";
     email: IEmailMessage;
     setTo: NodeJS.Timeout;
+    jobApplication: IJobApplication;
     hasPopulatedPage: boolean = false;
 
     decoderUrl(url: string): string {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
-
+        this.jobApplication = {
+            firstName: "",
+            lastName: "",
+            appliedToJob: "",
+            coverLetter: "",
+            emailAddress: "",
+            earliestStartDate: new Date(),
+            preferredInterviewDate:new Date(),
+            fileAttachments: [],
+            bidRatePerHour: 0,
+            totalAmountPerHour: 0,
+            upwardServiceFee: 0,
+            justifyPercentOfServiceFee: "",
+            amountYouWillRecieveMinusService:0
+        }
         this.chosenWorkCategories = [];
         this.userDetails = JSON.parse(localStorage.getItem("CurrentClientUserDetails"));
         this.clientProfile = JSON.parse(localStorage.getItem("CurrentJobClientProfile"));
@@ -64,7 +79,8 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked {
         this.userDetails = {};
     }
     getFiles($event) {
-        this.email.attachment = $event.target.files.item(0);
+
+        this.jobApplication.fileAttachments.push($event.target.files.item(0));
     }
 
     sendEmail($event): void {
@@ -72,12 +88,23 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked {
         let form: HTMLFormElement = document.querySelector("form#fundiJobApplicationForm");
         if (form.checkValidity()) {
             let formData = new FormData();
-            formData.append('emailBody', this.email.emailBody);
+            formData.append('emailBody', this.jobApplication.coverLetter);
             formData.append('emailTo', this.userDetails.username);
-            formData.append('emailFrom', this.email.emailFrom);
-            formData.append('emailSubject', this.email.emailSubject);
-            formData.append('fileUpload', this.email.attachment);
-            let result: Observable<boolean> = this.myFundiService.SendEmail(formData);
+            formData.append('emailFrom', this.jobApplication.emailAddress);
+            formData.append('emailSubject', this.jobApplication.appliedToJob);
+            formData.append('amountYouWillRecieveMinusService', this.jobApplication.amountYouWillRecieveMinusService.toString());
+            formData.append('bidRatePerHour', this.jobApplication.bidRatePerHour.toString());
+            formData.append('earliestStartDate', this.jobApplication.earliestStartDate.toString());
+            formData.append('firstName', this.jobApplication.firstName);
+            formData.append('lastName', this.jobApplication.lastName);
+            formData.append('justifyPercentOfServiceFee', this.jobApplication.justifyPercentOfServiceFee);
+            formData.append('totalAmountPerHour', this.jobApplication.totalAmountPerHour.toString());
+            formData.append('preferredInterviewDate', this.jobApplication.preferredInterviewDate.toString());
+
+            for (let n = 0; n < this.jobApplication.fileAttachments.length; n++){
+                formData.append('attachment-' + n.toString(), this.jobApplication.fileAttachments[n]);
+            }
+            let result: Observable<boolean> = this.myFundiService.SendEmailMultiAttachments(formData);
             result.map((value: any) => {
                 alert(value.message)
             }).subscribe();}

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BLG.Business.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,7 @@ using MyFundi.UnitOfWork.Concretes;
 using MyFundi.Web.IdentityServices;
 using MyFundi.Web.ViewModels;
 using MyFundiProfile.ServiceEndPoint.GeneralSevices;
+using Newtonsoft.Json;
 using PaymentGateway;
 using PaypalFacility;
 using System;
@@ -19,6 +21,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MyFundi.Web.Controllers
@@ -37,6 +40,7 @@ namespace MyFundi.Web.Controllers
         private IHostingEnvironment Environment;
         private decimal _clientSubscriptionFee;
         private string _payMtnAirTelRedirectUrl;
+        private HttpClient _httpClient;
 
         public ClientProfileController(IMailService emailService, MyFundiUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, PaymentsManager paymentsManager, Mapper mapper, IHostingEnvironment _environment)
         {
@@ -52,6 +56,7 @@ namespace MyFundi.Web.Controllers
             var mtnSection = appSettings.AppSettings.GetSection("MTNApiConfig");
             _clientSubscriptionFee = mtnSection.GetValue<decimal>("ClientSubscriptionFee");
             _payMtnAirTelRedirectUrl = mtnSection.GetValue<string>("MTNBaseUrl");
+            _httpClient = new HttpClient();
         }
         public async Task<IActionResult> GetClientProfileImageByUsername(string username)
         {
@@ -549,7 +554,21 @@ namespace MyFundi.Web.Controllers
                 var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, products, new PaypalFacility.Invoice(products, _clientSubscriptionFee, subscriptionViewModel.Username));
                 mtnAirtelObject.MtnAirtelBaseUrl = _payMtnAirTelRedirectUrl;
 
-                return await Task.FromResult(Ok(mtnAirtelObject));
+                var newMtnAirtelObject = new
+                {
+                    action = mtnAirtelObject.Action,
+                    reason = mtnAirtelObject.Reason,
+                    currency = mtnAirtelObject.Currency,
+                    amount = mtnAirtelObject.Amount,
+                    username = mtnAirtelObject.Username,
+                    password = mtnAirtelObject.Password,
+                    reference = mtnAirtelObject.Reference,
+                    phone = mtnAirtelObject.Phone
+                };
+                var httpContent = new StringContent(JsonConvert.SerializeObject(newMtnAirtelObject));
+                var resp = await _httpClient.PostAsync(mtnAirtelObject.MtnAirtelBaseUrl + "/api", httpContent);
+                var respString = await resp.Content.ReadAsStringAsync();
+                return await Task.FromResult(Ok(respString));
 
             }
             catch (Exception e)
@@ -627,8 +646,22 @@ namespace MyFundi.Web.Controllers
                 mtnAirtelObject.MtnAirtelBaseUrl = _payMtnAirTelRedirectUrl;
 
 
-                return await Task.FromResult(Ok(mtnAirtelObject));
-                }
+                var newMtnAirtelObject = new
+                {
+                    action = mtnAirtelObject.Action,
+                    reason = mtnAirtelObject.Reason,
+                    currency = mtnAirtelObject.Currency,
+                    amount = mtnAirtelObject.Amount,
+                    username = mtnAirtelObject.Username,
+                    password = mtnAirtelObject.Password,
+                    reference = mtnAirtelObject.Reference,
+                    phone = mtnAirtelObject.Phone
+                };
+                var httpContent = new StringContent(JsonConvert.SerializeObject(newMtnAirtelObject));
+                var resp = await _httpClient.PostAsync(mtnAirtelObject.MtnAirtelBaseUrl + "/api", httpContent);
+                var respString = await resp.Content.ReadAsStringAsync();
+                return await Task.FromResult(Ok(respString));
+            }
             catch (Exception e)
             {
                 return await Task.FromResult(BadRequest(new { Message = e.Message + " error: Failed To Pay. Please Contact Admin on Site" }));

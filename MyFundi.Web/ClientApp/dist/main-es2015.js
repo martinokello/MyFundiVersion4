@@ -87,7 +87,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>\r\n    <section id=\"Profile\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"viewProfileSummary\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Client Profile Summary</h5>\r\n                <div>{{clientProfile.profileSummary}} <br /></div>\r\n                <!--<h5>Client Phone Number: {{userDetails.mobileNumber}}</h5>-->\r\n                <hr />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job ID</h5>\r\n                <label id=\"jobId\" name=\"jobId\">#{{job.jobId}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Name</h5>\r\n                <label type=\"text\" id=\"jobName\" name=\"jobName\">{{job.jobName}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Location Name</h5>\r\n                <Label id=\"locationName\" name=\"locationName\">{{job.location.locationName}}</Label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Description</h5>\r\n                <div id=\"jobDescription\" name=\"jobDescription\">\r\n                    {{job.jobDescription}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul id=\"ulistWorkCategories\">\r\n                    <li *ngFor=\"let jwc of workCategories\">\r\n                        <em>{{jwc.workCategory.workCategoryType}}</em><br />\r\n                        {{jwc.workSubCategory.workSubCategoryType}}\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Estimate Of Days To Complete</h5>\r\n                <label type=\"number\" id=\"numberOfDaysToComplete\">{{job.numberOfDaysToComplete}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"custom-control custom-checkbox\">\r\n                    <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasBeenAssignedFundi\" [(ngModel)]=\"job.hasBeenAssignedFundi\" id=\"hasBeenAssignedFundi\" readonly />\r\n                    <label class=\"custom-control-label\" for=\"hasBeenAssignedFundi\">Has Been Assigned Fundi</label>\r\n                </div>\r\n                <div class=\"custom-control custom-checkbox\">\r\n                    <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasCompleted\" [(ngModel)]=\"job.hasCompleted\" id=\"hasCompleted\" readonly />\r\n                    <label class=\"custom-control-label\" for=\"hasCompleted\">Has Completed</label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <form #fundiJobApplicationForm=\"ngForm\" id=\"fundiJobApplicationForm\" (ngSubmit)=\"fundiJobApplicationForm.form.valid\" enctype=\"multipart/form-data\" method=\"post\" class=\"col-lg-12\">\r\n                <div style=\"margin: 5px 0px !important;\">\r\n                    <h3>Apply For Job With CV And Cover Note</h3>\r\n                    <hr />\r\n                    <div style=\"width: 100%;\">\r\n                        <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailFrom.invalid\" class=\"text-danger\">\r\n                            email from field required.\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"emailFrom\" type=\"email\" [(ngModel)]=\"email.emailFrom\" #emailFrom=\"ngModel\" required placeholder=\"your email address\" /><br />\r\n                        </div>\r\n\r\n                        <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailSubject.invalid\" class=\"text-danger\">\r\n                            email subject field required.\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" name=\"emailSubject\" type=\"text\" class=\"form-control\" required #emailSubject=\"ngModel\" [(ngModel)]=\"email.emailSubject\" placeholder=\"subject\" /><br />\r\n                            <input type=\"file\" name=\"attachment\" (change)=\"getFiles($event)\" value=\"Attach CV file\" id=\"attachment\" /><br />\r\n                        </div>\r\n                        <div style=\"margin:5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailBody.invalid\" class=\"text-danger\">\r\n                            email body field required.\r\n                            <br />\r\n                        </div>\r\n                        <div class=\"form-group\">\r\n                            <textarea name=\"emailBody\" class=\"form-control\" required #emailBody=\"ngModel\" [(ngModel)]=\"email.emailBody\" style=\"width: 100% !important; height:50vh !important;;\" placeholder=\"email body required\"></textarea>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div style=\"width:100%;\" class=\"col-lg-12\">\r\n                    <div style=\"clear:both;width: 100%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;margin:0px 5px;\">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>\r\n                    <hr />\r\n                    <myrecaptcha></myrecaptcha>\r\n                    <div class=\"form-group\">\r\n                        <input type=\"submit\" id=\"submit\" class=\"btn-primary\" value=\"Apply For Job\" style=\"margin:5px 0px;display:none;\" (click)=\"sendEmail($event)\" />\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </section>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h1 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>\r\n    <section id=\"Profile\">\r\n        <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n            <div class=\"col-lg-12\">\r\n                <img id=\"profileImage\" src=\"/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"viewProfileSummary\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Client Profile Summary</h5>\r\n                <div>{{clientProfile.profileSummary}} <br /></div>\r\n                <!--<h5>Client Phone Number: {{userDetails.mobileNumber}}</h5>-->\r\n                <hr />\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job ID</h5>\r\n                <label id=\"jobId\" name=\"jobId\">#{{job.jobId}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Name</h5>\r\n                <label type=\"text\" id=\"jobName\" name=\"jobName\">{{job.jobName}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Location Name</h5>\r\n                <Label id=\"locationName\" name=\"locationName\">{{job.location.locationName}}</Label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Job Description</h5>\r\n                <div id=\"jobDescription\" name=\"jobDescription\">\r\n                    {{job.jobDescription}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Work Categories</h5>\r\n                <ul id=\"ulistWorkCategories\">\r\n                    <li *ngFor=\"let jwc of workCategories\">\r\n                        <em>{{jwc.workCategory.workCategoryType}}</em><br />\r\n                        {{jwc.workSubCategory.workSubCategoryType}}\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n                <h5>Estimate Of Days To Complete</h5>\r\n                <label type=\"number\" id=\"numberOfDaysToComplete\">{{job.numberOfDaysToComplete}}</label>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n            <div class=\"col-lg-12\" style=\"margin: 2px 0px !important;\">\r\n                <div class=\"custom-control custom-checkbox\">\r\n                    <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasBeenAssignedFundi\" [(ngModel)]=\"job.hasBeenAssignedFundi\" id=\"hasBeenAssignedFundi\" readonly />\r\n                    <label class=\"custom-control-label\" for=\"hasBeenAssignedFundi\">Has Been Assigned Fundi</label>\r\n                </div>\r\n                <div class=\"custom-control custom-checkbox\">\r\n                    <input class=\"custom-control-input\" type=\"checkbox\" name=\"hasCompleted\" [(ngModel)]=\"job.hasCompleted\" id=\"hasCompleted\" readonly />\r\n                    <label class=\"custom-control-label\" for=\"hasCompleted\">Has Completed</label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <form #fundiJobApplicationForm=\"ngForm\" id=\"fundiJobApplicationForm\" (ngSubmit)=\"fundiJobApplicationForm.form.valid\" enctype=\"multipart/form-data\" method=\"post\">\r\n            <div style=\"margin: 5px 0px !important;\">\r\n                <h3>Apply For Job With Cover Note</h3>\r\n                <hr />\r\n                <div style=\"width: 100%;\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && firstName.invalid\" class=\"text-danger\">\r\n                                First Name field required.\r\n                                <br />\r\n                            </div>\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"firstName\" type=\"text\" [(ngModel)]=\"jobApplication.firstName\" #firstName=\"ngModel\" required placeholder=\"First Name\" /><br />\r\n                        </div>\r\n                        <div class=\"form-group col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && lastName.invalid\" class=\"text-danger\">\r\n                                Last Name field required.\r\n                                <br />\r\n                            </div>\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"lastName\" type=\"text\" [(ngModel)]=\"jobApplication.lastName\" lastName=\"ngModel\" required placeholder=\"Last Name\" /><br />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" class=\"text-info\">\r\n                                What is the rate you'd like to bid for this job Per Hour?\r\n                                <br />\r\n                            </div>\r\n                            <input id=\"AnswerQuestion1\" style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"bidRatePerHour\" type=\"number\" [(ngModel)]=\"jobApplication.bidRatePerHour\" #bidRatePerHour=\"ngModel\" /><br />\r\n                        </div>\r\n                        <div class=\"form-group col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" class=\"text-info\">\r\n                                Total amount the client will see on your proposal?\r\n                                <br />\r\n                            </div>\r\n                            <input id=\"AnswerQuestion2\" style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"totalAmountPerHour\" type=\"number\" [(ngModel)]=\"jobApplication.totalAmountPerHour\" #totalAmountPerHour=\"ngModel\" /><br />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" class=\"text-info\">\r\n                                What is Percentage of upward Service Fee you Intend to Charge?\r\n                                <br />\r\n                            </div>\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"upwardServiceFee\" type=\"number\" [(ngModel)]=\"jobApplication.upwardServiceFee\" #bidRatePerHour=\"ngModel\" /><br />\r\n                            <textarea id=\"AnswerQuestion3\" style=\"width:100% !important\" [(ngModel)]=\"jobApplication.justifyPercentOfServiceFee\"></textarea>\r\n                        </div>\r\n                        <div class=\"form-group col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" class=\"text-info\">\r\n                                The estimated amount you'll receive after service fees?\r\n                                <br />\r\n                            </div>\r\n                            <input id=\"AnswerQuestion4\" style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"amountYouWillRecieveMinusService\" type=\"number\" [(ngModel)]=\"jobApplication.amountYouWillRecieveMinusService\" #amountYouWillRecieveMinusService=\"ngModel\" /><br />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailFrom.invalid\" class=\"text-danger\">\r\n                                email from field required.\r\n                                <br />\r\n                            </div>\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"emailFrom\" type=\"email\" [(ngModel)]=\"jobApplication.emailAddress\" #emailFrom=\"ngModel\" required placeholder=\"Your email address\" /><br />\r\n                        </div>\r\n                        <div class=\"form-group col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailSubject.invalid\" class=\"text-danger\">\r\n                                email subject field required.\r\n                                <br />\r\n                            </div>\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" name=\"emailSubject\" type=\"text\" class=\"form-control\" required #emailSubject=\"ngModel\" [(ngModel)]=\"jobApplication.appliedToJob\" placeholder=\"Subject\" /><br />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && stratDate.invalid\" class=\"text-danger\">\r\n                                Earliest Start Date required.\r\n                                <br />\r\n                            </div>\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" class=\"form-control\" name=\"startDate\" type=\"date\" [(ngModel)]=\"jobApplication.earliestStartDate\" #startDate=\"ngModel\" /><br />\r\n                        </div>\r\n                        <div class=\"form-group col-lg-5\">\r\n                            <div style=\"margin: 5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && preferredInterviewDate.invalid\" class=\"text-danger\">\r\n                                Preferred Interview Date & Time.\r\n                                <br />\r\n                            </div>\r\n                            <input style=\"font-weight: bold; width: 100%; color: #000040\" name=\"preferredInterviewDate\" type=\"text\" class=\"form-control\" required #emailSubject=\"ngModel\" [(ngModel)]=\"jobApplication.preferredInterviewDate\" placeholder=\"Preferred Interview Date\" /><br />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-12\">\r\n                            <div class=\"form-group\">\r\n                                <input type=\"file\" name=\"attachment\" (change)=\"getFiles($event)\" value=\"Attach Supporting Files\" id=\"attachment\" /><br />\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-12\">\r\n                            <div style=\"margin:5px 0px !important;\" *ngIf=\"fundiJobApplicationForm.submitted && emailBody.invalid\" class=\"text-danger\">\r\n                                Cover Letter Required.\r\n                                <br />\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <textarea name=\"emailBody\" class=\"form-control\" required #emailBody=\"ngModel\" [(ngModel)]=\"jobApplication.emailBody\" style=\"width: 100% !important; height:50vh !important;\" placeholder=\"Cover Letter\"></textarea>\r\n                                <br />\r\n                                <div style=\"clear:both;width: 100%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;margin:0px 5px;\">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>\r\n                                <hr />\r\n                                <myrecaptcha></myrecaptcha>\r\n                                <div class=\"form-group\">\r\n                                    <input type=\"submit\" id=\"submit\" class=\"btn-primary\" value=\"Apply For Job\" style=\"margin:5px 0px;display:none;\" (click)=\"sendEmail($event)\" />\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </section>\r\n</div>");
 
 /***/ }),
 
@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"clientSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\"  [disabled]=\"true\"/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                            <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                                Subscription Description Required\r\n                            </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"clientSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n    <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{subscription.clientUsername}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Client Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"subscription.startDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\"  [disabled]=\"true\"/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"subscription.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"subscription.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                              Subscription Description Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"subscription.subscriptionFee\" #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"form-group\">\r\n                          <!--<iframe id=\"clientEasyPayFrame\" [src]=\"easyPayUrl\" style=\"width:100%; height:20vh\" scrolling=\"no\"></iframe><br/>-->\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -425,7 +425,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Subscription Id - optional</label>\r\n                      <select id=\"subscriptionId\" name=\"subscriptionId\" [(ngModel)]=\"subscription.monthlySubscriptionId\"></select><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"startingDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" [disabled]=\"true\"/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <input type=\"button\" value=\"Select Subscription\" class=\"but-primary\" (click)=\"selectSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Update Subscription\" class=\"but-primary\" (click)=\"updateSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Delete Subscription\" class=\"but-primary\" (click)=\"deleteSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <hr />\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Fundi Profile ID\r\n                          </label><br />\r\n                          <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                          <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                              Fundi ID Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Category Id</label>\r\n                          <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Sub Category Id</label>\r\n                          <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                          <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                          <input type=\"button\" value=\"Remove SubCategory\" (click)=\"removeWorkSubCategory($event)\" /><br />\r\n                          <br />\r\n                          <ul id=\"ulistWorkCategories\"></ul>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" readonly #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" id=\"fundiSubscription-wrapper\" style=\"background-color: #EEEEEE; text-align: left;\">\r\n  <h2 style=\"text-align:center !important;padding:10px 0px !important;\">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf(\"Fundi\") > -1  || userRoles.indexOf(\"Guest\") > 1)?\"Fundi\":\"Guest\"}} Profile</h2>\r\n  <section id=\"Profile\">\r\n    <div class=\"row\" style=\"text-align: center !important; align-content: center !important;\">\r\n      <div class=\"col-lg-12\">\r\n        <img id=\"profileImage\" src=\"/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}\" alt=\"profileImage\" style=\"width:250px; height:auto; align-content:center !important;\" /><br />\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Profile Summary</h5>\r\n        <div class=\"col-lg-12\" id=\"profileSummary\">\r\n          {{fundi.profileSummary}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 2px 0px !important;\">\r\n      <div class=\"col-lg-12\" id=\"workCategories\" style=\"margin: 2px 0px !important;\">\r\n        <h5>Fundi Subscription</h5>\r\n        <div class=\"subscription\">\r\n          <form #fs=\"ngForm\" method=\"post\" (ngSubmit)=\"fs.form.valid && paySubscriptionMonthlyFee($event)\">\r\n              <div class=\"row\" id=\"subscriptiondiv\" style=\"margin: 2px 0px !important;\">\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <img src=\"/assets/images/paypal_logo.gif\" alt=\"paypal logo\" width=\"450\" /><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Subscription Id - optional</label>\r\n                      <select id=\"subscriptionId\" name=\"subscriptionId\" [(ngModel)]=\"subscription.monthlySubscriptionId\"></select><br />\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <label>Start Date </label>\r\n                      <input type=\"text\" id=\"startDate\" name=\"startDate\" [(ngModel)]=\"startingDate\"/><br />\r\n                  </div>\r\n                  <div class=\"form-groupcol-lg-12\">\r\n                      <div class=\"custom-control custom-checkbox\">\r\n                          <input class=\"custom-control-input\" type=\"checkbox\" id=\"hasPaid\" name=\"hasPaid\" [(ngModel)]=\"subscription.hasPaid\" [disabled]=\"true\"/><label class=\"custom-control-label\">Has Paid Subscription</label>\r\n                          <br />\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-group col-lg-12\">\r\n                      <input type=\"button\" value=\"Select Subscription\" class=\"but-primary\" (click)=\"selectSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Update Subscription\" class=\"but-primary\" (click)=\"updateSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <input type=\"button\" value=\"Delete Subscription\" class=\"but-primary\" (click)=\"deleteSubscription($event)\" style=\"margin-top:10px;\" />\r\n                      <hr />\r\n                  </div>\r\n                  <div class=\"col-lg-12\" id=\"subscription\" style=\"margin: 2px 0px !important;\">\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Fundi Profile ID\r\n                          </label><br />\r\n                          <input type=\"text\" class=\"form-control\" name=\"fundiProfileId\" #fundiProfileId=\"ngModel\" readonly [(ngModel)]=\"fundi.fundiProfileId\" /><br />\r\n                          <div *ngIf=\"fs.submitted && fundiProfileId.invalid\" class=\"text-danger\">\r\n                              Fundi ID Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Category Id</label>\r\n                          <select id=\"subcworkCategoryId\" name=\"workCategoryId\" [(ngModel)]=\"workCategory.workCategoryId\" (change)=\"getWorkSubCategoriesByWorkCategoryId($event)\" required></select>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>Select Work Sub Category Id</label>\r\n                          <select id=\"subcworkSubCategoryId\" name=\"workSubCategoryId\" [(ngModel)]=\"workSubCategory.workSubCategoryId\"></select>\r\n                          <input type=\"button\" value=\"Add SubCategory\" class=\"but-primary\" (click)=\"addSubCategory($event)\" /><br />\r\n                          <input type=\"button\" value=\"Remove SubCategory\" (click)=\"removeWorkSubCategory($event)\" /><br />\r\n                          <br />\r\n                          <ul id=\"ulistWorkCategories\"></ul>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Name\r\n                          </label><br />\r\n                          <input type=\"text\" name=\"subscriptionName\" required [(ngModel)]=\"fundi.subscriptionName\" #subscriptionName=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionName.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Monthly Subscription Description\r\n                          </label><br />\r\n                          <textarea name=\"subscriptionDescription\" required #subscriptionDescription=\"ngModel\" [(ngModel)]=\"fundi.subscriptionDescription\" row=\"5\" cols=\"10\"></textarea><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionDescription.invalid\" class=\"text-danger\">\r\n                              Subscription Name Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <label>\r\n                              Subscripton Monthly Fee\r\n                          </label><br />\r\n                          <input type=\"number\" name=\"subscriptionFee\" required value=\"2500\" [(ngModel)]=\"fundi.subscriptionFee\" readonly #subscriptionFee=\"ngModel\" /><br />\r\n                          <div *ngIf=\"fs.submitted && subscriptionFee.invalid\" class=\"text-danger\">\r\n                              Subscription Fee Required\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"form-group\">\r\n                          <!--<iframe id=\"fundiEasyPayFrame\" [src]=\"easyPayUrl\" style=\"width:100%; height:20vh\" scrolling=\"no\"></iframe><br/>-->\r\n                          <label>\r\n                              Make Payment\r\n                          </label><br />\r\n                          <input type=\"button\" value=\"Paypal Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithPaypal($event)\" /><br />\r\n                          <input type=\"button\" value=\"MTN Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithMtn($event)\" /><br />\r\n                          <input type=\"button\" value=\"AirTel Monthly Payment\" class=\"but-primary\" (click)=\"paySubscriptionMonthlyFeeWithAirTel($event)\" /><br />\r\n                      </div>\r\n                      <hr />\r\n                  </div>\r\n              </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n</section>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -1970,6 +1970,21 @@ let ClientJobViewComponent = class ClientJobViewComponent {
         return decodeURIComponent(url);
     }
     ngOnInit() {
+        this.jobApplication = {
+            firstName: "",
+            lastName: "",
+            appliedToJob: "",
+            coverLetter: "",
+            emailAddress: "",
+            earliestStartDate: new Date(),
+            preferredInterviewDate: new Date(),
+            fileAttachments: [],
+            bidRatePerHour: 0,
+            totalAmountPerHour: 0,
+            upwardServiceFee: 0,
+            justifyPercentOfServiceFee: "",
+            amountYouWillRecieveMinusService: 0
+        };
         this.chosenWorkCategories = [];
         this.userDetails = JSON.parse(localStorage.getItem("CurrentClientUserDetails"));
         this.clientProfile = JSON.parse(localStorage.getItem("CurrentJobClientProfile"));
@@ -1985,18 +2000,28 @@ let ClientJobViewComponent = class ClientJobViewComponent {
         };
     }
     getFiles($event) {
-        this.email.attachment = $event.target.files.item(0);
+        this.jobApplication.fileAttachments.push($event.target.files.item(0));
     }
     sendEmail($event) {
         let form = document.querySelector("form#fundiJobApplicationForm");
         if (form.checkValidity()) {
             let formData = new FormData();
-            formData.append('emailBody', this.email.emailBody);
+            formData.append('emailBody', this.jobApplication.coverLetter);
             formData.append('emailTo', this.userDetails.username);
-            formData.append('emailFrom', this.email.emailFrom);
-            formData.append('emailSubject', this.email.emailSubject);
-            formData.append('fileUpload', this.email.attachment);
-            let result = this.myFundiService.SendEmail(formData);
+            formData.append('emailFrom', this.jobApplication.emailAddress);
+            formData.append('emailSubject', this.jobApplication.appliedToJob);
+            formData.append('amountYouWillRecieveMinusService', this.jobApplication.amountYouWillRecieveMinusService.toString());
+            formData.append('bidRatePerHour', this.jobApplication.bidRatePerHour.toString());
+            formData.append('earliestStartDate', this.jobApplication.earliestStartDate.toString());
+            formData.append('firstName', this.jobApplication.firstName);
+            formData.append('lastName', this.jobApplication.lastName);
+            formData.append('justifyPercentOfServiceFee', this.jobApplication.justifyPercentOfServiceFee);
+            formData.append('totalAmountPerHour', this.jobApplication.totalAmountPerHour.toString());
+            formData.append('preferredInterviewDate', this.jobApplication.preferredInterviewDate.toString());
+            for (let n = 0; n < this.jobApplication.fileAttachments.length; n++) {
+                formData.append('attachment-' + n.toString(), this.jobApplication.fileAttachments[n]);
+            }
+            let result = this.myFundiService.SendEmailMultiAttachments(formData);
             result.map((value) => {
                 alert(value.message);
             }).subscribe();
@@ -3312,6 +3337,7 @@ let ClientSubscriptionComponent = class ClientSubscriptionComponent {
         this.subscriptionFee = 1;
         this.clientLoginDetails = {};
         this.hasPopulatedPage = false;
+        this.easyPayUrl = 'https://www.easypay.co.ug';
         this.userDetails = {};
     }
     decoderUrl(url) {
@@ -3340,11 +3366,12 @@ let ClientSubscriptionComponent = class ClientSubscriptionComponent {
         let subscriptionFeeExpenseToBePaid = this.subscription;
         let resultObs = this.myFundiService.PayClientSubscriptionFeeWithPaypal(subscriptionFeeExpenseToBePaid);
         resultObs.map((q) => {
-            if (q.success) {
-                console.log('Response received: ' + q.mtnAirtelBaseUrl);
-                window.open(q.mtnAirtelBaseUrl);
-                alert("Payment made. Currently being processed by paypal service!\nOnce payment is confirmed you can login. You will be\ninformed once all is set up by email.");
-                this.router.navigateByUrl('/login');
+            debugger;
+            if (q.payPalRedirectUrl) {
+                window.open(q.payPalRedirectUrl);
+                console.log('Response received');
+                console.log(q.paypalUrl);
+                alert("Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
             }
             else {
                 alert("Paypal error happened. We are sorry something went bad. Please contact Admin");
@@ -3356,42 +3383,47 @@ let ClientSubscriptionComponent = class ClientSubscriptionComponent {
     payClientSubscriptionFeeWithAirTel($event) {
         let subscriptionFeeExpenseToBePaid = this.subscription;
         let resultObs = this.myFundiService.PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
+        let easyPayWindow = document.getElementById('clientEasyPayFrame');
         resultObs.map((q) => {
-            if (q.mtnAirtelBaseUrl) {
-                //Requires POST Verb.
-                //window.open(q.mtnAirTelBaseUrl);
-                var newMtnAirtelObject = {
-                    action: q.action,
-                    reason: q.reason,
-                    currency: q.currency,
-                    amount: q.amount,
-                    username: q.username,
-                    password: q.password,
-                    reference: q.reference,
-                    phone: q.phone
-                };
-                console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
-                let easyPayWindow = null;
-                try {
-                    if (!easyPayWindow || easyPayWindow.closed) {
-                        easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
-                    }
-                    else {
-                        easyPayWindow.focus();
-                        easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
-                    }
-                    console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
-                }
-                catch (ex) {
-                    console.log(ex);
-                }
-                finally {
-                    if (easyPayWindow && !easyPayWindow.closed)
-                        easyPayWindow.close();
-                }
+            if (q) {
+                alert('Response received: ' + (q.success > 0 ? "Paid via AirTel Successfully" : "Failed Payment via AirTel"));
+                console.log('Response received: ' + (q.success > 0 ? "Paid via AirTel Successfully" : "Failed Payment via AirTel"));
+                //var newMtnAirtelObject: any = {
+                //    action: q.action,
+                //    reason: q.reason,
+                //    currency: q.currency,
+                //    amount: q.amount,
+                //    username: q.username,
+                //    password: q.password,
+                //    reference: q.reference,
+                //    phone: q.phone
+                //}
+                //console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
+                //try {
+                //    let easypayApiEndPoint = this.easyPayUrl + "/api";
+                //    easyPayWindow.contentWindow.addEventListener('message', (event) => {
+                //        console.log(JSON.stringify(event.data));
+                //        debugger;
+                //        alert(event.data);
+                //    });
+                //    easyPayWindow.contentWindow.postMessage(JSON.stringify(newMtnAirtelObject), easypayApiEndPoint);
+                //    //jQuery(easyPayWindow.document.body).children().remove();
+                //    alert("AirTel Payment made. Currently being processed by AirTel service!\nYou will be informed once all is set up by email.");
+                //    //jQuery(easyPayWindow.document.body).html('<div class="container-fluid">' + "AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.</div>")
+                //}
+                //catch (ex) {
+                //    console.log(ex);
+                //    debugger;
+                //    //jQuery(easyPayWindow.document.body).children().remove();
+                //    alert(ex);
+                //    //jQuery(easyPayWindow.document.body).html(ex);
+                //}
+                //finally {
+                //    //easyPayWindow.close();
+                //}
             }
             else {
-                alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
+                alert("AirTel error happened. We are sorry something went bad. Please contact Admin");
             }
         }).subscribe();
         $event.preventDefault();
@@ -3399,42 +3431,51 @@ let ClientSubscriptionComponent = class ClientSubscriptionComponent {
     payClientSubscriptionFeeWithMtn($event) {
         let subscriptionFeeExpenseToBePaid = this.subscription;
         let resultObs = this.myFundiService.PayClientSubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
+        let easyPayWindow = document.getElementById('clientEasyPayFrame');
         resultObs.map((q) => {
-            if (q.mtnAirtelBaseUrl) {
-                //Requires POST Verb.
-                //window.open(q.mtnAirTelBaseUrl);
-                var newMtnAirtelObject = {
-                    action: q.action,
-                    reason: q.reason,
-                    currency: q.currency,
-                    amount: q.amount,
-                    username: q.username,
-                    password: q.password,
-                    reference: q.reference,
-                    phone: q.phone
-                };
-                console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
-                let easyPayWindow = null;
-                try {
-                    if (!easyPayWindow || easyPayWindow.closed) {
-                        easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
-                    }
-                    else {
-                        easyPayWindow.focus();
-                        easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
-                    }
-                    console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
-                }
-                catch (ex) {
-                    console.log(ex);
-                }
-                finally {
-                    if (easyPayWindow && !easyPayWindow.closed)
-                        easyPayWindow.close();
-                }
+            if (q) {
+                alert('Response received: ' + (q.success > 0 ? "Paid via AirTel Successfully" : "Failed Payment via AirTel"));
+                console.log('Response received: ' + (q.success > 0 ? "Paid via AirTel Successfully" : "Failed Payment via AirTel"));
+                //let easyPayWindow: HTMLIFrameElement = document.getElementById('clientEasyPayFrame') as HTMLIFrameElement;
+                //resultObs.map((q: IMtnAirTelModel) => {
+                //    debugger;
+                //    if (q.mtnAirtelBaseUrl) {
+                //        var newMtnAirtelObject: any = {
+                //            action: q.action,
+                //            reason: q.reason,
+                //            currency: q.currency,
+                //            amount: q.amount,
+                //            username: q.username,
+                //            password: q.password,
+                //            reference: q.reference,
+                //            phone: q.phone
+                //        }
+                //        console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
+                //        try {
+                //            let easypayApiEndPoint = this.easyPayUrl + "/api";
+                //            easyPayWindow.contentWindow.addEventListener('message', (event) => {
+                //                console.log(JSON.stringify(event.data));
+                //                debugger;
+                //                alert(event.data);
+                //            });
+                //            easyPayWindow.contentWindow.postMessage(JSON.stringify(newMtnAirtelObject), easypayApiEndPoint);
+                //            //jQuery(easyPayWindow.document.body).children().remove();
+                //            alert("MTN Payment made. Currently being processed by AirTel service!\nYou will be informed once all is set up by email.");
+                //            //jQuery(easyPayWindow.document.body).html('<div class="container-fluid">' + "AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.</div>")
+                //        }
+                //        catch (ex) {
+                //            console.log(ex);
+                //            debugger;
+                //            //jQuery(easyPayWindow.document.body).children().remove();
+                //            alert(ex);
+                //            //jQuery(easyPayWindow.document.body).html(ex);
+                //        }
+                //        finally {
+                //            //easyPayWindow.close();
+                //        }
             }
             else {
-                alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
+                alert("MTN error happened. We are sorry something went bad. Please contact Admin");
             }
         }).subscribe();
         $event.preventDefault();
@@ -7335,6 +7376,7 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
         this.router = router;
         this.subscriptionFee = 5;
         this.fundi = {};
+        this.easyPayUrl = 'https://www.easypay.co.ug';
         this.hasPopulatedPage = false;
         this.userDetails = {};
     }
@@ -7645,44 +7687,49 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             subscriptionDescription: this.fundi.subscriptionDescription,
             workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.workCategoryAndSubCategoryIds
         };
-        let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithAirTel(subscriptionFeeExpenseToBePaid);
+        let easyPayWindow = document.getElementById('fundiEasyPayFrame');
+        let easypayApiEndPoint = this.easyPayUrl + "/api";
+        easyPayWindow.contentWindow.addEventListener('message', (event) => {
+            console.log(JSON.stringify(event.data));
+            debugger;
+            alert(event.data);
+        });
+        let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithMtn(subscriptionFeeExpenseToBePaid);
         resultObs.map((q) => {
             debugger;
-            if (q.mtnAirtelBaseUrl) {
-                //Requires POST Verb.
-                //window.open(q.mtnAirTelBaseUrl);
-                var newMtnAirtelObject = {
-                    action: q.action,
-                    reason: q.reason,
-                    currency: q.currency,
-                    amount: q.amount,
-                    username: q.username,
-                    password: q.password,
-                    reference: q.reference,
-                    phone: q.phone
-                };
-                console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
-                let easyPayWindow = null;
-                try {
-                    if (!easyPayWindow || easyPayWindow.closed) {
-                        easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
-                    }
-                    else {
-                        easyPayWindow.focus();
-                        easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
-                    }
-                    console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
-                }
-                catch (ex) {
-                    console.log(ex);
-                }
-                finally {
-                    if (easyPayWindow && !easyPayWindow.closed)
-                        easyPayWindow.close();
-                }
+            if (q) {
+                alert('Response received: ' + (q.success > 0 ? "Paid via AirTel Successfully" : "Failed Payment via AirTel"));
+                console.log('Response received: ' + (q.success > 0 ? "Paid via AirTel Successfully" : "Failed Payment via AirTel"));
+                //    var newMtnAirtelObject: any = {
+                //        action: q.action,
+                //        reason: q.reason,
+                //        currency: q.currency,
+                //        amount: q.amount,
+                //        username: q.username,
+                //        password: q.password,
+                //        reference: q.reference,
+                //        phone: q.phone
+                //    }
+                //    console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
+                //    try {
+                //        easyPayWindow.contentWindow.postMessage(JSON.stringify(newMtnAirtelObject), easypayApiEndPoint);
+                //        //jQuery(easyPayWindow.document.body).children().remove();
+                //        alert("AirTel Payment made. Currently being processed by AirTel service!\nYou will be informed once all is set up by email.");
+                //        //jQuery(easyPayWindow.document.body).html('<div class="container-fluid">' + "AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.</div>")
+                //    }
+                //    catch (ex) {
+                //        console.log(ex);
+                //        debugger;
+                //        //jQuery(easyPayWindow.document.body).children().remove();
+                //        alert(ex);
+                //        //jQuery(easyPayWindow.document.body).html(ex);
+                //    }
+                //    finally {
+                //        //easyPayWindow.close();
+                //    }
             }
             else {
-                alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
+                alert("AirTel error happened. We are sorry something went bad. Please contact Admin");
             }
         }).subscribe();
         $event.preventDefault();
@@ -7704,44 +7751,48 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
             subscriptionDescription: this.fundi.subscriptionDescription,
             workCategoryAndSubCategoryIds: this.subscriptionFeeExpense.workCategoryAndSubCategoryIds
         };
+        let easyPayWindow = document.getElementById('fundiEasyPayFrame');
         let resultObs = this.myFundiService.PayMonthlySubscriptionFeeWithMtn(subscriptionFeeExpenseToBePaid);
         resultObs.map((q) => {
             debugger;
-            if (q.mtnAirtelBaseUrl) {
-                //Requires POST Verb.
-                //window.open(q.mtnAirTelBaseUrl);
-                var newMtnAirtelObject = {
-                    action: q.action,
-                    reason: q.reason,
-                    currency: q.currency,
-                    amount: q.amount,
-                    username: q.username,
-                    password: q.password,
-                    reference: q.reference,
-                    phone: q.phone
-                };
-                console.log('Response received: ' + q.mtnAirtelBaseUrl + `${q}`);
-                let easyPayWindow = null;
-                try {
-                    if (!easyPayWindow || easyPayWindow.closed) {
-                        easyPayWindow = window.open(q.mtnAirtelBaseUrl).postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
-                    }
-                    else {
-                        easyPayWindow.focus();
-                        easyPayWindow.postMessage(newMtnAirtelObject, q.mtnAirtelBaseUrl);
-                    }
-                    console.log("MTN or AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.");
-                }
-                catch (ex) {
-                    console.log(ex);
-                }
-                finally {
-                    if (easyPayWindow && !easyPayWindow.closed)
-                        easyPayWindow.close();
-                }
+            if (q) {
+                //var newMtnAirtelObject: any = {
+                //    action: q.action,
+                //    reason: q.reason,
+                //    currency: q.currency,
+                //    amount: q.amount,
+                //    username: q.username,
+                //    password: q.password,
+                //    reference: q.reference,
+                //    phone: q.phone
+                //}
+                alert('Response received: ' + (q.success > 0 ? "Paid via MTN Successfully" : "Failed Payment via MTN"));
+                console.log('Response received: ' + (q.success > 0 ? "Paid via MTN Successfully" : "Failed Payment via MTN"));
+                //try {
+                //    let easypayApiEndPoint = this.easyPayUrl + "/api";
+                //    easyPayWindow.contentWindow.addEventListener('message', (event) => {
+                //        console.log(JSON.stringify(event.data));
+                //        debugger;
+                //        alert(event.data);
+                //    });
+                //    easyPayWindow.contentWindow.postMessage(JSON.stringify(newMtnAirtelObject), easypayApiEndPoint);
+                //    //jQuery(easyPayWindow.document.body).children().remove();
+                //    alert("MTN Payment made. Currently being processed by AirTel service!\nYou will be informed once all is set up by email.");
+                //    //jQuery(easyPayWindow.document.body).html('<div class="container-fluid">' + "AirTel Payment made. Currently being processed by paypal service!\nYou will be informed once all is set up by email.</div>")
+                //}
+                //catch (ex) {
+                //    console.log(ex);
+                //    debugger;
+                //    //jQuery(easyPayWindow.document.body).children().remove();
+                //    alert(ex);
+                //    //jQuery(easyPayWindow.document.body).html(ex);
+                //}
+                //finally {
+                //    //easyPayWindow.close();
+                //}
             }
             else {
-                alert("MTN or AirTel error happened. We are sorry something went bad. Please contact Admin");
+                alert("MTN error happened. We are sorry something went bad. Please contact Admin");
             }
         }).subscribe();
         $event.preventDefault();
@@ -12887,6 +12938,7 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         this.postRegisterUrl = this.baseServerUrl + "/Account/Register";
         this.postForgotPasswordUrl = this.baseServerUrl + "/Account/ForgotPassword";
         this.postSendEmail = this.baseServerUrl + "/AdhocReporting/SendEmail";
+        this.postSendEmailMultiAttachments = this.baseServerUrl + "/AdhocReporting/SendEmailMultiAttachments";
         this.postVerifyQrcodeScan = this.baseServerUrl + "/AdhocReporting/GetClientEmailAndMobilePhoneNumber";
         this.getJobByJobIdUrl = this.baseServerUrl + "/ClientProfile/getJobByJobId";
         this.createContractUrl = this.baseServerUrl + "/FundiProfile/CreateContract";
@@ -13945,8 +13997,16 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
     SendEmail(body) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'Content-Type': "multipart/form-data" });
         let requestOptions = {
-            url: this.postSendEmail /*,
-            headers: headers*/
+            url: this.postSendEmail
+        };
+        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res) => {
+            return res;
+        });
+    }
+    SendEmailMultiAttachments(body) {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'Content-Type': "multipart/form-data" });
+        let requestOptions = {
+            url: this.postSendEmailMultiAttachments
         };
         return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res) => {
             return res;

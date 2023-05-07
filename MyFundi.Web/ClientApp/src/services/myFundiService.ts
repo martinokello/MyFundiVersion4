@@ -112,6 +112,7 @@ export class MyFundiService {
     public postForgotPasswordUrl: string = this.baseServerUrl + "/Account/ForgotPassword";
     public static clientEmailAddress = "";
     public postSendEmail: string = this.baseServerUrl + "/AdhocReporting/SendEmail";
+    public postSendEmailMultiAttachments: string = this.baseServerUrl + "/AdhocReporting/SendEmailMultiAttachments"; 
     public postVerifyQrcodeScan: string = this.baseServerUrl + "/AdhocReporting/GetClientEmailAndMobilePhoneNumber";
     
     public getJobByJobIdUrl: string = this.baseServerUrl + "/ClientProfile/getJobByJobId";
@@ -1346,15 +1347,23 @@ export class MyFundiService {
     public SendEmail(body: FormData): Observable<any> {
         const headers = new HttpHeaders({ 'Content-Type': "multipart/form-data"});
         let requestOptions: any = {
-            url: this.postSendEmail/*,
-            headers: headers*/
+            url: this.postSendEmail
         };
 
         return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any) => {
             return res;
         });
     }
+    public SendEmailMultiAttachments(body: FormData): Observable<any> {
+        const headers = new HttpHeaders({ 'Content-Type': "multipart/form-data" });
+        let requestOptions: any = {
+            url: this.postSendEmailMultiAttachments
+        };
 
+        return this.httpClient.post(requestOptions.url, body, { 'headers': requestOptions.headers }).map((res: any) => {
+            return res;
+        });
+    }
     public RemoveUserFromRole(email: string, role: string): Observable<any> {
         let body = JSON.stringify({ email: email, role: role });
 
@@ -2445,4 +2454,20 @@ export interface IBlog {
     blogFile: File;
     dateCreated: Date;
     dateCreatedUtc: string;
+}
+export interface IJobApplication {
+
+    firstName: string;
+    lastName: string;
+    appliedToJob: string;
+    coverLetter: string;
+    emailAddress: string;
+    earliestStartDate: Date;
+    preferredInterviewDate: Date;
+    fileAttachments: File[];
+    bidRatePerHour: number
+    totalAmountPerHour: number;
+    upwardServiceFee: number;
+    justifyPercentOfServiceFee: string;
+    amountYouWillRecieveMinusService: number;
 }

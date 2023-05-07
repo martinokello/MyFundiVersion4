@@ -28,6 +28,7 @@ using System.Linq.Expressions;
 using Newtonsoft.Json;
 using PaymentCalculater;
 using System.Threading;
+using System.Net.Http;
 
 namespace MyFundi.Web.Controllers
 {
@@ -50,6 +51,7 @@ namespace MyFundi.Web.Controllers
         private decimal _secondFundiPayment;
         private decimal _thirdFundiPayment;
         private string _payMtnAirTelRedirectUrl;
+        private HttpClient _httpClient;
 
         public FundiProfileController(IMailService emailService, MyFundiUnitOfWork unitOfWork, AppSettingsConfigurations appSettings, PaymentsManager paymentsManager, Mapper mapper, IHostingEnvironment _environment, ICaching caching, DiscountCalculator discountCalculator)
         {
@@ -70,6 +72,7 @@ namespace MyFundi.Web.Controllers
             _secondFundiPayment = mtnSection.GetValue<decimal>("FundiMonthlySubscritpionNextTrade");
             _thirdFundiPayment = mtnSection.GetValue<decimal>("FundiMonthlySubscritpionNext2Trade");
             _payMtnAirTelRedirectUrl = mtnSection.GetValue<string>("MTNBaseUrl");
+            _httpClient = new HttpClient();
         }
         [Route("~/FundiProfile/GetFundiProfileRatingById/{fundiProfileId}")]
         public async Task<IActionResult> GetFundiProfileRatingById(int fundiProfileId)
@@ -889,7 +892,21 @@ namespace MyFundi.Web.Controllers
                 };
                 var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, products, new PaypalFacility.Invoice (products, totalSubScriptionFee, subscriptionViewModel.Username));
                 mtnAirtelObject.MtnAirtelBaseUrl = _payMtnAirTelRedirectUrl;
-                return await Task.FromResult(Ok(mtnAirtelObject));
+
+                var newMtnAirtelObject = new {
+                    action = mtnAirtelObject.Action,
+                    reason = mtnAirtelObject.Reason,
+                    currency = mtnAirtelObject.Currency,
+                    amount = mtnAirtelObject.Amount,
+                    username = mtnAirtelObject.Username,
+                    password = mtnAirtelObject.Password,
+                    reference = mtnAirtelObject.Reference,
+                    phone = mtnAirtelObject.Phone
+                };
+                var httpContent = new StringContent(JsonConvert.SerializeObject(newMtnAirtelObject));
+                var resp = await _httpClient.PostAsync(mtnAirtelObject.MtnAirtelBaseUrl, httpContent);
+                var respString = await resp.Content.ReadAsStringAsync();
+                return await Task.FromResult(Ok(respString));
             }
             catch (Exception e)
             {
@@ -955,7 +972,22 @@ namespace MyFundi.Web.Controllers
                 };
                 var mtnAirtelObject = await paymentsManager.MakePaymentsMtnAirTel(subscriptionViewModel.Username, products, new PaypalFacility.Invoice(products, totalSubScriptionFee, subscriptionViewModel.Username));
                 mtnAirtelObject.MtnAirtelBaseUrl = _payMtnAirTelRedirectUrl;
-                return await Task.FromResult(Ok(mtnAirtelObject));
+
+                var newMtnAirtelObject = new
+                {
+                    action = mtnAirtelObject.Action,
+                    reason = mtnAirtelObject.Reason,
+                    currency = mtnAirtelObject.Currency,
+                    amount = mtnAirtelObject.Amount,
+                    username = mtnAirtelObject.Username,
+                    password = mtnAirtelObject.Password,
+                    reference = mtnAirtelObject.Reference,
+                    phone = mtnAirtelObject.Phone
+                };
+                var httpContent = new StringContent(JsonConvert.SerializeObject(newMtnAirtelObject));
+                var resp = await _httpClient.PostAsync(mtnAirtelObject.MtnAirtelBaseUrl, httpContent);
+                var respString = await resp.Content.ReadAsStringAsync();
+                return await Task.FromResult(Ok(respString));
             }
             catch (Exception e)
             {
