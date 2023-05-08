@@ -129,7 +129,7 @@
                                 Explain this Service Fee?
                                 <br />
                             </div>
-                            <textarea id="justifyPercentOfServiceFee" name="justifyPercentOfServiceFee" style="width:100% !important" [(ngModel)]="jobApplication.justifyPercentOfServiceFee"></textarea>
+                            <textarea id="justifyPercentOfServiceFee" name="justifyPercentOfServiceFee" style="width:100% !important" [(ngModel)]="jobApplication.justifyPercentOfServiceFee" #justifyPercentOfServiceFee></textarea>
                             <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && justifyPercentOfServiceFee.invalid" class="text-danger">
                                 Explanation For Service Fee Required.
                                 <br />
@@ -145,22 +145,24 @@
                                 What is the estimated amount you'll receive after Service Fees Required.
                                 <br />
                             </div>
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                What Job Are you applying for?
+                                <br />
+                            </div>
+                            <input style="font-weight: bold; width: 100%; color: #000040" name="emailSubject" type="text" class="form-control" required #emailSubject="ngModel" [(ngModel)]="jobApplication.appliedToJob" placeholder="Subject" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailSubject.invalid" class="text-danger">
+                                Job you are applying for is Required.
+                                <br />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-10">
                             <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailFrom.invalid" class="text-danger">
                                 email from field required.
                                 <br />
                             </div>
                             <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="emailFrom" type="email" [(ngModel)]="jobApplication.emailAddress" #emailFrom="ngModel" required placeholder="Your email address" /><br />
-                        </div>
-                        <div class="form-group col-lg-5">
-                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailSubject.invalid" class="text-danger">
-                                email subject field required.
-                                <br />
-                            </div>
-                            <input style="font-weight: bold; width: 100%; color: #000040" name="emailSubject" type="text" class="form-control" required #emailSubject="ngModel" [(ngModel)]="jobApplication.appliedToJob" placeholder="Subject" /><br />
                         </div>
                     </div>
                     <div class="row">
@@ -173,7 +175,7 @@
                                 What is Your Earliest Start Date?
                                 <br />
                             </div>
-                            <input id="jobEarliestStartDate" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="earliestStartDate" type="date" [(ngModel)]="jobApplication.earliestStartDate" #earliestStartDate="ngModel" /><br />
+                            <input id="jobEarliestStartDate" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="earliestStartDate" type="text" [(ngModel)]="jobApplication.earliestStartDate" #earliestStartDate="ngModel" /><br />
                         </div>
                         <div class="form-group col-lg-5">
                             <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && preferredInterviewDate.invalid" class="text-danger">
@@ -207,7 +209,7 @@
                                 <br />
                             </div>
                             <div class="form-group">
-                                <textarea name="emailBody" class="form-control" name="emailBody" required #emailBody="ngModel" [(ngModel)]="jobApplication.emailBody" style="width: 100% !important; height:50vh !important;" placeholder="Cover Letter"></textarea>
+                                <textarea name="emailBody" class="form-control"  required #emailBody="ngModel" [(ngModel)]="jobApplication.coverLetter" style="width: 100% !important; height:50vh !important;" placeholder="Cover Letter"></textarea>
                                 <br />
                                 <div style="clear:both;width: 100%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;margin:0px 5px;">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>
                                 <hr />

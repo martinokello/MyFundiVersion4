@@ -81,100 +81,98 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked {
     }
     clearFiles($event) {
         this.jobApplication.fileAttachments = [];
-        document.querySelector('ul#filesAttached > li').remove();
+        jQuery('ul#filesAttached > li').remove();
         $event.preventDefault();
     }
     getFiles($event) {
-        let file = $event.target.files.item(0);
+        let file: File = $event.target.files.item(0);
         this.jobApplication.fileAttachments.push(file);
-        let li: HTMLElement = new HTMLElement();
-        li.outerHTML = `<li>${file}</li>`;
-        document.querySelector('ul#filesAttached').appendChild(li);
+        let li = jQuery('li');
+        li.html(file.name);
+        jQuery('ul#filesAttached').append(li);
     }
 
     sendEmail($event): void {
 
-        let form: HTMLFormElement = document.querySelector("form#fundiJobApplicationForm");
-        if (form.checkValidity()) {
-            let formData = new FormData();
-            formData.append('emailBody', this.jobApplication.coverLetter);
-            formData.append('emailTo', this.userDetails.username);
-            formData.append('emailFrom', this.jobApplication.emailAddress);
-            formData.append('emailSubject', this.jobApplication.appliedToJob);
-            formData.append('amountYouWillRecieveMinusService', this.jobApplication.amountYouWillRecieveMinusService.toString());
-            formData.append('bidRatePerHour', this.jobApplication.bidRatePerHour.toString());
-            formData.append('earliestStartDate', this.jobApplication.earliestStartDate.toString());
-            formData.append('firstName', this.jobApplication.firstName);
-            formData.append('lastName', this.jobApplication.lastName);
-            formData.append('justifyPercentOfServiceFee', this.jobApplication.justifyPercentOfServiceFee);
-            formData.append('totalAmountPerHour', this.jobApplication.totalAmountPerHour.toString());
-            formData.append('preferredInterviewDate', this.jobApplication.preferredInterviewDate.toString());
+        let formData = new FormData();
+        formData.append('emailBody', this.jobApplication.coverLetter);
+        formData.append('emailTo', this.userDetails.username);
+        formData.append('emailFrom', this.jobApplication.emailAddress);
+        formData.append('emailSubject', this.jobApplication.appliedToJob);
+        formData.append('amountYouWillRecieveMinusService', this.jobApplication.amountYouWillRecieveMinusService.toString());
+        formData.append('bidRatePerHour', this.jobApplication.bidRatePerHour.toString());
+        formData.append('earliestStartDate', this.jobApplication.earliestStartDate.toString());
+        formData.append('firstName', this.jobApplication.firstName);
+        formData.append('lastName', this.jobApplication.lastName);
+        formData.append('justifyPercentOfServiceFee', this.jobApplication.justifyPercentOfServiceFee);
+        formData.append('totalAmountPerHour', this.jobApplication.totalAmountPerHour.toString());
+        formData.append('preferredInterviewDate', this.jobApplication.preferredInterviewDate.toString());
 
-            for (let n = 0; n < this.jobApplication.fileAttachments.length; n++){
-                formData.append('attachment-' + n.toString(), this.jobApplication.fileAttachments[n]);
-            }
-            let result: Observable<boolean> = this.myFundiService.SendEmailMultiAttachments(formData);
-            result.map((value: any) => {
-                alert(value.message)
-            }).subscribe();}
-
+        for (let n = 0; n < this.jobApplication.fileAttachments.length; n++) {
+            formData.append('attachment-' + n.toString(), this.jobApplication.fileAttachments[n]);
+        }
+        let result: Observable<boolean> = this.myFundiService.SendEmailMultiAttachments(formData);
+        result.map((value: any) => {
+            alert(value.message)
+        }).subscribe();
         $event.preventDefault();
     }
 
-    ngAfterViewChecked() {
-        let curthis = this;
 
-        this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
+ngAfterViewChecked() {
+    let curthis = this;
 
-    }
-    runAutoCompleteOnSelects(curthis: any) {
-        let hasFoundSelectsOnPage = false;
+    this.setTo = setTimeout(this.runAutoCompleteOnSelects, 1000, curthis);
 
-        if (!curthis.hasPopulatedPage) {
+}
+runAutoCompleteOnSelects(curthis: any) {
+    let hasFoundSelectsOnPage = false;
 
-            let selects = jQuery('div#client-wrapper select');
+    if (!curthis.hasPopulatedPage) {
 
-            if (selects && selects.length > 0) {
-                hasFoundSelectsOnPage = true;
-            }
+        let selects = jQuery('div#client-wrapper select');
 
-            if (hasFoundSelectsOnPage) {
-
-                jQuery(selects.each((ind, elem) => {
-                    jQuery(elem).parent('ul').css('background', 'white');
-                    jQuery(elem).parent('ul').css('z-index', '100');
-                    let id = 'autoComplete' + jQuery(elem).attr('id');
-                    jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
-
-                }));
-                hasFoundSelectsOnPage = false;
-
-            }
-            //Check For Dom Change and Add auto complete to select elements
-            debugger;
-            jQuery('select').each((ind, sel) => {
-                let options = jQuery(sel).children('option');
-
-                let vals = [];
-                jQuery(options).each((id, el) => {
-                    let optionText = jQuery(el).html();
-                    vals.push(optionText);
-                });
-                //options is source of auto complete:
-                let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
-                jQueryinpId.autocomplete({ source: vals });
-                jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
-                    jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
-                        return jQuery(event.target).text() == jQuery(this).html();
-                    }).attr("selected", true);
-                });
-            });
-
-            curthis.hasPopulatedPage = true;
-
-            jQuery('div#editableClientDetails').hide(2000);
-            clearTimeout(curthis.setTo);
+        if (selects && selects.length > 0) {
+            hasFoundSelectsOnPage = true;
         }
+
+        if (hasFoundSelectsOnPage) {
+
+            jQuery(selects.each((ind, elem) => {
+                jQuery(elem).parent('ul').css('background', 'white');
+                jQuery(elem).parent('ul').css('z-index', '100');
+                let id = 'autoComplete' + jQuery(elem).attr('id');
+                jQuery(elem).parent('div').prepend("<input type='text' placeholder='Search dropdown' id=" + `${id}` + " /><br/>");
+
+            }));
+            hasFoundSelectsOnPage = false;
+
+        }
+        //Check For Dom Change and Add auto complete to select elements
+        debugger;
+        jQuery('select').each((ind, sel) => {
+            let options = jQuery(sel).children('option');
+
+            let vals = [];
+            jQuery(options).each((id, el) => {
+                let optionText = jQuery(el).html();
+                vals.push(optionText);
+            });
+            //options is source of auto complete:
+            let jQueryinpId = jQuery('input#autoComplete' + jQuery(sel).attr('id'));
+            jQueryinpId.autocomplete({ source: vals });
+            jQuery(document).on('click', '.ui-menu .ui-menu-item-wrapper', function (event) {
+                jQuery('select#' + jQuery(sel).attr('id')).find("option").filter(function () {
+                    return jQuery(event.target).text() == jQuery(this).html();
+                }).attr("selected", true);
+            });
+        });
+
+        curthis.hasPopulatedPage = true;
+
+        jQuery('div#editableClientDetails').hide(2000);
+        clearTimeout(curthis.setTo);
     }
+}
 }
 
