@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Net;
 using Microsoft.Extensions.Configuration;
 using MyFundi.AppConfigurations;
+using Microsoft.AspNetCore.Http;
 
 namespace MyFundi.Services.EmailServices.Concretes
 {
@@ -41,23 +42,33 @@ namespace MyFundi.Services.EmailServices.Concretes
                 smtpServer.Credentials = networkCredentials;
 
                 var mailMessage = new MailMessage();
+                
                 mailMessage.From = new MailAddress(_businessSmtpDetails.GetSection("BusinessEmail").Value);
                 mailMessage.Body = mail.EmailBody;
                 mailMessage.Subject = @"From " + mail.EmailFrom + " " + mail.EmailSubject;
-                var memoryStream = new MemoryStream();
                 var fileStream = new FileInfo("/images/attachement");
                 
                 if (mail.Attachment != null)
                 {
-                    var attachment = new Attachment(mail.Attachment.OpenReadStream(), mail.Attachment.FileName);
-                    mailMessage.Attachments.Add(attachment);
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        ReadFileAttachment(mail.Attachment, memoryStream);
+                        memoryStream.Seek(0, SeekOrigin.Begin);
+                        var attached = new Attachment(memoryStream, mail.Attachment.FileName);
+                        mailMessage.Attachments.Add(attached);
+                    }
                 }
                 if (mail.Attachments != null && mail.Attachments.Length > 0)
                 { 
                     foreach(var attachment in mail.Attachments)
                     {
-                        var attached = new Attachment(mail.Attachment.OpenReadStream(), mail.Attachment.FileName);
-                        mailMessage.Attachments.Add(attached);
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            ReadFileAttachment(attachment, memoryStream);
+                            memoryStream.Seek(0, SeekOrigin.Begin);
+                            var attached = new Attachment(memoryStream, attachment.FileName);
+                            mailMessage.Attachments.Add(attached);
+                        }
                     }
                 }
                 mail.EmailTo += string.Format(";{0}", _businessSmtpDetails.GetSection("BusinessEmail").Value);
@@ -72,6 +83,17 @@ namespace MyFundi.Services.EmailServices.Concretes
             {
                 throw e;
             }
+        }
+
+        private MemoryStream ReadFileAttachment(IFormFile attacment, MemoryStream memoryStream)
+        {
+            var bytes = new byte[4096];
+            var bytesRead = 0;
+            while((bytesRead = attacment.OpenReadStream().Read(bytes,0,bytes.Length)) > 0)
+            {
+                memoryStream.Write(bytes, 0, bytesRead);
+            }
+            return memoryStream;
         }
     }
 }

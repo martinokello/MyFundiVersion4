@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <form #fundiJobApplicationForm="ngForm" id="fundiJobApplicationForm" (ngSubmit)="fundiJobApplicationForm.form.valid" enctype="multipart/form-data" method="post">
+        <form #fundiJobApplicationForm="ngForm" (ngSubmit)="fundiJobApplicationForm.form.valid && sendEmail($event)" enctype="multipart/form-data" method="post">
             <div style="margin: 5px 0px !important;">
                 <h3>Apply For Job With Cover Note</h3>
                 <hr />
@@ -87,7 +87,7 @@
                                 Last Name field required.
                                 <br />
                             </div>
-                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="lastName" type="text" [(ngModel)]="jobApplication.lastName" lastName="ngModel" required placeholder="Last Name" /><br />
+                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="lastName" type="text" [(ngModel)]="jobApplication.lastName" #lastName="ngModel" required placeholder="Last Name" /><br />
                         </div>
                     </div>
                     <div class="row">
@@ -96,14 +96,22 @@
                                 What is the rate you'd like to bid for this job Per Hour?
                                 <br />
                             </div>
-                            <input id="AnswerQuestion1" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="bidRatePerHour" type="number" [(ngModel)]="jobApplication.bidRatePerHour" #bidRatePerHour="ngModel" /><br />
+                            <input id="bidRatePerHour" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="bidRatePerHour" type="number" [(ngModel)]="jobApplication.bidRatePerHour" #bidRatePerHour="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && bidRatePerHour.invalid" class="text-danger">
+                                Bid Rate required.
+                                <br />
+                            </div>
                         </div>
                         <div class="form-group col-lg-5">
                             <div style="margin: 5px 0px !important;" class="text-info">
                                 Total amount the client will see on your proposal?
                                 <br />
                             </div>
-                            <input id="AnswerQuestion2" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="totalAmountPerHour" type="number" [(ngModel)]="jobApplication.totalAmountPerHour" #totalAmountPerHour="ngModel" /><br />
+                            <input id="totalAmountPerHour" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="totalAmountPerHour" type="number" [(ngModel)]="jobApplication.totalAmountPerHour" #totalAmountPerHour="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && totalAmountPerHour.invalid" class="text-danger">
+                                Total Amount Per Hour required.
+                                <br />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -112,15 +120,31 @@
                                 What is Percentage of upward Service Fee you Intend to Charge?
                                 <br />
                             </div>
-                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="upwardServiceFee" type="number" [(ngModel)]="jobApplication.upwardServiceFee" #bidRatePerHour="ngModel" /><br />
-                            <textarea id="AnswerQuestion3" style="width:100% !important" [(ngModel)]="jobApplication.justifyPercentOfServiceFee"></textarea>
+                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="upwardServiceFee" type="number" [(ngModel)]="jobApplication.upwardServiceFee" #upwardServiceFee="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && upwardServiceFee.invalid" class="text-danger">
+                                Percentage Of Upward Service Fee required.
+                                <br />
+                            </div>
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                Explain this Service Fee?
+                                <br />
+                            </div>
+                            <textarea id="justifyPercentOfServiceFee" name="justifyPercentOfServiceFee" style="width:100% !important" [(ngModel)]="jobApplication.justifyPercentOfServiceFee"></textarea>
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && justifyPercentOfServiceFee.invalid" class="text-danger">
+                                Explanation For Service Fee Required.
+                                <br />
+                            </div>
                         </div>
                         <div class="form-group col-lg-5">
                             <div style="margin: 5px 0px !important;" class="text-info">
                                 The estimated amount you'll receive after service fees?
                                 <br />
                             </div>
-                            <input id="AnswerQuestion4" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="amountYouWillRecieveMinusService" type="number" [(ngModel)]="jobApplication.amountYouWillRecieveMinusService" #amountYouWillRecieveMinusService="ngModel" /><br />
+                            <input id="amountYouWillRecieveMinusService" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="amountYouWillRecieveMinusService" type="number" [(ngModel)]="jobApplication.amountYouWillRecieveMinusService" #amountYouWillRecieveMinusService="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && amountYouWillRecieveMinusService.invalid" class="text-danger">
+                                What is the estimated amount you'll receive after Service Fees Required.
+                                <br />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -141,18 +165,26 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-5">
-                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && stratDate.invalid" class="text-danger">
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && earliestStartDate.invalid" class="text-danger">
                                 Earliest Start Date required.
                                 <br />
                             </div>
-                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="startDate" type="date" [(ngModel)]="jobApplication.earliestStartDate" #startDate="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                What is Your Earliest Start Date?
+                                <br />
+                            </div>
+                            <input id="jobEarliestStartDate" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="earliestStartDate" type="date" [(ngModel)]="jobApplication.earliestStartDate" #earliestStartDate="ngModel" /><br />
                         </div>
                         <div class="form-group col-lg-5">
                             <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && preferredInterviewDate.invalid" class="text-danger">
-                                Preferred Interview Date & Time.
+                                Preferred Interview Date & Time Required.
                                 <br />
                             </div>
-                            <input style="font-weight: bold; width: 100%; color: #000040" name="preferredInterviewDate" type="text" class="form-control" required #emailSubject="ngModel" [(ngModel)]="jobApplication.preferredInterviewDate" placeholder="Preferred Interview Date" /><br />
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                What is Your Preferred Interview Date & Time?
+                                <br />
+                            </div>
+                            <input id="jobPreferredInterviewDate" style="font-weight: bold; width: 100%; color: #000040" name="preferredInterviewDate" type="text" class="form-control" required #preferredInterviewDate="ngModel" [(ngModel)]="jobApplication.preferredInterviewDate" placeholder="Preferred Interview Date" /><br />
                         </div>
                     </div>
                     <div class="row">
@@ -160,6 +192,12 @@
                             <div class="form-group">
                                 <input type="file" name="attachment" (change)="getFiles($event)" value="Attach Supporting Files" id="attachment" /><br />
                             </div>
+                            <div>
+                                <h5>File Attachments:</h5>
+                            </div>
+                            <ul id="filesAttached">
+                            </ul>
+                            <input name="clearFiles" type="button" value="Clear Files" (click)="clearFiles($event)"/>
                         </div>
                     </div>
                     <div class="row">
@@ -169,13 +207,13 @@
                                 <br />
                             </div>
                             <div class="form-group">
-                                <textarea name="emailBody" class="form-control" required #emailBody="ngModel" [(ngModel)]="jobApplication.emailBody" style="width: 100% !important; height:50vh !important;" placeholder="Cover Letter"></textarea>
+                                <textarea name="emailBody" class="form-control" name="emailBody" required #emailBody="ngModel" [(ngModel)]="jobApplication.emailBody" style="width: 100% !important; height:50vh !important;" placeholder="Cover Letter"></textarea>
                                 <br />
                                 <div style="clear:both;width: 100%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;margin:0px 5px;">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>
                                 <hr />
                                 <myrecaptcha></myrecaptcha>
                                 <div class="form-group">
-                                    <input type="submit" id="submit" class="btn-primary" value="Apply For Job" style="margin:5px 0px;display:none;" (click)="sendEmail($event)" />
+                                    <input type="submit" name="jobSubmitBtn" id="submit" class="btn-primary" value="Apply For Job" style="margin:5px 0px;display:none;" (click)="sendEmail($event)" />
                                 </div>
                             </div>
                         </div>

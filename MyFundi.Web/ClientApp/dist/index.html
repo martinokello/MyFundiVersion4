@@ -58,6 +58,24 @@
                     dateFormat: 'yyyy/MM/ddThh:mm:ss'
                 });
             });
+            $(document).on('focus', 'input#jobEarliestStartDate', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#dateEndAtDestination').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+
+            $(document).on('focus', 'input#jobPreferredInterviewDate', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#dateEndAtDestination').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            
             $(document).on('focus', 'input#dateEndAtDestination', function () {
                 $(this).datetimepicker({
                     onSelect: function (dateText, datePicker) {

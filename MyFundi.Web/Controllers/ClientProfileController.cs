@@ -568,7 +568,7 @@ namespace MyFundi.Web.Controllers
                 var httpContent = new StringContent(JsonConvert.SerializeObject(newMtnAirtelObject));
                 var resp = await _httpClient.PostAsync(mtnAirtelObject.MtnAirtelBaseUrl + "/api", httpContent);
                 var respString = await resp.Content.ReadAsStringAsync();
-                return await Task.FromResult(Ok(respString));
+                return await Task.FromResult(Ok(JsonConvert.DeserializeObject(respString)));
 
             }
             catch (Exception e)
@@ -660,7 +660,7 @@ namespace MyFundi.Web.Controllers
                 var httpContent = new StringContent(JsonConvert.SerializeObject(newMtnAirtelObject));
                 var resp = await _httpClient.PostAsync(mtnAirtelObject.MtnAirtelBaseUrl + "/api", httpContent);
                 var respString = await resp.Content.ReadAsStringAsync();
-                return await Task.FromResult(Ok(respString));
+                return await Task.FromResult(Ok(JsonConvert.DeserializeObject(respString)));
             }
             catch (Exception e)
             {

@@ -43,21 +43,7 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked {
         return decodeURIComponent(url);
     }
     ngOnInit(): void {
-        this.jobApplication = {
-            firstName: "",
-            lastName: "",
-            appliedToJob: "",
-            coverLetter: "",
-            emailAddress: "",
-            earliestStartDate: new Date(),
-            preferredInterviewDate:new Date(),
-            fileAttachments: [],
-            bidRatePerHour: 0,
-            totalAmountPerHour: 0,
-            upwardServiceFee: 0,
-            justifyPercentOfServiceFee: "",
-            amountYouWillRecieveMinusService:0
-        }
+
         this.chosenWorkCategories = [];
         this.userDetails = JSON.parse(localStorage.getItem("CurrentClientUserDetails"));
         this.clientProfile = JSON.parse(localStorage.getItem("CurrentJobClientProfile"));
@@ -65,6 +51,21 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked {
         this.workCategories = JSON.parse(localStorage.getItem('CurrentJobWorkCategories'));
 
         this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
+        this.jobApplication = {
+            firstName: "",
+            lastName: "",
+            appliedToJob: this.job.jobName,
+            coverLetter: "",
+            emailAddress: "",
+            earliestStartDate: new Date(),
+            preferredInterviewDate: new Date(),
+            fileAttachments: [],
+            bidRatePerHour: 0,
+            totalAmountPerHour: 0,
+            upwardServiceFee: 0,
+            justifyPercentOfServiceFee: "",
+            amountYouWillRecieveMinusService: 0
+        }
 
         this.email = {
             emailBody: "",
@@ -78,9 +79,17 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked {
     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
         this.userDetails = {};
     }
+    clearFiles($event) {
+        this.jobApplication.fileAttachments = [];
+        document.querySelector('ul#filesAttached > li').remove();
+        $event.preventDefault();
+    }
     getFiles($event) {
-
-        this.jobApplication.fileAttachments.push($event.target.files.item(0));
+        let file = $event.target.files.item(0);
+        this.jobApplication.fileAttachments.push(file);
+        let li: HTMLElement = new HTMLElement();
+        li.outerHTML = `<li>${file}</li>`;
+        document.querySelector('ul#filesAttached').appendChild(li);
     }
 
     sendEmail($event): void {
