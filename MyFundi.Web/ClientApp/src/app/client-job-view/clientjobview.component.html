@@ -193,13 +193,13 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <input type="file" name="attachment" (change)="getFiles($event)" value="Attach Supporting Files" id="attachment" /><br />
+                                <input name="clearFiles" type="button" value="Clear Files" (click)="clearFiles($event)" />
                             </div>
                             <div>
                                 <h5>File Attachments:</h5>
                             </div>
                             <ul id="filesAttached">
                             </ul>
-                            <input name="clearFiles" type="button" value="Clear Files" (click)="clearFiles($event)"/>
                         </div>
                     </div>
                     <div class="row">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewChecked, AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProfile, ICertification, ICourse, IWorkCategory, IFundiRating, ILocation, IUserDetail, MyFundiService, IAddress, IClientProfile, IJob, IEmailMessage, IWorkAndSubWorkCategory, IJobApplication } from '../../services/myFundiService';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { modifyHasPopulatedPage } from '../../imports.js';
     selector: 'client-job-view',
     templateUrl: './clientjobview.component.html'
 })
-export class ClientJobViewComponent implements OnInit, AfterViewChecked {
+export class ClientJobViewComponent implements OnInit, AfterViewChecked, AfterContentInit {
     userDetails: any;
     userRoles: string[];
     locationId: number;
@@ -76,26 +76,31 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked {
         }
 
     }
+    ngAfterContentInit() {
+        //this.jobApplication.fileAttachments = [];
+    }
     constructor(private myFundiService: MyFundiService, private router: Router, private httpClient: HttpClient) {
         this.userDetails = {};
     }
     clearFiles($event) {
         this.jobApplication.fileAttachments = [];
-        jQuery('ul#filesAttached > li').remove();
         $event.preventDefault();
     }
     getFiles($event) {
         let file: File = $event.target.files.item(0);
-        this.jobApplication.fileAttachments.push(file);
-        let li = jQuery('li');
-        li.html(file.name);
-        jQuery('ul#filesAttached').append(li);
+
+        let val: File = this.jobApplication.fileAttachments.find((f, ind) => {
+            return file.name === f.name;
+        });
+        if (!val) {
+            this.jobApplication.fileAttachments.push(file);
+        }
     }
 
     sendEmail($event): void {
 
         let formData = new FormData();
-        formData.append('emailBody', this.jobApplication.coverLetter);
+        formData.append('coverLetter', this.jobApplication.coverLetter);
         formData.append('emailTo', this.userDetails.username);
         formData.append('emailFrom', this.jobApplication.emailAddress);
         formData.append('emailSubject', this.jobApplication.appliedToJob);

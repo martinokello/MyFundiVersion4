@@ -23,7 +23,8 @@ namespace MyFundi.Services.EmailServices.Concretes
             _businessSmtpDetails = configuration.GetSection("BusinessEmailDetails");
         }
 
-        public IConfigurationSection BusinessEmailDetails {
+        public IConfigurationSection BusinessEmailDetails
+        {
             set { _businessSmtpDetails = value; }
             get { return _businessSmtpDetails; }
         }
@@ -42,33 +43,31 @@ namespace MyFundi.Services.EmailServices.Concretes
                 smtpServer.Credentials = networkCredentials;
 
                 var mailMessage = new MailMessage();
-                
+
                 mailMessage.From = new MailAddress(_businessSmtpDetails.GetSection("BusinessEmail").Value);
                 mailMessage.Body = mail.EmailBody;
                 mailMessage.Subject = @"From " + mail.EmailFrom + " " + mail.EmailSubject;
-                var fileStream = new FileInfo("/images/attachement");
-                
+
+                MemoryStream memoryStream = null;
                 if (mail.Attachment != null)
                 {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        ReadFileAttachment(mail.Attachment, memoryStream);
-                        memoryStream.Seek(0, SeekOrigin.Begin);
-                        var attached = new Attachment(memoryStream, mail.Attachment.FileName);
-                        mailMessage.Attachments.Add(attached);
-                    }
+                    memoryStream = new MemoryStream();
+                    ReadFileAttachment(mail.Attachment, memoryStream);
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+                    System.Net.Mime.ContentType ct = new System.Net.Mime.ContentType(System.Net.Mime.MediaTypeNames.Text.Plain);
+                    var attached = new Attachment(memoryStream, mail.Attachment.FileName, ct.MediaType);
+                    mailMessage.Attachments.Add(attached);
                 }
                 if (mail.Attachments != null && mail.Attachments.Length > 0)
-                { 
-                    foreach(var attachment in mail.Attachments)
+                {
+                    foreach (var attachment in mail.Attachments)
                     {
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            ReadFileAttachment(attachment, memoryStream);
-                            memoryStream.Seek(0, SeekOrigin.Begin);
-                            var attached = new Attachment(memoryStream, attachment.FileName);
-                            mailMessage.Attachments.Add(attached);
-                        }
+                        memoryStream = new MemoryStream();
+                        ReadFileAttachment(attachment, memoryStream);
+                        memoryStream.Seek(0, SeekOrigin.Begin);
+                        System.Net.Mime.ContentType ct = new System.Net.Mime.ContentType(System.Net.Mime.MediaTypeNames.Text.Plain);
+                        var attached = new Attachment(memoryStream, mail.Attachment.FileName, ct.MediaType);
+                        mailMessage.Attachments.Add(attached);
                     }
                 }
                 mail.EmailTo += string.Format(";{0}", _businessSmtpDetails.GetSection("BusinessEmail").Value);
@@ -77,7 +76,7 @@ namespace MyFundi.Services.EmailServices.Concretes
                     mailMessage.To.Add(p);
                 });
                 smtpServer.Send(mailMessage);
-                
+                mailMessage.Dispose();
             }
             catch (Exception e)
             {
@@ -89,9 +88,10 @@ namespace MyFundi.Services.EmailServices.Concretes
         {
             var bytes = new byte[4096];
             var bytesRead = 0;
-            while((bytesRead = attacment.OpenReadStream().Read(bytes,0,bytes.Length)) > 0)
+            while ((bytesRead = attacment.OpenReadStream().Read(bytes, 0, bytes.Length)) > 0)
             {
                 memoryStream.Write(bytes, 0, bytesRead);
+                memoryStream.Flush();
             }
             return memoryStream;
         }
