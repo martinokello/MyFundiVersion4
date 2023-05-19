@@ -913,7 +913,6 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubT
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Runtime.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Claims.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.Algorithms.dll
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.Cng.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.Csp.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.Encoding.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.OpenSsl.dll
@@ -1081,10 +1080,11 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubT
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.Net.Http.Headers.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Diagnostics.EventLog.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.IO.Pipelines.dll
-C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.Pkcs.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.Xml.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\MyFundi.Web.Views.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\AutoMapper.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\BouncyCastle.Cryptography.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\MailKit.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.AspNetCore.NodeServices.dll
@@ -1106,6 +1106,7 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubT
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\MimeKit.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Newtonsoft.Json.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\Newtonsoft.Json.Bson.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\OfficeOpenXml.Core.ExcelPackage.dll
@@ -1113,11 +1114,14 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubT
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Data.SqlClient.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Drawing.Common.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Formats.Asn1.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.IO.Packaging.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Runtime.Caching.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Runtime.CompilerServices.Unsafe.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.AccessControl.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.Cng.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.Pkcs.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Permissions.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\PubTmp\Out\System.Security.Principal.Windows.dll

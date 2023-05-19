@@ -85,7 +85,6 @@ C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\win
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
-C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\AesCryptoSystemExtra.dll
 C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\BLG.Business.dll
@@ -150,3 +149,12 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebass
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\msbuild.build.MyFundi.Web.props
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.MyFundi.Web.props
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.MyFundi.Web.props
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\BouncyCastle.Cryptography.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\MailKit.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\MimeKit.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\System.Formats.Asn1.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\System.Security.Cryptography.Cng.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Cng.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll

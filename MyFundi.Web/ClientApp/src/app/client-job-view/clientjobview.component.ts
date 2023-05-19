@@ -64,7 +64,8 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked, AfterCo
             totalAmountPerHour: 0,
             upwardServiceFee: 0,
             justifyPercentOfServiceFee: "",
-            amountYouWillRecieveMinusService: 0
+            amountYouWillRecieveMinusService: 0,
+            mobileNumber:""
         }
 
         this.email = {
@@ -111,6 +112,7 @@ export class ClientJobViewComponent implements OnInit, AfterViewChecked, AfterCo
         formData.append('lastName', this.jobApplication.lastName);
         formData.append('justifyPercentOfServiceFee', this.jobApplication.justifyPercentOfServiceFee);
         formData.append('totalAmountPerHour', this.jobApplication.totalAmountPerHour.toString());
+        formData.append('mobileNumber', this.jobApplication.mobileNumber);
         formData.append('preferredInterviewDate', this.jobApplication.preferredInterviewDate.toString());
 
         for (let n = 0; n < this.jobApplication.fileAttachments.length; n++) {

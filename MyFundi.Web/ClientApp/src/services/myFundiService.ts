@@ -2469,5 +2469,6 @@ export interface IJobApplication {
     totalAmountPerHour: number;
     upwardServiceFee: number;
     justifyPercentOfServiceFee: string;
+    mobileNumber: string; 
     amountYouWillRecieveMinusService: number;
 }

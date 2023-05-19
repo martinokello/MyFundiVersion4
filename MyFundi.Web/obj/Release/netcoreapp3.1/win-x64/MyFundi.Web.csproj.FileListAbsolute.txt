@@ -457,3 +457,7 @@ C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\stat
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\staticwebassets\msbuild.build.MyFundi.Web.props
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\staticwebassets\msbuild.buildMultiTargeting.MyFundi.Web.props
 C:\Development\MyFundiCurrent\MyFundi.Web\obj\Release\netcoreapp3.1\win-x64\staticwebassets\msbuild.buildTransitive.MyFundi.Web.props
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\BouncyCastle.Cryptography.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\MailKit.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\MimeKit.dll
+C:\Development\MyFundiCurrent\MyFundi.Web\bin\Release\netcoreapp3.1\win-x64\System.Formats.Asn1.dll

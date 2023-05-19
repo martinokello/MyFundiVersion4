@@ -248,14 +248,15 @@ namespace MyFundi.Web.Controllers
 
         [AuthorizeIdentity]
         [HttpPost]
-        public async Task<IActionResult> SendEmailMultiAttachments([FromForm] IFormFile[] fileUpload)
+        public async Task<IActionResult> SendEmailMultiAttachments()
         {
             try
             {
                 //Send Email:
-                _emailService.SendEmail(new EmailDao { Attachments = fileUpload, EmailBody =@""+
+                _emailService.SendEmail(new EmailDao { Attachments = Request.Form.Files, EmailBody =@""+
                 "First Name:    "+Request.Form["firstName"] +System.Environment.NewLine +
                 "Last Name:    " + Request.Form["lastName"]+ System.Environment.NewLine +
+                "Preferred Mobile Number:    " + Request.Form["mobileNumber"] + System.Environment.NewLine +
                 "Bid Rate Per Hour:    " + Request.Form["bidRatePerHour"] + System.Environment.NewLine +
                 "Earliest Start Date    " + Request.Form["earliestStartDate"] + System.Environment.NewLine +
                 "Total Amount Per Hour:    " + Request.Form["totalAmountPerHour"] + System.Environment.NewLine +
