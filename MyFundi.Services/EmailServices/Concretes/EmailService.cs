@@ -36,10 +36,12 @@ namespace MyFundi.Services.EmailServices.Concretes
 
         public void SendEmail(EmailDao mail)
         {
+            MemoryStream memoryStream = null;
+            List<MemoryStream> memoryStreams = new List<MemoryStream>();
+            var smtpServer = new SmtpClient();
             try
             {
                 //Send Email:
-                var smtpServer = new SmtpClient();
                 smtpServer.Connect(_businessSmtpDetails.GetSection("SmtpServer").Value);
                 var mailMessage = new MimeMessage();
 
@@ -48,25 +50,21 @@ namespace MyFundi.Services.EmailServices.Concretes
 
                 mailMessage.From.Add(MailboxAddress.Parse(_businessSmtpDetails.GetSection("BusinessEmail").Value));
 
-                MemoryStream memoryStream = null;
                 if (mail.Attachment != null)
                 {
-                    memoryStream = ReadFileAttachment(mail.Attachment, new MemoryStream());
-                    memoryStream.Position = 0;
+                    //memoryStream = ReadFileAttachment(mail.Attachment, new MemoryStream());
+
                     // create an image attachment for the file located at path
-                    var attachment = new MimePart("octet", mail.Attachment.FileName.Substring(mail.Attachment.FileName.LastIndexOf(".") + 1))
-                    {
-                        Content = new MimeContent(memoryStream),
-                        ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
-                        ContentTransferEncoding = ContentEncoding.Base64,
-                        FileName = mail.Attachment.FileName
-                    };
+
 
                     // now create the multipart/mixed container to hold the message text and the
                     // image attachment
                     var multipart = new Multipart("mixed");
                     multipart.Add(new TextPart(TextFormat.Plain) { Text = mail.EmailBody });
-                    multipart.Add(attachment);
+
+                    var mimiPart = AddAttachment(mail.Attachment);
+
+                    multipart.Add(mimiPart);
 
                     // now set the multipart/mixed as the message body
                     mailMessage.Body = multipart;
@@ -77,20 +75,13 @@ namespace MyFundi.Services.EmailServices.Concretes
                     foreach (var attach in mail.Attachments)
                     {
 
-                        memoryStream = ReadFileAttachment(mail.Attachment, new MemoryStream());
-                        memoryStream.Position = 0;
-                        // create an image attachment for the file located at path
-                        var attachment = new MimePart("octet", mail.Attachment.FileName.Substring(attach.FileName.LastIndexOf(".") + 1))
-                        {
-                            Content = new MimeContent(memoryStream),
-                            ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
-                            ContentTransferEncoding = ContentEncoding.Base64,
-                            FileName = mail.Attachment.FileName
-                        };
+                        //memoryStream = ReadFileAttachment(mail.Attachment, new MemoryStream());
+                        //memoryStreams.Add(memoryStream);
 
-                        // now create the multipart/mixed container to hold the message text and the
-                        // image attachment
-                        multipart.Add(attachment);
+                        // create an image attachment for the file located at path
+                        var mimiPart = AddAttachment(attach);
+
+                        multipart.Add(mimiPart);
 
                     }
                     multipart.Add(new TextPart(TextFormat.Plain) { Text = mail.EmailBody });
@@ -104,12 +95,41 @@ namespace MyFundi.Services.EmailServices.Concretes
                 });
                 smtpServer.Authenticate(_businessSmtpDetails.GetSection("NetworkUsername").Value, _businessSmtpDetails.GetSection("NetworkPassword").Value);
                 smtpServer.Send(mailMessage);
-                smtpServer.Disconnect(true);
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                throw;
             }
+            finally
+            {
+                smtpServer.Disconnect(true);
+                if (memoryStream != null)
+                {
+                    memoryStream.Dispose();
+                }
+                if(memoryStreams.Count > 0)
+                {
+                    foreach(var memStrm in memoryStreams)
+                    {
+                        memStrm.Dispose();
+                    }
+                }
+            }
+        }
+
+        private MimePart AddAttachment(IFormFile attach)
+        {
+            var attachment = new MimePart("octet", attach.FileName.Substring(attach.FileName.LastIndexOf(".") + 1))
+            {
+                Content = new MimeContent(attach.OpenReadStream()),
+                ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                ContentTransferEncoding = ContentEncoding.Default,
+                FileName = attach.FileName
+            };
+
+            // now create the multipart/mixed container to hold the message text and the
+            // image attachment
+            return attachment;
         }
 
         private MemoryStream ReadFileAttachment(IFormFile attacment, MemoryStream memoryStream)
@@ -121,6 +141,7 @@ namespace MyFundi.Services.EmailServices.Concretes
                 memoryStream.Write(bytes, 0, bytesRead);
                 memoryStream.Flush();
             }
+            memoryStream.Position = 0;
             return memoryStream;
         }
     }
