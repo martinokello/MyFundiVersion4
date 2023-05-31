@@ -724,7 +724,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section id=\"tweets-section\" class=\"wrapper style1\">\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"col-lg-12\" style=\"margin:15px 0\">\r\n        <h3 style=\"text-align:center !important;\" id=\"tweetheader\"></h3>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <section class=\"col-lg-4\">\r\n        <div class=\"box highlight\">\r\n          <i class=\"icon solid major fa-paper-plane\"></i>\r\n          <h4>Tweet Feed 1</h4>\r\n          <p id=\"tweet1\" style=\"text-align:left !important;color:blue;\"></p>\r\n        </div>\r\n      </section>\r\n      <section class=\"col-lg-4\">\r\n        <div class=\"box highlight\">\r\n          <i class=\"icon solid major fa-pencil-alt\"></i>\r\n          <h4>Tweet Feed 2</h4>\r\n          <p id=\"tweet2\" style=\"text-align:left !important;color:blue;\"></p>\r\n        </div>\r\n      </section>\r\n      <section class=\"col-lg-4\">\r\n        <div class=\"box highlight\">\r\n          <i class=\"icon solid major fa-wrench\"></i>\r\n          <h4>Tweet Feed 3</h4>\r\n          <p id=\"tweet3\" style=\"text-align:left !important;color:blue;\"></p>\r\n        </div>\r\n      </section>\r\n    </div>\r\n  </div>\r\n</section>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section id=\"tweets-section\" class=\"wrapper style1\">\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"col-lg-12\" style=\"margin:15px 0\">\r\n        <h3 style=\"text-align:center !important;\" id=\"tweetheader\"></h3>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <section class=\"col-lg-4\">\r\n          <div class=\"box highlight\">\r\n              <i class=\"icon solid major fa-paper-plane\"></i>\r\n              <h4 id=\"feed1\"></h4>\r\n              <p id=\"tweet1\" style=\"text-align:left !important;color:blue;\"></p>\r\n          </div>\r\n      </section>\r\n      <section class=\"col-lg-4\">\r\n        <div class=\"box highlight\">\r\n          <i class=\"icon solid major fa-pencil-alt\"></i>\r\n          <h4 id=\"feed2\"></h4>\r\n          <p id=\"tweet2\" style=\"text-align:left !important;color:blue;\"></p>\r\n        </div>\r\n      </section>\r\n      <section class=\"col-lg-4\">\r\n          <div class=\"box highlight\">\r\n              <i class=\"icon solid major fa-wrench\"></i>\r\n              <h4 id=\"feed3\"></h4>\r\n              <p id=\"tweet3\" style=\"text-align:left !important;color:blue;\"></p>\r\n          </div>\r\n      </section>\r\n    </div>\r\n  </div>\r\n</section>\r\n");
 
 /***/ }),
 
@@ -12895,6 +12895,7 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
         this.getFundiLevelOfEngagementByIdUrl = this.baseServerUrl + "/FundiProfile/GetFundiLevelOfEngagementById";
         this.getFundiCoursesUrl = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
         this.getFundiRatingsUrl = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
+        this.getCivilEngineeringFeedsUrl = this.baseServerUrl + "/AdhocReporting/GetCivilEngineeringFeeds";
         this.getFundiLastSubscriptionFeesUrl = this.baseServerUrl + "/FundiProfile/GetFundiLastSubscriptionFees";
         this.payClientSubscriptionFeeWithPaypalUrl = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithPaypal";
         this.payMonthlySubscriptionFeeWithPaypalUrl = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithPaypal";
@@ -13093,6 +13094,20 @@ let MyFundiService = MyFundiService_1 = class MyFundiService {
     GetClientProfileById(clientProfileId) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
         let requestUrl = this.getClientProfileByIdUrl + "/" + clientProfileId;
+        let requestOptions = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res) => {
+            let clientProf = res;
+            return clientProf;
+        });
+    }
+    GetCivilEngineeringFeeds() {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({ 'content-type': 'application/json' });
+        let requestUrl = this.getCivilEngineeringFeedsUrl;
         let requestOptions = {
             url: requestUrl,
             method: 'GET',
@@ -14749,31 +14764,38 @@ let TwitterProfileFeedsComponent = class TwitterProfileFeedsComponent {
         this.router = router;
     }
     ngOnInit() {
-        let twitterFeeds = this.myFundiService.GetTwitterFeeds();
+        let twitterFeeds = this.myFundiService.GetCivilEngineeringFeeds();
+        debugger;
         twitterFeeds.toPromise().then((feed) => {
-            document.querySelector('h3#tweetheader').innerHTML = feed[0].groupHeaderText;
+            document.querySelector('h3#tweetheader').innerHTML = "Civil Engineering Rss Feeds";
             if (feed.length > 2) {
-                document.querySelector('p#tweet1').innerHTML = feed[0].groupDescription;
-                document.querySelector('p#tweet2').innerHTML = feed[1].groupDescription;
-                document.querySelector('p#tweet3').innerHTML = feed[2].groupDescription;
+                document.querySelector('h4#feed1').innerHTML = feed[0].title;
+                document.querySelector('h4#feed2').innerHTML = feed[1].title;
+                document.querySelector('h4#feed3').innerHTML = feed[2].title;
+                document.querySelector('p#tweet1').innerHTML = feed[0].description + `<p><a href='${feed[0].url}'>${feed[0].url}</a></p>`;
+                document.querySelector('p#tweet2').innerHTML = feed[1].description + `<p><a href='${feed[1].url}'>${feed[1].url}</a></p>`;
+                document.querySelector('p#tweet3').innerHTML = feed[2].description + `<p><a href='${feed[2].url}'>${feed[2].url}</a></p>`;
             }
             else if (feed.length > 1) {
-                document.querySelector('p#tweet1').innerHTML = feed[0].groupDescription;
-                document.querySelector('p#tweet2').innerHTML = feed[1].groupDescription;
-                document.querySelector('p#tweet3').innerHTML = "No tweets available";
+                document.querySelector('h4#feed1').innerHTML = feed[0].title;
+                document.querySelector('h4#feed2').innerHTML = feed[1].title;
+                document.querySelector('p#tweet1').innerHTML = feed[0].description + `<p><a href='${feed[0].url}'>${feed[0].url}</a></p>`;
+                document.querySelector('p#tweet2').innerHTML = feed[1].description + `<p><a href='${feed[1].url}'>${feed[1].url}</a></p>`;
+                document.querySelector('p#tweet3').innerHTML = "No rss feeds available";
             }
             else if (feed.length > 0) {
-                document.querySelector('p#tweet1').innerHTML = feed[0].groupDescription;
+                document.querySelector('h4#feed1').innerHTML = feed[0].title;
+                document.querySelector('p#tweet1').innerHTML = feed[0].description + `<p><a href='${feed[0].url}'>${feed[0].url}</a></p>`;
             }
             else {
-                document.querySelector('p#tweet1').innerHTML = "<div style='text-align:center !important;'><img src='/images/ug-flag.gif' style='width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
-                document.querySelector('p#tweet2').innerHTML = "<div style='text-align:center !important;'><img src='/images/HappyGrad.jpg' style='border-radius:8x !important;width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
-                document.querySelector('p#tweet3').innerHTML = "<div style='text-align:center !important;'><img src='/images/uk-flag.gif' style='width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+                document.querySelector('p#tweet1').innerHTML = "<div style='text-align:center !important;'><img src='/images/ug-flag.gif' style='width:40% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+                document.querySelector('p#tweet2').innerHTML = "<div style='text-align:center !important;'><img src='/images/HappyGrad.jpg' style='border-radius:10% !important;width:40% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+                document.querySelector('p#tweet3').innerHTML = "<div style='text-align:center !important;'><img src='/images/uk-flag.gif' style='width:40% !important;height:auto !important;' alt='feeds unavailable'/></div>";
             }
         }).catch((reason) => {
-            document.querySelector('p#tweet1').innerHTML = "<div style='text-align:center !important;'><img src='/images/ug-flag.gif' style='width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
-            document.querySelector('p#tweet2').innerHTML = "<div style='text-align:center !important;'><img src='/images/HappyGrad.jpg' style='border-radius:8px !important;width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
-            document.querySelector('p#tweet3').innerHTML = "<div style='text-align:center !important;'><img src='/images/uk-flag.gif' style='width:60% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+            document.querySelector('p#tweet1').innerHTML = "<div style='text-align:center !important;'><img src='/images/ug-flag.gif' style='width:40% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+            document.querySelector('p#tweet2').innerHTML = "<div style='text-align:center !important;'><img src='/images/HappyGrad.jpg' style='border-radius:10% !important;width:40% !important;height:auto !important;' alt='feeds unavailable'/></div>";
+            document.querySelector('p#tweet3').innerHTML = "<div style='text-align:center !important;'><img src='/images/uk-flag.gif' style='width:40% !important;height:auto !important;' alt='feeds unavailable'/></div>";
         });
     }
 };

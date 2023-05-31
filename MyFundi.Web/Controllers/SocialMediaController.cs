@@ -41,22 +41,28 @@ namespace MyFundi.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> TwitterProfileFeeds()
         {
-            var caching = new SimbaToursEastAfrica.Caching.Concretes.SimbaToursEastAfricaCahing();
-
-            var twitterEngine = new TwitterProfileFeed<WidgetGroupItemList>();
-            twitterEngine.TwitterProfileFiguration = _twitterProfileFiguration;
-            var tweets = new WidgetGroupItemList();
-            Int32.TryParse(_twitterProfileFiguration["cacheTimeSecs"], out int cacheTimeSecs);
-            tweets = await caching.GetOrSaveToCache<WidgetGroupItemList>( _twitterProfileFiguration["cachKey"], cacheTimeSecs, twitterEngine.GetFeeds);
-
-            if (tweets != null && tweets.Any())
+            try
             {
-                Ok(tweets);
-            }
-            else if (tweets == null || !tweets.Any())
-                tweets = new WidgetGroupItemList();
-            return Ok(tweets);
+                var caching = new SimbaToursEastAfrica.Caching.Concretes.SimbaToursEastAfricaCahing();
 
+                var twitterEngine = new TwitterProfileFeed<WidgetGroupItemList>();
+                twitterEngine.TwitterProfileFiguration = _twitterProfileFiguration;
+                var tweets = new WidgetGroupItemList();
+                Int32.TryParse(_twitterProfileFiguration["cacheTimeSecs"], out int cacheTimeSecs);
+                tweets = await caching.GetOrSaveToCache<WidgetGroupItemList>(_twitterProfileFiguration["cachKey"], cacheTimeSecs, twitterEngine.GetFeeds);
+
+                if (tweets != null && tweets.Any())
+                {
+                    Ok(tweets);
+                }
+                else if (tweets == null || !tweets.Any())
+                    tweets = new WidgetGroupItemList();
+                return Ok(tweets);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message + System.Environment.NewLine + ex.StackTrace);
+            }
         }
     }
 }

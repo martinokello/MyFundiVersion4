@@ -22,6 +22,9 @@ using MyFundi.Web.Infrastructure;
 using MartinLayooInc.Web.Infrastructure;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using System.Xml.Linq;
+using OfficeOpenXml.Core.ExcelPackage;
+using SimbaToursEastAfrica.Caching.Interfaces;
 
 namespace MyFundi.Web.Controllers
 {
@@ -33,10 +36,13 @@ namespace MyFundi.Web.Controllers
         private List<FundiLocationViewModel> _currentFundilocations;
         private ServicesEndPoint _serviceEndPoint;
         private IConfigurationSection _businessSmtpDetails;
+        private HttpClient _httpClient;
+        private IConfiguration _appSettings;
+        private ICaching _caching;
 
         private MartinLayooIncChat ChatResource = null;
         private Mapper _mapper;
-        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper, IConfiguration appSettings, MartinLayooIncChat martinLayooIncChat, List<FundiLocationViewModel> currentFundiLocations)
+        public AdhocReportingController(IMailService emailService, MyFundiUnitOfWork unitOfWork, Mapper mapper, IConfiguration appSettings, MartinLayooIncChat martinLayooIncChat, List<FundiLocationViewModel> currentFundiLocations, ICaching caching)
         {
             ChatResource = martinLayooIncChat;
             _emailService = emailService;
@@ -44,6 +50,9 @@ namespace MyFundi.Web.Controllers
             _mapper = mapper;
             _serviceEndPoint = new ServicesEndPoint(_unitOfWork, _emailService);
             _currentFundilocations = currentFundiLocations;
+            _httpClient = new HttpClient();
+            _appSettings = appSettings;
+            _caching = caching;
         }
         [HttpGet]
         [Route("~/{Controller}/{Action}/{appType}")]
@@ -245,7 +254,42 @@ namespace MyFundi.Web.Controllers
                 return await Task.FromResult(Ok(new { Succeded = false, Message = "Failed to Send Your Email!\n"+e.Message+"\n"+e.StackTrace }));
             }
         }
+        [HttpGet]
+        public async Task<RssFeedViewModel[]> GetCivilEngineeringFeeds()
+        {
 
+            Func<Task<RssFeedViewModel[]>> GetFromEngFeedsFromCache = async () =>
+            {
+                var result = await _httpClient.GetStringAsync(_appSettings.GetSection("RealWireCivilEngineeringRssFeeds").Value);
+                var xmlDocument = XDocument.Parse(result);
+                var rssFeeds = new List<RssFeedViewModel>();
+                var img = xmlDocument.Descendants("image").FirstOrDefault();
+
+                var imageUrl = (img != null ? img.Descendants("url").First().Value : "");
+                var results = from it in xmlDocument.Descendants("item")
+                              select new RssFeedViewModel
+                              {
+                                  ImageUrl = imageUrl,
+                                  Title = it.Descendants("title").FirstOrDefault() != null ?
+                                  it.Descendants("title").FirstOrDefault().Value : "",
+                                  Description = it.Descendants("description").FirstOrDefault() != null ?
+                                  it.Descendants("description").FirstOrDefault().Value : "",
+                                  PublishDate = it.Descendants("pubDate").FirstOrDefault() != null ?
+                                  it.Descendants("pubDate").FirstOrDefault().Value : "",
+                                  Url = it.Descendants("link").FirstOrDefault() != null ?
+                                  it.Descendants("link").FirstOrDefault().Value : "",
+                              };
+
+                return results.ToArray();
+            };
+
+
+
+            var results = await _caching.GetOrSaveToCache<RssFeedViewModel[]>("RealWireCivilEngineeringRssFeeds", 15 * 60 * 50, GetFromEngFeedsFromCache);
+
+            return await Task.FromResult(results.Take(3).ToArray());
+
+        }
         [AuthorizeIdentity]
         [HttpPost]
         public async Task<IActionResult> SendEmailMultiAttachments()

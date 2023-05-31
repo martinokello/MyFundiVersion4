@@ -50,6 +50,8 @@ export class MyFundiService {
     public getFundiCoursesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiCoursesTaken";
     public getFundiRatingsUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiRatings";
 
+    public getCivilEngineeringFeedsUrl: string = this.baseServerUrl + "/AdhocReporting/GetCivilEngineeringFeeds";
+
     public getFundiLastSubscriptionFeesUrl: string = this.baseServerUrl + "/FundiProfile/GetFundiLastSubscriptionFees";
     public payClientSubscriptionFeeWithPaypalUrl: string = this.baseServerUrl + "/ClientProfile/PayClientSubscriptionFeeWithPaypal";
     public payMonthlySubscriptionFeeWithPaypalUrl: string = this.baseServerUrl + "/FundiProfile/PayMonthlySubscriptionFeeWithPaypal";
@@ -314,7 +316,22 @@ export class MyFundiService {
             return clientProf;
         });
     }
+    GetCivilEngineeringFeeds(): Observable<any> {
+        
+        const headers = new HttpHeaders({ 'content-type': 'application/json' });
+        let requestUrl = this.getCivilEngineeringFeedsUrl;
+        let requestOptions: any = {
+            url: requestUrl,
+            method: 'GET',
+            headers: headers,
+            responseType: 'application/json'
+        };
 
+        return this.httpClient.get(requestOptions.url, { 'headers': requestOptions.headers }).map((res: any): any[] => {
+            let clientProf: any[] = res;
+            return clientProf;
+        });
+    }
     GetAllFundiSubscriptions(fundiProfileId: number): Observable<ISubscription[]> {
         const headers = new HttpHeaders({ 'content-type': 'application/json' });
         let requestUrl = this.getAllFundiSubscriptionsByFundiIdUrl + "/" + fundiProfileId;
