@@ -1,0 +1,69 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Development\MyFundiCurrent\MyFundi.Web
+npmfail: Microsoft.AspNetCore.SpaServices[0]
+      npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'AgreedCost' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'FirstPaymentAmount' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ForthPaymentAmount' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NumberOfDaysToComplete' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SecondPaymentAmount' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ThirdPaymentAmount' on entity type 'ClientFundiContract'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'ClientSubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'FundiSubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'FundiSubscriptionQueue'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'GrossCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'NetCost' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'PercentTaxAppliable' on entity type 'Invoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'ItemCost' on entity type 'Item'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscription'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+warn: Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No type was specified for the decimal column 'SubscriptionFee' on entity type 'MonthlySubscriptionQueue'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+fail: Microsoft.AspNetCore.SpaServices[0]
+      ng : File C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\.bin\ng.ps1 cannot be loaded. The file 
+      
+fail: Microsoft.AspNetCore.SpaServices[0]
+      C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\.bin\ng.ps1 is not digitally signed. You cannot run 
+      
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+System.AggregateException: One or more errors occurred. (One or more errors occurred. (The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+
+ng : File C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\.bin\ng.ps1 cannot be loaded. The file 
+
+C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\.bin\ng.ps1 is not digitally signed. You cannot run 
+
+))
+ ---> System.AggregateException: One or more errors occurred. (The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+
+ng : File C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\.bin\ng.ps1 cannot be loaded. The file 
+
+C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\.bin\ng.ps1 is not digitally signed. You cannot run 
+
+)
+ ---> System.InvalidOperationException: The NPM script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+
+ng : File C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\.bin\ng.ps1 cannot be loaded. The file 
+
+C:\Development\MyFundiCurrent\MyFundi.Web\ClientApp\node_modules\.bin\ng.ps1 is not digitally signed. You cannot run 
+
+
+ ---> System.IO.EndOfStreamException: Attempted to read past the end of 

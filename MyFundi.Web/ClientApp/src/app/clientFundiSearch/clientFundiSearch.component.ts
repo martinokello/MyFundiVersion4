@@ -535,7 +535,7 @@ export class ClientFundiSearchComponent implements OnInit, AfterViewInit, AfterV
                                         this.showFirstPage();
                                     } else {
                                         this.numberOfResultSetToSkip = 0;
-                                        alert("There are currently no more jobs that match your\ncriteria within your chosen location!")
+                                        alert("There are currently no more Fundis that match your\ncriteria within your chosen location!")
                                     }
 
                                     this.isSearchingOnLocality = false;

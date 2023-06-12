@@ -1121,7 +1121,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<section id=\"tweets-section\" class=\"wrapper style1\">\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"col-lg-12\" style=\"margin:15px 0\">\r\n        <h3 style=\"text-align:center !important;\" id=\"tweetheader\"></h3>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <section class=\"col-lg-4\">\r\n          <div class=\"box highlight\">\r\n              <i class=\"icon solid major fa-paper-plane\"></i>\r\n              <h4 id=\"feed1\"></h4>\r\n              <p id=\"tweet1\" style=\"text-align:left !important;color:blue;\"></p>\r\n          </div>\r\n      </section>\r\n      <section class=\"col-lg-4\">\r\n        <div class=\"box highlight\">\r\n          <i class=\"icon solid major fa-pencil-alt\"></i>\r\n          <h4 id=\"feed2\"></h4>\r\n          <p id=\"tweet2\" style=\"text-align:left !important;color:blue;\"></p>\r\n        </div>\r\n      </section>\r\n      <section class=\"col-lg-4\">\r\n          <div class=\"box highlight\">\r\n              <i class=\"icon solid major fa-wrench\"></i>\r\n              <h4 id=\"feed3\"></h4>\r\n              <p id=\"tweet3\" style=\"text-align:left !important;color:blue;\"></p>\r\n          </div>\r\n      </section>\r\n    </div>\r\n  </div>\r\n</section>\r\n";
+    __webpack_exports__["default"] = "<section id=\"tweets-section\" class=\"wrapper style1\" style=\"z-index:0 !important;\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\" style=\"margin:15px 0\">\r\n                <h3 style=\"text-align:center !important;\" id=\"tweetheader\"></h3>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\">\r\n            <section class=\"col-lg-4\">\r\n                <div class=\"box highlight\">\r\n                    <i class=\"icon solid major fa-paper-plane\"></i>\r\n                    <h4 id=\"feed1\"></h4>\r\n                    <p id=\"tweet1\" style=\"text-align:left !important;color:blue;\"></p>\r\n                </div>\r\n            </section>\r\n            <section class=\"col-lg-4\">\r\n                <div class=\"box highlight\">\r\n                    <i class=\"icon solid major fa-pencil-alt\"></i>\r\n                    <h4 id=\"feed2\"></h4>\r\n                    <p id=\"tweet2\" style=\"text-align:left !important;color:blue;\"></p>\r\n                </div>\r\n            </section>\r\n            <section class=\"col-lg-4\">\r\n                <div class=\"box highlight\">\r\n                    <i class=\"icon solid major fa-wrench\"></i>\r\n                    <h4 id=\"feed3\"></h4>\r\n                    <p id=\"tweet3\" style=\"text-align:left !important;color:blue;\"></p>\r\n                </div>\r\n            </section>\r\n        </div>\r\n    </div>\r\n</section>\r\n";
     /***/
   },
 
@@ -4363,7 +4363,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         _this14.showFirstPage();
                       } else {
                         _this14.numberOfResultSetToSkip = 0;
-                        alert("There are currently no more jobs that match your\ncriteria within your chosen location!");
+                        alert("There are currently no more Fundis that match your\ncriteria within your chosen location!");
                       }
 
                       _this14.isSearchingOnLocality = false;
@@ -4707,18 +4707,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.userRoles = JSON.parse(localStorage.getItem("userRoles"));
           var draftContractData = JSON.parse(localStorage.getItem("DraftContractData"));
           var curDate = new Date();
-          this.currentJobId = draftContractData.jobId;
+          this.currentJobId = draftContractData ? draftContractData.jobId : 0;
           this.clientFundiContract = {
             clientFundiContractId: 0,
-            jobId: draftContractData.jobId,
-            clientProfileId: draftContractData.clientProfileId,
-            clientUsername: draftContractData.clientUsername ? draftContractData.clientUsername : this.userDetails.username,
-            clientFirstName: draftContractData.clientFirstName,
-            clientLastName: draftContractData.clientLastName,
-            fundiProfileId: draftContractData.fundiProfileId,
-            fundiUsername: draftContractData.fundiUsername,
-            fundiFirstName: draftContractData.fundiFirstName,
-            fundiLastName: draftContractData.fundiLastName,
+            jobId: draftContractData && draftContractData.jobId ? draftContractData.jobId : 0,
+            clientProfileId: draftContractData ? draftContractData.clientProfileId : 0,
+            clientUsername: draftContractData ? draftContractData.clientUsername : this.userDetails.username,
+            clientFirstName: draftContractData ? draftContractData.clientFirstName : "",
+            clientLastName: draftContractData ? draftContractData.clientLastName : "",
+            fundiProfileId: draftContractData && draftContractData.fundiProfileId ? draftContractData.fundiProfileId : 0,
+            fundiUsername: draftContractData ? draftContractData.fundiUsername : "",
+            fundiFirstName: draftContractData ? draftContractData.fundiFirstName : "",
+            fundiLastName: draftContractData ? draftContractData.fundiLastName : "",
             fundiAddressId: 0,
             clientAddressId: 0,
             agreedStartDate: this.formatDate(curDate),

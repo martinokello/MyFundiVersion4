@@ -93,19 +93,20 @@ export class ClientFundiContractComponent implements OnInit {
         let draftContractData: any = JSON.parse(localStorage.getItem("DraftContractData"));
 
         let curDate: Date = new Date();
-        this.currentJobId = draftContractData.jobId;
+
+        this.currentJobId = draftContractData?draftContractData.jobId:0;
 
         this.clientFundiContract = {
             clientFundiContractId: 0,
-            jobId: draftContractData.jobId,
-            clientProfileId: draftContractData.clientProfileId,
-            clientUsername: draftContractData.clientUsername ? draftContractData.clientUsername : this.userDetails.username,
-            clientFirstName: draftContractData.clientFirstName,
-            clientLastName: draftContractData.clientLastName,
-            fundiProfileId: draftContractData.fundiProfileId,
-            fundiUsername: draftContractData.fundiUsername,
-            fundiFirstName: draftContractData.fundiFirstName,
-            fundiLastName: draftContractData.fundiLastName,
+            jobId: draftContractData && draftContractData.jobId ? draftContractData.jobId:0,
+            clientProfileId: draftContractData ?draftContractData.clientProfileId:0,
+            clientUsername: draftContractData ? draftContractData.clientUsername : this.userDetails.username,
+            clientFirstName: draftContractData ?draftContractData.clientFirstName:"",
+            clientLastName: draftContractData ?draftContractData.clientLastName:"",
+            fundiProfileId: draftContractData && draftContractData.fundiProfileId?draftContractData.fundiProfileId:0,
+            fundiUsername: draftContractData ?draftContractData.fundiUsername:"",
+            fundiFirstName: draftContractData ? draftContractData.fundiFirstName:"",
+            fundiLastName: draftContractData ?  draftContractData.fundiLastName:"",
             fundiAddressId: 0,
             clientAddressId: 0,
             agreedStartDate: this.formatDate(curDate),
