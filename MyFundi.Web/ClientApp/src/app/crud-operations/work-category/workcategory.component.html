@@ -1,0 +1,20 @@
+<div id="workCategories-wrapper">
+    <div style="text-align:left !important; color:black !important;width:100%">
+        <section class="row " id="work-category">
+
+            <form class="col-lg-12" id="workCategories">
+                <div class="form-group">
+                    <h4>Work Categories</h4>
+                    <select id="slworkCategoryId" name="workcategory" [(ngModel)]="workCategoryId" (change)="workCategoryChanged($event)"></select><br />
+                </div>
+                <div class="form-group">
+                    <select id="slworkSubCategoryId" name="workSubcategory" [(ngModel)]="workSubCategoryId"></select><br />
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn-primary" value="Add Category" (click)="addCategory($event)" /><br />
+                    <input type="button" class="btn-primary" value="Remove Category" (click)="removeCategory($event)" /><br />
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

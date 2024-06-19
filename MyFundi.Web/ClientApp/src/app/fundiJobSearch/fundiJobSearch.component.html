@@ -1,0 +1,70 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+    <section id="searchFundi">
+        <form id="fundiSearchForm" ngForm>
+            <div class="form-group">
+                <label>Search By Categories</label>
+                <div id="fundiCategories">
+                </div>
+            </div><br />
+            <input type="button" value="More Results Jobs By Categories" class="but-primary" (click)="searchJobsByCategories($event)" />
+            <br />
+        </form> 
+    </section>
+    <section style="text-align:center !important;">
+        <em style="font-weight:bolder !important;">View Jobs In your current locality travel zone.</em><br/>
+        <input type="button" value="More Results Jobs within locality" class="but-primary" (click)="seachJobsByCurrentGeoLocation($event)" />
+    </section>
+    <div>
+        <paging [pagingContentModel]="pagingContentModel" (searchEventEmitter)="searchCommand($event)"></paging><br/>
+    </div>
+    <div id="results">
+        <section id="Profile" *ngFor="let clientJob of fundiJobList">
+            <div class="row" style="text-align: center !important; align-content: center !important;">
+                <div class="col-lg-12">
+                    <span>Client Name: {{clientJob.clientFirstName}} {{clientJob.clientLastName}}</span>
+                </div>
+            </div>
+            <div class="row" style="margin: 2px 0px !important;">
+                <div class="col-lg-12" id=`jobName-${clientJob.JobId}` style="margin: 2px 0px !important;">
+                    <h5>Job Name</h5>
+                    <div>
+                        <div>{{clientJob.jobName}} - #{{clientJob.jobId}}<br /></div>
+                        <div>
+                            <input type="button" class="btn-primary" routerLink='#' id="{{clientJob.jobId}}" (click)="getJobPage($event)" value="Job Details" />
+                            <br />
+                        </div>
+                        <div>
+                            Distance from current Fundi's registered Location: {{clientJob.distanceApart}} Km.
+                            <br />
+                        </div>
+                        <div>Location: {{clientJob.jobLocationName}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin: 2px 0px !important;">
+                <div class="col-lg-12" id="workCategory" style="margin: 2px 0px !important;">
+                    <h5>Job Description:</h5>
+                    {{clientJob.jobDescription}}
+                </div>
+            </div>
+            <div class="row" style="margin: 2px 0px !important;">
+                <div class="col-lg-12" id="workCategory" style="margin: 2px 0px !important;">
+                    <h5>Work Category Types</h5>
+                    <div>
+                        <ul id="{{clientJob.jobId}}-workCategory">
+                            <h5>Work Categories</h5>
+                            <li *ngFor="let wsc of clientJob.jobWorkCategoryDetails">
+                                <em>{{wsc.workCategoryType}}</em><br />
+                                {{wsc.workSubCategoryType}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr /><br />
+        </section>
+    </div>
+    <div>
+        <paging [pagingContentModel]="pagingContentModel" (searchEventEmitter)="searchCommand($event)"></paging>
+    </div>
+</div>

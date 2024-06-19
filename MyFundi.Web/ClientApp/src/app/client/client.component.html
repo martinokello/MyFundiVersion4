@@ -1,0 +1,134 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+    <div id="client-wrapper">
+        <h1 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>
+        <section id="Profile">
+            <div class="row" style="text-align: center !important; align-content: center !important;">
+                <div class="col-lg-12">
+                    <img id="profileImage" src="/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
+                    <div id="viewProfileSummary" style="margin: 2px 0px !important;text-align:left !important;">
+                        <h5>Client Profile Summary</h5>
+                        {{profileSummary}}
+                    </div>
+                    <hr />
+                </div>
+            </div>
+            <form id=profileImageForm enctype="multipart/form-data" method="post">
+                <div>
+                    <div class="row" style="margin: 2px 0px !important;">
+                        <div class="col-lg-12">
+                            <a href="#" (click)="showClientProfileEditable($event)">Create Or Update Client Profile Summary</a>
+                            <div id="editProfileSummary">
+                                <input type="hidden" [(ngModel)]="clientProfileId" id="clientProfileId" name="clientProfileId" /><br />
+                                <input type="hidden" [(ngModel)]="clientUserGuidId" id="clientUserGuidId" name="clientUserGuidId" /><br />
+                                <input type="file" id="profileImageId" name="profileImage" (change)="handleProfileImage($event.target.files)" /><br />
+                                <input type="button" value="Upload Profile Image" class="but-primary" (click)="uploadProfileImage($event)" /><br />
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="editableClientDetails">
+                        <div class="col-lg-12">
+                            <div style="margin: 2px 0px !important;">
+                                <h5>Client Address</h5>
+                                <select id="clientAddressId" name="clientAddressId" [(ngModel)]="clientAddressId"></select><br /><br />
+                            </div>
+                            <div style="margin: 2px 0px !important;">
+                                <textarea rows="5" cols="10" name="profileSummary" [(ngModel)]="profileSummary" placeholder="Edit Client Profile"></textarea><br />
+                                <input type="button" class="btn-primary" id="updateProfile" value="Create Client Profile" (click)="saveOrUpdateClientProfile($event)" /><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form id="jobForm">
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Select, Create, Or Update Job</h5>
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Select Job</h5>
+                        <select id="jobId" name="jobId" [(ngModel)]="job.jobId"></select><br />
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Or Create New Job Name</h5>
+                        <input type="text" id="jobName" name="jobName" [(ngModel)]="job.jobName" />
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Job Location</h5>
+                        <select id="locationId" name="locationId" [(ngModel)]="job.locationId"></select>
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Job Description</h5>
+                        <textarea id="jobDescription" name="jobDescription" [(ngModel)]="job.jobDescription" placeholder="Job Description" cols="10" rows="6"></textarea><br />
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Work Categories</h5>
+                        <select id="workCategoryAndSubCatId" name="workCategoryId" [(ngModel)]="workCategoryAndSubCatId"></select><br />
+                        <input type="button" value="Add Work Category" (click)="addWorkCategory($event)" /><br />
+                        <input type="button" value="Remove Work Category" (click)="removeWorkCategory($event)" /><br />
+                        <ul id="ulistWorkCategories"></ul>
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Assigned Fundi</h5>
+                        <select id="assignedFundiProfileId" name="assignedFundiProfileId" [(ngModel)]="fundiProfile.fundiProfileId"></select><br />
+                        <input type="button" class="btn-primary" value="Draft Contract" style="margin-top:10px;" (click)="draftContract($event)" /><br />
+                        <hr />
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Client Fundi Contract Id</h5>
+                        <select id="clientFundiContractId" name="clientFundiContractId" [(ngModel)]="job.clientFundiContractId"></select><br />
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+                        <h5>Estimate Of Days To Complete</h5>
+                        <input type="number" id="numberOfDaysToComplete" name="numberOfDaysToComplete" [(ngModel)]="job.numberOfDaysToComplete" placeholder="Number Of Days To Complete" />
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <h5>Add Images Of Job Requirements</h5>
+                        <div class="col-lg-12" id="images">
+                            <input type="file" name="JobImage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="hasBeenAssignedFundi" [(ngModel)]="job.hasBeenAssignedFundi" id="hasBeenAssignedFundi" />
+                            <label class="custom-control-label" for="hasBeenAssignedFundi">Has Been Assigned Fundi</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="hasCompleted" [(ngModel)]="job.hasCompleted" id="hasCompleted" />
+                            <label class="custom-control-label" for="hasCompleted">Has Completed</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <input type="button" class="btn-primary" value="Select Job" style="margin-top:10px;" (click)="selectJob($event)" />
+                        <div *ngIf="!(requiresSubscriptionRenewal)">
+                            <input type="button" class="btn-primary" value="Create Job" style="margin-top:10px;" (click)="createJob($event)" />
+                            <input type="button" class="btn-primary" value="Update Job" style="margin-top:10px;" (click)="updateJob($event)" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

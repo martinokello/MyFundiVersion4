@@ -1,0 +1,73 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+    <div id="fundirating-wrapper">
+        <section>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="text-align: center !important; margin-top: 0px !important;">
+                        <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}" alt="profileImage" style="width:150px !important; height:auto; align-content:center !important;" /><br />
+                        <span>Fundi Name: {{fundiUser.firstName}} {{fundiUser.lastName}}</span><br />
+                        <span id="averageFundiRating-{{profile.fundiProfileId}}" class="profileRatingSpan rateit" data-rateit-mode="font" style="text-align:left;font-size: 40px; max-width: 10%;"></span><br />
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="position: relative !important; margin: 2px 0px !important;">
+                <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+                    <h5>Fundi Profile Summary</h5>
+                    <ul>
+                        <li>
+                            {{profile.profileSummary}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row" style="position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;">
+                <div class="col-lg-12" style="margin: 2px 0px !important;">
+                    <a style="line-height: 17px 0px !important;" id="downloadCV" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />
+                </div>
+            </div>
+            <div class="row" style="position: relative !important; margin: 2px 0px !important;">
+                <div class="col-lg-12" id="profileRating" style="margin: 2px 0px !important;">
+                    <h5>Profile Rating &amp; Reviews</h5>
+                    <ul>
+                        <li *ngFor="let rating of fundiRatings">
+                            <div>
+                                Rated By User: <em style="color:brown !important;">{{rating.rating?rating.user.firstName:""}} {{rating.rating?rating.user.lastName:""}}</em><br />
+                                Rating: <span style="color:brown !important;">{{rating.rating?rating.rating.toString():"No Rating Yet"}} out of 5</span><br />
+                            </div>
+                            <div>
+                                Reviewed By User: <em style="color:brown !important;">{{rating.rating?rating.user.firstName:""}} {{rating.rating?rating.user.lastName:""}}</em><br />
+                                Review:<br />
+                                <div  innerHTML="{{fundiRating.review}}"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h5>Rate This Fundi</h5>
+                    <form id="ratingForm-{{profile.fundiProfileId}}">
+                        <div id="fundiRating-{{profile.fundiProfileId}}" class="rateit" data-rateit-mode="font" style="text-align: left; font-size: 40px; max-width: 10% !important;"></div><br />
+                        <span>Choose Work Category:</span><br />
+                        <h5>Fundi Work Category Types</h5>
+                        <div *ngFor="let wcdata of jobWorkCategoryDetails">
+                            <h6>{{wcdata.workCategoryType}}</h6>
+                            <h5>Work Sub Category Type</h5>
+                            <select id="workCategory-{{profile.fundiProfileId}}" name="workCategory" class="form-control">
+                                <option value="{{wcdata.workSubCategoryId}}">{{wcdata.workSubCategoryType}}</option>
+                            </select>
+                        </div>
+                        <br />
+                        <textarea id="review-{{profileId}}" class="fundi-review" placeholder="Write review" rows="5" cols="20"></textarea><br />
+                        <input type="button" id="{{profileId}}" class="but-primary" value="Rate Fundi" (click)="rateFundi($event)" />
+                    </form>
+                </div>
+            </div>
+            <div class="row" style="position: relative !important; margin: 2px 0px !important;">
+                <div class="col-lg-12" id="skills" style="margin: 2px 0px !important;">
+                    <h5>Fundi Skills</h5>
+                    <ul id="{{profile.fundiProfileId}}-skills">
+                        <li>{{profile.skills}}</li>
+                    </ul>
+                </div>
+            </div>
+            <hr /><br />
+        </section>
+    </div>
+</div>

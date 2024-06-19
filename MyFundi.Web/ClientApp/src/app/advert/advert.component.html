@@ -1,0 +1,50 @@
+<div class="container-fluid" style="padding:3px !important;text-align:center !important;">
+    <ng-container *ngIf="!userRoles || userRoles && userRoles.indexOf('Administrator') < 0" ngDefaultControl ngModel="userRoles">
+        <div class="row">
+            <div style="text-align:center !important;" class="col-lg-4">
+                <a href="{{advertLinkUrl1}}" target="_blank">
+                    <img id="imageBanner" src="/FileContentServe/GetImageSrcFromImageRootDirectory/{{advertImage1Src}}" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+                </a><br />
+            </div>
+            <div style="text-align:center !important;" class="col-lg-4">
+                <a href="{{advertLinkUrl2}}" target="_blank">
+                    <img id="imageBanner" src="/FileContentServe/GetImageSrcFromImageRootDirectory/{{advertImage2Src}}" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+                </a><br />
+            </div><br />
+            <div style="text-align:center !important;" class="col-lg-4">
+                <a href="{{advertLinkUrl3}}" target="_blank">
+                    <img id="imageBanner" src="/FileContentServe/GetImageSrcFromImageRootDirectory/{{advertImage3Src}}" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+                </a><br />
+            </div>
+        </div>
+    </ng-container>    
+    <ng-container *ngIf="userRoles && userRoles.indexOf('Administrator') > -1" ngDefaultControl ngModel="userRoles">
+        <div class="row">
+            <div style="text-align:center !important;" class="col-lg-4">
+                <a href="{{advertLinkUrl1}}" target="_blank">
+                    <img id="imageBanner" src="/FileContentServe/GetImageSrcFromImageRootDirectory/{{advertImage1Src}}" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+                </a><br />
+                <div class="form-group">
+                    <input type="file" id="advertBanner1" class="form-control-file" (change)="updateUploadAdvert1($event)" /><br />
+                </div>
+            </div>
+            <div style="text-align:center !important;" class="col-lg-4">
+                <a href="{{advertLinkUrl2}}" target="_blank">
+                    <img id="imageBanner" src="/FileContentServe/GetImageSrcFromImageRootDirectory/{{advertImage2Src}}" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+                </a><br />
+                <div class="form-group">
+                    <input type="file" id="advertBanner2" class="form-control-file" (change)="updateUploadAdvert2($event)" /><br />
+                </div>
+            </div><br />
+            <div style="text-align:center !important;" class="col-lg-4">
+                <a href="{{advertLinkUrl3}}" target="_blank">
+                    <img id="imageBanner" src="/FileContentServe/GetImageSrcFromImageRootDirectory/{{advertImage3Src}}" style="padding: 3px !important; height: auto !important; width: 100% !important; " alt="[[Advert Image]]" />
+                </a><br />
+                <div class="form-group">
+                    <input type="file" id="advertBanner3" class="form-control-file" (change)="updateUploadAdvert3($event)" /><br />
+                </div>
+            </div>
+        </div>
+        <input type="button" class="btn-primary" name="submitAdvert" (click)="submitAdvert($event)" value="Upload Advert Image" /><br />
+    </ng-container>
+</div>

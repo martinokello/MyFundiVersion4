@@ -1,0 +1,108 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+    <div id="clientfundisearch-wrapper">
+        <section id="searchFundi">
+            <form id="fundiSearchForm" ngForm>
+                <div class="form-group">
+                    <label>Search By Fundi Categories</label>
+                    <div id="fundiCategories">
+                    </div>
+                </div><br />
+                <div class="form-group">
+                    <label>Job Name</label>
+                    <select id="jobId" name="jobId" [(ngModel)]="jobId"></select>
+                </div><br />
+                <input type="button" value="More Results Fundi By Categories" class="but-primary" (click)="searchFundiByCategories($event)" />
+                <br />
+            </form>
+        </section>
+        <section style="text-align:center !important;">
+            <em style="font-weight:bolder !important;">View Fundis In your current locality travel zone.</em><br />
+            <input type="button" value="More Results Fundi within locality" class="but-primary" (click)="searchFundiByCurrentGeoLocation($event)" />
+        </section>
+        <div>
+            <paging [pagingContentModel]="pagingContentModel" (searchEventEmitter)="searchCommand($event)"></paging><br />
+        </div>
+        <div id="results">
+            <section id="Profile" *ngFor="let profile of fundiSatisfyingJobList">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div style=" width: 30% !important; margin-left: 5px !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
+                            <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByProfileId?fundiProfileId={{profile.fundiProfileId}}" alt="profileImage" style="width:150px !important; height:auto; align-content:center !important;" /><br />
+                            <span>Fundi Name: {{profile.fundiFirstName}} {{profile.fundiLastName}}</span><br />
+                            <span>Fundi location  Distance from Job: {{profile.distanceApart}} Km</span><br />
+                            <span id="averageFundiRating-{{profile.fundiProfileId}}" class="profileRatingSpan rateit" data-rateit-mode="font" style="text-align:left;font-size: 40px; max-width: 10%;"></span><br />
+                        </div>
+                        <div style="width: 70% !important; display: inline-block !important; text-align: center !important; margin-top: 0px !important;">
+                            <fundi-engagement id="clientSearchEngagement-{{profile.fundiProfileId}}" [profileId]="profile.fundiProfileId"></fundi-engagement>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="position: relative !important; text-align: center !important; align-content: center !important;">
+                    <div class="col-lg-12">
+                        <a href="#" (click)="populateFundiUserDetails($event,profile.fundiProfileId)" style="width:250px; height:auto; align-content:center !important;">View Fundi Profile</a><br />
+                    </div>
+                </div>
+                <div class="row" style="position: relative !important; margin: 2px 0px !important;">
+                    <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+                        <h5>Fundi Profile Summary</h5>
+                        <ul>
+                            <li>
+                                {{profile.fundiProfileSummary}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row" style="position: relative !important; text-align: center !important; align-content: center !important; margin: 2px 0px !important;">
+                    <div class="col-lg-12" style="margin: 2px 0px !important;">
+                        <a style="line-height: 17px 0px !important;" id="downloadCV" href='/FundiProfile/GetFundiCVByProfileId/{{profile.fundiProfileId}}'>Download Profile CV</a><br />
+                    </div>
+                </div>
+                <div class="row" style="position: relative !important; margin: 2px 0px !important;">
+                    <div class="col-lg-12" id="profileRating" style="margin: 2px 0px !important;">
+                        <h5>Profile Rating &amp; Reviews</h5>
+                        <ul>
+                            <li *ngFor="let rating of profile.fundiRatingsAndReviews">
+                                <div>
+                                    Rated By: <em style="color:brown !important;">{{rating.clientFirstName?rating.clientFirstName:""}} {{rating.clientLastName?profile.clientLastName:""}}</em><br />
+                                    Rating: <span style="color:brown !important;">{{rating.fundiRating?rating.fundiRating:"No Rating Yet"}} out of 5</span><br />
+                                </div>
+                                <div>
+                                    Review By: <em style="color:brown !important;">{{rating.clientFirstName?rating.clientFirstName:""}} {{profile.clientLastName?profile.clientLastName:""}}</em><br />
+                                    Review: {{rating.clientReview}}<br />
+                                </div>
+                            </li>
+                        </ul>
+                        <h5>Rate This Fundi</h5>
+                        <form id="ratingForm-{{profile.fundiProfileId}}">
+                            <div id="fundiRating-{{profile.fundiProfileId}}" class="rateit" data-rateit-mode="font" style="text-align: left; font-size: 40px; max-width: 10% !important;"></div><br />
+                            <span>Choose Work Category:</span><br />
+                            <h5>Fundi Work Category Types</h5>
+                            <div *ngFor="let wcdata of profile.jobWorkCategoryDetails">
+                                <h6>{{wcdata.workCategoryType}}</h6>
+                                <h5>Work Sub Category Type</h5>
+                                <select id="workCategory-{{profile.fundiProfileId}}" name="workCategory" class="form-control">
+                                    <option value="{{wcdata.workSubCategoryId}}">{{wcdata.workSubCategoryType}}</option>
+                                </select>
+                            </div>
+                            <br />
+                            <textarea id="review-{{profileId}}" placeholder="Write review" rows="5" cols="20"></textarea><br />
+                            <input type="button" id="{{profileId}}" class="but-primary" value="Rate Fundi" (click)="rateFundi($event)" />
+                        </form>
+                    </div>
+                </div>
+                <div class="row" style="position: relative !important; margin: 2px 0px !important;">
+                    <div class="col-lg-12" id="skills" style="margin: 2px 0px !important;">
+                        <h5>Fundi Skills</h5>
+                        <ul id="{{profile.fundiProfileId}}-skills">
+                            <li>{{profile.fundiSkills}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr /><br />
+            </section>
+        </div>
+        <div>
+            <paging [pagingContentModel]="pagingContentModel" (searchEventEmitter)="searchCommand($event)"></paging>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="row" id="locations-wrapper">
+    <div class="col-lg-12" style="text-align:left !important; color:black !important;">
+        <form #locationView="ngForm" (ngSubmit)="locationView.form.valid" id="locationView">
+            <h4>Location</h4>
+            <div class="form-group">
+                <label>LocationId - optional</label>
+                <select id="locationId" name="locationId" [(ngModel)]="location.locationId"></select>
+            </div>
+            <div class="form-group">
+                <label>Location Name</label>
+                <input type="text" name="locationName" [(ngModel)]="location.locationName" required #locationName="ngModel" />
+                <div *ngIf="locationView.submitted && locationName.invalid" class="text-danger">
+                    Location Name required
+                </div>
+            </div>
+            <div class="form-group">
+                <label>AddressId</label>
+                <select id="locaddressId" name="addressId" [(ngModel)]="location.addressId"></select>
+            </div>
+            <input type="button" value="Select Location" class="but-primary" (click)="selectLocation()" style="margin-top:10px;" />
+            <input type="button" value="Add Location" id="locationAddLocationId" class="but-primary" [disabled]="locationView.invalid" (click)="addLocation()" style="margin-top:10px;" />
+            <input type="button" value="Update Location"  id="locationUpdateLocationId"class="but-primary" [disabled]="locationView.invalid" (click)="updateLocation()" style="margin-top:10px;" />
+            <input type="button" value="Delete Location" id="locationDeleteLocationId" class="but-primary" [disabled]="locationView.invalid" (click)="deleteLocation()" style="margin-top:10px;" />
+        </form>
+        <div id="locmap" style="min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;display:none !important;">
+        </div>
+    </div>
+</div>

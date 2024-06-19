@@ -1,0 +1,231 @@
+﻿<html>
+<head>
+    <title>MartinLayooInc &copy; Handy Man's Site</title>
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <link rel="stylesheet" href="/myfundi/assets/css/main.css" />
+    <link type="text/css" href="/myfundi/assets/bootstrap-4.5.3/css/bootstrap.css" />
+    <link type="text/css" href="/myfundi/assets/css/jquery-ui.min.css" />
+    <link type="text/css" href="/myfundi/assets/jquery-rateit/rateit.css" />
+    <link type="text/css" href="/myfundi/assets/datetimepicker/css/jquery.datetimepicker.min.css" />
+
+    <style type="text/css">
+        @media screen and (max-width : 1200px) {
+            div.blogContent img {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+    </style>
+
+    <script src="/myfundi/assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/js/jquery.ui.min.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/bootstrap-4.5.3/js/bootstrap.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/jquery-rateit/web-font.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/jquery-rateit/rateit.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/datetimepicker/js/jquery.datetimepicker.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('div#titleBar span.title').html("loading...");
+
+            $('div#titleBar span.title').html("MartinLayooInc Software");
+
+            $('div#navPanel').html("<div style='text-align:center !important;vertical-align:center !important;'><img src='/myfundi/assets/images/martin.jpg' style='margin:50px 20px 10px !important; width:250px !important; height:auto !important;' alt='company logo'/></div>");
+
+            $(document).on('focus', 'input#dateStartFromOrigin', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#dateStartFromOrigin').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'div#fundiSubscription-wrapper input#startDate', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('div#fundiSubscription-wrapper input#startDate').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#jobEarliestStartDate', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#dateEndAtDestination').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+
+            $(document).on('focus', 'input#jobPreferredInterviewDate', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#dateEndAtDestination').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+
+            $(document).on('focus', 'input#dateEndAtDestination', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#dateEndAtDestination').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#intdateStartFromOrigin', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#intdateStartFromOrigin').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+
+                });
+            });
+            $(document).on('focus', 'input#intdateEndAtDestination', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#intdateEndtAtDestination').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+
+            $(document).on('focus', 'input#inpPayment1Date', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#inpPayment1Date').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#inpPayment2Date', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#inpPayment2Date').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#inpPayment3Date', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#inpPayment3Date').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#inpPayment4Date', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#inpPayment4Date').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+
+            $('nav#nav ul li a').css('background-color', 'transparent');
+            $('nav#nav ul li:first').addClass('current');
+            $('nav#nav ul li:first').css('background-color', 'deepskyblue');
+
+
+            $(document).on('click', 'nav#nav ul li', function () {
+                $('nav#nav ul li').css('background-color', 'transparent');
+                $('nav#nav ul li').removeClass('current');
+                $(this).addClass('current');
+                $(this).css('background-color', 'deepskyblue');
+
+                let bodyContent = document.getElementById('mainbodycontent');
+                bodyContent.scrollTop = 50;
+                return false;
+            });
+
+        });
+    </script>
+    <style type="text/css">
+
+        .ui-menu, .ui-menu .ui-menu-item-wrapper:hover, .ui-menu .ui-menu-item-wrapper.ui-state-active {
+            background-color: wheat;
+            border: #fff 1px solid;
+            list-style: none;
+        }
+
+        @media screen and (min-width: 969px) {
+            .ui-menu {
+                max-width: 30% !important;
+            }
+
+            div#mainmenucontent ul > li {
+                border: thin solid white !important;
+            }
+
+            div#linkToMainMenu {
+                top: 0px;
+                left: 0px;
+                padding-top: 15px !important;
+                width: 100% !important;
+                position: fixed !important;
+            }
+        }
+
+        @media screen and (max-width: 968px) {
+            .ui-menu {
+                max-width: 95% !important;
+            }
+
+            div#mainmenucontent ul > li {
+                border: thin solid white !important
+            }
+
+            div#linkToMainMenu {
+                top: 0px;
+                left: 0px;
+                padding-top: 15px !important;
+                width: 100% !important;
+                position: fixed !important;
+            }
+        }
+
+        input[type="checkbox"] {
+            z-index: 1000 !important;
+        }
+    </style>
+</head>
+<body>
+    <app-root>Loading...</app-root>
+
+
+    <script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fd0dd2922276224"></script>
+    <script type="text/javascript">
+
+        var addthis_config = {
+            data_ga_property: 'UA-17123788-1',
+            data_ga_social: true,
+            "data_track_addressbar": false
+        };
+        var addthis_share = {
+            url_transforms: {
+                clean: true,
+                shorten: {
+                    twitter: 'bitly'
+                }
+            }
+        }
+    </script>
+    <script src="/myfundi/assets/js/jquery.dropotron.min.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/js/browser.min.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/js/breakpoints.min.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/js/util.js" type="text/javascript"></script>
+    <script src="/myfundi/assets/js/main.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNPbLu2PRqU9dWbtw6WE5qijg9o7B3FDQ&sensor=false" type="text/javascript"></script>
+    <script src="/myfundi/assets/js/html5-qrcode/html5-qrcode.min.js" type="text/javascript"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
+</body>
+</html>

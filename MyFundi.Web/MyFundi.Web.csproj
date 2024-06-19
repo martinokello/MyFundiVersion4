@@ -1,0 +1,463 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject>MyFundi.Web.Program</StartupObject>
+    <PlatformTarget>x64</PlatformTarget>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <PackageProjectUrl></PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="MailKit" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.27" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="wwwroot\assets\froala-editor\**" />
+    <Content Remove="$(SpaRoot)**" />
+    <Content Remove="wwwroot\assets\froala-editor\**" />
+    <EmbeddedResource Remove="wwwroot\assets\froala-editor\**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Remove="wwwroot\assets\froala-editor\**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\assets\jquery-rateit\rateit.css" />
+    <Content Remove="wwwroot\assets\jquery-rateit\rateit.js" />
+    <Content Remove="wwwroot\assets\jquery-rateit\web-font.js" />
+    <Content Remove="wwwroot\assets\main-es2015.js" />
+    <Content Remove="wwwroot\assets\main-es2015.js.map" />
+    <Content Remove="wwwroot\assets\main-es5.js" />
+    <Content Remove="wwwroot\assets\main-es5.js.map" />
+    <Content Remove="wwwroot\assets\polyfills-es2015.js" />
+    <Content Remove="wwwroot\assets\polyfills-es2015.js.map" />
+    <Content Remove="wwwroot\assets\polyfills-es5.js" />
+    <Content Remove="wwwroot\assets\polyfills-es5.js.map" />
+    <Content Remove="wwwroot\assets\runtime-es2015.js" />
+    <Content Remove="wwwroot\assets\runtime-es2015.js.map" />
+    <Content Remove="wwwroot\assets\runtime-es5.js" />
+    <Content Remove="wwwroot\assets\runtime-es5.js.map" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\formats\bbcode.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\formats\xhtml.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\icons\material.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\icons\monocons.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\jquery.sceditor.bbcode.min.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\jquery.sceditor.min.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\jquery.sceditor.xhtml.min.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\plugins\alternative-lists.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\plugins\autosave.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\plugins\autoyoutube.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\plugins\dragdrop.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\plugins\format.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\plugins\plaintext.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\plugins\undo.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\plugins\v1compat.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\sceditor.min.js" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\themes\content\default.min.css" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\themes\default.min.css" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\themes\defaultdark.min.css" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\themes\famfamfam.png" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\themes\modern.min.css" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\themes\office-toolbar.min.css" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\themes\office.min.css" />
+    <Content Remove="wwwroot\assets\sceditor-3.2.0\themes\square.min.css" />
+    <Content Remove="wwwroot\assets\styles.css" />
+    <Content Remove="wwwroot\assets\styles.css.map" />
+    <Content Remove="wwwroot\assets\vendor-es2015.js" />
+    <Content Remove="wwwroot\assets\vendor-es2015.js.map" />
+    <Content Remove="wwwroot\assets\vendor-es5.js" />
+    <Content Remove="wwwroot\assets\vendor-es5.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\dist\index.html" />
+    <None Remove="ClientApp\src\app\activecrudoperations\chat.component.ts" />
+    <None Remove="ClientApp\src\assets\images\CarMechanic.jpg" />
+    <None Remove="ClientApp\src\assets\images\carpentryMetalwork.jpg" />
+    <None Remove="ClientApp\src\environments\index.html" />
+    <None Remove="ClientApp\src\guards\AuthClientAdminGuard.ts" />
+    <None Remove="ClientApp\src\guards\AuthFundiAdminGuard.ts" />
+    <None Remove="ClientApp\src\guards\AuthFundiClientAdminGuard.ts" />
+    <None Remove="ClientApp\src\images\CarMechanic.jpg" />
+    <None Remove="ClientApp\src\images\carpentryMetalwork.jpg" />
+    <None Remove="ClientApp\src\index.html" />
+    <None Remove="ClientApp\src\pipes\roundpipe.ts" />
+    <None Remove="images\BeforeProjection.jpg" />
+    <None Remove="images\blogs.jpg" />
+    <None Remove="images\brickWall.jpg" />
+    <None Remove="images\CarMechanic.jpg" />
+    <None Remove="images\carpentryMetalwork.jpg" />
+    <None Remove="images\currentAdvert.gif" />
+    <None Remove="images\currentAdvert1.gif" />
+    <None Remove="images\currentAdvert2.gif" />
+    <None Remove="images\currentAdvert3.gif" />
+    <None Remove="images\DadsAmamuHouse.jpg" />
+    <None Remove="images\HappyGrad.jpg" />
+    <None Remove="images\martin.jpg" />
+    <None Remove="images\paypal_logo.gif" />
+    <None Remove="images\shopBasketFigure.jpg" />
+    <None Remove="images\Tau Elastica 2D Virtual Space.jpg" />
+    <None Remove="images\Tau Elastica 3D Virtual Space Solving Broad Structural Frame Building Design In Steel.jpg" />
+    <None Remove="images\TauElastica 3D Virtual Space Software.jpg" />
+    <None Remove="images\tauElastica.JPG" />
+    <None Remove="images\ug-flag.gif" />
+    <None Remove="images\uk-flag.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\dist\index.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\images\CarMechanic.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\images\carpentryMetalwork.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\environments\index.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\images\CarMechanic.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\images\carpentryMetalwork.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\index.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\BeforeProjection.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\blogs.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\brickWall.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\CarMechanic.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\carpentryMetalwork.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\currentAdvert.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\currentAdvert1.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\currentAdvert2.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\currentAdvert3.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\DadsAmamuHouse.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\HappyGrad.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\martin.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\paypal_logo.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\shopBasketFigure.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\Tau Elastica 2D Virtual Space.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\Tau Elastica 3D Virtual Space Solving Broad Structural Frame Building Design In Steel.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\TauElastica 3D Virtual Space Software.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\tauElastica.JPG">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\ug-flag.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="images\uk-flag.gif">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BLG.Business\BLG.Business.csproj" />
+    <ProjectReference Include="..\BLGWeather.Domain\BLGWeather.Domain.csproj" />
+    <ProjectReference Include="..\ExcelAccessDataEngine\ExcelAccessDataEngine.csproj" />
+    <ProjectReference Include="..\MyFundi.AppConfigurations\MyFundi.AppConfigurations.csproj" />
+    <ProjectReference Include="..\MyFundi.DataAccess\MyFundi.DataAccess.csproj" />
+    <ProjectReference Include="..\MyFundi.Domain\MyFundi.Domain.csproj" />
+    <ProjectReference Include="..\MyFundi.Services\MyFundi.Services.csproj" />
+    <ProjectReference Include="..\MyFundi.UnitOfWork\MyFundi.UnitOfWork.csproj" />
+    <ProjectReference Include="..\PaymentCalculater\PaymentCalculater.csproj" />
+    <ProjectReference Include="..\PaymentGateway\PaymentsGateway.csproj" />
+    <ProjectReference Include="..\PaypalFacility\PaypalFacility.csproj" />
+    <ProjectReference Include="..\ServiceEndPoint\ServiceEndPoint.csproj" />
+    <ProjectReference Include="..\SimbaToursEastAfrica.Caching\SimbaToursEastAfrica.Caching.csproj" />
+    <ProjectReference Include="..\SimbaToursEastAfrica.SocialMedia\SimbaToursEastAfrica.SocialMedia.csproj" />
+    <ProjectReference Include="..\Twitter\Twitter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AesCryptoSystemExtra">
+      <HintPath>extLibs\AesCryptoSystemExtra.dll</HintPath>
+    </Reference>
+    <Reference Include="EpsilonCryptoSystemEngine">
+      <HintPath>extLibs\EpsilonCryptoSystemEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="PasswordEncryptorEngine">
+      <HintPath>extLibs\PasswordEncryptorEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
+    <Folder Include="MyFundiProfile\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.js" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.min.js" />
+    <None Include="wwwroot\assets\bootstrap-4.5.3\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\assets\datetimepicker\js\jquery.datetimepicker.js" />
+    <None Include="wwwroot\assets\datetimepicker\js\jquery.min.js" />
+    <None Include="wwwroot\assets\datetimepicker\js\moments.js" />
+    <None Include="wwwroot\assets\full-calendar\demos\js\theme-chooser.js" />
+    <None Include="wwwroot\assets\full-calendar\demos\php\get-events.php" />
+    <None Include="wwwroot\assets\full-calendar\demos\php\get-timezones.php" />
+    <None Include="wwwroot\assets\full-calendar\demos\php\utils.php" />
+    <None Include="wwwroot\assets\full-calendar\full-calendar.js" />
+    <None Include="wwwroot\assets\full-calendar\full-calendar.min.js" />
+    <None Include="wwwroot\assets\full-calendar\gcal.js" />
+    <None Include="wwwroot\assets\full-calendar\gcal.min.js" />
+    <None Include="wwwroot\assets\full-calendar\lib\jquery-ui.min.js" />
+    <None Include="wwwroot\assets\full-calendar\lib\jquery.min.js" />
+    <None Include="wwwroot\assets\full-calendar\lib\moment.min.js" />
+    <None Include="wwwroot\assets\full-calendar\locale-all.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\af.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ar-dz.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ar-kw.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ar-ly.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ar-ma.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ar-sa.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ar-tn.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ar.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\be.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\bg.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\bs.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ca.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\cs.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\da.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\de-at.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\de-ch.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\de.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\el.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\en-au.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\en-ca.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\en-gb.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\en-ie.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\en-nz.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\es-do.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\es-us.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\es.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\et.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\eu.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\fa.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\fi.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\fr-ca.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\fr-ch.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\fr.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\gl.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\he.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\hi.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\hr.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\hu.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\id.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\is.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\it.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ja.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ka.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\kk.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ko.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\lb.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\lt.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\lv.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\mk.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ms-my.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ms.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\nb.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\nl-be.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\nl.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\nn.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\pl.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\pt-br.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\pt.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ro.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\ru.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\sk.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\sl.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\sq.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\sr-cyrl.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\sr.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\sv.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\th.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\tr.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\uk.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\vi.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\zh-cn.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\zh-hk.js" />
+    <None Include="wwwroot\assets\full-calendar\locale\zh-tw.js" />
+    <None Include="wwwroot\assets\google\googleMaps.js" />
+    <None Include="wwwroot\assets\jquery-rateit\rateit.css" />
+    <None Include="wwwroot\assets\jquery-rateit\rateit.js" />
+    <None Include="wwwroot\assets\jquery-rateit\web-font.js" />
+    <None Include="wwwroot\assets\js\breakpoints.min.js" />
+    <None Include="wwwroot\assets\js\browser.min.js" />
+    <None Include="wwwroot\assets\js\datetimepicker\jquery.datetimepicker.min.js" />
+    <None Include="wwwroot\assets\js\html5-qrcode\html5-qrcode.min.js" />
+    <None Include="wwwroot\assets\js\jquery.dropotron.min.js" />
+    <None Include="wwwroot\assets\js\jquery.min.js" />
+    <None Include="wwwroot\assets\js\jquery.ui.js" />
+    <None Include="wwwroot\assets\js\main.js" />
+    <None Include="wwwroot\assets\js\util.js" />
+    <None Include="wwwroot\assets\sass\libs\_breakpoints.scss" />
+    <None Include="wwwroot\assets\sass\libs\_functions.scss" />
+    <None Include="wwwroot\assets\sass\libs\_html-grid.scss" />
+    <None Include="wwwroot\assets\sass\libs\_mixins.scss" />
+    <None Include="wwwroot\assets\sass\libs\_vars.scss" />
+    <None Include="wwwroot\assets\sass\libs\_vendor.scss" />
+    <None Include="wwwroot\assets\sass\main.scss" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\formats\bbcode.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\formats\xhtml.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\icons\material.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\icons\monocons.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\jquery.sceditor.bbcode.min.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\jquery.sceditor.min.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\jquery.sceditor.xhtml.min.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\plugins\alternative-lists.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\plugins\autosave.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\plugins\autoyoutube.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\plugins\dragdrop.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\plugins\format.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\plugins\plaintext.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\plugins\undo.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\plugins\v1compat.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\sceditor.min.js" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\themes\content\default.min.css" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\themes\default.min.css" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\themes\defaultdark.min.css" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\themes\famfamfam.png" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\themes\modern.min.css" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\themes\office-toolbar.min.css" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\themes\office.min.css" />
+    <None Include="wwwroot\assets\sceditor-3.2.0\themes\square.min.css" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\assets\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\chat\chat.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthClientAdminGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthFundiAdminGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\guards\AuthFundiClientAdminGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\pipes\roundpipe.ts" />
+  </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build  --prod --aot=false --build-optimizer=false" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

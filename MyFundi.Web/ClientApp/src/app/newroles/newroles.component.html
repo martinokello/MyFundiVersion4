@@ -1,0 +1,14 @@
+<div #rolesView class="col-lg-12" style="text-align:left !important; color:black !important;">
+    <h4>Create Or Delete Roles</h4>
+    <form #f3="ngForm" (ngSubmit)="f3.form.valid">
+        <div class="form-group">
+            <label>User Role</label>
+            <input type="text" name="newRoleName" [(ngModel)]="newRoleName" required #newRoleNameMessage="ngModel" />
+            <div *ngIf="f3.submitted && newRoleNameMessage.invalid" class="text-danger">
+                Role Name required
+            </div>
+        </div>
+        <input type="submit" (click)="createUserRole()" class="but-primary" name="CreateRole" value="Create User Role"  style="margin-top:10px;margin-left:7px;"/>
+        <input type="submit" (click)="deleteUserRole()" class="but-primary" name="DeleteRole"value="Delete User Role"  style="margin-top: 10px; margin-left: 7px;"/>
+    </form>
+</div>

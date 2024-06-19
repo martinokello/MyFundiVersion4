@@ -1,0 +1,112 @@
+<div class="container-fluid" id="fundiSubscription-wrapper" style="background-color: #EEEEEE; text-align: left;">
+  <h2 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf("Fundi") > -1  || userRoles.indexOf("Guest") > 1)?"Fundi":"Guest"}} Profile</h2>
+  <section id="Profile">
+    <div class="row" style="text-align: center !important; align-content: center !important;">
+      <div class="col-lg-12">
+        <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
+      </div>
+    </div>
+    <div class="row" style="margin: 2px 0px !important;">
+      <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+        <h5>Profile Summary</h5>
+        <div class="col-lg-12" id="profileSummary">
+          {{fundi.profileSummary}}
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin: 2px 0px !important;">
+      <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+        <h5>Fundi Subscription</h5>
+        <div class="subscription">
+          <form #fs="ngForm" method="post" (ngSubmit)="fs.form.valid">
+              <div class="row" id="subscriptiondiv" style="margin: 2px 0px !important;">
+                  <div class="col-lg-12" id="subscription" style="margin: 2px 0px !important;">
+                      <img src="/assets/images/paypal_logo.gif" alt="paypal logo" width="450" /><br />
+                  </div>
+                  <div class="form-group col-lg-12">
+                      <label>Subscription Id - optional</label>
+                      <select id="subscriptionId" name="subscriptionId" [(ngModel)]="subscription.monthlySubscriptionId" (change)="selectSubscription($event)"></select><br />
+                  </div>
+                  <div class="form-group col-lg-12">
+                      <label>Start Date </label>
+                      <input type="text" id="startDate" value="{{ startDate | date : 'dd-MM-yyyy HH:mm' }}" name="startDate" [(ngModel)]="startDate"/><br />
+                  </div>
+                  <div class="form-groupcol-lg-12">
+                      <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="hasPaid" name="hasPaid" [(ngModel)]="subscription.hasPaid" [disabled]="true"/><label class="custom-control-label">Has Paid Subscription</label>
+                          <br />
+                      </div>
+                  </div>
+                  <div class="form-group col-lg-12">
+                      <input type="button" value="Select Subscription" class="but-primary" (click)="selectSubscription($event)" style="margin-top:10px;" />
+                      <input type="button" value="Update Subscription" class="but-primary" (click)="updateSubscription($event)" style="margin-top:10px;" />
+                      <input type="button" value="Delete Subscription" class="but-primary" (click)="deleteSubscription($event)" style="margin-top:10px;" />
+                      <hr />
+                  </div>
+                  <div class="col-lg-12" id="subscription" style="margin: 2px 0px !important;">
+                      <div class="form-group">
+                          <label>
+                              Fundi Profile ID
+                          </label><br />
+                          <input type="text" class="form-control" name="fundiProfileId" #fundiProfileId="ngModel" readonly [(ngModel)]="fundi.fundiProfileId" /><br />
+                          <div *ngIf="fs.submitted && fundiProfileId.invalid" class="text-danger">
+                              Fundi ID Required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label>Select Work Category Id</label>
+                          <select id="subcworkCategoryId" name="workCategoryId" [(ngModel)]="workCategory.workCategoryId" (change)="getWorkSubCategoriesByWorkCategoryId($event)" required></select>
+                      </div>
+                      <div class="form-group">
+                          <label>Select Work Sub Category Id</label>
+                          <select id="subcworkSubCategoryId" name="workSubCategoryId" [(ngModel)]="workSubCategory.workSubCategoryId"></select>
+                          <input type="button" value="Add SubCategory" class="but-primary" (click)="addSubCategory($event)" /><br />
+                          <input type="button" value="Remove SubCategory" (click)="removeWorkSubCategory($event)" /><br />
+                          <br />
+                          <ul id="ulistWorkCategories"></ul>
+                      </div>
+                      <div class="form-group">
+                          <label>
+                              Subscripton Name
+                          </label><br />
+                          <input type="text" name="subscriptionName" required [(ngModel)]="fundi.subscriptionName" #subscriptionName="ngModel" /><br />
+                          <div *ngIf="fs.submitted && subscriptionName.invalid" class="text-danger">
+                              Subscription Name Required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label>
+                              Monthly Subscription Description
+                          </label><br />
+                          <textarea name="subscriptionDescription" required #subscriptionDescription="ngModel" [(ngModel)]="fundi.subscriptionDescription" row="5" cols="10"></textarea><br />
+                          <div *ngIf="fs.submitted && subscriptionDescription.invalid" class="text-danger">
+                              Subscription Name Required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label>
+                              Subscripton Monthly Fee
+                          </label><br />
+                          <input type="number" name="subscriptionFee" value="{{fundi.subcriptionFee | currency}}" required value="2500" [(ngModel)]="fundi.subscriptionFee" #subscriptionFee="ngModel" readonly/><br />
+                          <div *ngIf="fs.submitted && subscriptionFee.invalid" class="text-danger">
+                              Subscription Fee Required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <!--<iframe id="fundiEasyPayFrame" [src]="easyPayUrl" style="width:100%; height:20vh" scrolling="no"></iframe><br/>-->
+                          <label>
+                              Make Payment
+                          </label><br />
+                          <input type="button" value="Paypal Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFeeWithPaypal($event)" /><br />
+                          <input type="button" value="MTN Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFeeWithMtn($event)" /><br />
+                          <input type="button" value="AirTel Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFeeWithAirTel($event)" /><br />
+                      </div>
+                      <hr />
+                  </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>
+</div>

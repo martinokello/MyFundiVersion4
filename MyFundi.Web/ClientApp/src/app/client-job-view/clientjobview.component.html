@@ -1,0 +1,238 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+    <h1 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} Client Profile</h1>
+    <section id="Profile">
+        <div class="row" style="text-align: center !important; align-content: center !important;">
+            <div class="col-lg-12">
+                <img id="profileImage" src="/ClientProfile/GetClientProfileImageByUsername?username={{userDetails.username}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" />
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="viewProfileSummary" style="margin: 2px 0px !important;">
+                <h5>Client Profile Summary</h5>
+                <div>{{clientProfile.profileSummary}} <br /></div>
+                <!--<h5>Client Phone Number: {{userDetails.mobileNumber}}</h5>-->
+                <hr />
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Job ID</h5>
+                <label id="jobId" name="jobId">#{{job.jobId}}</label>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Job Name</h5>
+                <label type="text" id="jobName" name="jobName">{{job.jobName}}</label>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Job Location Name</h5>
+                <Label id="locationName" name="locationName">{{job.location.locationName}}</Label>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Job Description</h5>
+                <div id="jobDescription" name="jobDescription">
+                    {{job.jobDescription}}
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <h5>Work Categories</h5>
+                <ul id="ulistWorkCategories">
+                    <li *ngFor="let jwc of workCategories">
+                        <em>{{jwc.workCategory.workCategoryType}}</em><br />
+                        {{jwc.workSubCategory.workSubCategoryType}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+                <h5>Estimate Of Days To Complete</h5>
+                <label type="number" id="numberOfDaysToComplete">{{job.numberOfDaysToComplete}}</label>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" style="margin: 2px 0px !important;">
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox" name="hasBeenAssignedFundi" [(ngModel)]="job.hasBeenAssignedFundi" id="hasBeenAssignedFundi" readonly />
+                    <label class="custom-control-label" for="hasBeenAssignedFundi">Has Been Assigned Fundi</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox" name="hasCompleted" [(ngModel)]="job.hasCompleted" id="hasCompleted" readonly />
+                    <label class="custom-control-label" for="hasCompleted">Has Completed</label>
+                </div>
+            </div>
+        </div>
+        <form #fundiJobApplicationForm="ngForm" (ngSubmit)="fundiJobApplicationForm.form.valid && sendEmail($event)" enctype="multipart/form-data" method="post">
+            <div style="margin: 5px 0px !important;">
+                <h3>Apply For Job With Cover Note</h3>
+                <hr />
+                <div style="width: 100%;">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && firstName.invalid" class="text-danger">
+                                First Name field required.
+                                <br />
+                            </div>
+                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="firstName" type="text" [(ngModel)]="jobApplication.firstName" #firstName="ngModel" required placeholder="First Name" /><br />
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && lastName.invalid" class="text-danger">
+                                Last Name field required.
+                                <br />
+                            </div>
+                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="lastName" type="text" [(ngModel)]="jobApplication.lastName" #lastName="ngModel" required placeholder="Last Name" /><br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                What is the rate you'd like to bid for this job Per Hour?
+                                <br />
+                            </div>
+                            <input id="bidRatePerHour" value="{{ jobApplication.bidRatePerHour | currency }} UGX" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="bidRatePerHour" type="number" [(ngModel)]="jobApplication.bidRatePerHour" #bidRatePerHour="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && bidRatePerHour.invalid" class="text-danger">
+                                Bid Rate required.
+                                <br />
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                Total amount the client will see on your proposal?
+                                <br />
+                            </div>
+                            <input id="totalAmountPerHour" value="{{ jobApplication.totalAmountPerHour | currency }}" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="totalAmountPerHour" type="number" [(ngModel)]="jobApplication.totalAmountPerHour" #totalAmountPerHour="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && totalAmountPerHour.invalid" class="text-danger">
+                                Total Amount Per Hour required.
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                What is your Percentage upward Service Fee Charge?
+                                <br />
+                            </div>
+                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" value="{{ jobApplication.amountYouWillRecieveMinusService | currency }}" name="upwardServiceFee" type="number" [(ngModel)]="jobApplication.upwardServiceFee" #upwardServiceFee="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && upwardServiceFee.invalid" class="text-danger">
+                                Percentage Of Upward Service Fee required.
+                                <br />
+                            </div>
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                Explain this Service Fee?
+                                <br />
+                            </div>
+                            <textarea id="justifyPercentOfServiceFee" name="justifyPercentOfServiceFee" style="width:100% !important" [(ngModel)]="jobApplication.justifyPercentOfServiceFee" #justifyPercentOfServiceFee></textarea>
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && justifyPercentOfServiceFee.invalid" class="text-danger">
+                                Explanation For Service Fee Required.
+                                <br />
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                The estimated amount you'll receive after service fees?
+                                <br />
+                            </div>
+                            <input id="amountYouWillRecieveMinusService" value="{{ jobApplication.amountYouWillRecieveMinusService | currency }}" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="amountYouWillRecieveMinusService" type="number" [(ngModel)]="jobApplication.amountYouWillRecieveMinusService" #amountYouWillRecieveMinusService="ngModel" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && amountYouWillRecieveMinusService.invalid" class="text-danger">
+                                What is the estimated amount you'll receive after Service Fees Required.
+                                <br />
+                            </div>
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                What Job Are you applying for?
+                                <br />
+                            </div>
+                            <input style="font-weight: bold; width: 100%; color: #000040" name="emailSubject" type="text" class="form-control" required #emailSubject="ngModel" [(ngModel)]="jobApplication.appliedToJob" placeholder="Subject" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailSubject.invalid" class="text-danger">
+                                Job you are applying for is Required.
+                                <br />
+                            </div>
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                Preferred Mobile Number to make Contact?
+                                <br />
+                            </div>
+                            <input style="font-weight: bold; width: 100%; color: #000040" name="mobileNumber" type="text" class="form-control" required #mobileNumber="ngModel" [(ngModel)]="jobApplication.mobileNumber" placeholder="Mobile Number" /><br />
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && mobileNumber.invalid" class="text-danger">
+                                Preferred Mobile Number to make Contact is Required.
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailFrom.invalid" class="text-danger">
+                                email from field required.
+                                <br />
+                            </div>
+                            <input style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="emailFrom" type="email" [(ngModel)]="jobApplication.emailAddress" #emailFrom="ngModel" required placeholder="Your email address" /><br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && earliestStartDate.invalid" class="text-danger">
+                                Earliest Start Date required.
+                                <br />
+                            </div>
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                What is Your Earliest Start Date?
+                                <br />
+                            </div>
+                            <input id="jobEarliestStartDate" value="{{ jobApplication.earliestStartDate | date : 'dd-MM-yyyy HH:mm' }}" style="font-weight: bold; width: 100%; color: #000040" class="form-control" name="earliestStartDate" type="text" [(ngModel)]="jobApplication.earliestStartDate" #earliestStartDate="ngModel" /><br />
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <div style="margin: 5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && preferredInterviewDate.invalid" class="text-danger">
+                                Preferred Interview Date & Time Required.
+                                <br />
+                            </div>
+                            <div style="margin: 5px 0px !important;" class="text-info">
+                                What is Your Preferred Interview Date & Time?
+                                <br />
+                            </div>
+                            <input id="jobPreferredInterviewDate" style="font-weight: bold; width: 100%; color: #000040" name="preferredInterviewDate" type="text" class="form-control" value="{{ jobApplication.preferredInterviewDate | date : 'dd-MM-yyyy HH:mm' }}" required #preferredInterviewDate="ngModel" [(ngModel)]="jobApplication.preferredInterviewDate" placeholder="Preferred Interview Date" /><br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input type="file" name="attachment" (change)="getFiles($event)" value="Attach Supporting Files" id="attachment" /><br />
+                                <input name="clearFiles" type="button" value="Clear Files" (click)="clearFiles($event)" />
+                            </div>
+                            <div>
+                                <h5>File Attachments:</h5>
+                            </div>
+                            <ul id="filesAttached">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div style="margin:5px 0px !important;" *ngIf="fundiJobApplicationForm.submitted && emailBody.invalid" class="text-danger">
+                                Cover Letter Required.
+                                <br />
+                            </div>
+                            <div class="form-group">
+                                <div style="text-align: left !important;">
+                                    <textarea name="emailBody" id="emailBody" class="blogContentTextArea" [(ngModel)]="jobApplication.coverLetter" style="width: 100% !important; height:50vh !important;" placeholder="Cover Letter"></textarea>
+                                </div>
+                                <br />
+                                <div style="clear:both;width: 100%; padding: 10px; font-weight: bolder; font-size: Small; color: #AD0000;margin:0px 5px;">Please fill the Recaptcha to verify you are not a robot before posting!<br /></div>
+                                <hr />
+                                <myrecaptcha></myrecaptcha>
+                                <div class="form-group">
+                                    <input type="submit" name="jobSubmitBtn" id="submit" class="btn-primary" value="Apply For Job" style="margin:5px 0px;display:none;" (click)="sendEmail($event)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

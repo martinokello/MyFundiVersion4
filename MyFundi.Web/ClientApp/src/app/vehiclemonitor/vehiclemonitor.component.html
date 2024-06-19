@@ -1,0 +1,24 @@
+<div class="container-fluid" id="vehiclemonitor-wrapper">
+  <div style="text-align:left !important; color:black !important;">
+
+    <h4>Fundi Location Monitoring System</h4><br />
+    <input type="button" class="btn-primary" (click)="getAndroidMobileLocationApp()" style="padding: 5px !important;" value="Get: Android Location Emitter"/><br/><br/>
+    <input type="button" class="btn-primary" (click)="getIosMobileLocationApp()" style="padding:5px !important;" value="Get: Mac/IOS Location Emitter"/><br/><br/>
+    <section>
+      <div id="monitormap" style="min-height:380px;width:99%; padding-top: 10px; padding: 10px; z-index: 10000; position: relative;">
+      </div>
+    </section>
+    <form #monitorView="ngForm">
+        <div class="form-group">
+            <label>Fundi Name</label>
+            <select id="vhmonitor" name="fundiProfileId" #fundiProfileId="ngModel" required [ngModel]="currentFundi.username" (change)="showFundi()"></select>
+            <div *ngIf="monitorView.submitted && fundiProfileId.invalid" class="text-danger">
+                Fundi Username Required
+            </div>
+        </div>
+      <input type="button" value="Select Fundi" class="but-primary" (click)="showFundi()" />
+      <input type="button" value="Show All Fundis" class="but-primary" (click)="getVehiclesHttp()" />
+      <input type="button" value="Remove Fundi" class="but-primary" (click)="removeFundi()" />
+    </form>
+  </div>
+</div>

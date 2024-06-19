@@ -1,0 +1,296 @@
+<div class="container-fluid" style="background-color: #EEEEEE; text-align: left;">
+    <h2 style="text-align:center !important;padding:10px 0px !important;">{{userDetails.firstName}} {{userDetails.lastName}} {{(userRoles.indexOf("Fundi") > -1  || userRoles.indexOf("Guest") > 1)?"Fundi":"Guest"}} Client/Fundi Contract</h2>
+    <section id="Contract">
+        <div class="row" style="text-align: center !important; align-content: center !important;">
+            <div class="col-lg-12">
+                <img id="profileImage" src="/FundiProfile/GetFundiProfileImageByUsername?username={{userDetails.username}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="contractHeader" style="margin: 2px 0px !important;">
+                <h5>My Fundi Contract Documentation</h5>
+                <h5>This document is a legally binding contract  between the fundi  and client listed below.</h5>
+                <div>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/terms-and-conditions'>Terms of Conduct Binding Client And Fundi</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div class="row fundiContract-wrapper" id="contractdiv" style="margin: 2px 0px !important;">
+            <div class="form-group col-lg-12">
+                <label>Client Fundi Contract Id - optional</label><br />
+                <select id="clientFundiContractId" name="clientFundiContractId" [(ngModel)]="clientFundiContract.clientFundiContractId"></select><br />
+                <input type="button" value="Select Contract" class="but-primary" (click)="selectContract($event)" style="margin-top:10px;" /><br />
+            </div>
+        </div>
+
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="contractHeader" style="margin: 0px 0px !important;">
+                <div class="form-group">
+                    <h6>Fundi Name:</h6>
+                    <input type="hidden" class="form-control" name="fundiProfileId" #fundiProfileId="ngModel" readonly [(ngModel)]="clientFundiContract.fundiProfileId" placeholder="fundiProfileId" /><br />
+                    <input type="hidden" class="form-control" name="fundiUsername" #fundiUsername="ngModel" readonly [(ngModel)]="clientFundiContract.fundiUsername" placeholder="Fundi Username" /><br />
+                    <input type="text" class="form-control" name="fundiFirstName" #fundiFirstName="ngModel" readonly [(ngModel)]="clientFundiContract.fundiFirstName" placeholder="Fundi First Name" /><br />
+                    <input type="text" class="form-control" name="fundiLastName" #fundiLastName="ngModel" readonly [(ngModel)]="clientFundiContract.fundiLastName" placeholder="Fundi Last Name" /><br />
+                </div>
+                <h6>Fundi Address</h6>
+                <fundi-address [addressId]="clientFundiContract.fundiAddressId" (fundiAddressChanged)="updateFundiAddress($event)"></fundi-address>
+            </div>
+        </div>
+        <div class="row" style="margin: 2px 0px !important;">
+            <div class="col-lg-12" id="contractHeader" style="margin: 0px 0px !important;">
+                <div class="form-group">
+                    <h6>
+                        Client Name:
+                    </h6>
+                    <input type="hidden" class="form-control" name="clientProfileId" #fundiProfileId="ngModel" readonly [(ngModel)]="clientFundiContract.clientProfileId" placeholder="clientProfileId" /><br />
+                    <input type="hidden" class="form-control" name="clientUsername" #clientUsername="ngModel" readonly [(ngModel)]="clientFundiContract.clientUsername" placeholder="Client Username" /><br />
+                    <input type="text" class="form-control" name="clientFirstName" #clientFirstName="ngModel" readonly [(ngModel)]="clientFundiContract.clientFirstName" placeholder="Client First Name" /><br />
+                    <input type="text" class="form-control" name="clientLastName" #clientLastNamefundiProfileId="ngModel" readonly [(ngModel)]="clientFundiContract.clientLastName" placeholder="Client Last Name" /><br />
+                </div>
+                <h6>Client Address</h6>
+                <client-address [addressId]="clientFundiContract.clientAddressId" (clientAddressChanged)="updateClientAddress($event)"></client-address>
+            </div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-12">
+                <h6>Project Costs</h6>
+                <p>The pricing table below details the client's projected costs for this project.</p>
+            </div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-3" style="background-color: silver !important; border-right: solid thin white !important;"><h4>Name</h4></div>
+            <div class="col-lg-3" style="background-color: silver !important;"><h4>Price</h4></div>
+            <div class="col-lg-3" style="background-color: silver !important; border-right: solid thin white !important;"><h4>Quantity</h4></div>
+            <div class="col-lg-3" style="background-color: silver !important;"><h4>Sub Total</h4></div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-3" style="border-right: solid thin white !important;">Construction Materials</div>
+            <div class="col-lg-3"><input name="materialCost" type="number" [(ngModel)]="unitMaterialCost" /></div>
+            <div class="col-lg-3"><input name="materialQuantity" type="number" [(ngModel)]="unitMaterialQuantity" /></div>
+            <div class="col-lg-3"><label>{{unitMaterialCost * unitMaterialQuantity}}</label></div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-3" style="border-right: solid thin white !important;">Labour</div>
+            <div class="col-lg-3"><input name="labourCost" type="number" [(ngModel)]="unitLabourCost" /></div>
+            <div class="col-lg-3"><input name="labourQuantity" type="number" [(ngModel)]="unitLabourQuantity" /></div>
+            <div class="col-lg-3"><label>{{unitLabourCost * unitLabourQuantity}}</label></div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-3" style="border-right: solid thin white !important;">Permit &amp; Inspection</div>
+            <div class="col-lg-3"><input name="permitInspectionCost" type="number" [(ngModel)]="unitPermitInspectionCost" /></div>
+            <div class="col-lg-3"><input name="permitInspectionQuantity" type="number" [(ngModel)]="unitPermitInspectionQuantity" /></div>
+            <div class="col-lg-3"><label>{{unitPermitInspectionCost * unitPermitInspectionQuantity}}</label></div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-12">
+                <h6>Payment Schedule</h6>
+                <p>The pricing table below details the client's projected costs for this project.</p>
+            </div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-6" style="background-color: silver !important; border-right: solid thin white !important;"><h4>Payment Dates</h4></div>
+            <div class="col-lg-6" style="background-color: silver !important;"><h4>Payment Amount</h4></div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-6">
+                <input type="text" id="infPayment1Date" name="payment1Date" class="form-control" [(ngModel)]="clientFundiContract.date1stPayment" />
+            </div>
+            <div class="col-lg-6">
+                <input type="number" name="payment1" [(ngModel)]="clientFundiContract.firstPaymentAmount" />
+            </div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-6">
+                <input type="text" id="infPayment2Date" class="form-control" name="payment2Date" [(ngModel)]="clientFundiContract.date2ndPayment" />
+            </div>
+            <div class="col-lg-6">
+                <input type="number" name="payment2" [(ngModel)]="clientFundiContract.secondPaymentAmount" />
+            </div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-6">
+                <input type="text" id="infPayment3Date" class="form-control" name="payment3Date" [(ngModel)]="clientFundiContract.date3rdPayment" />
+            </div>
+            <div class="col-lg-6">
+                <input type="number" name="payment3" [(ngModel)]="clientFundiContract.thirdPaymentAmount" />
+            </div>
+        </div>
+        <div class="row" style="border:solid thin white !important;">
+            <div class="col-lg-6">
+                <input type="text" id="infPayment4Date" class="form-control" name="payment4Date" [(ngModel)]="clientFundiContract.date4thPayment" />
+            </div>
+            <div class="col-lg-6">
+                <input type="number" name="payment4" [(ngModel)]="clientFundiContract.forthPaymentAmount" />
+            </div>
+        </div>
+        <div class=" fundiContract-wrapper">
+            <form #cfcForm="ngForm" method="post" (ngSubmit)="cfcForm.form.valid">
+                <div class="row" id="contractdiv">
+                    <div class="form-group col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12" id="workCategories">
+                                <h5>Terms And Conditions Of Service</h5>
+                                <div>
+                                    <h5>Scope of Work</h5>
+
+                                    <p>Fundi will perform services at the Client's address listed above in accordance with the detailed scope of work attached to this contract.</p>
+
+                                    <h5>Change Orders</h5>
+                                    <p>
+                                        Fundi will perform only those services approved in writing by the Client. If the Clientshall, at any time, require services not listed in the scope of work attached to this services contract, a written change order shall be created and signed by both parties prior to the performance of such work.
+                                        Permits, Licensing, & Approvals
+                                    </p>
+
+                                    <p>
+                                        Client is responsible for procuring any permits or approvals required for the completion of the projects listed in the scope of work . This includes any zoning changes or changes to applicable covenants or local building guidelines.
+                                    </p>
+
+                                    <p>
+                                        The Fundi shall be responsible for any professional licensing required for the execution of the work outlined in the scope of work.
+                                    </p>
+
+                                    <h5>
+                                        Insurance & Loss Coverage
+                                    </h5>
+
+                                    <p>
+                                        Client agrees to maintain adequate property insurance to protect against loss or damage due to theft, fire, vandalism, etc.
+                                    </p>
+
+                                    <p>
+                                        Fundi agrees to maintain reasonable liability insurance to protect against personal injury or loss.
+                                    </p>
+
+
+                                    <p>
+                                        Both parties agree to provide copies of the insurance certificates for their respective policies to one another.
+                                    </p>
+                                    <h5>
+                                        Property Access
+                                    </h5>
+                                    <p>
+                                        Client agrees to be present at the scheduled work time to ensure that Fundi has reasonable access to the working area, including parking space.
+                                    </p>
+                                    <p>
+                                        The Fundi agrees to contact Client 48 hours prior to arrival to schedule an appropriate arrival time, and agrees to make a reasonable effort not to disturb or damage the Homeowner's property outside of any demolition required for the project listed in the scope of work.
+                                    </p>
+
+                                    <h5>
+                                        Site Conditions
+                                    </h5>
+                                    <p>
+                                        The scope of work and pricing for this contract are based on conversations and any walkthroughs completed by the Fundi and Client. The fundi has taken reasonable measures to ensure that the scope of work and pricing represent the entire project requirements, but cannot guarantee a final price due to the possibility of unforeseen complication.
+                                    </p>
+                                    <p>
+                                        In the event that unforeseen complications, including (but not limited to) mold, termites, structural damage, or building code violations are discovered after the project begins, the Fundi will cease work on the project and draft a change order listing any additionally required materials or labor. Client agrees that any unforeseen complications may increase the final price of the project.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 2px 0px !important;">
+                            <div class="col-lg-12" id="terms" style="margin: 2px 0px !important;">
+                                <h5>Additional Notes Of Liabilities</h5>
+                                <div>
+                                    <p>
+                                        Client agrees to make payments in accordance with the following payment schedule:
+                                        <br />
+                                    </p>
+                                    <p>
+                                        Client agrees to make payments via cash, check, or Mobile money on the dates listed above. The Client/Fundi will place a lien on the Fundi/Client  time upon commencement of this project, and will fully release the lien upon completion of project.
+                                    </p>
+
+                                    <h5>Final Inspection</h5>
+
+                                    <p>
+                                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.
+                                        Warranty.
+                                    </p>
+
+                                    <p>
+                                        MyFundi does not offer or imply any warranty for materials used for the project. Any defect or failure of parts or materials used in the project shall be the sole responsibility of the Client.
+                                    </p>
+                                    <p>
+                                        The fundi shall extend a warranty for all labor for a period of warranty months. This warranty covers installation and workmanship. Should the Client discover any incomplete, incorrect, faulty, or failed workmanship during the warranty period, The Fundi shall correct such issues at their sole cost and expense.
+                                    </p>
+                                    <p>
+                                        Prior to making final payment, Client will have the opportunity to review all completed work with the Fundi. Client will have the opportunity to identify any incomplete or unsatisfactory work, and is authorized to withhold final payment until such issues are addressed by the Fundi.
+                                        Warranty.
+                                    </p>
+
+                                    <h5>Dispute Resolution</h5>
+                                    <p>
+                                        Client and Fundi agree to make reasonable efforts to resolve any disagreements related to this contract between themselves. In the event that the two parties cannot agree on an issue, both parties agree to resolve the issue through a civil court located in [Sender.City], [Sender.State]. The decision of that court shall be considered final.
+                                    </p>
+
+                                    <h5>
+                                        Governing Law
+                                    </h5>
+                                    <p>
+                                        This fundi services contract shall be governed by the laws of Uganda.
+                                    </p>
+
+                                    <h5>
+                                        Acceptance
+                                    </h5>
+                                    <p>
+                                        The undersigned parties agree that, having read and understood the entirety of this fundi contract and it's attachments, this contract shall commence as of contract date with the full intent that all parties involved uphold and enforce the full terms of this contract at all times.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        <h6>Extra Notes Of Contract</h6>
+                        <textarea rows="5" cols="10" name="notesForNotice" [(ngModel)]="clientFundiContract.notesForNotice" placeholder="Enter Notes Of Contract"></textarea><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        <label>Agreed Start Date </label>
+                        <input type="text" id="agreedStartDate" name="agreedStartDate" [(ngModel)]="clientFundiContract.agreedStartDate" /><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        <label>Agreed End Date </label>
+                        <input type="text" id="agreedEndDate" name="agreedEndDate" [(ngModel)]="clientFundiContract.agreedEndDate" /><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="isSignedByFundi" name="isSignedByFundi" [(ngModel)]="clientFundiContract.isSignedByFundi" /><label class="custom-control-label">Is Fundi Signed</label>
+                            <br />
+                            <hr />
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="isSignedByClient" name="isSignedByClient" [(ngModel)]="clientFundiContract.isSignedByClient" [disabled]="true" />
+                            <label class="custom-control-label" for="isSignedByClient">Is Client Signed</label>
+                            <br />
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="isCompleted" name="isCompleted" [(ngModel)]="clientFundiContract.isCompleted" />
+                            <label class="custom-control-label" for="isCompleted">Has Job Been Completed</label>
+                            <br />
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="isSignedOffByClient" name="isSignedOffByClient" [(ngModel)]="clientFundiContract.isSignedOffByClient" />
+                            <label class="custom-control-label" for="isSignedOffByClient">Has Job Been Signed Off</label><br />
+                        </div>
+                        <input type="button" value="Rate Fundi!" class="btn btn-primary" (click)="rateFundiAfterContract($event)" style="margin-top:10px;">
+                        <hr />
+                        <br />
+                        <input type="button" value="Create Contract" class="but-primary" (click)="createContract($event)" style="margin-top:10px;" />
+                        <input type="button" value="Update Contract" class="but-primary" (click)="updateContract($event)" style="margin-top:10px;" />
+                        <input type="button" value="Delete Contract" class="but-primary" (click)="deleteContract($event)" style="margin-top:10px;" />
+                        <hr />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,23 @@
+<div #qrCode class="col-lg-12" style="text-align:left !important; color:black !important;">
+  <h4>QR Code Scanner</h4>
+
+  <form #f3="ngForm" (ngSubmit)="f3.form.valid && scanQrCode()">
+    <div class="container">
+      <div id="reader" width="300"></div>
+    </div>
+    <div>
+      <label>Mobile Phone Number</label>
+      <input type="text" name="mobileNumber" [(ngModel)]="userDetails.mobileNumber" required #mobileNumber="ngModel" />
+      <div *ngIf="f3.submitted && mobileNumber.invalid" class="text-danger">
+        Mobile Number required
+      </div>
+    </div>
+    <div class="container">
+      <!--Qr Code Image Goes here:-->
+      <img src="/myFundi/home/GetUserGeneratedQrCode?username={{userDetails.emailAddress}}" width="300" style="border: none;" ng-model="userDetails.emailAddress" ngDefaultControl />
+    </div>
+    <input type="submit" (click)="scanQrCode()" value="Scan QR Code" class="btn btn-primary" style="margin-top: 7px !important;" />
+  </form>
+</div>
+
+

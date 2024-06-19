@@ -1,0 +1,68 @@
+<div #emailFormView>
+    <div class="row">
+        <div class="col-lg-8">
+            <div style="padding:15px; color:red;">
+                Please Note: You should be logged in to make contact, otherwise your email won't be sent
+            </div>
+            <form #emailForm="ngForm" (ngSubmit)="emailForm.form.valid" enctype="multipart/form-data" method="post" action="//Home/SendEmail" style="padding:15px;">
+                <div class="fields">
+                    <div class="field">
+                        <label for="subject">Subject</label>
+                        <input type="text" name="emailSubject" [(ngModel)]="email.emailSubject" #emailSubject="ngModel" required id="name" placeholder="Subject Of Interest" />
+                        <div *ngIf="emailForm.submitted && emailSubject.invalid" class="text-danger">
+                            email subject field required.
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input name="emailFrom" type="email" [(ngModel)]="email.emailFrom" #emailFrom="ngModel" required placeholder="Your email address" id="email" />
+                        <div *ngIf="emailForm.submitted && emailFrom.invalid" class="text-danger">
+                            email from field required.
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea name="emailBody" required [(ngModel)]="email.emailBody" #emailBody="ngModel" placeholder="Enter your post here" id="message" rows="3"></textarea>
+                        <div *ngIf="emailForm.submitted && emailBody.invalid" class="text-danger">
+                            email body field required.
+                        </div>
+                    </div>
+                    <div class="field">
+                        <input type="file" name="attachment" (change)="getFiles($event)" value="Attach file" ngModel #attachment="ngModel" id="attachment" /><br />
+                    </div>
+                </div>
+                <ul class="actions">
+                    <li><input type="submit" (click)="sendEmail()" value="Send Message" /></li>
+                </ul>
+            </form>
+        </div>
+        <div class="col-lg-4">
+            <section class="split contact" style="padding:15px;">
+                <section class="alt">
+                    <h3>Address</h3>
+                    <p>
+                        Unit 3, 2 St Johns Terrace<br />
+                        London, UK W10 4RB
+                    </p>
+                </section>
+                <section>
+                    <h3>Phone</h3>
+                    <p><a href="#">(+44) 07809773365</a></p>
+                </section>
+                <section>
+                    <h3>Email</h3>
+                    <p><a href="#">business-info@martinlayooinc.com</a></p>
+                </section>
+                <section>
+                    <h3>Social</h3>
+                    <ul class="icons alt">
+                        <li><a href="#" class="icon alt fa-twitter addthis_button_twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon alt fa-facebook addthis_button_facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="https://pdfcrowd.com/url_to_pdf/" class="icon alt fa-print"><span class="label">Print</span></a></li>
+                        <li><a href="#" class="addthis_counter addthis_bubble_style" style="color:black !important;margin-top:10px;"></a></li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+    </div>
+</div>

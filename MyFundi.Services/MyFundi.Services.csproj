@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="PaypalSubscriptions\**" />
+    <EmbeddedResource Remove="PaypalSubscriptions\**" />
+    <None Remove="PaypalSubscriptions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyFundi.AppConfigurations\MyFundi.AppConfigurations.csproj" />
+    <ProjectReference Include="..\MyFundi.DataAccess\MyFundi.DataAccess.csproj" />
+    <ProjectReference Include="..\MyFundi.Domain\MyFundi.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <HintPath>..\SimbaToursEastAfrica.SocialMedia\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+  </ItemGroup>
+
+</Project>

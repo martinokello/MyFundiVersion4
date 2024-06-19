@@ -1,0 +1,11 @@
+
+div#createFarmerEcosystem ul li a:hover {
+  cursor:pointer !important;
+  border-bottom:none !important;
+  color:deepskyblue;
+}
+
+div#createFarmerEcosystem ul li:hover, div#createFarmerEcosystem ul li a {
+  border-bottom: none !important;
+}
+

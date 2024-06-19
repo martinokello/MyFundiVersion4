@@ -1,0 +1,175 @@
+<div id="linkToMainMenu" style="text-align:center !important;top: 20px;left:0px; position:fixed;z-index:599999;">
+    <input id="mobilemenu" class="button" type="button" value="mobile menu" style="background-color:slateblue !important; color:white !important;padding:5px !important;height:auto !important;" />
+</div>
+<div id="page-wrapper" style="margin-top:12px !important;">
+  <!-- Header -->
+  <div id="header">
+    <!-- Logo -->
+    <h1 style="padding-bottom:5px !important;"><a href="index.html" style="padding-bottom:5px !important;" id="logo"><em>MartinLayooInc's &copy;</em> Handy Man</a></h1>
+  </div>
+  <!-- Banner -->
+  <div id="mainmenucontent">
+    <app-nav-menu [(ngModel)]="actUserStatus" ngDefaultControl></app-nav-menu>
+  </div>
+  <!-- Highlights -->
+  <section>
+    <div style="margin-top:15px !important; text-align:center !important;" class="container">
+      <ul class="icons">
+        <li><a href="#" class="icon brands fa-twitter addthis_button_twitter" style="color:deepskyblue !important;"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-facebook-f addthis_button_facebook" style="color:deepskyblue !important;"><span class="label">Facebook</span></a></li>
+        <li><a href="https://pdfcrowd.com/url_to_pdf/" class="fa fa-print" aria-hidden="true" style="color:deepskyblue !important;"></a></li>
+        <li><a href="#" class="icon brands fa-linkedin-in addthis_button_linkedin" style="color:deepskyblue !important;"><span class="label">LinkedIn</span></a></li>
+        <!--<a href="#" class="icon brands fa-google-plus-g addthis_button_g-plusone g-plusone" style="color:deepskyblue !important;"><span class="label">Google+</span></a></li>-->
+        <li>
+      </ul>
+    </div>
+  </section>
+  <section>
+      <div class="container">
+          <div id="advertArea">
+              <hr />
+              <advert></advert>
+              <hr />
+          </div>
+          <div id="mainbodycontent"></div>
+          <router-outlet></router-outlet>
+          <ng-container *ngIf="presentLearnMore" ngModel="presentLearnMore" ngDefaultControl>
+              <div style="margin: 20px 0px;">
+                  <a href="#" (click)="goToAboutUsPage($event)" class="button">
+                      About Us
+                  </a>
+              </div>
+          </ng-container>
+      </div>
+  </section>
+  <div id="twitterProfileFeeds">
+    <twitter-profile-feeds></twitter-profile-feeds>
+  </div>
+  <!-- Gigantic Heading -->
+  <section class="wrapper style2">
+    <div class="container">
+      <header class="major">
+        <h2>MartinLayooInc Innovation</h2>
+        <p>MartinLayooInc Presents Ground Breaking Consultancy.</p>
+      </header>
+    </div>
+  </section>
+
+  <!-- Posts -->
+  <section class="wrapper style1">
+    <div class="container">
+      <div class="row">
+        <section class="col-lg-6">
+          <div class="box post">
+            <div class="inner">
+              <h3><a href="https://simbasafaritoursv2.martinlayooinc.com/SimbaSafariToursV2">Simba Safari Tours</a></h3>
+              <p>
+                The Nile Source is burried away in East Africa, a huge fresh water source, "Lake Victoria", shared by countries, Uganda to the West, Kenya to the East, and Tanzania to the South.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="col-lg-6">
+          <div class="box post">
+            <div class="inner">
+              <h3><a href="https://www.teachersassistant.martinlayooinc.com">Online Teacher's Assitant</a></h3>
+              <p>
+                Having registered, your teacher will be notified, and you will be placed in a role as Student. Thereafter all communication and booking time with the Tutor and managing work will be done via the app. Please do not share your passwords. If you feel your password has been compromised, then we suggest you to reset it, during Login
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="row">
+        <section class="col-lg-6">
+          <div class="box post">
+            <div class="inner">
+              <h3><a href="https://unisa-weblive.martinlayooinc.com">UNISA - MOOC ProtoType</a></h3>
+              <p>
+                UniSA - Mooc Project engages Employers, Governments, Potential Employees, Course Providers, Recruitment Agents, Course Endorsement, as well as Certifications. via Block Chain technology
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="col-lg-6">
+          <div class="box post">
+            <div class="inner">
+              <h3><a href="https://nemisabadgesgenerator.martinlayooinc.com">NEMISA - Hackathon Badges Generator</a></h3>
+              <p>
+                Nemisa is the well reknown Hackathon System where Awards by Badges are given to contenders who participate in the solution of various problems, set by NEMISA.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="wrapper style3">
+    <div class="container">
+      <header>
+        <h2>Are you ready to Join the Quest with My Fundi Site?</h2>
+        <a href="/aboutus" class="button">Learn more</a>
+      </header>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer">
+    <div class="container">
+      <div class="row">
+        <section class="col-lg-6">
+          <h3>Links to Stuff</h3>
+          <ul class="links">
+            <li><a href="#">Mattis et quis rutrum</a></li>
+            <li><a href="#">Suspendisse amet varius</a></li>
+            <li><a href="#">Sed et dapibus quis</a></li>
+            <li><a href="#">Rutrum accumsan dolor</a></li>
+            <li><a href="#">Mattis rutrum accumsan</a></li>
+            <li><a href="#">Suspendisse varius nibh</a></li>
+            <li><a href="#">Sed et dapibus mattis</a></li>
+          </ul>
+        </section>
+        <section class="col-lg-6">
+          <h3>More Links to Stuff</h3>
+          <ul class="links">
+            <li><a href="#">Duis neque nisi dapibus</a></li>
+            <li><a href="#">Sed et dapibus quis</a></li>
+            <li><a href="#">Rutrum accumsan sed</a></li>
+            <li><a href="#">Mattis et sed accumsan</a></li>
+            <li><a href="#">Duis neque nisi sed</a></li>
+            <li><a href="#">Sed et dapibus quis</a></li>
+            <li><a href="#">Rutrum amet varius</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <!-- Icons -->
+    <ul class="icons">
+      <li><a href="#" class="icon brands fa-twitter addthis_button_twitter" style="color:deepskyblue !important;"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon brands fa-facebook-f addthis_button_facebook" style="color:deepskyblue !important;"><span class="label">Facebook</span></a></li>
+      <li><a href="https://pdfcrowd.com/url_to_pdf/" class="fa fa-print" aria-hidden="true" style="color:deepskyblue !important;"></a></li>
+      <li><a href="#" class="icon brands fa-linkedin-in addthis_button_linkedin" style="color:deepskyblue !important;"><span class="label">LinkedIn</span></a></li>
+
+      <!--<a href="#" class="icon brands fa-google-plus-g addthis_button_g-plusone g-plusone" style="color:deepskyblue !important;"><span class="label">Google+</span></a></li>-->
+    </ul>
+    <!-- Copyright -->
+    <div class="copyright">
+      <ul class="menu">
+        <li>&copy; MartinLayooInc. All rights reserved</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+    let jQuery = $;
+    jQuery(document).ready(function () {
+
+
+    });
+</script>

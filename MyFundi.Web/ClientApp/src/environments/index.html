@@ -1,0 +1,110 @@
+﻿<!DOCTYPE HTML>
+<!--
+  Arcana by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>African Farmer Commodities Web</title>
+    <base href="/africanfarmerscommodities/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="/africanfarmerscommodities/assets/css/main.css" />
+    <link rel="stylesheet" href="/africanfarmerscommodities/assets/bootstrap-4.5.3/css/bootstrap.css" />
+    <link rel="stylesheet" href="/africanfarmerscommodities/assets/datetimepicker/css/jquery.datetimepicker.min.css" />
+    <link rel='stylesheet' href='/africanfarmerscommodities/assets//fullcalendar-3.10.0/fullcalendar.print.min.css' media='print' />
+    <link rel='stylesheet' href="/africanfarmerscommodities/assets/fullcalendar-3.10.0/fullcalendar.min.css" />
+    <script src="/africanfarmerscommodities/assets/datetimepicker/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/datetimepicker/js/jquery.ui.js" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/js/bootstrap.js" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/datetimepicker/js/jquery.datetimepicker.js" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/fullcalendar-3.10.0/lib/moment.min.js"></script>
+    <script src="/africanfarmerscommodities/assets/fullcalendar-3.10.0/fullcalendar.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('div#navPanel').html("<div style='text-align:center !important;vertical-align:center !important;'><img src='/africanfarmerscommodities/assets/images/martin.jpg' style='margin:50px 20px 10px !important; width:250px !important; height:auto !important;' alt='company logo'/></div>");
+
+            $('div#titleBar span.title').html("MartinLayooInc Software");
+
+            $(document).on('focus', 'input#dateStartFromOrigin', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#dateStartFromOrigin').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#dateEndAtDestination', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#dateEndAtDestination').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $(document).on('focus', 'input#intdateStartFromOrigin', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#intdateStartFromOrigin').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+
+                });
+            });
+            $(document).on('focus', 'input#intdateEndAtDestination', function () {
+                $(this).datetimepicker({
+                    onSelect: function (dateText, datePicker) {
+                        $('input#intdateEndtAtDestination').attr('value', dateText);
+                    },
+                    dateFormat: 'yyyy/MM/ddThh:mm:ss'
+                });
+            });
+            $('nav#nav ul li a').css('background-color', 'transparent');
+            $('nav#nav ul li:first').addClass('current');
+            $('nav#nav ul li:first').css('background-color', 'deepskyblue');
+
+
+            $(document).on('click', 'nav#nav ul li', function () {
+                $('nav#nav ul li').css('background-color', 'transparent');
+                $('nav#nav ul li').removeClass('current');
+                $(this).addClass('current');
+                $(this).css('background-color', 'deepskyblue');
+            });
+        });
+    </script>
+</head>
+<body>
+    <app-root>Loading...</app-root>
+
+
+    <script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fd0dd2922276224"></script>
+    <script type="text/javascript">
+
+        var addthis_config = {
+            data_ga_property: 'UA-17123788-1',
+            data_ga_social: true,
+            "data_track_addressbar": false
+        };
+        var addthis_share = {
+            url_transforms: {
+                clean: true,
+                shorten: {
+                    twitter: 'bitly'
+                }
+            }
+        }
+    </script>
+    <script src="/africanfarmerscommodities/assets/js/jquery.dropotron.min.js" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/js/browser.min.js" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/js/breakpoints.min.js" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/js/util.js" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/js/main.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNPbLu2PRqU9dWbtw6WE5qijg9o7B3FDQ&sensor=false" type="text/javascript"></script>
+    <script src="/africanfarmerscommodities/assets/js/html5-qrcode/html5-qrcode.min.js" type="text/javascript"></script>
+    <!-- <script src="/africanfarmerscommodities/assets/full-calendar/full-calendar.js" type="text/javascript"></script>-->
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿body {
+}
+label {
+    color: gray !important;
+}
+
+input[type=checkbox] {
+    display: inline-block;
+    -webkit-appearance: checkbox;
+}
+
+input[type=radio] {
+    display: inline-block;
+    -webkit-appearance: radio;
+}

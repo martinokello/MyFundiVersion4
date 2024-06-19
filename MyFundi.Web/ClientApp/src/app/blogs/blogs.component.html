@@ -1,0 +1,49 @@
+<div class="container-fluid" style="padding:3px !important;text-align:center !important;">
+    <div style="height:auto !important;">
+        <div style="text-align:center !important;">
+            <img id="imageBanner" src="assets/images/blogs.jpg" style="padding:3px !important; width:30% !important; height:auto !important;" alt="[[Blog Image]]" />
+        </div>
+        <div id="blogs" style="position:relative !important;">
+            <div class="input-group">
+                <input type="text" placeholder="Search Blogs..." class="form-control col-mg-11" [(ngModel)]="searchQuery" />
+                <span class="col-mg-1"><button style="vertical-align:central !important;" type="submit" class="btn-primary form-control" (click)="searchBlogs($event)">Go!</button></span>
+            </div>
+            <br />
+            <div *ngFor="let blog of blogs" class="clear:both !important;">
+                <h2>{{blog.blogName}}</h2>
+                <div style="text-align:center !important;">
+                    <img src="/FileContentServe/GetImageSrcFromImageRootDirectory/{{blog.blogName}}.jpg" style="padding:3px !important; width:73% !important; height:auto !important;" id="sharedImage" />
+                </div>
+                <div style="text-align:left !important;" class="blogContent">
+                    <div class="editBlogDivAnchor">
+                        <input type="submit" id="{{blog.blogId}}" value="Edit Blog" class="btn-primary" /><br />
+                    </div>
+                    <div class="content" innerHTML="{{blog.blogContent}}">
+                        <hr />
+                    </div>
+                    <span>Dated: {{blog.dateCreatedUtc}}</span><br />
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <div id="createBlogDiv">
+            <div class="form-group" *ngIf="isAdiministrator">
+                <h4>Blog Header Image</h4>
+                <input type="file" id="blogImage" class="form-control-file" name="blogImage" (change)="uploadBlogFile($event)" /><br />
+                <input type="text" id="blogName" class="form-control-file" name="blogName" [(ngModel)]="blog.blogName" placeholder="Enter Blog Name" /><br />
+                <div>
+                    <textarea placeholder="Enter Blog Content" id="blogContent" name="blogContent" style="height:auto !important;text-align:left !important;height:50vh !important;"></textarea>
+                </div>
+                <input type="button" class="btn btn-primary" (click)="submitBlog($event)" value="Create Blog" /><br />
+                <input type="button" class="btn btn-primary" (click)="updateBlog($event)" value="Update Blog" /><br />
+                <input type="button" class="btn btn-primary" (click)="deleteBlog($event)" value="Delete Blog" /><br />
+                <hr />
+            </div>
+            <div class="form-group" id="createBlog" *ngIf="isAdiministrator">
+                <h4>Images used in Blog</h4>
+                <input type="file" id="blogImage" class="form-control-file" name="blogContentImage" (change)="uploadBlogSingleImages($event)" /><br />
+                <input type="button" class="btn btn-primary" (click)="submitBlogSingleImage($event)" value="Add Single Images" /><br />
+            </div>
+        </div>
+    </div>
+</div>

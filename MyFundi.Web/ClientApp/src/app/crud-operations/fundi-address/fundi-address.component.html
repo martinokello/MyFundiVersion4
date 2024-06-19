@@ -1,0 +1,52 @@
+<div class="row" id="fundi-addresses-wrapper">
+  <div class="col-lg-12" style="text-align:left !important; color:black !important;">
+    <form #fundiAddForm="ngForm" (ngSubmit)="fundiAddForm.form.valid" id="fundiAddForm">
+      <h4> Address</h4>
+      <div #Address>
+        <div class="form-group">
+          <label>AddressId - optional</label>
+          <select id="fundiAddressId" name="fundiAddressId" [(ngModel)]="addressId" (change)="onFundiAddressChanged()"></select>
+        </div>
+        <div class="form-group">
+            <label>Address Line 1</label>
+            <input type="text" name="addressLine1" [(ngModel)]="fundiAddress.addressLine1" required #fundiAddressLine1="ngModel" />
+            <div *ngIf="fundiAddForm.submitted && fundiAddressLine1.invalid" class="text-danger">
+                AddressLine1  required
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Address Line 2</label>
+            <input type="text" name="addressLine2" [(ngModel)]="fundiAddress.addressLine2" required #fundiAddressLine2="ngModel"/>
+            <div *ngIf="fundiAddForm.submitted && fundiAddressLine2.invalid" class="text-danger">
+                AddressLine2  required
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Town</label>
+            <input type="text" name="town" [(ngModel)]="fundiAddress.town" required #town="ngModel"/>
+            <div *ngIf="fundiAddForm.submitted && town.invalid" class="text-danger">
+                Town  required
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Post Code</label>
+            <input type="text" name="postCode" [(ngModel)]="fundiAddress.postCode" required #postCode="ngModel" />
+            <div *ngIf="fundiAddForm.submitted && postCode.invalid" class="text-danger">
+                Post Code  required
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Country</label>
+            <input type="text" name="country" [(ngModel)]="fundiAddress.country" required #country="ngModel"/>            
+            <div *ngIf="fundiAddForm.submitted && country.invalid" class="text-danger">
+                Country  required
+            </div>
+        </div>
+      </div>
+      <input type="submit" value="Select Address" class="but-primary" (click)="selectAddress()" style="margin-top:10px;" />
+      <input type="submit" value="Add Address" class="but-primary" (click)="addAddress()" [disabled]="fundiAddForm.invalid" style="margin-top:10px;" />
+      <input type="submit" value="Update Address" class="but-primary" (click)="updateAddress()" [disabled]="fundiAddForm.invalid" style="margin-top:10px;" />
+      <input type="submit" value="Delete Address" class="but-primary" (click)="deleteAddress()" [disabled]="fundiAddForm.invalid" style="margin-top:10px;" />
+    </form>
+  </div>
+</div>

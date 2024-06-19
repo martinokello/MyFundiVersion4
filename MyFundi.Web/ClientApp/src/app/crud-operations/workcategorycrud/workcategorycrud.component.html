@@ -1,0 +1,33 @@
+<div id="workCategoriescrud-wrapper" style="width:100% !important">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:left !important; color:black !important;">
+            <form #f4="ngForm" (ngSubmit)="f4.form.valid" id="f4" style="width:100% !important">
+                <h4> Work Category</h4>
+                <div #Address>
+                    <div class="form-group">
+                        <label>Work Category Id - optional</label>
+                        <select id="workCategoryCrudId" name="workCategoryId" [(ngModel)]="workCategory.workCategoryId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Work Category Type</label>
+                        <input type="text" name="workCategoryType" required [(ngModel)]="workCategory.workCategoryType" #workCategoryType="ngModel" />
+                        <div *ngIf="f4.submitted && workCategoryType.invalid" class="text-danger">
+                            Work Category Type  required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Work Category Description</label>
+                        <textarea cols="10" rows="5" name="workCategoryDescription" required [(ngModel)]="workCategory.workCategoryDescription" #workCategoryDescription="ngModel"></textarea>
+                        <div *ngIf="f4.submitted && workCategoryDescription.invalid" class="text-danger">
+                            Work Category Description  required
+                        </div>
+                    </div>
+                </div>
+                <input type="button" value="Select Work Category" class="but-primary" (click)="selectworkCategory()" style="margin-top:10px;" />
+                <input type="button" value="Add Work Category" class="but-primary" (click)="addWorkCategory()" style="margin-top:10px;" />
+                <input type="button" value="Update Work Category" class="but-primary" (click)="updateworkCategory()" style="margin-top:10px;" />
+                <input type="button" value="Delete Work Category" class="but-primary" (click)="deleteworkCategory()" style="margin-top:10px;" />
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="container-fluid" id="clientSubscription-wrapper" style="background-color: #EEEEEE; text-align: left;">
+    <h2 style="text-align:center !important;padding:10px 0px !important;">{{subscription.firstName}} {{subscription.lastName}}  Profile</h2>
+  <section id="Profile">
+    <div class="row" style="text-align: center !important; align-content: center !important;">
+      <div class="col-lg-12">
+        <img id="profileImage" src="/ClientProfile/GetClientProfileImageByUsername?username={{subscription.username}}" alt="profileImage" style="width:250px; height:auto; align-content:center !important;" /><br />
+      </div>
+    </div>
+    <div class="row" style="margin: 2px 0px !important;">
+      <div class="col-lg-12" id="workCategories" style="margin: 2px 0px !important;">
+        <h5>Client Subscription</h5>
+        <div class="subscription">
+          <form #fs="ngForm" method="post" (ngSubmit)="fs.form.valid">
+              <div class="row" id="subscriptiondiv" style="margin: 2px 0px !important;">
+                  <div class="col-lg-12" id="subscription" style="margin: 2px 0px !important;">
+                      <img src="/assets/images/paypal_logo.gif" alt="paypal logo" width="450" /><br />
+                  </div>
+                  <div class="form-group col-lg-12">
+                      <label>Start Date </label>
+                      <input type="text" id="startDate" name="startDate" value="{{ subscription.startDate | date : 'yyyy-MM-dd HH:mm' }}" [(ngModel)]="subscription.startDate"/><br />
+                  </div>
+                  <div class="form-groupcol-lg-12">
+                      <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="hasPaid" name="hasPaid" [(ngModel)]="subscription.hasPaid"  [disabled]="true"/><label class="custom-control-label">Has Paid Subscription</label>
+                          <br />
+                      </div>
+                  </div>
+                  <div class="col-lg-12" id="subscription" style="margin: 2px 0px !important;">
+                      <div class="form-group">
+                          <label>
+                              Subscripton Name
+                          </label><br />
+                          <select id="clientSubscriptionId" [(ngModel)]="subscription.subscriptionId" name="subscriptionId" (change)="subscriptionChange($event)"></select><br />
+                          <label>Or Create New Subscription</label>
+                          <input type="text" id="subscriptionName" name="subscriptionName" [(ngModel)]="subscription.subscriptionName" /><br />
+                      </div>
+                      <div class="form-group">
+                          <label>
+                              Monthly Subscription Description
+                          </label><br />
+                          <textarea name="subscriptionDescription" required #subscriptionDescription="ngModel" [(ngModel)]="subscription.subscriptionDescription" row="5" cols="10"></textarea><br />
+                          <div *ngIf="fs.submitted && subscriptionDescription.invalid" class="text-danger">
+                              Subscription Description Required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label>
+                              Subscripton Monthly Fee
+                          </label><br />
+                          <input type="number" name="subscriptionFee" value="{{ subscription.subscriptionFee | currency}}" required [(ngModel)]="subscription.subscriptionFee" readonly #subscriptionFee="ngModel" /><br />
+                          <div *ngIf="fs.submitted && subscriptionFee.invalid" class="text-danger">
+                              Subscription Fee Required
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label>
+                              Make Payment
+                          </label><br />
+                          <input type="button" value="Paypal Monthly Payment" class="but-primary" (click)="paySubscriptionMonthlyFeeWithPaypal($event)" /><br />
+                          <input type="button" value="MTN Monthly Payment" class="but-primary" (click)="payClientSubscriptionFeeWithMtn($event)" /><br />
+                          <input type="button" value="AirTel Monthly Payment" class="but-primary" (click)="payClientSubscriptionFeeWithAirTel($event)" /><br />
+                      </div>
+                      <hr />
+                  </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>
+</div>

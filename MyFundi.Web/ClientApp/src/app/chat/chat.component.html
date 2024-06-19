@@ -1,0 +1,35 @@
+﻿<div class="container-fluid" id="chat-wrapper">
+    <div style="text-align: center;">
+        <div style="background-color: #F0F0F0; margin-right: 0px; margin-left: 0px;padding-left:20px; text-align: left;">
+            <div style="background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;">
+                <div style="background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;">
+                    <h2>MartinLayooInc. Private Chat Room No: #{{roomNumber?roomNumber.toString():""}}</h2><br />
+                </div>
+                <div style="background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;">
+                    <span style="color: #0080ff;margin-left:20px;"><b><i>Private Chat Room</i></b></span><br />
+                    <br />
+                </div>
+
+                <div style="background-color: #F0F0F0; margin-right: 0px; margin-left: 0px; text-align: left;width:100%;">
+                    <div style="color: Green; margin-left: 10px; margin-top:-15px; font-style: italic; font-weight: bold; font-size:small;">Please select the User you want to invite to Secret Room</div>
+                    <div style="margin-top:15px;margin-left:10px;">
+                        <ul class="listless" id="radioList" style="margin-right: 10px;margin-left:0px !important; background-color: white; min-height: 100px; width: auto; color: teal;list-style:none !important;overflow-y:auto !important;"></ul>
+                    </div>
+                    <br />
+                </div>
+                <div id="messages" style="border: solid 1px #999999; padding: 5px 5px 5px 5px;margin-top: 15px; margin-left: 0px; width:auto !important; height: 240px; overflow-y: auto; overflow-x: hidden;font-family: Times New Roman; font-size: small; color: blue; background-color: White;">
+                </div>
+            </div>
+            <div>
+                <textarea id="txtTypeHere" style="margin-top:10px;width:100% !important; height:240px;margin-left: 0px; padding: 5px 5px 5px 5px; " placeholder="Type messages here and click return or send button" title="type messages here and click return or send button"></textarea>
+            </div>
+            <div style="margin-top: 10px; margin-left: 0px; margin-bottom: 10px;padding-bottom:5px;">
+                <input type="button" id="btnSubmit" value="Send Message" class="oneRowButton" (click)="wasClicked($event);" />
+                <input type="button" id="btnBookRoom" value="Book Room" class="oneRowButton" (click)="BookPrivateRoom($event);" />
+                <input type="button" id="btnInvite" value="Invite Friend" class="oneRowButton" (click)="InviteClient($event);" />
+                <input type="button" id="btnClearRoom" value="Stop Meeting" class="oneRowButton" (click)="ClearRoom($event);" />
+                <input type="button" id="btnExitRoom" value="Exit Meeting" class="oneRowButton" (click)="ExitRoom($event);" />
+            </div>
+        </div>
+    </div>
+</div>

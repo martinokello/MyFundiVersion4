@@ -1,0 +1,139 @@
+<section id="banner" style="height:auto !important;">
+    <header style="margin-top:5px !important;position:relative !important;">
+        <!-- Nav -->
+        <nav id="nav">
+            <div style="position:relative !important;margin:9px;text-align:left;">
+                <span style="color:red;background-color:black;padding:5px;display:none;font-size:small;" class="col-lg-4" id="loginName"></span><br />
+            </div>
+            <ul style="margin: 6px 0px !important;">
+                <li style="margin:10px 0px !important;padding:10px !important;">
+                    <a [routerLink]="['/']">Home</a>
+                </li>
+                <ng-container *ngIf="actUserStatus.isUserLoggedIn" ngDefaultControl ngModel="actUserStatus">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/authenticated-entities-override'>
+                            User Overrides
+                        </a>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/chat'>Live Chat</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="actUserStatus.isFundi || actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/manage-profile'>Manage Fundi Profile</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="actUserStatus.isFundi || actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/fundi-contract'>Fundi Contracts</a>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/fundi-search-job'>Search For Jobs</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="actUserStatus.isFundiExpiredSubscription || actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/fundi-subscription'>Fundi Subscription</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="userRoles && userRoles.indexOf('Client') > -1  || actUserStatus.isUserAdministrator" ngDefaultControl ngModel="userRoles">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/client-create-job'>Manage Jobs</a>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a [routerLink]="['/clientsearch']">
+                            Search For Fundi
+                        </a>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/client-fundi-contract'>Client Contracts</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="actUserStatus.isClientExpiredSubscription || actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/client-subscription'>Client Subscription</a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/manage-entities'>Manage Entities</a>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/manage-roles'>
+                            Manage Roles
+                        </a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="!actUserStatus.isUserAdministrator" ngDefaultControl ngModel="actUserStatus">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a [routerLink]="['/contactus']">
+                            Contact Us
+                        </a>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a [routerLink]="['/aboutus']">
+                            About Us
+                        </a>
+                    </li>
+                </ng-container>
+                <li style="margin: 10px 0px !important; padding: 10px !important;">
+                    <a [routerLink]="['/blogs']">
+                        Blogs
+                    </a>
+                </li>
+                <ng-container *ngIf="!actUserStatus.isUserLoggedIn" ngDefaultControl ngModel="actUserStatus">
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a [routerLink]="['/login']">
+                            Login
+                        </a>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a [routerLink]="['/register']">
+                            Register
+                        </a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="actUserStatus.isUserLoggedIn" ngModel="actUserStatus" ngDefaultControl>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a [routerLink]="['/scanqrcode']">
+                            Scan Qr-Code
+                        </a>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a (click)="setIsLogInPage()" [routerLink]="['/home']">
+                            Logout
+                        </a>
+                    </li>
+                </ng-container>
+                <li style="margin: 10px 0px !important; padding: 10px !important;">
+                    <a [routerLink]="['/forgot-password']">
+                        Forgot password
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Roles Banner-->
+        <ng-container *ngIf="actUserStatus.isUserLoggedIn" ngDefaultControl>
+            <!-- Nav -->
+            <nav style="text-align:left !important;">
+                <ul style="margin: 10px 0px !important;">
+                    <li *ngIf="actUserStatus.isFundi && !(actUserStatus.isUserAdministrator) && actUserStatus.isFundiExpiredSubscription" style="margin:10px 0px !important;padding:10px !important;">
+                        <span>
+                            <a routerLink="/manage-profile" routerLinkActive='link-active' style="text-align: left !important; color: white !important; display: inline-block;text-decoration:none !important;">Fundi</a>
+                        </span>
+                    </li>
+                    <li style="margin:10px 0px !important;padding:10px !important;" *ngFor="let role of userRoles">
+                        <span>
+                            <a routerLink="/{{role == 'Client'?'client-create-job': role == 'Fundi'?'manage-profile': role == 'Administrator'?'manage-profile':'home'}}" routerLinkActive='link-active' style="text-align: left !important; color: white !important; display: inline-block;text-decoration:none !important;">{{role}}</a>
+                        </span>
+                    </li>
+                    <li style="margin: 10px 0px !important; padding: 10px !important;">
+                        <a routerLink='/fundi-locations' routerLinkActive='link-active' style="text-align: left !important; color: white !important; display: inline-block; text-decoration: none !important;">Fundi Locations</a>
+                    </li>
+                </ul>
+            </nav>
+        </ng-container>
+        <hr />
+    </header>
+</section>
