@@ -8743,13 +8743,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this87.formatDate(sub.startDate);
                     subscrSelect.appendChild(opt1);
                   });
-                  var lastMonthlySubsObs = _this87.myFundiService.GetFundiLastSubscriptionFees(_this87.subscription.userId);
-                  lastMonthlySubsObs.map(function (q) {
-                    debugger;
-                    if (q.result) {
-                      _this87.fundi.subscriptionFee = q.subscriptionFee;
-                    }
-                  }).subscribe();
+                  if (subs.length > 0) _this87.fundi.subscriptionFee = subs[subs.length - 1].subscriptionFee;else _this87.fundi.subscriptionFee = 0;
                 }).subscribe();
               }).subscribe();
             }

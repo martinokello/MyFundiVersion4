@@ -7732,13 +7732,10 @@ let FundiSubscriptionComponent = class FundiSubscriptionComponent {
                             opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
                             subscrSelect.appendChild(opt1);
                         });
-                        let lastMonthlySubsObs = this.myFundiService.GetFundiLastSubscriptionFees(this.subscription.userId);
-                        lastMonthlySubsObs.map((q) => {
-                            debugger;
-                            if (q.result) {
-                                this.fundi.subscriptionFee = q.subscriptionFee;
-                            }
-                        }).subscribe();
+                        if (subs.length > 0)
+                            this.fundi.subscriptionFee = subs[subs.length - 1].subscriptionFee;
+                        else
+                            this.fundi.subscriptionFee = 0;
                     }).subscribe();
                 }).subscribe();
             }
