@@ -8721,29 +8721,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _this87.fundi.userId = q;
                 var subscrObs = _this87.myFundiService.GetAllFundiSubscriptions(_this87.fundi.fundiProfileId);
                 subscrObs.map(function (subs) {
-                  var opt = document.createElement('option');
-                  opt.value = "0";
-                  opt.text = "Select Month Subscription";
-                  var subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
-                  subscrSelect.appendChild(opt);
-                  if (subs.length > 0) {
-                    _this87.subscriptionFeeExpense = _this87.subscription = subs[0];
-                    _this87.fundi.subscriptionFee = _this87.subscription.subscriptionFee;
-                    _this87.startDate = _this87.formatDate(subs[0].startDate);
-                    _this87.appendCategoriesAndSubCategoriesToUi();
-                  } else {
-                    var dateNow = new Date();
-                    _this87.startDate = _this87.formatDate(dateNow);
-                    _this87.subscription = _this87.subscriptionFeeExpense;
-                    _this87.subscription.monthlySubscriptionId = 0;
-                  }
-                  subs.forEach(function (sub, ind) {
-                    var opt1 = document.createElement('option');
-                    opt1.value = sub.monthlySubscriptionId.toString();
-                    opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this87.formatDate(sub.startDate);
-                    subscrSelect.appendChild(opt1);
-                  });
-                  if (subs.length > 0) _this87.fundi.subscriptionFee = subs[subs.length - 1].subscriptionFee;else _this87.fundi.subscriptionFee = 0;
+                  var lastSubscriptionFeeObs = _this87.myFundiService.GetFundiLastSubscriptionFees(_this87.fundi.userId);
+                  lastSubscriptionFeeObs.map(function (q) {
+                    var opt = document.createElement('option');
+                    opt.value = "0";
+                    opt.text = "Select Month Subscription";
+                    var subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
+                    subscrSelect.appendChild(opt);
+                    if (subs.length > 0) {
+                      _this87.subscriptionFeeExpense = _this87.subscription = subs[0];
+                      _this87.fundi.subscriptionFee = _this87.subscription.subscriptionFee;
+                      _this87.startDate = _this87.formatDate(subs[0].startDate);
+                      _this87.appendCategoriesAndSubCategoriesToUi();
+                    } else {
+                      var dateNow = new Date();
+                      _this87.startDate = _this87.formatDate(dateNow);
+                      _this87.subscription = _this87.subscriptionFeeExpense;
+                      _this87.subscription.monthlySubscriptionId = 0;
+                    }
+                    subs.forEach(function (sub, ind) {
+                      var opt1 = document.createElement('option');
+                      opt1.value = sub.monthlySubscriptionId.toString();
+                      opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + _this87.formatDate(sub.startDate);
+                      subscrSelect.appendChild(opt1);
+                    });
+                    _this87.fundi.subscriptionFee = q.subscriptionFee;
+                  }).subscribe();
                 }).subscribe();
               }).subscribe();
             }

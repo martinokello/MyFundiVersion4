@@ -597,9 +597,10 @@ namespace MyFundi.Web.Controllers
 		[Route("~/FundiProfile/GetFundiLastSubscriptionFees/{userId}")]
 		public async Task<IActionResult> GetFundiLastSubscriptionFees(Guid userId)
 		{
+			 
 			try
 			{
-				var currentSubsFee = _unitOfWork._fundiSubscriptionRepository.MyFundiDBContext.GetFundiLastSubscriptionFees(userId);
+				var currentSubsFee = _unitOfWork.MyFundiDBContext.GetFundiLastPaidSubscriptionFee(userId, _firstFundiPayment, _secondFundiPayment, _thirdFundiPayment);
 
 				return await Task.FromResult(Ok(new { SubscriptionFee = currentSubsFee, Result = true }));
 			}

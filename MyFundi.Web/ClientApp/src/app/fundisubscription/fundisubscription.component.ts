@@ -122,34 +122,38 @@ export class FundiSubscriptionComponent implements OnInit, AfterViewInit, AfterV
                     this.fundi.userId = q;
                     let subscrObs: Observable<ISubscription[]> = this.myFundiService.GetAllFundiSubscriptions(this.fundi.fundiProfileId);
                     subscrObs.map((subs: ISubscription[]) => {
-                        let opt: HTMLOptionElement = document.createElement('option');
-                        opt.value = "0";
-                        opt.text = "Select Month Subscription";
-                        let subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
-                        subscrSelect.appendChild(opt);
-                        if (subs.length > 0) {
-                            this.subscriptionFeeExpense = this.subscription = subs[0];
-                            this.fundi.subscriptionFee = this.subscription.subscriptionFee;
-                            this.startDate = this.formatDate(subs[0].startDate);
-                            this.appendCategoriesAndSubCategoriesToUi();
-                        }
-                        else {
-                            let dateNow = new Date();
-                            this.startDate = this.formatDate(dateNow);
-                            this.subscription = this.subscriptionFeeExpense;
-                            this.subscription.monthlySubscriptionId = 0;
-                        }
-                        subs.forEach((sub: ISubscription, ind: number) => {
 
-                            let opt1: HTMLOptionElement = document.createElement('option');
-                            opt1.value = sub.monthlySubscriptionId.toString();
-                            opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
-                            subscrSelect.appendChild(opt1);
-                        });
-                        if(subs.length > 0)
-                            this.fundi.subscriptionFee = subs[subs.length - 1].subscriptionFee;
-                        else
-                            this.fundi.subscriptionFee = 0;
+                        var lastSubscriptionFeeObs: Observable<any> = this.myFundiService.GetFundiLastSubscriptionFees(this.fundi.userId);
+
+                        lastSubscriptionFeeObs.map((q: any) => {
+
+                            let opt: HTMLOptionElement = document.createElement('option');
+                            opt.value = "0";
+                            opt.text = "Select Month Subscription";
+                            let subscrSelect = document.querySelector('div#fundiSubscription-wrapper select#subscriptionId');
+                            subscrSelect.appendChild(opt);
+                            if (subs.length > 0) {
+                                this.subscriptionFeeExpense = this.subscription = subs[0];
+                                this.fundi.subscriptionFee = this.subscription.subscriptionFee;
+                                this.startDate = this.formatDate(subs[0].startDate);
+                                this.appendCategoriesAndSubCategoriesToUi();
+                            }
+                            else {
+                                let dateNow = new Date();
+                                this.startDate = this.formatDate(dateNow);
+                                this.subscription = this.subscriptionFeeExpense;
+                                this.subscription.monthlySubscriptionId = 0;
+                            }
+                            subs.forEach((sub: ISubscription, ind: number) => {
+
+                                let opt1: HTMLOptionElement = document.createElement('option');
+                                opt1.value = sub.monthlySubscriptionId.toString();
+                                opt1.text = sub.subscriptionName + "-#" + sub.subscriptionFee + "# " + this.formatDate(sub.startDate);
+                                subscrSelect.appendChild(opt1);
+                            });
+
+                            this.fundi.subscriptionFee = q.subscriptionFee;
+                        }).subscribe();
                     }).subscribe();
                 }).subscribe();
             }

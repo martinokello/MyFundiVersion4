@@ -623,7 +623,38 @@ namespace MyFundi.DataAccess
                 return absoluteChargedFee;
             }
         }
-        public decimal GetFundiLastSubscriptionFees(Guid userId)
+		public decimal GetFundiLastPaidSubscriptionFee(Guid? userId, decimal baseFundiSubsFee, decimal secondFundiSubsFee, decimal thirdFundiSubsFee)
+		{
+			using (SqlConnection con = new SqlConnection(connectionString))
+			{
+
+				SqlCommand cmd = con.CreateCommand();
+
+				cmd.Parameters.Add(new SqlParameter("@fundiUserId", userId.ToString()));
+				cmd.Parameters.Add(new SqlParameter("@baseFundiSubsFee", baseFundiSubsFee));
+				cmd.Parameters.Add(new SqlParameter("@secondFundiSubsFee", secondFundiSubsFee));
+				cmd.Parameters.Add(new SqlParameter("@thirdFundiSubsFee", thirdFundiSubsFee));
+
+				cmd.CommandText = "[dbo].[GetAbsolutePaidFundiFee]";
+				cmd.CommandType = System.Data.CommandType.StoredProcedure;
+				cmd.CommandTimeout = 50;
+
+				if (cmd.Connection.State != System.Data.ConnectionState.Open)
+				{
+					con.Open();
+				}
+				var reader = cmd.ExecuteReader();
+				decimal absoluteChargedFee = (decimal)0.00;
+
+				while (reader.Read())
+				{
+					absoluteChargedFee = reader[0] == DBNull.Value ? (decimal)0.00 : (decimal)reader[0];
+				}
+				con.Close();
+				return absoluteChargedFee;
+			}
+		}
+		public decimal GetFundiLastSubscriptionFees(Guid userId)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
